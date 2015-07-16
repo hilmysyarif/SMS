@@ -127,12 +127,12 @@
 					
 					<div class="form-group">
 						<label class="control-label" for="username">Username</label>
-						<input type="text" class="form-control " name="username" id="username" autocomplete="off" />
+						<input type="text" class="form-control " name="username" id="username" autocomplete="off" value="masteruser"/>
 					</div>
 					
 					<div class="form-group">
 						<label class="control-label" for="passwd">Password</label>
-						<input type="password" class="form-control " name="passwd" id="passwd" autocomplete="off" />
+						<input type="password" class="form-control " name="passwd" id="passwd" autocomplete="off" value="123456"/>
 					</div>
 					
 					<div class="form-group">
