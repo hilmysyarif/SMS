@@ -341,7 +341,7 @@ class Master extends CI_Controller {
 	{	
 		if($id){
 			$filter=array('ExamId'=>$this->data['id']=$id);
-			$this->data['exam_update'] = $this->master_model->get_info('subject',$filter);
+			$this->data['exam_update'] = $this->master_model->get_info('exam',$filter);
 		}
 		$this->data['class_info'] = $this->master_model->get_acc(' class');
 		$this->data['exam_info'] = $this->master_model->get_acc('exam');
@@ -357,26 +357,26 @@ class Master extends CI_Controller {
 	function insert_exam()
 	{
 		$data=array('Session'=>"2015-2016",
-				'SubjectName'=>$this->input->post('subject_name'),
-				'SubjectAbb'=>$this->input->post('abbreviation'),
-				'Class'=>$class,
+				'ExamName'=>$this->input->post('exam_name'),
+				'SectionId'=>$this->input->post('class_name'),
+				'Weightage'=>$this->input->post('weightage'),
 				'DOE'=>"16-7-2015",
-				'SubjectStatus'=>"Active");
+				'ExamStatus'=>"Active");
 	
 		if($this->input->post('id'))
 		{
-			$filter=array('SubjectId'=>$this->input->post('id'));
-			$this->master_model->insert_gen_setting('subject',$data,$filter);
+			$filter=array('ExamId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('exam',$data,$filter);
 			$this->session->set_flashdata('message_type', 'success');
-			$this->session->set_flashdata('message', $this->config->item("managesubject").' Subject Updated Successfully');
+			$this->session->set_flashdata('message', $this->config->item("manageexam").' Exam Updated Successfully');
 		}
 		else
 		{
-			$this->master_model->insert_gen_setting('subject',$data);
+			$this->master_model->insert_gen_setting('exam',$data);
 			$this->session->set_flashdata('message_type', 'success');
-			$this->session->set_flashdata('message', $this->config->item("managesubject").' Subject Added Successfully');
+			$this->session->set_flashdata('message', $this->config->item("manageexam").' Exam Added Successfully');
 		}
-		redirect('master/managesubject');
+		redirect('master/manageexam');
 	}
 /*school management Exam insert and update End.............................................................*/
 	

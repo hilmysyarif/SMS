@@ -58,11 +58,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="class_name">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($class_info as $classinfo){ ?>
-																	<option value="<?=$classinfo->ClassId?>" <?php if(empty($id)==''){ echo (!empty($section_update[0]->ClassId==$classinfo->ClassId) ? "selected" : ''); } ?>><?=$classinfo->ClassName?>  </option>
+																	<option value="<?=$classinfo->ClassId?>" <?php if(empty($id)==''){ echo (!empty($exam_update[0]->SectionId==$classinfo->ClassId) ? "selected" : ''); } ?>><?=$classinfo->ClassName?>  </option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -73,7 +73,7 @@
 																	<label class="control-label col-sm-4 ">Exam Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="exam_name" value="<?php echo (isset($exam_update[0]->ExamName) ? $exam_update[0]->ExamName : '');?>">
 																		</div>
 
 																		
@@ -85,21 +85,13 @@
 																	<label class="control-label col-sm-4 ">Weightage</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="weightage" value="<?php echo (isset($exam_update[0]->Weightage) ? $exam_update[0]->Weightage : '');?>">
 																		</div>
 
 																		
 																</div>
 																	
-																	<?php if(empty($id)==''){ ?> 
-																	<div class="checkbox">
-											<label>
-												<input type="checkbox" name="status" <?php echo (isset($masterentry_update[0]->MasterEntryStatus) ? "Checked=checked"
-												: '');?> value="Active">
-												Status
-											</label>
-										</div>
-																	<?php } ?>
+																
 									<input type="submit" class="btn btn-info btn-single " value="Add">
 													</form>
 											
@@ -163,7 +155,7 @@
 											<td><?php foreach($classname as $classname){ echo $classname->ClassName ; echo $classname->SectionName ; }?></td>
 											<td><?=$examinfo->ExamName?></td>
 											<td><?=$examinfo->Weightage?></td>
-											<td><a href="<?=base_url();?>master/masterentry/<?=$examinfo->ExamId?>"><i class="fa fa-edit"></a></i></td>
+											<td><a href="<?=base_url();?>master/manageexam/<?=$examinfo->ExamId?>"><i class="fa fa-edit"></a></i></td>
 										</tr>
 									<?php } ?>
 								</tbody>
