@@ -36,9 +36,9 @@
 											Add Exam
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_masterentry" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_exam" method="post">
 											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$masterentry_update[0]->MasterEntryId?>">
+														<input type="hidden" name="id" value="<?=$exam_update[0]->ExamId?>">
 											<?php } ?>
 																<div class="form-group">
 																		<label class="col-sm-4 control-label" for="field-1">Class</label>
@@ -61,8 +61,8 @@
 																		<select class="form-control " id="s2example-1" name="cat_name">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->StaffName?>" ><?=$usertype->StaffName?></option>
+																	<?php foreach($class_info as $classinfo){ ?>
+																	<option value="<?=$classinfo->ClassId?>" <?php if(empty($id)==''){ echo (!empty($section_update[0]->ClassId==$classinfo->ClassId) ? "selected" : ''); } ?>><?=$classinfo->ClassName?>  </option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -157,12 +157,13 @@
 									</tfoot>
 						
 									<tbody>
-									<?php foreach($user_info as $userinfo){ ?>
+									<?php foreach($exam_info as $examinfo){ ?>
 										<tr>
-											<td><?=$userinfo->MasterEntryValue?></td>
-											<td><?=$userinfo->Username?></td>
-											<td><?=$userinfo->Password?></td>
-											<td><a href="<?=base_url();?>master/masterentry/<?=$userinfo->UserId?>"><i class="fa fa-edit"></a></i></td>
+											<?php $filter=$examinfo->SectionId; $classname= $this->utilities->get_classval('class',$filter); ?>
+											<td><?php foreach($classname as $classname){ echo $classname->ClassName ; echo $classname->SectionName ; }?></td>
+											<td><?=$examinfo->ExamName?></td>
+											<td><?=$examinfo->Weightage?></td>
+											<td><a href="<?=base_url();?>master/masterentry/<?=$examinfo->ExamId?>"><i class="fa fa-edit"></a></i></td>
 										</tr>
 									<?php } ?>
 								</tbody>

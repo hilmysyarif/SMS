@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/school_management/';
+$config['base_url']	= 'http://localhost/SMS/';
 
 /*
 |--------------------------------------------------------------------------

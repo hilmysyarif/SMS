@@ -154,7 +154,7 @@
 											<td><?=$subinfo->SubjectName?></td>
 											<td><?=$subinfo->SubjectAbb?></td>
 											<?php $filter=$subinfo->Class; $classname= $this->utilities->get_classval('class',$filter); ?>
-											<td><?php foreach($classname as $classname){ echo $classname->ClassName ; echo $classname->SectionName ; }?></td>
+											<td><?php foreach($classname as $classname){ echo $classname->ClassName ; echo $classname->SectionName ;  }?></td>
 											<td><a href="<?=base_url();?>master/managesubject/<?=$subinfo->SubjectId?>"><i class="fa fa-edit"></a></i></td>
 										</tr>
 									<?php } ?>

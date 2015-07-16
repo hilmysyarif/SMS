@@ -337,10 +337,14 @@ class Master extends CI_Controller {
 /*school management Subject insert and update End.............................................................*/
 
 /*school management manageExam start........................................................................*/	
-	function manageexam()
+	function manageexam($id=false)
 	{	
-		$this->data['user_info'] = $this->master_model->get_userinfo();
-		$this->data['user_type'] = $this->master_model->get_selectstaff();
+		if($id){
+			$filter=array('ExamId'=>$this->data['id']=$id);
+			$this->data['exam_update'] = $this->master_model->get_info('subject',$filter);
+		}
+		$this->data['class_info'] = $this->master_model->get_acc(' class');
+		$this->data['exam_info'] = $this->master_model->get_acc('exam');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -349,6 +353,34 @@ class Master extends CI_Controller {
 	}
 /*school management manageExam End.............................................................................*/
 
+/*school management Exam insert and update start........................................................*/
+	function insert_exam()
+	{
+		$data=array('Session'=>"2015-2016",
+				'SubjectName'=>$this->input->post('subject_name'),
+				'SubjectAbb'=>$this->input->post('abbreviation'),
+				'Class'=>$class,
+				'DOE'=>"16-7-2015",
+				'SubjectStatus'=>"Active");
+	
+		if($this->input->post('id'))
+		{
+			$filter=array('SubjectId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('subject',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("managesubject").' Subject Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('subject',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("managesubject").' Subject Added Successfully');
+		}
+		redirect('master/managesubject');
+	}
+/*school management Exam insert and update End.............................................................*/
+	
+	
 /*school management manageSCAREA start........................................................................*/	
 	function managescarea()
 	{	
