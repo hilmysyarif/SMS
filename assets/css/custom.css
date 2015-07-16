@@ -1,0 +1,30 @@
+/**
+ *
+ * Apply your custom CSS here
+ *
+*/
+
+body {	
+}
+
+a {
+}
+.center{
+ text-align:center;
+}
+.logo-head{
+  padding: 8px 20px 8px;
+  text-decoration: none;
+
+}
+.text-black{
+  color: #353535;
+    font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+	  font-size: 20px;
+  font-weight: 700;
+    text-decoration: none;
+}
+.slogan{
+font-size: 14px;
+  color: #6b6b6b;
+}
