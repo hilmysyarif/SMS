@@ -23,8 +23,42 @@ a {
 	  font-size: 20px;
   font-weight: 700;
     text-decoration: none;
+     padding: 30px 45px;
+}
+.text-blac{
+  color: #353535;
+    font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+	  font-size: 20px;
+  font-weight: 700;
+    text-decoration: none;
+   
 }
 .slogan{
 font-size: 14px;
   color: #6b6b6b;
+}
+.img-center {margin:0 auto;}
+
+.login.logo-env {
+  padding: 30px 45px;
+  border-bottom: 1px solid #313437;
+}
+
+.page-body.skin-white.login-page.login-light .login-form:after	,.page-body.skin-white.login-page.login-light .login-form:before
+{
+  background-color:#fff;
+  border: 1px solid #c4c6ca;
+  content: "";
+  display: block;
+  height: 100%;
+  left: -1px;
+  position: absolute;
+  width: 100%;
+    -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+  top: 0;
+  z-index: -2;
 }

@@ -1,18 +1,51 @@
 <!-- login page edited on 2 july by  designer rohit thakur-->
-<body class="page-body login-page login-light">
-		<div class="row" style="background: url(<?=base_url();?>assets/images/4.png) repeat;">
+<body class="page-body skin-white login-page login-light">
+		<!--  <div class="row" style="background: url(<?=base_url();?>assets/images/4.png) repeat;">
 					<div class="col-md-12">
-					<a href="javascript:;" class="logo-head" >
+				
 							<p class="center text-black">School Mgt <span class="slogan">Login</span></p>
-							</a>
+							
 					</div>
-		</div>	
+		</div>	-->
 	
 	<div class="login-container">
 
 		<div class="row">
-		
-			<div class="col-sm-6">
+			<div class="col-md-4 ">
+				<!-- Default panel -->
+					<div class="panel panel-color panel-gray"><!-- Add class "collapsed" to minimize the panel -->
+						<div class="panel-heading">
+							<h3 class="panel-title"><i class="fa fa-user"></i> Login Detail</h3>
+							
+							<div class="panel-options">
+													
+								<a href="#" data-toggle="panel">
+									<span class="collapse-icon">&ndash;</span>
+									<span class="expand-icon">+</span>
+								</a>
+								
+							</div>
+						</div>
+						
+						<div class="panel-body">
+							
+							<h4><span class="label label-info" data-toggle="tooltip" data-placement="left" title="" data-original-title="Admin Login">Admin Login</span> </h4>
+							<p><mark>Username : masteruser</mark></p>
+							<p><mark>Password : 123456</mark></p>
+							</br>
+							<h4><span class="label label-info" data-toggle="tooltip" data-placement="left" title="" data-original-title="Parents Login :">Parents Login : </span> </h4>
+							<p><mark>Username : 1@parents</mark></p>
+							<p><mark>Password : 123456</mark></p>
+							</br>
+							<h4><span class="label label-info" data-toggle="tooltip" data-placement="left" title="" data-original-title="Parents Login :">Students Login :  </span> </h4>
+							<p><mark>Username : 1@student</mark></p>
+							<p><mark>Password : 123456</mark></p>
+						</div>
+					</div>
+			</div>
+			
+			
+			<div class="col-md-5 col-md-offset-3">
 			
 				<script type="text/javascript">
 					jQuery(document).ready(function($)
@@ -106,11 +139,7 @@
 					});
 				</script>
 				
-				<!-- Errors container -->
-				<div class="errors-container">
-				
-									
-				</div>
+			
 				
 				<!-- Add class "fade-in-effect" for login form effect -->
 				<form method="post" role="form" id="login"  class="login-form fade-in-effect">
@@ -135,22 +164,14 @@
 						<input type="password" class="form-control " name="passwd" id="passwd" autocomplete="off" value="123456"/>
 					</div>
 					
-					<div class="form-group">
-						<button type="submit" class="btn   btn-block text-left">
-							<i class="fa-lock"></i>
-							Log In
+					<div class="form-group pull-right">
+						<button type="submit" class="btn  btn-info  ">
+							<i class="fa-sign-in"></i>
+							Login
 						</button>
 					</div>
-					
-					<div class="login-footer">
-						<a href="#">Forgot your password?</a>
-						
-						<div class="info-links">
-							<a href="#">ToS</a> -
-							<a href="#">Privacy Policy</a>
-						</div>
-						
-					</div>
+							</br>
+					</br>
 					
 				</form>
 				

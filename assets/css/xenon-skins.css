@@ -2275,6 +2275,7 @@
 }
 .page-body.skin-white .sidebar-menu {
   background: #ffffff;
+  background: url(../images/2.png) repeat;
 }
 .page-body.skin-white .sidebar-menu .logo-env {
   border-bottom: 1px solid #eeeeee;
@@ -2438,6 +2439,7 @@
 .page-body.skin-white.login-page.login-light .login-form {
   background: #fff;
   color: #979898;
+   border:1px solid #c4c6ca
 }
 .page-body.skin-white.login-page.login-light .login-form .login-footer a {
   color: #68b828;

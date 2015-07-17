@@ -7,7 +7,7 @@
 				<div class="footer-inner">
 				
 					<!-- Add your copyright text here -->
-					<div class="footer-text">
+					<div class="footer-text center">
 						&copy; 2015 
 						<strong>School Management</strong> 
 						System by <a href="http://junctiontech.in" target="_blank">Junction Tech PVT LTD</a>

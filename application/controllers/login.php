@@ -19,7 +19,9 @@ class Login extends CI_Controller {
 	/*school management login page start...............................................................................*/
 	public function index()
 	{
+		
 		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/loginheader',$this->data);
 		$this->parser->parse('login',$this->data);
 		$this->parser->parse('include/footer',$this->data);
 	}

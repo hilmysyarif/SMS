@@ -788,7 +788,7 @@ body {
 .sidebar-menu {
   display: table-cell;
   position: relative;
-  width: 250px;/*for sidebar width*/
+  width: 275px;/*for sidebar width*/
   background: #2c2e2f;
   z-index: 1;
 }
@@ -1271,6 +1271,9 @@ body {
     border: 1px solid transparent;
     border-top: 0;
     border-bottom: 0;
+     border-color: #f3f3f3;
+    background-color: #fafafa;
+     margin-right:9px;
   }
   .navbar.horizontal-menu .navbar-inner .navbar-nav > li:hover {
     z-index: 2;
@@ -1279,6 +1282,7 @@ body {
   .navbar.horizontal-menu .navbar-inner .navbar-nav > li:hover {
     border-color: #f3f3f3;
     background-color: #fafafa;
+    margin-right:9px;
   }
   .navbar.horizontal-menu .navbar-inner .navbar-nav > li.active {
     margin-left: -1px;
@@ -1954,7 +1958,8 @@ footer.main-footer:after {
   margin-right: auto;
 }
 footer.main-footer .footer-text {
-  float: left;
+  /*float: left;*/
+  color:#111;
 }
 footer.main-footer .go-up {
   float: right;
