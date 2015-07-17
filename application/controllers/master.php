@@ -382,10 +382,19 @@ class Master extends CI_Controller {
 	
 	
 /*school management manageSCAREA start........................................................................*/	
-	function managescarea()
+	function managescarea($id=false)
 	{	
-		$this->data['user_info'] = $this->master_model->get_userinfo();
-		$this->data['user_type'] = $this->master_model->get_selectstaff();
+		if($id){
+			$filter=array('SCAreaId'=>$this->data['id']=$id);
+			$this->data['scarea_update'] = $this->master_model->get_info('scarea',$filter);
+			
+		}
+		$this->data['scarea_info'] = $this->master_model->get_scarea('scarea');
+		$this->data['class_info'] = $this->master_model->get_acc('class');
+		$filter=array('MasterEntryName'=>'GradingPoint');
+		$this->data['scarea_gradingpoint'] = $this->master_model->get_info('masterentry',$filter);
+		$filter1=array('MasterEntryName'=>'CoScholasticPart');
+		$this->data['scarea_part'] = $this->master_model->get_info('masterentry',$filter1);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -394,9 +403,45 @@ class Master extends CI_Controller {
 	}
 /*school management manageSCAREA End.............................................................................*/
 
+	/*school management SCarea insert and update start........................................................*/
+	function insert_scarea()
+	{
+		$data=array('Session'=>"2015-2016",
+				'SCAreaName'=>$this->input->post('area_name'),
+				'SCPartId'=>$this->input->post('part'),
+				'SCAreaClass'=>$this->input->post('class'),
+				'GradingPoint'=>$this->input->post('grading_point'),
+				'DOE'=>"16-7-2015",
+				'SCAreaStatus'=>"Active");
+	
+		if($this->input->post('id'))
+		{
+			$filter=array('SCAreaId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('scarea',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("managescarea").' ScArea Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('scarea',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("managescarea").' ScArea Added Successfully');
+		}
+		redirect('master/managescarea');
+	}
+	/*school management SCarea insert and update End.............................................................*/
+	
+	
 /*school management manageSCIndicator start......................................................................*/	
-	function managescindicator()
+	function managescindicator($id=false)
 	{	
+		if($id){
+			$filter=array('SCIndicatorId'=>$this->data['id']=$id);
+			$this->data['scindicator_update'] = $this->master_model->get_info('scindicator',$filter);
+				
+		}
+		$this->data['scindicator_info'] = $this->master_model->get_acc('scindicator');
+		$this->data['scarea_info'] = $this->master_model->get_scarea('scarea');
 		$this->data['user_info'] = $this->master_model->get_userinfo();
 		$this->data['user_type'] = $this->master_model->get_selectstaff();
 		$this->parser->parse('include/header',$this->data);
@@ -407,11 +452,45 @@ class Master extends CI_Controller {
 	}
 /*school management manageSCIndicator End...........................................................................*/
 
+	/*school management Indicatorscarea insert and update start........................................................*/
+	function insert_scindicator($id=false)
+	{
+		$data=array(
+				'SCAreaId'=>$this->input->post('area'),
+				'SCIndicatorName'=>$this->input->post('indicator_name'),
+				'SCIndicatorStatus'=>"Active");
+	
+		if($this->input->post('id'))
+		{
+			$filter=array('SCIndicatorId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('scindicator',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("manageSCIndicator").' ScIndicator Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('scindicator',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("manageSCIndicator").' Scindicator Added Successfully');
+		}
+		redirect('master/managescindicator');
+	}
+	/*school management Indicatorscarea insert and update End.............................................................*/
+	
+	
 /*school management manageFee start......................................................................*/	
-	function managefee()
+	function managefee($id=false)
 	{	
-		$this->data['user_info'] = $this->master_model->get_userinfo();
-		$this->data['user_type'] = $this->master_model->get_selectstaff();
+		if($id){
+			$filter=array('FeeId'=>$this->data['id']=$id);
+			$this->data['fee_update'] = $this->master_model->get_info('fee',$filter);
+		}
+		$filter=array('MasterEntryName'=>'FeeType');
+		$this->data['fee_type'] = $this->master_model->get_info('masterentry',$filter);
+		$filter1=array('MasterEntryName'=>'Distance');
+		$this->data['distance'] = $this->master_model->get_info('masterentry',$filter1);
+		$this->data['class_info'] = $this->master_model->get_acc('class');
+		$this->data['fee_info'] = $this->master_model->get_fee('fee');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -420,6 +499,47 @@ class Master extends CI_Controller {
 	}
 /*school management manageFee End...........................................................................*/
 
+	/*school management Indicatorscarea insert and update start........................................................*/
+	function insert_fee($id=false)
+	{
+		if($this->input->post('yes')){
+		$data=array(
+				'SectionId'=>$this->input->post('class'),
+				'FeeType'=>$this->input->post('fee_type'),
+				'Amount'=>$this->input->post('amount'),
+				'Distance'=>$this->input->post('distance'),
+				'Session'=>"2015-2016",
+				'DOE'=>"16-7-2015",
+				'FeeStatus'=>"Active");
+		}else{
+			
+			$data=array(
+					'SectionId'=>$this->input->post('class'),
+					'FeeType'=>$this->input->post('fee_type'),
+					'Amount'=>$this->input->post('amount'),
+					'Session'=>"2015-2016",
+					'DOE'=>"16-7-2015",
+					'FeeStatus'=>"Active");
+		}
+	
+		if($this->input->post('id'))
+		{
+			$filter=array('FeeId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('fee',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("managefee").' Fee Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('fee',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("managefee").' Fee Added Successfully');
+		}
+		redirect('master/managefee');
+	}
+	/*school management Indicatorscarea insert and update End.............................................................*/
+	
+	
 /*school management SalaryHead start......................................................................*/	
 	function salaryhead()
 	{	

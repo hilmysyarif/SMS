@@ -36,9 +36,9 @@
 											Add Fee
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_masterentry" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_fee" method="post">
 											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$masterentry_update[0]->MasterEntryId?>">
+														<input type="hidden" name="id" value="<?=$fee_update[0]->FeeId?>">
 											<?php } ?>
 											
 											
@@ -62,11 +62,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="class">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->StaffName?>" ><?=$usertype->StaffName?></option>
+																	<?php foreach($class_info as $classinfo){ ?>
+																	<option value="<?=$classinfo->ClassId?>" <?php if(empty($id)==''){ echo (!empty($fee_update[0]->SectionId==$classinfo->ClassId) ? "selected" : ''); } ?>><?=$classinfo->ClassName?>  </option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -93,11 +93,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="fee_type">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->StaffName?>" ><?=$usertype->StaffName?></option>
+																	<?php foreach($fee_type as $feetype){ ?>
+																	<option value="<?=$feetype->MasterEntryId?>" <?php if(empty($id)==''){ echo (!empty($fee_update[0]->FeeType==$feetype->MasterEntryId) ? "selected" : ''); } ?>><?=$feetype->MasterEntryValue?>  </option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -108,8 +108,8 @@
 																	<div class="checkbox">
 																	<label>TransPort</label>
 											<label> 
-												<input type="checkbox" name="status" <?php //echo (isset($masterentry_update[0]->MasterEntryStatus) ? "Checked=checked"
-												//: '');?> value="Active">
+												<input type="checkbox" name="yes" <?php echo (!empty($fee_update[0]->Distance) ? "Checked=checked"
+												: '');?> value="Active">
 												Check only if fee is Transport Fee
 											</label>
 										</div>
@@ -133,11 +133,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="distance">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->StaffName?>" ><?=$usertype->StaffName?></option>
+																	<?php foreach($distance as $distance){ ?>
+																	<option value="<?=$distance->MasterEntryId?>" <?php if(empty($id)==''){ echo (!empty($fee_update[0]->Distance==$distance->MasterEntryId) ? "selected" : ''); } ?> ><?=$distance->MasterEntryValue?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -148,7 +148,7 @@
 																	<label class="control-label col-sm-4 ">Amount</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="amount" value="<?php echo (isset($fee_update[0]->Amount) ? $fee_update[0]->Amount : '');?>">
 																		</div>
 
 																		
@@ -212,12 +212,12 @@
 									</tfoot>
 						
 									<tbody>
-									<?php foreach($user_info as $userinfo){ ?>
+									<?php foreach($fee_info as $feeinfo){ ?>
 										<tr>
-											<td><?=$userinfo->MasterEntryValue?></td>
-											<td><?=$userinfo->Username?></td>
-											<td><?=$userinfo->Password?></td>
-											<td><a href="<?=base_url();?>master/masterentry/<?=$userinfo->UserId?>"><i class="fa fa-edit"></a></i></td>
+											<td><?=$feeinfo->ClassName?> <?=$feeinfo->SectionName?></td>
+											<td><?=$feeinfo->MasterEntryValue?></td>
+											<td><?=$feeinfo->Amount?></td>
+											<td><a href="<?=base_url();?>master/managefee/<?=$feeinfo->FeeId?>"><i class="fa fa-edit"></a></i></td>
 										</tr>
 									<?php } ?>
 								</tbody>

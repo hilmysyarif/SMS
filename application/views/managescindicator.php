@@ -36,9 +36,9 @@
 											Add SC Indicator
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_masterentry" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_scindicator" method="post">
 											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$masterentry_update[0]->MasterEntryId?>">
+														<input type="hidden" name="id" value="<?=$scindicator_update[0]->SCIndicatorId?>">
 											<?php } ?>
 											
 											
@@ -46,7 +46,7 @@
 																	<label class="control-label col-sm-4 ">Indicator Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="indicator_name" value="<?php echo (isset($scindicator_update[0]->SCIndicatorName) ? $scindicator_update[0]->SCIndicatorName : '');?>">
 																		</div>
 
 																		
@@ -70,33 +70,18 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="area">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->StaffName?>" ><?=$usertype->StaffName?></option>
+																	<?php foreach($scarea_info as $scareainfo){ ?>
+																	<option value="<?=$scareainfo->SCAreaId?>" <?php if(empty($id)==''){ echo (!empty($scindicator_update[0]->SCAreaId==$scareainfo->SCAreaId) ? "selected" : ''); } ?> ><?=$scareainfo->SCAreaName?> (<?=$scareainfo->MasterEntryValue?>)</option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
 																</div>	
 																	</div>
 																
-																
-																
-																
-																	
-																		
-																	
-																	<?php if(empty($id)==''){ ?> 
-																	<div class="checkbox">
-											<label>
-												<input type="checkbox" name="status" <?php echo (isset($masterentry_update[0]->MasterEntryStatus) ? "Checked=checked"
-												: '');?> value="Active">
-												Status
-											</label>
-										</div>
-																	<?php } ?>
-									<input type="submit" class="btn btn-info btn-single " value="Add">
+											<input type="submit" class="btn btn-info btn-single " value="Add">
 													</form>
 											
 													<div class="form-group-separator"></div>
@@ -153,12 +138,14 @@
 									</tfoot>
 						
 									<tbody>
-									<?php foreach($user_info as $userinfo){ ?>
+									<?php foreach($scindicator_info as $scindicatorinfo){ ?>
 										<tr>
-											<td><?=$userinfo->MasterEntryValue?></td>
-											<td><?=$userinfo->Username?></td>
+										<?php foreach($scarea_info as $scareainfo){  if($scindicatorinfo->SCAreaId==$scareainfo->SCAreaId){?>
+											<td><?=$scareainfo->SCAreaName?> ( <?=$scareainfo->MasterEntryValue;?>)</td><?php }} ?>
 											
-											<td><a href="<?=base_url();?>master/masterentry/<?=$userinfo->UserId?>"><i class="fa fa-edit"></a></i></td>
+											<td><?=$scindicatorinfo->SCIndicatorName?></td>
+											
+											<td><a href="<?=base_url();?>master/managescindicator/<?=$scindicatorinfo->SCIndicatorId?>"><i class="fa fa-edit"></a></i></td>
 										</tr>
 									<?php } ?>
 								</tbody>
