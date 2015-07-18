@@ -36,9 +36,9 @@
 											Add SC Area
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_masterentry" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_scarea" method="post">
 											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$masterentry_update[0]->MasterEntryId?>">
+														<input type="hidden" name="id" value="<?=$scarea_update[0]->SCAreaId?>">
 											<?php } ?>
 											
 											
@@ -46,7 +46,7 @@
 																	<label class="control-label col-sm-4 ">Area Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="area_name" value="<?php echo (isset($scarea_update[0]->SCAreaName) ? $scarea_update[0]->SCAreaName : '');?>">
 																		</div>
 
 																		
@@ -70,11 +70,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="part">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->StaffName?>" ><?=$usertype->StaffName?></option>
+																	<?php  foreach($scarea_part as $scareapart){ ?>
+																	<option value="<?=$scareapart->MasterEntryId?>" <?php if(empty($id)==''){ echo (!empty($scarea_update[0]->SCPartId==$scareapart->MasterEntryId) ? "selected" : ''); } ?> ><?=$scareapart->MasterEntryValue?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -101,11 +101,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="class" multiple>
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->StaffName?>" ><?=$usertype->StaffName?></option>
+																	<?php foreach($class_info as $classinfo){ ?>
+																	<option value="<?=$classinfo->ClassId?>" <?php if(empty($id)==''){ $cal_id=$scarea_update[0]->SCAreaClass; $cal_id=explode(',',$cal_id); foreach($cal_id as $val){ echo (!empty($val==$classinfo->ClassId) ? "selected" : ''); }} ?>><?=$classinfo->ClassName?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -130,26 +130,18 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="grading_point">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->StaffName?>" ><?=$usertype->StaffName?></option>
+																	<?php foreach($scarea_gradingpoint as $scareagradingpoint){ ?>
+																	<option value="<?=$scareagradingpoint->MasterEntryId?>" <?php if(empty($id)==''){ echo (!empty($scarea_update[0]->GradingPoint==$scareagradingpoint->MasterEntryId) ? "selected" : ''); } ?>><?=$scareagradingpoint->MasterEntryValue?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
 																</div>	
 																	</div>	
 																	
-																	<?php if(empty($id)==''){ ?> 
-																	<div class="checkbox">
-											<label>
-												<input type="checkbox" name="status" <?php echo (isset($masterentry_update[0]->MasterEntryStatus) ? "Checked=checked"
-												: '');?> value="Active">
-												Status
-											</label>
-										</div>
-																	<?php } ?>
+																	
 									<input type="submit" class="btn btn-info btn-single " value="Add">
 													</form>
 											
@@ -207,12 +199,13 @@
 									</tfoot>
 						
 									<tbody>
-									<?php foreach($user_info as $userinfo){ ?>
-										<tr>
-											<td><?=$userinfo->MasterEntryValue?></td>
-											<td><?=$userinfo->Username?></td>
-											<td><?=$userinfo->Password?></td>
-											<td><a href="<?=base_url();?>master/masterentry/<?=$userinfo->UserId?>"><i class="fa fa-edit"></a></i></td>
+									<?php foreach($scarea_info as $scareainfo){ ?>
+										<tr><?php $filter=array('MasterEntryId'=>$scareainfo->GradingPoint); $grading= $this->utilities->get_usertype($filter); ?>
+											<td><?=$scareainfo->SCAreaName?> (<?=$grading[0]->MasterEntryValue?>)</td>
+											<td><?=$scareainfo->MasterEntryValue?></td>
+											<?php $filter=$scareainfo->SCAreaClass; $classname= $this->utilities->get_classval('class',$filter); ?>
+											<td><?php foreach($classname as $classname){ echo $classname->ClassName ; echo $classname->SectionName ; }?></td>
+											<td><a href="<?=base_url();?>master/managescarea/<?=$scareainfo->SCAreaId?>"><i class="fa fa-edit"></a></i></td>
 										</tr>
 									<?php } ?>
 								</tbody>

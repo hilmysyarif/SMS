@@ -79,5 +79,30 @@ class Master_model extends CI_Model
    }
  /* function show school account end.........................................................................  */ 
 
+   /* function show school selectstaff start.........................................................................  */
+   function get_scarea($table=false,$filter=false)
+   {
+   	$query=$this->db->query("select SCAreaName,SCAreaClass,SCAreaId,MasterEntryValue,GradingPoint from scarea,masterentry where 
+						SCAreaStatus='Active' and
+						scarea.SCPartId=masterentry.MasterEntryId 
+						order by SCAreaName");
+   	return $query->Result();
+   }
+   /* function show school selectstaff end.........................................................................  */
+
+   /* function show school selectstaff start.........................................................................  */
+   function get_fee($table=false,$filter=false)
+   {
+   	$query=$this->db->query("select MasterEntryValue,ClassName,SectionName,Amount,FeeId,Distance from fee,section,class,masterentry where 
+		fee.SectionId=section.SectionId and
+		section.ClassId=class.ClassId and 
+		fee.FeeType=masterentry.MasterEntryId and 
+		FeeStatus='Active' order by ClassName,SectionName");
+   	return $query->Result();
+   }
+   /* function show school selectstaff end.........................................................................  */
+     
+   
+   
   
 }
