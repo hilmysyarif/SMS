@@ -11,7 +11,7 @@
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 					<li class="">
 						<a href="javascript:;">
-							<i class="linecons-desktop"></i>
+							<i class="fa fa-desktop"></i>
 							<span class="title">Front Office</span>
 						</a>
 						<ul>
@@ -46,7 +46,7 @@
 					
 					<li class="">
 						<a href="javascript:;">
-							<i class="linecons-user"></i>
+							<i class="fa fa-graduation-cap"></i>
 							<span class="title">Admission</span>
 						</a>
 						<ul>
@@ -89,7 +89,7 @@
 					</li>
 					<li>
 					<a href="javascript:;">
-							<i class="linecons-money"></i>	
+							<i class="fa fa-money"></i>	
 							<span class="title">Fee Payment</span>
 					</a>
 					</li>
@@ -113,7 +113,7 @@
 					</li>
 					<li class="">
 						<a href="javascript:;">
-							<i class="linecons-cog"></i>
+							<i class="fa fa-bar-chart"></i>
 							<span class="title">Attendance</span>
 						</a>
 						<ul>
@@ -128,10 +128,10 @@
 								</a>
 							</li>
 							<li class="">
-						<a href="javascript:;">
-							<i class="linecons-cog"></i>
-							<span class="title">Reports</span>
-						</a>
+								<a href="javascript:;">
+									<i class="fa fa-area-chart"></i>
+									<span class="title">Reports</span>
+								</a>
 						<ul>
 							<li class="active">
 								<a href="javascript:;">
@@ -149,7 +149,7 @@
 					</li>
 					<li class="">
 						<a href="javascript:;">
-							<i class="linecons-cog"></i>
+							<i class="fa fa-bus"></i>
 							<span class="title">Transport</span>
 						</a>
 						<ul>
@@ -168,7 +168,7 @@
 					
 					<li class="">
 						<a href="javascript:;">
-							<i class="linecons-cog"></i>
+							<i class="fa fa-file-text"></i>
 							<span class="title">Exam</span>
 						</a>
 						<ul>
@@ -184,7 +184,7 @@
 							</li>
 							<li class="active opened active">
 						<a href="javascript:;">
-							<i class="linecons-cog"></i>
+							<i class="fa fa-area-chart"></i>
 							<span class="title">Reports</span>
 						</a>
 						<ul>
@@ -199,11 +199,13 @@
 						</ul>
 					</li>
 					<li><a href="javascript:;">
+						<i class="fa fa-users"></i>
 									<span class="title">Manage Staff</span>
-								</a></li>
+								</a>
+					</li>
 					<li class=" ">			
 					<a href="javascript:;">
-							<i class="linecons-cog"></i>
+							<i class="fa fa-book"></i>
 							<span class="title">Library</span>
 						</a>
 						<ul>
@@ -222,7 +224,7 @@
 					
 					<li>			
 					<a href="javascript:;">
-							<i class="linecons-cog"></i>
+							<i class="fa fa-exchange"></i>
 							<span class="title">Dispatch & Receiving</span>
 						</a>
 						<ul>
@@ -241,7 +243,7 @@
 					
 					<li class="">
 						<a href="javascript:;">
-							<i class="linecons-cog"></i>
+							<i class="fa fa-shopping-cart"></i>
 							<span class="title">Stock</span>
 						</a>
 						<ul>
@@ -276,38 +278,42 @@
 								</a>
 							</li>
 							<li class="">
-						<a href="javascript:;">
-							<i class="linecons-cog"></i>
-							<span class="title">Reports</span>
-						</a>
-						<ul>
-							<li class="active">
 								<a href="javascript:;">
-									<span class="title">Stock Report</span>
+									<i class="fa fa-area-chart"></i>
+									<span class="title">Reports</span>
 								</a>
+								<ul>
+									<li class="active">
+										<a href="javascript:;">
+											<span class="title">Stock Report</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<span class="title">School Material</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<span class="title">Issue Report</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<span class="title">Purchase Report</span>
+										</a>
+									</li>
+									
+									
+								</ul>
 							</li>
-							<li>
-								<a href="javascript:;">
-									<span class="title">School Material</span>
-								</a>
-							</li>
-							<li>
-								<a href="dashboard-3.html">
-									<span class="title">Issue Report</span>
-								</a>
-							</li>
-							<li>
-								<a href="dashboard-4.html">
-									<span class="title">Purchase Report</span>
-								</a>
-							</li>
-							
-							
 						</ul>
 					</li>
-						</ul>
+						<li><a href="javascript:;">
+						<i class="fa fa-envelope"></i>
+									<span class="title">SMS</span>
+								</a>
 					</li>
-					
 					</ul>
 			</div>
 	</div>
