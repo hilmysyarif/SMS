@@ -15,7 +15,7 @@
 				<!-- Default panel -->
 					<div class="panel panel-color panel-gray"><!-- Add class "collapsed" to minimize the panel -->
 						<div class="panel-heading">
-							<h3 class="panel-title"><i class="fa fa-user"></i> Login Detail</h3>
+							<h3 class="panel-title"><i class="fa fa-user"></i>Login Detail</h3>
 							
 							<div class="panel-options">
 													
