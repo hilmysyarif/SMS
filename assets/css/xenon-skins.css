@@ -2297,7 +2297,7 @@
   color: #95cd62;
 }
 .page-body.skin-white .sidebar-menu .main-menu li.has-sub > a:before {
-  color: #ffffff;
+  color: #111;
 }
 .page-body.skin-white .sidebar-menu .ps-scrollbar-x-rail .ps-scrollbar-x,
 .page-body.skin-white .sidebar-menu .ps-scrollbar-y-rail .ps-scrollbar-y {
