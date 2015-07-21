@@ -541,10 +541,17 @@ class Master extends CI_Controller {
 	
 	
 /*school management SalaryHead start......................................................................*/	
-	function salaryhead()
+	function salaryhead($id=false)
 	{	
-		$this->data['user_info'] = $this->master_model->get_userinfo();
-		$this->data['user_type'] = $this->master_model->get_selectstaff();
+		if($id){
+			$filter=array('SalaryHeadId'=>$this->data['id']=$id);
+			$this->data['salaryhead_update'] = $this->master_model->get_info('salaryhead',$filter);
+		}
+		
+		$filter=array('MasterEntryName'=>'SalaryHeadType');
+		$this->data['salary_type'] = $this->master_model->get_info('masterentry',$filter);
+		$this->data['salaryhead_info'] = $this->master_model->get_salaryhead();
+		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -553,11 +560,47 @@ class Master extends CI_Controller {
 	}
 /*school management SalaryHead End...........................................................................*/
 
+	/*school management salaryhead insert and update start........................................................*/
+	function insert_salaryhead($id=false)
+	{
+		$data=array(
+					'SalaryHeadType'=>$this->input->post('type'),
+					'SalaryHead'=>$this->input->post('salaryhead'),
+					'code'=>$this->input->post('code'),
+					'DailyBasis'=>$this->input->post('dailybase'),
+					'SalaryHeadStatus'=>$this->input->post('status'));
+			
+		if($this->input->post('id'))
+		{
+			$filter=array('SalaryHeadId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('salaryhead',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("salaryhead").' Salary Head Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('salaryhead',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("salaryhead").' Salary Head Added Successfully');
+		}
+		redirect('master/salaryhead');
+	}
+	/*school management salaryhead insert and update End.............................................................*/
+	
+	
 /*school management SalaryStructure start......................................................................*/	
-	function structuretemplate()
+	function structuretemplate($id=false)
 	{	
-		$this->data['user_info'] = $this->master_model->get_userinfo();
-		$this->data['user_type'] = $this->master_model->get_selectstaff();
+		if($id){
+			$filter=array('SalaryStructureId'=>$this->data['id']=$id);
+			$this->data['salarystructure_update'] = $this->master_model->get_info('salarystructure',$filter);
+		}
+		
+		$filter=array('SalaryHeadId !='=>'');
+		$this->data['fixedsalary'] = $this->master_model->get_info('salaryhead',$filter);
+		$this->data['salarystructure_info'] = $this->master_model->get_salary();
+		
+	
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -566,11 +609,36 @@ class Master extends CI_Controller {
 	}
 /*school management structuretemplate End...........................................................................*/
 
+/*school management salary structure insert and update start........................................................*/
+	function insert_salarystructure($id=false)
+	{
+		$data=array(
+				'SalaryStructureName'=>$this->input->post('templatename'),
+				'FixedSalaryHead'=>$this->input->post('fixedsalary'),
+				'SalaryStructureStatus'=>'Active');
+			
+		if($this->input->post('id'))
+		{
+			$filter=array('SalaryStructureId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('salarystructure',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("structuretemplate").' Salary Structure Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('salarystructure',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("structuretemplate").' Salary Structure Added Successfully');
+		}
+		redirect('master/structuretemplate');
+	}
+/*school management Salary Structure insert and update End.............................................................*/
+	
+	
 /*school management manageschoolmaterial start...................................................................*/	
-	function manageschoolmaterial()
+	function manageschoolmaterial($id=false)
 	{	
-		$this->data['user_info'] = $this->master_model->get_userinfo();
-		$this->data['user_type'] = $this->master_model->get_selectstaff();
+		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -580,10 +648,14 @@ class Master extends CI_Controller {
 /*school management manageschoolmaterial End........................................................................*/
 
 /*school management manageLocation start.........................................................................*/	
-	function managelocation()
+	function managelocation($id=false)
 	{	
-		$this->data['user_info'] = $this->master_model->get_userinfo();
-		$this->data['user_type'] = $this->master_model->get_selectstaff();
+		if($id){
+			$filter=array('LocationId'=>$this->data['id']=$id);
+			$this->data['location_update'] = $this->master_model->get_info('location',$filter);
+		}
+		$this->data['location'] = $this->master_model->get_acc('location');
+		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -592,11 +664,45 @@ class Master extends CI_Controller {
 	}
 /*school management manageLocation End..............................................................................*/
 
+/*school management location insert and update start........................................................*/
+	function insert_location($id=false)
+	{
+		$data=array(
+				'LocationName'=>$this->input->post('name'),
+				'CalledAs'=>$this->input->post('calledas'),
+				'LocationStatus'=>"Active",
+				'DOD'=>"18-7-2015",
+				);
+			
+		if($this->input->post('id'))
+		{
+			$filter=array('LocationId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('location',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("managelocation").' Location Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('location',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("managelocation").' Location Head Added Successfully');
+		}
+		redirect('master/managelocation');
+	}
+/*school management location insert and update End.............................................................*/
+	
+	
+	
 /*school management manageHeaderAndFooter start..................................................................*/	
-	function manageheaderandfooter()
+	function manageheaderandfooter($id=false)
 	{	
-		$this->data['user_info'] = $this->master_model->get_userinfo();
-		$this->data['user_type'] = $this->master_model->get_selectstaff();
+		if($id){
+			$filter=array('HeaderId'=>$this->data['id']=$id);
+			$this->data['header_update'] = $this->master_model->get_info('header',$filter);
+		}
+		$this->data['header'] = $this->master_model->get_header();
+		$filter=array('MasterEntryName'=>'HeaderFooter');
+		$this->data['header_type'] = $this->master_model->get_info('masterentry',$filter);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -605,11 +711,44 @@ class Master extends CI_Controller {
 	}
 /*school management manageHeaderAndFooter End.......................................................................*/
 
-/*school management manageHeaderAndFooter start..................................................................*/	
-	function printoption()
+/*school management header and footer insert and update start........................................................*/
+	function insert_header($id=false)
+	{
+		$data=array(
+				'HRType'=>$this->input->post('type'),
+				'HeaderTitle'=>$this->input->post('title'),
+				'HeaderContent'=>$this->input->post('content'));
+			
+		if($this->input->post('id'))
+		{
+			$filter=array('HeaderId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('header',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("manageHeaderAndFooter").' Header And Footer Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('header',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("manageHeaderAndFooter").' Header And Footer Added Successfully');
+		}
+		redirect('master/manageheaderandfooter');
+	}
+/*school management header and footer insert and update End.............................................................*/
+	
+	
+/*school management printoption start..................................................................*/	
+	function printoption($id=false)
 	{	
-		$this->data['user_info'] = $this->master_model->get_userinfo();
-		$this->data['user_type'] = $this->master_model->get_selectstaff();
+		if($id){
+			$filter=array('PrintOptionId'=>$this->data['id']=$id);
+			$this->data['printoption_update'] = $this->master_model->get_info('printoption',$filter);
+		}
+		$this->data['printoption'] = $this->master_model->get_printoption();
+		$this->data['header'] = $this->master_model->get_printheader();
+		$this->data['footer'] = $this->master_model->get_printfooter();
+		$filter=array('MasterEntryName'=>'PrintCategory');
+		$this->data['print_category'] = $this->master_model->get_info('masterentry',$filter);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -618,11 +757,47 @@ class Master extends CI_Controller {
 	}
 /*school management printoption End.......................................................................*/
 
+	/*school management header and footer insert and update start........................................................*/
+	function insert_printoption($id=false)
+	{
+		$data=array(
+				'PrintCategory'=>$this->input->post('print_cat'),
+				'Width'=>$this->input->post('width'),
+				'HeaderId'=>$this->input->post('header'),
+				'FooterId'=>$this->input->post('footer'),
+				'PrintOptionStatus'=>'Active'
+		);
+			
+		if($this->input->post('id'))
+		{
+			$filter=array('PrintOptionId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('printoption',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("printoption").' Print Option Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('printoption',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("printoption").' Print Option Added Successfully');
+		}
+		redirect('master/printoption');
+	}
+	/*school management header and footer insert and update End.............................................................*/
+	
+	
 /*school management permission start..................................................................*/	
-	function permission()
+	function permission($id=false)
 	{	
-		$this->data['user_info'] = $this->master_model->get_userinfo();
-		$this->data['user_type'] = $this->master_model->get_selectstaff();
+		if($this->data['user_type']=$this->input->post('user_type')){
+			$filter=array('PageNameId !='=>'');
+			$this->data['page_name'] = $this->master_model->get_info('pagename',$filter);
+			$filter=array('UserType'=>$this->input->post('user_type'));
+			$this->data['permission_page'] = $this->master_model->get_info('permission',$filter);
+		}
+		
+		$filter=array('MasterEntryName'=>'UserType');
+		$this->data['usertype'] = $this->master_model->get_info('masterentry',$filter);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -631,6 +806,33 @@ class Master extends CI_Controller {
 	}
 /*school management permission End.......................................................................*/
 
+/*school management header and footer insert and update start........................................................*/
+	function insert_permission($id=false)
+	{	$pages=$this->input->post('pages');
+		$pages=implode(',',$pages);
+		print_r($pages);die;
+		$data=array(
+				'PrintCategory'=>$this->input->post('print_cat'),
+				'Width'=>$this->input->post('width'));
+			
+		if($this->input->post('id'))
+		{
+			$filter=array('PrintOptionId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('printoption',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("printoption").' Print Option Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('printoption',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("printoption").' Print Option Added Successfully');
+		}
+		redirect('master/printoption');
+	}
+/*school management header and footer insert and update End.............................................................*/
+	
+	
 	
 }
 

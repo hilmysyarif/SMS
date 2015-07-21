@@ -36,9 +36,9 @@
 											Add Print Option
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_masterentry" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_printoption" method="post">
 											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$masterentry_update[0]->MasterEntryId?>">
+														<input type="hidden" name="id" value="<?=$printoption_update[0]->PrintOptionId?>">
 											<?php } ?>
 																<div class="form-group">
 																	<label class="control-label col-sm-4 ">Print Category</label>
@@ -58,11 +58,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="print_cat">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->MasterEntryValue?>" ><?=$usertype->MasterEntryValue?></option>
+																	<?php foreach($print_category as $print_category){ ?>
+																	<option value="<?=$print_category->MasterEntryId?>" <?php if(empty($id)==''){ echo (!empty($printoption_update[0]->PrintCategory==$print_category->MasterEntryId) ? "selected" : ''); } ?>><?=$print_category->MasterEntryValue?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -77,7 +77,7 @@
 																	<span class="input-group-btn">
 																		<button class="btn btn-gray" data-type="decrement">-</button>
 																	</span>
-																	<input type="text" class="form-control text-center" value="1" />
+																	<input type="text" class="form-control text-center" value="<?php echo (isset($printoption_update[0]->Width) ? $printoption_update[0]->Width : '');?>" name="width"/>
 																	<span class="input-group-btn">
 																		<button class="btn btn-gray" data-type="increment">+</button>
 																	</span>
@@ -103,11 +103,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="header">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->MasterEntryValue?>" ><?=$usertype->MasterEntryValue?></option>
+																	<?php foreach($header as $header){ ?>
+																	<option value="<?=$header->HeaderId?>" <?php if(empty($id)==''){ echo (!empty($printoption_update[0]->HeaderId==$header->HeaderId) ? "selected" : ''); } ?> ><?=$header->HeaderTitle?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -134,11 +134,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="footer">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->MasterEntryValue?>" ><?=$usertype->MasterEntryValue?></option>
+																	<?php foreach($footer as $footer){ ?>
+																	<option value="<?=$footer->HeaderId?>" <?php if(empty($id)==''){ echo (!empty($printoption_update[0]->FooterId==$footer->HeaderId) ? "selected" : ''); } ?> ><?=$footer->HeaderTitle?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -148,15 +148,7 @@
 																</div>
 																
 																	
-																	<?php if(empty($id)==''){ ?> 
-																	<div class="checkbox">
-											<label>
-												<input type="checkbox" name="status" <?php echo (isset($masterentry_update[0]->MasterEntryStatus) ? "Checked=checked"
-												: '');?> value="Active">
-												Status
-											</label>
-										</div>
-																	<?php } ?>
+																	
 									<input type="submit" class="btn btn-info btn-single " value="Add">
 													</form>
 											
@@ -218,14 +210,16 @@
 									</tfoot>
 						
 									<tbody>
-									<?php foreach($user_info as $userinfo){ ?>
+									<?php foreach($printoption as $printoption){ ?>
 										<tr>
-											<td><?=$userinfo->MasterEntryValue?></td>
-											<td><?=$userinfo->Username?></td>
-											<td><?=$userinfo->Password?></td>
-											<td><?=$userinfo->StaffName?></td>
-											<td><a href="<?=base_url();?>master/masterentry/<?=$userinfo->UserId?>"><i class="fa fa-edit"></a></i></td>
-											<td><a href="<?=base_url();?>master/modal/<?=$userinfo->UserId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
+										<?php $filter=array('HeaderId'=>$printoption->HeaderId); $header= $this->utilities->get_masterval('header',$filter); ?>
+											<td><?=$header[0]->HeaderTitle?></td>
+											<?php $filter=array('HeaderId'=>$printoption->FooterId); $footer= $this->utilities->get_masterval('header',$filter); ?>
+											<td><?=$footer[0]->HeaderTitle?></td>
+											<td><?=$printoption->MasterEntryValue?></td>
+											<td><?=$printoption->Width?></td>
+											<td><a href="<?=base_url();?>master/printoption/<?=$printoption->PrintOptionId?>"><i class="fa fa-edit"></a></i></td>
+											<td><a href="<?=base_url();?>master/modal/<?=$printoption->PrintOptionId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
 											
 										</tr>
 									<?php } ?>

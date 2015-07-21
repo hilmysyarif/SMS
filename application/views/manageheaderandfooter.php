@@ -36,9 +36,9 @@
 											Add 
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_masterentry" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_header" method="post">
 											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$masterentry_update[0]->MasterEntryId?>">
+														<input type="hidden" name="id" value="<?=$header_update[0]->HeaderId?>">
 											<?php } ?>
 																
 																<div class="form-group">
@@ -59,11 +59,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="type">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->StaffName?>" ><?=$usertype->StaffName?></option>
+																	<?php foreach($header_type as $headertype){ ?>
+																	<option value="<?=$headertype->MasterEntryId?>" <?php if(empty($id)==''){ echo (!empty($header_update[0]->HRType==$headertype->MasterEntryId) ? "selected" : ''); } ?>><?=$headertype->MasterEntryValue?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -76,14 +76,14 @@
 																		<label class="col-sm-4 control-label" for="field-1">Title</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="title" value="<?php echo (isset($header_update[0]->HeaderTitle) ? $header_update[0]->HeaderTitle : '');?>">
 																		</div>
 																	</div>
 																	
 																	<div class="form-group">
 				
-					<textarea class="form-control ckeditor" rows="10">
-						
+					<textarea class="form-control ckeditor" rows="10" name="content">
+						<?php echo (isset($header_update[0]->HeaderContent) ? $header_update[0]->HeaderContent : '');?>
 					</textarea>
 					
 				</div>
@@ -149,13 +149,13 @@
 									</tfoot>
 						
 									<tbody>
-									<?php foreach($user_info as $userinfo){ ?>
+									<?php foreach($header as $header){ ?>
 										<tr>
-											<td><?=$userinfo->MasterEntryValue?></td>
-											<td><?=$userinfo->Username?></td>
-											<td><?=$userinfo->Username?></td>
-											<td><a href="<?=base_url();?>master/masterentry/<?=$userinfo->UserId?>"><i class="fa fa-edit"></a></i></td>
-											<td><a href="<?=base_url();?>master/modal/<?=$userinfo->UserId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
+											<td><?=$header->MasterEntryValue?></td>
+											<td><?=$header->HeaderTitle?> <?php if($header->HeaderDefault=="Yes"){?> <span class="label label-secondary"><?php  echo "Default";?></span><?php }else{?><span class="label label-red"><?php echo"Make Default";?></span><?php }?></td>
+											<td><?=$header->HeaderContent?></td>
+											<td><a href="<?=base_url();?>master/manageheaderandfooter/<?=$header->HeaderId?>"><i class="fa fa-edit"></a></i></td>
+											<td><a href="<?=base_url();?>master/modal/<?=$header->HeaderId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
 											
 										</tr>
 									<?php } ?>

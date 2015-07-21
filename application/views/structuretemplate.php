@@ -36,16 +36,16 @@
 											Add New Template
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_masterentry" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_salarystructure" method="post">
 											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$masterentry_update[0]->MasterEntryId?>">
+														<input type="hidden" name="id" value="<?=$salarystructure_update[0]->SalaryStructureId?>">
 											<?php } ?>
 											
 													<div class="form-group">
 																	<label class="control-label col-sm-4 ">Template Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="templatename" value="<?php echo (isset($salarystructure_update[0]->SalaryStructureName) ? $salarystructure_update[0]->SalaryStructureName : '');?>">
 																		</div>
 
 																		
@@ -69,11 +69,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="fixedsalary">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->MasterEntryValue?>" ><?=$usertype->MasterEntryValue?></option>
+																	<?php foreach($fixedsalary as $fixedsalary){ ?>
+																	<option value="<?=$fixedsalary->SalaryHeadId?>" <?php if(empty($id)==''){ echo (!empty($salarystructure_update[0]->FixedSalaryHead==$fixedsalary->SalaryHeadId) ? "selected" : ''); } ?> ><?=$fixedsalary->SalaryHead?>(<?=$fixedsalary->Code?>)</option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -89,6 +89,7 @@
 									</div>
 						</div>
 						</div>
+						<!--<?php if(empty($id)==78){ ?>
 						<div class="col-md-6">
 						<div class="panel panel-default">
 										<div class="panel-heading">
@@ -148,6 +149,7 @@
 						</div>
 						
 					</div>
+					<?php } ?>-->
 			</div>
 <div class="row">
   	<div class="col-md-6">
@@ -198,11 +200,11 @@
 									</tfoot>
 						
 									<tbody>
-									<?php foreach($user_info as $userinfo){ ?>
+									<?php foreach($salarystructure_info as $salarystructureinfo){ ?>
 										<tr>
-											<td><?=$userinfo->MasterEntryValue?></td>
-											<td><?=$userinfo->MasterEntryValue?></td>
-											<td><a href="<?=base_url();?>master/masterentry/<?=$userinfo->UserId?>"><i class="fa fa-edit"></a></i></td>
+											<td><?=$salarystructureinfo->SalaryStructureName?></td>
+											<td><?=$salarystructureinfo->SalaryHead?> (<?=$salarystructureinfo->Code?>)</td>
+											<td><a href="<?=base_url();?>master/structuretemplate/<?=$salarystructureinfo->SalaryStructureId?>"><i class="fa fa-edit"></a></i></td>
 											
 										</tr>
 									<?php } ?>
@@ -213,6 +215,7 @@
 			</div>
 			
   </div>
+<!--  <?php if(empty($id)==78){ ?>
   <div class="col-md-6">
 		<div class="panel panel-default">
 				<div class="panel-heading">
@@ -276,5 +279,6 @@
 			</div>
 			
   </div>
+  <?php }?> -->
   
 </div>

@@ -36,9 +36,9 @@
 											Add Salary Head
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_masterentry" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_salaryhead" method="post">
 											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$masterentry_update[0]->MasterEntryId?>">
+														<input type="hidden" name="id" value="<?=$salaryhead_update[0]->SalaryHeadId?>">
 											<?php } ?>
 											
 											
@@ -62,11 +62,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="type">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->StaffName?>" ><?=$usertype->StaffName?></option>
+																	<?php foreach($salary_type as $salarytype){ ?>
+																	<option value="<?=$salarytype->MasterEntryId?>" <?php if(empty($id)==''){ echo (!empty($salaryhead_update[0]->SalaryHeadType==$salarytype->MasterEntryId) ? "selected" : ''); } ?>><?=$salarytype->MasterEntryValue?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -77,7 +77,7 @@
 																	<label class="control-label col-sm-4 ">Salary Head</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="salaryhead" value="<?php echo (isset($salaryhead_update[0]->SalaryHead) ? $salaryhead_update[0]->SalaryHead : '');?>">
 																		</div>
 																	</div>
 																	
@@ -85,7 +85,7 @@
 																	<label class="control-label col-sm-4 ">Code</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="code" value="<?php echo (isset($salaryhead_update[0]->Code) ? $salaryhead_update[0]->Code : '');?>">
 																		</div>
 																	</div>
 																	
@@ -93,13 +93,22 @@
 																	<div class="checkbox">
 																	
 											<label> 
-												<input type="checkbox" name="status" <?php //echo (isset($masterentry_update[0]->MasterEntryStatus) ? "Checked=checked"
-												//: '');?> value="Active">
+												<input type="checkbox" name="dailybase" <?php echo (!empty($salaryhead_update[0]->DailyBasis) ? "Checked=checked"
+												: '');?> value="1">
 												Daily Basis
 											</label>
 										</div>
 																	<?php // } ?>
+																	<?php if(empty($id)==''){ ?> 
+																	<div class="checkbox">
 																	
+											<label> 
+												<input type="checkbox" name="status" <?php echo (!empty($salaryhead_update[0]->SalaryHeadStatus) ? "Checked=checked"
+												: '');?> value="Active">
+												Status
+											</label>
+										</div>
+																	<?php } ?>
 																	
 									<input type="submit" class="btn btn-info btn-single " value="Add">
 													</form>
@@ -160,13 +169,13 @@
 									</tfoot>
 						
 									<tbody>
-									<?php foreach($user_info as $userinfo){ ?>
-										<tr>
-											<td><?=$userinfo->MasterEntryValue?></td>
-											<td><?=$userinfo->Username?></td>
-											<td><?=$userinfo->Password?></td>
-											<td><?=$userinfo->Password?></td>
-											<td><a href="<?=base_url();?>master/masterentry/<?=$userinfo->UserId?>"><i class="fa fa-edit"></a></i></td>
+									<?php foreach($salaryhead_info as $salaryheadinfo){ ?>
+										<tr>SalaryHeadStatus
+											<td><?=$salaryheadinfo->MasterEntryValue?> <?php if($salaryheadinfo->SalaryHeadStatus=="Active"){?> <span class="label label-secondary"><?php  echo "Active";?></span><?php }else{?><span class="label label-red"><?php echo"Not Active";?></span><?php }?></td>
+											<td><?=$salaryheadinfo->SalaryHead?></td>
+											<td><?=$salaryheadinfo->Code?></td>
+											<td><?php if($salaryheadinfo->DailyBasis==1){ echo "Yes";}else{echo"No";}?></td>
+											<td><a href="<?=base_url();?>master/salaryhead/<?=$salaryheadinfo->SalaryHeadId?>"><i class="fa fa-edit"></a></i></td>
 										</tr>
 									<?php } ?>
 								</tbody>

@@ -101,8 +101,60 @@ class Master_model extends CI_Model
    	return $query->Result();
    }
    /* function show school selectstaff end.........................................................................  */
+
+   /* function show school selectstaff start.........................................................................  */
+   function get_salaryhead($table=false,$filter=false)
+   {
+   	$query=$this->db->query("select * from salaryhead,masterentry where salaryhead.SalaryHeadType=masterentry.MasterEntryId order by SalaryHead");
+   	return $query->Result();
+   }
+   /* function show school selectstaff end.........................................................................  */
+
+   /* function show school selectstaff start.........................................................................  */
+   function get_header($table=false,$filter=false)
+   {
+   	$query=$this->db->query("select * from header,masterentry where header.HRType=masterentry.MasterEntryId and MasterEntryName='HeaderFooter' order by HeaderTitle");
+   	return $query->Result();
+   }
+   /* function show school selectstaff end.........................................................................  */
+
+   
+   /* function show school selectstaff start.........................................................................  */
+   function get_printoption($table=false,$filter=false)
+   {
+   	$query=$this->db->query("select * from printoption,masterentry where 
+						printoption.PrintCategory=masterentry.MasterEntryId and 
+						PrintOptionStatus='Active' ");
+   	return $query->Result();
+   }
+   /* function show school selectstaff end.........................................................................  */
+     
+   
+   /* function show school selectstaff start.........................................................................  */
+   function get_printheader($table=false,$filter=false)
+   {
+   	$query=$this->db->query("select * from header,masterentry where header.HRType=masterentry.MasterEntryId and MasterEntryValue='Header' order by HeaderTitle");
+   	return $query->Result();
+   }
+   /* function show school selectstaff end.........................................................................  */
+     
+   /* function show school selectstaff start.........................................................................  */
+   function get_printfooter($table=false,$filter=false)
+   {
+   	$query=$this->db->query("select * from header,masterentry where header.HRType=masterentry.MasterEntryId and MasterEntryValue='Footer' order by HeaderTitle");
+   	return $query->Result();
+   }
+   /* function show school selectstaff end.........................................................................  */
+
+   /* function show school selectstaff start.........................................................................  */
+   function get_salary($table=false,$filter=false)
+   {
+   	$query=$this->db->query("select * from salarystructure,salaryhead where salarystructure.FixedSalaryHead=salaryhead.SalaryHeadId  order by SalaryStructureId");
+   	return $query->Result();
+   }
+   /* function show school selectstaff end.........................................................................  */
      
    
    
-  
+   
 }

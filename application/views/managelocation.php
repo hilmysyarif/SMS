@@ -36,9 +36,9 @@
 											Add Location
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_masterentry" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_location" method="post">
 											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$masterentry_update[0]->MasterEntryId?>">
+														<input type="hidden" name="id" value="<?=$location_update[0]->LocationId?>">
 											<?php } ?>
 																
 																
@@ -46,7 +46,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Name</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="name" value="<?php echo (isset($location_update[0]->LocationName) ? $location_update[0]->LocationName : '');?>">
 																		</div>
 																	</div>
 																	
@@ -54,19 +54,11 @@
 																		<label class="col-sm-4 control-label" for="field-1">Called As</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="password" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="calledas" value="<?php echo (isset($location_update[0]->CalledAs) ? $location_update[0]->CalledAs : '');?>">
 																		</div>
 																	</div>
 																	
-																	<?php if(empty($id)==''){ ?> 
-																	<div class="checkbox">
-											<label>
-												<input type="checkbox" name="status" <?php echo (isset($masterentry_update[0]->MasterEntryStatus) ? "Checked=checked"
-												: '');?> value="Active">
-												Status
-											</label>
-										</div>
-																	<?php } ?>
+															
 									<input type="submit" class="btn btn-info btn-single " value="Add">
 													</form>
 											
@@ -124,13 +116,13 @@
 									</tfoot>
 						
 									<tbody>
-									<?php foreach($user_info as $userinfo){ ?>
+									<?php foreach($location as $location){ ?>
 										<tr>
-											<td><?=$userinfo->MasterEntryValue?></td>
-											<td><?=$userinfo->Username?></td>
+											<td><?=$location->LocationName?></td>
+											<td><?=$location->CalledAs?></td>
 											
-											<td><a href="<?=base_url();?>master/masterentry/<?=$userinfo->UserId?>"><i class="fa fa-edit"></a></i></td>
-											<td><a href="<?=base_url();?>master/modal/<?=$userinfo->UserId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
+											<td><a href="<?=base_url();?>master/managelocation/<?=$location->LocationId?>"><i class="fa fa-edit"></a></i></td>
+											<td><a href="<?=base_url();?>master/modal/<?=$location->LocationId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
 											
 										</tr>
 									<?php } ?>
