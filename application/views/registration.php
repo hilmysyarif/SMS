@@ -1,3 +1,4 @@
+<?php //print_r($gender);die;?>
 <div class="main-content">	
 	<div class="page-title">
 	  <div class="title-env">
@@ -42,7 +43,11 @@
 							</div>
 						</div>
 						<div class="panel-body">
-						 <form role="form" class="form-horizontal" method="post" action="">
+						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>admission/insert_registration">
+						 <?php if(empty($id)==''){ ?>
+														<input type="hidden" name="id" value="<?=$registration_update[0]->RegistrationId?>">
+											<?php } ?>
+						 
 							    <div class="form-group">
 									<label class="col-sm-4 control-label" for="field-1">For Session</label>
 									<div class="col-sm-8">
@@ -54,7 +59,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="field-1">Student Name</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="student_name"  value="" id="field-1" placeholder="Student Name">
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -78,7 +83,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="field-1">Mobile Number</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" data-mask="phone">
+										<input type="text" class="form-control" name="mobile" data-mask="phone">
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -101,13 +106,16 @@
 										});
 									</script>
 									<div class="col-sm-8">
-										<select class="form-control " id="s2example-1">
+										<select class="form-control " id="s2example-1" name="class">
 											<option></option>
 										
-											<optgroup label="Class">
-												<option>1st section A</option>
-												<option>2nd  section A</option>
-											</optgroup>
+																	<?php foreach($class_section as $cls){ ?>
+																	<option  value="<?=$cls->SectionId?>" <?php if(empty($id)==''){ echo (!empty($registration_update[0]->StudentName==$cls->ClassName) ? "selected" : ''); } ?>><?=$cls->ClassName?> <?=$cls->SectionName?></option>
+																			<?php  } ?>
+																		</optgroup>
+																	
+																		
+											
 										</select>
 									</div>	
 										
@@ -131,13 +139,13 @@
 										});
 									</script>
 									<div class="col-sm-8">
-									<select class="form-control col-sm-8" id="s3example-1">
+									<select class="form-control col-sm-8" id="s3example-1" name="gender">
 										<option></option>
-									
-										<optgroup label="Gender">
-											<option>Male</option>
-											<option>Female</option>
-										</optgroup>
+										<?php foreach ($gender as $gen){?>
+										
+										
+										<option   value="<?=$gen->MasterEntryId?>"  <?php if(empty($id)==''){ echo (!empty($registration_update[0]->StudentName==$gen->Gender) ? "selected" : ''); } ?>><?=$gen->MasterEntryValue?></option>
+										<?php }?>
 									</select>
 									</div>	
 										
@@ -146,13 +154,14 @@
 								</div>
 									
 								<div class="form-group">
-									<label class="col-sm-4 control-label">Date of Registration</label>
+									<label class="col-sm-4 control-label" for="DOR">Date of Registration</label>
 									
 									<div class="col-sm-8">
 										
 										<div class="date-and-time">
-											<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+										
+											<input type="text" name="DOR" class="form-control datepicker" data-show="true" data-format="D, dd MM yyyy">
+											<input type="text"   class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 								</div>
@@ -218,15 +227,16 @@
 						</tfoot>
 					 
 						<tbody>
+						<?php foreach($regis as $rg){?>
 							<tr>
-								<td>Geeta  <span class="label label-success">Studying</span></td>
-								<td>Shyam</td>
-								<td>8847956845</td>
-								<td>1st section A</td>
-								<td>26 Jun 2015,12:04pm</td>
+								<td><?=$rg->StudentName?>  <span class="label label-success"><?=$rg->Status?></span></td>
+								<td><?=$rg->FatherName?></td>
+								<td><?=$rg->Mobile?></td>
+								<td><?=$rg->ClassName?><?=$rg->SectionName?></td>
+								<td><?=$rg->DOR?></td>
 								<td><i class="el-cancel-circled"></i></td>
 							</tr>
-							
+							<?php } ?>
 						</tbody>
 					</table>
 						</div>
