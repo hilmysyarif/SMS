@@ -638,7 +638,13 @@ class Master extends CI_Controller {
 /*school management manageschoolmaterial start...................................................................*/	
 	function manageschoolmaterial($id=false)
 	{	
-		
+		if($id){
+			$filter=array('SchoolMaterialId'=>$this->data['id']=$id);
+			$this->data['material_update'] = $this->master_model->get_info('schoolmaterial',$filter);
+		}
+		$filter=array('SchoolMaterialType'=>'Books');
+			$this->data['material'] = $this->master_model->get_info('schoolmaterial',$filter);
+			$this->data['class_info'] = $this->master_model->get_acc('class');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -647,6 +653,38 @@ class Master extends CI_Controller {
 	}
 /*school management manageschoolmaterial End........................................................................*/
 
+	/*school management material insert and update start........................................................*/
+	function insert_material($id=false)
+	{
+		$data=array(
+				'SchoolMaterialType'=>'Books',
+				'ClassId'=>$this->input->post('class'),
+				'Name'=>$this->input->post('name'),
+				'BranchPrice'=>$this->input->post('branch_price'),
+				'SellingPrice'=>$this->input->post('selling_price'),
+				'SchoolMaterialStatus'=>"Active",
+				'Session'=>'2015-2016',
+				'Date'=>"18-7-2015",
+		);
+			
+		if($this->input->post('id'))
+		{
+			$filter=array('LocationId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('schoolmaterial',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("manageschoolmaterial").' Material Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('schoolmaterial',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("manageschoolmaterial").' Material Added Successfully');
+		}
+		redirect('master/manageschoolmaterial');
+	}
+	/*school management material insert and update End.............................................................*/
+	
+	
 /*school management manageLocation start.........................................................................*/	
 	function managelocation($id=false)
 	{	
@@ -685,7 +723,7 @@ class Master extends CI_Controller {
 		{
 			$this->master_model->insert_gen_setting('location',$data);
 			$this->session->set_flashdata('message_type', 'success');
-			$this->session->set_flashdata('message', $this->config->item("managelocation").' Location Head Added Successfully');
+			$this->session->set_flashdata('message', $this->config->item("managelocation").' Location Added Successfully');
 		}
 		redirect('master/managelocation');
 	}

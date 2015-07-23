@@ -36,9 +36,9 @@
 											Add Books
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_masterentry" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_material" method="post">
 											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$masterentry_update[0]->MasterEntryId?>">
+														<input type="hidden" name="id" value="<?=$material_update[0]->SchoolMaterialId?>">
 											<?php } ?>
 																<div class="form-group">
 																	<label class="control-label col-sm-4 ">Class</label>
@@ -58,11 +58,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="class">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user_type as $usertype){ ?>
-																	<option value="<?=$usertype->MasterEntryValue?>" ><?=$usertype->MasterEntryValue?></option>
+																	<?php foreach($class_info as $class_info){ ?>
+																	<option value="<?=$class_info->ClassId?>" <?php  if(empty($id)==''){echo (!empty($material_update[0]->ClassId==$class_info->ClassId) ? "selected" : ''); } ?>><?=$class_info->ClassName?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -75,7 +75,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Name</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="name" value="<?php echo (isset($material_update[0]->Name) ? $material_update[0]->Name : '');?>">
 																		</div>
 																	</div>
 																
@@ -84,7 +84,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Branch Price</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="branch_price" value="<?php echo (isset($material_update[0]->BranchPrice) ? $material_update[0]->BranchPrice : '');?>">
 																		</div>
 																	</div>
 																	
@@ -92,19 +92,11 @@
 																		<label class="col-sm-4 control-label" for="field-1">Selling price</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="password" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="selling_price" value="<?php echo (isset($material_update[0]->SellingPrice) ? $material_update[0]->SellingPrice : '');?>">
 																		</div>
 																	</div>
 																	
-																	<?php if(empty($id)==''){ ?> 
-																	<div class="checkbox">
-											<label>
-												<input type="checkbox" name="status" <?php echo (isset($masterentry_update[0]->MasterEntryStatus) ? "Checked=checked"
-												: '');?> value="Active">
-												Status
-											</label>
-										</div>
-																	<?php } ?>
+																	
 									<input type="submit" class="btn btn-info btn-single " value="Add">
 													</form>
 											
@@ -170,22 +162,22 @@
 									</tfoot>
 						
 									<tbody>
-									<?php foreach($user_info as $userinfo){ ?>
+									<?php foreach($material as $material){ ?>
 										<tr>
-											<td><?=$userinfo->MasterEntryValue?></td>
-											<td><?=$userinfo->Username?></td>
-											<td><?=$userinfo->Password?></td>
-											<td><?=$userinfo->StaffName?></td>
-											<td><?=$userinfo->Password?></td>
-											<td><?=$userinfo->StaffName?></td>
-											<td><a href="<?=base_url();?>master/masterentry/<?=$userinfo->UserId?>"><i class="fa fa-edit"></a></i></td>
-											<td><a href="<?=base_url();?>master/modal/<?=$userinfo->UserId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
+											<td><?=$material->Session?></td>
+											<?php $filter=array('ClassId'=>$material->ClassId); $classname= $this->utilities->get_masterval('class',$filter); ?>
+											<td><?=$classname[0]->ClassName?></td>
+											<td><?=$material->Name?></td>
+											<td><?=$material->Quantity?></td>
+											<td><?=$material->BranchPrice?></td>
+											<td><?=$material->SellingPrice?></td>
+											<td><a href="<?=base_url();?>master/manageschoolmaterial/<?=$material->SchoolMaterialId?>"><i class="fa fa-edit"></a></i></td>
+											<td><a href="<?=base_url();?>master/modal/<?=$material->SchoolMaterialId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
 											
 										</tr>
 									<?php } ?>
 								</tbody>
 						</table>
-					
 				</div>
 			</div>
   </div>
