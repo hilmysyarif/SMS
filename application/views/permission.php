@@ -38,11 +38,12 @@
 									<div class="panel-body">
 											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_permission" method="post">
 											<?php if(empty($page_name)==''){ ?>
-														<input type="hidden" name="id" value="<?=$user_type?>">
+														<input type="hidden" name="id" value="<?=$permission_page[0]->PermissionId?>">
+														<input type="hidden" name="usertype" value="<?=$user_type?>">
 											<?php } ?>
 																<div class="form-group">
 																	<label class="control-label col-sm-4 ">User Type</label>
-																	<?php if(empty($page_name)==''){ ?><span><?php foreach($usertype as $usertype){ if($user_type==$usertype->MasterEntryId){ echo $usertype->MasterEntryValue;}else{} } ?></span> <?php }else{ ?>
+																	<?php if(empty($page_name)==''){ ?><span><?php foreach($usertype as $usertype){ if($user_type==$usertype->MasterEntryId){  echo $usertype->MasterEntryValue;}else{} } ?></span> <?php }else{ ?>
 																			<script type="text/javascript">
 																				jQuery(document).ready(function($)
 																				{

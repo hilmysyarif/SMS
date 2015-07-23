@@ -808,27 +808,28 @@ class Master extends CI_Controller {
 
 /*school management header and footer insert and update start........................................................*/
 	function insert_permission($id=false)
-	{	$pages=$this->input->post('pages');
+	{	
+		$pages=$this->input->post('pages');
 		$pages=implode(',',$pages);
-		print_r($pages);die;
+		
 		$data=array(
-				'PrintCategory'=>$this->input->post('print_cat'),
-				'Width'=>$this->input->post('width'));
+				'UserType'=>$this->input->post('usertype'),
+				'PermissionString'=>$pages);
 			
 		if($this->input->post('id'))
 		{
-			$filter=array('PrintOptionId'=>$this->input->post('id'));
-			$this->master_model->insert_gen_setting('printoption',$data,$filter);
+			$filter=array('PermissionId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('permission',$data,$filter);
 			$this->session->set_flashdata('message_type', 'success');
-			$this->session->set_flashdata('message', $this->config->item("printoption").' Print Option Updated Successfully');
+			$this->session->set_flashdata('message', $this->config->item("permission").' Permission Updated Successfully');
 		}
 		else
 		{
-			$this->master_model->insert_gen_setting('printoption',$data);
+			$this->master_model->insert_gen_setting('permission',$data);
 			$this->session->set_flashdata('message_type', 'success');
-			$this->session->set_flashdata('message', $this->config->item("printoption").' Print Option Added Successfully');
+			$this->session->set_flashdata('message', $this->config->item("permission").' Permission Added Successfully');
 		}
-		redirect('master/printoption');
+		redirect('master/permission');
 	}
 /*school management header and footer insert and update End.............................................................*/
 	

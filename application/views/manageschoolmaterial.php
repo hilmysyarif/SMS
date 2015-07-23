@@ -2,7 +2,7 @@
 	<div class="page-title">
 				
 				<div class="title-env">
-					<h1 class="title">Manage School Material <h4><a href="javascript:;"><div class="label label-danger">BOOKS</div></a> <a href="javascript:;"><div class="label label-blue">Uniform</div></a> <a href="javascript:;"><div class="label label-secondary">Other</div></a></h4></h1>
+					<h1 class="title">Manage School Material <h4><a href="javascript:;"><div class="label label-danger">Books</div></a> <a href="javascript:;"><div class="label label-blue">Uniform</div></a> <a href="javascript:;"><div class="label label-secondary">Other</div></a></h4></h1>
 					<p class="description">Manage your School Materials </p>
 				</div>
 				

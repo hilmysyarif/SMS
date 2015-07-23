@@ -18,8 +18,10 @@ class Admission extends CI_Controller {
 		$this->info= $this->session->userdata('user_data');
 		
 	 }
+
 	 /*school management registration controller start*/	
 	function registration($id=false)
+
 	{	
 		
 		if($id){
@@ -41,6 +43,7 @@ class Admission extends CI_Controller {
 		$this->load->view('registration',$this->data);
 		$this->parser->parse('include/footer',$this->data);
 	}
+
 	/*school management registration controller start*/
 	function insert_registration()
 	{	//print_r($_POST);die;
@@ -76,4 +79,20 @@ class Admission extends CI_Controller {
 	
 	
 	}
+
+	/*school management registration controller start...................................................................................................*/
+	
+	/*school management admission View Load.............................................................................................................*/
+	function admission_student()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('admission',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management admission View Load..............................................................................................................*/
+	
+
 }

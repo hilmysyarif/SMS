@@ -56,7 +56,7 @@
 								</a>
 							</li>
 							<li class="active">
-								<a href="javascript:;">
+								<a href="<?=base_url();?>admission/admission_student">
 									<span class="title">Admission</span>
 								</a>
 							</li>
