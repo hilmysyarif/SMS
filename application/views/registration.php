@@ -1144,19 +1144,7 @@
 							</div>
 						</div>
 						<div class="panel-body">
-						<script type="text/javascript">
-					jQuery(document).ready(function($)
-					{
-						$("#example-4").dataTable({
-							dom: "<'row'<'col-sm-5'l><'col-sm-7'Tf>r>"+
-								 "t"+
-								 "<'row'<'col-xs-6'i><'col-xs-6'p>>",
-							tableTools: {
-								sSwfPath: "assets/js/datatables/tabletools/copy_csv_xls_pdf.swf"
-							}
-						});
-					});
-					</script>
+						
 					
 					<table class="table table-bordered table-striped" id="example-4">
 						<thead>
