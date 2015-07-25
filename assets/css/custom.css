@@ -62,3 +62,14 @@ font-size: 14px;
   top: 0;
   z-index: -2;
 }
+.aicon{
+ padding-left: 6px!important;
+  padding-right: 6px!important;
+  padding-top: 2.5px!important;
+  padding-bottom: 3.5px!important;
+  margin-top: 25px;
+  background-color: #eee;
+  margin-right: 6px;
+  margin-left: 1px; 
+	
+}
