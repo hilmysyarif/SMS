@@ -23,6 +23,7 @@
 	<script src="<?=base_url();?>assets/js/jquery-1.11.1.min.js"></script>
 	 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script type="text/javascript" src="<?=base_url();?>assets/js/script.js"></script>
+    
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
