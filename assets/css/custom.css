@@ -82,3 +82,11 @@ padding-top: 175px!important }
 .bg-image{
 background: url(../../assets/images/5.png) repeat;	
 }
+/*Calendar UI css*/
+. fc-state-default{
+	border: 1px solid #aed0ea!important;
+    background: #d7ebf9 url("images/ui-bg_glass_80_d7ebf9_1x400.png") 50% 50% repeat-x!important;
+    font-weight: bold!important;
+    color: #2779aa!important;
+	
+}
