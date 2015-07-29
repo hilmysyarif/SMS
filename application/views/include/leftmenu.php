@@ -24,8 +24,7 @@
 								</button>
 						</div>		
 		
-				
-		
+						
 					<li class="">
 						<a href="javascript:;">
 							<i class="fa fa-desktop"></i>
