@@ -1,5 +1,5 @@
 
-	<div class="main-content " style="background:url(<?=base_url();?>assets/images/4.png) repeat; ">
+	<div class="main-content bg-image">
 			<div class="page-title">
 				
 				<div class="title-env">
@@ -66,7 +66,7 @@
 			<div class="row">
 				<div class="col-sm-6">
 				
-					<div class="panel panel-default">
+					<div class="panel panel-color panel-gray">
 						<div class="panel-heading">
 							<h3 class="panel-title">Income/Expense Report</h3>
 							<div class="panel-options">
@@ -74,9 +74,7 @@
 									<span class="collapse-icon">&ndash;</span>
 									<span class="expand-icon">+</span>
 								</a>
-								<a href="#" data-toggle="remove">
-									&times;
-								</a>
+								
 							</div>
 						</div>
 						<div class="panel-body">	
@@ -276,20 +274,33 @@
 				});
 			});
 			</script>
-			<div class="calendar-env">
-				<div class="calendar-main">
-							
-							<div id="calendar"></div>
-							
-						</div>
+				<div class="panel panel-color panel-gray">
+							<div class="panel-heading">
+								<h3 class="panel-title">Calendar</h3>
+								<div class="panel-options">
+									<a href="#" data-toggle="panel">
+										<span class="collapse-icon">&ndash;</span>
+										<span class="expand-icon">+</span>
+									</a>
+									
+								</div>
+							</div>
+							<div class="panel-body">	
+								<div class="calendar-env">
+									<div class="calendar-main">
+												
+												<div id="calendar"></div>
+												
+											</div>
+										</div>
+							</div>
 					</div>
-				</div>
 			</div>
-			
-				<div class="row">
+				</div>
+			<div class="row">
 				<div class="col-md-12">
 				
-					<div class="panel panel-default">
+					<div class="panel panel-color panel-gray">
 						<div class="panel-heading">
 							<h3 class="panel-title">Student Admission Report</h3>
 							<div class="panel-options">
@@ -297,9 +308,7 @@
 									<span class="collapse-icon">&ndash;</span>
 									<span class="expand-icon">+</span>
 								</a>
-								<a href="#" data-toggle="remove">
-									&times;
-								</a>
+								
 							</div>
 						</div>
 						<div class="panel-body">	

@@ -79,3 +79,6 @@ background: -moz-linear-gradient(top,  rgba(255,255,255,1) 1%, rgba(243,243,243,
 }
 .p-t-175{
 padding-top: 175px!important }
+.bg-image{
+background: url(../../assets/images/5.png) repeat;	
+}
