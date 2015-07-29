@@ -15,12 +15,16 @@ class Dashboard extends CI_Controller {
 		$this->load->library('session');
 		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
 		$this->info= $this->session->userdata('user_data');
-		
+		$currentsession = $this->mhome->get_session();
+		$this->session->set_userdata('currentsession',$currentsession);
+		$this->currentsession = $this->session->userdata('currentsession');
 	 }
 	 
 /*school management dashboard start...............................................................................*/
 	public function index()
 	{ 	
+		
+		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);

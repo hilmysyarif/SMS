@@ -140,7 +140,7 @@
 			<ul class="navbar-nav">
 				<li>
 							<a href="javascript:;">
-								<span class="title">2015-2016</span><span class="caret"></span>
+								<span class="title"><?php  if(!empty($this->currentsession)){ print_r($this->currentsession[0]->CurrentSession);}else{ echo "Please Select Session";} ?></span><span class="caret"></span>
 							</a> 
 					<ul>
 						<li>
@@ -149,7 +149,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="javascript:;">
+							<a href="<?=base_url();?>dashboard/session/2016-2017">
 								<span class="title">2016-2017</span>
 							</a>
 						</li>
@@ -267,26 +267,7 @@
 		</div>
 		
 	</nav>
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-top:86px; z-index: 1006;  margin-bottom: 0px;">
-			<ul class="nav navbar-nav">
-						<li ><a href="javascript:;" class="aicon">
-								<i class="fa fa-home" style="font-size: 3em;"></i></a>
-						</li>
-							<li ><a href="javascript:;"  class="aicon">
-								<i class="fa fa-language" style="font-size: 3em;"></i></a>
-						</li>
-							<li ><a href="javascript:;"  class="aicon">
-								<i class="fa fa-lock" style="font-size: 3em;"></i></a>
-						</li>
-							<li style=" border-right: 1px solid #eee;"><a href="javascript:;"  class="aicon">
-								<i class="fa fa-calendar" style="font-size: 3em;"></i></a>
-						</li>
-						 <li><a href="javascript:;" style="padding-top: 12px;color:#111;"><h2 class="title"><b>Master Entry</b> </h2></a></li>
-					</ul>
-					<ul class="nav nav-userinfo navbar-right">
-					<li><a href="javascript:;" style="padding-top: 12px;color:#111;"><h2 class="title"><b>Current Session : 2015-2016</b> </h2></a></li>
-				
-						</ul>
-			
+
+
 				<!-- /.navbar-collapse -->
-			</nav>
+

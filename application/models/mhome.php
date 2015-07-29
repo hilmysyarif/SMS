@@ -3,7 +3,7 @@
 class Mhome extends CI_Model {
 	
 	 /**
-	 # Programmer : Garima
+	 # Programmer : Rohit
 	 # Mhome Model
 	 
 	 */
@@ -23,17 +23,15 @@ class Mhome extends CI_Model {
     }
     
 	
-	/*Get department details start*/
-    function get_list($filter=false,$table=false)
+	/*Get current session start*/
+    function get_session()
     {
-		
-		
-		$query = $this->db->get_where($table, $filter);
+    	$query=$this->db->query("SELECT CurrentSession from generalsetting ");
 		//echo $this->db->last_query();die;
 		return $query->Result();
 	
     }
-	/*Get department details end*/
+	/*Get current session end*/
 
 	
 	

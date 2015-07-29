@@ -1,5 +1,15 @@
-
-	<div class="main-content" style="background:url(<?=base_url();?>assets/images/4.png) repeat">
+	<div class="main-content " style="background:url(<?=base_url();?>assets/images/4.png) repeat; ">
+			<div class="page-title">
+				
+				<div class="title-env">
+					<h1 class="title">Dashboard
+					<span class="title pull-right"> Current Session : 2015-2016</span> </h1>
+				</div>
+				
+				
+					
+			</div>
+	
 		<!-- User Info, Notifications and Menu Bar -->
 			
 				<script type="text/javascript">

@@ -9,7 +9,22 @@
 				<ul id="main-menu" class="main-menu">
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-				
+
+				<div>
+							<button class="btn btn-icon btn-gray">
+									<i class="fa fa-home" style="font-size:2em;"></i>
+								</button>
+								<button class="btn btn-icon btn-gray">
+									<i class="fa fa-language" style="font-size:2em;"></i>
+								</button>
+								<button class="btn btn-icon btn-gray">
+									<i class="fa fa-lock" style="font-size:2em;"></i>
+								</button>
+								<button class="btn btn-icon btn-gray">
+									<i class="fa fa-calendar" style="font-size:2em;"></i>
+								</button>
+						</div>		
+
 					<li class="">
 						<a href="javascript:;">
 							<i class="fa fa-desktop"></i>
@@ -318,4 +333,3 @@
 					</ul>
 			</div>
 	</div>
-	
