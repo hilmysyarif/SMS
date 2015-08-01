@@ -1,5 +1,5 @@
 
-<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+<div class="page-container" ><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 	<!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
 		<!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
 		<!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
@@ -11,7 +11,7 @@
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<div>
 							<button class="btn btn-icon btn-gray">
-									<i class="fa fa-home" style="font-size:2em;"></i>
+									<i class="fa fa-home" style="font-size:2em;"><a href="<?=base_url();?>dashboard"></a></i>
 								</button>
 								<button class="btn btn-icon btn-gray">
 									<i class="fa fa-language" style="font-size:2em;"></i>
@@ -333,3 +333,16 @@
 					</ul>
 			</div>
 	</div>
+	<div class="main-content bg-image" >
+			<div class="page-title">
+				
+				<div class="title-env">
+					<h1 class="title">Dashboard
+					<span class="title pull-right"> Current Session : 2015-2016</span> </h1>
+				</div>
+				
+				
+					
+			</div>
+	
+		<!-- User Info, Notifications and Menu Bar -->

@@ -1,28 +1,3 @@
-<div class="main-content">	
-	<div class="page-title">
-				
-				<div class="title-env">
-					<h1 class="title">General Setting</h1>
-					<p class="description">Customize General Setting</p>
-				</div>
-				
-					<div class="breadcrumb-env">
-					
-								<ol class="breadcrumb bc-1">
-									<li>
-							<a href="javascript:;"><i class="fa-home"></i>Home</a>
-						</li>
-								
-							<li class="active">
-						
-										<strong>General Setting</strong>
-								</li>
-								</ol>
-								
-				</div>
-					
-			</div>
-
 <?php  if($this->session->flashdata('message_type')) { ?>
 <div class="row">
 <div class="alert alert-success">

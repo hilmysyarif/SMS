@@ -1,4 +1,4 @@
-<body class="page-body skin-white">
+<body class="page-body skin-white" id="element">
 <nav class="navbar horizontal-menu navbar-fixed-top" style="background:url(<?=base_url();?>assets/images/4.png) repeat"><!-- set fixed position by adding class "navbar-fixed-top" -->
 		
 		<div class="navbar-inner">
@@ -180,9 +180,10 @@
 			
 			<ul class="navbar-nav">
 				<li>
+				
 					<a href="javascript:;">
 						<i class="fa-arrows-alt title tooltip-primary" 
-						data-toggle="tooltip" data-placement="bottom" title="Full-Screen" data-original-title="Full-Screen"></i>
+						data-toggle="tooltip" data-placement="bottom" title="Full-Screen" data-original-title="Full-Screen" onclick="var el = document.getElementById('element'); el.webkitRequestFullscreen();"></i>
 						
 					</a>
 					

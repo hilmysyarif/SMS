@@ -1,28 +1,4 @@
-<div class="main-content">	
-	<div class="page-title">
-				
-				<div class="title-env">
-					<h1 class="title">Manage User</h1>
-					<p class="description">Manage your User </p>
-				</div>
-				
-					<div class="breadcrumb-env">
-					
-								<ol class="breadcrumb bc-1">
-									<li>
-							<a href="javascript:;"><i class="fa-home"></i>Home</a>
-						</li>
-								
-							<li class="active">
-						
-										<strong>Manage User</strong>
-								</li>
-								</ol>
-								
-				</div>
-					
-			</div>
-			<?php  if($this->session->flashdata('message_type')=='success') { ?>
+<?php  if($this->session->flashdata('message_type')=='success') { ?>
 <div class="row">
 <div class="alert alert-success">
 <strong><?=$this->session->flashdata('message')?></strong> 

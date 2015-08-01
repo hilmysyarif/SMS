@@ -1,28 +1,4 @@
-<div class="main-content">	
-	<div class="page-title">
-				
-				<div class="title-env">
-					<h1 class="title">Manage Header & Footer</h1>
-					<p class="description">Manage your Header & footer </p>
-				</div>
-				
-					<div class="breadcrumb-env">
-					
-								<ol class="breadcrumb bc-1">
-									<li>
-							<a href="javascript:;"><i class="fa-home"></i>Home</a>
-						</li>
-								
-							<li class="active">
-						
-										<strong>Manage Header And Footer</strong>
-								</li>
-								</ol>
-								
-				</div>
-					
-			</div>
-			<?php  if($this->session->flashdata('message_type')) { ?>
+<?php  if($this->session->flashdata('message_type')) { ?>
 <div class="row">
 <div class="alert alert-success">
 <strong><?=$this->session->flashdata('message')?></strong> 

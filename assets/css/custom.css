@@ -91,3 +91,56 @@ background: url(../../assets/images/5.png) repeat;
     color: #2779aa!important;
 	
 }
+.element {
+  padding: 20px;
+  height: 300px;
+  width: 100%;
+  background-color: skyblue;
+}
+
+.element p {
+  visibility: hidden;
+  text-align: center;
+  color: white;
+  font-size: 3em;
+}
+
+.element:-webkit-full-screen {
+  background-color: #e4708a;
+  width: 100vw;
+  height: 100vh;
+}
+
+.element:-webkit-full-screen p {
+  visibility: visible;
+}
+
+.element:-moz-full-screen {
+  background-color: #e4708a;
+  width: 100vw;
+  height: 100vh;
+}
+
+.element:-moz-full-screen p {
+  visibility: visible;
+}
+
+.element:-ms-fullscreen {
+  background-color: #e4708a;
+  width: 100vw;
+  height: 100vh;
+}
+
+.element:-ms-fullscreen p {
+  visibility: visible;
+}
+
+.element:fullscreen {
+  background-color: #e4708a;
+  width: 100vw;
+  height: 100vh;
+}
+
+.element:fullscreen p {
+  visibility: visible;
+}

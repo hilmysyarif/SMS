@@ -1,12 +1,8 @@
-<?php //print_r($gender);die;?>
-<div class="main-content">
-
-
 <div class="row">
-			
+		
+		 <?php //if(!$RegistrationId == ''){?> 
 				<div class="col-md-12">
-					
-					<ul class="nav nav-tabs nav-tabs-justified">
+				<ul class="nav nav-tabs nav-tabs-justified">
 						<li class="active">
 							<a href="#home-3" data-toggle="tab">
 								<span class="visible-xs"><i class="fa-home"></i></span>
@@ -62,27 +58,28 @@
 					<div class="panel panel-default">
 						
 						<div class="panel-body">
-						 <form role="form" class="" method="post" action="">
-							   
+						
+						
+						 <form role="form" class=""  method="post" action="<?=base_url()?>admission/update_registration/<?=$RegistrationId?>">
 								<div class="form-group-separator">
 								</div>
 								<div class="row">
 								<div class="col-md-4">
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Name</label>
+									<label class=" control-label" for="student_name">Name</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="student_name" value="<?=isset($StudentName)?$StudentName:''?>" id="student_name" placeholder="Student Name">
 									
 								</div>
 							</div>
 							<div class="col-md-4">
 							<div class="form-group">
-									<label class="control-label">Registration Date</label>
+									<label class="control-label" for="DOR">Registration Date</label>
 									
 										
 										<div class="date-and-time">
-											<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text" name="DOR" value="<?=isset($DOR)?$DOR:''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input type="text" name="DOR" value="<?=isset($DOR)?$DOR:''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 								
@@ -106,15 +103,17 @@
 										});
 									</script>
 									
-										<select class="form-control " id="s2example-1">
+										<select class="form-control " id="s2example-1" name="Caste">
 											<option></option>
 										
-											<optgroup label="Class">
-												<option>1st section A</option>
-												<option>2nd  section A</option>
-											</optgroup>
-										</select>
+											<?php foreach ($caste as $cas){ //print_r($key);die;?>
+										<?php if($cas->MasterEntryName=='Caste') { ?>
 										
+										<option   value="<?=$cas->MasterEntryId?>"  <?=($Caste==$cas->MasterEntryId)?'selected':''?>><?=$cas->MasterEntryValue?></option>
+										<?php } ?><?php } ?>
+										
+										</select>
+									
 										
 								</div>
 								
@@ -142,13 +141,13 @@
 										});
 									</script>
 								
-									<select class="form-control " id="s3example-1">
+									<select class="form-control " id="s3example-1" name="class">
 										<option></option>
 									
-										<optgroup label="Gender">
-											<option>Male</option>
-											<option>Female</option>
-										</optgroup>
+										<?php foreach($class_section as $cls){ ?>
+																	<option  value="<?=$cls->SectionId?>" <?=($SectionId==$cls->SectionId)?'selected':''?>><?=$cls->ClassName?> <?=$cls->SectionName?></option>
+																			<?php  } ?>
+										
 									</select>
 									
 										
@@ -174,13 +173,14 @@
 										});
 									</script>
 								
-									<select class="form-control " id="s3example-1">
+									<select class="form-control " id="s3example-1" name="gender">
 										<option></option>
 									
-										<optgroup label="Gender">
-											<option>Male</option>
-											<option>Female</option>
-										</optgroup>
+										<?php foreach ($gender as $gen){?>
+										<?php if($gen->MasterEntryName=='Gender') { ?>
+										
+										<option   value="<?=$gen->MasterEntryId?>" <?=($Gender==$gen->MasterEntryId)?'selected':''?>><?=$gen->MasterEntryValue?></option>
+										<?php } ?><?php }?>
 									</select>
 									
 										
@@ -206,14 +206,17 @@
 										});
 									</script>
 								
-									<select class="form-control " id="s3example-1">
+									<select class="form-control " id="s3example-1" name="Category">
 										<option></option>
-									
-										<optgroup label="Gender">
-											<option>Male</option>
-											<option>Female</option>
-										</optgroup>
-									</select>
+		<?php foreach ($category as $cat){ //print_r($key);die;?>
+										
+								<?php if($cat->MasterEntryName=='Category') { ?>		
+										<option   value="<?=$cat->MasterEntryId?>"  <?=($Category==$cat->MasterEntryId)?'selected':''?>><?=$cat->MasterEntryValue?></option>
+										<?php } ?><?php } ?>
+																		
+										
+																			
+								</select>
 									
 										
 								</div>
@@ -227,20 +230,20 @@
 							
 									<div class="col-md-4">
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Father Name</label>
+									<label class=" control-label" for="father_name">Father Name</label>
 								
-										<input type="text" class="form-control" name="father_name" value="" id="field-1" placeholder="Father's Name">
+										<input type="text" class="form-control" name="father_name" value="<?=isset($FatherName)?$FatherName:''?>" id="father_name" placeholder="Father's Name">
 							
 								</div>
 								</div>
 								<div class="col-md-4">
 								<div class="form-group">
-									<label class="control-label">Birth Date</label>
+									<label class="control-label" name="DOB">Birth Date</label>
 									
 										
 										<div class="date-and-time">
-											<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text" name="DOB" value="<?=isset($DOB)?$DOB:''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input type="text" name="DOB" value="<?=isset($DOB)?$DOB:''?>"  class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 								</div>
@@ -263,13 +266,13 @@
 										});
 									</script>
 								
-									<select class="form-control " id="s3example-1">
+									<select class="form-control " id="s3example-1" name="BloodGroup">
 										<option></option>
 									
-										<optgroup label="Gender">
-											<option>Male</option>
-											<option>Female</option>
-										</optgroup>
+										
+		<?php foreach ($blood_grp as $bld){ //print_r($key);die;?>
+									<?php if($bld->MasterEntryName=='BloodGroup') { ?><option   value="<?=$bld->MasterEntryId?>"  <?=($BloodGroup==$bld->MasterEntryId)?'selected':''?>><?=$bld->MasterEntryValue?></option>
+										<?php } ?><?php } ?>
 									</select>
 									
 										
@@ -283,9 +286,9 @@
 							<div class="row">
 							<div class="col-md-4">
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Mother Name</label>
+									<label class=" control-label" for="mother_name">Mother Name</label>
 								
-										<input type="text" class="form-control" name="father_name" value="" id="field-1" placeholder="Father's Name">
+										<input type="text" class="form-control" name="mother_name" value="<?=isset($MotherName)?$MotherName:''?>" id="mother_name" placeholder="Father's Name">
 							
 								</div>
 								</div>
@@ -294,9 +297,11 @@
 								</div>
 								<div class="row">
 								<div class="form-group">
-								 <button type="submit" class="btn btn-info btn-single pull-right">Save</button>
+		<input  type="submit" name="submit" value="submit" class="btn btn btn-info btn-single pull-right"/>   
+								
 								</div>	
 								</div>
+								
 						</form>
 						</div>
 					</div>
@@ -313,33 +318,33 @@
 					<div class="panel panel-default">
 						
 						<div class="panel-body">
-						 <form role="form" class="" method="post" action="">
-							   
+						 <form role="form" class=""  method="post" action="<?=base_url()?>admission/update_registration/<?=$RegistrationId?>">
+													   
 								<div class="form-group-separator">
 								</div>
 								<div class="row">
 								<div class="col-md-4">
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Mobile</label>
+									<label class=" control-label" for="mobile">Mobile</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="mobile" id="mobile" value="<?=isset($Mobile)?$Mobile:''?>"  placeholder="Mobile No">
 									
 								</div>
 							</div>
 							<div class="col-md-4">
 						<div class="form-group ">
-									<label class=" control-label" for="field-1">Father Mobile</label>
+									<label class=" control-label" for="father_mobile">Father Mobile</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="father_mobile" value="<?=isset($FatherMobile)?$FatherMobile:''?>" id="father_mobile" placeholder="">
 									
 								</div>
 								
 							</div>
 							<div class="col-md-4">
 							<div class="form-group ">
-									<label class=" control-label" for="field-1">Present Address</label>
+									<label class=" control-label" for="present_address">Present Address</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="present_address" value="<?=isset($PresentAddress)?$PresentAddress:''?>" id="present_address" placeholder="">
 									
 								</div>
 								
@@ -351,9 +356,9 @@
 							<div class="row">
 							 <div class="col-md-4">
 							<div class="form-group ">
-									<label class=" control-label" for="field-1">Landline</label>
+									<label class=" control-label" for="landline">Landline</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="landline" value="<?=isset($Landline)?$Landline:''?>" id="landline" placeholder="">
 									
 								</div>
 							 
@@ -361,9 +366,9 @@
 								</div>
 							<div class="col-md-4">
 							 <div class="form-group ">
-									<label class=" control-label" for="field-1">Mother Mobile</label>
+									<label class=" control-label" for="mother_mobile">Mother Mobile</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="mother_mobile" value="<?=isset($MotherMobile)?$MotherMobile:''?>" id="mother_mobile" placeholder="">
 									
 								</div>
 								
@@ -371,9 +376,9 @@
 								<div class="col-md-4">
 								
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Present Address</label>
+									<label class=" control-label" for="permanent_address">Permanent Address</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="permanent_address" value="<?=isset($PermanentAddress)?$PermanentAddress:''?>" id="permanent_address" placeholder="">
 									
 								</div>
 								
@@ -386,9 +391,9 @@
 							
 									<div class="col-md-4">
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Alternate Mobile</label>
+									<label class=" control-label" for="alternate_mobile">Alternate Mobile</label>
 								
-										<input type="text" class="form-control" name="father_name" value="" id="field-1" placeholder="Father's Name">
+										<input type="text" class="form-control" name="alternate_mobile" value="<?=isset($AlternateMobile)?$AlternateMobile:''?>" id="alternate_mobile" placeholder="">
 							
 								</div>
 								</div>
@@ -402,7 +407,7 @@
 								</div>
 								<div class="row">
 								<div class="form-group">
-								 <button type="submit" class="btn btn-info btn-single pull-right">Save</button>
+		<input  type="submit" name="submit1" value="submit" class="btn btn btn-info btn-single pull-right"/>   
 								</div>	
 								</div>
 						</form>
@@ -418,39 +423,39 @@
 					<div class="panel panel-default">
 						
 						<div class="panel-body">
-						 <form role="form" class="" method="post" action="">
+						 <form role="form" class="" method="post" action="<?=base_url()?>admission/update_registration/<?=$RegistrationId?>">
 							   
 								<div class="form-group-separator">
 								</div>
 								<div class="row">
 								<div class="col-md-4">
 								<div class="form-group">
-									<label class="control-label">Father Date Of Birth</label>
+									<label class="control-label" for="FatherDateOfBirth">Father Date Of Birth</label>
 									
 										
 										<div class="date-and-time">
-											<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text" name="FatherDateOfBirth" value="<?=isset($FatherDateOfBirth)?$FatherDateOfBirth:''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input type="text" name="FatherDateOfBirth" value="<?=isset($FatherDateOfBirth)?$FatherDateOfBirth:''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 							</div>
 							<div class="col-md-4">
 						<div class="form-group">
-									<label class="control-label">Mother Date Of Birth</label>
+									<label class="control-label" for="MotherDateOfBirth">Mother Date Of Birth</label>
 									
 										
 										<div class="date-and-time">
-											<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text" name="MotherDateOfBirth" class="form-control datepicker" value="<?=isset($MotherDateOfBirth)?$MotherDateOfBirth:''?>" data-format="D, dd MM yyyy">
+											<input type="text" name="MotherDateOfBirth" class="form-control timepicker" value="<?=isset($MotherDateOfBirth)?$MotherDateOfBirth:''?>" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 								
 							</div>
 							<div class="col-md-4">
 							<div class="form-group ">
-									<label class=" control-label" for="field-1">Father Designation</label>
+									<label class=" control-label" for="FatherDesignation">Father Designation</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="FatherDesignation" value="<?=isset($FatherDesignation)?$FatherDesignation:''?>" id="FatherDesignation" placeholder="">
 									
 								</div>
 								
@@ -462,9 +467,9 @@
 							<div class="row">
 							 <div class="col-md-4">
 							<div class="form-group ">
-									<label class=" control-label" for="field-1">Father Email</label>
+									<label class=" control-label" for="FatherEmail">Father Email</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="FatherEmail" value="<?=isset($FatherEmail)?$FatherEmail:''?>" id="FatherEmail" placeholder="">
 									
 								</div>
 							 
@@ -472,9 +477,9 @@
 								</div>
 							<div class="col-md-4">
 							 <div class="form-group ">
-									<label class=" control-label" for="field-1">Mother Email</label>
+									<label class=" control-label" for="MotherEmail">Mother Email</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="MotherEmail" value="<?=isset($MotherEmail)?$MotherEmail:''?>" id="MotherEmail" placeholder="">
 									
 								</div>
 								
@@ -482,9 +487,9 @@
 								<div class="col-md-4">
 								
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Father Organization</label>
+									<label class=" control-label" for="FatherOrganization">Father Organization</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="FatherOrganization" value="<?=isset($FatherOrganization)?$FatherOrganization:''?>" id="FatherOrganization" placeholder="">
 									
 								</div>
 								
@@ -497,27 +502,27 @@
 							
 									<div class="col-md-4">
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Father Qualification</label>
+									<label class=" control-label" for="FatherQualification">Father Qualification</label>
 								
-										<input type="text" class="form-control" name="father_name" value="" id="field-1" placeholder="Father's Name">
+										<input type="text" class="form-control" name="FatherQualification" value="<?=isset($FatherQualification)?$FatherQualification:''?>" id="FatherQualification" placeholder="">
 							
 								</div>
 								</div>
 								
 								<div class="col-md-4">
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Mother Qualification</label>
+									<label class=" control-label" for="MotherQualification">Mother Qualification</label>
 								
-										<input type="text" class="form-control" name="father_name" value="" id="field-1" placeholder="Father's Name">
+										<input type="text" class="form-control" name="MotherQualification" value="<?=isset($MotherQualification)?$MotherQualification:''?>" id="MotherQualification" placeholder="">
 							
 								</div>
 								</div>
 								
 								<div class="col-md-4">
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Mother Designation</label>
+									<label class=" control-label" for="MotherDesignation">Mother Designation</label>
 								
-										<input type="text" class="form-control" name="father_name" value="" id="field-1" placeholder="Father's Name">
+										<input type="text" class="form-control" name="MotherDesignation" value="<?=isset($MotherDesignation)?$MotherDesignation:''?>" id="MotherDesignation" placeholder="">
 							
 								</div>
 								</div>
@@ -532,27 +537,27 @@
 							
 									<div class="col-md-4">
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Father Occupation</label>
+									<label class=" control-label" for="FatherOccupation">Father Occupation</label>
 								
-										<input type="text" class="form-control" name="father_name" value="" id="field-1" placeholder="Father's Name">
+										<input type="text" class="form-control" name="FatherOccupation" value="<?=isset($FatherOccupation)?$FatherOccupation:''?>" id="FatherOccupation" placeholder="">
 							
 								</div>
 								</div>
 								
 								<div class="col-md-4">
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Mother Occupation</label>
+									<label class=" control-label" for="MotherOccupation">Mother Occupation</label>
 								
-										<input type="text" class="form-control" name="father_name" value="" id="field-1" placeholder="Father's Name">
+										<input type="text" class="form-control" name="MotherOccupation" value="<?=isset($MotherOccupation)?$MotherOccupation:''?>" id="MotherOccupation" placeholder="">
 							
 								</div>
 								</div>
 								
 								<div class="col-md-4">
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Mother Organization</label>
+									<label class=" control-label" for="MotherOrganization">Mother Organization</label>
 								
-										<input type="text" class="form-control" name="father_name" value="" id="field-1" placeholder="Father's Name">
+										<input type="text" class="form-control" name="MotherOrganization" value="<?=isset($MotherOrganization)?$MotherOrganization:''?>" id="MotherOrganization" placeholder="">
 							
 								</div>
 								</div>
@@ -565,8 +570,8 @@
 								
 								<div class="row">
 								<div class="form-group">
-								 <button type="submit" class="btn btn-info btn-single pull-right">Save</button>
-								</div>	
+		<input  type="submit" name="submit2" value="submit" class="btn btn btn-info btn-single pull-right"/>   
+																</div>	
 								</div>
 						</form>
 						</div>
@@ -582,33 +587,33 @@
 					<div class="panel panel-default">
 						
 						<div class="panel-body">
-						 <form role="form" class="" method="post" action="">
+						 <form role="form" class="" method="post" action="<?=base_url()?>admission/add_qualification/<?=$RegistrationId?>">
 							   
 								<div class="form-group-separator">
 								</div>
 								<div class="row">
 								<div class="col-md-4">
 								<div class="form-group ">
-									<label class=" control-label" for="field-1">Board/University</label>
+									<label class=" control-label" for="BoardUniversity">Board/University</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="BoardUniversity" value="<?=isset($BoardUniversity)?$BoardUniversity:''?>" id="BoardUniversity" placeholder="">
 									
 								</div>
 							</div>
 							<div class="col-md-4">
 						<div class="form-group ">
-									<label class=" control-label" for="field-1">Year</label>
+									<label class=" control-label" for="Year">Year</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="Year" value="<?=isset($Year)?$Year:''?>" id="Year" placeholder="">
 									
 								</div>
 								
 							</div>
 							<div class="col-md-4">
 							<div class="form-group ">
-									<label class=" control-label" for="field-1">Remarks</label>
+									<label class=" control-label" for="Remarks">Remarks</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="Remarks" value="<?=isset($Remarks)?$Remarks:''?>" id="Remarks" placeholder="">
 									
 								</div>
 								
@@ -620,9 +625,9 @@
 							<div class="row">
 							 <div class="col-md-4">
 							<div class="form-group ">
-									<label class=" control-label" for="field-1">Class</label>
+									<label class=" control-label" for="Class">Class</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="Class" value="<?=isset($Class)?$Class:''?>" id="Class" placeholder="">
 									
 								</div>
 							 
@@ -630,9 +635,9 @@
 								</div>
 							<div class="col-md-4">
 							 <div class="form-group ">
-									<label class=" control-label" for="field-1">Marks</label>
+									<label class=" control-label" for="Marks">Marks</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="Marks" value="<?=isset($Marks)?$Marks:''?>" id="Marks" placeholder="">
 									
 								</div>
 								
@@ -646,8 +651,8 @@
 								</div>
 								<div class="row">
 								<div class="form-group">
-								 <button type="submit" class="btn btn-info btn-single pull-right">Save</button>
-								</div>	
+		<input  type="submit" name="submit3" value="submit" class="btn btn btn-info btn-single pull-right"/>   
+																</div>	
 								</div>
 						</form>
 						</div>
@@ -729,7 +734,7 @@
 								</div>
 								<div class="row">
 								<div class="form-group">
-								 <button type="submit" class="btn btn-info btn-single pull-right">Save</button>
+								 <button type="submit" name="submit" class="btn btn-info btn-single pull-right">Save</button>
 								</div>	
 								</div>
 						</form>
@@ -750,9 +755,9 @@
 							   
 								
 								<div class="form-group">
-									<label class="col-sm-4 control-label" for="field-1">Title</label>
+									<label class="col-sm-4 control-label" for="Title">Title</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="Title" value="<?=isset($Title)?$Title:''?>" id="Title" placeholder="">
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -760,7 +765,7 @@
 								
 								
 								<div class="form-group">
-									<label class="control-label col-sm-4">Decument</label>
+									<label class="control-label col-sm-4">Document</label>
 									
 									<script type="text/javascript">
 										jQuery(document).ready(function($)
@@ -777,13 +782,15 @@
 										});
 									</script>
 									<div class="col-sm-8">
-										<select class="form-control " id="s2example-1">
+										<select class="form-control " id="s2example-1" name="StudentsDocuments">
 											<option></option>
 										
-											<optgroup label="Class">
-												<option>1st section A</option>
-												<option>2nd  section A</option>
-											</optgroup>
+											      <?php foreach ($doc as $d){?>
+										<?php if($d->MasterEntryName=='StudentsDocuments') { ?>
+										
+										<option   value="<?=$d->MasterEntryId?>"><?=$d->MasterEntryValue?></option>
+										<?php } ?><?php }?>								
+										
 										</select>
 									</div>	
 										
@@ -807,13 +814,14 @@
 										});
 									</script>
 									<div class="col-sm-8">
-									<select class="form-control col-sm-8" id="s3example-1">
+									<select class="form-control col-sm-8" id="s3example-1" name="Resolution">
 										<option></option>
 									
-										<optgroup label="Gender">
-											<option>Male</option>
-											<option>Female</option>
-										</optgroup>
+										     <?php foreach ($photo as $pho){?>
+										<?php if($pho->MasterEntryName=='Resolution') { ?>
+										
+										<option   value="<?=$pho->MasterEntryId?>"><?=$pho->MasterEntryValue?></option>
+										<?php } ?><?php }?>
 									</select>
 									</div>	
 										
@@ -826,14 +834,14 @@
 									
 									<div class="col-sm-8">
 										
-										<input type="file" name="" >
+										<input type="file" name="Path" >
 									</div>
 								</div>
 								<div class="form-group-separator">
 								</div>
 								<div class="form-group">
-								 <button type="submit" class="btn btn-info btn-single pull-right">Save</button>
-								</div>	
+		<input  type="submit" name="submit5" value="submit" class="btn btn btn-info btn-single pull-right"/>   
+																</div>	
 						</form>
 						</div>
 					</div>
@@ -848,15 +856,15 @@
 					<div class="panel panel-default">
 						
 						<div class="panel-body">
-						 <form role="form" class="form-horizontal" method="post" action="">
+						 <form role="form" class="form-horizontal" method="post" action="<?=base_url()?>admission/update_registration/<?=$RegistrationId?>">
 							   
 								
 								<div class="form-group ">
-									<label class=" control-label col-sm-4" for="field-1">Date Of Termination</label>
+									<label class=" control-label col-sm-4" for="DateOfTermination">Date Of Termination</label>
 								
 										<div class="date-and-time col-sm-8">
-											<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text" name="DateOfTermination" id="DateOfTermination" value="<?=isset($DateOfTermination)?$DateOfTermination:''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input type="text"  id="DateOfTermination" value="<?=isset($DateOfTermination)?$DateOfTermination:''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 								</div>
 								<div class="form-group-separator">
@@ -881,13 +889,14 @@
 										});
 									</script>
 									<div class="col-sm-8">
-										<select class="form-control " id="s2example-1">
+										<select class="form-control " id="s2example-1" name="TerminationReason">
 											<option></option>
+		                                  <?php foreach ($termination as $ts){?>
+										<?php if($ts->MasterEntryName=='TerminationReason') { ?>
 										
-											<optgroup label="Class">
-												<option>1st section A</option>
-												<option>2nd  section A</option>
-											</optgroup>
+										<option   value="<?=$ts->MasterEntryId?>" <?=($TerminationReason==$ts->MasterEntryId)?'selected':''?>><?=$ts->MasterEntryValue?></option>
+										<?php } ?><?php }?>								
+										
 										</select>
 									</div>	
 										
@@ -911,13 +920,12 @@
 										});
 									</script>
 									<div class="col-sm-8">
-									<select class="form-control col-sm-8" id="s3example-1">
+									<select class="form-control col-sm-8" id="s3example-1" >
 										<option></option>
-									
-										<optgroup label="Gender">
-											<option>Male</option>
-											<option>Female</option>
-										</optgroup>
+										
+											<option>2015-2016</option>
+											<option>2016-2017</option>
+										
 									</select>
 									</div>	
 										
@@ -926,18 +934,18 @@
 								</div>
 									
 								<div class="form-group">
-									<label class="col-sm-4 control-label">Termination Remarks</label>
+									<label class="col-sm-4 control-label" for="TerminationRemarks">Termination Remarks</label>
 									
 									<div class="col-sm-8">
 										
-										<textarea name="" class="col-sm-12" ></textarea>
+										<textarea name="TerminationRemarks" id="TerminationRemarks"  class="col-sm-12" ><?=isset($TerminationRemarks)?$TerminationRemarks:''?></textarea>
 									</div>
 								</div>
 								<div class="form-group-separator">
 								</div>
 								<div class="form-group">
-								 <button type="submit" class="btn btn-info btn-single pull-right">Save</button>
-								</div>	
+		<input  type="submit" name="submit4" value="submit" class="btn btn btn-info btn-single pull-right"/>   
+							</div>	
 						</form>
 						</div>
 					</div>
@@ -949,13 +957,10 @@
 					
 					
 				</div>
+				
 			</div>
-
-
-
-
-
-<div class="page-title">
+			<?php //}else{?>
+			<div class="page-title">
 	  <div class="title-env">
 		<h1 class="title">Student Registration</h1>
 		<p class="description">Register Your User </p>
@@ -994,13 +999,12 @@
 									<span class="collapse-icon">&ndash;</span>
 									<span class="expand-icon">+</span>
 								</a>
-								
 							</div>
 						</div>
 						<div class="panel-body">
-						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>admission/insert_registration">
-						 <?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$registration_update[0]->RegistrationId?>">
+						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>admission/add_registration">
+						  <?php if(empty($var)==''){ ?>
+														<input type="hidden" name="id" value="<?=$var[0]->RegistrationId?>">
 											<?php } ?>
 						 
 							    <div class="form-group">
@@ -1012,31 +1016,31 @@
 								<div class="form-group-separator">
 								</div>
 								<div class="form-group">
-									<label class="col-sm-4 control-label" for="field-1">Student Name</label>
+									<label class="col-sm-4 control-label" for="student_name" >Student Name</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="student_name"  value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="student_name"  value="" id="student_name" placeholder="Student Name">
 									</div>
 								</div>
 								<div class="form-group-separator">
 								</div>
 								<div class="form-group">
-									<label class="col-sm-4 control-label" for="field-1">Father's Name</label>
+									<label class="col-sm-4 control-label" for="father_name">Father's Name</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="father_name" value="" id="field-1" placeholder="Father's Name">
+										<input type="text" class="form-control" name="father_name" value="" id="father_name" placeholder="Father's Name">
 									</div>
 								</div>
 								<div class="form-group-separator">
 								</div>
 								<div class="form-group">
-									<label class="col-sm-4 control-label" for="field-1">Mother's Name</label>
+									<label class="col-sm-4 control-label" for="mother_name">Mother's Name</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="mother_name" value="" id="field-1" placeholder="Mother's Name">
+										<input type="text" class="form-control" name="mother_name" value="" id="mother_name" placeholder="Mother's Name">
 									</div>
 								</div>
 								<div class="form-group-separator">
 								</div>
 								<div class="form-group">
-									<label class="col-sm-4 control-label" for="field-1">Mobile Number</label>
+									<label class="col-sm-4 control-label" for="mobile">Mobile Number</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" name="mobile" data-mask="phone">
 									</div>
@@ -1065,7 +1069,7 @@
 											<option></option>
 										
 																	<?php foreach($class_section as $cls){ ?>
-																	<option  value="<?=$cls->SectionId?>" <?php if(empty($id)==''){ echo (!empty($registration_update[0]->StudentName==$cls->ClassName) ? "selected" : ''); } ?>><?=$cls->ClassName?> <?=$cls->SectionName?></option>
+																	<option  value="<?=$cls->SectionId?>" ><?=$cls->ClassName?> <?=$cls->SectionName?></option>
 																			<?php  } ?>
 																		</optgroup>
 																	
@@ -1096,11 +1100,12 @@
 									<div class="col-sm-8">
 									<select class="form-control col-sm-8" id="s3example-1" name="gender">
 										<option></option>
-										<?php foreach ($gender as $gen){?>
+										<?php foreach ($gender as $gen){ //print_r($key);die;?>
+										<?php if($gen->MasterEntryName=='Gender') { ?>
 										
+										<option   value="<?=$gen->MasterEntryId?>" ><?=$gen->MasterEntryValue?></option>
+										<?php } ?><?php } ?>
 										
-										<option   value="<?=$gen->MasterEntryId?>"  <?php if(empty($id)==''){ echo (!empty($registration_update[0]->StudentName==$gen->Gender) ? "selected" : ''); } ?>><?=$gen->MasterEntryValue?></option>
-										<?php }?>
 									</select>
 									</div>	
 										
@@ -1116,14 +1121,16 @@
 										<div class="date-and-time">
 										
 											<input type="text" name="DOR" class="form-control datepicker" data-show="true" data-format="D, dd MM yyyy">
-											<input type="text"   class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text" name="DOR"  class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 								</div>
 								<div class="form-group-separator">
 								</div>
 								<div class="form-group">
-								 <button type="submit" class="btn btn-info btn-single pull-right">Save</button>
+								       
+								        <input  type="submit" name="submit" value="Submit" class="btn btn btn-info btn-single pull-right"/>   
+								
 								</div>	
 						</form>
 						</div>
@@ -1144,7 +1151,19 @@
 							</div>
 						</div>
 						<div class="panel-body">
-						
+						<script type="text/javascript">
+					jQuery(document).ready(function($)
+					{
+						$("#example-4").dataTable({
+							dom: "<'row'<'col-sm-5'l><'col-sm-7'Tf>r>"+
+								 "t"+
+								 "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+							tableTools: {
+								sSwfPath: "assets/js/datatables/tabletools/copy_csv_xls_pdf.swf"
+							}
+						});
+					});
+					</script>
 					
 					<table class="table table-bordered table-striped" id="example-4">
 						<thead>
@@ -1172,7 +1191,7 @@
 						<tbody>
 						<?php foreach($regis as $rg){?>
 							<tr>
-								<td><?=$rg->StudentName?>  <span class="label label-success"><?=$rg->Status?></span></td>
+								<td><a href="<?=base_url()?>admission/registration/<?=$rg->RegistrationId?>"><?=$rg->StudentName?></a>  <span class="label label-success"><?=$rg->Status?></span></td>
 								<td><?=$rg->FatherName?></td>
 								<td><?=$rg->Mobile?></td>
 								<td><?=$rg->ClassName?><?=$rg->SectionName?></td>
@@ -1185,4 +1204,5 @@
 						</div>
 					</div>
 				</div>
-			</div>
+		</div>
+<?php //} ?>
