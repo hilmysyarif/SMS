@@ -140,7 +140,7 @@
 			<ul class="navbar-nav">
 				<li>
 							<a href="javascript:;">
-								<span class="title"><?php  if(!empty($this->currentsession)){ print_r($this->currentsession[0]->CurrentSession);}else{ echo "Please Select Session";} ?></span><span class="caret"></span>
+								<span class="title">2015-2016</span><span class="caret"></span>
 							</a> 
 					<ul>
 						<li>
@@ -149,7 +149,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="<?=base_url();?>dashboard/session/2016-2017">
+							<a href="javascript:;">
 								<span class="title">2016-2017</span>
 							</a>
 						</li>
@@ -268,6 +268,6 @@
 		
 	</nav>
 
-
 				<!-- /.navbar-collapse -->
-
+		
+			

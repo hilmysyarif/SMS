@@ -1308,14 +1308,18 @@ body {
   .navbar.horizontal-menu .navbar-inner .navbar-nav > li > a {
     padding: 0 15px;
     line-height: 40px;
-   background: -webkit-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(249,249,249,1) 100%);
-  background: -o-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(249,249,249,1) 100%);
-  background: -ms-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(249,249,249,1) 100%);
+
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#FAFAFA),color-stop(100%,#DCDCDC));
+        border-color: #CCC #CCC #AAA;
+    background-color: #E0E0E0;
+
 
   }
    .navbar.horizontal-menu .navbar-inner .navbar-nav > li > a:hover{
 
-  background-color: #D3D3D3;
+      background: -webkit-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(249,249,249,1) 100%);
+  background: -o-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(249,249,249,1) 100%);
+  background: -ms-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(249,249,249,1) 100%);
 
    }
   .navbar.horizontal-menu .navbar-inner .navbar-nav > li > ul {
@@ -1484,9 +1488,12 @@ body {
     line-height: 45px;
   display: inline-block;
 
-  background: -webkit-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(249,249,249,1) 100%);
-  background: -o-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(249,249,249,1) 100%);
-  background: -ms-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(249,249,249,1) 100%);
+  border-color: #CCC #CCC #AAA;
+    background-color: #E0E0E0;
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#FAFAFA),color-stop(100%,#DCDCDC));
+     background-image: -webkit-linear-gradient(top,#FAFAFA 0,#DCDCDC 100%); 
+    background-image: linear-gradient(to bottom,#FAFAFA 0,#DCDCDC 100%);
+
 
   margin-top: 20px;
 }
@@ -1507,7 +1514,9 @@ body {
 .navbar.horizontal-menu .navbar-inner > .nav > li > a:hover {
   /*background: #fafafa;*/
 
-   background-color: #d3d3d3;
+    background: -webkit-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(249,249,249,1) 100%);
+  background: -o-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(249,249,249,1) 100%);
+  background: -ms-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(249,249,249,1) 100%);
 
 }
 .navbar.horizontal-menu .navbar-inner > .nav > li > a:hover i {
