@@ -23,7 +23,7 @@
 					<!-- data-toggle="mobile-menu-horizontal" will show horizontal menu links only -->
 					<!-- data-toggle="mobile-menu" will show sidebar menu links only -->
 					<!-- data-toggle="mobile-menu-both" will show sidebar and horizontal menu links -->
-					<a href="javascript:;" data-toggle="mobile-menu-horizontal">
+					<a href="javascript:;" data-toggle="mobile-menu-both">
 						<i class="fa-bars"></i>
 					</a>
 				</div>
@@ -136,11 +136,10 @@
 			
 			</ul>
 			
-			
 			<ul class="navbar-nav">
 				<li>
 							<a href="javascript:;">
-								<span class="title">2015-2016</span><span class="caret"></span>
+								<span class="title"><?php  if(!empty($this->currentsession)){ print_r($this->currentsession[0]->CurrentSession);}else{ echo "Please Select Session";} ?></span><span class="caret"></span>
 							</a> 
 					<ul>
 						<li>
@@ -149,7 +148,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="javascript:;">
+							<a href="<?=base_url();?>dashboard/session/2016-2017">
 								<span class="title">2016-2017</span>
 							</a>
 						</li>
