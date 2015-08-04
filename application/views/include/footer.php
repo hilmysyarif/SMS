@@ -79,6 +79,9 @@
 	<script src="<?=base_url();?>assets/js/datatables/tabletools/dataTables.tableTools.min.js"></script>
 	<!-- Imported scripts on dashboard page -->
 	<script src="<?=base_url();?>assets/js/xenon-widgets.js"></script>
+	<!-- Multiselect JavaScripts initializations and stuff -->
+		<link rel="stylesheet" href="<?=base_url();?>assets/js/multiselect/css/multi-select.css">
+		<script src="<?=base_url();?>assets/js/multiselect/js/jquery.multi-select.js"></script>
 	
 	<!-- JavaScripts initializations and stuff -->
 	<script src="<?=base_url();?>assets/js/xenon-custom.js"></script>
@@ -91,6 +94,7 @@
 	<script src="<?=base_url();?>assets/js/uikit/js/addons/htmleditor.min.js"></script>
 	<script src="<?=base_url();?>assets/js/ckeditor/ckeditor.js"></script>
 	<script src="<?=base_url();?>assets/js/ckeditor/adapters/jquery.js"></script>
+	
 
 </body>
 </html>

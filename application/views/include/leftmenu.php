@@ -10,18 +10,18 @@
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<div>
-							<button class="btn btn-icon btn-gray">
-									<i class="fa fa-home" style="font-size:2em;"><a href="<?=base_url();?>dashboard"></a></i>
-								</button>
-								<button class="btn btn-icon btn-gray">
+						
+								<a href="<?=base_url();?>dashboard"  class="btn btn-icon btn-gray shortcut"><i class="fa fa-home" style="font-size:2em;"></i></a>
+								
+								<a href="<?=base_url();?>dashboard"  class="btn btn-icon btn-gray shortcut">
 									<i class="fa fa-language" style="font-size:2em;"></i>
-								</button>
-								<button class="btn btn-icon btn-gray">
+								</a>
+								<a href="<?=base_url();?>dashboard"  class="btn btn-icon btn-gray shortcut">
 									<i class="fa fa-lock" style="font-size:2em;"></i>
-								</button>
-								<button class="btn btn-icon btn-gray">
+								</a>
+								<a href="<?=base_url();?>dashboard" class="btn btn-icon btn-gray shortcut">
 									<i class="fa fa-calendar" style="font-size:2em;"></i>
-								</button>
+								</a>
 						</div>		
 		
 						
@@ -71,18 +71,18 @@
 									<span class="title">Registration</span>
 								</a>
 							</li>
-							<li class="active">
+							<li >
 								<a href="<?=base_url();?>admission/admission_student">
 									<span class="title">Admission</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>admission/promotion">
 									<span class="title">Promotion</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>admission/updatefee">
 									<span class="title">Update Fee</span>
 								</a>
 							</li>
@@ -94,7 +94,7 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="javascript:;">
+								<a href="<?=base_url();?>admission/admissionreport">
 									<span class="title">Admission Report</span>
 								</a>
 							</li>
@@ -104,7 +104,7 @@
 						</ul>
 					</li>
 					<li>
-					<a href="javascript:;">
+					<a href="<?=base_url();?>admission/payment">
 							<i class="fa fa-money"></i>	
 							<span class="title">Fee Payment</span>
 					</a>
@@ -134,12 +134,12 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="javascript:;">
+								<a href="<?=base_url();?>admission/staffattendence">
 									<span class="title">Staff Attendance</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>admission/studentattendence">
 									<span class="title">Student Attendance</span>
 								</a>
 							</li>
@@ -338,7 +338,7 @@
 				
 				<div class="title-env">
 					<h1 class="title">Dashboard
-					<span class="title pull-right"> Current Session : 2015-2016</span> </h1>
+					<span class="title pull-right"> Current Session : <?=$this->currentsession[0]->CurrentSession?></span> </h1>
 				</div>
 				
 				

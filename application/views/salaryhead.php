@@ -146,7 +146,7 @@
 						
 									<tbody>
 									<?php foreach($salaryhead_info as $salaryheadinfo){ ?>
-										<tr>SalaryHeadStatus
+										<tr>
 											<td><?=$salaryheadinfo->MasterEntryValue?> <?php if($salaryheadinfo->SalaryHeadStatus=="Active"){?> <span class="label label-secondary"><?php  echo "Active";?></span><?php }else{?><span class="label label-red"><?php echo"Not Active";?></span><?php }?></td>
 											<td><?=$salaryheadinfo->SalaryHead?></td>
 											<td><?=$salaryheadinfo->Code?></td>

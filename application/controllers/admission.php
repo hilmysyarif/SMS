@@ -252,6 +252,7 @@ class Admission extends CI_Controller {
 						'Mobile'=>$this->input->post('mobile'),
 						'SectionId'=>$this->input->post('class'),
 						'DOR'=>$this->input->post('DOR'),
+						'Session'=>$currentsession,
 						'Gender'=>$this->input->post('gender')
 				);
 				$r_id=$this->admission_model->insert_registration($info);
@@ -273,6 +274,78 @@ class Admission extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 	}
 	/*school management admission View Load..............................................................................................................*/
+	
+	/*school management Promotion View Load.............................................................................................................*/
+	function promotion()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('promotion',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management Promotion View Load..............................................................................................................*/
+
+	/*school management Updatefee View Load.............................................................................................................*/
+	function updatefee()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('updatefee',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management Updatefee View Load..............................................................................................................*/
+	
+	/*school management Admission Report View Load.............................................................................................................*/
+	function admissionreport()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('admissionreport',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management Admission Report View Load..............................................................................................................*/
+	
+	/*school management Fee Payment View Load.............................................................................................................*/
+	function payment()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('payment',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management Fee Payment View Load..............................................................................................................*/
+	
+	/*school management Staff Attendence View Load.............................................................................................................*/
+	function staffattendence()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('staffattendence',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management Staff Attendence View Load..............................................................................................................*/
+	
+	/*school management Student Attendence View Load.............................................................................................................*/
+	function studentattendence()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('studentattendence',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management Student Attendence View Load..............................................................................................................*/
 	
 	
 }

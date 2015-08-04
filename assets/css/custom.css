@@ -23,7 +23,7 @@ a {
 	  font-size: 20px;
   font-weight: 700;
     text-decoration: none;
-     padding: 30px 45px;
+     padding: 17px 45px;
 }
 .text-blac{
   color: #353535;
@@ -82,6 +82,9 @@ padding-top: 175px!important }
 
 .bg-image{
 background: url(../../assets/images/5.png) repeat;	
+}
+.bg-login{
+background: url(../../assets/images/2.png) repeat!important;	
 }
 /*Calendar UI css*/
 . fc-state-default{
@@ -144,3 +147,8 @@ background: url(../../assets/images/5.png) repeat;
 .element:fullscreen p {
   visibility: visible;
 }
+.shortcut{
+	display:inline-block!important;
+	
+}
+.visited{ color:#3399cc;}

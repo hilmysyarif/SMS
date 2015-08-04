@@ -7,7 +7,7 @@
 <?php }?>
 			<div class="row">
 					<div class="col-md-4">
-						<div class="panel panel-default">
+						<div class="panel panel-color panel-gray">
 										<div class="panel-heading">
 											Student Admission
 										</div>
@@ -26,7 +26,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your Student...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -52,13 +52,18 @@
 																</div>
 																
 																<?php // if(empty($id)==''){ ?> 
+																<div class="form-group">
+																	<label class="control-label col-sm-4 ">	Transport</label>
+																	<div class="col-sm-8">
 																	<div class="checkbox">
-											<label>
-												<input type="checkbox" name="status" <?php echo (isset($acc_update[0]->AccountStatus) ? "Checked=checked"
-												: '');?> value="Active">
-												Tranport Check only if Transport facility is required
-											</label>
-										</div>
+																		<label>
+																			<input type="checkbox" name="status" <?php echo (isset($acc_update[0]->AccountStatus) ? "Checked=checked"
+																			: '');?> value="Active">
+																		 Check only if Transport facility is required
+																		</label>
+																		</div>
+																	</div>	
+																	</div>	
 																	<?php // } ?>
 																
 																<div class="form-group">
@@ -67,8 +72,8 @@
 																			<script type="text/javascript">
 																				jQuery(document).ready(function($)
 																				{
-																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																					$("#s2example-2").select2({
+																						placeholder: 'Select your Distance...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -79,7 +84,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="account_type">
+																		<select class="form-control " id="s2example-2" name="account_type">
 																			<option></option>
 																			<optgroup label="Select">
 																			<?php $filter=array('MasterEntryName' => 'AccountType'); $user= $this->utilities->get_usertype($filter); ?>
@@ -106,7 +111,7 @@
 						</div>
 					</div>
 	<div class="col-md-8">
-		<div class="panel panel-default">
+		<div class="panel panel-color panel-gray">
 				<div class="panel-heading">
 					<h3 class="panel-title">Set Fee Structure</h3>
 					
@@ -141,7 +146,7 @@
 												</div>
 											</div>
 					
-					<div class="form-group">
+			 								<div class="form-group">
 																	<label class="control-label col-sm-4 ">Admission No</label>
 																	
 																			<div class="col-sm-8">

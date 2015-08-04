@@ -1,5 +1,5 @@
 <!-- login page edited on 2 july by  designer rohit thakur-->
-<body class="page-body skin-white login-page login-light">
+<body class="page-body skin-white login-page login-light bg-login">
 		<!--  <div class="row" style="background: url(<?=base_url();?>assets/images/4.png) repeat;">
 					<div class="col-md-12">
 				
@@ -8,7 +8,7 @@
 					</div>
 		</div>	-->
 	
-	<div class="login-container">
+	<div class=""><!-- login-container -->
 
 		<div class="row">
 			<div class="col-md-4 ">
@@ -45,7 +45,7 @@
 			</div>
 			
 			
-			<div class="col-md-5 col-md-offset-3">
+			<div class="col-md-4 ">
 			
 				<script type="text/javascript">
 					jQuery(document).ready(function($)
@@ -178,7 +178,8 @@
 				
 				
 			</div>
-			
+			<div class="col-md-4">
+			</div>
 		</div>
 		
 	</div>

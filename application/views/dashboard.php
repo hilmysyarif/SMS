@@ -33,7 +33,7 @@
 										tooltip:{
 											enabled: true
 										},
-										title: "Historic, Current and Future Population Trends",
+										title: "",
 										legend: {
 											verticalAlignment: "bottom",
 											horizontalAlignment: "center"

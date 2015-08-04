@@ -1,6 +1,6 @@
 <div class="row">
 		
-		 <?php //if(!$RegistrationId == ''){?> 
+		 <?php if(!$RegistrationId == ''){?> 
 				<div class="col-md-12">
 				<ul class="nav nav-tabs nav-tabs-justified">
 						<li class="active">
@@ -957,27 +957,10 @@
 					
 					
 				</div>
-				
+				<?php }?>
 			</div>
-			<?php //}else{?>
-			<div class="page-title">
-	  <div class="title-env">
-		<h1 class="title">Student Registration</h1>
-		<p class="description">Register Your User </p>
-	   </div>
-	   <!--Breadcrumb starts-->
-	    <div class="breadcrumb-env">
-			 <ol class="breadcrumb bc-1">
-				 <li>
-				   <a href="javascript:;"><i class="fa-home"></i>Home</a>
-				 </li>
-				 <li class="active">
-				   <strong>Student Registration</strong>
-				 </li>
-			</ol>
-		</div>
-		<!--Breadcrumb Ends-->			
-	</div>
+			
+		
 	   <!--php alert message-->
 		<?php  if($this->session->flashdata('message_type')) { ?>
 			<div class="row">
@@ -991,7 +974,7 @@
 	   	<div class="row">
 				<!--student registration form-->
 				<div class="col-sm-6">
-					<div class="panel panel-default">
+					<div class="panel panel-color panel-gray">
 						<div class="panel-heading">
 							<h3 class="panel-title">Student Registration</h3>
 							<div class="panel-options">
@@ -1010,7 +993,7 @@
 							    <div class="form-group">
 									<label class="col-sm-4 control-label" for="field-1">For Session</label>
 									<div class="col-sm-8">
-									<label class="control-label" for="field-1">2015-2016</label>
+									<label class="control-label" for="field-1"><?=$this->currentsession[0]->CurrentSession?></label>
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -1139,9 +1122,9 @@
 				<!--student registration form Ends-->
 				<!--student registration table-->
 					<div class="col-sm-6">
-					<div class="panel panel-default">
+					<div class="panel panel-color panel-gray">
 						<div class="panel-heading">
-							<h3 class="panel-title">Student Registration</h3>
+							<h3 class="panel-title">Registration List</h3>
 							<div class="panel-options">
 								<a href="#" data-toggle="panel">
 									<span class="collapse-icon">&ndash;</span>
@@ -1155,12 +1138,7 @@
 					jQuery(document).ready(function($)
 					{
 						$("#example-4").dataTable({
-							dom: "<'row'<'col-sm-5'l><'col-sm-7'Tf>r>"+
-								 "t"+
-								 "<'row'<'col-xs-6'i><'col-xs-6'p>>",
-							tableTools: {
-								sSwfPath: "assets/js/datatables/tabletools/copy_csv_xls_pdf.swf"
-							}
+							
 						});
 					});
 					</script>
@@ -1191,7 +1169,7 @@
 						<tbody>
 						<?php foreach($regis as $rg){?>
 							<tr>
-								<td><a href="<?=base_url()?>admission/registration/<?=$rg->RegistrationId?>"><?=$rg->StudentName?></a>  <span class="label label-success"><?=$rg->Status?></span></td>
+								<td><a href="<?=base_url()?>admission/registration/<?=$rg->RegistrationId?>" class="visited"><?=$rg->StudentName?></a>  <span class="label label-success"><?=$rg->Status?></span></td>
 								<td><?=$rg->FatherName?></td>
 								<td><?=$rg->Mobile?></td>
 								<td><?=$rg->ClassName?><?=$rg->SectionName?></td>
