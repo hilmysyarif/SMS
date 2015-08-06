@@ -15,63 +15,52 @@ class Admission_model extends CI_Model
 		$this->load->database();
 	}
 	
-	function get_class_info($table=false){
-	$qry = $this->db->query("select SectionId,SectionName,ClassName from section,class where 
-			
-			
+	function get_class_info($table=false)
+	{
+			$qry = $this->db->query("select SectionId,SectionName,ClassName from section,class where 
 			class.ClassId=section.ClassId and 
 			class.ClassStatus='Active' and section.SectionStatus='Active'
 						 order by ClassName ");	
-	//print_r($qry);die;
-	return $qry->Result();	
+			return $qry->Result();	
 		
 	}
-	function get_gender_info($table=false){
+	
+	function get_gender_info($table=false)
+	{
 		$qry = $this->db->query("select MasterEntryId,MasterEntryName,MasterEntryValue from masterentry where
 		masterentry.MasterEntryId=masterentry.MasterEntryId and
-					MasterEntryName='Gender' or MasterEntryName='Caste' or MasterEntryName='Category' or  MasterEntryName='BloodGroup' or  MasterEntryName='TerminationReason' or  MasterEntryName='StudentsDocuments' or  MasterEntryName='Resolution' 
+		MasterEntryName='Gender' or MasterEntryName='Caste' or MasterEntryName='Category' or  MasterEntryName='BloodGroup' or  MasterEntryName='TerminationReason' or  MasterEntryName='StudentsDocuments' or  MasterEntryName='Resolution' 
 						 ");
-		//print_r($qry);die;
 		return $qry->Result();
+	}
 	
-	}
-	/*function get_info_q($filter=false,$table=false)
-	{	$this->db->order_by("QualificationId","RegistrationId", "ASC");
-	$query = $this->db->get_where($table, $filter);
-	return $query->Result();
-	}
-	*/
 	function get_info($filter=false,$table=false)
-	{	$this->db->order_by("RegistrationId", "ASC");
-	$query = $this->db->get_where($table, $filter);
-	return $query->Result();
+	{	
+		$this->db->order_by("RegistrationId", "ASC");
+		$query = $this->db->get_where($table, $filter);
+		return $query->Result();
 	}
- function get_registration_info($table=false,$filter=false)
+	
+	function get_registration_info($table=false,$filter=false)
    {
    
-   	
-   	
-   	$query=$this->db->query("select TerminationReason,RegistrationId,StudentName,FatherName,Mobile,ClassName,SectionName,Status,DOR from registration,class,section where
+   		$query=$this->db->query("select TerminationReason,RegistrationId,StudentName,FatherName,Mobile,ClassName,SectionName,Status,DOR from registration,class,section where
 				registration.SectionId=section.SectionId and 
 						class.ClassId=section.ClassId and 
    			   			registration.RegistrationId=registration.RegistrationId and
 						registration.Status!='Deleted'
 						order by RegistrationId ");
-  
-   //	print_r($query);die;
-   	return $query->Result();
+  		return $query->Result();
    }
   
    function update_registration($info=false,$filter=false)
    {
   	$this->db->where($filter);
- // print_r($r);die;
-  	$this->db->update('registration',$info);
+ 	$this->db->update('registration',$info);
   	$id = $filter['RegistrationId'];
-   	//print_r($info);die;
-   	return $id;
-   //	print_r($RegistrationId);die;
+   return $id;
    }
+   
    function update_photos($info=false,$filter=false)
    {
    	$this->db->where($filter);
@@ -79,34 +68,27 @@ class Admission_model extends CI_Model
    	$id = $filter['RegistrationId'];
    	return $id;
    }
+   
    function insert_registration($info=false,$RegistrationId=false)
    {
-   //print_r($id);die;	
-  
-   		if($this->db->insert('registration',$info)){
+  		if($this->db->insert('registration',$info)){
    			$RegistrationId = $this->db->insert_id();
-   			//print_r($id);die;
    		}else{
    			return false;
    		}
-   	
-   
    	return $RegistrationId;
    }
+   
    function insert_qualification($info=false,$QualificationId=false)
    {
-   	//print_r($id);die;
-   
-   	if($this->db->insert('qualification',$info)){
+   		if($this->db->insert('qualification',$info)){
    		$QualificationId = $this->db->insert_id();
-   		//print_r($id);die;
-   	}else{
+   		}else{
    		return false;
    	}
-   
-   	 
-   	return $QualificationId;
+  		return $QualificationId;
    }
+   
    function update_qualification($info=false,$filter=false)
    {
    
@@ -114,6 +96,68 @@ class Admission_model extends CI_Model
    	$this->db->update('qualification',$info);
    	$id = $filter['RegistrationId' && 'QualificationId'];
    	return $id;
+   }
+   
+   function get_admission_class($SectionIdSelected=false,$Distance=false,$CURRENTSESSION=false)
+   {
+   	 
+   	$query=$this->db->query("select MasterEntryValue,FeeType,Amount,FeeId,Distance from fee,masterentry where
+								fee.FeeType=masterentry.MasterEntryId and SectionId='$SectionIdSelected' and Session='$CURRENTSESSION' and (Distance='' or Distance='$Distance')");
+   			return $query->Result();
+   }
+   
+   function insert_admission($data=false,$table=false)
+   { 
+   	 if($this->db->insert($table,$data)){
+   	 	$filter=array('RegistrationId'=>$data['RegistrationId']);
+   	 	$value=array('Status'=>'Studying');
+   	 	$this->db->where($filter);
+   	 	$this->db->update('registration',$value);
+   	 }
+   	
+   }
+   
+   function get_class($CURRENTSESSION=false)
+   {
+   $query=$this->db->query("select ClassName,SectionName,SectionId from class,section where 
+					class.ClassId=section.ClassId and class.ClassStatus='Active' and
+					section.SectionStatus='Active' and class.Session='$CURRENTSESSION' order by ClassName");
+   			return $query->Result();
+   }
+   
+   function get_class2($sectionid,$CURRENTSESSION=false)
+   {
+   	$query=$this->db->query("select ClassName,SectionName,SectionId from class,section where
+   			class.ClassId=section.ClassId and class.ClassStatus='Active' and section.SectionId!='$sectionid' and
+   			section.SectionStatus='Active' and class.Session='$CURRENTSESSION' order by ClassName");
+   			return $query->Result();
+   }
+   
+   function get_fee_structure($sec_id,$CURRENTSESSION=false)
+   {
+   	$query=$this->db->query("Select studentfee.AdmissionNo,studentfee.Remarks,Date,studentfee.Distance,FeeStructure,admission.AdmissionId,registration.RegistrationId,StudentName,FatherName,Mobile,ClassName,SectionName,section.SectionId,class.ClassId from registration,class,section,admission,studentfee where
+						studentfee.Session='$CURRENTSESSION' and
+						class.ClassId=section.ClassId and
+						studentfee.SectionId=section.SectionId and
+						registration.RegistrationId=admission.RegistrationId and
+						admission.AdmissionId=studentfee.AdmissionId and 
+						studentfee.SectionId='$sec_id' and 
+						Status='Studying'
+						order by StudentName");
+   	return $query->Result();
+   }
+   
+   function get_fee_details($Student)
+   {
+   	$query=$this->db->query("select SUM(feepayment.Amount) as Paid,MasterEntryValue,fee.FeeId from transaction,feepayment,fee,masterentry where
+						TransactionStatus='Active' and FeePaymentStatus='Active' and 
+						transaction.Token=feepayment.Token and
+						feepayment.FeeType=fee.FeeId and
+						fee.FeeType=masterentry.MasterEntryId and
+						TransactionHead='Fee' and
+						TransactionHeadId='$Student' 
+						group by feepayment.FeeType");
+   	return $query->Result();
    }
   
 }

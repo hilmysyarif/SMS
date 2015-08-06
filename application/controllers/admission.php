@@ -24,13 +24,11 @@ class Admission extends CI_Controller {
 	 /*school management registration controller start*/	
 	function registration($id=false)
 	{	
-		//print_r($id);die;
 		if($id){
-		$filter = array('RegistrationId'=>$id
-		);
+		$filter = array('RegistrationId'=>$id);
+		
 		$registration_info = $this->admission_model->get_info($filter,'registration');
-		//print_r($registration_info);die;
-		 $this->data['registration_update'] = $this->admission_model->get_info($filter,'registration');
+		$this->data['registration_update'] = $this->admission_model->get_info($filter,'registration');
 		 $this->data = array(
 		 		'RegistrationId'=>$registration_info[0]->RegistrationId,
 		 		'StudentName'=>$registration_info[0]->StudentName,
@@ -64,44 +62,42 @@ class Admission extends CI_Controller {
 		 		'MotherOrganization'=>$registration_info[0]->MotherOrganization,
 		 		'DateOfTermination'=>$registration_info[0]->DateOfTermination,
 		 		'TerminationReason'=>$registration_info[0]->TerminationReason,
-		 		'TerminationRemarks'=>$registration_info[0]->TerminationRemarks
-		 		//'BoardUniversity'=>$registration_info[0]->BoardUniversity,
-		 		//'Year'=>$registration_info[0]->Year,
-		 		//'Remarks'=>$registration_info[0]->Remarks,
-		 		//'Class'=>$registration_info[0]->Class,
-		 		//'Marks'=>$registration_info[0]->Marks
-		 		
-		 			 		);
-		// print_r( $this->data);die;
-		 $this->data['RegistrationId']=$id;
-		}
-		else{
-			$this->data['registration_info']='';
-		}
-			// print_r($v);die;
-	 	$this->data['regis'] = $this->admission_model->get_registration_info();
-	  $this->data['class_section'] = $this->admission_model->get_class_info('section');
-	$this->data['gender'] = $this->admission_model->get_gender_info();
+		 		'TerminationRemarks'=>$registration_info[0]->TerminationRemarks);
+		 
+				 $this->data['RegistrationId']=$id;
+				}
+				else{
+					$this->data['registration_info']='';
+				}
+		
+	/* $this->breadcrumb->clear();
+	 $this->breadcrumb->add_crumb('Deshboard', base_url());
+	 $this->breadcrumb->add_crumb('Registration', base_url().'registration');
+	 $this->breadcrumb->add_crumb('Registration', '');*/
+	 
+	 $this->data['regis'] = $this->admission_model->get_registration_info();
+	 $this->data['class_section'] = $this->admission_model->get_class_info('section');
+     $this->data['gender'] = $this->admission_model->get_gender_info();
 	 $this->data['caste'] = $this->admission_model->get_gender_info();
 	 $this->data['category'] = $this->admission_model->get_gender_info();
 	 $this->data['blood_grp'] = $this->admission_model->get_gender_info();
 	 $this->data['termination'] = $this->admission_model->get_gender_info();
 	 $this->data['photo'] = $this->admission_model->get_gender_info();
 	 $this->data['doc'] = $this->admission_model->get_gender_info();
-	// print_r( $this->data['doc']);die;
+	
 	 $this->data['RegistrationId']=$id;
 	 $this->data['QualificationId']=$id;
 	 
 	 $this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/topheader',$this->data);
-		$this->parser->parse('include/leftmenu',$this->data);
-		$this->load->view('registration',$this->data);
-		$this->parser->parse('include/footer',$this->data);
+	 $this->parser->parse('include/topheader',$this->data);
+	 $this->parser->parse('include/leftmenu',$this->data);
+	 $this->load->view('registration',$this->data);
+	 $this->parser->parse('include/footer',$this->data);
 	}
 
 	
-	function update_registration($RegistrationId=false,$QualificationId=false){
-		//print_r($RegistrationId);die;
+	function update_registration($RegistrationId=false,$QualificationId=false)
+	{
 		if($this->input->post('submit')){
 				$info = array(
 						'StudentName'=>$this->input->post('student_name'),
@@ -113,41 +109,36 @@ class Admission extends CI_Controller {
 						'BloodGroup'=>$this->input->post('BloodGroup'),
 						'Caste'=>$this->input->post('Caste'),
 						'Category'=>$this->input->post('Category'),
-						'Gender'=>$this->input->post('gender')
-				);
-			$filter = array('RegistrationId'=>$RegistrationId);
-			$val =	$this->admission_model->update_registration($info,$filter);
+						'Gender'=>$this->input->post('gender'));
+				
+		$filter = array('RegistrationId'=>$RegistrationId);
+		$val =	$this->admission_model->update_registration($info,$filter);
 				$this->session->set_flashdata('message_type', 'success');
 				$this->session->set_flashdata('message', $this->config->item("registration").' updated successfully');
 				$this->session->set_flashdata('message_type', 'success');
 				$this->session->set_flashdata('message', $this->config->item("registration").' updated successfully');
 				redirect('admission/registration');
-			
-		
 		}
-		if($this->input->post('submit1')){
-			$info = array(
-					
+		if($this->input->post('submit1'))
+		{
+					$info = array(
 					'Mobile'=>$this->input->post('mobile'),
 					'FatherMobile'=>$this->input->post('father_mobile'),
 					'MotherMobile'=>$this->input->post('mother_mobile'),
 					'PresentAddress'=>$this->input->post('present_address'),
 					'Landline'=>$this->input->post('landline'),
 					'PermanentAddress'=>$this->input->post('permanent_address'),
-					'AlternateMobile'=>$this->input->post('alternate_mobile')
-			);
+					'AlternateMobile'=>$this->input->post('alternate_mobile'));
+					
 			$filter = array('RegistrationId'=>$RegistrationId);
 			$val =	$this->admission_model->update_registration($info,$filter);
 			$this->session->set_flashdata('message_type', 'success');
 			$this->session->set_flashdata('message', $this->config->item("registration").' updated successfully');
 			redirect('admission/registration');
-				
-			
-			
 		}
-		if($this->input->post('submit2')){
+		if($this->input->post('submit2'))
+		{
 			$info = array(
-						
 					'FatherDateOfBirth'=>$this->input->post('FatherDateOfBirth'),
 					'MotherDateOfBirth'=>$this->input->post('MotherDateOfBirth'),
 					'FatherDesignation'=>$this->input->post('FatherDesignation'),
@@ -159,114 +150,113 @@ class Admission extends CI_Controller {
 					'MotherDesignation'=>$this->input->post('MotherDesignation'),
 					'FatherOccupation'=>$this->input->post('FatherOccupation'),
 					'MotherOccupation'=>$this->input->post('MotherOccupation'),
-					'MotherOrganization'=>$this->input->post('MotherOrganization')
-						
-			);
+					'MotherOrganization'=>$this->input->post('MotherOrganization'));
+			
 			$filter = array('RegistrationId'=>$RegistrationId);
 			$val =	$this->admission_model->update_registration($info,$filter);
 			$this->session->set_flashdata('message_type', 'success');
 			$this->session->set_flashdata('message', $this->config->item("registration").' updated successfully');
 			redirect('admission/registration');
 		}
-		if($this->input->post('submit3')){
+		if($this->input->post('submit3'))
+		{
 			$info = array(
 					'BoardUniversity'=>$this->input->post('BoardUniversity'),
 					'Year'=>$this->input->post('Year'),
 					'Remarks'=>$this->input->post('Remarks'),
 					'Class'=>$this->input->post('Class'),
-					'Marks'=>$this->input->post('Marks')
-		
-			);
-			//print_r($info);die;
+					'Marks'=>$this->input->post('Marks'));
 			$filter = array('RegistrationId'=>$RegistrationId,
-					'QualificationId'=>$QualificationId
-			);
+					'QualificationId'=>$QualificationId);
 		
-				//print_r($filter);die;
 			$val =	$this->admission_model->update_qualification($info,$filter);
-			//print_r($val);die;
 			$this->session->set_flashdata('message_type', 'success');
 			$this->session->set_flashdata('message', $this->config->item("registration").' updated successfully');
 			redirect('admission/registration');
 		}
-		if($this->input->post('submit4')){
+		if($this->input->post('submit4'))
+		{
 			$info = array(
 					'DateOfTermination'=>$this->input->post('DateOfTermination'),
 					'TerminationReason'=>$this->input->post('TerminationReason'),
-					'TerminationRemarks'=>$this->input->post('TerminationRemarks'),
-			);
-			//print_r($info);die;
+					'TerminationRemarks'=>$this->input->post('TerminationRemarks'));
 			$filter = array('RegistrationId'=>$RegistrationId);
 			$val =	$this->admission_model->update_registration($info,$filter);
 			$this->session->set_flashdata('message_type', 'success');
 			$this->session->set_flashdata('message', $this->config->item("registration").' updated successfully');
 			redirect('admission/registration');
 		}
-		if($this->input->post('submit5')){
-			print_r($RegistrationId);die; 
+		if($this->input->post('submit5'))
+		{
 			$info = array(
-					
 					'Title'=>$this->input->post('Title'),
 					'Path'=>$this->input->post('Path'),
-					'Document'=>$this->input->post('Document'),
-					//'Detail'=>$this->input->post('Detail'),
-					//'Title'=>$this->input->post('DateOfTermination'),
-					//'Title'=>$this->input->post('DateOfTermination'),
-									);
-			print_r($info);die;
+					'Document'=>$this->input->post('Document'));
 			$filter = array('RegistrationId'=>$RegistrationId);
 			$val =	$this->admission_model->update_photos($info,$filter);
 			$this->session->set_flashdata('message_type', 'success');
 			$this->session->set_flashdata('message', $this->config->item("registration").' updated successfully');
 			redirect('admission/registration');
-			
 		}
-		
-		
 	}
 
-	function add_qualification($QalificationId=false){
-		if($this->input->post('submit3')){
+	function add_qualification($QalificationId=false)
+	{
+		if($this->input->post('submit3'))
+		{
 			$info = array(
-						'BoardUniversity'=>$this->input->post('BoardUniversity'),
+					'BoardUniversity'=>$this->input->post('BoardUniversity'),
 					'Year'=>$this->input->post('Year'),
 					'Remarks'=>$this->input->post('Remarks'),
 					'Class'=>$this->input->post('Class'),
-					'Marks'=>$this->input->post('Marks')
-				);
+					'Marks'=>$this->input->post('Marks'));
 			$r_id=$this->admission_model->insert_qualification($info);
-			//print_r($r_id);die;
 			$this->session->set_flashdata('message_type', 'success');
 			$this->session->set_flashdata('message', $this->config->item("registration").' Added successfully');
 			redirect('admission/registration');
 		}
 	}
-/*school management registration controller start...................................................................................................*/
-	function add_registration($RegistrationId=false){
 	
+/*school management registration controller start...................................................................................................*/
+	function add_registration($RegistrationId=false)
+	{ 
 		if($this->input->post('submit')){
 							$info = array(
-						'StudentName'=>$this->input->post('student_name'),
-						'FatherName'=>$this->input->post('father_name'),
-						'MotherName'=>$this->input->post('mother_name'),
-						'Mobile'=>$this->input->post('mobile'),
-						'SectionId'=>$this->input->post('class'),
-						'DOR'=>$this->input->post('DOR'),
-						'Session'=>$currentsession,
-						'Gender'=>$this->input->post('gender')
-				);
+									'StudentName'=>$this->input->post('student_name'),
+									'FatherName'=>$this->input->post('father_name'),
+									'MotherName'=>$this->input->post('mother_name'),
+									'Mobile'=>$this->input->post('mobile'),
+									'SectionId'=>$this->input->post('class'),
+									'DOR'=>$this->input->post('DOR'),
+									'Session'=>$this->currentsession[0]->CurrentSession,
+									'Gender'=>$this->input->post('gender'),
+									'Status'=>'NotAdmitted');
 				$r_id=$this->admission_model->insert_registration($info);
-			  $this->session->set_flashdata('message_type', 'success');
-				$this->session->set_flashdata('message', $this->config->item("registration").' Added successfully');
+			 	$this->session->set_flashdata('message_type', 'success');
+				$this->session->set_flashdata('message', $this->config->item("registration").' Registration Done successfully');
 				redirect('admission/registration');
-		
 		}
 	}
 
 	/*school management admission View Load.............................................................................................................*/
 	function admission_student()
-	{
-	
+	{ 
+		if($this->input->post('id')){
+			if($this->input->post('student')){
+				$info=explode(',',$this->input->post('student'));
+				$id=$info[0];
+				$class=$info[1];
+				$section=$info[2];
+			}
+			$this->data = array(
+					'id'=>$id,
+					'transport'=>$this->input->post('transport'),
+					'distance'=>$this->input->post('distance'),
+					'class'=>$class,
+					'section'=>$section);
+			$this->data['fee_info']=$this->admission_model->get_admission_class($section,$this->input->post('distance'),$this->currentsession[0]->CurrentSession);
+			
+		}
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -274,6 +264,21 @@ class Admission extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 	}
 	/*school management admission View Load..............................................................................................................*/
+	
+	/*school management admission Insert.............................................................................................................*/
+	function insert_admission()
+	{
+		$data=array('AdmissionNo'=>$this->input->post('admission_no'),
+				'RegistrationId'=>$this->input->post('id'),
+				'Remarks'=>$this->input->post('remarks'),
+				'DOA'=>$this->input->post('DOA'));
+		$this->admission_model->insert_admission($data,'admission');
+		$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("admission_student").' Admission Done successfully');
+		redirect('admission/admission_student');
+	}
+	/*school management admission Insert..............................................................................................................*/
+	
 	
 	/*school management Promotion View Load.............................................................................................................*/
 	function promotion()
@@ -288,9 +293,16 @@ class Admission extends CI_Controller {
 	/*school management Promotion View Load..............................................................................................................*/
 
 	/*school management Updatefee View Load.............................................................................................................*/
-	function updatefee()
+	function updatefee($sectionid=false,$admissionid=false)
 	{
-	
+		if($sectionid && $admissionid !=''){
+			$this->data['section']=$sectionid;
+			$this->data['admission']=$admissionid;
+			$this->data['class_info2']=$this->admission_model->get_class2($sectionid,$this->currentsession[0]->CurrentSession);
+			$this->data['get_fee_structure']=$this->admission_model->get_fee_structure($sectionid,$this->currentsession[0]->CurrentSession);
+			$this->data['get_fee_details']=$this->admission_model->get_fee_details($sectionid);
+		}
+		$this->data['class_info']=$this->admission_model->get_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -298,6 +310,16 @@ class Admission extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 	}
 	/*school management Updatefee View Load..............................................................................................................*/
+	
+	function get_fee()
+	{
+		if($this->input->post('class') && $this->input->post('student') !=''){
+			$section=$this->input->post('class');
+			$admission=$this->input->post('student');
+			redirect('admission/updatefee/'.$section."/".$admission);
+		}
+		
+	}
 	
 	/*school management Admission Report View Load.............................................................................................................*/
 	function admissionreport()
@@ -335,6 +357,18 @@ class Admission extends CI_Controller {
 	}
 	/*school management Staff Attendence View Load..............................................................................................................*/
 	
+	/*school management staff Attendance report View Load.............................................................................................................*/
+	function staffattendancereport()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('staffattendencereport',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management staff Attendance report View Load..............................................................................................................*/
+	
 	/*school management Student Attendence View Load.............................................................................................................*/
 	function studentattendence()
 	{
@@ -347,5 +381,16 @@ class Admission extends CI_Controller {
 	}
 	/*school management Student Attendence View Load..............................................................................................................*/
 	
+	/*school management Student Attendance report View Load.............................................................................................................*/
+	function studentattendancereport()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('studentattendencereport',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management Student Attendance report View Load..............................................................................................................*/
 	
 }

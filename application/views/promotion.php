@@ -10,7 +10,7 @@
 	   	<div class="row">
 				<!--student promotion form-->
 				<div class="col-sm-6">
-					<div class="panel panel-default">
+					<div class="panel panel-color panel-gray">
 						<div class="panel-heading">
 							<h3 class="panel-title">Student Promotion</h3>
 							<div class="panel-options">
@@ -20,7 +20,7 @@
 								</a>
 							</div>
 						</div>
-						<div class="panel-body">
+						<div class="panel-body ">
 						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>admission/add_registration">
 						  <?php if(empty($var)==''){ ?>
 														<input type="hidden" name="id" value="<?=$var[0]->RegistrationId?>">
@@ -165,15 +165,15 @@
 										});
 									</script>
 									<div class="col-sm-8">
-										<select class="form-control " id="s2example-4" name="class">
-											<option></option>
-										
-																	<?php foreach($class_section as $cls){ ?>
-																	<option  value="<?=$cls->SectionId?>" ><?=$cls->ClassName?> <?=$cls->SectionName?></option>
-																			<?php  } ?>
+										<select class="form-control " id="s2example-2" name="distance">
+																			<option></option>
+																			<optgroup label="Select">
+																			<?php $filter=array('MasterEntryName' => 'Distance'); $user= $this->utilities->get_usertype($filter); ?>
+																	<?php foreach($user as $usertype){ ?>
+																	<option value="<?=$usertype->MasterEntryId?>" <?php if(empty($id)==''){ echo (!empty($distance==$usertype->MasterEntryId) ? "selected" : ''); } ?>><?=$usertype->MasterEntryValue?></option>
+																			<?php } ?>
 																		</optgroup>
-																	
-										</select>
+																		</select>
 									</div>	
 										
 								</div>

@@ -150,12 +150,12 @@
 								</a>
 						<ul>
 							<li class="active">
-								<a href="javascript:;">
+								<a href="<?=base_url();?>admission/staffattendancereport">
 									<span class="title">Staff Attendance</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>admission/studentattendancereport">
 									<span class="title">Student Attendance</span>
 								</a>
 							</li>

@@ -24,6 +24,9 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{ 	
 		
+	//	$this->breadcrumb->clear();
+	//	$this->breadcrumb->add_crumb('Deshboard', base_url());
+		
 		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);

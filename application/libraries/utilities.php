@@ -58,6 +58,33 @@ class Utilities extends CI_Controller {
 		return $query->Result();
 	}
 	
+	function get_student_admission($currentsession=false)
+	{ 
+		$CI = & get_instance();
+		$query=$CI->db->query("Select RegistrationId,StudentName,FatherName,Mobile,ClassName,SectionName,section.SectionId,class.ClassId from registration,class,section where
+					registration.Session='$currentsession' and
+					class.ClassId=section.ClassId and
+					registration.SectionId=section.SectionId and
+					Status='NotAdmitted'
+					order by StudentName");
+		return $query->Result();
+	}
+	
+	function get_student($sec_id,$CURRENTSESSION)
+	{ 
+		$CI = & get_instance();
+		$query=$CI->db->query("Select studentfee.AdmissionNo,studentfee.Remarks,Date,studentfee.Distance,FeeStructure,admission.AdmissionId,registration.RegistrationId,StudentName,FatherName,Mobile,ClassName,SectionName,section.SectionId,class.ClassId from registration,class,section,admission,studentfee where
+						studentfee.Session='$CURRENTSESSION' and
+						class.ClassId=section.ClassId and
+						studentfee.SectionId=section.SectionId and
+						registration.RegistrationId=admission.RegistrationId and
+						admission.AdmissionId=studentfee.AdmissionId and 
+						studentfee.SectionId=$sec_id and 
+						Status='Studying'
+						order by StudentName");
+		return $query->Result();
+	}
+	
 }
 
 

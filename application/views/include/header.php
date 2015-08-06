@@ -22,8 +22,8 @@
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/fonts/elusive/css/elusive.css">
 	<script src="<?=base_url();?>assets/js/jquery-1.11.1.min.js"></script>
 	 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script type="text/javascript" src="<?=base_url();?>assets/js/script.js"></script>
-    
+     <script type="text/javascript" src="<?php echo base_url(); ?>js/common_functions.js"></script>
+ <script type="text/javascript" src="<?php echo base_url(); ?>js/script.js"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>

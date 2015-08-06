@@ -12,7 +12,7 @@
 	   	<div class="row">
 				
 				<div class="col-sm-12">
-					<div class="panel panel-default">
+					<div class="panel panel-color panel-gray">
 						<div class="panel-heading">
 							<h3 class="panel-title">Staff Attendence</h3>
 							<div class="panel-options">
@@ -28,10 +28,7 @@
 														<input type="hidden" name="id" value="<?=$var[0]->RegistrationId?>">
 											<?php } ?>
 						 
-							    
-								<div class="form-group-separator">
-								</div>
-								<div class="form-group">
+							<div class="form-group">
 									<label class="col-sm-4 control-label" for="student_name" >Date</label>
 									<div class="col-sm-8">
 										<div class="input-group">
@@ -71,13 +68,14 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-group">
-								<form role="form" class="form-horizontal">
+								<div class="form-group-separator">
+								</div>
+							<form role="form" class="form-horizontal">
 								
 								<div class="form-group">
-									<label class="col-sm-3 control-label" for="tagsinput-1">Multi-select List</label>
+									<label class="col-sm-4 control-label" for="tagsinput-1">Multi-select List</label>
 									
-									<div class="col-sm-9">
+									<div class="col-sm-8">
 										
 										<script type="text/javascript">
 											jQuery(document).ready(function($)
@@ -115,23 +113,19 @@
 										
 									</div>
 								</div>
-							
-							</form>
-								</div>
 								<div class="form-group-separator">
 								</div>
-								
-								
-								<div class="form-group">
+							</form>
+							<div class="form-group pull-right">
 								       
-								        <input  type="submit" name="submit" value="Present" class="btn btn btn-info btn-single pull-right"/>   
-								 <input  type="submit" name="Absent" value="Absent" class="btn btn btn-info btn-single pull-right"/>
-								  <input  type="submit" name="Halfday" value="Halfday" class="btn btn btn-info btn-single pull-right"/>
-								   <input  type="submit" name="Paid Leave" value="Paid Leave" class="btn btn btn-info btn-single pull-right"/>
-								    <input  type="submit" name="On Duty" value="On Duty" class="btn btn btn-info btn-single pull-right"/>
-								     <input  type="submit" name="Blank" value="Blank" class="btn btn btn-info btn-single pull-right"/>
-								      <input  type="submit" name="Holiday" value="Holiday" class="btn btn btn-info btn-single pull-right"/>
-								</div>	
+								 <input  type="submit" name="submit" value="Present" class="btn btn btn-info btn-single "/>   
+								 <input  type="submit" name="Absent" value="Absent" class="btn btn btn-info btn-single "/>
+								  <input  type="submit" name="Halfday" value="Halfday" class="btn btn btn-info btn-single "/>
+								   <input  type="submit" name="Paid Leave" value="Paid Leave" class="btn btn btn-info btn-single "/>
+								    <input  type="submit" name="On Duty" value="On Duty" class="btn btn btn-info btn-single "/>
+								     <input  type="submit" name="Blank" value="Blank" class="btn btn btn-info btn-single "/>
+								      <input  type="submit" name="Holiday" value="Holiday" class="btn btn btn-info btn-single"/>
+							</div>	
 						</form>
 						</div>
 					</div>

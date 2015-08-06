@@ -7,7 +7,7 @@
 			<?php }?>
 			<div class="row">
 					<div class="col-md-12">
-						<div class="panel panel-default">
+						<div class="panel panel-color panel-gray">
 										<div class="panel-heading">
 											Select Class
 										</div>
@@ -74,7 +74,7 @@
 <!-- add form ended -->
 					<div class="row">
 					<div class="col-md-12">
-						<div class="panel panel-default">
+						<div class="panel panel-color panel-gray">
 								<div class="panel-heading">
 									<h3 class="panel-title">Admission Report Session <?=$this->currentsession[0]->CurrentSession?></h3>
 									

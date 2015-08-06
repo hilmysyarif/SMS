@@ -1,6 +1,6 @@
 <div class="row">
- <div class="col-sm-12">
-					<div class="panel  panel-color panel-gray">
+	<div class="col-sm-12">
+			<div class="panel  panel-color panel-gray">
 						<div class="panel-heading">
 							<h3 class="panel-title">Select Class</h3>
 							<div class="panel-options">
@@ -12,7 +12,7 @@
 						</div>
 					<div class="panel-body">
 					 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>admission/add_registration">
-						<div class="form-group">
+											<div class="form-group">
 														<label class="col-sm-4 control-label" for="student_name" >Class</label>
 													<script type="text/javascript">
 															jQuery(document).ready(function($)
@@ -41,17 +41,15 @@
 																
 															</select>
 														</div>	
-													</div>
-													<div class="form-group-separator">
-													</div>
-													
-													<div class="form-group">
+											</div>
+											<div class="form-group-separator"></div>
+											<div class="form-group pull-right">
 													<input  type="submit" name="submit" value="Get Student" class="btn btn btn-info btn-single "/>
-													</div>
-						</form>
-					</div>
-</div>
-</div>
+										</div>
+					</form>
+				</div>
+			</div>
+	</div>
 </div>
 
 	 <!--php alert message-->
@@ -69,7 +67,7 @@
 				<div class="col-sm-12">
 					<div class="panel  panel-color panel-gray">
 						<div class="panel-heading">
-							<h3 class="panel-title">Student Attendence</h3>
+							<h3 class="panel-title">Student Attendance</h3>
 							<div class="panel-options">
 								<a href="#" data-toggle="panel">
 									<span class="collapse-icon">&ndash;</span>
@@ -81,9 +79,9 @@
 								<form role="form" class="form-horizontal">
 								
 									<div class="form-group">
-										<label class="col-sm-3 control-label" for="tagsinput-1">Multi-select List</label>
+										<label class="col-sm-4 control-label" for="tagsinput-1">Multi-select List</label>
 										
-										<div class="col-sm-9">
+										<div class="col-sm-8">
 											
 											<script type="text/javascript">
 												jQuery(document).ready(function($)
@@ -131,9 +129,8 @@
 								<div class="form-group-separator">
 								</div>
 								</br>
-								<div class="form-group">
-								       
-								        <input  type="submit" name="submit" value="Present" class="btn btn btn-info btn-single "/>   
+								<div class="form-group pull-right">
+								 <input  type="submit" name="submit" value="Present" class="btn btn btn-info btn-single "/>   
 								 <input  type="submit" name="Absent" value="Absent" class="btn btn btn-info btn-single "/>
 								  <input  type="submit" name="Halfday" value="Halfday" class="btn btn btn-info btn-single "/>
 								  <input  type="submit" name="Blank" value="Blank" class="btn btn btn-info btn-single "/>
@@ -143,6 +140,6 @@
 						</div>
 					</div>
 				</div>
-			</div>	
+		</div>	
 	
 <?php //} ?>

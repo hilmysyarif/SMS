@@ -1,8 +1,8 @@
 <div class="row">
 		
 		 <?php if(!$RegistrationId == ''){?> 
-				<div class="col-md-12">
-				<ul class="nav nav-tabs nav-tabs-justified">
+				<div class="col-md-12 panel panel-color panel-gray">
+				<ul class="nav nav-tabs nav-tabs-justified ">
 						<li class="active">
 							<a href="#home-3" data-toggle="tab">
 								<span class="visible-xs"><i class="fa-home"></i></span>
@@ -47,7 +47,7 @@
 						</li>
 					</ul>
 					
-					<div class="tab-content">
+					<div class="tab-content panel panel-color panel-gray">
 						<div class="tab-pane active" id="home-3">
 							
 							<div>

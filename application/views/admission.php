@@ -12,14 +12,9 @@
 											Student Admission
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_account" method="post">
-											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$acc_update[0]->AccountId?>">
-											<?php } ?>
+											<form role="form" class="form-horizontal" action="<?=base_url();?>admission/admission_student" method="post">
 											
-											
-											
-																<div class="form-group">
+											<div class="form-group">
 																	<label class="control-label col-sm-4 ">Select Student</label>
 																	
 																			<script type="text/javascript">
@@ -37,12 +32,12 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																	<?php $filter=array('MasterEntryName' => 'UserType'); $user= $this->utilities->get_usertype($filter); ?>
-																		<select class="form-control " id="s2example-1" name="manage_by">
+																	<?php  $student= $this->utilities->get_student_admission($this->currentsession[0]->CurrentSession);  ?>
+																		<select class="form-control " id="s2example-1" name="student">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($user as $usertype){ ?>
-																	<option value="<?=$usertype->MasterEntryId?>" <?php if(empty($id)==''){ echo (!empty($acc_update[0]->ManagedBy==$usertype->MasterEntryId) ? "selected" : ''); } ?>><?=$usertype->MasterEntryValue?></option>
+																	<?php foreach($student as $student){ ?>
+																	<option value="<?=$student->RegistrationId?>,<?=$student->ClassId?>,<?=$student->SectionId?>" <?php if(empty($id)==''){ echo (!empty(isset($id)==$student->RegistrationId) ? "selected" : ''); } ?>><?=$student->StudentName?> <?=$student->FatherName?> <?=$student->Mobile?> <?=$student->ClassName?> <?=$student->SectionName?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -51,21 +46,19 @@
 																		
 																</div>
 																
-																<?php // if(empty($id)==''){ ?> 
 																<div class="form-group">
 																	<label class="control-label col-sm-4 ">	Transport</label>
 																	<div class="col-sm-8">
 																	<div class="checkbox">
 																		<label>
-																			<input type="checkbox" name="status" <?php echo (isset($acc_update[0]->AccountStatus) ? "Checked=checked"
-																			: '');?> value="Active">
+																			<input type="checkbox" name="transport" <?php echo (isset($transport) ? "Checked=checked"
+																			: '');?> value="Yes">
 																		 Check only if Transport facility is required
 																		</label>
 																		</div>
 																	</div>	
 																	</div>	
-																	<?php // } ?>
-																
+																	
 																<div class="form-group">
 																	<label class="control-label col-sm-4 ">Distance</label>
 																	
@@ -84,12 +77,12 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-2" name="account_type">
+																		<select class="form-control " id="s2example-2" name="distance">
 																			<option></option>
 																			<optgroup label="Select">
-																			<?php $filter=array('MasterEntryName' => 'AccountType'); $user= $this->utilities->get_usertype($filter); ?>
+																			<?php $filter=array('MasterEntryName' => 'Distance'); $user= $this->utilities->get_usertype($filter); ?>
 																	<?php foreach($user as $usertype){ ?>
-																	<option value="<?=$usertype->MasterEntryId?>" <?php if(empty($id)==''){ echo (!empty($acc_update[0]->AccountType==$usertype->MasterEntryId) ? "selected" : ''); } ?>><?=$usertype->MasterEntryValue?></option>
+																	<option value="<?=$usertype->MasterEntryId?>" <?php if(empty($id)==''){ echo (!empty($distance==$usertype->MasterEntryId) ? "selected" : ''); } ?>><?=$usertype->MasterEntryValue?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -97,20 +90,16 @@
 
 																		
 																</div>
-																
-																	
-																	
-																	
-																	
-																	
-									<input type="submit" class="btn btn-info btn-single " value="Get Fee Structure">
+											<input type="submit" class="btn btn-info btn-single " name="submit" value="Get Fee Structure">
 													</form>
 											
 													<div class="form-group-separator"></div>
 									</div>
 						</div>
 					</div>
+					
 	<div class="col-md-8">
+	<?php  if(isset($id)){ ?>
 		<div class="panel panel-color panel-gray">
 				<div class="panel-heading">
 					<h3 class="panel-title">Set Fee Structure</h3>
@@ -128,16 +117,16 @@
 				<div class="panel-body">
 				
 				
-				<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_account" method="post">
+				<form role="form" class="form-horizontal" action="<?=base_url();?>admission/insert_admission" method="post">
 											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$acc_update[0]->AccountId?>">
+														<input type="hidden" name="id" value="<?=$id?>">
 											<?php } ?>
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Date Of Admission</label>
 												
 												<div class="col-sm-8">
 													<div class="input-group">
-														<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy" name="soft_date" value="">
+														<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy" name="DOA" value="">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -150,29 +139,30 @@
 																	<label class="control-label col-sm-4 ">Admission No</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="exam_name" value="<?php echo (isset($exam_update[0]->ExamName) ? $exam_update[0]->ExamName : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="admission_no" value="">
 																		</div>
 
 																		
 																</div>
 																
 																	
-																	
+																	<?php foreach($fee_info as $fee_info){ ?>
 																	<div class="form-group">
-																	<label class="control-label col-sm-4 ">Admission Fee</label>
-																	
+																	<label class="control-label col-sm-4 "><?=$fee_info->MasterEntryValue?></label>
+																	<span>Actual Fee: <?=$fee_info->Amount?> INR</span>
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="weightage" value="<?php echo (isset($exam_update[0]->Weightage) ? $exam_update[0]->Weightage : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="<?=$fee_info->MasterEntryValue?>" value="<?=$fee_info->Amount?>">
 																		</div>
 
 																		
 																</div>
+																<?php } ?>
 																
 																<div class="form-group">
 																	<label class="control-label col-sm-4 ">Remarks</label>
 																	
 																			<div class="col-sm-8">
-																			<textarea name="weightage" class="col-sm-12"></textarea>
+																			<textarea name="remarks" class=" form-control"></textarea>
 																		</div>
 
 																		
@@ -187,5 +177,9 @@
 					
 				</div>
 			</div>
+			  <?php }else{ ?>
+  <div class="alert alert-info">Please Select One Student!! </div>
+  <?php }?>
   </div>
+
 </div>
