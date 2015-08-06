@@ -22,7 +22,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Name</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="name" value="<?php echo (isset($location_update[0]->LocationName) ? $location_update[0]->LocationName : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Name" name="name" value="<?php echo (isset($location_update[0]->LocationName) ? $location_update[0]->LocationName : '');?>">
 																		</div>
 																	</div>
 																	
@@ -30,7 +30,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Called As</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="calledas" value="<?php echo (isset($location_update[0]->CalledAs) ? $location_update[0]->CalledAs : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Called As" name="calledas" value="<?php echo (isset($location_update[0]->CalledAs) ? $location_update[0]->CalledAs : '');?>">
 																		</div>
 																	</div>
 																	

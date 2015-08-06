@@ -23,7 +23,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select Name...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -51,7 +51,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Value</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Value" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
 																		</div>
 																	</div>
 																	<?php if(empty($id)==''){ ?> 

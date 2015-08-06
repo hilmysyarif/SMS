@@ -274,22 +274,22 @@
 								</a>
 							</li>
 							<li>
-								<a href="dashboard-3.html">
+								<a href="javascript:;">
 									<span class="title">Purchase Material</span>
 								</a>
 							</li>
 							<li>
-								<a href="dashboard-4.html">
+								<a href="javascript:;">
 									<span class="title">Supplier</span>
 								</a>
 							</li>
 							<li>
-								<a href="dashboard-4.html">
+								<a href="javascript:;">
 									<span class="title">Purchase</span>
 								</a>
 							</li>
 							<li>
-								<a href="dashboard-4.html">
+								<a href="javascript:;">
 									<span class="title">Issue Material</span>
 								</a>
 							</li>

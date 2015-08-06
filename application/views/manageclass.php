@@ -21,7 +21,7 @@
 																	<label class="control-label col-sm-4 ">Class Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="class_name" value="<?php echo (isset($class_update[0]->ClassName) ? $class_update[0]->ClassName : '');?>" >
+																			<input type="text" class="form-control" id="field-1" placeholder="Class Name" name="class_name" value="<?php echo (isset($class_update[0]->ClassName) ? $class_update[0]->ClassName : '');?>" >
 																		</div>	
 
 																		
@@ -58,7 +58,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your Class...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -86,7 +86,7 @@
 																	<label class="control-label col-sm-4 ">Section Name</label>
 																	
 																	<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="section_name" value="<?php echo (isset($section_update[0]->SectionName) ? $section_update[0]->SectionName : '');?>" >
+																			<input type="text" class="form-control" id="field-1" placeholder="Section Name" name="section_name" value="<?php echo (isset($section_update[0]->SectionName) ? $section_update[0]->SectionName : '');?>" >
 																		</div>			
 
 																		

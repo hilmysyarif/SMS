@@ -85,6 +85,18 @@ class Utilities extends CI_Controller {
 		return $query->Result();
 	}
 	
+	function get_fee($sec_id,$CURRENTSESSION)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("Select fee.Amount,masterentry.MasterEntryValue from fee,masterentry where
+						fee.Session='$CURRENTSESSION' and
+						fee.SectionId=$sec_id and
+						fee.FeeType=masterentry.MasterEntryId and 
+						FeeStatus='Active'
+						order by FeeType");
+		return $query->Result();
+	}
+	
 }
 
 

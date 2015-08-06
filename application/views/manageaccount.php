@@ -34,7 +34,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your UserType...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -65,8 +65,8 @@
 																			<script type="text/javascript">
 																				jQuery(document).ready(function($)
 																				{
-																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																					$("#s2example-2").select2({
+																						placeholder: 'Select your Account...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -77,7 +77,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="account_type">
+																		<select class="form-control " id="s2example-2" name="account_type">
 																			<option></option>
 																			<optgroup label="Select">
 																			<?php $filter=array('MasterEntryName' => 'AccountType'); $user= $this->utilities->get_usertype($filter); ?>
@@ -95,7 +95,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Opening Balance</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="open_bal" value="<?php echo (isset($acc_update[0]->OpeningBalance) ? $acc_update[0]->OpeningBalance : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Openning Balance" name="open_bal" value="<?php echo (isset($acc_update[0]->OpeningBalance) ? $acc_update[0]->OpeningBalance : '');?>">
 																		</div>
 																	</div>
 																	
@@ -103,7 +103,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Account Start Date</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="acc_start_date" value="<?php echo (isset($acc_update[0]->AccountDate) ? $acc_update[0]->AccountDate : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Account Date" name="acc_start_date" value="<?php echo (isset($acc_update[0]->AccountDate) ? $acc_update[0]->AccountDate : '');?>">
 																		</div>
 																	</div>
 																	

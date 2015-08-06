@@ -30,7 +30,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your User Type...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -61,8 +61,8 @@
 																			<script type="text/javascript">
 																				jQuery(document).ready(function($)
 																				{
-																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																					$("#s2example-2").select2({
+																						placeholder: 'Select your Staff...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -73,7 +73,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="staff_name" >
+																		<select class="form-control " id="s2example-2" name="staff_name" >
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($user_type as $usertype){ ?>
@@ -90,7 +90,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Username</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="user_name" value="<?php echo (isset($user_update[0]->Username) ? $user_update[0]->Username : '');?>" <?php if(empty($id)==''){?> readonly <?php } ?>>
+																			<input type="text" class="form-control" id="field-1" placeholder="UserName" name="user_name" value="<?php echo (isset($user_update[0]->Username) ? $user_update[0]->Username : '');?>" <?php if(empty($id)==''){?> readonly <?php } ?>>
 																		</div>
 																	</div>
 																	
@@ -108,7 +108,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Password</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="password" class="form-control" id="field-1" placeholder="Placeholder" name="password" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="password" class="form-control" id="field-1" placeholder="Password" name="password" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
 																		</div>
 																	</div>
 																	

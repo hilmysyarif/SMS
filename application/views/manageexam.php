@@ -23,7 +23,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your Class...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -49,7 +49,7 @@
 																	<label class="control-label col-sm-4 ">Exam Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="exam_name" value="<?php echo (isset($exam_update[0]->ExamName) ? $exam_update[0]->ExamName : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Exam Name" name="exam_name" value="<?php echo (isset($exam_update[0]->ExamName) ? $exam_update[0]->ExamName : '');?>">
 																		</div>
 
 																		
@@ -61,7 +61,7 @@
 																	<label class="control-label col-sm-4 ">Weightage</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="weightage" value="<?php echo (isset($exam_update[0]->Weightage) ? $exam_update[0]->Weightage : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Weightage" name="weightage" value="<?php echo (isset($exam_update[0]->Weightage) ? $exam_update[0]->Weightage : '');?>">
 																		</div>
 
 																		

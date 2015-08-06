@@ -27,7 +27,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your Class...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -57,8 +57,8 @@
 																		<script type="text/javascript">
 																				jQuery(document).ready(function($)
 																				{
-																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																					$("#s2example-2").select2({
+																						placeholder: 'Select your Fee Type...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -69,7 +69,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="fee_type">
+																		<select class="form-control " id="s2example-2" name="fee_type">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($fee_type as $feetype){ ?>
@@ -97,8 +97,8 @@
 																		<script type="text/javascript">
 																				jQuery(document).ready(function($)
 																				{
-																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																					$("#s2example-3").select2({
+																						placeholder: 'Select your Distance...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -109,7 +109,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="distance">
+																		<select class="form-control " id="s2example-3" name="distance">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($distance as $distance){ ?>
@@ -124,7 +124,7 @@
 																	<label class="control-label col-sm-4 ">Amount</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="amount" value="<?php echo (isset($fee_update[0]->Amount) ? $fee_update[0]->Amount : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Amount" name="amount" value="<?php echo (isset($fee_update[0]->Amount) ? $fee_update[0]->Amount : '');?>">
 																		</div>
 
 																		

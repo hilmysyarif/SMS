@@ -27,7 +27,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your Type...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -53,7 +53,7 @@
 																	<label class="control-label col-sm-4 ">Salary Head</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="salaryhead" value="<?php echo (isset($salaryhead_update[0]->SalaryHead) ? $salaryhead_update[0]->SalaryHead : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Salary Head" name="salaryhead" value="<?php echo (isset($salaryhead_update[0]->SalaryHead) ? $salaryhead_update[0]->SalaryHead : '');?>">
 																		</div>
 																	</div>
 																	
@@ -61,7 +61,7 @@
 																	<label class="control-label col-sm-4 ">Code</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="code" value="<?php echo (isset($salaryhead_update[0]->Code) ? $salaryhead_update[0]->Code : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Code" name="code" value="<?php echo (isset($salaryhead_update[0]->Code) ? $salaryhead_update[0]->Code : '');?>">
 																		</div>
 																	</div>
 																	

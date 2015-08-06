@@ -116,7 +116,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-3" name="class_name">
+																		<select class="form-control " id="s2example-3" name="class_name" onchange="show_fee(this.value,0)">
 																			<option>Please Select Class</option>
 										
 																	<?php foreach($class_info2 as $cls2){ ?>
@@ -128,8 +128,8 @@
 
 																		
 																</div>
-																
-																
+																<div class="form-group" id="show_fee">
+																</div>
 												
 									<input type="submit" class="btn btn-info btn-single " value="Confirm">
 													</form>
@@ -169,7 +169,7 @@
 																			<script type="text/javascript">
 										jQuery(document).ready(function($)
 										{
-											$("#s2example-1").select2({
+											$("#s2example").select2({
 												placeholder: 'Select ...',
 												allowClear: true
 											}).on('select2-open', function()
@@ -180,13 +180,14 @@
 											
 										});
 									</script>
-									<div class="col-sm-8">
-										<select class="form-control " id="s2example-1" name="distance">
+									<div class="">
+										<select class="form-control " id="s2example" name="distance">
 											<option></option>
 										
-																	<?php foreach($class_section as $cls){ ?>
-																	<option  value="<?=$cls->SectionId?>" ><?=$cls->ClassName?> <?=$cls->SectionName?></option>
-																			<?php  } ?>
+																	<?php $filter=array('MasterEntryName' => 'Distance'); $user= $this->utilities->get_usertype($filter); ?>
+																	<?php foreach($user as $usertype){ ?>
+																	<option value="<?=$usertype->MasterEntryId?>" <?php if(empty($id)==''){ echo (!empty($distance==$usertype->MasterEntryId) ? "selected" : ''); } ?>><?=$usertype->MasterEntryValue?></option>
+																			<?php } ?>
 																		</optgroup>
 																	
 										</select>
@@ -223,7 +224,7 @@
 																	
 																			<div class="col-sm-8">
 													<div class="date-and-time">
-											<input type="text" name="DOP" class="form-control datepicker" data-format="D, dd MM yyyy" value="<?=$get_fee_structure[0]->Date?>">
+											<input readonly type="text" name="DOP" class="form-control datepicker" data-format="D, dd MM yyyy" value="<?=date("d-m-Y",$get_fee_structure[0]->Date)?>">
 											<input type="text"  class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 																		</div>	

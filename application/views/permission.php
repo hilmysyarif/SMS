@@ -24,7 +24,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your User Type...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{

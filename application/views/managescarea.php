@@ -22,7 +22,7 @@
 																	<label class="control-label col-sm-4 ">Area Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="area_name" value="<?php echo (isset($scarea_update[0]->SCAreaName) ? $scarea_update[0]->SCAreaName : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Area Name" name="area_name" value="<?php echo (isset($scarea_update[0]->SCAreaName) ? $scarea_update[0]->SCAreaName : '');?>">
 																		</div>
 
 																		
@@ -35,7 +35,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your Part...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -65,8 +65,8 @@
 																		<script type="text/javascript">
 																				jQuery(document).ready(function($)
 																				{
-																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																					$("#s2example-2").select2({
+																						placeholder: 'Select your Class...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -77,7 +77,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="class" multiple>
+																		<select class="form-control " id="s2example-2" name="class" multiple>
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($class_info as $classinfo){ ?>
@@ -94,8 +94,8 @@
 																		<script type="text/javascript">
 																				jQuery(document).ready(function($)
 																				{
-																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																					$("#s2example-3").select2({
+																						placeholder: 'Select your Grading Points...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -106,7 +106,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="grading_point">
+																		<select class="form-control " id="s2example-3" name="grading_point">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($scarea_gradingpoint as $scareagradingpoint){ ?>

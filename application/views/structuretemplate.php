@@ -21,7 +21,7 @@
 																	<label class="control-label col-sm-4 ">Template Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="templatename" value="<?php echo (isset($salarystructure_update[0]->SalaryStructureName) ? $salarystructure_update[0]->SalaryStructureName : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Template Name" name="templatename" value="<?php echo (isset($salarystructure_update[0]->SalaryStructureName) ? $salarystructure_update[0]->SalaryStructureName : '');?>">
 																		</div>
 
 																		
@@ -34,7 +34,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your Fixed Salary...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{

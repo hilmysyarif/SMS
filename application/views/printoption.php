@@ -23,7 +23,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your Print Category...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -67,8 +67,8 @@
 																			<script type="text/javascript">
 																				jQuery(document).ready(function($)
 																				{
-																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																					$("#s2example-2").select2({
+																						placeholder: 'Select your Header...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -79,7 +79,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="header">
+																		<select class="form-control " id="s2example-2" name="header">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($header as $header){ ?>
@@ -98,8 +98,8 @@
 																			<script type="text/javascript">
 																				jQuery(document).ready(function($)
 																				{
-																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																					$("#s2example-3").select2({
+																						placeholder: 'Select your Footer...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -110,7 +110,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="footer">
+																		<select class="form-control " id="s2example-3" name="footer">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($footer as $footer){ ?>

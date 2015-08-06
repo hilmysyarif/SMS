@@ -23,7 +23,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your Class...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -51,7 +51,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Name</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="name" value="<?php echo (isset($material_update[0]->Name) ? $material_update[0]->Name : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Name" name="name" value="<?php echo (isset($material_update[0]->Name) ? $material_update[0]->Name : '');?>">
 																		</div>
 																	</div>
 																
@@ -60,7 +60,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Branch Price</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="branch_price" value="<?php echo (isset($material_update[0]->BranchPrice) ? $material_update[0]->BranchPrice : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Branch Price" name="branch_price" value="<?php echo (isset($material_update[0]->BranchPrice) ? $material_update[0]->BranchPrice : '');?>">
 																		</div>
 																	</div>
 																	
@@ -68,7 +68,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Selling price</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="selling_price" value="<?php echo (isset($material_update[0]->SellingPrice) ? $material_update[0]->SellingPrice : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Selling Price" name="selling_price" value="<?php echo (isset($material_update[0]->SellingPrice) ? $material_update[0]->SellingPrice : '');?>">
 																		</div>
 																	</div>
 																	

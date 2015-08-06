@@ -20,7 +20,7 @@
 																	<label class="control-label col-sm-4 ">Subject Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="subject_name" value="<?php echo (isset($sub_update[0]->SubjectName) ? $sub_update[0]->SubjectName : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Subject Name" name="subject_name" value="<?php echo (isset($sub_update[0]->SubjectName) ? $sub_update[0]->SubjectName : '');?>">
 																		</div>
 
 																		
@@ -30,7 +30,7 @@
 																	<label class="control-label col-sm-4 ">Abbreviation</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="abbreviation" value="<?php echo (isset($sub_update[0]->SubjectAbb) ? $sub_update[0]->SubjectAbb : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Abbreviation" name="abbreviation" value="<?php echo (isset($sub_update[0]->SubjectAbb) ? $sub_update[0]->SubjectAbb : '');?>">
 																		</div>
 
 																		
@@ -43,7 +43,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your Class...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{

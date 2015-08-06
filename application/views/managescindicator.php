@@ -22,7 +22,7 @@
 																	<label class="control-label col-sm-4 ">Indicator Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="indicator_name" value="<?php echo (isset($scindicator_update[0]->SCIndicatorName) ? $scindicator_update[0]->SCIndicatorName : '');?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Indicator Name" name="indicator_name" value="<?php echo (isset($scindicator_update[0]->SCIndicatorName) ? $scindicator_update[0]->SCIndicatorName : '');?>">
 																		</div>
 
 																		
@@ -35,7 +35,7 @@
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-1").select2({
-																						placeholder: 'Select your country...',
+																						placeholder: 'Select your Area...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
