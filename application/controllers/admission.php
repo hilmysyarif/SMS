@@ -340,9 +340,21 @@ class Admission extends CI_Controller {
 	
 	
 	/*school management Admission Report View Load.............................................................................................................*/
-	function admissionreport()
-	{
-	
+	function admissionreport($section=false)
+	{	$status='';
+		$section='';
+			if($this->input->post('class')){
+			$section=$this->data['section']=$this->input->post('class');
+			$section="and studentfee.SectionId='$section' ";
+			}
+			if($this->input->post('terminate')){
+				$this->data['terminate']=$status='Terminated';
+			}
+			if($this->input->post('login')){
+			$this->data['login']='login';
+			}
+		$this->data['class_info']=$this->admission_model->get_class($this->currentsession[0]->CurrentSession);
+		$this->data['student_info']=$this->admission_model->get_student_details($status,$section,$this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -350,6 +362,26 @@ class Admission extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 	}
 	/*school management Admission Report View Load..............................................................................................................*/
+	
+	/*school management get Admission report start...................................................................................................*/
+/*	function get_ad_report()
+	{
+		if($this->input->post('class') ){
+			$section=$this->input->post('class');
+			if($this=>input->post('terminate')){
+				
+			}
+			if($this->input->post('login')){
+				
+			}
+			if($this->input->post('terminate') && $this->input->post('login') !=''){
+				
+			}
+			redirect('admission/admissionreport/'.$section);
+		}
+	}*/
+	/*school management get Admission report end.................................................................................................*/
+
 	
 	/*school management Fee Payment View Load.............................................................................................................*/
 	function payment()

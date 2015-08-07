@@ -12,7 +12,7 @@
 											Select Class
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_masterentry" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>admission/admissionreport" method="post">
 											<?php if(empty($id)==''){ ?>
 														<input type="hidden" name="id" value="<?=$masterentry_update[0]->MasterEntryId?>">
 											<?php } ?>
@@ -34,12 +34,12 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " id="s2example-1" name="class">
 																			<option></option>
 																			<optgroup label="Select">
-																	<?php foreach($masterentrycat as $mastercat){ ?>
-																	<option value="<?=$mastercat->MasterEntryCategoryValue?>" <?php if(empty($id)==''){ echo (!empty($masterentry_update[0]->MasterEntryName==$mastercat->MasterEntryCategoryValue) ? "selected" : ''); } ?>><?=$mastercat->MasterEntryCategoryName?></option>
-																			<?php } ?>
+																	<?php foreach($class_info as $cls){ ?>
+																	<option  value="<?=$cls->SectionId?>" <?php if(isset($section)){ echo (!empty($cls->SectionId==$section) ? "selected" : ''); } ?> ><?=$cls->ClassName?> <?=$cls->SectionName?></option>
+																			<?php  } ?>
 																		</optgroup>
 																		</select>
 																</div>	
@@ -48,21 +48,21 @@
 																</div>
 																
 																	<div class="form-group">
-																	<?php //if(empty($id)==''){ ?> 
+																
 																	<div class="checkbox">
 											<label>
-												<input type="checkbox" name="status" <?php echo (isset($masterentry_update[0]->MasterEntryStatus) ? "Checked=checked"
-												: '');?> value="Active">
+												<input type="checkbox" name="terminate" <?php echo (isset($terminate) ? "Checked=checked"
+												: '');?> value="terminate">
 												 Show Only Terminated Student
 											</label>
 											<label>
-												<input type="checkbox" name="status" <?php echo (isset($masterentry_update[0]->MasterEntryStatus) ? "Checked=checked"
-												: '');?> value="Active">
+												<input type="checkbox" name="login" <?php echo (isset($login) ? "Checked=checked"
+												: '');?> value="login">
 												 Show Student's & Parent's Login
 											</label>
 										</div></div>
 										
-																	<?php // } ?>
+																
 									<input type="submit" class="btn btn-info btn-single pull-right" value="Add">
 													</form>
 											
@@ -104,43 +104,44 @@
 														<tr>
 															<th>Adm No</th>
 															<th>Student Name</th>
+															<?php if(isset($login)!=''){ ?>
+															<th>Parents Username</th>
+															<th>Parents Password</th>
+															<th>Students Username</th>
+															<th>Students Password</th>
+															<?php }else{?>
 															<th>Father Name</th>
 															<th>Class</i></th>
 															<th>Mobile</th>
 															<th>Date Of Admission</th>
 															<th>Address</th>
 															<th>Date Of Birth</th>
-															
+															<?php } ?>
 														</tr>
 													</thead>
 										
-													<tfoot>
-														<tr>
-															<th>Adm No</th>
-															<th>Student Name</th>
-															<th>Father Name</th>
-															<th>Class</i></th>
-															<th>Mobile</th>
-															<th>Date Of Admission</th>
-															<th>Address</th>
-															<th>Date Of Birth</th>
-														</tr>
-													</tfoot>
+													
 										
 													<tbody>
-													<?php //foreach($masterentry as $master){ ?>
+													<?php foreach($student_info as $student_info){ ?>
 														<tr>
-															<td>1</td>
-															<td>Geeta<span class="label label-secondary"></span></td>
-															<td>Rajesh</td>
-															<td>2nd Section 1st</td>
-															<td>7898564587</td>
-															<td>26 june 2015</td>
-															<td></td>
-															<td>01 june 2015</td>
-															
+															<td><?=$student_info->AdmissionNo?></td>
+															<td><?=$student_info->StudentName?><span class="label label-secondary"></span></td>
+															<?php if(isset($login)!=''){ ?>
+															<td><?=$student_info->AdmissionNo?>@parents</td>
+															<td><?=$student_info->ParentsPassword?></td>
+															<td><?=$student_info->AdmissionNo?>@student</td>
+															<td><?=$student_info->StudentsPassword?></td>
+															<?php }else{?>
+															<td><?=$student_info->FatherName?></td>
+															<td><?=$student_info->ClassName?> <?=$student_info->SectionName?></td>
+															<td><?=$student_info->Mobile?></td>
+															<td><?=date("d M Y",$student_info->Date)?></td>
+															<td><?=$student_info->PresentAddress?></td>
+															<td><?php if($student_info->DOB!=''){ echo date("d M Y",$student_info->DOB) ; }?></td>
+														<?php } ?>
 														</tr>
-													<?php //} ?>
+													<?php } ?>
 												</tbody>
 										</table>
 									

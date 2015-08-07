@@ -159,5 +159,15 @@ class Admission_model extends CI_Model
 						group by feepayment.FeeType");
    	return $query->Result();
    }
+   
+   function get_student_details($StudentStatus=false,$SectionQuery=false,$CURRENTSESSION=false)
+   {
+   	$query=$this->db->query("select ParentsPassword,StudentsPassword,PresentAddress,studentfee.AdmissionNo,StudentName,FatherName,Mobile,Date,DOB,ClassName,SectionName from registration,admission,studentfee,class,section where
+					registration.RegistrationId=admission.RegistrationId and
+					admission.AdmissionId=studentfee.AdmissionId and
+					studentfee.StudentFeeStatus='$StudentStatus' and class.ClassId=section.ClassId and section.SectionId=studentfee.SectionId and 
+					studentfee.Session='$CURRENTSESSION' $SectionQuery");
+   	return $query->Result();
+   }
   
 }
