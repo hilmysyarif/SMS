@@ -96,7 +96,7 @@
 											Update Class
 										</div>
 									<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>admission/" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>admission/updateclass" method="post">
 											
 																<div class="form-group">
 																	<label class="control-label col-sm-4 ">Class </label>
@@ -241,17 +241,21 @@
 
 																		
 																</div>
-																
+																<?php foreach($fee_type as $fee_type){ 
+																$fee_remove_underscope=explode("-",$fee_type);
+																?>
 																<div class="form-group">
-																	<label class="control-label col-sm-4 ">Admission Fee</label>
+																<?php $filter=array('FeeId' => $fee_remove_underscope[0]); $feety= $this->utilities->get_masterval('fee',$filter);
+																$filter=array('MasterEntryId' => $feety[0]->FeeType); $fee= $this->utilities->get_usertype($filter); ?>
+																	<label class="control-label col-sm-4 "><?=$fee[0]->MasterEntryValue?></label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" name="mother_name" value="<?=$get_fee_structure[0]->Date?>" id="mother_name" placeholder="">
+																			<input type="text" class="form-control" name="mother_name" value="<?=$fee_remove_underscope[1]?>" id="mother_name" placeholder="">
 																		</div>	
 
 																		
 																</div>
-																
+																<?php } ?>
 																
 																<div class="form-group">
 																	<label class="control-label col-sm-4 ">Remarks</label>
@@ -323,12 +327,14 @@
 						</tfoot>
 					 
 						<tbody>
-						<?php foreach($get_fee_details as $rg){?>
+						<?php foreach($get_fee_details as $rg){ $i=0;?>
+						
 							<tr>
 								<td><?=$rg->MasterEntryValue?></td>
-								<td><?=$rg->MasterEntryValue?></td>
-								<td><?=$rg->Paid?></td>
-								<td><?=$rg->MasterEntryValue?></td>
+								<?php $filter=array('FeeId' => $rg->FeeId); $amount= $this->utilities->get_masterval('fee',$filter);?>
+								<td><?=$amount[0]->Amount?> INR</td>
+								<td><?=$rg->Paid?> INR</td>
+								<td><?=$amount[0]->Amount-$rg->Paid?> INR</td>
 								
 							</tr>
 							<?php  } ?>

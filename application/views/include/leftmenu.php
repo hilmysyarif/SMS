@@ -189,12 +189,12 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="javascript:;">
+								<a href="<?=base_url();?>admission/markssetup">
 									<span class="title">Scholastic Grade</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>admission/scmarkssetup">
 									<span class="title">Co Scholastic Grade</span>
 								</a>
 							</li>

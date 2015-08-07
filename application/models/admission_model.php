@@ -114,8 +114,7 @@ class Admission_model extends CI_Model
    	 	$this->db->where($filter);
    	 	$this->db->update('registration',$value);
    	 }
-   	
-   }
+    }
    
    function get_class($CURRENTSESSION=false)
    {
@@ -133,7 +132,7 @@ class Admission_model extends CI_Model
    			return $query->Result();
    }
    
-   function get_fee_structure($sec_id,$CURRENTSESSION=false)
+   function get_fee_structure($sec_id,$CURRENTSESSION=false,$admissionid=false)
    {
    	$query=$this->db->query("Select studentfee.AdmissionNo,studentfee.Remarks,Date,studentfee.Distance,FeeStructure,admission.AdmissionId,registration.RegistrationId,StudentName,FatherName,Mobile,ClassName,SectionName,section.SectionId,class.ClassId from registration,class,section,admission,studentfee where
 						studentfee.Session='$CURRENTSESSION' and
@@ -142,6 +141,7 @@ class Admission_model extends CI_Model
 						registration.RegistrationId=admission.RegistrationId and
 						admission.AdmissionId=studentfee.AdmissionId and 
 						studentfee.SectionId='$sec_id' and 
+						studentfee.AdmissionId='$admissionid' and
 						Status='Studying'
 						order by StudentName");
    	return $query->Result();

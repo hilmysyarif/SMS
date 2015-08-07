@@ -299,8 +299,9 @@ class Admission extends CI_Controller {
 			$this->data['section']=$sectionid;
 			$this->data['admission']=$admissionid;
 			$this->data['class_info2']=$this->admission_model->get_class2($sectionid,$this->currentsession[0]->CurrentSession);
-			$this->data['get_fee_structure']=$this->admission_model->get_fee_structure($sectionid,$this->currentsession[0]->CurrentSession);
-			$this->data['get_fee_details']=$this->admission_model->get_fee_details($sectionid);
+			$feetype=$this->data['get_fee_structure']=$this->admission_model->get_fee_structure($sectionid,$this->currentsession[0]->CurrentSession,$admissionid);
+			$this->data['get_fee_details']=$this->admission_model->get_fee_details($admissionid);
+			$this->data['fee_type']=explode(",",$feetype[0]->FeeStructure);
 		}
 		$this->data['class_info']=$this->admission_model->get_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
@@ -311,6 +312,7 @@ class Admission extends CI_Controller {
 	}
 	/*school management Updatefee View Load..............................................................................................................*/
 	
+	/*school management get fee for update start...................................................................................................*/
 	function get_fee()
 	{
 		if($this->input->post('class') && $this->input->post('student') !=''){
@@ -318,8 +320,24 @@ class Admission extends CI_Controller {
 			$admission=$this->input->post('student');
 			redirect('admission/updatefee/'.$section."/".$admission);
 		}
-		
 	}
+	/*school management get fee for update end.................................................................................................*/
+
+	/*school management update Class start...................................................................................................*/
+	function updateclass()
+	{ //print_r($_POST);die;
+		if($this->input->post('class_name') !=''){
+			$section=$this->input->post('class_name');
+			$admission=$this->input->post('student');
+			$feetype=$this->input->post('type');
+			$feeamount=$this->input->post('amount');
+			redirect('admission/updatefee/'.$section."/".$admission);
+		}
+	}
+	/*school management update Class end.................................................................................................*/
+
+	
+	
 	
 	/*school management Admission Report View Load.............................................................................................................*/
 	function admissionreport()
@@ -392,5 +410,29 @@ class Admission extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 	}
 	/*school management Student Attendance report View Load..............................................................................................................*/
+	
+	/*school management Scholastic Grade Load.............................................................................................................*/
+	function markssetup()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('markssetup',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management Scholastic Grade Load..............................................................................................................*/
+	
+	/*school management Scholastic Grade Load.............................................................................................................*/
+	function scmarkssetup()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('scmarkssetup',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management Scholastic Grade Load..............................................................................................................*/
 	
 }
