@@ -205,7 +205,7 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="javascript:;">
+								<a href="<?=base_url();?>admission/examreport">
 									<span class="title">ExamReport</span>
 								</a>
 							</li>
@@ -214,7 +214,7 @@
 					</li>
 						</ul>
 					</li>
-					<li><a href="javascript:;">
+					<li><a href="<?=base_url();?>admission/managestaff">
 						<i class="fa fa-users"></i>
 									<span class="title">Manage Staff</span>
 								</a>

@@ -467,4 +467,27 @@ class Admission extends CI_Controller {
 	}
 	/*school management Scholastic Grade Load..............................................................................................................*/
 	
+	/*school management ExamReport Load.............................................................................................................*/
+	function examreport()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('examreport',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management Exam Report Load..............................................................................................................*/
+		
+	/*school managementManageStaff Load.............................................................................................................*/
+	function managestaff()
+	{
+	
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('managestaff',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*school management ManageStaff Load..............................................................................................................*/
 }
