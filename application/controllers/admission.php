@@ -2,8 +2,7 @@
 
 class Admission extends CI_Controller {
 
-	
-	 function __construct() {
+	function __construct() {
 		parent::__construct();
 		
 		$this->data[]="";
@@ -70,29 +69,29 @@ class Admission extends CI_Controller {
 					$this->data['registration_info']='';
 				}
 		
-	/* $this->breadcrumb->clear();
-	 $this->breadcrumb->add_crumb('Deshboard', base_url());
-	 $this->breadcrumb->add_crumb('Registration', base_url().'registration');
-	 $this->breadcrumb->add_crumb('Registration', '');*/
-	 
-	 $this->data['regis'] = $this->admission_model->get_registration_info();
-	 $this->data['class_section'] = $this->admission_model->get_class_info('section');
-     $this->data['gender'] = $this->admission_model->get_gender_info();
-	 $this->data['caste'] = $this->admission_model->get_gender_info();
-	 $this->data['category'] = $this->admission_model->get_gender_info();
-	 $this->data['blood_grp'] = $this->admission_model->get_gender_info();
-	 $this->data['termination'] = $this->admission_model->get_gender_info();
-	 $this->data['photo'] = $this->admission_model->get_gender_info();
-	 $this->data['doc'] = $this->admission_model->get_gender_info();
-	
-	 $this->data['RegistrationId']=$id;
-	 $this->data['QualificationId']=$id;
-	 
-	 $this->parser->parse('include/header',$this->data);
-	 $this->parser->parse('include/topheader',$this->data);
-	 $this->parser->parse('include/leftmenu',$this->data);
-	 $this->load->view('registration',$this->data);
-	 $this->parser->parse('include/footer',$this->data);
+				/* $this->breadcrumb->clear();
+				 $this->breadcrumb->add_crumb('Deshboard', base_url());
+				 $this->breadcrumb->add_crumb('Registration', base_url().'registration');
+				 $this->breadcrumb->add_crumb('Registration', '');*/
+				 
+				 $this->data['regis'] = $this->admission_model->get_registration_info();
+				 $this->data['class_section'] = $this->admission_model->get_class_info('section');
+				 $this->data['gender'] = $this->admission_model->get_gender_info();
+				 $this->data['caste'] = $this->admission_model->get_gender_info();
+				 $this->data['category'] = $this->admission_model->get_gender_info();
+				 $this->data['blood_grp'] = $this->admission_model->get_gender_info();
+				 $this->data['termination'] = $this->admission_model->get_gender_info();
+				 $this->data['photo'] = $this->admission_model->get_gender_info();
+				 $this->data['doc'] = $this->admission_model->get_gender_info();
+				
+				 $this->data['RegistrationId']=$id;
+				 $this->data['QualificationId']=$id;
+				 
+				 $this->parser->parse('include/header',$this->data);
+				 $this->parser->parse('include/topheader',$this->data);
+				 $this->parser->parse('include/leftmenu',$this->data);
+				 $this->load->view('registration',$this->data);
+				 $this->parser->parse('include/footer',$this->data);
 	}
 
 	
@@ -255,7 +254,6 @@ class Admission extends CI_Controller {
 					'class'=>$class,
 					'section'=>$section);
 			$this->data['fee_info']=$this->admission_model->get_admission_class($section,$this->input->post('distance'),$this->currentsession[0]->CurrentSession);
-			
 		}
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -336,9 +334,6 @@ class Admission extends CI_Controller {
 	}
 	/*school management update Class end.................................................................................................*/
 
-	
-	
-	
 	/*school management Admission Report View Load.............................................................................................................*/
 	function admissionreport($section=false)
 	{	$status='';
@@ -361,7 +356,7 @@ class Admission extends CI_Controller {
 		$this->load->view('admissionreport',$this->data);
 		$this->parser->parse('include/footer',$this->data);
 	}
-	/*school management Admission Report View Load..............................................................................................................*/
+/*school management Admission Report View Load.....................................................................................................*/
 	
 	/*school management get Admission report start...................................................................................................*/
 /*	function get_ad_report()
@@ -381,113 +376,4 @@ class Admission extends CI_Controller {
 		}
 	}*/
 	/*school management get Admission report end.................................................................................................*/
-
-	
-	/*school management Fee Payment View Load.............................................................................................................*/
-	function payment()
-	{
-	
-		$this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/topheader',$this->data);
-		$this->parser->parse('include/leftmenu',$this->data);
-		$this->load->view('payment',$this->data);
-		$this->parser->parse('include/footer',$this->data);
-	}
-	/*school management Fee Payment View Load..............................................................................................................*/
-	
-	/*school management Staff Attendence View Load.............................................................................................................*/
-	function staffattendence()
-	{
-	
-		$this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/topheader',$this->data);
-		$this->parser->parse('include/leftmenu',$this->data);
-		$this->load->view('staffattendence',$this->data);
-		$this->parser->parse('include/footer',$this->data);
-	}
-	/*school management Staff Attendence View Load..............................................................................................................*/
-	
-	/*school management staff Attendance report View Load.............................................................................................................*/
-	function staffattendancereport()
-	{
-	
-		$this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/topheader',$this->data);
-		$this->parser->parse('include/leftmenu',$this->data);
-		$this->load->view('staffattendencereport',$this->data);
-		$this->parser->parse('include/footer',$this->data);
-	}
-	/*school management staff Attendance report View Load..............................................................................................................*/
-	
-	/*school management Student Attendence View Load.............................................................................................................*/
-	function studentattendence()
-	{
-	
-		$this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/topheader',$this->data);
-		$this->parser->parse('include/leftmenu',$this->data);
-		$this->load->view('studentattendence',$this->data);
-		$this->parser->parse('include/footer',$this->data);
-	}
-	/*school management Student Attendence View Load..............................................................................................................*/
-	
-	/*school management Student Attendance report View Load.............................................................................................................*/
-	function studentattendancereport()
-	{
-	
-		$this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/topheader',$this->data);
-		$this->parser->parse('include/leftmenu',$this->data);
-		$this->load->view('studentattendencereport',$this->data);
-		$this->parser->parse('include/footer',$this->data);
-	}
-	/*school management Student Attendance report View Load..............................................................................................................*/
-	
-	/*school management Scholastic Grade Load.............................................................................................................*/
-	function markssetup()
-	{
-	
-		$this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/topheader',$this->data);
-		$this->parser->parse('include/leftmenu',$this->data);
-		$this->load->view('markssetup',$this->data);
-		$this->parser->parse('include/footer',$this->data);
-	}
-	/*school management Scholastic Grade Load..............................................................................................................*/
-	
-	/*school management Scholastic Grade Load.............................................................................................................*/
-	function scmarkssetup()
-	{
-	
-		$this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/topheader',$this->data);
-		$this->parser->parse('include/leftmenu',$this->data);
-		$this->load->view('scmarkssetup',$this->data);
-		$this->parser->parse('include/footer',$this->data);
-	}
-	/*school management Scholastic Grade Load..............................................................................................................*/
-	
-	/*school management ExamReport Load.............................................................................................................*/
-	function examreport()
-	{
-	
-		$this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/topheader',$this->data);
-		$this->parser->parse('include/leftmenu',$this->data);
-		$this->load->view('examreport',$this->data);
-		$this->parser->parse('include/footer',$this->data);
-	}
-	/*school management Exam Report Load..............................................................................................................*/
-		
-	/*school managementManageStaff Load.............................................................................................................*/
-	function managestaff()
-	{
-	
-		$this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/topheader',$this->data);
-		$this->parser->parse('include/leftmenu',$this->data);
-		$this->load->view('managestaff',$this->data);
-		$this->parser->parse('include/footer',$this->data);
-	}
-	/*school management ManageStaff Load..............................................................................................................*/
 }

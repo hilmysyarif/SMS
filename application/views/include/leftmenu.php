@@ -67,22 +67,22 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="<?=base_url();?>admission/registration">
+								<a href="<?=base_url();?>Admission/registration">
 									<span class="title">Registration</span>
 								</a>
 							</li>
 							<li >
-								<a href="<?=base_url();?>admission/admission_student">
+								<a href="<?=base_url();?>Admission/admission_student">
 									<span class="title">Admission</span>
 								</a>
 							</li>
 							<li>
-								<a href="<?=base_url();?>admission/promotion">
+								<a href="<?=base_url();?>Admission/promotion">
 									<span class="title">Promotion</span>
 								</a>
 							</li>
 							<li>
-								<a href="<?=base_url();?>admission/updatefee">
+								<a href="<?=base_url();?>Admission/updatefee">
 									<span class="title">Update Fee</span>
 								</a>
 							</li>
@@ -94,7 +94,7 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="<?=base_url();?>admission/admissionreport">
+								<a href="<?=base_url();?>Admission/admissionreport">
 									<span class="title">Admission Report</span>
 								</a>
 							</li>
@@ -104,7 +104,7 @@
 						</ul>
 					</li>
 					<li>
-					<a href="<?=base_url();?>admission/payment">
+					<a href="<?=base_url();?>Payments/payment">
 							<i class="fa fa-money"></i>	
 							<span class="title">Fee Payment</span>
 					</a>
@@ -134,12 +134,12 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="<?=base_url();?>admission/staffattendence">
+								<a href="<?=base_url();?>Attendences/staffattendence">
 									<span class="title">Staff Attendance</span>
 								</a>
 							</li>
 							<li>
-								<a href="<?=base_url();?>admission/studentattendence">
+								<a href="<?=base_url();?>Attendences/studentattendence">
 									<span class="title">Student Attendance</span>
 								</a>
 							</li>
@@ -150,12 +150,12 @@
 								</a>
 						<ul>
 							<li class="active">
-								<a href="<?=base_url();?>admission/staffattendancereport">
+								<a href="<?=base_url();?>Attendences/staffattendancereport">
 									<span class="title">Staff Attendance</span>
 								</a>
 							</li>
 							<li>
-								<a href="<?=base_url();?>admission/studentattendancereport">
+								<a href="<?=base_url();?>Attendences/studentattendancereport">
 									<span class="title">Student Attendance</span>
 								</a>
 							</li>
@@ -189,12 +189,12 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="<?=base_url();?>admission/markssetup">
+								<a href="<?=base_url();?>Exam/markssetup">
 									<span class="title">Scholastic Grade</span>
 								</a>
 							</li>
 							<li>
-								<a href="<?=base_url();?>admission/scmarkssetup">
+								<a href="<?=base_url();?>Exam/scmarkssetup">
 									<span class="title">Co Scholastic Grade</span>
 								</a>
 							</li>
@@ -205,7 +205,7 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="<?=base_url();?>admission/examreport">
+								<a href="<?=base_url();?>Exam/examreport">
 									<span class="title">ExamReport</span>
 								</a>
 							</li>
@@ -214,7 +214,7 @@
 					</li>
 						</ul>
 					</li>
-					<li><a href="<?=base_url();?>admission/managestaff">
+					<li><a href="<?=base_url();?>Managestaff/managestaff">
 						<i class="fa fa-users"></i>
 									<span class="title">Manage Staff</span>
 								</a>
