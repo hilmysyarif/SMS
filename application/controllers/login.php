@@ -29,7 +29,7 @@ class Login extends CI_Controller {
 	
 	/* Function for login and create session .......................................................................*/	
 	function login_user($info=false)
-	{	
+	{	//print_r($_POST);die;
 			$data=array(
 						'Username'=>$this->input->post('username'),
 						'password'=>md5($this->input->post('passwd'))
@@ -44,6 +44,10 @@ class Login extends CI_Controller {
 						$this->session->set_userdata('user_data',$user_data);
 						$user_session_data = $this->session->userdata('user_data');
 						echo "accesGrant";
+						
+						$db_name=$this->input->post('db_name');
+						$this->session->set_userdata('db_name',$db_name);
+						 $this->session->userdata('db_name');
 					}
 			else{	
 				}

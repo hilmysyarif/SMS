@@ -281,7 +281,6 @@ class Admission extends CI_Controller {
 	/*school management Promotion View Load.............................................................................................................*/
 	function promotion()
 	{
-	
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);

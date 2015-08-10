@@ -13,16 +13,12 @@
 												Select Student
 											</div>
 										<div class="panel-body">
-												<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_class/class" method="post">
-												<?php if(empty($id)==''){ ?>
-															<input type="hidden" name="id" value="<?php echo (isset($class_update[0]->ClassId) ? $class_update[0]->ClassId : '');?>">
-												<?php } ?>
-												<input type="hidden" name="session" value="2015-2016">
-																	<div class="form-group">
+												<form role="form" class="form-horizontal" action="<?=base_url();?>payments/get_fee" method="post">
+												
+												<div class="form-group">
 																		<label class="control-label col-sm-4 ">Student</label>
 																		
-																				
-																				<script type="text/javascript">
+																			<script type="text/javascript">
 																						jQuery(document).ready(function($)
 																						{
 																							$("#s2example-1").select2({
@@ -37,11 +33,11 @@
 																						});
 																				</script>
 																			<div class="col-sm-8">
-																				<select class="form-control " id="s2example-1" name="class">
+																				<select class="form-control " id="s2example-1" name="admission">
 																					<option></option>
 																				
-																											<?php foreach($class_section as $cls){ ?>
-																											<option  value="<?=$cls->SectionId?>" ><?=$cls->ClassName?> <?=$cls->SectionName?></option>
+															<?php foreach($student_info as $student_info){ ?>
+															<option  value="<?=$student_info->AdmissionId?>" <?php if(isset($admission)){ echo (!empty($student_info->AdmissionId==$admission) ? "selected" : ''); } ?>><?=$student_info->StudentName?> F/n <?=$student_info->FatherName?> <?=$student_info->Mobile?> <?=$student_info->ClassName?> <?=$student_info->SectionName?></option>
 																													<?php  } ?>
 																												</optgroup>
 																											
@@ -56,14 +52,15 @@
 										</div>
 							</div>
 								<!--Select student ends-->
+								<?php if(isset($admission)){?>
 								<!--Select fee stars---->
 									<div class="panel panel-color panel-gray">
 											<div class="panel-heading">
-												<h3 class="panel-title">Select Fee For Students</h3>
+												<h3 class="panel-title">Select Fee For <?php if(isset($get_fee_details)){ echo $get_fee_details[0]->StudentName; echo "&nbsp";  echo "F/n" ; echo "&nbsp";  echo $get_fee_details[0]->FatherName ; echo "&nbsp"; echo"(";  echo $get_fee_details[0]->Mobile; echo")";} ?></h3>
 											</div>
 												<div class="panel-body">
-																<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_class/class" method="post">
-																		<?php if(empty($id)==''){ ?>
+																<form role="form" class="form-horizontal" action="<?=base_url();?>" method="post">
+																		<?php  if(empty($id)==''){ ?>
 																					<input type="hidden" name="id" value="<?php echo (isset($class_update[0]->ClassId) ? $class_update[0]->ClassId : '');?>">
 																		<?php } ?>
 																		<div class="form-group">
@@ -86,9 +83,11 @@
 																					<select class="form-control " id="s2example-2" name="class">
 																						<option></option>
 																					
-																												<?php foreach($class_section as $cls){ ?>
-																												<option  value="<?=$cls->SectionId?>" ><?=$cls->ClassName?> <?=$cls->SectionName?></option>
-																														<?php  } ?>
+												<?php foreach($get_balance as $get_balance1){ ?>
+												<?php $filter=array('FeeId' => $get_balance1->FeeType); $feety= $this->utilities->get_masterval('fee',$filter); 
+													$filter=array('MasterEntryId' => $feety[0]->FeeType); $fee= $this->utilities->get_usertype($filter);  ?>
+												<option  value="" ><?=$fee[0]->MasterEntryValue?> fee Balance: <?=$feety[0]->Amount-$get_balance1->Paid?></option>
+													<?php  } ?>
 																													</optgroup>
 																												
 																					</select>
@@ -120,30 +119,37 @@
 																	
 																 
 																	<tbody>
-																	<?php //foreach($regis as $rg){?>
+																	<?php $amount=''; $paid=''; $bal='';  foreach($get_balance as $get_balance){?>
 																		<tr>
-																			<td>admission fee</td>
-																			<td>1000 INR</td>
-																			<td>0 INR</td>
-																			<td>1000 INR</td>
-																			
+													<?php $filter=array('FeeId' => $get_balance->FeeType); $feety= $this->utilities->get_masterval('fee',$filter); 
+													$filter=array('MasterEntryId' => $feety[0]->FeeType); $fee= $this->utilities->get_usertype($filter); $amount=$amount+$feety[0]->Amount; $paid=$paid+$get_balance->Paid; $bal+=$feety[0]->Amount-$get_balance->Paid; ?>
+																			<td><?=$fee[0]->MasterEntryValue?></td>
+																			<td><?=$feety[0]->Amount?> INR</td>
+																			<td><?=$get_balance->Paid?> INR</td>
+																			<td><?=$feety[0]->Amount-$get_balance->Paid?> INR</td>
 																		</tr>
-																		<?php // } ?>
+																		<?php  } ?>
+																		<tfoot><tr>
+																		<td>Total</td>
+																			<td><?=$amount?> INR</td>
+																			<td><?=$paid?> INR</td>
+																			<td><?=$bal?> INR</td>
+																			</tr></tfoot>
 																	</tbody>
 																</table>
 													</div>
 												
 											</div>
 											
-					
+								<?php } ?>
 										<!--Select fee ends-->
 					</div>
-
+<?php if(isset($admission)){?>
 			<div class="col-md-6">
 					<!--Select fee list starts-->
 						<div class="panel panel-color panel-gray">
 										<div class="panel-heading">
-											Fee List To Be Paid By Student
+											Fee List To Be Paid By <?php if(isset($get_fee_details)){ echo $get_fee_details[0]->StudentName; echo "&nbsp";  echo "F/n" ; echo "&nbsp";  echo $get_fee_details[0]->FatherName ; echo "&nbsp"; echo"(";  echo $get_fee_details[0]->Mobile; echo")";} ?>
 										</div>
 								<div class="panel-body">
 												<table class="table table-bordered table-striped" id="example-4">
@@ -167,7 +173,7 @@
 															
 																
 															</tr>
-															<?php // } ?>
+															<?php //} ?>
 														</tbody>
 												</table>
 									
@@ -176,13 +182,13 @@
 														<input type="hidden" name="id" value="<?php echo (isset($section_update[0]->SectionId) ? $section_update[0]->SectionId : '');?>">
 											<?php } ?>
 																<div class="form-group">
-																	<label class="control-label col-sm-4 ">Amount </label>
+																	<label class="control-label col-sm-4 ">Account </label>
 																	
 																			<script type="text/javascript">
 																				jQuery(document).ready(function($)
 																				{
 																					$("#s2example-3").select2({
-																						placeholder: 'Select Amount...',
+																						placeholder: 'Select Account...',
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
@@ -231,7 +237,7 @@
 						<!--Select fee list paid student starts-->
 						<div class="panel panel-color panel-gray">
 								<div class="panel-heading">
-									<h3 class="panel-title">Fee List Paid By Student</h3>
+									<h3 class="panel-title">Fee List Paid By <?php if(isset($get_fee_details)){ echo $get_fee_details[0]->StudentName; echo "&nbsp";  echo "F/n" ; echo "&nbsp";  echo $get_fee_details[0]->FatherName ; echo "&nbsp"; echo"(";  echo $get_fee_details[0]->Mobile; echo")";} ?></h3>
 									<div class="panel-options">
 										<a href="#" data-toggle="panel">
 											<span class="collapse-icon">&ndash;</span>
@@ -258,20 +264,21 @@
 									
 								 
 									<tbody>
-									<?php //foreach($regis as $rg){?>
+									<?php foreach($get_transaction as $get_transaction){?>
 										<tr>
-											<td>1</td>
-											<td>1000 INR</td>
-											<td>0 INR</td>
-											<td>1000 INR</td>
+											<td><?=$get_transaction->TransactionId?></td>
+											<td><?=$get_transaction->TransactionAmount?> INR</td>
+											<td><?=date("d M Y,h:ia",$get_transaction->TransactionDate)?></td>
+											<td><?=$get_transaction->TransactionRemarks?></td>
 											<td><i class="fa fa-times"></i></td>
 											<td><i class="fa fa-print"></i></td>
 										</tr>
-										<?php // } ?>
+										<?php  } ?>
 									</tbody>
 								</table>
 						</div>
 					</div>
 					<!--Select fee list paid student end-->
 			</div>
+<?php } ?>
     </div>

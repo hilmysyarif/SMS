@@ -15,15 +15,21 @@ class Payments extends CI_Controller {
 		$this->load->library('session');
 		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
 		$this->info= $this->session->userdata('user_data');
-		$currentsession = $this->mhome->get_session();
-		$this->session->set_userdata('currentsession',$currentsession);
 		$currentsession=$this->currentsession = $this->session->userdata('currentsession');
 	 }
 	 
 /*school management Fee Payment View Load.........................................................................................*/
-	function payment()
+	function payment($admissionid=false)
 	{
-	
+		if($admissionid !=''){
+			$this->data['admission']=$admissionid;
+			$get_fee_details=$this->data['get_fee_details']=$this->payment_model->get_fee_structure($this->currentsession[0]->CurrentSession,$admissionid);
+			$this->data['fee_type']=explode(",",$get_fee_details[0]->FeeStructure);
+			$this->data['get_transaction']=$this->payment_model->get_transaction($this->currentsession[0]->CurrentSession,$admissionid);
+			$this->data['get_balance']=$this->payment_model->get_balance($this->currentsession[0]->CurrentSession,$admissionid);
+			
+		}
+		$this->data['student_info'] = $this->payment_model->get_student($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -31,5 +37,18 @@ class Payments extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 	}
 /*school management Fee Payment View Load.........................................................................................*/
+	
+/*school management Get fee sturucture of student..............................................................................*/
+	function get_fee()
+	{
+	if($this->input->post('admission') !=''){
+			$admission=$this->input->post('admission');
+			redirect('payments/payment/'.$admission);
+		}else{
+			redirect('payments/payment');
+		}
+	}
+/*school management Get fee sturucture of student................................................................................*/
+	
 	
 }

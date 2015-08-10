@@ -45,13 +45,17 @@
 | the active record class
 */
 
+    $CI =& get_instance();
+    $CI->load->library('session'); //if it's not autoloaded in your CI setup
+	$db_name=$CI->session->userdata('db_name');
+	
 $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
-$db['default']['database'] = 'db_school';
+$db['default']['database'] = $db_name;
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
