@@ -1477,7 +1477,7 @@ body {
 }
 .navbar.horizontal-menu .navbar-inner > .nav {
   list-style: none;
-  margin: 0;
+  margin-right: 3px;
   padding: 0;
 }
 .navbar.horizontal-menu .navbar-inner > .nav.navbar-mobile {

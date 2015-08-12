@@ -1,8 +1,15 @@
 <div class="row">
 	 <!--php alert message-->
-		<?php  if($this->session->flashdata('message_type')) { ?>
+		<?php  if($this->session->flashdata('message_type')=='success') { ?>
 			<div class="row">
 				<div class="alert alert-success">
+				<strong><?=$this->session->flashdata('message')?></strong> 
+				</div>
+			</div>
+		<?php }?>
+		<?php  if($this->session->flashdata('message_type')=='error') { ?>
+			<div class="row">
+				<div class="alert alert-danger">
 				<strong><?=$this->session->flashdata('message')?></strong> 
 				</div>
 			</div>
@@ -23,7 +30,7 @@
 							</div>
 						</div>
 						<div class="panel-body">
-						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>admission/add_registration">
+						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>attendences/add_attendence">
 						  <?php if(empty($var)==''){ ?>
 														<input type="hidden" name="id" value="<?=$var[0]->RegistrationId?>">
 											<?php } ?>
@@ -32,7 +39,7 @@
 									<label class="col-sm-4 control-label" for="student_name" >Date</label>
 									<div class="col-sm-8">
 										<div class="input-group">
-											<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input type="text" name="date" class="form-control datepicker" data-format="D, dd MM yyyy">
 											
 											<div class="input-group-addon">
 												<a href="#"><i class="linecons-calendar"></i></a>
@@ -46,7 +53,7 @@
 									<label class="col-sm-4 control-label" for="father_name">In Time</label>
 									<div class="col-sm-8">
 										<div class="input-group input-group-minimal">
-											<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text" name="intime" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 											
 											<div class="input-group-addon">
 												<a href="#"><i class="linecons-clock"></i></a>
@@ -60,7 +67,7 @@
 									<label class="col-sm-4 control-label" for="father_name">Out Time</label>
 									<div class="col-sm-8">
 										<div class="input-group input-group-minimal">
-											<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text" name="outtime" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 											
 											<div class="input-group-addon">
 												<a href="#"><i class="linecons-clock"></i></a>
@@ -70,7 +77,7 @@
 								</div>
 								<div class="form-group-separator">
 								</div>
-							<form role="form" class="form-horizontal">
+							
 								
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="tagsinput-1">Multi-select List</label>
@@ -94,32 +101,25 @@
 												});
 											});
 										</script>
-										<select class="form-control" multiple="multiple" id="multi-select" name="my-select[]">
-											<option value="1">Silky Door</option>
-											<option value="2">The Absent Twilight</option>
-											<option value="3">Tales of Flames</option>
-											<option value="4">The Princess's Dream</option>
-											<option value="5">The Fairy of the Wind</option>
-											<option value="6">Children in the Boy</option>
-											<option value="7">Frozen Savior</option>
-											
-											<option value="15">Thorn of Emperor</option>
-											<option value="16" selected>The Predator's Pirates</option>
-											<option value="17">The Lord of the Girl</option>
-											<option value="18" selected>Flowers in the Spirit</option>
-											<option value="19" selected>Healing in the Silence</option>
-											<option value="20">Planet of Bridges</option>
+										<select class="form-control" name="staff[]" multiple="multiple" id="multi-select" >
+										<?php foreach($get_staff as $get_staff1){ ?>
+											<option value="<?=$get_staff1->StaffId?>"><?=$get_staff1->StaffName?> (<?=$get_staff1->MasterEntryValue?>)</option>
+										<?php } ?>
 										</select>
 										
 									</div>
 								</div>
 								<div class="form-group-separator">
 								</div>
-							</form>
+							<select class="form-control" name="absent[]" multiple="multiple"  >
+										<?php foreach($get_staff as $get_staff){ ?>
+											<option value="<?=$get_staff->StaffId?>"><?=$get_staff->StaffName?> (<?=$get_staff->MasterEntryValue?>)</option>
+										<?php } ?>
+										</select>
 							<div class="form-group pull-right">
 								       
-								 <input  type="submit" name="submit" value="Present" class="btn btn btn-info btn-single "/>   
-								 <input  type="submit" name="Absent" value="Absent" class="btn btn btn-info btn-single "/>
+								 <input  type="submit" name="Present" value="Present" class="btn btn btn-info btn-single " />   
+								<!-- <input  type="submit" name="Absent" value="Absent" class="btn btn btn-info btn-single "/> -->
 								  <input  type="submit" name="Halfday" value="Halfday" class="btn btn btn-info btn-single "/>
 								   <input  type="submit" name="Paid Leave" value="Paid Leave" class="btn btn btn-info btn-single "/>
 								    <input  type="submit" name="On Duty" value="On Duty" class="btn btn btn-info btn-single "/>
@@ -133,4 +133,18 @@
 				
 				
 		</div>
+		<script>
+		function selectAll(selectBox,selectAll) { 
+    // have we been passed an ID 
+    if (typeof selectBox == "string") { 
+        selectBox = document.getElementById(selectBox);
+    } 
+    // is the select box a multiple select box? 
+    if (selectBox.type == "select-multiple") { 
+        for (var i = 0; i < selectBox.options.length; i++) { 
+             selectBox.options[i].selected = selectAll; 
+        } 
+    }
+}
+		</script>
 <?php //} ?>

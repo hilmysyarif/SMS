@@ -29,10 +29,11 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-1" name="">
+																<select class="form-control " id="s2example-1" name="month">
 																	<option></option>
-																	<option  value="" >04-15</option>
-																
+																<?php foreach($month as $month1){ ?>
+																	<option  value="<?=$month1?>" <?php if(empty($attendance)==''){ echo (!empty($attendance==$month1) ? "selected" : ''); } ?> ><?=$month1?></option>
+																	<?php } ?>
 																</select>
 															</div>	
 												</div>
@@ -56,12 +57,13 @@
 		<?php }?>
 	   <!--php alert message-->
 	    <!--Student registratioN body starts-->
+		<?php if(isset($attendance)){?>
 	   	<div class="row">
 				
 				<div class="col-sm-12">
 					<div class="panel  panel-color panel-gray">
 						<div class="panel-heading">
-							<h3 class="panel-title">Staff Attendance Report of 04-2015</h3>
+							<h3 class="panel-title">Staff Attendance Report of <?=$attendance?></h3>
 							<div class="panel-options">
 							<span class="print-icon"><i class="fa fa-print"></i></span>
 								<a href="#" data-toggle="panel">
@@ -78,79 +80,107 @@
 											<thead>
 												<tr>
 													<th>Name</th>
-													<th>1</th>
-													<th>2</th>
-													<th>3</th>
-													<th>4</th>
-													<th>5</th>
-													<th>6</th>
-													<th>7</th>
-													<th>8</th>
-													<th>9</th>
-													<th>10</th>
-													<th>11</th>
-													<th>12</th>
-													<th>13</th>
-													<th>14</th>
-													<th>15</th>
-													<th>16</th>
-													<th>17</th>
-													<th>18</th>
-													<th>19</th>
-													<th>20</th>
+													
+											<?php		for($rr=1;$rr<=$DaysInMonth;$rr++)
+											{ ?>
+										<th><?=$rr?></th>
+											<?php } ?>
+											<th>P</th>
+											<th>A</th>
+											<th>HD</th>
+											<th>H</th>
+											<th>OD</th>
+											<th>PL</th>
 												</tr>
 											</thead>
 										 
 											<tfoot>
 												<tr>
 													<th>Name</th>
-													<th>1</th>
-													<th>2</th>
-													<th>3</th>
-													<th>4</th>
-													<th>5</th>
-													<th>6</th>
-													<th>7</th>
-													<th>8</th>
-													<th>9</th>
-													<th>10</th>
-													<th>11</th>
-													<th>12</th>
-													<th>13</th>
-													<th>14</th>
-													<th>15</th>
-													<th>16</th>
-													<th>17</th>
-													<th>18</th>
-													<th>19</th>
-													<th>20</th>
+													<?php		for($rr=1;$rr<=$DaysInMonth;$rr++)
+											{ ?>
+										<th><?=$rr?></th>
+											<?php } ?>
+											<th>P</th>
+											<th>A</th>
+											<th>HD</th>
+											<th>H</th>
+											<th>OD</th>
+											<th>PL</th>
 												</tr>
 											</tfoot>
 										 
 											<tbody>
-												<tr>
-													<td>Harshlata 5456987821 (faculty)</td>
-													<td>-</td>
-													<td><span class="badge badge-secondary pull-right">P</span></td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-														<td>-</td>
-													<td><span class="badge badge-secondary pull-right">P</span></td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-														<td>-</td>
-													<td><span class="badge badge-secondary pull-right">P</span></td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-														<td>-</td>
-													<td><span class="badge badge-secondary pull-right">P</span></td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-												</tr>
+											<?php $DateArray=''; foreach($row as $row2)
+					{	
+						$AttendanceArray[]=$row2->Attendance;
+						$DateArray[]=date("d-m-Y",$row2->Date);
+					}	foreach($row1 as $id){
+						$StaffId=$id->StaffId; ?>
+						<tr>
+						<td><?=$id->StaffName?> <?=$id->StaffMobile?> (<?=$id->MasterEntryValue?>)</td>
+						<?php						
+						$A=$P=$H=$HD=$OD=$PL=0; 
+						for($l=1;$l<=$DaysInMonth;$l++)
+						{ 
+							$Found=0;
+							$l=str_pad($l,2,"0",STR_PAD_LEFT);
+							$DateForSearch="$l-$SelectedMonth-$SelectedYear";
+							if($DateArray!="")
+							$SearchIndex=array_search($DateForSearch,$DateArray);
+							else
+							$SearchIndex=FALSE;
+							if($SearchIndex===FALSE){ ?>
+						<td>-</td>	 
+						<?php	}
+							else
+							{
+								$AllAttendanceOfDay=$AttendanceArray[$SearchIndex];
+								$AllAttendanceOfDay=explode(",",$AllAttendanceOfDay);
+								foreach($AllAttendanceOfDay as $AllAttendanceOfDayValue)
+								{
+									$AllAttendanceOfDayValue=explode("-",$AllAttendanceOfDayValue);
+									if($AllAttendanceOfDayValue[0]==$StaffId)
+									{
+										$InTime=date("h:ia",$AllAttendanceOfDayValue[3]);
+										$OutTime=date("h:ia",$AllAttendanceOfDayValue[4]);
+										if($AllAttendanceOfDayValue[1]=="P")
+										{ ?>
+											<td><span class="badge badge-secondary pull-right">P</span></td>
+										<?php	$P++;
+										}
+										elseif($AllAttendanceOfDayValue[1]=="A")
+										{ ?>
+											<td><span class="badge badge-danger pull-right">A</span></td>
+										<?php	$A++;
+										}
+										elseif($AllAttendanceOfDayValue[1]=="HD")
+										{ ?>
+											<td><span class="badge badge-warning pull-right">HD</span></td>
+									<?php		$HD++;
+										}
+										elseif($AllAttendanceOfDayValue[1]=="H")
+										{ ?>
+										<td><span class="badge badge-info pull-right">H</span></td>
+										<?php	$H++;
+										}
+										elseif($AllAttendanceOfDayValue[1]=="OD")
+										{ ?>
+											<td><span class="badge badge-success pull-right">OD</span></td>
+										<?php	$OD++;
+										}
+										elseif($AllAttendanceOfDayValue[1]=="PL")
+										{ ?>
+											<td><span class="badge badge-blue pull-right">PL</span></td>
+									<?php		$PL++;
+										}
+										$Found=1;
+									}
+								}
+								//if($Found!=1) ?>
+								
+						<?php 	} 
+					}  ?><td><?=$P?></td><td><?=$A?></td><td><?=$HD?></td><td><?=$H?></td><td><?=$OD?></td><td><?=$PL?></td></tr><?php } ?>
 											</tbody>
 										</table>
 									</div>	
@@ -160,4 +190,4 @@
 				</div>
 		</div>	
 	
-<?php //} ?>
+<?php } ?>
