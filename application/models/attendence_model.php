@@ -74,4 +74,62 @@ class Attendence_model extends CI_Model
 						order by StaffName");
 			return $qry->Result();
 	}
+	
+	/*Student Attendance Coding For model Start...................................................................................*/
+	
+	function get_class($CURRENTSESSION=false)
+	{
+			$qry = $this->db->query("select ClassName,SectionName,SectionId from class,section where 
+					class.ClassId=section.ClassId and class.ClassStatus='Active' and
+					section.SectionStatus='Active' and class.Session='$CURRENTSESSION' order by ClassName");
+			return $qry->Result();
+	}
+	
+	function get_student($CURRENTSESSION=false,$GETSectionId=false)
+	{
+			$qry = $this->db->query("select admission.AdmissionId,StudentName,FatherName from studentfee,registration,admission where 
+				studentfee.AdmissionId=admission.AdmissionId and Status='Studying' and
+				registration.RegistrationId=admission.RegistrationId and
+				studentfee.Session='$CURRENTSESSION' and
+				studentfee.Sectionid='$GETSectionId' 
+				order by StudentName");
+			return $qry->Result();
+	}
+	
+	function get_student_attendance($AttendanceDate=false)
+	{
+			$qry = $this->db->query("select Attendance from studentattendance where Date='$AttendanceDate'");
+			return $qry->Result();
+	}
+	
+	function update_student_attendance($NewAttendance=false,$AttendanceDate=false)
+	{
+			$this->db->query("update studentattendance set Attendance='$NewAttendance' where Date='$AttendanceDate'");
+	}
+	
+	function delete_student_attendance($AttendanceDate=false)
+	{
+			$this->db->query("delete from studentattendance where Date='$AttendanceDate'");
+	}
+	
+	function insert_student_attendance($AttendanceDate=false,$AttendanceString=false,$DateTimeStamp=false,$USERNAME=false)
+	{
+			$this->db->query("insert into studentattendance(Date,Attendance,DOL,DOLUsername) values('$AttendanceDate','$AttendanceString','$DateTimeStamp','$USERNAME')");
+	}
+	
+	function student_attendance_report($date1timestamp=false,$date2timestamp=false)
+	{
+			$qry = $this->db->query("select Attendance,Date from studentattendance where Date>='$date1timestamp' and Date<='$date2timestamp'");
+			return $qry->Result();
+	}
+	
+	function get_student_attendance_report($POSTSectionId=false)
+	{
+			$qry = $this->db->query("select StudentName,FatherName,Mobile,admission.AdmissionId from registration,admission,studentfee where
+						registration.RegistrationId=admission.RegistrationId and
+						admission.AdmissionId=studentfee.AdmissionId and
+						studentfee.SectionId='$POSTSectionId'");
+			return $qry->Result();
+	}
+	
 }

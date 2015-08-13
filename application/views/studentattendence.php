@@ -11,9 +11,9 @@
 							</div>
 						</div>
 					<div class="panel-body">
-					 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>admission/add_registration">
+					 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>attendences/get_student">
 											<div class="form-group">
-														<label class="col-sm-4 control-label" for="student_name" >Class</label>
+														<label class="col-sm-4 control-label" for="class_name" >Class</label>
 													<script type="text/javascript">
 															jQuery(document).ready(function($)
 															{
@@ -33,7 +33,7 @@
 																<option></option>
 															
 																						<?php foreach($class_section as $cls){ ?>
-																						<option  value="<?=$cls->SectionId?>" ><?=$cls->ClassName?> <?=$cls->SectionName?></option>
+																						<option  value="<?=$cls->SectionId?>" <?php if(empty($students)==''){ echo (!empty($cls->SectionId==$sectionid) ? "selected" : ''); } ?> ><?=$cls->ClassName?> <?=$cls->SectionName?></option>
 																								<?php  } ?>
 																							</optgroup>
 																						
@@ -53,15 +53,23 @@
 </div>
 
 	 <!--php alert message-->
-		<?php  if($this->session->flashdata('message_type')) { ?>
+		<?php  if($this->session->flashdata('message_type')=='success') { ?>
 			<div class="row">
 				<div class="alert alert-success">
 				<strong><?=$this->session->flashdata('message')?></strong> 
 				</div>
 			</div>
 		<?php }?>
+		<?php  if($this->session->flashdata('message_type')=='error') { ?>
+			<div class="row">
+				<div class="alert alert-danger">
+				<strong><?=$this->session->flashdata('message')?></strong> 
+				</div>
+			</div>
+		<?php }?>
 	   <!--php alert message-->
 	    <!--Student registratioN body starts-->
+		<?php if(isset($students)){ ?>
 	   	<div class="row">
 				
 				<div class="col-sm-12">
@@ -76,8 +84,22 @@
 							</div>
 						</div>
 						<div class="panel-body">
-								<form role="form" class="form-horizontal">
+								<form role="form" method="post" action="<?=base_url();?>attendences/add_student_att" class="form-horizontal">
 								
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="student_name" >Date</label>
+									<div class="col-sm-8">
+										<div class="input-group">
+											<input type="text" name="date" class="form-control datepicker" data-format="D, dd MM yyyy">
+											
+											<div class="input-group-addon">
+												<a href="#"><i class="linecons-calendar"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group-separator">
+								</div>
 									<div class="form-group">
 										<label class="col-sm-4 control-label" for="tagsinput-1">Multi-select List</label>
 										
@@ -100,38 +122,27 @@
 													});
 												});
 											</script>
-											<select class="form-control" multiple="multiple" id="multi-select" name="my-select[]">
-												<option value="1">Silky Door</option>
-												<option value="2">The Absent Twilight</option>
-												<option value="3">Tales of Flames</option>
-												<option value="4">The Princess's Dream</option>
-												<option value="5">The Fairy of the Wind</option>
-												<option value="6">Children in the Boy</option>
-												<option value="7">Frozen Savior</option>
-												<option value="8">The Missing Thorns</option>
-												<option value="9">Healing of Serpent</option>
-												<option value="10">The Voyagers's Girlfriend</option>
-												<option value="11">The Nothing of the Gate</option>
-												<option value="12">Healing in the Scent</option>
-												<option value="13">Final Twins</option>
-												<option value="14">The Willing Rose</option>
-												<option value="15">Thorn of Emperor</option>
-												<option value="16" selected>The Predator's Pirates</option>
-												<option value="17">The Lord of the Girl</option>
-												<option value="18" selected>Flowers in the Spirit</option>
-												<option value="19" selected>Healing in the Silence</option>
-												<option value="20">Planet of Bridges</option>
-											</select>
+											<select class="form-control" multiple="multiple" id="multi-select" name="addmissionid[]">
+												<?php foreach($students as $studentss){ ?>
+																						<option  value="<?=$studentss->AdmissionId?>" ><?=$studentss->StudentName?> (<?=$studentss->FatherName?>)</option>
+																								<?php  } ?>
+												</select>
 											
 										</div>
 									</div>		
 								
 								<div class="form-group-separator">
 								</div>
+								<select class="form-control" name="absent[]" multiple="multiple"  >
+										<?php foreach($students as $students){ ?>
+																						<option  value="<?=$students->AdmissionId?>" ><?=$students->StudentName?> (<?=$students->FatherName?>)</option>
+																								<?php  } ?>
+										</select>
 								</br>
 								<div class="form-group pull-right">
-								 <input  type="submit" name="submit" value="Present" class="btn btn btn-info btn-single "/>   
-								 <input  type="submit" name="Absent" value="Absent" class="btn btn btn-info btn-single "/>
+								<input  type="hidden" name="sectionid" value="<?=$sectionid?>" />  
+								 <input  type="submit" name="Present" value="Present" class="btn btn btn-info btn-single "/>   
+								<!-- <input  type="submit" name="Absent" value="Absent" class="btn btn btn-info btn-single "/>-->
 								  <input  type="submit" name="Halfday" value="Halfday" class="btn btn btn-info btn-single "/>
 								  <input  type="submit" name="Blank" value="Blank" class="btn btn btn-info btn-single "/>
 								   <input  type="submit" name="Holiday" value="Holiday" class="btn btn btn-info btn-single"/>
@@ -142,4 +153,4 @@
 				</div>
 		</div>	
 	
-<?php //} ?>
+<?php } ?>

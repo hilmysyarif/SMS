@@ -146,32 +146,32 @@
 										$OutTime=date("h:ia",$AllAttendanceOfDayValue[4]);
 										if($AllAttendanceOfDayValue[1]=="P")
 										{ ?>
-											<td><span class="badge badge-secondary pull-right">P</span></td>
+											<td><span class="badge badge-secondary pull-right " data-toggle="tooltip" data-placement="top" title="" data-original-title="In Time: <?=$InTime?> Out Time: <?=$OutTime?>">P</span></td>
 										<?php	$P++;
 										}
 										elseif($AllAttendanceOfDayValue[1]=="A")
 										{ ?>
-											<td><span class="badge badge-danger pull-right">A</span></td>
+											<td><span class="badge badge-danger pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="In Time: <?=$InTime?> Out Time: <?=$OutTime?>">A</span></td>
 										<?php	$A++;
 										}
 										elseif($AllAttendanceOfDayValue[1]=="HD")
 										{ ?>
-											<td><span class="badge badge-warning pull-right">HD</span></td>
+											<td><span class="badge badge-warning pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="In Time: <?=$InTime?> Out Time: <?=$OutTime?>">HD</span></td>
 									<?php		$HD++;
 										}
 										elseif($AllAttendanceOfDayValue[1]=="H")
 										{ ?>
-										<td><span class="badge badge-info pull-right">H</span></td>
+										<td><span class="badge badge-info pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="In Time: <?=$InTime?> Out Time: <?=$OutTime?>">H</span></td>
 										<?php	$H++;
 										}
 										elseif($AllAttendanceOfDayValue[1]=="OD")
 										{ ?>
-											<td><span class="badge badge-success pull-right">OD</span></td>
+											<td><span class="badge badge-success pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="In Time: <?=$InTime?> Out Time: <?=$OutTime?>">OD</span></td>
 										<?php	$OD++;
 										}
 										elseif($AllAttendanceOfDayValue[1]=="PL")
 										{ ?>
-											<td><span class="badge badge-blue pull-right">PL</span></td>
+											<td><span class="badge badge-blue pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="In Time: <?=$InTime?> Out Time: <?=$OutTime?>">PL</span></td>
 									<?php		$PL++;
 										}
 										$Found=1;

@@ -41,7 +41,7 @@ class Attendences extends CI_Controller {
 	if($this->input->post('intime') && $this->input->post('date') && $this->input->post('outtime') !=''){
 		
 	$Date= date("Y-m-d");
-	$USERNAME="masteruser";	
+	$USERNAME=$this->info[0]->usermailid;	
 	$Attendance=$_POST['staff'];
 	$Attendance1=$_POST['absent'];
 	$AttendanceDate=$_POST['date'];
@@ -200,7 +200,7 @@ class Attendences extends CI_Controller {
 	/*school management staff Attendance report View Load.............................................................................................................*/
 	function staffattendancereport()
 	{
-		$Sessions=explode("-",$this->currentsession[0]->CurrentSession);
+				$Sessions=explode("-",$this->currentsession[0]->CurrentSession);
 				$StartingYear=$Sessions[0];
 				$EndingYear=$Sessions[1];
 				$MonthYear=$count1=$ShowMonth=$Valid=$u=$STRHeading="";
@@ -262,9 +262,13 @@ class Attendences extends CI_Controller {
 	/*school management staff Attendance report View Load..............................................................................................................*/
 	
 	/*school management Student Attendence View Load.............................................................................................................*/
-	function studentattendence()
-	{
-	
+	function studentattendence($sectionid=false)
+	{	
+		if($sectionid !=''){
+			$this->data['sectionid']=$sectionid;
+			$this->data['students']=$this->attendence_model->get_student($this->currentsession[0]->CurrentSession,$sectionid);
+		}
+		$this->data['class_section']=$this->attendence_model->get_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -273,15 +277,177 @@ class Attendences extends CI_Controller {
 	}
 	/*school management Student Attendence View Load..............................................................................................................*/
 	
+	/*school management Get Student For Attendance................................................................................*/
+	function get_student()
+	{	
+		if($this->input->post('class') !=''){
+			redirect('attendences/studentattendence/'.$this->input->post('class'));
+		}else{
+			redirect('attendences/studentattendence');
+	}}
+	/*school management Get Student For Attendance................................................................................*/
+	
+	/*school management Add Student Attendance................................................................................*/
+	function add_student_att()
+	{		
+			$USERNAME=$this->info[0]->usermailid;
+			$Date= date("Y-m-d");
+			$Attendance=$_POST['addmissionid'];
+			$Attendance1=$_POST['absent'];
+			$AttendanceDate=$_POST['date'];
+			$SectionId=$_POST['sectionid'];
+			$CurrentSessionArray=explode("-",$this->currentsession[0]->CurrentSession);
+			$StartingYear=$CurrentSessionArray[0];
+			$EndingYear=$CurrentSessionArray[1];
+			$SessionStartingDate="01-04-$StartingYear 00:00am";
+			$SessionEndingDate="31-03-$EndingYear 23:59am";
+			$SessionStartinDateTS=strtotime($SessionStartingDate);
+			$SessionEndingDateTS=strtotime($SessionEndingDate);
+			
+			if($_POST['Present']!="")
+			$Att="P";
+			elseif($_POST['Absent']!="")
+			$Att="A";
+			elseif($_POST['HalfDay']!="")
+			$Att="H";
+			elseif($_POST['Holiday']!="")
+			$Att="HD";
+			elseif($_POST['Blank']!="")
+			$Att="";
+			$DateTimeStamp=strtotime($Date);
+
+			
+			$CountStudent=count($Attendance);
+			
+			if($Attendance=="" || $AttendanceDate=="")
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("studentattendence").' All the fields are mandatory!!"');
+			}
+			elseif($TOKEN!=$RandomNumber)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("studentattendence").' Illegal data posted!!"');
+			}
+			else
+			{
+				$AttendanceDate=strtotime($AttendanceDate);
+				$row=$this->attendence_model->get_student_attendance($AttendanceDate);
+				$AlreadyMarked=count($row);
+				if($AlreadyMarked>0)
+				{
+					$LastAttendance=explode(",",$row['Attendance']);
+					foreach($LastAttendance as $LastAttendanceValue)
+					{
+						$LastAttAttendance=explode("-",$LastAttendanceValue);
+						$LastAdmissionIdId=$LastAttAttendance[0];
+						$LastAtt=$LastAttAttendance[1];
+						$LastTime=$LastAttAttendance[2];
+						$Search=array_search($LastAdmissionIdId,$Attendance);
+						if($Search===FALSE)
+						$NewAttendance[]="$LastAdmissionIdId-$LastAtt-$LastTime";
+						elseif($Att!="")
+						$NewAttendance[]="$LastAdmissionIdId-$Att-$DateTimeStamp";
+						$Marked[]=$LastAdmissionIdId;
+					}
+					
+					foreach($Attendance as $AttendanceValue)
+					{
+						$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+						if($SearchForMarkedIndex===FALSE && $Att!="")
+						$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
+					}
+					foreach($Attendance1 as $AttendanceValue)
+					{
+						if($SearchForMarkedIndex===FALSE && $Att!="")
+						$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
+					}
+					
+					$NewAttendance=implode(",",$NewAttendance);
+					
+					if($NewAttendance!="")
+					$this->attendence_model->update_student_attendance($NewAttendance,$AttendanceDate);
+					else
+					$this->attendence_model->delete_student_attendance($AttendanceDate);
+				}
+				else
+				{	$AttendanceString='';
+					foreach($Attendance as $AttendanceValue)
+						if($Att!="")
+						$AttendanceString[]="$AttendanceValue-$Att-$DateTimeStamp";
+					foreach($Attendance1 as $AttendanceValue)
+						if($Att!="")
+						$AttendanceString[]="$AttendanceValue-A-$DateTimeStamp";
+						$AttendanceString=implode(",",$AttendanceString);
+					if($AttendanceString!="")
+					{
+						$this->attendence_model->insert_student_attendance($AttendanceDate,$AttendanceString,$DateTimeStamp,$USERNAME);
+					}
+				}
+		
+				$this->session->set_flashdata('message_type', 'success');
+				$this->session->set_flashdata('message', $this->config->item("studentattendence").' Attendance Updated Successfully"');		
+	}
+				redirect('attendences/studentattendence');
+	}
+	/*school management Add Student Attendance................................................................................*/
+	
+	
 	/*school management Student Attendance report View Load.............................................................................................................*/
 	function studentattendancereport()
-	{
-	
-		$this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/topheader',$this->data);
-		$this->parser->parse('include/leftmenu',$this->data);
-		$this->load->view('studentattendencereport',$this->data);
-		$this->parser->parse('include/footer',$this->data);
+	{	
+				$Sessions=explode("-",$this->currentsession[0]->CurrentSession);
+				$StartingYear=$Sessions[0];
+				$EndingYear=$Sessions[1];
+				$MonthYear=$count1=$ShowMonth=$Valid=$u=$STRHeading="";
+				$STR=array();
+				$DateArray=array();
+				$MonthYearComb=array();
+				for($i=$StartingYear;$i<$EndingYear;$i++)
+				{ 
+					$k=4;
+					$i1=$StartingYear;
+					for($j=1;$j<=12;$j++)
+					{
+						if($k>=13)
+						{
+						$k=1;
+						$i1=$EndingYear;
+						}
+						$k1=str_pad($k,2,"0",STR_PAD_LEFT);
+						$MonthYearComb[$j]="$k1-$i1";
+						
+						$k++;
+					}
+				}
+				$this->data['month']=$MonthYearComb;
+				
+				$this->data['class_section']=$this->attendence_model->get_class($this->currentsession[0]->CurrentSession);
+		
+				if($this->input->post('class') && $this->input->post('month') !=''){
+					
+					$POSTSectionId=$this->data['sectionid']=$this->input->post('class');
+					$POSTMonthYear=$this->data['attendance']=$this->input->post('month');
+					$MonthYearArray=explode("-",$POSTMonthYear);
+					$this->data['SelectedMonth']=$SelectedMonth=$MonthYearArray[0];
+					$this->data['SelectedYear']=$SelectedYear=$MonthYearArray[1];
+					
+					$DaysInMonth=cal_days_in_month(CAL_GREGORIAN,$SelectedMonth,$SelectedYear);
+					
+					$this->data['DaysInMonth']=$DaysInMonth;
+					
+					$date1="$SelectedYear-$SelectedMonth-01";
+					$date2="$SelectedYear-$SelectedMonth-$DaysInMonth";
+					$date1timestamp=strtotime($date1);
+					$date2timestamp=strtotime($date2);
+					$this->data['row']=$this->data['student_attendance']=$this->attendence_model->student_attendance_report($date1timestamp,$date2timestamp);
+					$this->data['row1']=$row1=$this->data['student']=$this->attendence_model->get_student_attendance_report($POSTSectionId);
+				}
+				$this->parser->parse('include/header',$this->data);
+				$this->parser->parse('include/topheader',$this->data);
+				$this->parser->parse('include/leftmenu',$this->data);
+				$this->load->view('studentattendencereport',$this->data);
+				$this->parser->parse('include/footer',$this->data);
 	}
 	/*school management Student Attendance report View Load..............................................................................................................*/
 
