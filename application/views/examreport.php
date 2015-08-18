@@ -21,7 +21,7 @@
 							</div>
 						</div>
 				<div class="panel-body">
-						 <form role="form" class="form-horizontal" method="post" action="">
+						 <form role="form" class="form-horizontal" method="post" target="blank" action="<?=base_url();?>exam/get_examreport">
 												<div class="form-group">
 													<label class="col-sm-4 control-label" for="exam" >Class</label>
 														<script type="text/javascript">
@@ -39,9 +39,11 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-1" name="">
+																<select class="form-control " id="s2example-1" name="class" onchange="show_student(this.value,0)">
 																	<option></option>
-																	<option  value="" >1st section A</option>
+																	<?php foreach($class as $class){ ?>
+																						<option  value="<?=$class->SectionId?>"  ><?=$class->ClassName?> <?=$class->SectionName?> </option>
+																								<?php  } ?>
 																
 																</select>
 															</div>	
@@ -63,8 +65,8 @@
 																	
 																});
 															</script>
-															<div class="col-sm-8">
-																<select class="form-control " id="s2example-2" name="">
+															<div class="col-sm-8" id="show_student">
+																<select class="form-control " id="s2example-2" name="student">
 																	<option></option>
 																	
 																

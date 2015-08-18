@@ -1,4 +1,3 @@
-
 <div class="page-container" ><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 	<!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
 		<!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
@@ -32,27 +31,27 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="javascript:;">
+								<a href="<?=base_url();?>frontoffice/call">
 									<span class="title">Call & Follow-up</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>frontoffice/ocall">
 									<span class="title">Other Call</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>frontoffice/enquiry">
 									<span class="title">Enquiry</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>frontoffice/complaint">
 									<span class="title">Complaint</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>frontoffice/visitor">
 									<span class="title">Visitor Book</span>
 								</a>
 							</li>
@@ -116,12 +115,12 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="javascript:;">
+								<a href="<?=base_url();?>transaction/expense">
 									<span class="title">Expense</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>transaction/income">
 									<span class="title">Income</span>
 								</a>
 							</li>
@@ -170,12 +169,12 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="javascript:;">
+								<a href="<?=base_url();?>transports/transport">
 									<span class="title">Transport</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>transports/route">
 									<span class="title">Transport Route</span>
 								</a>
 							</li>

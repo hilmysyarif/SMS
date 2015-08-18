@@ -1172,7 +1172,7 @@ body {
   margin-top: 63px;
 }
 .navbar.horizontal-menu.navbar-fixed-top + .page-container > .sidebar-menu.fixed .sidebar-menu-inner {
-  top: 85px;
+    top: 50px;
 }
 .settings-pane-open .navbar.horizontal-menu.navbar-fixed-top {
   position: relative;
@@ -1184,7 +1184,7 @@ body {
   top: 0;
 }
 .navbar.horizontal-menu + .page-container > .sidebar-menu.fixed .sidebar-menu-inner {
-  top: 85px;
+  top: 58px;
 }
 .navbar.horizontal-menu .navbar-inner .navbar-brand {
   padding: 0 30px;

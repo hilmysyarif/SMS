@@ -21,7 +21,7 @@
 							</div>
 						</div>
 				<div class="panel-body">
-						 <form role="form" class="form-horizontal" method="post" action="">
+						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>exam/get_markssetup">
 												<div class="form-group">
 													<label class="col-sm-4 control-label" for="exam" >Exam</label>
 														<script type="text/javascript">
@@ -39,9 +39,11 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-1" name="">
+																<select class="form-control " id="s2example-1" name="examid">
 																	<option></option>
-																	<option  value="" >unit test 1st section A</option>
+																	<?php foreach($exam as $exam){ ?>
+																						<option  value="<?=$exam->ExamId?>-<?=$exam->SectionId?>" <?php if(empty($examid)==''){ echo (!empty($exam->SectionId==$examid) ? "selected" : ''); } ?> ><?=$exam->ExamName?> <?=$exam->ClassName?> <?=$exam->SectionName?></option>
+																								<?php  } ?>
 																
 																</select>
 															</div>	
@@ -64,9 +66,11 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-2" name="">
+																<select class="form-control " id="s2example-2" name="subjectid">
 																	<option></option>
-																	<option  value="" >Hindi</option>
+																	<?php foreach($subject as $subject){ ?>
+																						<option  value="<?=$subject->SubjectId?>" <?php if(empty($subjectid)==''){ echo (!empty($subject->SubjectId==$subjectid) ? "selected" : ''); } ?> ><?=$subject->SubjectName?> </option>
+																								<?php  } ?>
 																
 																</select>
 															</div>	
@@ -78,13 +82,14 @@
 				</div>
 			</div>
 	</div>
+	<?php if(isset($examid) && isset($subjectid)){?>
 	<div class="col-sm-8">
 					<div class="panel  panel-color panel-gray">
 						<div class="panel-heading">
-							<h3 class="panel-title">Unit Test</h3>
+							<h3 class="panel-title"><?=$exam_class_details[0]->ExamName?></h3>
 							<div class="panel-options">
-							<div class="label label-secondary">1st section A</div>
-							<div class="label label-danger">English</div>
+							<div class="label label-secondary"><?=$exam_class_details[0]->ClassName?> <?=$exam_class_details[0]->SectionName?></div>
+							<div class="label label-danger"><?=$exam_details[0]->SubjectName?></div>
 							<span class="print-icon"><i class="fa fa-print"></i></span>
 							
 								<a href="#" data-toggle="panel">
@@ -101,8 +106,8 @@
 											<thead>
 												<tr>
 													<th>Student</th>
-													<th>FAIL XYZZ</br>MM: 50</th>
-													<th>MM: 50</th>
+													<th><?=$exam_details[0]->ExamActivityName?></br>MM: <?=$exam_details[0]->MaximumMarks?></th>
+													<th>MM: <?=$exam_details[0]->MaximumMarks?></th>
 													<th>Grade</th>
 												
 												</tr>
@@ -110,7 +115,8 @@
 										 											
 											<tbody>
 												<tr>
-													<td>Ramesh F/n Shyam </br>8847956845</td>
+												<?php foreach($student_details as $student_details){ ?>
+													<td><?=$student_details->StudentName?></br><?=$student_details->Mobile?></td>
 													<td>
 														<div class="input-group spinner" data-step="1">
 															<span class="input-group-btn">
@@ -124,7 +130,7 @@
 													</td>
 													<td>0</td>
 													<td>E2</td>
-													
+												<?php } ?>
 												</tr>
 											</tbody>
 										</table>
@@ -133,10 +139,9 @@
 						</div>
 					</div>
 				</div>
-	
+	<?php } ?>
 </div>
 
 	
 	   
 	
-<?php //} ?>

@@ -973,7 +973,7 @@
 	    <!--Student registratioN body starts-->
 	   	<div class="row">
 				<!--student registration form-->
-				<div class="col-sm-6">
+				<div class="col-sm-4">
 					<div class="panel panel-color panel-gray">
 						<div class="panel-heading">
 							<h3 class="panel-title">Student Registration</h3>
@@ -1121,7 +1121,7 @@
 				</div>
 				<!--student registration form Ends-->
 				<!--student registration table-->
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 					<div class="panel panel-color panel-gray">
 						<div class="panel-heading">
 							<h3 class="panel-title">Registration List</h3>
