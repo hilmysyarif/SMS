@@ -17,9 +17,10 @@
 						</div>
 						<div class="panel-body">
 							
-							<form role="form" class="form-horizontal" action="<?=base_url();?>" method="post">
-							
-								
+							<form role="form" class="form-horizontal" action="<?=base_url();?>frontoffice/insert_call" method="post">
+							<?php if(isset($callid)){ ?>
+							<input type="hidden" name="callid" value="<?=$callid?>"/>
+							<?php } ?>
 								<div class="form-group-separator"></div>
 									<div class="row">	
 										<div class="form-group col-md-4">
@@ -40,11 +41,11 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-1" name="examid">
+																<select class="form-control " id="s2example-1" name="responseid">
 																	<option></option>
-																	<?php //foreach($exam as $exam){ ?>
-																						<option  value="<?php //=$exam->ExamId?>-<?=$exam->SectionId?>" <?php if(empty($examid)==''){ echo (!empty($exam->SectionId==$examid) ? "selected" : ''); } ?> ></option>
-																								<?php  //} ?>
+																	<?php  foreach($response as $response){ ?>
+																						<option  value="<?=$response->MasterEntryId?>" <?php if(empty($callid)==''){ echo (!empty($response->MasterEntryId==$update_call[0]->CallResponse) ? "selected" : ''); } ?> ><?=$response->MasterEntryValue?></option>
+																								<?php  } ?>
 																
 																</select>
 															</div>
@@ -54,7 +55,7 @@
 											<label class="col-sm-4 control-label" for="field-1">Mobile</label>
 											
 											<div class="col-sm-8 ">
-												<input type="text" class="form-control" id="field-1"  name="state" value="<?php        //=$school_info[0]->State?>">
+												<input type="text" class="form-control" id="field-1"  name="mobile" value="<?php echo (isset($update_call[0]->Mobile) ? $update_call[0]->Mobile : '');?>">
 											</div>
 										</div>
 										<div class="form-group col-md-5">
@@ -62,7 +63,7 @@
 											
 											<div class="col-sm-7">
 												<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="soft_date" value="<?php //=date("d-m-Y",isset($school_info[0]->SchoolStartDate))?>">
+														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="fod" value="<?php if(isset($update_call[0]->FollowUpDate)){echo date("d-m-Y H:i",$update_call[0]->FollowUpDate);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -77,7 +78,7 @@
 										<label class="col-sm-4 control-label" for="field-1">Name</label>
 										
 										<div class="col-sm-8">
-										<input type="text" class="form-control" id="field-1"  name="city" value="<?php //=$school_info[0]->City?>">
+										<input type="text" class="form-control" id="field-1"  name="name" value="<?php echo (isset($update_call[0]->Name) ? $update_call[0]->Name : '');?>">
 											
 										</div>
 									</div>
@@ -85,14 +86,14 @@
 											<label class="col-sm-4 control-label" for="field-1">Landline</label>
 											
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="field-1"  name="country" value="<?php //=$school_info[0]->Country?>">
+												<input type="text" class="form-control" id="field-1"  name="landline" value="<?php echo (isset($update_call[0]->Landline) ? $update_call[0]->Landline : '');?>">
 											</div>
 										</div>
 										<div class="form-group col-md-4">
 											<label class="col-sm-4 control-label" for="field-1">Response</label>
 											
 											<div class="col-sm-8">
-												<textarea class="form-control" id="field-1"  name="address"><?php //=$school_info[0]->SchoolAddress?></textarea>
+												<textarea class="form-control" id="field-1"  name="responsedetails"><?php echo (isset($update_call[0]->ResponseDetail) ? $update_call[0]->ResponseDetail : '');?></textarea>
 											</div>
 										</div>
 									</div>
@@ -103,7 +104,7 @@
 									
 										<div class="col-sm-8">
 											<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="soft_date" value="<?php //=date("d-m-Y",isset($school_info[0]->SchoolStartDate))?>">
+														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="doc" value="<?php if(isset($update_call[0]->DOC)){echo date("d-m-Y H:i",$update_call[0]->DOC);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -115,7 +116,7 @@
 											<label class="col-sm-4 control-label" for="field-1">Address</label>
 									
 										<div class="col-sm-8">
-											<textarea class="form-control" id="field-1"  name="address"><?php //=$school_info[0]->SchoolAddress?></textarea>
+											<textarea class="form-control" id="field-1"  name="address"><?php echo (isset($update_call[0]->Address) ? $update_call[0]->Address : '');?></textarea>
 										</div>
 										</div>
 										
@@ -123,7 +124,7 @@
 											<label class="col-sm-4 control-label" for="field-1">No Of Child</label>
 											
 											<div class="col-sm-7">
-												<input type="text" class="form-control" id="field-1"  name="registration" value="<?php //=$school_info[0]->RegistrationNo?>">
+												<input type="text" class="form-control" id="field-1"  name="nochild" value="<?php echo (isset($update_call[0]->NoOfChild) ? $update_call[0]->NoOfChild : '');?>">
 											</div>
 										</div>
 										
@@ -134,7 +135,7 @@
 										<div class="form-group-separator"></div>
 										<div class="form-group">
 									
-									<input type="submit" 
+									<input type="submit" name="add"
 									class="btn btn-info btn-single " value="Add">
 								</div>
 										
@@ -204,19 +205,19 @@
 													</tfoot>
 										
 													<tbody>
-													<?php //foreach($masterentry as $master){ ?>
+													<?php foreach($call_list as $call_list){ ?>
 														<tr>
-														<td>Ankit</td>
-														<td>5478547854</td>
-														<td>2 <?php //=$master->MasterEntryValue?></td>
-															<td>15-08-2015<?php //=$master->MasterEntryId?></td>
-															<td>15-09-2015<?php //=$master->MasterEntryName?><span class="label label-secondary"><?php //=$master->MasterEntryStatus?></span></td>
-															<td><a href="<?=base_url();?>master/modal/<?php //=$master->MasterEntryId?>"><i class="fa fa-edit"></a></td>
-															<td><a href="<?=base_url();?>master/modal/<?php //=$master->MasterEntryId?>"><i class="fa fa-edit"></a></i></td>
-															<td><a href="<?=base_url();?>master/modal/<?php //=$master->MasterEntryId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
+														<td><?=$call_list->Name?></td>
+														<td><?=$call_list->Mobile?></td>
+														<td><?=$call_list->NoOfChild?></td>
+															<td><?=date("d M Y,h:ia",$call_list->DOC)?></td>
+															<td><?=date("d M Y,h:ia",$call_list->FollowUpDate)?><span class="label label-secondary"></span></td>
+															<td><a href="<?=base_url();?>frontoffice/followup/<?=$call_list->CallId?>"><i class="fa fa-edit"></a></td>
+															<td><a href="<?=base_url();?>frontoffice/call/<?=$call_list->CallId?>"><i class="fa fa-edit"></a></i></td>
+															<td><a href="<?=base_url();?>master/modal/<?=$call_list->CallId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
 															
 														</tr>
-													<?php //} ?>
+													<?php } ?>
 												</tbody>
 										</table>
 									
