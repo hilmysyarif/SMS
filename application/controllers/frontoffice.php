@@ -22,7 +22,10 @@ class Frontoffice extends CI_Controller {
 	 }
 	 /*Front office call view load start................................................................................................*/
 function call()
-	{
+	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Call', base_url().'frontoffice/call');
+
 		//$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -34,7 +37,10 @@ function call()
 	
 /*Front office Another call view load start................................................................................................*/
 function ocall()
-	{
+	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Other Call', base_url().'frontoffice/ocall');
+
 		//$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -47,6 +53,10 @@ function ocall()
 /*Front office Enquiry view load start................................................................................................*/
 function enquiry()
 	{
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Enquiry', base_url().'frontoffice/enquiry');
+
+		
 		//$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -59,6 +69,8 @@ function enquiry()
 /*Front office Complaint view load start................................................................................................*/
 function complaint()
 	{
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Complaint', base_url().'frontoffice/complaint');
 		//$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -71,6 +83,8 @@ function complaint()
 /*Front office Visitor view load start................................................................................................*/
 function visitor()
 	{
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Visitor Book', base_url().'frontoffice/visitor');
 		//$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);

@@ -26,6 +26,8 @@ class Attendences extends CI_Controller {
 	/*school management Staff Attendence View Load.....................................................................................................*/
 	function staffattendence()
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Staff Attendance', base_url().'attendence/staffattendence');
 		$this->data['get_staff']=$this->attendence_model->get_staff();
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -200,6 +202,8 @@ class Attendences extends CI_Controller {
 	/*school management staff Attendance report View Load.............................................................................................................*/
 	function staffattendancereport()
 	{
+				$this->breadcrumb->clear();
+				$this->breadcrumb->add_crumb('Staff Attendance Report', base_url().'attendence/staffattendancereport');
 				$Sessions=explode("-",$this->currentsession[0]->CurrentSession);
 				$StartingYear=$Sessions[0];
 				$EndingYear=$Sessions[1];
@@ -263,7 +267,8 @@ class Attendences extends CI_Controller {
 	
 	/*school management Student Attendence View Load.............................................................................................................*/
 	function studentattendence($sectionid=false)
-	{	
+	{	$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Student Attendance', base_url().'attendence/studentattendence');
 		if($sectionid !=''){
 			$this->data['sectionid']=$sectionid;
 			$this->data['students']=$this->attendence_model->get_student($this->currentsession[0]->CurrentSession,$sectionid);
@@ -395,7 +400,8 @@ class Attendences extends CI_Controller {
 	
 	/*school management Student Attendance report View Load.............................................................................................................*/
 	function studentattendancereport()
-	{	
+	{		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Student Attendance Report', base_url().'attendence/studentattendancereport');
 				$Sessions=explode("-",$this->currentsession[0]->CurrentSession);
 				$StartingYear=$Sessions[0];
 				$EndingYear=$Sessions[1];

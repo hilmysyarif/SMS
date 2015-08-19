@@ -336,7 +336,8 @@
 			<div class="page-title">
 				
 				<div class="title-env">
-					<h1 class="title">Dashboard
+		
+					<h1 class="title"><strong><?php echo($this->breadcrumb->output());?></strong>
 					<span class="title pull-right"> Current Session : <?=$this->currentsession[0]->CurrentSession?></span> </h1>
 				</div>
 				

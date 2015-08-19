@@ -23,6 +23,8 @@ class Transaction extends CI_Controller {
 /*transaction Expense view load start................................................................................................*/
 function expense()
 	{
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Expense Account', base_url().'transaction/expense');
 		//$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -35,6 +37,8 @@ function expense()
 /*transaction Income view load start................................................................................................*/
 function income()
 	{
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Income Account', base_url().'transaction/income');
 		//$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);

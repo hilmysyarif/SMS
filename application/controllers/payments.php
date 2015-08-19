@@ -20,7 +20,9 @@ class Payments extends CI_Controller {
 	 
 /*school management Fee Payment View Load.........................................................................................*/
 	function payment($admissionid=false)
-	{
+	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Payment', base_url().'payments/payment');
 		if($admissionid !=''){
 			$this->data['admission']=$admissionid;
 			$get_fee_details=$this->data['get_fee_details']=$this->payment_model->get_fee_structure($this->currentsession[0]->CurrentSession,$admissionid);

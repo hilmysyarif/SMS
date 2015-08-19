@@ -161,6 +161,8 @@ function CGPA($Grade)
 /*school management Scholastic Grade Load....................................................................................*/
 	function markssetup($examid=false,$subjectid=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Marks Setup', base_url().'exam/markssetup');
 		
 		if($examid && $subjectid !=''){
 			$this->data['examid']=$examid;
@@ -196,7 +198,9 @@ function CGPA($Grade)
 	
 	/*school management Scholastic Grade Load.............................................................................................................*/
 	function scmarkssetup()
-	{
+	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Co Scholastic Marks Setup', base_url().'exam/scmarkssetup');
 		$this->data['exam'] = $this->exam_model->get_scmark_exam($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -208,7 +212,8 @@ function CGPA($Grade)
 	
 	/*school management ExamReport Load.............................................................................................................*/
 	function examreport()
-	{
+	{	$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Exam Report', base_url().'exam/examreport');
 		$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);

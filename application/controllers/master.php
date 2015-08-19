@@ -23,7 +23,9 @@ class Master extends CI_Controller {
 
 /*school management generalsetting start........................................................................*/	
 	function generalsetting()
-	{	
+	{
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('General Setting', base_url().'master/generalsetting');
 		$this->data['school_info'] = $this->master_model->get_info('generalsetting');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -74,6 +76,8 @@ class Master extends CI_Controller {
 /*school management master entry start...........................................................................*/	
 	function masterentry($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Master Entry', base_url().'master/masterentry');
 		if($id){
 		$filter=array('MasterEntryId'=>$this->data['id']=$id);
 		$this->data['masterentry_update'] = $this->master_model->get_info('masterentry',$filter);
@@ -117,6 +121,8 @@ class Master extends CI_Controller {
 /*school management manageuser start........................................................................*/	
 	function manageuser($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Manage User', base_url().'master/manageuser');
 		if($id){
 		$filter=array('UserId'=>$this->data['id']=$id);
 		$this->data['user_update'] = $this->master_model->get_info('user',$filter);
@@ -174,7 +180,9 @@ class Master extends CI_Controller {
 
 /*school management manageaccount start........................................................................*/	
 	function manageaccount($id=false)
-	{	
+	{
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Manage Accounts', base_url().'master/manageaccount');
 		if($id){
 		$filter=array('AccountId'=>$this->data['id']=$id);
 		$this->data['acc_update'] = $this->master_model->get_info('accounts',$filter);
@@ -219,6 +227,8 @@ class Master extends CI_Controller {
 /*school management manageClass start........................................................................*/	
 	function manageclass($type=false,$id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Manage Class And Section', base_url().'master/manageclass');
 		if($id){
 		if($type=="class")
 		{	
@@ -295,6 +305,8 @@ class Master extends CI_Controller {
 /*school management manageSubject start........................................................................*/	
 	function managesubject($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Manage Subjects', base_url().'master/managesubject');
 		if($id){
 		$filter=array('SubjectId'=>$this->data['id']=$id);
 		$this->data['sub_update'] = $this->master_model->get_info('subject',$filter);
@@ -341,6 +353,8 @@ class Master extends CI_Controller {
 /*school management manageExam start........................................................................*/	
 	function manageexam($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Manage Exams', base_url().'master/manageexam');
 		if($id){
 			$filter=array('ExamId'=>$this->data['id']=$id);
 			$this->data['exam_update'] = $this->master_model->get_info('exam',$filter);
@@ -386,6 +400,8 @@ class Master extends CI_Controller {
 /*school management manageSCAREA start........................................................................*/	
 	function managescarea($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Manage Scholastic Co-Scholastic Area', base_url().'master/managescarea');
 		if($id){
 			$filter=array('SCAreaId'=>$this->data['id']=$id);
 			$this->data['scarea_update'] = $this->master_model->get_info('scarea',$filter);
@@ -437,6 +453,8 @@ class Master extends CI_Controller {
 /*school management manageSCIndicator start......................................................................*/	
 	function managescindicator($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Manage Scholastic Co-Scholastic Indicators', base_url().'master/managescindicator');
 		if($id){
 			$filter=array('SCIndicatorId'=>$this->data['id']=$id);
 			$this->data['scindicator_update'] = $this->master_model->get_info('scindicator',$filter);
@@ -483,6 +501,8 @@ class Master extends CI_Controller {
 /*school management manageFee start......................................................................*/	
 	function managefee($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Manage Fee', base_url().'master/managefee');
 		if($id){
 			$filter=array('FeeId'=>$this->data['id']=$id);
 			$this->data['fee_update'] = $this->master_model->get_info('fee',$filter);
@@ -545,6 +565,8 @@ class Master extends CI_Controller {
 /*school management SalaryHead start......................................................................*/	
 	function salaryhead($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Salary Head', base_url().'master/salaryhead');
 		if($id){
 			$filter=array('SalaryHeadId'=>$this->data['id']=$id);
 			$this->data['salaryhead_update'] = $this->master_model->get_info('salaryhead',$filter);
@@ -593,6 +615,8 @@ class Master extends CI_Controller {
 /*school management SalaryStructure start......................................................................*/	
 	function structuretemplate($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Salary Structure Template', base_url().'master/structuretemplate');
 		if($id){
 			$filter=array('SalaryStructureId'=>$this->data['id']=$id);
 			$this->data['salarystructure_update'] = $this->master_model->get_info('salarystructure',$filter);
@@ -640,6 +664,8 @@ class Master extends CI_Controller {
 /*school management manageschoolmaterial start...................................................................*/	
 	function manageschoolmaterial($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Manage School Material', base_url().'master/manageschoolmaterial');
 		if($id){
 			$filter=array('SchoolMaterialId'=>$this->data['id']=$id);
 			$this->data['material_update'] = $this->master_model->get_info('schoolmaterial',$filter);
@@ -690,6 +716,8 @@ class Master extends CI_Controller {
 /*school management manageLocation start.........................................................................*/	
 	function managelocation($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Manage Location', base_url().'master/managelocation');
 		if($id){
 			$filter=array('LocationId'=>$this->data['id']=$id);
 			$this->data['location_update'] = $this->master_model->get_info('location',$filter);
@@ -736,6 +764,8 @@ class Master extends CI_Controller {
 /*school management manageHeaderAndFooter start..................................................................*/	
 	function manageheaderandfooter($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Manage Header & Footer', base_url().'master/manageheaderandfooter');
 		if($id){
 			$filter=array('HeaderId'=>$this->data['id']=$id);
 			$this->data['header_update'] = $this->master_model->get_info('header',$filter);
@@ -780,6 +810,8 @@ class Master extends CI_Controller {
 /*school management printoption start..................................................................*/	
 	function printoption($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Print Option', base_url().'master/printoption');
 		if($id){
 			$filter=array('PrintOptionId'=>$this->data['id']=$id);
 			$this->data['printoption_update'] = $this->master_model->get_info('printoption',$filter);
@@ -829,6 +861,8 @@ class Master extends CI_Controller {
 /*school management permission start..................................................................*/	
 	function permission($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Permission', base_url().'master/permission');
 		if($this->data['user_type']=$this->input->post('user_type')){
 			$filter=array('PageNameId !='=>'');
 			$this->data['page_name'] = $this->master_model->get_info('pagename',$filter);

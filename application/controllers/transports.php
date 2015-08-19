@@ -23,6 +23,8 @@ class Transports extends CI_Controller {
 /*Transports transport view load start................................................................................................*/
 function transport()
 	{
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Transport Reading And Fuel', base_url().'transports/transport');
 		//$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -35,6 +37,8 @@ function transport()
 /*Transports route view load start................................................................................................*/
 function route()
 	{
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Transport Route', base_url().'transports/route');
 		//$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);

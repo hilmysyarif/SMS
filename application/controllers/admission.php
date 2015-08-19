@@ -23,6 +23,8 @@ class Admission extends CI_Controller {
 	 /*school management registration controller start*/	
 	function registration($id=false)
 	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Student Registration', base_url().'admission/registration');
 		if($id){
 		$filter = array('RegistrationId'=>$id);
 		
@@ -240,6 +242,8 @@ class Admission extends CI_Controller {
 	/*school management admission View Load.............................................................................................................*/
 	function admission_student()
 	{ 
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Student Admission', base_url().'admission/admission_student');
 		if($this->input->post('id')){
 			if($this->input->post('student')){
 				$info=explode(',',$this->input->post('student'));
@@ -280,7 +284,9 @@ class Admission extends CI_Controller {
 	
 	/*school management Promotion View Load.............................................................................................................*/
 	function promotion()
-	{
+	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Student Promotion', base_url().'admission/promotion');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -292,6 +298,8 @@ class Admission extends CI_Controller {
 	/*school management Updatefee View Load.............................................................................................................*/
 	function updatefee($sectionid=false,$admissionid=false)
 	{
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Update Fee', base_url().'admission/updatefee');
 		if($sectionid && $admissionid !=''){
 			$this->data['section']=$sectionid;
 			$this->data['admission']=$admissionid;
@@ -335,7 +343,10 @@ class Admission extends CI_Controller {
 
 	/*school management Admission Report View Load.............................................................................................................*/
 	function admissionreport($section=false)
-	{	$status='';
+	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Admission Report', base_url().'admission/admissionreport');
+		$status='';
 		$section='';
 			if($this->input->post('class')){
 			$section=$this->data['section']=$this->input->post('class');
