@@ -22,8 +22,10 @@
 							</div>
 						</div>
 						<div class="panel-body">
-						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>">
-						  
+						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>frontoffice/insert_visitor">
+						  <?php if(isset($visitorid)){ ?>
+							<input type="hidden" name="visitorid" value="<?=$visitorid?>"/>
+							<?php } ?>
 						 <div class="form-group">
 									<label class="col-sm-4 control-label" for="student_name" >Purpose</label>
 									<script type="text/javascript">
@@ -41,13 +43,11 @@
 										});
 									</script>
 									<div class="col-sm-8">
-									<select class="form-control col-sm-8" id="s3example-1" name="gender">
+									<select class="form-control col-sm-8" id="s3example-1" name="purpose">
 										<option></option>
-										<?php foreach ($gender as $gen){ //print_r($key);die;?>
-										<?php if($gen->MasterEntryName=='Gender') { ?>
-										
-										<option   value="<?=$gen->MasterEntryId?>" ><?=$gen->MasterEntryValue?></option>
-										<?php } ?><?php } ?>
+										<?php foreach ($purpose as $purpose){ ?>
+										<option   value="<?=$purpose->MasterEntryId?>" <?php if(empty($visitorid)==''){ echo (!empty($visitor_up[0]->Purpose==$purpose->MasterEntryId) ? "selected" : ''); } ?>><?=$purpose->MasterEntryValue?></option>
+										<?php } ?>
 										
 									</select>
 									</div>
@@ -57,7 +57,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="father_name">Name</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="name" value="" id="" placeholder="Name">
+										<input type="text" class="form-control" name="name" value="<?php echo (isset($visitor_up[0]->Name) ? $visitor_up[0]->Name : '');?>" id="" placeholder="Name">
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -65,7 +65,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="mother_name">Mobile</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="mobile" data-mask="phone" value="" id="" placeholder="Mobile">
+										<input type="text" class="form-control" name="mobile"  value="<?php echo (isset($visitor_up[0]->Mobile) ? $visitor_up[0]->Mobile : '');?>" id="" placeholder="Mobile">
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -73,7 +73,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="mobile">No Of People</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="mobile" >
+										<input type="text" class="form-control" name="nopeople" value="<?php echo (isset($visitor_up[0]->NoOfPeople) ? $visitor_up[0]->NoOfPeople : '');?>">
 									</div>
 								</div>
 								
@@ -86,25 +86,41 @@
 										
 										<div class="date-and-time">
 										
-											<input type="text" name="DOR" class="form-control datepicker" data-show="true" data-format="D, dd MM yyyy">
-											<input type="text" name="DOR"  class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text" name="doi" value="<?php if(isset($visitor_up[0]->InDateTime)){echo date("d-m-Y H:i",$visitor_up[0]->InDateTime);}?>" class="form-control datepicker" data-show="true" data-format="dd MM yyyy">
+											<input type="text" name="toi"  value="" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 								</div>
 								<div class="form-group-separator">
 								</div>
 									
+									<?php if(isset($visitorid)){ ?>
+							<div class="form-group">
+									<label class="control-label col-sm-4">Out Date Time</label>
+									<div class="col-sm-8">
+										
+										<div class="date-and-time">
+										
+											<input type="text" name="doo" value="<?php if($visitor_up[0]->OutDateTime){echo date("d-m-Y H:i",$visitor_up[0]->OutDateTime);}?>" class="form-control datepicker" data-show="true" data-format="dd MM yyyy">
+											<input type="text" name="too"  value="" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+										</div>
+									</div>
+								</div>
+								<div class="form-group-separator">
+								</div>
+							<?php } ?>
+									
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="DOR">Description</label>
 									<div class="col-sm-8">
-									<textarea class="form-control"></textarea>
+									<textarea class="form-control" name="description"><?php echo (isset($visitor_up[0]->Description) ? $visitor_up[0]->Description : '');?></textarea>
 									</div>
 								</div>
 								<div class="form-group-separator">
 								</div>
 								<div class="form-group">
 								       
-								        <input  type="submit" name="submit" value="Add" class="btn btn btn-info btn-single pull-right"/>   
+								        <input  type="submit" name="add" value="Add" class="btn btn btn-info btn-single pull-right"/>   
 								
 								</div>	
 						</form>
@@ -145,7 +161,7 @@
 								<th>People</th>
 								<th>In Time</th>
 								<th>Out Time</th>
-								<th><i class="el-cancel-circled"></i></th>
+								<th><i class="fa fa-edit"></i></th>
 								<th><i class="el-cancel-circled"></i></th>
 							</tr>
 						</thead>
@@ -159,25 +175,25 @@
 								<th>People</th>
 								<th>In Time</th>
 								<th>Out Time</th>
-								<th><i class="el-cancel-circled"></i></th>
+								<th><i class="fa fa-edit"></i></th>
 								<th><i class="el-cancel-circled"></i></th>
 							</tr>
 						</tfoot>
 					 
 						<tbody>
-						<?php //foreach($regis as $rg){?>
+						<?php foreach($visitor as $visitor){?>
 							<tr>
-								<td>nidhi</td>
-								<td>7854875478</td>
-								<td>Enquiry</td>
-								<td>Admission Enquiry</td>
-								<td>3</td>
-								<td>15-8-2015 2:50 pm</td>
-								<td>15-8-2015 3:30 pm</td>
-								<td><i class="el-cancel-circled"></i></td>
+								<td><?=$visitor->Name?></td>
+								<td><?=$visitor->Mobile?></td>
+								<td><?=$visitor->MasterEntryValue?></td>
+								<td><?=$visitor->Description?></td>
+								<td><?=$visitor->NoOfPeople?></td>
+								<td><?php if($visitor->InDateTime){ echo date("d M Y,h:ia",$visitor->InDateTime);}?></td>
+								<td><?php if($visitor->OutDateTime){ echo date("d M Y,h:ia",$visitor->OutDateTime);}?></td>
+								<td><a href="<?=base_url();?>frontoffice/visitor/<?=$visitor->VisitorBookId?>"><i class="fa fa-edit"></i></td>
 								<td><i class="el-cancel-circled"></i></td>
 							</tr>
-							<?php //} ?>
+							<?php } ?>
 						</tbody>
 					</table>
 						</div>

@@ -17,8 +17,10 @@
 						</div>
 						<div class="panel-body">
 							
-							<form role="form" class="form-horizontal" action="<?=base_url();?>" method="post">
-							
+							<form role="form" class="form-horizontal" action="<?=base_url();?>frontoffice/insert_ocall" method="post">
+							<?php if(isset($ocallid)){ ?>
+							<input type="hidden" name="ocallid" value="<?=$ocallid?>"/>
+							<?php } ?>
 								
 								<div class="form-group-separator"></div>
 									<div class="row">	
@@ -26,7 +28,7 @@
 										<label class="col-sm-4 control-label" for="field-1">Name</label>
 										
 										<div class="col-sm-8">
-										<input type="text" class="form-control" id="field-1"  name="city" value="<?php //=$school_info[0]->City?>">
+										<input type="text" class="form-control" id="field-1"  name="name" value="<?php echo (isset($ocall_up[0]->Name) ? $ocall_up[0]->Name : '');?>">
 											
 										</div>
 									</div>
@@ -35,7 +37,7 @@
 											<label class="col-sm-4 control-label" for="field-1">Mobile</label>
 											
 											<div class="col-sm-8 ">
-												<input type="text" class="form-control" id="field-1"  name="state" value="<?php        //=$school_info[0]->State?>">
+												<input type="text" class="form-control" id="field-1"  name="mobile" value="<?php echo (isset($ocall_up[0]->Mobile) ? $ocall_up[0]->Mobile : '');?>">
 											</div>
 										</div>
 										<div class="form-group col-md-5">
@@ -43,7 +45,7 @@
 											
 											<div class="col-sm-7">
 												<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="soft_date" value="<?php //=date("d-m-Y",isset($school_info[0]->SchoolStartDate))?>">
+														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="fod" value="<?php if(isset($ocall_up[0]->FollowUpDate)){echo date("d-m-Y H:i",$ocall_up[0]->FollowUpDate);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -60,7 +62,7 @@
 									
 										<div class="col-sm-8">
 											<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="soft_date" value="<?php //=date("d-m-Y",isset($school_info[0]->SchoolStartDate))?>">
+														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="doc" value="<?php if(isset($ocall_up[0]->DOC)){echo date("d-m-Y H:i",$ocall_up[0]->DOC);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -73,14 +75,14 @@
 											<label class="col-sm-4 control-label" for="field-1">Landline</label>
 											
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="field-1"  name="country" value="<?php //=$school_info[0]->Country?>">
+												<input type="text" class="form-control" id="field-1"  name="landline" value="<?php echo (isset($ocall_up[0]->Landline) ? $ocall_up[0]->Landline : '');?>">
 											</div>
 										</div>
 										<div class="form-group col-md-4">
 											<label class="col-sm-4 control-label" for="field-1">Remarks</label>
 											
 											<div class="col-sm-8">
-												<textarea class="form-control" id="field-1"  name="address"><?php //=$school_info[0]->SchoolAddress?></textarea>
+												<textarea class="form-control" id="field-1"  name="remarks"><?php echo (isset($ocall_up[0]->Remarks) ? $ocall_up[0]->Remarks : '');?></textarea>
 											</div>
 										</div>
 									</div>
@@ -90,13 +92,13 @@
 											<label class="col-sm-4 control-label" for="field-1">Call Duration</label>
 											
 											<div class="col-sm-7">
-												<input type="text" class="form-control" id="field-1"  name="registration" value="<?php //=$school_info[0]->RegistrationNo?>">
+												<input type="text" class="form-control" id="field-1"  name="call_duration" value="<?php echo (isset($ocall_up[0]->CallDuration) ? $ocall_up[0]->CallDuration : '');?>">
 											</div>
 										</div>
 										
 										<div class="form-group ">
 									
-									<input type="submit" class="btn btn-info btn-single " value="Add">
+									<input type="submit" name="add" class="btn btn-info btn-single " value="Add">
 								</div>
 										</div>
 										
@@ -142,9 +144,9 @@
 															<th>Date Of Call</th>
 															<th>Duration</th>
 															<th>Follow Up</th>
+															<th><i class="fa fa-phone"></i></th>
 															<th><i class="fa fa-edit"></i></th>
-															<th><i class="fa fa-edit"></i></th>
-															<th><i class="fa fa-file-text-o"></th>
+															<th><i class="el-cancel-circled"></th>
 															
 														</tr>
 													</thead>
@@ -157,28 +159,28 @@
 															<th>Date Of Call</th>
 															<th>Duration</th>
 															<th>Follow Up</th>
-															<th><i class="fa fa-edit"></i></th>
+															<th><i class="fa fa-phone"></i></th>
 															<th><a href="#"><i class="fa fa-edit"></i></a></th>
-															<th><a href="#"><i class="fa fa-file-text-o"></a></th>
+															<th><a href="#"><i class="el-cancel-circled"></a></th>
 															
 														</tr>
 													</tfoot>
 										
 													<tbody>
-													<?php //foreach($masterentry as $master){ ?>
+													<?php foreach($ocall as $ocall){ ?>
 														<tr>
-														<td>Ankit</td>
-														<td>5478547854</td>
-														<td>......</td>
-														<td>15-08-2015 <?php //=$master->MasterEntryValue?></td>
-															<td>2 Min<?php //=$master->MasterEntryId?></td>
-															<td>15-09-2015<?php //=$master->MasterEntryName?><span class="label label-secondary"><?php //=$master->MasterEntryStatus?></span></td>
-															<td><a href="<?=base_url();?>master/modal/<?php //=$master->MasterEntryId?>"><i class="fa fa-edit"></a></td>
-															<td><a href="<?=base_url();?>master/modal/<?php //=$master->MasterEntryId?>"><i class="fa fa-edit"></a></i></td>
-															<td><a href="<?=base_url();?>master/modal/<?php //=$master->MasterEntryId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
+														<td><?=$ocall->Name?></td>
+														<td><?=$ocall->Mobile?></td>
+														<td><?=$ocall->Remarks?></td>
+														<td><?=date("d M Y,h:ia",$ocall->DOC)?></td>
+														<td><?=$ocall->CallDuration?></td>
+														<td><?=date("d M Y,h:ia",$ocall->FollowUpDate)?><span class="label label-secondary"></span></td>
+														<td><a href="<?=base_url();?>frontoffice/followup_other/<?=$ocall->OCallId?>"><i class="fa fa-phone"></a></td>
+														<td><a href="<?=base_url();?>frontoffice/ocall/<?=$ocall->OCallId?>"><i class="fa fa-edit"></a></i></td>
+														<td><a href="<?=base_url();?><?=$ocall->OCallId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="el-cancel-circled"></i></a></td>
 															
 														</tr>
-													<?php //} ?>
+													<?php } ?>
 												</tbody>
 										</table>
 									

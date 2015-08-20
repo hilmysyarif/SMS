@@ -26,7 +26,7 @@ class Mhome extends CI_Model {
 	/*Get current session start*/
     function get_session()
     {
-    	$query=$this->db->query("SELECT CurrentSession from generalsetting ");
+    	$query=$this->db->query("SELECT CurrentSession,SchoolName,SchoolStartDate from generalsetting ");
 		//echo $this->db->last_query();die;
 		return $query->Result();
 	

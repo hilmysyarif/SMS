@@ -61,6 +61,89 @@ class Frontoffice_model extends CI_Model
 			return $qry->Result();	
 	}
 	
+	function get_ocall()
+	{
+			$qry = $this->db->query("select * from ocalling where ocalling.CallStatus='Active' order by DOC");	
+			return $qry->Result();	
+	}
+	
+	function get_ocall_up($CId=false)
+	{
+			$qry = $this->db->query("select * from ocalling where OCallId='$CId' and CallStatus='Active'");	
+			return $qry->Result();	
+	}
+	
+	function get_followup_other($FollowUpUniqueId=false,$table=false)
+	{
+			$qry = $this->db->query("select * from $table where OCallId='$FollowUpUniqueId'");	
+			return $qry->Result();	
+	}
+	
+	function get_enquiry()
+	{
+			$qry = $this->db->query("select * from enquiry,masterentry where enquiry.EnquiryResponse=masterentry.MasterEntryId and EnquiryStatus='Active' order by EnquiryDate");	
+			return $qry->Result();	
+	}
+	
+	function get_enquiry_up($EId=false)
+	{
+			$qry = $this->db->query("select * from enquiry where EnquiryId='$EId' and EnquiryStatus='Active'");	
+			return $qry->Result();	
+	}
+	
+	function get_enquiry_type()
+	{
+			$qry = $this->db->query("select MasterEntryId,MasterEntryValue from masterentry where MasterEntryName='EnquiryType' ");	
+			return $qry->Result();	
+	}
+	
+	function get_reference()
+	{
+			$qry = $this->db->query("select MasterEntryId,MasterEntryValue from masterentry where MasterEntryName='Reference' ");	
+			return $qry->Result();	
+	}
+	
+	function get_followup_enquiry($FollowUpUniqueId=false,$table=false)
+	{
+			$qry = $this->db->query("select * from $table where EnquiryId='$FollowUpUniqueId'");	
+			return $qry->Result();	
+	}
+	
+	function get_complaint()
+	{
+			$qry = $this->db->query("select * from complaint,masterentry where complaint.ComplaintType=masterentry.MasterEntryId and complaint.ComplaintStatus!='Deleted' order by DOC");	
+			return $qry->Result();	
+	}
+	
+	function get_complaint_up($CId=false)
+	{
+			$qry = $this->db->query("select * from complaint where ComplaintId='$CId' and ComplaintStatus!='Deleted'");	
+			return $qry->Result();	
+	}
+	
+	function get_complaint_type()
+	{
+			$qry = $this->db->query("select MasterEntryId,MasterEntryValue from masterentry where MasterEntryName='ComplaintType' ");	
+			return $qry->Result();	
+	}
+	
+	function get_visitor()
+	{
+			$qry = $this->db->query("select * from visitorbook,masterentry where visitorbook.Purpose=masterentry.MasterEntryId and visitorbook.VisitorBookStatus!='Deleted' order by InDateTime");	
+			return $qry->Result();	
+	}
+	
+	function get_visitor_up($Id=false)
+	{
+			$qry = $this->db->query("select * from visitorbook where VisitorBookId='$Id' and VisitorBookStatus!='Deleted'");	
+			return $qry->Result();	
+	}
+	
+	function get_purpose()
+	{
+			$qry = $this->db->query("select MasterEntryId,MasterEntryValue from masterentry where MasterEntryName='GuestVistingPurpose' ");	
+			return $qry->Result();	
+	}
    
   
    

@@ -344,5 +344,11 @@
 				
 					
 			</div>
-	
+	<?php  if($this->session->flashdata('set_session')) { ?>
+<div class="row">
+<div class="alert alert-success">
+<strong><?=$this->session->flashdata('set_session')?></strong> 
+</div>
+</div>
+<?php }?>
 		<!-- User Info, Notifications and Menu Bar -->

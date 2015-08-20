@@ -38,7 +38,7 @@
 												
 												<div class="col-sm-8">
 													<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="soft_date" value="<?=date("d-m-Y",isset($school_info[0]->SchoolStartDate))?>">
+														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="soft_date" value="<?php if(isset($school_info[0]->SchoolStartDate)){echo date("d-m-Y H:i",$school_info[0]->SchoolStartDate);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -158,7 +158,7 @@
 											<label class="col-sm-4 control-label" for="field-1">Date of Establishment</label>
 											
 											<div class="col-sm-7">
-												<input type="text" class="form-control datepicker" id="field-1"  name="doe" readonly value="<?=date("d-m-Y",isset($school_info[0]->DateOfEstablishment))?>">
+												<input type="text" class="form-control datepicker" id="field-1"  name="doe" readonly value="<?php if(isset($school_info[0]->DateOfEstablishment)){echo date("d-m-Y H:i",$school_info[0]->DateOfEstablishment);}?>">
 											</div>
 										</div>
 										</div>

@@ -17,8 +17,10 @@
 						</div>
 						<div class="panel-body">
 							
-							<form role="form" class="form-horizontal" action="<?=base_url();?>" method="post">
-							
+							<form role="form" class="form-horizontal" action="<?=base_url();?>frontoffice/insert_complaint" method="post">
+							<?php if(isset($complaintid)){ ?>
+							<input type="hidden" name="complaintid" value="<?=$complaintid?>"/>
+							<?php } ?>
 							<div class="row">
 									<div class="form-group col-md-4">
 												<label class="control-label col-sm-4">Complaint  Type</label>
@@ -38,11 +40,11 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-1" name="examid">
+																<select class="form-control " id="s2example-1" name="complaint_type">
 																	<option></option>
-																	<?php //foreach($exam as $exam){ ?>
-																						<option  value="<?php //=$exam->ExamId?>-<?php //=$exam->SectionId?>" <?php //if(empty($examid)==''){ echo (!empty($exam->SectionId==$examid) ? "selected" : ''); } ?> ></option>
-																								<?php  //} ?>
+																	<?php foreach($complaint_type as $complaint_type){ ?>
+																						<option  value="<?=$complaint_type->MasterEntryId?>" <?php if(empty($complaintid)==''){ echo (!empty($complaint_up[0]->ComplaintType==$complaint_type->MasterEntryId) ? "selected" : ''); } ?> ><?=$complaint_type->MasterEntryValue?></option>
+																								<?php  } ?>
 																
 																</select>
 															</div>
@@ -52,7 +54,7 @@
 										
 											<label class=" control-label col-sm-4" for="field-1">Description</label>
 										<div class="col-sm-8">
-											<textarea class="form-control " rows=""  name="content"></textarea>
+											<textarea class="form-control " rows=""  name="description"><?php echo (isset($complaint_up[0]->Description) ? $complaint_up[0]->Description : '');?></textarea>
 										</div>
 										
 									</div>
@@ -61,7 +63,7 @@
 										
 											<label class=" control-label col-sm-4" for="field-1">Action</label>
 										<div class="col-sm-8">
-											<textarea class="form-control " rows=""  name="content"></textarea>
+											<textarea class="form-control " rows=""  name="action"><?php echo (isset($complaint_up[0]->Action) ? $complaint_up[0]->Action : '');?></textarea>
 										</div>
 									</div>	
 									
@@ -71,7 +73,7 @@
 											<label class="control-label col-sm-4" for="field-1">Mobile</label>
 											
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="field-1"  name="country" value="<?php //=$school_info[0]->Country?>">
+												<input type="text" class="form-control" id="field-1"  name="mobile" value="<?php echo (isset($complaint_up[0]->Mobile) ? $complaint_up[0]->Mobile : '');?>">
 											</div>
 										</div>
 										
@@ -79,16 +81,16 @@
 											<label class="control-label col-sm-4" for="field-1">Name</label>
 											
 											<div class="col-sm-8 ">
-												<input type="text" class="form-control" id="field-1"  name="state" value="<?php        //=$school_info[0]->State?>">
+												<input type="text" class="form-control" id="field-1"  name="name" value="<?php echo (isset($complaint_up[0]->Name) ? $complaint_up[0]->Name : '');?>">
 											</div>
 										</div>
 										
 										<div class="form-group col-md-4">
-											<label class="control-label col-sm-4" for="field-1">Date Of Enquiry</label>
+											<label class="control-label col-sm-4" for="field-1">Date Of Complaint</label>
 									
 										<div class="col-sm-8">
 											<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="soft_date" value="<?php //=date("d-m-Y",isset($school_info[0]->SchoolStartDate))?>">
+														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="doc" value="<?php if(isset($complaint_up[0]->DOC)){echo date("d-m-Y H:i",$complaint_up[0]->DOC);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -100,7 +102,7 @@
 										
 										<div class="form-group ">
 											
-										<input type="submit" class="btn btn-info btn-single " value="Add"/>
+										<input type="submit" class="btn btn-info btn-single " name="add" value="Add"/>
 											
 										</div>
 										
@@ -150,7 +152,7 @@
 															<th>Description</th>
 															<th>Action</th>
 															<th><i class="fa fa-edit"></i></th>
-															<th><i class="fa fa-file-text-o"></th>
+															<th><i class="el-cancel-circled"></th>
 															
 														</tr>
 													</thead>
@@ -164,25 +166,25 @@
 															<th>Description</th>
 															<th>Action</th>
 															<th><a href="#"><i class="fa fa-edit"></i></a></th>
-															<th><a href="#"><i class="fa fa-file-text-o"></a></th>
+															<th><a href="#"><i class="el-cancel-circled"></a></th>
 															
 														</tr>
 													</tfoot>
 										
 													<tbody>
-													<?php //foreach($masterentry as $master){ ?>
+													<?php foreach($complaint as $complaint){ ?>
 														<tr>
-														<td>Ankit <span class="label label-danger">Fresh</span></td>
-														<td>5478547854</td>
-														<td>Faculty<?php //=$master->MasterEntryValue?></td>
-															<td>15-08-2015<?php //=$master->MasterEntryId?></td>
-															<td>xyz<?php //=$master->MasterEntryId?></td>
-															<td>abc</td>
-															<td><a href="<?=base_url();?>master/modal/<?php //=$master->MasterEntryId?>"><i class="fa fa-edit"></a></i></td>
-															<td><a href="<?=base_url();?>master/modal/<?php //=$master->MasterEntryId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
+														<td><?=$complaint->Name?> <span class="label label-danger"><?=$complaint->ComplaintStatus?></span></td>
+														<td><?=$complaint->Mobile?></td>
+														<td><?=$complaint->MasterEntryValue?></td>
+														<td><?=date("d M Y,h:ia",$complaint->DOC)?></td>
+														<td><?=$complaint->Description?></td>
+														<td><?=$complaint->Action?></td>
+														<td><a href="<?=base_url();?>frontoffice/complaint/<?=$complaint->ComplaintId?>"><i class="fa fa-edit"></a></i></td>
+														<td><a href="<?=base_url();?>master/modal/<?=$complaint->ComplaintId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="el-cancel-circled"></i></a></td>
 															
 														</tr>
-													<?php //} ?>
+													<?php } ?>
 												</tbody>
 										</table>
 									

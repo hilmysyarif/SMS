@@ -6,7 +6,7 @@
 			<!-- Navbar Brand -->
 			<div class="navbar-brand">
 				<a href="javascript:;" class="logo">
-				<p class="center  text-blac">School Management</p>
+				<p class="center  text-blac"><?php  if(!empty($this->currentsession)){ print_r($this->currentsession[0]->SchoolName);}else{ echo "School Management";} ?></p>
 					<!--<img src="<?=base_url();?>assets/images/logo-white-bg@2x.png" width="80" alt="" class="hidden-xs" />
 					<img src="<?=base_url();?>assets/images/logo@2x.png" width="80" alt="" class="visible-xs" />-->
 				</a>
@@ -142,16 +142,39 @@
 								<span class="title"><?php  if(!empty($this->currentsession)){ print_r($this->currentsession[0]->CurrentSession);}else{ echo "Please Select Session";} ?></span><span class="caret"></span>
 							</a> 
 					<ul>
+					<?php 
+					if(!empty($this->currentsession[0]->CurrentSession)){
+					$DDMMYYYY=date("d-m-Y");
+					$SCHOOLSTARTDATE=$this->currentsession[0]->SchoolStartDate;
+					$SCHOOLSTARTYEAR=date("Y",$SCHOOLSTARTDATE);
+					$SCHOOLSTARTPREVIOUSYEAR=$SCHOOLSTARTYEAR-1;
+					$SCHOOLSTARTNEXTYEAR=$SCHOOLSTARTYEAR+1;
+					$SCHOOLSTARTMONTH=date("n",$SCHOOLSTARTDATE);
+					if($SCHOOLSTARTMONTH<=3)
+					$SCHOOLSTARTSESSION="$SCHOOLSTARTPREVIOUSYEAR-$SCHOOLSTARTYEAR";
+					else
+					$SCHOOLSTARTSESSION="$SCHOOLSTARTYEAR-$SCHOOLSTARTNEXTYEAR";
+					$SCHOOLSESSION[0]=$SCHOOLSTARTSESSION;
+					$CURRENTYEAR=date("Y",strtotime($DDMMYYYY))+1;
+					$CURRENTMONTH=date("n",strtotime($DDMMYYYY));			
+					$k0=1;
+					for($i0=$SCHOOLSTARTYEAR;$i0<=($CURRENTYEAR);$i0++)
+					{
+						$j0=$i0+1;
+						$p0="$i0-$j0";
+						$SCHOOLSESSION[$k0]=$p0;
+						$k0++;
+					}
+					$SCHOOLSESSION=array_unique($SCHOOLSESSION);
+					 foreach($SCHOOLSESSION as $SCHOOLSESSION){?>
 						<li>
-							<a href="javascript:;">
-								<span class="title">2015-2016</span>
+							<a href="<?=base_url();?>master/set_session/<?=$SCHOOLSESSION?>">
+								<span class="title"><?=$SCHOOLSESSION?></span>
 							</a>
 						</li>
-						<li>
-							<a href="<?=base_url();?>dashboard/session/2016-2017">
-								<span class="title">2016-2017</span>
-							</a>
-						</li>
+					<?php }}else{
+						
+					}?>
 						
 					</ul>
 				</li>

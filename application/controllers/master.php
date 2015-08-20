@@ -20,6 +20,20 @@ class Master extends CI_Controller {
 		$currentsession=$this->currentsession = $this->session->userdata('currentsession');
 	 }
 	 
+	 /*school management Set School Session start........................................*/	
+	function set_session($session=false)
+	{
+		if($session){
+			$data=array('CurrentSession'=>$session);		
+			$this->master_model->set_session('generalsetting',$data);
+			$this->session->set_flashdata('set_session', 'Session set as '.$session.' successfully!!');
+			header('Location: ' . $_SERVER['HTTP_REFERER']);
+		}else{
+		redirect('dashboard'); 
+		}
+	}
+/*school management Set School Session End..........................................................*/
+	 
 
 /*school management generalsetting start........................................................................*/	
 	function generalsetting()
@@ -38,8 +52,9 @@ class Master extends CI_Controller {
 /*school management generalsetting school details insert and update start........................................*/	
 	function gs_insrt()
 	{
-		$data=array(	'SchoolName'=>$this->input->post('school_name'),
-						'SchoolStartDate'=>$this->input->post('soft_date'),
+		
+		if($this->input->post('id')){
+			$data=array('SchoolName'=>$this->input->post('school_name'),
 						'State'=>$this->input->post('state'),
 						'Board'=>$this->input->post('board'),
 						'SchoolAddress'=>$this->input->post('address'),
@@ -53,11 +68,10 @@ class Master extends CI_Controller {
 						'AffiliationNo'=>$this->input->post('affi_no'),
 						'PIN'=>$this->input->post('pin'),
 						'Landline'=>$this->input->post('landline'),
-						'DateOfEstablishment'=>$this->input->post('doe'),
+						'DateOfEstablishment'=>strtotime($this->input->post('doe')),
 						'Email'=>$this->input->post('email'),
 						'Fax'=>$this->input->post('fax')
 						);		
-		if($this->input->post('id')){
 				$filter=array('Id'=>$this->input->post('id'));
 				$this->master_model->insert_gen_setting('generalsetting',$data,$filter);
 				$this->session->set_flashdata('message_type', 'success');        
@@ -65,6 +79,25 @@ class Master extends CI_Controller {
 		} 
 		else
 		{
+			$data=array('SchoolName'=>$this->input->post('school_name'),
+						'SchoolStartDate'=>strtotime($this->input->post('soft_date')),
+						'State'=>$this->input->post('state'),
+						'Board'=>$this->input->post('board'),
+						'SchoolAddress'=>$this->input->post('address'),
+						'Country'=>$this->input->post('country'),
+						'AffiliatedBy'=>$this->input->post('affiliated'),
+						'City'=>$this->input->post('city'),
+						'Mobile'=>$this->input->post('mobile'),
+						'RegistrationNo'=>$this->input->post('registration'),
+						'District'=>$this->input->post('district'),
+						'AlternateMobile'=>$this->input->post('alt_mobile'),
+						'AffiliationNo'=>$this->input->post('affi_no'),
+						'PIN'=>$this->input->post('pin'),
+						'Landline'=>$this->input->post('landline'),
+						'DateOfEstablishment'=>strtotime($this->input->post('doe')),
+						'Email'=>$this->input->post('email'),
+						'Fax'=>$this->input->post('fax')
+						);		
 				$this->master_model->insert_gen_setting('generalsetting',$data);
 				$this->session->set_flashdata('message_type', 'success');        
                 $this->session->set_flashdata('message', $this->config->item("generelsetting").' Setting Save Successfully');

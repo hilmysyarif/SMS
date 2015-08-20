@@ -22,7 +22,7 @@
 							</div>
 						</div>
 						<div class="panel-body">
-						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>frontoffice/insert_followup">
+						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>frontoffice/<?php if(isset($ocall)){ echo"insert_followup_other"; }elseif(isset($enquiry)){echo"insert_followup_enquiry";}else{ echo"insert_followup";}?>">
 						  <?php if(isset($upfollowupid)){?>
 						  <input type="hidden" name="upfollowupid" value="<?=$up_followup_details[0]->FollowUpId?>"/>
 						  <?php } ?>
@@ -112,7 +112,7 @@
 								<th>Remarks</th>
 								<th>Date Of Follow Up</th>
 								<th>Next Follow Up</th>
-								<th><i class="el-cancel-circled"></i></th>
+								<th><i class="fa fa-edit"></i></th>
 								<th><i class="el-cancel-circled"></i></th>
 							</tr>
 						</thead>
@@ -123,7 +123,7 @@
 								<th>Remarks</th>
 								<th>Date Of Follow Up</th>
 								<th>Next Follow Up</th>
-								<th><i class="el-cancel-circled"></i></th>
+								<th><i class="fa fa-edit"></i></th>
 								<th><i class="el-cancel-circled"></i></th>
 							</tr>
 						</tfoot>
@@ -136,7 +136,7 @@
 								<td><?=$followup_details_show->Remarks?></td>
 								<td><?=date("d-m-Y H:i",$followup_details_show->DOF)?></td>
 								<td><?=date("d-m-Y H:i",$followup_details_show->NextFollowUpDate)?></td>
-								<td><a href="<?=base_url();?>frontoffice/followup/<?php if(isset($followupid)){ echo $followupid[0];}?>/<?=$followup_details_show->FollowUpId?>"><i class="el-cancel-circled"></i></a></td>
+								<td><a href="<?=base_url();?>frontoffice/<?php if(isset($ocall)){ echo"followup_other"; }elseif(isset($enquiry)){echo"followup_enquiry";}else{ echo"followup";}?>/<?php if(isset($followupid)){ echo $followupid[0];}?>/<?=$followup_details_show->FollowUpId?>"><i class="fa fa-edit"></i></a></td>
 								<td><i class="el-cancel-circled"></i></td>
 							</tr>
 							<?php } ?>

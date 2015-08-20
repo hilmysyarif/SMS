@@ -49,10 +49,10 @@ class Frontoffice extends CI_Controller {
 			
 			$data=array('CallResponse'=>$this->input->post('responseid'),
 			'Mobile'=>$this->input->post('mobile'),
-			'FollowUpDate'=>date("d-m-Y H:i",$this->input->post('fod')),
+			'FollowUpDate'=>strtotime($this->input->post('fod')),
 			'Name'=>$this->input->post('name'),
 			'Landline'=>$this->input->post('landline'),
-			'DOC'=>date("d-m-Y H:i",$this->input->post('doc')),
+			'DOC'=>strtotime($this->input->post('doc')),
 			'ResponseDetail'=>$this->input->post('responsedetails'),
 			'Address'=>$this->input->post('address'),
 			'NoOfChild'=>$this->input->post('nochild'),
@@ -74,33 +74,33 @@ class Frontoffice extends CI_Controller {
 	 /*Front office Insert And Update call  End................................................................................................*/
 	
 	/*Front office followup call view load start................................................................................................*/
-function followup($followupid=false,$upfollowupid=false)
+	function followup($callid=false,$upfollowupid=false)
 	{	
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Follow Up', base_url().'frontoffice/followup');
-		$this->data['followupid']=$followupid;
+		$this->data['followupid']=$callid;
 		if($upfollowupid){
 			$this->data['upfollowupid']=$upfollowupid;
 			$this->data['up_followup_details'] = $this->frontoffice_model->up_followup_details($upfollowupid);
 		}
-		$this->data['followup_details'] = $this->frontoffice_model->get_followup($followupid,'calling');
-		$this->data['followup_details_show'] = $this->frontoffice_model->get_followup_details($followupid,'Call');
+		$this->data['followup_details'] = $this->frontoffice_model->get_followup($callid,'calling');
+		$this->data['followup_details_show'] = $this->frontoffice_model->get_followup_details($callid,'Call');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
 		$this->load->view('followup',$this->data);
 		$this->parser->parse('include/footer',$this->data);
 	}
-/*Front office followup call view load End................................................................................................*/
+	/*Front office followup call view load End................................................................................................*/
 
-/*Front office Insert And Update Followup  start................................................................................................*/
+	/*Front office Insert And Update Followup  start................................................................................................*/
 	function insert_followup()
 	{	
 		if($this->input->post('add')){
 			
 			$data=array('FollowUpUniqueId'=>$this->input->post('followupid'),
-			'DOF'=>date("d-m-Y H:i",$this->input->post('dof')),
-			'NextFollowUpDate'=>date("d-m-Y H:i",$this->input->post('ndof')),
+			'DOF'=>strtotime($this->input->post('dof')),
+			'NextFollowUpDate'=>strtotime($this->input->post('ndof')),
 			'ResponseDetail'=>$this->input->post('response'),
 			'Remarks'=>$this->input->post('remark'),
 			'FollowUpType'=>'Call',
@@ -122,64 +122,319 @@ function followup($followupid=false,$upfollowupid=false)
 	 /*Front office Insert And Update Followup  End................................................................................................*/
 	
 	
-/*Front office Another call view load start................................................................................................*/
-function ocall()
+	/*Front office Another call view load start................................................................................................*/
+	function ocall($ocallid=false)
 	{	
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Other Call', base_url().'frontoffice/ocall');
-
-		//$this->data['class'] = $this->frontoffice_model->get_report_class($this->currentsession[0]->CurrentSession);
+		
+		if($ocallid !=''){
+			$this->data['ocallid']=$ocallid;
+			$this->data['ocall_up'] = $this->frontoffice_model->get_ocall_up($ocallid);	
+		}
+		
+		$this->data['ocall'] = $this->frontoffice_model->get_ocall();
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
 		$this->load->view('ocall',$this->data);
 		$this->parser->parse('include/footer',$this->data);
 	}
-/*Front office Another call view load End................................................................................................*/
+	/*Front office Another call view load End................................................................................................*/
 
-/*Front office Enquiry view load start................................................................................................*/
-function enquiry()
+	/*Front office Insert And Update Other call  start......................................................................................*/
+	function insert_ocall()
+	{	
+		if($this->input->post('add')){
+			
+			$data=array('Name'=>$this->input->post('name'),
+			'Mobile'=>$this->input->post('mobile'),
+			'FollowUpDate'=>strtotime($this->input->post('fod')),
+			'Landline'=>$this->input->post('landline'),
+			'DOC'=>strtotime($this->input->post('doc')),
+			'Remarks'=>$this->input->post('remarks'),
+			'CallDuration'=>$this->input->post('call_duration'),
+			'CallStatus'=>'Active');
+			
+		if($this->input->post('ocallid')){
+			$filter=array('OCallId'=>$this->input->post('ocallid'));
+			$this->frontoffice_model->insert_call($data,'ocalling',$filter);
+			$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("ocall").' Other Call Updated Successfully!!');
+		}else{
+		$this->frontoffice_model->insert_call($data,'ocalling');	
+		$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("ocall").' Other Call Added Successfully!!');
+		}
+		}
+		redirect('frontoffice/ocall');
+	}
+	 /*Front office Insert And Update Other call  End....................................................................................*/
+	
+	/*Front office followup Other call view load start...........................................................................................*/
+	function followup_other($callid=false,$upfollowupid=false)
+	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Follow Up Other Call', base_url().'frontoffice/followup_other');
+		$this->data['followupid']=$callid;
+		$this->data['ocall']="insert_followup_other";
+		if($upfollowupid){
+			$this->data['upfollowupid']=$upfollowupid;
+			$this->data['up_followup_details'] = $this->frontoffice_model->up_followup_details($upfollowupid);
+		}
+		$this->data['followup_details'] = $this->frontoffice_model->get_followup_other($callid,'ocalling');
+		$this->data['followup_details_show'] = $this->frontoffice_model->get_followup_details($callid,'OCall');
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('followup',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*Front office followup Other call view load End.........................................................................................*/
+	
+	/*Front office Insert And Update Followup Other Call start................................................................................................*/
+	function insert_followup_other()
+	{	
+		if($this->input->post('add')){
+			
+			$data=array('FollowUpUniqueId'=>$this->input->post('followupid'),
+			'DOF'=>strtotime($this->input->post('dof')),
+			'NextFollowUpDate'=>strtotime($this->input->post('ndof')),
+			'ResponseDetail'=>$this->input->post('response'),
+			'Remarks'=>$this->input->post('remark'),
+			'FollowUpType'=>'OCall',
+			'FollowUpStatus'=>'Active');
+			
+		if($this->input->post('upfollowupid')){
+			$filter=array('FollowUpId'=>$this->input->post('upfollowupid'));
+			$this->frontoffice_model->insert_call($data,'followup',$filter);
+			$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("followup").' Follow Up Updated Successfully!!');
+		}else{
+		$this->frontoffice_model->insert_call($data,'followup');	
+		$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("followup").' Follow Up Added Successfully!!');
+		}
+		}
+		redirect('frontoffice/followup_other/'.$this->input->post('followupid'));
+	}
+	 /*Front office Insert And Update Followup Other Call End................................................................................................*/
+	
+	
+	/*Front office Enquiry view load start................................................................................................*/
+	function enquiry($enquiryid=false)
 	{
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Enquiry', base_url().'frontoffice/enquiry');
 
-		
-		//$this->data['class'] = $this->frontoffice_model->get_report_class($this->currentsession[0]->CurrentSession);
+		if($enquiryid !=''){
+			$this->data['EnquiryId']=$enquiryid;
+			$this->data['enquiry_up'] = $this->frontoffice_model->get_enquiry_up($enquiryid);	
+		}
+		$this->data['enquiry_type'] = $this->frontoffice_model->get_enquiry_type();
+		$this->data['reference'] = $this->frontoffice_model->get_reference();
+		$this->data['response'] = $this->frontoffice_model->get_response();
+		$this->data['enquiry'] = $this->frontoffice_model->get_enquiry();
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
 		$this->load->view('enquiry',$this->data);
 		$this->parser->parse('include/footer',$this->data);
 	}
-/*Front office Enquiry view load End................................................................................................*/
+	/*Front office Enquiry view load End................................................................................................*/
 	
-/*Front office Complaint view load start................................................................................................*/
-function complaint()
+	/*Front office Insert And Update Enquiry  start......................................................................................*/
+	function insert_enquiry()
+	{	
+		if($this->input->post('add')){
+			
+			$data=array('EnquiryType'=>$this->input->post('enquiry_type'),
+			'Name'=>$this->input->post('name'),
+			'Address'=>$this->input->post('address'),
+			'EnquiryDate'=>strtotime($this->input->post('doe')),
+			'Reference'=>$this->input->post('reference'),
+			'Mobile'=>$this->input->post('mobile'),
+			'ResponseDetail'=>$this->input->post('responsedetail'),
+			'EnquiryResponse'=>$this->input->post('response'),
+			'AlternateMobile'=>$this->input->post('altmobile'),
+			'NoOfChild'=>$this->input->post('nochild'),
+			'EnquiryStatus'=>'Active');
+			
+		if($this->input->post('enquiryid')){
+			$filter=array('EnquiryId'=>$this->input->post('enquiryid'));
+			$this->frontoffice_model->insert_call($data,'enquiry',$filter);
+			$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("enquiry").' Enquiry Updated Successfully!!');
+		}else{
+		$this->frontoffice_model->insert_call($data,'enquiry');	
+		$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("enquiry").' Enquiry Added Successfully!!');
+		}
+		}
+		redirect('frontoffice/enquiry');
+	}
+	 /*Front office Insert And Update Enquiry  End....................................................................................*/
+	
+	/*Front office followup Enquiry view load start...........................................................................................*/
+	function followup_enquiry($callid=false,$upfollowupid=false)
+	{	
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Follow Up Enquiry', base_url().'frontoffice/followup_enquiry');
+		$this->data['followupid']=$callid;
+		$this->data['enquiry']="insert_followup_enquiry";
+		if($upfollowupid){
+			$this->data['upfollowupid']=$upfollowupid;
+			$this->data['up_followup_details'] = $this->frontoffice_model->up_followup_details($upfollowupid);
+		}
+		$this->data['followup_details'] = $this->frontoffice_model->get_followup_enquiry($callid,'enquiry');
+		$this->data['followup_details_show'] = $this->frontoffice_model->get_followup_details($callid,'Enquiry');
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('followup',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+	/*Front office followup Enquiry view load End.........................................................................................*/
+	
+	/*Front office Insert And Update Followup Enquiry start................................................................................................*/
+	function insert_followup_enquiry()
+	{	
+		if($this->input->post('add')){
+			
+			$data=array('FollowUpUniqueId'=>$this->input->post('followupid'),
+			'DOF'=>strtotime($this->input->post('dof')),
+			'NextFollowUpDate'=>strtotime($this->input->post('ndof')),
+			'ResponseDetail'=>$this->input->post('response'),
+			'Remarks'=>$this->input->post('remark'),
+			'FollowUpType'=>'Enquiry',
+			'FollowUpStatus'=>'Active');
+			
+		if($this->input->post('upfollowupid')){
+			$filter=array('FollowUpId'=>$this->input->post('upfollowupid'));
+			$this->frontoffice_model->insert_call($data,'followup',$filter);
+			$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("followup_enquiry").' Follow Up Updated Successfully!!');
+		}else{
+		$this->frontoffice_model->insert_call($data,'followup');	
+		$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("followup_enquiry").' Follow Up Added Successfully!!');
+		}
+		}
+		redirect('frontoffice/followup_enquiry/'.$this->input->post('followupid'));
+	}
+	 /*Front office Insert And Update Followup Enquiry End................................................................................................*/
+	
+	
+	/*Front office Complaint view load start................................................................................................*/
+	function complaint($complaintid=false)
 	{
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Complaint', base_url().'frontoffice/complaint');
-		//$this->data['class'] = $this->frontoffice_model->get_report_class($this->currentsession[0]->CurrentSession);
+		if($complaintid !=''){
+			$this->data['complaintid']=$complaintid;
+			$this->data['complaint_up'] = $this->frontoffice_model->get_complaint_up($complaintid);	
+		}
+		
+		$this->data['complaint_type'] = $this->frontoffice_model->get_complaint_type();
+		$this->data['complaint'] = $this->frontoffice_model->get_complaint();
+		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
 		$this->load->view('complaint',$this->data);
 		$this->parser->parse('include/footer',$this->data);
 	}
-/*Front office Complaint view load End................................................................................................*/
+	/*Front office Complaint view load End................................................................................................*/
 
-/*Front office Visitor view load start................................................................................................*/
-function visitor()
+	/*Front office Insert And Update complaint  start......................................................................................*/
+	function insert_complaint()
+	{	
+		if($this->input->post('add')){
+			
+			$data=array('ComplaintType'=>$this->input->post('complaint_type'),
+			'Description'=>$this->input->post('description'),
+			'Action'=>$this->input->post('action'),
+			'DOC'=>strtotime($this->input->post('doc')),
+			'Mobile'=>$this->input->post('mobile'),
+			'Name'=>$this->input->post('name'),
+			'DOEUsername'=>$this->info['usermailid'],
+			'ComplaintStatus'=>'Fresh');
+			
+		if($this->input->post('complaintid')){
+			$filter=array('ComplaintId'=>$this->input->post('complaintid'));
+			$this->frontoffice_model->insert_call($data,'complaint',$filter);
+			$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("complaint").' Complaint Updated Successfully!!');
+		}else{
+		$this->frontoffice_model->insert_call($data,'complaint');	
+		$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("complaint").' Complaint Added Successfully!!');
+		}
+		}
+		redirect('frontoffice/complaint');
+	}
+	 /*Front office Insert And Update complaint  End....................................................................................*/
+	
+	
+	/*Front office Visitor view load start................................................................................................*/
+	function visitor($visitorid=false)
 	{
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Visitor Book', base_url().'frontoffice/visitor');
-		//$this->data['class'] = $this->frontoffice_model->get_report_class($this->currentsession[0]->CurrentSession);
+		
+		if($visitorid !=''){
+			$this->data['visitorid']=$visitorid;
+			$this->data['visitor_up'] = $this->frontoffice_model->get_visitor_up($visitorid);	
+		}
+		
+		$this->data['purpose'] = $this->frontoffice_model->get_purpose();
+		$this->data['visitor'] = $this->frontoffice_model->get_visitor();
+		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
 		$this->load->view('visitor',$this->data);
 		$this->parser->parse('include/footer',$this->data);
 	}
-/*Front office Visitor view load End................................................................................................*/
-		
+	/*Front office Visitor view load End................................................................................................*/
+	
+	/*Front office Insert And Update visitor  start......................................................................................*/
+	function insert_visitor()
+	{	
+		if($this->input->post('add')){
+			
+			$data=array('Purpose'=>$this->input->post('purpose'),
+			'Name`'=>$this->input->post('name'),
+			'Mobile'=>$this->input->post('mobile'),
+			'InDateTime'=>strtotime($this->input->post('doi')),
+			'NoOfPeople'=>$this->input->post('nopeople'),
+			'Description'=>$this->input->post('description'),
+			'DOEUsername'=>$this->info['usermailid'],
+			'VisitorBookStatus'=>'Fresh');
+			
+		if($this->input->post('visitorid')){
+			$data=array('Purpose'=>$this->input->post('purpose'),
+			'Name`'=>$this->input->post('name'),
+			'Mobile'=>$this->input->post('mobile'),
+			'InDateTime'=>strtotime($this->input->post('doi')),
+			'OutDateTime'=>strtotime($this->input->post('doo')),
+			'NoOfPeople'=>$this->input->post('nopeople'),
+			'Description'=>$this->input->post('description'),
+			'DOEUsername'=>$this->info['usermailid'],
+			'VisitorBookStatus'=>'Fresh');
+			$filter=array('VisitorBookId'=>$this->input->post('visitorid'));
+			$this->frontoffice_model->insert_call($data,'visitorbook',$filter);
+			$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("visitor").' Visitor Updated Successfully!!');
+		}else{
+		$this->frontoffice_model->insert_call($data,'visitorbook');	
+		$this->session->set_flashdata('message_type', 'success');
+		$this->session->set_flashdata('message', $this->config->item("visitor").' Visitor Added Successfully!!');
+		}
+		}
+		redirect('frontoffice/visitor');
+	}
+	 /*Front office Insert And Update visitor  End....................................................................................*/
+	
 	
 }

@@ -16,6 +16,17 @@ class Master_model extends CI_Model
 		//Load database connection
 		$this->load->database();
     }
+	
+	/* function for insert_gen_setting...............................................................................  */
+	function set_session($table=false,$data=false)
+   {
+	     if($data){
+			$this->db->update($table,$data);
+			return true;
+		}   return false;
+		 }
+  /* function for insert_gen_setting end.........................................................................  */ 
+  
     
 /* function show school info start...............................................................................  */
  function get_info($table=false,$filter=false)
