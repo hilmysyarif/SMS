@@ -27,6 +27,9 @@ class Master extends CI_Controller {
 			$data=array('CurrentSession'=>$session);		
 			$this->master_model->set_session('generalsetting',$data);
 			$this->session->set_flashdata('set_session', 'Session set as '.$session.' successfully!!');
+			$currentsession = $this->mhome->get_session();
+			$this->session->set_userdata('currentsession',$currentsession);
+			$this->currentsession = $this->session->userdata('currentsession');
 			header('Location: ' . $_SERVER['HTTP_REFERER']);
 		}else{
 		redirect('dashboard'); 

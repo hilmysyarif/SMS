@@ -66,22 +66,22 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="<?=base_url();?>Admission/registration">
+								<a href="<?=base_url();?>admission/registration">
 									<span class="title">Registration</span>
 								</a>
 							</li>
 							<li >
-								<a href="<?=base_url();?>Admission/admission_student">
+								<a href="<?=base_url();?>admission/admission_student">
 									<span class="title">Admission</span>
 								</a>
 							</li>
 							<li>
-								<a href="<?=base_url();?>Admission/promotion">
+								<a href="<?=base_url();?>admission/promotion">
 									<span class="title">Promotion</span>
 								</a>
 							</li>
 							<li>
-								<a href="<?=base_url();?>Admission/updatefee">
+								<a href="<?=base_url();?>admission/updatefee">
 									<span class="title">Update Fee</span>
 								</a>
 							</li>
@@ -93,7 +93,7 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="<?=base_url();?>Admission/admissionreport">
+								<a href="<?=base_url();?>admission/admissionreport">
 									<span class="title">Admission Report</span>
 								</a>
 							</li>
@@ -103,7 +103,7 @@
 						</ul>
 					</li>
 					<li>
-					<a href="<?=base_url();?>Payments/payment">
+					<a href="<?=base_url();?>payments/payment">
 							<i class="fa fa-money"></i>	
 							<span class="title">Fee Payment</span>
 					</a>
@@ -133,12 +133,12 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="<?=base_url();?>Attendences/staffattendence">
+								<a href="<?=base_url();?>attendences/staffattendence">
 									<span class="title">Staff Attendance</span>
 								</a>
 							</li>
 							<li>
-								<a href="<?=base_url();?>Attendences/studentattendence">
+								<a href="<?=base_url();?>attendences/studentattendence">
 									<span class="title">Student Attendance</span>
 								</a>
 							</li>
@@ -149,12 +149,12 @@
 								</a>
 						<ul>
 							<li class="active">
-								<a href="<?=base_url();?>Attendences/staffattendancereport">
+								<a href="<?=base_url();?>attendences/staffattendancereport">
 									<span class="title">Staff Attendance</span>
 								</a>
 							</li>
 							<li>
-								<a href="<?=base_url();?>Attendences/studentattendancereport">
+								<a href="<?=base_url();?>attendences/studentattendancereport">
 									<span class="title">Student Attendance</span>
 								</a>
 							</li>
@@ -188,12 +188,12 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="<?=base_url();?>Exam/markssetup">
+								<a href="<?=base_url();?>exam/markssetup">
 									<span class="title">Scholastic Grade</span>
 								</a>
 							</li>
 							<li>
-								<a href="<?=base_url();?>Exam/scmarkssetup">
+								<a href="<?=base_url();?>exam/scmarkssetup">
 									<span class="title">Co Scholastic Grade</span>
 								</a>
 							</li>
@@ -204,7 +204,7 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="<?=base_url();?>Exam/examreport">
+								<a href="<?=base_url();?>exam/examreport">
 									<span class="title">ExamReport</span>
 								</a>
 							</li>
@@ -213,7 +213,7 @@
 					</li>
 						</ul>
 					</li>
-					<li><a href="<?=base_url();?>Managestaff/managestaff">
+					<li><a href="<?=base_url();?>managestaffs/managestaff">
 						<i class="fa fa-users"></i>
 									<span class="title">Manage Staff</span>
 								</a>
@@ -345,9 +345,9 @@
 					
 			</div>
 	<?php  if($this->session->flashdata('set_session')) { ?>
-<div class="row">
-<div class="alert alert-success">
-<strong><?=$this->session->flashdata('set_session')?></strong> 
+<div class="row" >
+<div class="alert alert-success" >
+<strong><?=$this->session->flashdata('set_session')?></strong> <?php echo"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>";?>
 </div>
 </div>
 <?php }?>
