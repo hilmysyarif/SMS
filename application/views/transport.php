@@ -219,7 +219,7 @@
 									</div>
 								</div>
 						<div class="panel-body">
-								
+								<div class="table-responsive">	
 								<table class="table table-bordered table-striped" id="example-4">
 									<thead>
 										<tr>
@@ -236,11 +236,12 @@
 										<tr>
 											<td>Bus<?php //=$get_transaction->TransactionId?></td>
 											<td>mp 04 0005</td>
-											<td><i class="fa fa-print"></i></td>
+											<td><i class="fa fa-edit"></i></td>
 										</tr>
 										<?php  //} ?>
 									</tbody>
 								</table>
+						</div>
 						</div>
 					</div>
 					</div>
@@ -328,7 +329,7 @@
 																			<th>Quantity</th>
 																			<th>Rate</th>
 																			<th>Date</th>
-																			<th><i class="fa fa-times"></i></th>
+																			<th><i class="fa fa-edit"></i></th>
 																			<th><i class="fa fa-times"></i></th>
 																		</tr>
 																	</thead>
@@ -342,7 +343,7 @@
 																			<td>10 L</td>
 																			<td>50/per L</td>
 																			<td>20 august 2015</td>
-																			<td><i class="fa fa-times"></i></td>
+																			<td><i class="ffa fa-edit"></i></td>
 																			<td><i class="fa fa-times"></i></td>
 																		</tr>
 																		<?php  //} ?>
@@ -432,7 +433,7 @@
 																			<th>Number</th>
 																			<th>Reading</th>
 																			<th>Date</th>
-																			<th><i class="fa fa-times"></i></th>
+																			<th><i class="fa fa-edit"></i></th>
 																			<th><i class="fa fa-times"></i></th>
 																		</tr>
 																	</thead>
@@ -444,7 +445,7 @@
 																			<td>mp 04 ca 2545</td>
 																			<td>54</td>
 																			<td>20 august 2015</td>
-																			<td><i class="fa fa-times"></i></td>
+																			<td><i class="fa fa-edit"></i></td>
 																			<td><i class="fa fa-times"></i></td>
 																		</tr>
 																		<?php  //} ?>

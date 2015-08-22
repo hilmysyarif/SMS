@@ -17,7 +17,7 @@ class Utilities extends CI_Controller {
 	function get_balance()
 	{
 		$CI = & get_instance();
-		$query=$CI->db->query("SELECT AccountBalance from `accounts` ");
+		$query=$CI->db->query("SELECT SUM(AccountBalance+OpeningBalance) as totalamount,AccountName from `accounts` ");
 		return $query->Result();
 	}
 	

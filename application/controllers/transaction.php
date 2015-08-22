@@ -26,7 +26,7 @@ class Transaction extends CI_Controller {
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Expense Account', base_url().'transaction/expense');
 		
-		$this->data['for'] = $this->Transaction_model->get_for();
+		$this->data['for'] = $this->Transaction_model->get_for('ExpenseAccount');
 		$this->data['supplier'] = $this->Transaction_model->get_supplier();
 		$this->data['account'] = $this->Transaction_model->get_account();
 		$this->data['expense'] = $this->Transaction_model->get_expense();
@@ -135,8 +135,6 @@ class Transaction extends CI_Controller {
 		$this->Transaction_model->insert($data1,'transaction');
 		if($Payment=="Yes")
 		{
-			//$filter1=array('AccountId'=>$Account);
-		//	$data3=array('AccountBalance'=>'AccountBalance-'.$AmountPaid);
 			$this->Transaction_model->update_account($AmountPaid,$Account);
 		}
 		$this->session->set_flashdata('message_type', 'success');
@@ -227,12 +225,8 @@ class Transaction extends CI_Controller {
 		
 		$this->Transaction_model->insert($data1,'transaction');
 		
-		//$filter1=array('AccountId'=>$Account);
-		//$data3=array('AccountBalance'=>'AccountBalance'-$AmountPaid);
 		$this->Transaction_model->update_account($AmountPaid,$Account);
 		
-		//$filter4=array('ExpenseId'=>$ExpenseId);
-		//$data4=array('AmountPaid'=>'AmountPaid'+$AmountPaid);
 		$this->Transaction_model->update_expense($AmountPaid,$ExpenseId);
 		
 		$this->session->set_flashdata('message_type', 'success');
@@ -249,7 +243,11 @@ class Transaction extends CI_Controller {
 	{
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Income Account', base_url().'transaction/income');
-		//$this->data['class'] = $this->Transaction_model->get_report_class($this->currentsession[0]->CurrentSession);
+		
+		$this->data['for'] = $this->Transaction_model->get_for('IncomeAccount');
+		$this->data['account'] = $this->Transaction_model->get_account();
+		$this->data['income'] = $this->Transaction_model->get_income();
+		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -258,6 +256,42 @@ class Transaction extends CI_Controller {
 	}
 	/*transaction Income view load End................................................................................................*/
 
+	
+	/*transaction Insert And Update Income  start................................................................................................*/
+	function insert_income()
+	{	
+		if($this->input->post('add')){
+			if($this->input->post('account') && $this->input->post('amount')){
+				
+			$Date=date("Y-m-d");
+			$Date=strtotime($Date);
+			
+			$data=array('Username'=>$this->info['usermailid'],
+						'TransactionAmount'=>$this->input->post('amount'),
+						'TransactionType'=>'1',
+						'TransactionFrom'=>$this->input->post('account'),
+						'TransactionHead'=>'Income',
+						'TransactionHeadId'=>$this->input->post('for'),
+						'TransactionRemarks'=>$this->input->post('payment_remark'),
+						'TransactionDate'=>strtotime($this->input->post('toi')),
+						'TransactionDOE'=>$Date,
+						'TransactionStatus'=>'Active');
+			
+			
+			$this->Transaction_model->insert($data,'transaction');	
+			$this->Transaction_model->update_account_income($this->input->post('amount'),$this->input->post('account'));
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("income").' Income Added Successfully!!');
+			}else{
+				$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("income").' Income Added Fail!!');
+			}
+			
+		}
+		redirect('transaction/income');
+	}
+	 /*transaction Insert And Update Income  End................................................................................................*/
+	
 	
 		
 	

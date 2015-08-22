@@ -5389,6 +5389,9 @@ blockquote small {
   position: relative;
   border-bottom: 1px solid #eeeeee;
   color: #2c2e2f;
+  /*    word-break: break-all; */
+  /*  white-space: pre; */
+}
 }
 .table > thead > tr > td:after,
 .table > thead > tr > th:after {
@@ -5407,6 +5410,7 @@ blockquote small {
 .table > tfoot > tr > th {
   border-top: 0;
   border-bottom: 1px solid #eeeeee;
+
 }
 .table > tbody > tr > td .progress,
 .table > tfoot > tr > td .progress,
@@ -5426,6 +5430,7 @@ blockquote small {
   padding: 12px 15px;
   position: relative;
   color: #2c2e2f;
+
 }
 .table > tfoot > tr > td:after,
 .table > tfoot > tr > th:after {

@@ -31,9 +31,9 @@ class Transaction_model extends CI_Model
 			return $qry->Result();	
 	}
 	
-	function get_for()
+	function get_for($type=false)
 	{
-			$qry = $this->db->query("select MasterEntryId,MasterEntryValue from masterentry where MasterEntryName='ExpenseAccount'");	
+			$qry = $this->db->query("select MasterEntryId,MasterEntryValue from masterentry where MasterEntryName='$type'");	
 			return $qry->Result();	
 	}
 	
@@ -91,10 +91,27 @@ class Transaction_model extends CI_Model
 			
 	}
 	
+	function update_account_income($AmountPaid=false,$Account=false)
+	{
+			$qry = $this->db->query("update accounts set AccountBalance=AccountBalance+$AmountPaid where AccountId='$Account' ");	
+			
+	}
+	
 	function update_expense($AmountPaid=false,$ExpenseId=false)
 	{
 			$qry = $this->db->query("update expense set AmountPaid=AmountPaid+$AmountPaid where ExpenseId='$ExpenseId'");	
 			
+	}
+	
+	function get_income()
+	{
+			$qry = $this->db->query("select TransactionRemarks,TransactionId,TransactionAmount,MasterEntryValue,TransactionDate,AccountName from transaction,masterentry,accounts
+					where transaction.TransactionHeadId=masterentry.MasterEntryId and 
+					TransactionStatus='Active' and 
+					TransactionHead='Income' and
+					transaction.TransactionFrom=accounts.AccountId 
+					order by TransactionDate");	
+			return $qry->Result();	
 	}
 	
 	

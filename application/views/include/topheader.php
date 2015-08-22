@@ -6,7 +6,8 @@
 			<!-- Navbar Brand -->
 			<div class="navbar-brand">
 				<a href="javascript:;" class="logo">
-				<p class="center  text-blac"><?php  if(!empty($this->currentsession)){ print_r($this->currentsession[0]->SchoolName);}else{ echo "School Management";} ?></p>
+				
+				<p class="center  text-blac"><img src="<?=base_url();?>assets/images/junctionerplogo.png" width="20" alt="" class="hidden-xs" /><?php  if(!empty($this->currentsession)){ print_r($this->currentsession[0]->SchoolName);}else{ echo "School Management";} ?></p>
 					<!--<img src="<?=base_url();?>assets/images/logo-white-bg@2x.png" width="80" alt="" class="hidden-xs" />
 					<img src="<?=base_url();?>assets/images/logo@2x.png" width="80" alt="" class="visible-xs" />-->
 				</a>
@@ -191,7 +192,7 @@
 				<a href="javascript:;">
 					<i class="linecons-database"></i>
 						<span class="title tooltip-primary" 
-						data-toggle="tooltip" data-placement="bottom" title="" data-original-title="4102010: <?=$AccountBalance[0]->AccountBalance?> INR">
+						data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<?=$AccountBalance[0]->AccountName?>: <?=$AccountBalance[0]->totalamount?> INR">
 						 Balance </span>
 					</a>
 				</li>

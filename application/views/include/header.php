@@ -8,7 +8,7 @@
 	<meta name="description" content="Xenon Boostrap Admin Panel" />
 	<meta name="author" content="" />
 	
-	<title>School Management</title>
+	<title><?php  if(!empty($this->currentsession)){ print_r($this->currentsession[0]->SchoolName);}else{ echo "School Management";} ?></title>
 
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/fonts/linecons/css/linecons.css">
@@ -20,6 +20,7 @@
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/xenon-skins.css">
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/custom.css">
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/fonts/elusive/css/elusive.css">
+	<link rel="shortcut icon" href="<?=base_url();?>assets/images/junctionerplogo.png">
 	<script src="<?=base_url();?>assets/js/jquery-1.11.1.min.js"></script>
 	 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
      <script type="text/javascript" src="<?php echo base_url(); ?>js/common_functions.js"></script>
