@@ -142,6 +142,7 @@
 							</div>
 						</div>
 						<div class="panel-body">
+						<div class="table-responsive">	
 						<script type="text/javascript">
 					jQuery(document).ready(function($)
 					{
@@ -196,6 +197,7 @@
 							<?php } ?>
 						</tbody>
 					</table>
+						</div>
 						</div>
 					</div>
 				</div>

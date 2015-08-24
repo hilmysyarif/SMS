@@ -1025,7 +1025,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="mobile">Mobile Number</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="mobile" data-mask="phone">
+										<input type="text" class="form-control" name="mobile" >
 									</div>
 								</div>
 								<div class="form-group-separator">

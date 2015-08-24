@@ -290,7 +290,7 @@ class Master extends CI_Controller {
 	{	
 		if($type=='class'){
 		$data=array(	'ClassName'=>$this->input->post('class_name'),
-						'Session'=>$currentsession,
+						'Session'=>$this->currentsession[0]-CurrentSession,
 						'DOE'=>"16-7-2015",
 						'ClassStatus'=>"Active");
 						
@@ -362,7 +362,7 @@ class Master extends CI_Controller {
 	{	
 		$class=$this->input->post('class');
 		$class=explode(",",$class);
-		$data=array(	'Session'=>$currentsession,
+		$data=array(	'Session'=>$this->currentsession[0]-CurrentSession,
 						'SubjectName'=>$this->input->post('subject_name'),
 						'SubjectAbb'=>$this->input->post('abbreviation'),
 						'Class'=>$class,
@@ -408,7 +408,7 @@ class Master extends CI_Controller {
 /*school management Exam insert and update start........................................................*/
 	function insert_exam()
 	{
-		$data=array('Session'=>$currentsession,
+		$data=array('Session'=>$this->currentsession[0]-CurrentSession,
 				'ExamName'=>$this->input->post('exam_name'),
 				'SectionId'=>$this->input->post('class_name'),
 				'Weightage'=>$this->input->post('weightage'),
@@ -460,7 +460,7 @@ class Master extends CI_Controller {
 	/*school management SCarea insert and update start........................................................*/
 	function insert_scarea()
 	{
-		$data=array('Session'=>$currentsession,
+		$data=array('Session'=>$this->currentsession[0]-CurrentSession,
 				'SCAreaName'=>$this->input->post('area_name'),
 				'SCPartId'=>$this->input->post('part'),
 				'SCAreaClass'=>$this->input->post('class'),
@@ -555,7 +555,7 @@ class Master extends CI_Controller {
 		$this->load->view('managefee',$this->data);
 		$this->parser->parse('include/footer',$this->data);
 	}
-/*school management manageFee End...........................................................................*/
+    /*school management manageFee End...........................................................................*/
 
 	/*school management Indicatorscarea insert and update start........................................................*/
 	function insert_fee($id=false)
@@ -566,7 +566,7 @@ class Master extends CI_Controller {
 				'FeeType'=>$this->input->post('fee_type'),
 				'Amount'=>$this->input->post('amount'),
 				'Distance'=>$this->input->post('distance'),
-				'Session'=>$currentsession,
+				'Session'=>$this->currentsession[0]-CurrentSession,
 				'DOE'=>"16-7-2015",
 				'FeeStatus'=>"Active");
 		}else{
@@ -575,7 +575,7 @@ class Master extends CI_Controller {
 					'SectionId'=>$this->input->post('class'),
 					'FeeType'=>$this->input->post('fee_type'),
 					'Amount'=>$this->input->post('amount'),
-					'Session'=>$currentsession,
+					'Session'=>$this->currentsession[0]-CurrentSession,
 					'DOE'=>"16-7-2015",
 					'FeeStatus'=>"Active");
 		}
@@ -727,7 +727,7 @@ class Master extends CI_Controller {
 				'BranchPrice'=>$this->input->post('branch_price'),
 				'SellingPrice'=>$this->input->post('selling_price'),
 				'SchoolMaterialStatus'=>"Active",
-				'Session'=>$currentsession,
+				'Session'=>$this->currentsession[0]-CurrentSession,
 				'Date'=>"18-7-2015",
 		);
 			

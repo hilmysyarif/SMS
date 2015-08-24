@@ -48,7 +48,7 @@ class Transaction_model extends CI_Model
 		if($filter !=''){
 		$this->db->where($filter);
     	$this->db->update($table,$data);
-		echo $this->db->last_query();die;
+		
 		}else{
 			$this->db->insert($table,$data);
 			 $insert_id = $this->db->insert_id();

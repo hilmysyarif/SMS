@@ -97,6 +97,18 @@ class Utilities extends CI_Controller {
 		return $query->Result();
 	}
 	
+	function get_student_name($currentsession=false,$admissionid=false)
+	{ 
+		$CI = & get_instance();
+		$query=$CI->db->query("Select StudentName,FatherName from registration,admission where
+					registration.Session='$currentsession' and
+					registration.RegistrationId=admission.RegistrationId and
+					admission.AdmissionId='$admissionid' and
+					Status='Studying'
+					order by StudentName");
+		return $query->Result();
+	}
+	
 }
 
 
