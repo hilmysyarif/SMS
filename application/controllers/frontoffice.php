@@ -10,10 +10,12 @@ class Frontoffice extends CI_Controller {
 		$this->data['url'] = base_url();
 		$this->load->model('frontoffice_model');
 		$this->load->model('master_model');
+		$this->load->model('authority_model');
 		$this->load->library('parser');
 		$this->load->library('utilities');
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
+		$this->load->library('authority');
 		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
@@ -23,6 +25,12 @@ class Frontoffice extends CI_Controller {
 	 /*Front office call view load start................................................................................................*/
 	function call($callid=false)
 	{	
+	if(Authority::checkAuthority('Call')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Call', base_url().'frontoffice/call');
 
@@ -45,6 +53,12 @@ class Frontoffice extends CI_Controller {
 	/*Front office Insert And Update call  start................................................................................................*/
 	function insert_call()
 	{	
+	if(Authority::checkAuthority('Call')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$data=array('CallResponse'=>$this->input->post('responseid'),
@@ -76,6 +90,12 @@ class Frontoffice extends CI_Controller {
 	/*Front office followup call view load start................................................................................................*/
 	function followup($callid=false,$upfollowupid=false)
 	{	
+	if(Authority::checkAuthority('FollowUp')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Follow Up', base_url().'frontoffice/followup');
 		$this->data['followupid']=$callid;
@@ -96,6 +116,12 @@ class Frontoffice extends CI_Controller {
 	/*Front office Insert And Update Followup  start................................................................................................*/
 	function insert_followup()
 	{	
+	if(Authority::checkAuthority('FollowUp')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$data=array('FollowUpUniqueId'=>$this->input->post('followupid'),
@@ -125,6 +151,12 @@ class Frontoffice extends CI_Controller {
 	/*Front office Another call view load start................................................................................................*/
 	function ocall($ocallid=false)
 	{	
+	if(Authority::checkAuthority('OCall')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Other Call', base_url().'frontoffice/ocall');
 		
@@ -145,6 +177,12 @@ class Frontoffice extends CI_Controller {
 	/*Front office Insert And Update Other call  start......................................................................................*/
 	function insert_ocall()
 	{	
+	if(Authority::checkAuthority('OCall')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$data=array('Name'=>$this->input->post('name'),
@@ -174,6 +212,12 @@ class Frontoffice extends CI_Controller {
 	/*Front office followup Other call view load start...........................................................................................*/
 	function followup_other($callid=false,$upfollowupid=false)
 	{	
+	if(Authority::checkAuthority('FollowUpOtherCall')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Follow Up Other Call', base_url().'frontoffice/followup_other');
 		$this->data['followupid']=$callid;
@@ -195,6 +239,12 @@ class Frontoffice extends CI_Controller {
 	/*Front office Insert And Update Followup Other Call start................................................................................................*/
 	function insert_followup_other()
 	{	
+	if(Authority::checkAuthority('FollowUpOtherCall')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$data=array('FollowUpUniqueId'=>$this->input->post('followupid'),
@@ -223,7 +273,13 @@ class Frontoffice extends CI_Controller {
 	
 	/*Front office Enquiry view load start................................................................................................*/
 	function enquiry($enquiryid=false)
-	{
+	{	
+	if(Authority::checkAuthority('Enquiry')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Enquiry', base_url().'frontoffice/enquiry');
 
@@ -246,6 +302,12 @@ class Frontoffice extends CI_Controller {
 	/*Front office Insert And Update Enquiry  start......................................................................................*/
 	function insert_enquiry()
 	{	
+	if(Authority::checkAuthority('Enquiry')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$data=array('EnquiryType'=>$this->input->post('enquiry_type'),
@@ -278,6 +340,12 @@ class Frontoffice extends CI_Controller {
 	/*Front office followup Enquiry view load start...........................................................................................*/
 	function followup_enquiry($callid=false,$upfollowupid=false)
 	{	
+	if(Authority::checkAuthority('FollowUpEnquiry')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Follow Up Enquiry', base_url().'frontoffice/followup_enquiry');
 		$this->data['followupid']=$callid;
@@ -299,6 +367,12 @@ class Frontoffice extends CI_Controller {
 	/*Front office Insert And Update Followup Enquiry start................................................................................................*/
 	function insert_followup_enquiry()
 	{	
+	if(Authority::checkAuthority('FollowUpEnquiry')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$data=array('FollowUpUniqueId'=>$this->input->post('followupid'),
@@ -327,7 +401,13 @@ class Frontoffice extends CI_Controller {
 	
 	/*Front office Complaint view load start................................................................................................*/
 	function complaint($complaintid=false)
-	{
+	{	
+	if(Authority::checkAuthority('Complaint')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Complaint', base_url().'frontoffice/complaint');
 		if($complaintid !=''){
@@ -349,6 +429,12 @@ class Frontoffice extends CI_Controller {
 	/*Front office Insert And Update complaint  start......................................................................................*/
 	function insert_complaint()
 	{	
+	if(Authority::checkAuthority('Complaint')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$data=array('ComplaintType'=>$this->input->post('complaint_type'),
@@ -378,7 +464,13 @@ class Frontoffice extends CI_Controller {
 	
 	/*Front office Visitor view load start................................................................................................*/
 	function visitor($visitorid=false)
-	{
+	{	
+	if(Authority::checkAuthority('Visitor')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Visitor Book', base_url().'frontoffice/visitor');
 		
@@ -401,6 +493,12 @@ class Frontoffice extends CI_Controller {
 	/*Front office Insert And Update visitor  start......................................................................................*/
 	function insert_visitor()
 	{	
+	if(Authority::checkAuthority('Visitor')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$data=array('Purpose'=>$this->input->post('purpose'),

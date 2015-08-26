@@ -9,10 +9,12 @@ class Admission extends CI_Controller {
 		$this->data['url'] = base_url();
 		$this->load->model('admission_model');
 		$this->load->model('master_model');
+		$this->load->model('authority_model');
 		$this->load->library('parser');
 		$this->load->library('utilities');
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
+		$this->load->library('authority');
 		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
@@ -23,6 +25,13 @@ class Admission extends CI_Controller {
 	 /*school management registration controller start*/	
 	function registration($id=false)
 	{	
+		if(Authority::checkAuthority('Registration')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Student Registration', base_url().'admission/registration');
 		if($id){
@@ -71,11 +80,6 @@ class Admission extends CI_Controller {
 					$this->data['registration_info']='';
 				}
 		
-				/* $this->breadcrumb->clear();
-				 $this->breadcrumb->add_crumb('Deshboard', base_url());
-				 $this->breadcrumb->add_crumb('Registration', base_url().'registration');
-				 $this->breadcrumb->add_crumb('Registration', '');*/
-				 
 				 $this->data['regis'] = $this->admission_model->get_registration_info();
 				 $this->data['class_section'] = $this->admission_model->get_class_info('section');
 				 $this->data['gender'] = $this->admission_model->get_gender_info();
@@ -98,7 +102,12 @@ class Admission extends CI_Controller {
 
 	
 	function update_registration($RegistrationId=false,$QualificationId=false)
-	{
+	{	if(Authority::checkAuthority('Registration')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('submit')){
 				$info = array(
 						'StudentName'=>$this->input->post('student_name'),
@@ -202,7 +211,12 @@ class Admission extends CI_Controller {
 	}
 
 	function add_qualification($QalificationId=false)
-	{
+	{	if(Authority::checkAuthority('Registration')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('submit3'))
 		{
 			$info = array(
@@ -220,7 +234,12 @@ class Admission extends CI_Controller {
 	
 /*school management registration controller start...................................................................................................*/
 	function add_registration($RegistrationId=false)
-	{ 
+	{ 	if(Authority::checkAuthority('Registration')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('submit')){
 							$info = array(
 									'StudentName'=>$this->input->post('student_name'),
@@ -241,10 +260,18 @@ class Admission extends CI_Controller {
 
 	/*school management admission View Load.............................................................................................................*/
 	function admission_student()
-	{ 
+	{ 	
+		if(Authority::checkAuthority('Admission')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Student Admission', base_url().'admission/admission_student');
-		if($this->input->post('id')){
+		
+		if($this->input->post('student')){
+			
 			if($this->input->post('student')){
 				$info=explode(',',$this->input->post('student'));
 				$id=$info[0];
@@ -269,7 +296,12 @@ class Admission extends CI_Controller {
 	
 	/*school management admission Insert.............................................................................................................*/
 	function insert_admission()
-	{
+	{	if(Authority::checkAuthority('Admission')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$data=array('AdmissionNo'=>$this->input->post('admission_no'),
 				'RegistrationId'=>$this->input->post('id'),
 				'Remarks'=>$this->input->post('remarks'),
@@ -285,6 +317,12 @@ class Admission extends CI_Controller {
 	/*school management Promotion View Load.............................................................................................................*/
 	function promotion()
 	{	
+	if(Authority::checkAuthority('Promotion')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Student Promotion', base_url().'admission/promotion');
 		$this->parser->parse('include/header',$this->data);
@@ -297,7 +335,13 @@ class Admission extends CI_Controller {
 
 	/*school management Updatefee View Load.............................................................................................................*/
 	function updatefee($sectionid=false,$admissionid=false)
-	{
+	{	
+	if(Authority::checkAuthority('UpdateFee')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Update Fee', base_url().'admission/updatefee');
 		if($sectionid && $admissionid !=''){
@@ -330,7 +374,13 @@ class Admission extends CI_Controller {
 
 	/*school management update Class start...................................................................................................*/
 	function updateclass()
-	{ //print_r($_POST);die;
+	{ 	
+	if(Authority::checkAuthority('UpdateClass')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('class_name') !=''){
 			$section=$this->input->post('class_name');
 			$admission=$this->input->post('student');
@@ -344,6 +394,12 @@ class Admission extends CI_Controller {
 	/*school management Admission Report View Load.............................................................................................................*/
 	function admissionreport($section=false)
 	{	
+	if(Authority::checkAuthority('AdmissionReport')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Admission Report', base_url().'admission/admissionreport');
 		$status='';

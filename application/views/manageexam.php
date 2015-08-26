@@ -34,7 +34,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="class_name">
+																		<select class="form-control " required id="s2example-1" name="class_name">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($class_info as $classinfo){ ?>
@@ -49,7 +49,7 @@
 																	<label class="control-label col-sm-4 ">Exam Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Exam Name" name="exam_name" value="<?php echo (isset($exam_update[0]->ExamName) ? $exam_update[0]->ExamName : '');?>">
+																			<input type="text" required class="form-control" id="field-1" placeholder="Exam Name" name="exam_name" value="<?php echo (isset($exam_update[0]->ExamName) ? $exam_update[0]->ExamName : '');?>">
 																		</div>
 
 																		
@@ -61,7 +61,7 @@
 																	<label class="control-label col-sm-4 ">Weightage</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Weightage" name="weightage" value="<?php echo (isset($exam_update[0]->Weightage) ? $exam_update[0]->Weightage : '');?>">
+																			<input type="text" required class="form-control" id="field-1" placeholder="Weightage" name="weightage" value="<?php echo (isset($exam_update[0]->Weightage) ? $exam_update[0]->Weightage : '');?>">
 																		</div>
 
 																		

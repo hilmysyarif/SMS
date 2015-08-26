@@ -40,7 +40,7 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-1" name="complaint_type">
+																<select class="form-control " required id="s2example-1" name="complaint_type">
 																	<option></option>
 																	<?php foreach($complaint_type as $complaint_type){ ?>
 																						<option  value="<?=$complaint_type->MasterEntryId?>" <?php if(empty($complaintid)==''){ echo (!empty($complaint_up[0]->ComplaintType==$complaint_type->MasterEntryId) ? "selected" : ''); } ?> ><?=$complaint_type->MasterEntryValue?></option>
@@ -54,7 +54,7 @@
 										
 											<label class=" control-label col-sm-4" for="field-1">Description</label>
 										<div class="col-sm-8">
-											<textarea class="form-control " rows=""  name="description"><?php echo (isset($complaint_up[0]->Description) ? $complaint_up[0]->Description : '');?></textarea>
+											<textarea class="form-control " rows="" required name="description"><?php echo (isset($complaint_up[0]->Description) ? $complaint_up[0]->Description : '');?></textarea>
 										</div>
 										
 									</div>
@@ -63,7 +63,7 @@
 										
 											<label class=" control-label col-sm-4" for="field-1">Action</label>
 										<div class="col-sm-8">
-											<textarea class="form-control " rows=""  name="action"><?php echo (isset($complaint_up[0]->Action) ? $complaint_up[0]->Action : '');?></textarea>
+											<textarea class="form-control "  rows=""  name="action"><?php echo (isset($complaint_up[0]->Action) ? $complaint_up[0]->Action : '');?></textarea>
 										</div>
 									</div>	
 									
@@ -73,7 +73,7 @@
 											<label class="control-label col-sm-4" for="field-1">Mobile</label>
 											
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="field-1"  name="mobile" value="<?php echo (isset($complaint_up[0]->Mobile) ? $complaint_up[0]->Mobile : '');?>">
+												<input type="text" class="form-control" required id="field-1"  name="mobile" value="<?php echo (isset($complaint_up[0]->Mobile) ? $complaint_up[0]->Mobile : '');?>">
 											</div>
 										</div>
 										
@@ -81,7 +81,7 @@
 											<label class="control-label col-sm-4" for="field-1">Name</label>
 											
 											<div class="col-sm-8 ">
-												<input type="text" class="form-control" id="field-1"  name="name" value="<?php echo (isset($complaint_up[0]->Name) ? $complaint_up[0]->Name : '');?>">
+												<input type="text" class="form-control" required id="field-1"  name="name" value="<?php echo (isset($complaint_up[0]->Name) ? $complaint_up[0]->Name : '');?>">
 											</div>
 										</div>
 										
@@ -90,7 +90,7 @@
 									
 										<div class="col-sm-8">
 											<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="doc" value="<?php if(isset($complaint_up[0]->DOC)){echo date("d-m-Y H:i",$complaint_up[0]->DOC);}?>">
+														<input type="text" readonly required class="form-control datepicker" data-format="D, dd MM yyyy" name="doc" value="<?php if(isset($complaint_up[0]->DOC)){echo date("d-m-Y H:i",$complaint_up[0]->DOC);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>

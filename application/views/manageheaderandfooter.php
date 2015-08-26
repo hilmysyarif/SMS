@@ -35,7 +35,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="type">
+																		<select class="form-control " id="s2example-1" required name="type">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($header_type as $headertype){ ?>
@@ -52,13 +52,13 @@
 																		<label class="col-sm-4 control-label" for="field-1">Title</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Tittle" name="title" value="<?php echo (isset($header_update[0]->HeaderTitle) ? $header_update[0]->HeaderTitle : '');?>">
+																			<input type="text" class="form-control" required id="field-1" placeholder="Tittle" name="title" value="<?php echo (isset($header_update[0]->HeaderTitle) ? $header_update[0]->HeaderTitle : '');?>">
 																		</div>
 																	</div>
 																	
 																	<div class="form-group">
 				
-					<textarea class="form-control ckeditor" rows="10" name="content">
+					<textarea class="form-control ckeditor" rows="5" tabindex="5" required name="content">
 						<?php echo (isset($header_update[0]->HeaderContent) ? $header_update[0]->HeaderContent : '');?>
 					</textarea>
 					

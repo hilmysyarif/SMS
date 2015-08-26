@@ -39,7 +39,7 @@
 									<label class="col-sm-4 control-label" for="student_name" >Date</label>
 									<div class="col-sm-8">
 										<div class="input-group">
-											<input type="text" name="date" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input type="text" required name="date" class="form-control datepicker" data-format="D, dd MM yyyy">
 											
 											<div class="input-group-addon">
 												<a href="#"><i class="linecons-calendar"></i></a>
@@ -53,7 +53,7 @@
 									<label class="col-sm-4 control-label" for="father_name">In Time</label>
 									<div class="col-sm-8">
 										<div class="input-group input-group-minimal">
-											<input type="text" name="intime" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text" required name="intime" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 											
 											<div class="input-group-addon">
 												<a href="#"><i class="linecons-clock"></i></a>
@@ -67,7 +67,7 @@
 									<label class="col-sm-4 control-label" for="father_name">Out Time</label>
 									<div class="col-sm-8">
 										<div class="input-group input-group-minimal">
-											<input type="text" name="outtime" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text"  required name="outtime" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 											
 											<div class="input-group-addon">
 												<a href="#"><i class="linecons-clock"></i></a>
@@ -80,7 +80,7 @@
 							
 								
 								<div class="form-group">
-									<label class="col-sm-4 control-label" for="tagsinput-1">Multi-select List</label>
+									<label class="col-sm-4 control-label" for="tagsinput-1">Staff List</label>
 									
 									<div class="col-sm-8">
 										
@@ -101,7 +101,7 @@
 												});
 											});
 										</script>
-										<select class="form-control" name="staff[]" multiple="multiple" id="multi-select" >
+										<select required class="form-control" name="staff[]" multiple="multiple" id="multi-select" >
 										<?php foreach($get_staff as $get_staff1){ ?>
 											<option value="<?=$get_staff1->StaffId?>"><?=$get_staff1->StaffName?> (<?=$get_staff1->MasterEntryValue?>)</option>
 										<?php } ?>
@@ -111,7 +111,7 @@
 								</div>
 								<div class="form-group-separator">
 								</div>
-							<select class="form-control" name="absent[]" multiple="multiple"  >
+							<select  required class="form-control" name="absent[]" multiple="multiple"  >
 										<?php foreach($get_staff as $get_staff){ ?>
 											<option value="<?=$get_staff->StaffId?>"><?=$get_staff->StaffName?> (<?=$get_staff->MasterEntryValue?>)</option>
 										<?php } ?>

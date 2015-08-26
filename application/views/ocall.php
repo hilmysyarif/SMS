@@ -28,7 +28,7 @@
 										<label class="col-sm-4 control-label" for="field-1">Name</label>
 										
 										<div class="col-sm-8">
-										<input type="text" class="form-control" id="field-1"  name="name" value="<?php echo (isset($ocall_up[0]->Name) ? $ocall_up[0]->Name : '');?>">
+										<input type="text" class="form-control" required id="field-1"  name="name" value="<?php echo (isset($ocall_up[0]->Name) ? $ocall_up[0]->Name : '');?>">
 											
 										</div>
 									</div>
@@ -37,7 +37,7 @@
 											<label class="col-sm-4 control-label" for="field-1">Mobile</label>
 											
 											<div class="col-sm-8 ">
-												<input type="text" class="form-control" id="field-1"  name="mobile" value="<?php echo (isset($ocall_up[0]->Mobile) ? $ocall_up[0]->Mobile : '');?>">
+												<input type="text" class="form-control" required id="field-1"  name="mobile" value="<?php echo (isset($ocall_up[0]->Mobile) ? $ocall_up[0]->Mobile : '');?>">
 											</div>
 										</div>
 										<div class="form-group col-md-5">
@@ -45,7 +45,7 @@
 											
 											<div class="col-sm-7">
 												<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="fod" value="<?php if(isset($ocall_up[0]->FollowUpDate)){echo date("d-m-Y H:i",$ocall_up[0]->FollowUpDate);}?>">
+														<input type="text" readonly required class="form-control datepicker" data-format="D, dd MM yyyy" name="fod" value="<?php if(isset($ocall_up[0]->FollowUpDate)){echo date("d-m-Y H:i",$ocall_up[0]->FollowUpDate);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -62,7 +62,7 @@
 									
 										<div class="col-sm-8">
 											<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="doc" value="<?php if(isset($ocall_up[0]->DOC)){echo date("d-m-Y H:i",$ocall_up[0]->DOC);}?>">
+														<input type="text" readonly required class="form-control datepicker" data-format="D, dd MM yyyy" name="doc" value="<?php if(isset($ocall_up[0]->DOC)){echo date("d-m-Y H:i",$ocall_up[0]->DOC);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -79,10 +79,10 @@
 											</div>
 										</div>
 										<div class="form-group col-md-4">
-											<label class="col-sm-4 control-label" for="field-1">Remarks</label>
+											<label class="col-sm-4 control-label"  for="field-1">Remarks</label>
 											
 											<div class="col-sm-8">
-												<textarea class="form-control" id="field-1"  name="remarks"><?php echo (isset($ocall_up[0]->Remarks) ? $ocall_up[0]->Remarks : '');?></textarea>
+												<textarea class="form-control" required id="field-1"  name="remarks"><?php echo (isset($ocall_up[0]->Remarks) ? $ocall_up[0]->Remarks : '');?></textarea>
 											</div>
 										</div>
 									</div>
@@ -92,7 +92,7 @@
 											<label class="col-sm-4 control-label" for="field-1">Call Duration</label>
 											
 											<div class="col-sm-7">
-												<input type="text" class="form-control" id="field-1"  name="call_duration" value="<?php echo (isset($ocall_up[0]->CallDuration) ? $ocall_up[0]->CallDuration : '');?>">
+												<input type="text" class="form-control" required id="field-1"  name="call_duration" value="<?php echo (isset($ocall_up[0]->CallDuration) ? $ocall_up[0]->CallDuration : '');?>">
 											</div>
 										</div>
 										

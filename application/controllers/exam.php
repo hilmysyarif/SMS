@@ -10,10 +10,12 @@ class Exam extends CI_Controller {
 		$this->data['url'] = base_url();
 		$this->load->model('exam_model');
 		$this->load->model('master_model');
+		$this->load->model('authority_model');
 		$this->load->library('parser');
 		$this->load->library('utilities');
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
+		$this->load->library('authority');
 		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
@@ -22,7 +24,7 @@ class Exam extends CI_Controller {
 	 }
 /*grading function start........................................*/
 function Grade($MM,$OB)
-{
+{	
 	if($MM!=30 && $MM!=100 && $MM!=50 && $MM!=0)
 	{
 		if($MM!=0)
@@ -161,6 +163,12 @@ function CGPA($Grade)
 /*school management Scholastic Grade Load....................................................................................*/
 	function markssetup($examid=false,$subjectid=false)
 	{	
+	if(Authority::checkAuthority('MarksSetUp')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Marks Setup', base_url().'exam/markssetup');
 		
@@ -184,7 +192,13 @@ function CGPA($Grade)
 	
 /*school management Get Marks start .........................................................................................*/
 	function get_markssetup()
-	{
+	{	
+	if(Authority::checkAuthority('MarksSetUp')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('examid') && $this->input->post('subjectid') !=''){
 			$examid=$this->input->post('examid');
 			$examid=explode("-",$examid);
@@ -199,6 +213,12 @@ function CGPA($Grade)
 	/*school management Scholastic Grade Load.............................................................................................................*/
 	function scmarkssetup()
 	{	
+		if(Authority::checkAuthority('ScMarksSetUp')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Co Scholastic Marks Setup', base_url().'exam/scmarkssetup');
 		$this->data['exam'] = $this->exam_model->get_scmark_exam($this->currentsession[0]->CurrentSession);
@@ -212,7 +232,14 @@ function CGPA($Grade)
 	
 	/*school management ExamReport Load.............................................................................................................*/
 	function examreport()
-	{	$this->breadcrumb->clear();
+	{	
+		if(Authority::checkAuthority('ExamReport')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Exam Report', base_url().'exam/examreport');
 		$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
@@ -225,7 +252,13 @@ function CGPA($Grade)
 	
 /*school management Get ExamReport ...............................................................................................*/
 	function get_examreport()
-	{
+	{	
+		if(Authority::checkAuthority('ExamReport')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('student')  !=''){
 			redirect('exam/print_examreport/'.$this->input->post('student'));
 		}else{
@@ -235,7 +268,13 @@ function CGPA($Grade)
 	
 /*school management Print ExamReport ...............................................................................................*/
 	function print_examreport($admissionid=false)
-	{
+	{	
+		if(Authority::checkAuthority('PrintExamReport')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($admissionid){
 			$this->data['student_details']=$student_details= $this->exam_model->get_report_student_details($this->currentsession[0]->CurrentSession,$admissionid);
 		

@@ -41,7 +41,7 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-1" name="responseid">
+																<select class="form-control " required id="s2example-1" name="responseid">
 																	<option></option>
 																	<?php  foreach($response as $response){ ?>
 																						<option  value="<?=$response->MasterEntryId?>" <?php if(empty($callid)==''){ echo (!empty($response->MasterEntryId==$update_call[0]->CallResponse) ? "selected" : ''); } ?> ><?=$response->MasterEntryValue?></option>
@@ -55,15 +55,15 @@
 											<label class="col-sm-4 control-label" for="field-1">Mobile</label>
 											
 											<div class="col-sm-8 ">
-												<input type="text" class="form-control" id="field-1"  name="mobile" value="<?php echo (isset($update_call[0]->Mobile) ? $update_call[0]->Mobile : '');?>">
+												<input type="text" class="form-control" id="field-1" required name="mobile" value="<?php echo (isset($update_call[0]->Mobile) ? $update_call[0]->Mobile : '');?>">
 											</div>
 										</div>
 										<div class="form-group col-md-5">
-											<label class="col-sm-4 control-label" for="field-1">Follow Up Date</label>
+											<label class="col-sm-4 control-label"  for="field-1">Follow Up Date</label>
 											
 											<div class="col-sm-7">
 												<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="fod" value="<?php if(isset($update_call[0]->FollowUpDate)){echo date("d-m-Y H:i",$update_call[0]->FollowUpDate);}?>">
+														<input type="text" readonly required class="form-control datepicker" data-format="D, dd MM yyyy" name="fod" value="<?php if(isset($update_call[0]->FollowUpDate)){echo date("d-m-Y H:i",$update_call[0]->FollowUpDate);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -75,10 +75,10 @@
 									<div class="form-group-separator"></div>
 									<div class="row">	
 									<div class="form-group col-md-4">
-										<label class="col-sm-4 control-label" for="field-1">Name</label>
+										<label class="col-sm-4 control-label"  for="field-1">Name</label>
 										
 										<div class="col-sm-8">
-										<input type="text" class="form-control" id="field-1"  name="name" value="<?php echo (isset($update_call[0]->Name) ? $update_call[0]->Name : '');?>">
+										<input type="text" class="form-control" required id="field-1"  name="name" value="<?php echo (isset($update_call[0]->Name) ? $update_call[0]->Name : '');?>">
 											
 										</div>
 									</div>
@@ -90,21 +90,21 @@
 											</div>
 										</div>
 										<div class="form-group col-md-4">
-											<label class="col-sm-4 control-label" for="field-1">Response</label>
+											<label class="col-sm-4 control-label"  for="field-1">Response</label>
 											
 											<div class="col-sm-8">
-												<textarea class="form-control" id="field-1"  name="responsedetails"><?php echo (isset($update_call[0]->ResponseDetail) ? $update_call[0]->ResponseDetail : '');?></textarea>
+												<textarea class="form-control" required id="field-1"  name="responsedetails"><?php echo (isset($update_call[0]->ResponseDetail) ? $update_call[0]->ResponseDetail : '');?></textarea>
 											</div>
 										</div>
 									</div>
 									<div class="form-group-separator"></div>
 									<div class="row">
 									<div class="form-group col-md-4">
-											<label class="col-sm-4 control-label" for="field-1">Date Of Call</label>
+											<label class="col-sm-4 control-label"  for="field-1">Date Of Call</label>
 									
 										<div class="col-sm-8">
 											<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="doc" value="<?php if(isset($update_call[0]->DOC)){echo date("d-m-Y H:i",$update_call[0]->DOC);}?>">
+														<input type="text" required readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="doc" value="<?php if(isset($update_call[0]->DOC)){echo date("d-m-Y H:i",$update_call[0]->DOC);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -113,10 +113,10 @@
 										</div>
 										</div>
 										<div class="form-group col-md-4">
-											<label class="col-sm-4 control-label" for="field-1">Address</label>
+											<label class="col-sm-4 control-label"  for="field-1">Address</label>
 									
 										<div class="col-sm-8">
-											<textarea class="form-control" id="field-1"  name="address"><?php echo (isset($update_call[0]->Address) ? $update_call[0]->Address : '');?></textarea>
+											<textarea class="form-control" id="field-1" required  name="address"><?php echo (isset($update_call[0]->Address) ? $update_call[0]->Address : '');?></textarea>
 										</div>
 										</div>
 										
@@ -124,7 +124,7 @@
 											<label class="col-sm-4 control-label" for="field-1">No Of Child</label>
 											
 											<div class="col-sm-7">
-												<input type="text" class="form-control" id="field-1"  name="nochild" value="<?php echo (isset($update_call[0]->NoOfChild) ? $update_call[0]->NoOfChild : '');?>">
+												<input type="text"  required class="form-control" id="field-1"  name="nochild" value="<?php echo (isset($update_call[0]->NoOfChild) ? $update_call[0]->NoOfChild : '');?>">
 											</div>
 										</div>
 										

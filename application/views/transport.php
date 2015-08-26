@@ -20,14 +20,14 @@
 												<div class="form-group">
 																			<label class="control-label col-sm-4 ">Vehicle Name</label>
 																				<div class="col-sm-8">
-																					<input type="text" class="form-control" name="vehicle_name" value="<?php echo (isset($vehicle_up[0]->VehicleName) ? $vehicle_up[0]->VehicleName : '');?>" id="mother_name" placeholder="">
+																					<input type="text" required class="form-control" name="vehicle_name" value="<?php echo (isset($vehicle_up[0]->VehicleName) ? $vehicle_up[0]->VehicleName : '');?>" id="mother_name" placeholder="">
 																				</div>	
 																		</div>
 																		
 																		<div class="form-group">
 																			<label class="control-label col-sm-4 ">Vehicle Number</label>
 																				<div class="col-sm-8">
-																					<input type="text" class="form-control" name="vehicle_no" value="<?php echo (isset($vehicle_up[0]->VehicleNumber) ? $vehicle_up[0]->VehicleNumber : '');?>" id="mother_name" placeholder="">
+																					<input type="text"  required class="form-control" name="vehicle_no" value="<?php echo (isset($vehicle_up[0]->VehicleNumber) ? $vehicle_up[0]->VehicleNumber : '');?>" id="mother_name" placeholder="">
 																				</div>	
 																		</div>
 																		
@@ -71,7 +71,7 @@
 																						});
 																				</script>
 																			<div class="col-sm-8">
-																				<select class="form-control " id="s2example-1" name="vehicle">
+																				<select class="form-control " required id="s2example-1" name="vehicle">
 																					<option></option>
 																				
 															<?php foreach($vehicle as $showvehicle){?>
@@ -88,14 +88,14 @@
 																	<div class="form-group">
 																			<label class="control-label col-sm-4 ">Quantity</label>
 																				<div class="col-sm-8">
-																					<input type="text" class="form-control" name="quantity" value="<?php echo (isset($fuel_up[0]->Quantity) ? $fuel_up[0]->Quantity : '');?>" id="mother_name" placeholder="">
+																					<input type="text" required class="form-control" name="quantity" value="<?php echo (isset($fuel_up[0]->Quantity) ? $fuel_up[0]->Quantity : '');?>" id="mother_name" placeholder="">
 																				</div>	
 																		</div>
 																		
 																	<div class="form-group">
 																			<label class="control-label col-sm-4 ">Rate Per Litre</label>
 																				<div class="col-sm-8">
-																					<input type="text" class="form-control" name="rate" value="<?php echo (isset($fuel_up[0]->Rate) ? $fuel_up[0]->Rate : '');?>" id="mother_name" placeholder="">
+																					<input type="text" required class="form-control" name="rate" value="<?php echo (isset($fuel_up[0]->Rate) ? $fuel_up[0]->Rate : '');?>" id="mother_name" placeholder="">
 																				</div>	
 																		</div>
 																		
@@ -104,7 +104,7 @@
 																	
 																			<div class="col-sm-8">
 																			<div class="date-and-time">
-																				<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy" name="dofuel" value="<?php if(isset($fuel_up[0]->DOF)){echo date("d-m-Y H:i",$fuel_up[0]->DOF);}?>">
+																				<input type="text" required class="form-control datepicker" data-format="D, dd MM yyyy" name="dofuel" value="<?php if(isset($fuel_up[0]->DOF)){echo date("d-m-Y H:i",$fuel_up[0]->DOF);}?>">
 																				<input type="text" name="tofuel" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 																			</div>
 																		</div>	
@@ -113,7 +113,7 @@
 																<div class="form-group">
 																			<label class="control-label col-sm-4 ">Receipt No</label>
 																				<div class="col-sm-8">
-																					<input type="text" class="form-control" name="receiptno" value="<?php echo (isset($fuel_up[0]->ReceiptNo) ? $fuel_up[0]->ReceiptNo : '');?>" id="mother_name" placeholder="">
+																					<input type="text" required class="form-control" name="receiptno" value="<?php echo (isset($fuel_up[0]->ReceiptNo) ? $fuel_up[0]->ReceiptNo : '');?>" id="mother_name" placeholder="">
 																				</div>	
 																		</div>
 																
@@ -162,7 +162,7 @@
 																						});
 																				</script>
 																			<div class="col-sm-8">
-																				<select class="form-control " id="s2example-2" name="vehicle">
+																				<select class="form-control " required id="s2example-2" name="vehicle">
 																					<option></option>
 																				
 															<?php foreach($vehicle as $showvehicle){?>
@@ -179,7 +179,7 @@
 																	<div class="form-group">
 																			<label class="control-label col-sm-4 ">Reading</label>
 																				<div class="col-sm-8">
-																					<input type="text" class="form-control" name="reading" value="<?php echo (isset($reading_up[0]->Reading) ? $reading_up[0]->Reading : '');?>" id="mother_name" placeholder="">
+																					<input type="text" required class="form-control" name="reading" value="<?php echo (isset($reading_up[0]->Reading) ? $reading_up[0]->Reading : '');?>" id="mother_name" placeholder="">
 																				</div>	
 																		</div>
 																		
@@ -188,7 +188,7 @@
 																	
 																			<div class="col-sm-8">
 																			<div class="date-and-time">
-																				<input type="text" name="doreading" value="<?php if(isset($reading_up[0]->DOR)){echo date("d-m-Y H:i",$reading_up[0]->DOR);}?>" class="form-control datepicker" data-format="D, dd MM yyyy">
+																				<input type="text" required name="doreading" value="<?php if(isset($reading_up[0]->DOR)){echo date("d-m-Y H:i",$reading_up[0]->DOR);}?>" class="form-control datepicker" data-format="D, dd MM yyyy">
 																				<input type="text" name="toreading" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 																			</div>
 																		</div>	

@@ -13,6 +13,7 @@ class Dashboard extends CI_Controller {
 		$this->load->library('utilities');
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
+		$this->load->library('authority');
 		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();

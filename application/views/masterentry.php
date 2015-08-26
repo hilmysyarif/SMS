@@ -34,7 +34,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="cat_name">
+																		<select class="form-control " required id="s2example-1" name="cat_name">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($masterentrycat as $mastercat){ ?>
@@ -51,7 +51,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Value</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Value" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
+																			<input type="text" required class="form-control" id="field-1" placeholder="Value" name="cat_val" value="<?php echo (isset($masterentry_update[0]->MasterEntryValue) ? $masterentry_update[0]->MasterEntryValue : '');?>">
 																		</div>
 																	</div>
 																	<?php if(empty($id)==''){ ?> 

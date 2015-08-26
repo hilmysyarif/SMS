@@ -9,10 +9,12 @@ class Master extends CI_Controller {
 		$this->data[]="";
 		$this->data['url'] = base_url();
 		$this->load->model('master_model');
+		$this->load->model('authority_model');
 		$this->load->library('parser');
 		$this->load->library('utilities');
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
+		$this->load->library('authority');
 		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
@@ -40,7 +42,12 @@ class Master extends CI_Controller {
 
 /*school management generalsetting start........................................................................*/	
 	function generalsetting()
-	{
+	{	if(Authority::checkAuthority('GeneralSetting')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('General Setting', base_url().'master/generalsetting');
 		$this->data['school_info'] = $this->master_model->get_info('generalsetting');
@@ -54,8 +61,13 @@ class Master extends CI_Controller {
 
 /*school management generalsetting school details insert and update start........................................*/	
 	function gs_insrt()
-	{
-		
+	{	
+		if(Authority::checkAuthority('GeneralSetting')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('id')){
 			$data=array('SchoolName'=>$this->input->post('school_name'),
 						'State'=>$this->input->post('state'),
@@ -111,7 +123,13 @@ class Master extends CI_Controller {
 	
 /*school management master entry start...........................................................................*/	
 	function masterentry($id=false)
-	{	
+	{	if(Authority::checkAuthority('MasterEntry')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		Authority::checkAuthority('MasterEntry');
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Master Entry', base_url().'master/masterentry');
 		if($id){
@@ -131,6 +149,12 @@ class Master extends CI_Controller {
 /*school management master entry insert and update start.........................................................*/	
 	function insert_masterentry()
 	{	
+	if(Authority::checkAuthority('MasterEntry')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$data=array(	'MasterEntryName'=>$this->input->post('cat_name'),
 						'MasterEntryValue'=>$this->input->post('cat_val'),
 						'MasterEntryStatus'=>"Active");
@@ -157,6 +181,12 @@ class Master extends CI_Controller {
 /*school management manageuser start........................................................................*/	
 	function manageuser($id=false)
 	{	
+	if(Authority::checkAuthority('ManageUser')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage User', base_url().'master/manageuser');
 		if($id){
@@ -175,7 +205,13 @@ class Master extends CI_Controller {
 
 /*school management adduser  start........................................................................*/	
 	function adduser()
-	{					
+	{				
+if(Authority::checkAuthority('ManageUser')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}	
 		if($this->input->post('id'))
 		{ 	if($this->input->post('reset')){
 			
@@ -216,7 +252,13 @@ class Master extends CI_Controller {
 
 /*school management manageaccount start........................................................................*/	
 	function manageaccount($id=false)
-	{
+	{	
+	if(Authority::checkAuthority('ManageAccounts')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Accounts', base_url().'master/manageaccount');
 		if($id){
@@ -236,6 +278,12 @@ class Master extends CI_Controller {
 /*school management manage acount insert and update start........................................................*/	
 	function insert_account()
 	{	
+	if(Authority::checkAuthority('ManageAccounts')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$data=array(	'ManagedBy'=>$this->input->post('manage_by'),
 						'AccountType'=>$this->input->post('account_type'),
 						'OpeningBalance'=>$this->input->post('open_bal'),
@@ -263,6 +311,12 @@ class Master extends CI_Controller {
 /*school management manageClass start........................................................................*/	
 	function manageclass($type=false,$id=false)
 	{	
+	if(Authority::checkAuthority('ManageClass')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Class And Section', base_url().'master/manageclass');
 		if($id){
@@ -288,6 +342,12 @@ class Master extends CI_Controller {
 /*school management Class and section insert and update start....................................................*/	
 	function insert_class($type=false)
 	{	
+	if(Authority::checkAuthority('ManageClass')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($type=='class'){
 		$data=array(	'ClassName'=>$this->input->post('class_name'),
 						'Session'=>$this->currentsession[0]-CurrentSession,
@@ -341,6 +401,12 @@ class Master extends CI_Controller {
 /*school management manageSubject start........................................................................*/	
 	function managesubject($id=false)
 	{	
+	if(Authority::checkAuthority('ManageSubject')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Subjects', base_url().'master/managesubject');
 		if($id){
@@ -360,6 +426,12 @@ class Master extends CI_Controller {
 /*school management Subject insert and update start........................................................*/	
 	function insert_subject()
 	{	
+	if(Authority::checkAuthority('ManageSubject')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$class=$this->input->post('class');
 		$class=explode(",",$class);
 		$data=array(	'Session'=>$this->currentsession[0]-CurrentSession,
@@ -388,7 +460,13 @@ class Master extends CI_Controller {
 
 /*school management manageExam start........................................................................*/	
 	function manageexam($id=false)
-	{	
+	{
+	if(Authority::checkAuthority('ManageExam')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Exams', base_url().'master/manageexam');
 		if($id){
@@ -408,6 +486,12 @@ class Master extends CI_Controller {
 /*school management Exam insert and update start........................................................*/
 	function insert_exam()
 	{
+	if(Authority::checkAuthority('ManageExam')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$data=array('Session'=>$this->currentsession[0]-CurrentSession,
 				'ExamName'=>$this->input->post('exam_name'),
 				'SectionId'=>$this->input->post('class_name'),
@@ -436,6 +520,12 @@ class Master extends CI_Controller {
 /*school management manageSCAREA start........................................................................*/	
 	function managescarea($id=false)
 	{	
+	if(Authority::checkAuthority('ManageSCArea')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Scholastic Co-Scholastic Area', base_url().'master/managescarea');
 		if($id){
@@ -459,7 +549,13 @@ class Master extends CI_Controller {
 
 	/*school management SCarea insert and update start........................................................*/
 	function insert_scarea()
-	{
+	{	
+	if(Authority::checkAuthority('ManageSCArea')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$data=array('Session'=>$this->currentsession[0]-CurrentSession,
 				'SCAreaName'=>$this->input->post('area_name'),
 				'SCPartId'=>$this->input->post('part'),
@@ -489,6 +585,12 @@ class Master extends CI_Controller {
 /*school management manageSCIndicator start......................................................................*/	
 	function managescindicator($id=false)
 	{	
+	if(Authority::checkAuthority('ManageSCIndicator')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Scholastic Co-Scholastic Indicators', base_url().'master/managescindicator');
 		if($id){
@@ -510,7 +612,13 @@ class Master extends CI_Controller {
 
 	/*school management Indicatorscarea insert and update start........................................................*/
 	function insert_scindicator($id=false)
-	{
+	{	
+	if(Authority::checkAuthority('ManageSCIndicator')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$data=array(
 				'SCAreaId'=>$this->input->post('area'),
 				'SCIndicatorName'=>$this->input->post('indicator_name'),
@@ -537,6 +645,12 @@ class Master extends CI_Controller {
 /*school management manageFee start......................................................................*/	
 	function managefee($id=false)
 	{	
+	if(Authority::checkAuthority('ManageFee')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Fee', base_url().'master/managefee');
 		if($id){
@@ -559,7 +673,13 @@ class Master extends CI_Controller {
 
 	/*school management Indicatorscarea insert and update start........................................................*/
 	function insert_fee($id=false)
-	{
+	{	
+	if(Authority::checkAuthority('ManageFee')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('yes')){
 		$data=array(
 				'SectionId'=>$this->input->post('class'),
@@ -601,6 +721,12 @@ class Master extends CI_Controller {
 /*school management SalaryHead start......................................................................*/	
 	function salaryhead($id=false)
 	{	
+	if(Authority::checkAuthority('salaryhead')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Salary Head', base_url().'master/salaryhead');
 		if($id){
@@ -622,7 +748,13 @@ class Master extends CI_Controller {
 
 	/*school management salaryhead insert and update start........................................................*/
 	function insert_salaryhead($id=false)
-	{
+	{	
+	if(Authority::checkAuthority('salaryhead')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$data=array(
 					'SalaryHeadType'=>$this->input->post('type'),
 					'SalaryHead'=>$this->input->post('salaryhead'),
@@ -651,6 +783,12 @@ class Master extends CI_Controller {
 /*school management SalaryStructure start......................................................................*/	
 	function structuretemplate($id=false)
 	{	
+	if(Authority::checkAuthority('salarystructure')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Salary Structure Template', base_url().'master/structuretemplate');
 		if($id){
@@ -674,6 +812,12 @@ class Master extends CI_Controller {
 /*school management salary structure insert and update start........................................................*/
 	function insert_salarystructure($id=false)
 	{
+	if(Authority::checkAuthority('salarystructure')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$data=array(
 				'SalaryStructureName'=>$this->input->post('templatename'),
 				'FixedSalaryHead'=>$this->input->post('fixedsalary'),
@@ -699,7 +843,13 @@ class Master extends CI_Controller {
 	
 /*school management manageschoolmaterial start...................................................................*/	
 	function manageschoolmaterial($id=false)
-	{	
+	{		
+	if(Authority::checkAuthority('schoolmaterial')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage School Material', base_url().'master/manageschoolmaterial');
 		if($id){
@@ -719,7 +869,13 @@ class Master extends CI_Controller {
 
 	/*school management material insert and update start........................................................*/
 	function insert_material($id=false)
-	{
+	{	
+	if(Authority::checkAuthority('schoolmaterial')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$data=array(
 				'SchoolMaterialType'=>'Books',
 				'ClassId'=>$this->input->post('class'),
@@ -752,6 +908,12 @@ class Master extends CI_Controller {
 /*school management manageLocation start.........................................................................*/	
 	function managelocation($id=false)
 	{	
+	if(Authority::checkAuthority('ManageLocation')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Location', base_url().'master/managelocation');
 		if($id){
@@ -770,7 +932,13 @@ class Master extends CI_Controller {
 
 /*school management location insert and update start........................................................*/
 	function insert_location($id=false)
-	{
+	{	
+	if(Authority::checkAuthority('ManageLocation')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$data=array(
 				'LocationName'=>$this->input->post('name'),
 				'CalledAs'=>$this->input->post('calledas'),
@@ -800,6 +968,12 @@ class Master extends CI_Controller {
 /*school management manageHeaderAndFooter start..................................................................*/	
 	function manageheaderandfooter($id=false)
 	{	
+	if(Authority::checkAuthority('ManageHeaderFooter')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Header & Footer', base_url().'master/manageheaderandfooter');
 		if($id){
@@ -819,7 +993,13 @@ class Master extends CI_Controller {
 
 /*school management header and footer insert and update start........................................................*/
 	function insert_header($id=false)
-	{
+	{	
+	if(Authority::checkAuthority('ManageHeaderFooter')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$data=array(
 				'HRType'=>$this->input->post('type'),
 				'HeaderTitle'=>$this->input->post('title'),
@@ -846,6 +1026,12 @@ class Master extends CI_Controller {
 /*school management printoption start..................................................................*/	
 	function printoption($id=false)
 	{	
+	if(Authority::checkAuthority('PrintOption')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Print Option', base_url().'master/printoption');
 		if($id){
@@ -867,7 +1053,13 @@ class Master extends CI_Controller {
 
 	/*school management header and footer insert and update start........................................................*/
 	function insert_printoption($id=false)
-	{
+	{	
+	if(Authority::checkAuthority('PrintOption')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$data=array(
 				'PrintCategory'=>$this->input->post('print_cat'),
 				'Width'=>$this->input->post('width'),
@@ -897,6 +1089,12 @@ class Master extends CI_Controller {
 /*school management permission start..................................................................*/	
 	function permission($id=false)
 	{	
+	if(Authority::checkAuthority('Permission')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Permission', base_url().'master/permission');
 		if($this->data['user_type']=$this->input->post('user_type')){
@@ -919,6 +1117,12 @@ class Master extends CI_Controller {
 /*school management header and footer insert and update start........................................................*/
 	function insert_permission($id=false)
 	{	
+	if(Authority::checkAuthority('Permission')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$pages=$this->input->post('pages');
 		$pages=implode(',',$pages);
 		

@@ -34,7 +34,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="print_cat">
+																		<select class="form-control " required id="s2example-1" name="print_cat">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($print_category as $print_category){ ?>
@@ -53,7 +53,7 @@
 																	<span class="input-group-btn">
 																		<button class="btn btn-gray" data-type="decrement">-</button>
 																	</span>
-																	<input type="text" class="form-control text-center" value="<?php echo (isset($printoption_update[0]->Width) ? $printoption_update[0]->Width : '');?>" name="width"/>
+																	<input type="text" required class="form-control text-center" value="<?php echo (isset($printoption_update[0]->Width) ? $printoption_update[0]->Width : '');?>" name="width"/>
 																	<span class="input-group-btn">
 																		<button class="btn btn-gray" data-type="increment">+</button>
 																	</span>
@@ -79,7 +79,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-2" name="header">
+																		<select class="form-control " required id="s2example-2" name="header">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($header as $header){ ?>
@@ -110,7 +110,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-3" name="footer">
+																		<select class="form-control " required id="s2example-3" name="footer">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($footer as $footer){ ?>

@@ -38,7 +38,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="type">
+																		<select class="form-control " required id="s2example-1" name="type">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($salary_type as $salarytype){ ?>
@@ -53,7 +53,7 @@
 																	<label class="control-label col-sm-4 ">Salary Head</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Salary Head" name="salaryhead" value="<?php echo (isset($salaryhead_update[0]->SalaryHead) ? $salaryhead_update[0]->SalaryHead : '');?>">
+																			<input type="text" required class="form-control" id="field-1" placeholder="Salary Head" name="salaryhead" value="<?php echo (isset($salaryhead_update[0]->SalaryHead) ? $salaryhead_update[0]->SalaryHead : '');?>">
 																		</div>
 																	</div>
 																	
@@ -61,7 +61,7 @@
 																	<label class="control-label col-sm-4 ">Code</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Code" name="code" value="<?php echo (isset($salaryhead_update[0]->Code) ? $salaryhead_update[0]->Code : '');?>">
+																			<input type="text" required class="form-control" id="field-1" placeholder="Code" name="code" value="<?php echo (isset($salaryhead_update[0]->Code) ? $salaryhead_update[0]->Code : '');?>">
 																		</div>
 																	</div>
 																	

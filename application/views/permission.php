@@ -35,7 +35,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="user_type">
+																		<select class="form-control " required id="s2example-1" name="user_type">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($usertype as $usertype){ ?>

@@ -29,7 +29,7 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-1" name="class">
+																<select class="form-control " required id="s2example-1" name="class">
 																	<option></option>
 																	<?php foreach($class_section as $cls){ ?>
 																						<option  value="<?=$cls->SectionId?>" <?php if(empty($sectionid)==''){ echo (!empty($cls->SectionId==$sectionid) ? "selected" : ''); } ?> ><?=$cls->ClassName?> <?=$cls->SectionName?></option>
@@ -55,7 +55,7 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-2" name="month">
+																<select class="form-control " required id="s2example-2" name="month">
 																	<option></option>
 																	<?php foreach($month as $months){ ?>
 																						<option  value="<?=$months?>" <?php if(empty($sectionid)==''){ echo (!empty($months==$attendance) ? "selected" : ''); } ?> ><?=$months?></option>

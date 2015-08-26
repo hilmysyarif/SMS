@@ -43,7 +43,7 @@
 										});
 									</script>
 									<div class="col-sm-8">
-									<select class="form-control col-sm-8" id="s3example-1" name="purpose">
+									<select class="form-control col-sm-8" required id="s3example-1" name="purpose">
 										<option></option>
 										<?php foreach ($purpose as $purpose){ ?>
 										<option   value="<?=$purpose->MasterEntryId?>" <?php if(empty($visitorid)==''){ echo (!empty($visitor_up[0]->Purpose==$purpose->MasterEntryId) ? "selected" : ''); } ?>><?=$purpose->MasterEntryValue?></option>
@@ -57,7 +57,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="father_name">Name</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="name" value="<?php echo (isset($visitor_up[0]->Name) ? $visitor_up[0]->Name : '');?>" id="" placeholder="Name">
+										<input type="text" class="form-control" required name="name" value="<?php echo (isset($visitor_up[0]->Name) ? $visitor_up[0]->Name : '');?>" id="" placeholder="Name">
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -65,7 +65,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="mother_name">Mobile</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="mobile"  value="<?php echo (isset($visitor_up[0]->Mobile) ? $visitor_up[0]->Mobile : '');?>" id="" placeholder="Mobile">
+										<input type="text" class="form-control" required name="mobile"  value="<?php echo (isset($visitor_up[0]->Mobile) ? $visitor_up[0]->Mobile : '');?>" id="" placeholder="Mobile">
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -73,7 +73,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="mobile">No Of People</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="nopeople" value="<?php echo (isset($visitor_up[0]->NoOfPeople) ? $visitor_up[0]->NoOfPeople : '');?>">
+										<input type="text" class="form-control" required name="nopeople" value="<?php echo (isset($visitor_up[0]->NoOfPeople) ? $visitor_up[0]->NoOfPeople : '');?>">
 									</div>
 								</div>
 								
@@ -81,12 +81,12 @@
 								<div class="form-group-separator">
 								</div>
 								<div class="form-group">
-									<label class="control-label col-sm-4">In Date Time</label>
+									<label class="control-label col-sm-4" >In Date Time</label>
 									<div class="col-sm-8">
 										
 										<div class="date-and-time">
 										
-											<input type="text" name="doi" value="<?php if(isset($visitor_up[0]->InDateTime)){echo date("d-m-Y H:i",$visitor_up[0]->InDateTime);}?>" class="form-control datepicker" data-show="true" data-format="dd MM yyyy">
+											<input type="text" required name="doi" value="<?php if(isset($visitor_up[0]->InDateTime)){echo date("d-m-Y H:i",$visitor_up[0]->InDateTime);}?>" class="form-control datepicker" data-show="true" data-format="dd MM yyyy">
 											<input type="text" name="toi"  value="" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
@@ -101,7 +101,7 @@
 										
 										<div class="date-and-time">
 										
-											<input type="text" name="doo" value="<?php if($visitor_up[0]->OutDateTime){echo date("d-m-Y H:i",$visitor_up[0]->OutDateTime);}?>" class="form-control datepicker" data-show="true" data-format="dd MM yyyy">
+											<input type="text" required name="doo" value="<?php if($visitor_up[0]->OutDateTime){echo date("d-m-Y H:i",$visitor_up[0]->OutDateTime);}?>" class="form-control datepicker" data-show="true" data-format="dd MM yyyy">
 											<input type="text" name="too"  value="" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
@@ -113,7 +113,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="DOR">Description</label>
 									<div class="col-sm-8">
-									<textarea class="form-control" name="description"><?php echo (isset($visitor_up[0]->Description) ? $visitor_up[0]->Description : '');?></textarea>
+									<textarea class="form-control" required name="description"><?php echo (isset($visitor_up[0]->Description) ? $visitor_up[0]->Description : '');?></textarea>
 									</div>
 								</div>
 								<div class="form-group-separator">

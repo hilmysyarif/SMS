@@ -42,7 +42,7 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-1" name="enquiry_type">
+																<select class="form-control " required id="s2example-1" name="enquiry_type">
 																	<option></option>
 																	<?php foreach($enquiry_type as $enquiry_type){ ?>
 																						<option  value="<?=$enquiry_type->MasterEntryId?>" <?php if(empty($EnquiryId)==''){ echo (!empty($enquiry_up[0]->EnquiryType==$enquiry_type->MasterEntryId) ? "selected" : ''); } ?> ><?=$enquiry_type->MasterEntryValue?></option>
@@ -56,14 +56,14 @@
 											<label class="col-sm-4 control-label" for="field-1">Name</label>
 											
 											<div class="col-sm-8 ">
-												<input type="text" class="form-control" id="field-1"  name="name" value="<?php echo (isset($enquiry_up[0]->Name) ? $enquiry_up[0]->Name : '');?>">
+												<input type="text" class="form-control" id="field-1" required  name="name" value="<?php echo (isset($enquiry_up[0]->Name) ? $enquiry_up[0]->Name : '');?>">
 											</div>
 										</div>
 										<div class="form-group col-md-5">
 											<label class="col-sm-4 control-label" for="field-1">Address</label>
 											
 											<div class="col-sm-8">
-												<textarea class="form-control" id="field-1"  name="address"><?php echo (isset($enquiry_up[0]->Address) ? $enquiry_up[0]->Address : '');?></textarea>
+												<textarea class="form-control" id="field-1" required  name="address"><?php echo (isset($enquiry_up[0]->Address) ? $enquiry_up[0]->Address : '');?></textarea>
 											</div>
 										</div>
 									</div>
@@ -87,7 +87,7 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-2" name="reference">
+																<select class="form-control " required id="s2example-2" name="reference">
 																	<option></option>
 																	<?php foreach($reference as $reference){ ?>
 																						<option  value="<?=$reference->MasterEntryId?>" <?php if(empty($EnquiryId)==''){ echo (!empty($enquiry_up[0]->Reference==$reference->MasterEntryId) ? "selected" : ''); } ?> ><?=$reference->MasterEntryValue?></option>
@@ -100,11 +100,11 @@
 											<label class="col-sm-4 control-label" for="field-1">Mobile</label>
 											
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="field-1"  name="mobile" value="<?php echo (isset($enquiry_up[0]->Mobile) ? $enquiry_up[0]->Mobile : '');?>">
+												<input type="text" class="form-control" required id="field-1"  name="mobile" value="<?php echo (isset($enquiry_up[0]->Mobile) ? $enquiry_up[0]->Mobile : '');?>">
 											</div>
 										</div>
 										<div class="form-group col-md-4">
-											<label class="col-sm-4 control-label" for="field-1">Response</label>
+											<label class="col-sm-4 control-label" required for="field-1">Response</label>
 											
 											<div class="col-sm-8">
 												<textarea class="form-control" id="field-1"  name="responsedetail"><?php echo (isset($enquiry_up[0]->ResponseDetail) ? $enquiry_up[0]->ResponseDetail : '');?></textarea>
@@ -132,7 +132,7 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-3" name="response">
+																<select class="form-control " required id="s2example-3" name="response">
 																	<option></option>
 																	<?php foreach($response as $response){ ?>
 																						<option  value="<?=$response->MasterEntryId?>" <?php if(empty($EnquiryId)==''){ echo (!empty($enquiry_up[0]->EnquiryResponse==$response->MasterEntryId) ? "selected" : ''); } ?> ><?=$response->MasterEntryValue?></option>
@@ -166,7 +166,7 @@
 									
 										<div class="col-sm-8">
 											<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="doe" value="<?php if(isset($enquiry_up[0]->EnquiryDate)){echo date("d-m-Y H:i",$enquiry_up[0]->EnquiryDate);}?>">
+														<input type="text" required readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="doe" value="<?php if(isset($enquiry_up[0]->EnquiryDate)){echo date("d-m-Y H:i",$enquiry_up[0]->EnquiryDate);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -176,10 +176,10 @@
 										</div>
 										
 										<div class="form-group col-md-5">
-											<label class="col-sm-4 control-label" for="field-1">No Of Child</label>
+											<label class="col-sm-4 control-label"  for="field-1">No Of Child</label>
 											
 											<div class="col-sm-7">
-												<input type="text" class="form-control" id="field-1"  name="nochild" value="<?php echo (isset($enquiry_up[0]->NoOfChild) ? $enquiry_up[0]->NoOfChild : '');?>">
+												<input type="text" class="form-control" required id="field-1"  name="nochild" value="<?php echo (isset($enquiry_up[0]->NoOfChild) ? $enquiry_up[0]->NoOfChild : '');?>">
 											</div>
 										</div>
 										</div>

@@ -351,4 +351,12 @@
 </div>
 </div>
 <?php }?>
+
+<?php  if($this->session->flashdata('category_error')) { ?>
+<div class="row" >
+<div class="alert alert-danger" >
+<strong><?=$this->session->flashdata('category_error')?></strong> <?php echo"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>";?>
+</div>
+</div>
+<?php }?>
 		<!-- User Info, Notifications and Menu Bar -->

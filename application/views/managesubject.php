@@ -20,7 +20,7 @@
 																	<label class="control-label col-sm-4 ">Subject Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Subject Name" name="subject_name" value="<?php echo (isset($sub_update[0]->SubjectName) ? $sub_update[0]->SubjectName : '');?>">
+																			<input type="text" class="form-control" required id="field-1" placeholder="Subject Name" name="subject_name" value="<?php echo (isset($sub_update[0]->SubjectName) ? $sub_update[0]->SubjectName : '');?>">
 																		</div>
 
 																		
@@ -30,7 +30,7 @@
 																	<label class="control-label col-sm-4 ">Abbreviation</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Abbreviation" name="abbreviation" value="<?php echo (isset($sub_update[0]->SubjectAbb) ? $sub_update[0]->SubjectAbb : '');?>">
+																			<input type="text" required class="form-control" id="field-1" placeholder="Abbreviation" name="abbreviation" value="<?php echo (isset($sub_update[0]->SubjectAbb) ? $sub_update[0]->SubjectAbb : '');?>">
 																		</div>
 
 																		
@@ -54,7 +54,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="class" multiple>
+																		<select class="form-control " required id="s2example-1" name="class" multiple>
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($class_info as $classinfo){ ?>

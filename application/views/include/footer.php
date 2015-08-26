@@ -94,6 +94,7 @@
 	<script src="<?=base_url();?>assets/js/uikit/js/addons/htmleditor.min.js"></script>
 	<script src="<?=base_url();?>assets/js/ckeditor/ckeditor.js"></script>
 	<script src="<?=base_url();?>assets/js/ckeditor/adapters/jquery.js"></script>
+	<script src="<?=base_url();?>assets/js/dropzone/dropzone.min.js"></script>
 	
 
 </body>

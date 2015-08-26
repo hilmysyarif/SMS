@@ -39,7 +39,8 @@ class Login extends CI_Controller {
 			if($row){ 
 						$user_data = array(
 											 'usermailid' => $row->Username,
-											 'user_id' => $row->UserId
+											 'user_id' => $row->UserId,
+											 'UserType' => $row->UserType
 										  );
 						$this->session->set_userdata('user_data',$user_data);
 						$user_session_data = $this->session->userdata('user_data');

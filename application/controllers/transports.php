@@ -10,10 +10,12 @@ class Transports extends CI_Controller {
 		$this->data['url'] = base_url();
 		$this->load->model('Transport_model');
 		$this->load->model('master_model');
+		$this->load->model('authority_model');
 		$this->load->library('parser');
 		$this->load->library('utilities');
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
+		$this->load->library('authority');
 		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
@@ -22,7 +24,13 @@ class Transports extends CI_Controller {
 	 }
 	/*Transports transport view load start................................................................................................*/
 	function transport($action=false,$id=false)
-	{
+	{	
+	if(Authority::checkAuthority('Transport')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Transport Reading And Fuel', base_url().'transports/transport');
 		
@@ -107,6 +115,12 @@ class Transports extends CI_Controller {
 	/*Transport Insert And Update Vehicle  start................................................................................................*/
 	function insert_vehicle()
 	{	
+	if(Authority::checkAuthority('Transport')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$Date=date("Y-m-d");
@@ -135,6 +149,12 @@ class Transports extends CI_Controller {
 	/*Transport Insert And Update Fuel  start................................................................................................*/
 	function insert_fuel()
 	{	
+	if(Authority::checkAuthority('Transport')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$Date1=date("Y-m-d");
@@ -168,6 +188,12 @@ class Transports extends CI_Controller {
 	/*Transport Insert And Update Reading  start................................................................................................*/
 	function insert_reading()
 	{	
+	if(Authority::checkAuthority('Transport')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$Date1=date("Y-m-d");
@@ -199,7 +225,13 @@ class Transports extends CI_Controller {
 	
 	/*Transports route view load start................................................................................................*/
 	function route($action=false,$id=false,$uproutedetail=false,$updetailid=false)
-	{
+	{	
+	if(Authority::checkAuthority('TransportRoute')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Transport Route', base_url().'transports/route');
 		
@@ -232,6 +264,12 @@ class Transports extends CI_Controller {
 	/*Transport Insert And Update route  start................................................................................................*/
 	function insert_route()
 	{	
+	if(Authority::checkAuthority('TransportRoute')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$Date1=date("Y-m-d");
@@ -264,6 +302,12 @@ class Transports extends CI_Controller {
 	/*Transport Insert And Update route Details start.................................................................................*/
 	function insert_routedetails()
 	{	
+	if(Authority::checkAuthority('TransportRoute')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			
 			$Date1=date("Y-m-d");

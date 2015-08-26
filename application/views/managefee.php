@@ -38,7 +38,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="class">
+																		<select class="form-control " required id="s2example-1" name="class">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($class_info as $classinfo){ ?>
@@ -69,7 +69,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-2" name="fee_type">
+																		<select class="form-control " id="s2example-2" required name="fee_type">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($fee_type as $feetype){ ?>
@@ -124,7 +124,7 @@
 																	<label class="control-label col-sm-4 ">Amount</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Amount" name="amount" value="<?php echo (isset($fee_update[0]->Amount) ? $fee_update[0]->Amount : '');?>">
+																			<input type="text" class="form-control" required id="field-1" placeholder="Amount" name="amount" value="<?php echo (isset($fee_update[0]->Amount) ? $fee_update[0]->Amount : '');?>">
 																		</div>
 
 																		

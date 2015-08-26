@@ -29,7 +29,7 @@
 															});
 														</script>
 														<div class="col-sm-8">
-															<select class="form-control " id="s2example-1" name="class">
+															<select class="form-control " required id="s2example-1" name="class">
 																<option></option>
 															
 																						<?php foreach($class_section as $cls){ ?>
@@ -90,7 +90,7 @@
 									<label class="col-sm-4 control-label" for="student_name" >Date</label>
 									<div class="col-sm-8">
 										<div class="input-group">
-											<input type="text" name="date" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input type="text" required name="date" class="form-control datepicker" data-format="D, dd MM yyyy">
 											
 											<div class="input-group-addon">
 												<a href="#"><i class="linecons-calendar"></i></a>
@@ -101,7 +101,7 @@
 								<div class="form-group-separator">
 								</div>
 									<div class="form-group">
-										<label class="col-sm-4 control-label" for="tagsinput-1">Multi-select List</label>
+										<label class="col-sm-4 control-label" for="tagsinput-1">Students List</label>
 										
 										<div class="col-sm-8">
 											
@@ -122,7 +122,7 @@
 													});
 												});
 											</script>
-											<select class="form-control" multiple="multiple" id="multi-select" name="addmissionid[]">
+											<select class="form-control" required multiple="multiple" id="multi-select" name="addmissionid[]">
 												<?php foreach($students as $studentss){ ?>
 																						<option  value="<?=$studentss->AdmissionId?>" ><?=$studentss->StudentName?> (<?=$studentss->FatherName?>)</option>
 																								<?php  } ?>
@@ -133,7 +133,7 @@
 								
 								<div class="form-group-separator">
 								</div>
-								<select class="form-control" name="absent[]" multiple="multiple"  >
+								<select class="form-control" name="absent[]" multiple="multiple"  required>
 										<?php foreach($students as $students){ ?>
 																						<option  value="<?=$students->AdmissionId?>" ><?=$students->StudentName?> (<?=$students->FatherName?>)</option>
 																								<?php  } ?>

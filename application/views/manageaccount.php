@@ -46,7 +46,7 @@
 																			</script>
 																	<div class="col-sm-8">
 																	<?php $filter=array('MasterEntryName' => 'UserType'); $user= $this->utilities->get_usertype($filter); ?>
-																		<select class="form-control " id="s2example-1" name="manage_by">
+																		<select class="form-control " required id="s2example-1" name="manage_by">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($user as $usertype){ ?>
@@ -77,7 +77,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-2" name="account_type">
+																		<select class="form-control " required id="s2example-2" name="account_type">
 																			<option></option>
 																			<optgroup label="Select">
 																			<?php $filter=array('MasterEntryName' => 'AccountType'); $user= $this->utilities->get_usertype($filter); ?>
@@ -95,7 +95,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Opening Balance</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Openning Balance" name="open_bal" value="<?php echo (isset($acc_update[0]->OpeningBalance) ? $acc_update[0]->OpeningBalance : '');?>">
+																			<input type="text" required class="form-control" id="field-1" placeholder="Openning Balance" name="open_bal" value="<?php echo (isset($acc_update[0]->OpeningBalance) ? $acc_update[0]->OpeningBalance : '');?>">
 																		</div>
 																	</div>
 																	
@@ -103,7 +103,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Account Start Date</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Account Date" name="acc_start_date" value="<?php echo (isset($acc_update[0]->AccountDate) ? $acc_update[0]->AccountDate : '');?>">
+																			<input type="text" class="form-control datepicker" data-show="true" data-format="dd MM yyyy" required id="field-1" placeholder="Account Date" name="acc_start_date" value="<?php echo (isset($acc_update[0]->AccountDate) ? $acc_update[0]->AccountDate : '');?>">
 																		</div>
 																	</div>
 																	

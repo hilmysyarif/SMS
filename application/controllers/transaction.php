@@ -10,10 +10,12 @@ class Transaction extends CI_Controller {
 		$this->data['url'] = base_url();
 		$this->load->model('Transaction_model');
 		$this->load->model('master_model');
+		$this->load->model('authority_model');
 		$this->load->library('parser');
 		$this->load->library('utilities');
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
+		$this->load->library('authority');
 		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
@@ -22,7 +24,13 @@ class Transaction extends CI_Controller {
 	 }
 	/*transaction Expense view load start................................................................................................*/
 	function expense($expenseid=false)
-	{ 
+	{ 	
+	if(Authority::checkAuthority('Expense')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Expense Account', base_url().'transaction/expense');
 		
@@ -51,6 +59,12 @@ class Transaction extends CI_Controller {
 	/*transaction Insert And Update Expense  start................................................................................................*/
 	function insert_expense()
 	{	
+	if(Authority::checkAuthority('Expense')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			if($this->input->post('payment') && $this->input->post('amount_paid')){
 				
@@ -162,6 +176,12 @@ class Transaction extends CI_Controller {
 	/*transaction Insert And Update Expense Payment pay start.....................................................................................*/
 	function makeexpensepayment()
 	{	
+	if(Authority::checkAuthority('Expense')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			if($this->input->post('amount') && $this->input->post('account')){
 				
@@ -240,7 +260,13 @@ class Transaction extends CI_Controller {
 	
 	/*transaction Income view load start................................................................................................*/
 	function income()
-	{
+	{	
+	if(Authority::checkAuthority('Income')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Income Account', base_url().'transaction/income');
 		
@@ -260,6 +286,12 @@ class Transaction extends CI_Controller {
 	/*transaction Insert And Update Income  start................................................................................................*/
 	function insert_income()
 	{	
+	if(Authority::checkAuthority('Income')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('add')){
 			if($this->input->post('account') && $this->input->post('amount')){
 				

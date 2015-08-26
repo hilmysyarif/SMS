@@ -21,7 +21,7 @@
 																	<label class="control-label col-sm-4 ">Template Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Template Name" name="templatename" value="<?php echo (isset($salarystructure_update[0]->SalaryStructureName) ? $salarystructure_update[0]->SalaryStructureName : '');?>">
+																			<input type="text" required class="form-control" id="field-1" placeholder="Template Name" name="templatename" value="<?php echo (isset($salarystructure_update[0]->SalaryStructureName) ? $salarystructure_update[0]->SalaryStructureName : '');?>">
 																		</div>
 
 																		
@@ -45,7 +45,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="fixedsalary">
+																		<select class="form-control " required id="s2example-1" name="fixedsalary">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($fixedsalary as $fixedsalary){ ?>

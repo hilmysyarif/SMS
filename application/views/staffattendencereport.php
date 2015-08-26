@@ -29,7 +29,7 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-1" name="month">
+																<select class="form-control " required id="s2example-1" name="month">
 																	<option></option>
 																<?php foreach($month as $month1){ ?>
 																	<option  value="<?=$month1?>" <?php if(empty($attendance)==''){ echo (!empty($attendance==$month1) ? "selected" : ''); } ?> ><?=$month1?></option>

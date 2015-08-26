@@ -22,7 +22,7 @@
 																	<label class="control-label col-sm-4 ">Indicator Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Indicator Name" name="indicator_name" value="<?php echo (isset($scindicator_update[0]->SCIndicatorName) ? $scindicator_update[0]->SCIndicatorName : '');?>">
+																			<input type="text" required class="form-control" id="field-1" placeholder="Indicator Name" name="indicator_name" value="<?php echo (isset($scindicator_update[0]->SCIndicatorName) ? $scindicator_update[0]->SCIndicatorName : '');?>">
 																		</div>
 
 																		
@@ -46,7 +46,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="area">
+																		<select class="form-control " required id="s2example-1" name="area">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($scarea_info as $scareainfo){ ?>

@@ -10,10 +10,12 @@ class Attendences extends CI_Controller {
 		$this->data['url'] = base_url();
 		$this->load->model('attendence_model');
 		$this->load->model('master_model');
+		$this->load->model('authority_model');
 		$this->load->library('parser');
 		$this->load->library('utilities');
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
+		$this->load->library('authority');
 		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
@@ -26,6 +28,12 @@ class Attendences extends CI_Controller {
 	/*school management Staff Attendence View Load.....................................................................................................*/
 	function staffattendence()
 	{	
+	if(Authority::checkAuthority('StaffAttendence')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Staff Attendance', base_url().'attendence/staffattendence');
 		$this->data['get_staff']=$this->attendence_model->get_staff();
@@ -40,6 +48,12 @@ class Attendences extends CI_Controller {
 	/*school management Add Staff Attendence .....................................................................................................*/
 	function add_attendence()
 	{	
+	if(Authority::checkAuthority('StaffAttendence')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 	if($this->input->post('intime') && $this->input->post('date') && $this->input->post('outtime') !=''){
 		
 	$Date= date("Y-m-d");
@@ -201,7 +215,13 @@ class Attendences extends CI_Controller {
 	
 	/*school management staff Attendance report View Load.............................................................................................................*/
 	function staffattendancereport()
-	{
+	{	
+	if(Authority::checkAuthority('StaffAttendenceReport')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 				$this->breadcrumb->clear();
 				$this->breadcrumb->add_crumb('Staff Attendance Report', base_url().'attendence/staffattendancereport');
 				$Sessions=explode("-",$this->currentsession[0]->CurrentSession);
@@ -267,7 +287,14 @@ class Attendences extends CI_Controller {
 	
 	/*school management Student Attendence View Load.............................................................................................................*/
 	function studentattendence($sectionid=false)
-	{	$this->breadcrumb->clear();
+	{	
+	if(Authority::checkAuthority('StudentAttendence')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Student Attendance', base_url().'attendence/studentattendence');
 		if($sectionid !=''){
 			$this->data['sectionid']=$sectionid;
@@ -285,6 +312,12 @@ class Attendences extends CI_Controller {
 	/*school management Get Student For Attendance................................................................................*/
 	function get_student()
 	{	
+	if(Authority::checkAuthority('StudentAttendence')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($this->input->post('class') !=''){
 			redirect('attendences/studentattendence/'.$this->input->post('class'));
 		}else{
@@ -295,6 +328,12 @@ class Attendences extends CI_Controller {
 	/*school management Add Student Attendance................................................................................*/
 	function add_student_att()
 	{		
+	if(Authority::checkAuthority('StudentAttendence')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 			$USERNAME=$this->info[0]->usermailid;
 			$Date= date("Y-m-d");
 			$Attendance=$_POST['addmissionid'];
@@ -400,7 +439,14 @@ class Attendences extends CI_Controller {
 	
 	/*school management Student Attendance report View Load.............................................................................................................*/
 	function studentattendancereport()
-	{		$this->breadcrumb->clear();
+	{		
+	if(Authority::checkAuthority('StudentAttendenceReport')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Student Attendance Report', base_url().'attendence/studentattendancereport');
 				$Sessions=explode("-",$this->currentsession[0]->CurrentSession);
 				$StartingYear=$Sessions[0];

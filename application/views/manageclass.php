@@ -21,7 +21,7 @@
 																	<label class="control-label col-sm-4 ">Class Name</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Class Name" name="class_name" value="<?php echo (isset($class_update[0]->ClassName) ? $class_update[0]->ClassName : '');?>" >
+																			<input type="text" required class="form-control" id="field-1" placeholder="Class Name" name="class_name" value="<?php echo (isset($class_update[0]->ClassName) ? $class_update[0]->ClassName : '');?>" >
 																		</div>	
 
 																		
@@ -69,7 +69,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " id="s2example-1" name="class_name">
+																		<select class="form-control " required id="s2example-1" name="class_name">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($class_info as $classinfo){ ?>
@@ -86,7 +86,7 @@
 																	<label class="control-label col-sm-4 ">Section Name</label>
 																	
 																	<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Section Name" name="section_name" value="<?php echo (isset($section_update[0]->SectionName) ? $section_update[0]->SectionName : '');?>" >
+																			<input type="text" class="form-control" required id="field-1" placeholder="Section Name" name="section_name" value="<?php echo (isset($section_update[0]->SectionName) ? $section_update[0]->SectionName : '');?>" >
 																		</div>			
 
 																		

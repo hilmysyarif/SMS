@@ -26,14 +26,14 @@
 						  <?php if(isset($upfollowupid)){?>
 						  <input type="hidden" name="upfollowupid" value="<?=$up_followup_details[0]->FollowUpId?>"/>
 						  <?php } ?>
-						    <input type="hidden" name="followupid" value="<?php if(isset($followupid)){ echo $followupid[0];}?>"/>
+						    <input type="hidden"  name="followupid" value="<?php if(isset($followupid)){ echo $followupid[0];}?>"/>
 								<div class="form-group">
 									<label class="control-label col-sm-4">Follow Up Date</label>
 									<div class="col-sm-8">
 										
 										<div class="date-and-time">
 										
-											<input type="text" name="dof" value="<?php if(isset($up_followup_details[0]->DOF)){ echo date("d M Y, D h:i a",$up_followup_details[0]->DOF);}?>" class="form-control datepicker" data-show="true" data-format="D, dd MM yyyy">
+											<input type="text" required name="dof" value="<?php if(isset($up_followup_details[0]->DOF)){ echo date("d M Y, D h:i a",$up_followup_details[0]->DOF);}?>" class="form-control datepicker" data-show="true" data-format="D, dd MM yyyy">
 											<input type="text" name="tof"  value="" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
@@ -45,7 +45,7 @@
 										
 										<div class="date-and-time">
 										
-											<input type="text" name="ndof" value="<?php if(isset($up_followup_details[0]->NextFollowUpDate)){ echo date("d M Y, D h:i a",$up_followup_details[0]->NextFollowUpDate);}?>" class="form-control datepicker" data-show="true" data-format="D, dd MM yyyy">
+											<input required type="text" name="ndof" value="<?php if(isset($up_followup_details[0]->NextFollowUpDate)){ echo date("d M Y, D h:i a",$up_followup_details[0]->NextFollowUpDate);}?>" class="form-control datepicker" data-show="true" data-format="D, dd MM yyyy">
 											<input type="text" name="ntof"  class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
@@ -57,7 +57,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="DOR">Response</label>
 									<div class="col-sm-8">
-									<textarea class="form-control" name="response"><?php echo (isset($up_followup_details[0]->ResponseDetail) ? $up_followup_details[0]->ResponseDetail : '');?></textarea>
+									<textarea required class="form-control" name="response"><?php echo (isset($up_followup_details[0]->ResponseDetail) ? $up_followup_details[0]->ResponseDetail : '');?></textarea>
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -66,7 +66,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="DOR">Remarks</label>
 									<div class="col-sm-8">
-									<textarea class="form-control" name="remark"><?php echo (isset($up_followup_details[0]->Remarks) ? $up_followup_details[0]->Remarks : '');?></textarea>
+									<textarea required class="form-control" name="remark"><?php echo (isset($up_followup_details[0]->Remarks) ? $up_followup_details[0]->Remarks : '');?></textarea>
 									</div>
 								</div>
 								<div class="form-group-separator">

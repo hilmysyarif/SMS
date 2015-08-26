@@ -68,7 +68,7 @@
 											<div class="form-group">
 																			<label class="control-label col-sm-4 ">Route Name</label>
 																				<div class="col-sm-8">
-																					<input type="text" class="form-control" name="routename" value="<?php echo (isset($route_update[0]->VehicleRouteName) ? $route_update[0]->VehicleRouteName : '');?>" id="mother_name" placeholder="">
+																					<input required type="text" class="form-control" name="routename" value="<?php echo (isset($route_update[0]->VehicleRouteName) ? $route_update[0]->VehicleRouteName : '');?>" id="mother_name" placeholder="">
 																				</div>	
 																		</div>
 											
@@ -90,7 +90,7 @@
 																				});
 																			</script>
 																				<div class="col-sm-8">
-																					<select class="form-control " id="s2example-3" name="to">
+																					<select required class="form-control " id="s2example-3" name="to">
 																						<option></option>
 																						<optgroup label="Select">
 																				<?php $filter=array('MasterEntryName'=>'RouteTo'); $to= $this->utilities->get_usertype($filter); foreach($to as $to){ ?>
@@ -119,7 +119,7 @@
 																				});
 																			</script>
 																				<div class="col-sm-8">
-																					<select class="form-control " id="s2example-2" name="vehicle">
+																					<select required class="form-control " id="s2example-2" name="vehicle">
 																						<option></option>
 																						<optgroup label="Select">
 																				<?php foreach($vehicle_list as $showvehicle){?>
@@ -152,7 +152,7 @@
 																						<option></option>
 																						<optgroup label="Select">
 																				<?php $filter=array('MasterEntryName'=>'RouteStoppage'); $to= $this->utilities->get_usertype($filter); foreach($to as $to1){ ?>
-																				<option value="<?=$to1->MasterEntryId?>" <?php if(empty($routeid)==''){
+																				<option required value="<?=$to1->MasterEntryId?>" <?php if(empty($routeid)==''){
 																					 $route=explode(",",$route_update[0]->Route);
 																					foreach($route as $route){
 																				echo (!empty($to1->MasterEntryId==$route) ? "selected" : ''); }} ?>><?=$to1->MasterEntryValue?></option>
@@ -212,7 +212,7 @@
 																						});
 																				</script>
 																			<div class="col-sm-8">
-																				<select class="form-control " id="s2example-6" name="stoppage">
+																				<select class="form-control " required id="s2example-6" name="stoppage">
 																					<option></option>
 																				
 															<?php  foreach($to as $to2){ ?>
@@ -244,7 +244,7 @@
 																						});
 																				</script>
 																			<div class="col-sm-8">
-																				<select class="form-control " id="s2example-5" name="student">
+																				<select class="form-control " required id="s2example-5" name="student">
 																					<option></option>
 																				
 															<?php foreach($student as $student_info){ ?>

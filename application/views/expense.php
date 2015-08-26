@@ -40,7 +40,7 @@
 																						});
 																				</script>
 																			<div class="col-sm-8">
-																				<select class="form-control " id="s2example-1" name="for">
+																				<select class="form-control " required id="s2example-1" name="for">
 																					<option></option>
 																				
 															<?php foreach($for as $for){ ?>
@@ -70,7 +70,7 @@
 																						});
 																				</script>
 																			<div class="col-sm-8">
-																				<select class="form-control " id="s2example-2" name="supplier">
+																				<select class="form-control " required id="s2example-2" name="supplier">
 																					<option></option>
 																				
 															<?php foreach($supplier as $supplier){ ?>
@@ -85,7 +85,7 @@
 																	<div class="form-group">
 																			<label class="control-label col-sm-4 ">Amount</label>
 																				<div class="col-sm-8">
-																					<input type="text" class="form-control" name="amount" value=""  placeholder="">
+																					<input type="text" required class="form-control" name="amount" value=""  placeholder="">
 																				</div>	
 																		</div>
 																		
@@ -94,7 +94,7 @@
 																	
 																			<div class="col-sm-8">
 																			<div class="date-and-time">
-																				<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy" name="doe">
+																				<input type="text" required class="form-control datepicker" data-format="D, dd MM yyyy" name="doe">
 																				<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="toe"/>
 																			</div>
 																		</div>	
@@ -103,7 +103,7 @@
 																<div class="form-group">
 																<label class="control-label col-sm-4 ">Expense Remark</label>
 																<div class="col-sm-8">
-																<textarea class="form-control" name="expense_remark"></textarea>
+																<textarea class="form-control" required name="expense_remark"></textarea>
 																</div>
 																</div>
 																
@@ -136,7 +136,7 @@
 																						});
 																				</script>
 																			<div class="col-sm-8">
-																				<select class="form-control " id="s2example-3" name="account">
+																				<select class="form-control " required id="s2example-3" name="account">
 																					<option></option>
 																				
 															<?php foreach($account as $account2){ ?>
