@@ -81,44 +81,36 @@
 								
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="tagsinput-1">Staff List</label>
-									
-									<div class="col-sm-8">
-										
-										<script type="text/javascript">
-											jQuery(document).ready(function($)
-											{
-												$("#multi-select").multiSelect({
-													afterInit: function()
-													{
-														// Add alternative scrollbar to list
-														this.$selectableContainer.add(this.$selectionContainer).find('.ms-list').perfectScrollbar();
-													},
-													afterSelect: function()
-													{
-														// Update scrollbar size
-														this.$selectableContainer.add(this.$selectionContainer).find('.ms-list').perfectScrollbar('update');
-													}
-												});
+									<style>.multiselectable { width:500px; display:block; overflow: hidden; width: 100%; }
+										.multiselectable select, .multiselectable div { width: 200px; float:left; }
+										.multiselectable div * { display: block; margin: 0 auto; }
+										.multiselectable div { display: inline; }
+										.multiselectable .m-selectable-controls { margin-top: 1em; width: 50px; }
+										.multiselectable .m-selectable-controls button { margin-top: 1em; }</style>
+									<script type="text/javascript">
+										$(document).ready(function() {
+											$('.multi').multiselectable({
+												
+												moveRightText: '+',
+												moveLeftText: '-'
 											});
-										</script>
-										<select required class="form-control" name="staff[]" multiple="multiple" id="multi-select" >
+										});
+									</script>
+									<div class="col-sm-8">
+										<select required class="form-control multi" name="staff[]" multiple="multiple" >
 										<?php foreach($get_staff as $get_staff1){ ?>
 											<option value="<?=$get_staff1->StaffId?>"><?=$get_staff1->StaffName?> (<?=$get_staff1->MasterEntryValue?>)</option>
 										<?php } ?>
 										</select>
-										
 									</div>
+										
 								</div>
 								<div class="form-group-separator">
 								</div>
-							<select  required class="form-control" name="absent[]" multiple="multiple"  >
-										<?php foreach($get_staff as $get_staff){ ?>
-											<option value="<?=$get_staff->StaffId?>"><?=$get_staff->StaffName?> (<?=$get_staff->MasterEntryValue?>)</option>
-										<?php } ?>
-										</select>
+							
 							<div class="form-group pull-right">
 								       
-								 <input  type="submit" name="Present" value="Present" class="btn btn btn-info btn-single " />   
+								 <input  type="submit" name="Present" value="Present" class="btn btn btn-info btn-single " onclick="selectAll('m-selectable',true)"/>   
 								<!-- <input  type="submit" name="Absent" value="Absent" class="btn btn btn-info btn-single "/> -->
 								  <input  type="submit" name="Halfday" value="Halfday" class="btn btn btn-info btn-single "/>
 								   <input  type="submit" name="Paid Leave" value="Paid Leave" class="btn btn btn-info btn-single "/>

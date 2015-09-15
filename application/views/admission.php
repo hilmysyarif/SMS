@@ -1,10 +1,11 @@
-<?php  if($this->session->flashdata('message_type')) { ?>
+<?php  if($this->session->flashdata('message_type')=='success') { ?>
 <div class="row">
 <div class="alert alert-success">
 <strong><?=$this->session->flashdata('message')?></strong> 
 </div>
 </div>
 <?php }?>
+
 			<div class="row">
 					<div class="col-md-4">
 						<div class="panel panel-color panel-gray">
@@ -177,7 +178,13 @@
 					
 				</div>
 			</div>
-			  <?php }else{ ?>
+	<?php  }elseif($this->session->flashdata('message_type')=='error') { ?>
+<div class="row">
+<div class="alert alert-danger">
+<strong><?=$this->session->flashdata('message')?></strong> 
+</div>
+</div>
+<?php }else{ ?>
   <div class="alert alert-info">Please Select One Student!! </div>
   <?php }?>
   </div>

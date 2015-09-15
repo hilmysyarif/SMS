@@ -97,7 +97,7 @@
 										</div>
 									<div class="panel-body">
 											<form role="form" class="form-horizontal" action="<?=base_url();?>admission/updateclass" method="post">
-											
+											<input type="hidden" name="addmissionid" value="<?php echo (isset($admission) ? $admission : '');?>"/>
 																<div class="form-group">
 																	<label class="control-label col-sm-4 ">Class </label>
 																	
@@ -216,9 +216,10 @@
 					<h3 class="panel-title">Set Fee Structure</h3>
 					
 					<div class="panel-body">
-											<form role="form" class="form-horizontal" action="<?=base_url();?>admission/" method="post">
+											<form role="form" class="form-horizontal" action="<?=base_url();?>admission/setfee_structure" method="post">
 											
-											<input type="hidden" name="session" value="2015-2016">
+											<input type="hidden" name="addmissionid" value="<?php echo (isset($admission) ? $admission : '');?>"/>
+											<input type="hidden" name="section" value="<?php echo (isset($section) ? $section : '');?>"/>
 																<div class="form-group">
 																	<label class="control-label col-sm-4 ">Date Of Promotion</label>
 																	
@@ -250,7 +251,8 @@
 																	<label class="control-label col-sm-4 "><?=$fee[0]->MasterEntryValue?></label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" name="mother_name" value="<?=$fee_remove_underscope[1]?>" id="mother_name" placeholder="">
+																			<input type="text" class="form-control" name="feeamount[]" value="<?=$fee_remove_underscope[1]?>"  >
+																			<input type="hidden" class="form-control" name="feeid[]" value="<?=$fee_remove_underscope[0]?>"  >
 																		</div>	
 
 																		

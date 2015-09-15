@@ -33,12 +33,24 @@
 							<p><mark>Username : masteruser</mark></p>
 							<p><mark>Password : 123456</mark></p>
 							</br>
+							<h4><span class="label label-info" data-toggle="tooltip" data-placement="left" title="" data-original-title="Parents Login :">ManageEvent Login : </span> </h4>
+							<p><mark>Username : manageEvents</mark></p>
+							<p><mark>Password : 123456</mark></p>
+							</br>
+							<h4><span class="label label-info" data-toggle="tooltip" data-placement="left" title="" data-original-title="Parents Login :">Teachers Login : </span> </h4>
+							<p><mark>Username : teachers</mark></p>
+							<p><mark>Password : 123456</mark></p>
+							</br>
+							<h4><span class="label label-info" data-toggle="tooltip" data-placement="left" title="" data-original-title="Parents Login :">Transportors Login : </span> </h4>
+							<p><mark>Username : transportors</mark></p>
+							<p><mark>Password : 123456</mark></p>
+							</br>
 							<h4><span class="label label-info" data-toggle="tooltip" data-placement="left" title="" data-original-title="Parents Login :">Parents Login : </span> </h4>
-							<p><mark>Username : 1@parents</mark></p>
+							<p><mark>Username : parents</mark></p>
 							<p><mark>Password : 123456</mark></p>
 							</br>
 							<h4><span class="label label-info" data-toggle="tooltip" data-placement="left" title="" data-original-title="Parents Login :">Students Login :  </span> </h4>
-							<p><mark>Username : 1@student</mark></p>
+							<p><mark>Username : students</mark></p>
 							<p><mark>Password : 123456</mark></p>
 						</div>
 					</div>

@@ -63,5 +63,58 @@ class Payment_model extends CI_Model
 						group by FeeType");
    	return $query->Result();
    }
+   
+   function get_account()
+	{
+			$qry = $this->db->query("select OpeningBalance,AccountBalance,AccountId,AccountName from accounts where AccountStatus='Active'");	
+			return $qry->Result();	
+	}
+	
+	function getfeepaid($AdmissionId=false,$CURRENTSESSION=false)
+	{
+			$qry = $this->db->query("select SUM(Amount) as PaidFeeType,FeeType from feepayment,transaction where
+			feepayment.Token=transaction.Token and
+			transaction.TransactionHead='Fee' and
+			transaction.TransactionHeadId='$AdmissionId' and
+			transaction.TransactionSession='$CURRENTSESSION' and 
+			transaction.TransactionStatus='Active' 
+			group by FeeType");	
+			return $qry->Result();	
+	}
+	
+	function getfeepaidstudentfeestructure($AdmissionId=false,$SectionId=false,$CURRENTSESSION=false)
+	{
+			$qry = $this->db->query("Select FeeStructure from studentfee where AdmissionId='$AdmissionId' and SectionId='$SectionId' and Session='$CURRENTSESSION'");	
+			return $qry->Result();	
+	}
+	
+	function getfeepaidstudentpending($Token=false)
+	{
+			$qry = $this->db->query("select feepayment.Amount,feepayment.FeeType,MasterEntryValue from feepayment,fee,masterentry where 
+				fee.FeeId=feepayment.FeeType and 
+				Token='$Token' and 
+				fee.FeeType=masterentry.MasterEntryId and
+				FeePaymentStatus='Pending'");	
+			return $qry->Result();	
+	}
+	
+	function insertconfirmpayment($USERNAME=false,$Token=false,$CURRENTSESSION=false,$Amount=false,$Account=false,$Fee=false,$AdmissionId=false,$Remarks=false,$DOP=false,$Date=false)
+	{
+			$this->db->query("insert into transaction(Username,Token,TransactionSession,TransactionAmount,TransactionType,TransactionFrom,TransactionHead,TransactionSubHead,TransactionHeadId,TransactionRemarks,TransactionDate,TransactionDOE,TransactionStatus)
+					values('$USERNAME','$Token','$CURRENTSESSION','$Amount','1','$Account','Fee','','$AdmissionId','$Remarks','$DOP','$Date','Active')");	
+			
+	}
+	
+	function updateaccbal($Amount=false,$Account=false)
+	{
+			$this->db->query("update accounts set AccountBalance=AccountBalance+$Amount where AccountId='$Account' ");	
+			
+	}
+	
+	function updatefeepaymentstatus($Token=false)
+	{
+			$this->db->query("update feepayment set FeePaymentStatus='Active' where Token='$Token'");	
+			
+	}
 	 
 }

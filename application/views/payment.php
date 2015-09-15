@@ -1,6 +1,13 @@
-<?php  if($this->session->flashdata('message_type')) { ?>
+<?php  if($this->session->flashdata('message_type')=='success') { ?>
 <div class="row">
 <div class="alert alert-success">
+<strong><?=$this->session->flashdata('message')?></strong> 
+</div>
+</div>
+<?php }?>
+<?php  if($this->session->flashdata('message_type')=='error') { ?>
+<div class="row">
+<div class="alert alert-danger">
 <strong><?=$this->session->flashdata('message')?></strong> 
 </div>
 </div>
@@ -59,9 +66,10 @@
 												<h3 class="panel-title">Select Fee For <?php if(isset($get_fee_details)){ echo $get_fee_details[0]->StudentName; echo "&nbsp";  echo "F/n" ; echo "&nbsp";  echo $get_fee_details[0]->FatherName ; echo "&nbsp"; echo"(";  echo $get_fee_details[0]->Mobile; echo")";} ?></h3>
 											</div>
 												<div class="panel-body">
-																<form role="form" class="form-horizontal" action="<?=base_url();?>" method="post">
-																		<?php  if(empty($id)==''){ ?>
-																					<input type="hidden" name="id" value="<?php echo (isset($class_update[0]->ClassId) ? $class_update[0]->ClassId : '');?>">
+																<form role="form"  class="form-horizontal" id="addfeelist" method="post" >
+																		<?php  if(empty($admission)==''){ ?>
+																					<input type="hidden" name="sectionid" id="sectionid" value="<?php echo (isset($get_fee_details[0]->SectionId) ? $get_fee_details[0]->SectionId : '');?>">
+																					<input type="hidden" id="admissionid" name="admissionid" value="<?php echo (isset($admission) ? $admission : '');?>">
 																		<?php } ?>
 																		<div class="form-group">
 																			<label class="control-label col-sm-4 ">Select Fee</label>
@@ -80,13 +88,13 @@
 																						});
 																				</script>
 																				<div class="col-sm-8">
-																					<select class="form-control " id="s2example-2" name="class">
+																					<select class="form-control " id="s2example-2" name="feetype">
 																						<option></option>
 																					
-												<?php foreach($get_balance as $get_balance1){ ?>
+												<?php  foreach($get_balance as $get_balance1){ ?>
 												<?php $filter=array('FeeId' => $get_balance1->FeeType); $feety= $this->utilities->get_masterval('fee',$filter); 
 													$filter=array('MasterEntryId' => $feety[0]->FeeType); $fee= $this->utilities->get_usertype($filter);  ?>
-												<option  value="" ><?=$fee[0]->MasterEntryValue?> fee Balance: <?=$feety[0]->Amount-$get_balance1->Paid?></option>
+												<option  value="<?=$get_balance1->FeeType?>" ><?=$fee[0]->MasterEntryValue?> fee Balance: <?=$feety[0]->Amount-$get_balance1->Paid?></option>
 													<?php  } ?>
 																													</optgroup>
 																												
@@ -96,11 +104,11 @@
 																		<div class="form-group">
 																			<label class="control-label col-sm-4 ">Amount</label>
 																				<div class="col-sm-8">
-																					<input type="text" class="form-control" name="mother_name" value="" id="mother_name" placeholder="">
+																					<input type="text" id="amount" class="form-control" name="amount" value="" placeholder="Enter Amount">
 																				</div>	
 																		</div>
 																		<div class="form-group pull-right">						
-																			<input type="submit" class="btn btn-info btn-single " value="Add In Fee List">
+																			<input type="button" class="btn btn-info btn-single " onclick="addfeelist()" value="Add In Fee List">
 																		</div>
 																		</br>
 																</form>
@@ -152,7 +160,9 @@
 											Fee List To Be Paid By <?php if(isset($get_fee_details)){ echo $get_fee_details[0]->StudentName; echo "&nbsp";  echo "F/n" ; echo "&nbsp";  echo $get_fee_details[0]->FatherName ; echo "&nbsp"; echo"(";  echo $get_fee_details[0]->Mobile; echo")";} ?>
 										</div>
 								<div class="panel-body">
-												<table class="table table-bordered table-striped" id="example-4">
+								<form role="form" class="form-horizontal" action="<?=base_url();?>payments/confirmpayment" method="post">
+								<div id="showpending">
+												<table class="table table-bordered table-striped" id="example-5">
 														<thead>
 															<tr>
 																<th>Fee Type</th>
@@ -165,7 +175,7 @@
 														
 													 
 														<tbody>
-														<?php //foreach($regis as $rg){?>
+														
 															<tr>
 																<td></td>
 																<td></td>
@@ -173,14 +183,16 @@
 															
 																
 															</tr>
-															<?php //} ?>
+														
 														</tbody>
 												</table>
-									
-											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_class/section" method="post">
-											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?php echo (isset($section_update[0]->SectionId) ? $section_update[0]->SectionId : '');?>">
-											<?php } ?>
+									</div>
+											
+											<?php  if(empty($admission)==''){ ?>
+																					<input type="hidden" name="sectionid" id="sectionid" value="<?php echo (isset($get_fee_details[0]->SectionId) ? $get_fee_details[0]->SectionId : '');?>">
+																					<input type="hidden" id="admissionid" name="admissionid" value="<?php echo (isset($admission) ? $admission : '');?>">
+																					
+																		<?php } ?>
 																<div class="form-group">
 																	<label class="control-label col-sm-4 ">Account </label>
 																	
@@ -199,12 +211,12 @@
 																				});
 																			</script>
 																				<div class="col-sm-8">
-																					<select class="form-control " id="s2example-3" name="class_name">
+																					<select class="form-control " id="s2example-3" name="accountid">
 																						<option></option>
 																						<optgroup label="Select">
-																				<?php foreach($class_info as $classinfo){ ?>
-																				<option value="<?=$classinfo->ClassId?>" <?php if(empty($id)==''){ echo (!empty($section_update[0]->ClassId==$classinfo->ClassId) ? "selected" : ''); } ?>><?=$classinfo->ClassName?></option>
-																						<?php } ?>
+																				<?php foreach($account as $account2){ ?>
+															<option  value="<?=$account2->AccountId?>"><?=$account2->AccountName?> Balance : <?=$account2->OpeningBalance+$account2->AccountBalance?> INR </option>
+																													<?php } ?>
 																					</optgroup>
 																					</select>
 																			</div>	
@@ -214,8 +226,8 @@
 																	
 																			<div class="col-sm-8">
 																			<div class="date-and-time">
-																				<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
-																				<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+																				<input type="text" name="dop" class="form-control datepicker" data-format="D, dd MM yyyy">
+																				<input type="text" name="top" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 																			</div>
 																		</div>	
 																</div>
@@ -224,7 +236,7 @@
 																	<label class="control-label col-sm-4 ">Remarks</label>
 																	
 																			<div class="col-sm-8">
-																			<textarea class="form-control"></textarea>
+																			<textarea name="remark" class="form-control"></textarea>
 																		</div>	
 																</div>
 															<div class="form-group pull-right">

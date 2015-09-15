@@ -78,8 +78,8 @@
 									
 										
 										<div class="date-and-time">
-											<input type="text" name="DOR" value="<?=isset($DOR)?$DOR:''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input type="text" name="DOR" value="<?=isset($DOR)?$DOR:''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input readonly type="text" name="DOR" value="<?=isset($DOR)?date("d M Y",$DOR):''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input readonly type="text" name="DOR" value="<?=isset($DOR)?date("D h:i a",$DOR):''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 								
@@ -161,7 +161,7 @@
 										<script type="text/javascript">
 										jQuery(document).ready(function($)
 										{
-											$("#s3example-1").select2({
+											$("#s3example-3").select2({
 												placeholder: 'Select ...',
 												allowClear: true
 											}).on('select2-open', function()
@@ -173,7 +173,7 @@
 										});
 									</script>
 								
-									<select class="form-control " id="s3example-1" name="gender">
+									<select class="form-control " id="s3example-3" name="gender">
 										<option></option>
 									
 										<?php foreach ($gender as $gen){?>
@@ -194,7 +194,7 @@
 										<script type="text/javascript">
 										jQuery(document).ready(function($)
 										{
-											$("#s3example-1").select2({
+											$("#s3example-4").select2({
 												placeholder: 'Select ...',
 												allowClear: true
 											}).on('select2-open', function()
@@ -206,9 +206,9 @@
 										});
 									</script>
 								
-									<select class="form-control " id="s3example-1" name="Category">
+									<select class="form-control " id="s3example-4" name="Category">
 										<option></option>
-		<?php foreach ($category as $cat){ //print_r($key);die;?>
+		<?php foreach ($category as $cat){?>
 										
 								<?php if($cat->MasterEntryName=='Category') { ?>		
 										<option   value="<?=$cat->MasterEntryId?>"  <?=($Category==$cat->MasterEntryId)?'selected':''?>><?=$cat->MasterEntryValue?></option>
@@ -242,8 +242,8 @@
 									
 										
 										<div class="date-and-time">
-											<input type="text" name="DOB" value="<?=isset($DOB)?$DOB:''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input type="text" name="DOB" value="<?=isset($DOB)?$DOB:''?>"  class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input readonly type="text" name="DOB" value="<?=isset($DOB)?date("d M Y",$DOB):''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input readonly type="text" name="DOB" value="<?=isset($DOB)?date("D h:i a",$DOB):''?>"  class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 								</div>
@@ -254,7 +254,7 @@
 										<script type="text/javascript">
 										jQuery(document).ready(function($)
 										{
-											$("#s3example-1").select2({
+											$("#s3example-5").select2({
 												placeholder: 'Select ...',
 												allowClear: true
 											}).on('select2-open', function()
@@ -266,7 +266,7 @@
 										});
 									</script>
 								
-									<select class="form-control " id="s3example-1" name="BloodGroup">
+									<select class="form-control " id="s3example-5" name="BloodGroup">
 										<option></option>
 									
 										
@@ -297,7 +297,7 @@
 								</div>
 								<div class="row">
 								<div class="form-group">
-		<input  type="submit" name="submit" value="submit" class="btn btn btn-info btn-single pull-right"/>   
+		<input  type="submit" name="submit" value="Save" class="btn btn btn-info btn-single pull-right"/>   
 								
 								</div>	
 								</div>
@@ -407,7 +407,7 @@
 								</div>
 								<div class="row">
 								<div class="form-group">
-		<input  type="submit" name="submit1" value="submit" class="btn btn btn-info btn-single pull-right"/>   
+		<input  type="submit" name="submit1" value="Save" class="btn btn btn-info btn-single pull-right"/>   
 								</div>	
 								</div>
 						</form>
@@ -434,8 +434,8 @@
 									
 										
 										<div class="date-and-time">
-											<input type="text" name="FatherDateOfBirth" value="<?=isset($FatherDateOfBirth)?$FatherDateOfBirth:''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input type="text" name="FatherDateOfBirth" value="<?=isset($FatherDateOfBirth)?$FatherDateOfBirth:''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input readonly type="text" name="FatherDateOfBirth" value="<?=isset($FatherDateOfBirth)?date("d M Y",$FatherDateOfBirth):''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input readonly type="text" name="FatherDateOfBirth" value="<?=isset($FatherDateOfBirth)?date("D h:i a",$FatherDateOfBirth):''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 							</div>
@@ -445,8 +445,8 @@
 									
 										
 										<div class="date-and-time">
-											<input type="text" name="MotherDateOfBirth" class="form-control datepicker" value="<?=isset($MotherDateOfBirth)?$MotherDateOfBirth:''?>" data-format="D, dd MM yyyy">
-											<input type="text" name="MotherDateOfBirth" class="form-control timepicker" value="<?=isset($MotherDateOfBirth)?$MotherDateOfBirth:''?>" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text" readonly name="MotherDateOfBirth" class="form-control datepicker" value="<?=isset($MotherDateOfBirth)?date("d M Y",$MotherDateOfBirth):''?>" data-format="D, dd MM yyyy">
+											<input type="text" readonly name="MotherDateOfBirth" class="form-control timepicker" value="<?=isset($MotherDateOfBirth)?date("D h:i a",$MotherDateOfBirth):''?>" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 								
@@ -570,7 +570,7 @@
 								
 								<div class="row">
 								<div class="form-group">
-		<input  type="submit" name="submit2" value="submit" class="btn btn btn-info btn-single pull-right"/>   
+		<input  type="submit" name="submit2" value="Save" class="btn btn btn-info btn-single pull-right"/>   
 																</div>	
 								</div>
 						</form>
@@ -580,7 +580,47 @@
 						</div>
 						
 						<div class="tab-pane" id="settings-3">
+								<?php if(!empty($student_qualification)){ ?>
+							<div class="row">
+							<div class="col-sm-12">
+							<div class="panel-body">
 								
+								<div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk" data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
+										<table cellspacing="0" class="table table-small-font table-bordered table-striped" >
+											<thead>
+												<tr>
+													<th> Board/University</th>
+													<th>Class</th>
+													<th>Year</th>
+													<th>Marks</th>
+													<th>Remarks</th>
+													<td><i class="fa fa-times"></i></td>
+												</tr>
+											</thead>
+										 
+											
+										 
+											<tbody>
+												<?php foreach($student_qualification as $student_qualification){?>
+												<tr>
+													<td><?=$student_qualification->BoardUniversity?> </td>
+													<td><?=$student_qualification->Class?></td>
+													<td><?=$student_qualification->Year?></td>
+													<td><?=$student_qualification->Marks?></td>
+													<td><?=$student_qualification->Remarks?></td>
+													<td><a href="<?=base_url();?>admission/registration/<?php//=$student_qualification->QualificationId?>" ><i class="fa fa-times"></i></a></td>
+												</tr>
+												<?php  } ?>
+											</tbody>
+										</table>
+									</div>	
+								
+						</div>
+							</div>
+							</div>
+						<?php }else{ ?>
+						<div class="alert alert-danger">No Qualification added!! </div>
+						<?php } ?>
 							<div class="row">
 				<!--student registration form-->
 				<div class="col-md-12">
@@ -651,7 +691,7 @@
 								</div>
 								<div class="row">
 								<div class="form-group">
-		<input  type="submit" name="submit3" value="submit" class="btn btn btn-info btn-single pull-right"/>   
+		<input  type="submit" name="submit3" value="Save" class="btn btn btn-info btn-single pull-right"/>   
 																</div>	
 								</div>
 						</form>
@@ -661,14 +701,54 @@
 						</div>
 						
 						<div class="tab-pane" id="inbox-3">
+								<?php if(!empty($student_sibling)){ ?>
+							<div class="row">
+							<div class="col-sm-12">
+							<div class="panel-body">
 								
+								<div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk" data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
+										<table cellspacing="0" class="table table-small-font table-bordered table-striped" >
+											<thead>
+												<tr>
+													<th> Name</th>
+													<th>DOB</th>
+													<th>Class</th>
+													<th>School</th>
+													<th>Remarks</th>
+													<td><i class="fa fa-times"></i></td>
+												</tr>
+											</thead>
+										 
+											
+										 
+											<tbody>
+												<?php foreach($student_sibling as $student_sibling){?>
+												<tr>
+													<td><?=$student_sibling->SName?> </td>
+													<td><?=isset($student_sibling->SDOB)?date("d M Y",$student_sibling->SDOB):''?></td>
+													<td><?=$student_sibling->SClass?></td>
+													<td><?=$student_sibling->SSchool?></td>
+													<td><?=$student_sibling->SRemarks?></td>
+													<td><a href="<?=base_url();?>admission/registration/<?php//=$student_sibling->SiblingId?>" ><i class="fa fa-times"></i></a></td>
+												</tr>
+												<?php  } ?>
+											</tbody>
+										</table>
+									</div>	
+								
+						</div>
+							</div>
+							</div>
+						<?php }else{ ?>
+						<div class="alert alert-danger">No Sibling Information added!! </div>
+						<?php } ?>
 							<div class="row">
 				<!--student registration form-->
 				<div class="col-md-12">
 					<div class="panel panel-default">
 						
 						<div class="panel-body">
-						 <form role="form" class="" method="post" action="">
+						 <form role="form" class="" method="post" action="<?=base_url();?>admission/insert_sibling/<?=$RegistrationId?>">
 							   
 								<div class="form-group-separator">
 								</div>
@@ -677,7 +757,7 @@
 								<div class="form-group ">
 									<label class=" control-label" for="field-1">Name</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="sibling_name" value="" id="field-1" placeholder="Name">
 									
 								</div>
 							</div>
@@ -685,7 +765,7 @@
 						<div class="form-group ">
 									<label class=" control-label" for="field-1">Class</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="sibling_class" value="" id="field-1" placeholder="Class ">
 									
 								</div>
 								
@@ -694,7 +774,7 @@
 							<div class="form-group ">
 									<label class=" control-label" for="field-1">Remarks</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="sibling_remark" value="" id="field-1" placeholder="Remarks">
 									
 								</div>
 								
@@ -709,8 +789,8 @@
 									<label class=" control-label" for="field-1">DOB</label>
 								
 										<div class="date-and-time">
-											<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input readonly type="text" name="sibling_dob" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input readonly type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 								</div>
 							 
@@ -720,21 +800,18 @@
 							 <div class="form-group ">
 									<label class=" control-label" for="field-1">School</label>
 								
-										<input type="text" class="form-control" name="student_name" value="" id="field-1" placeholder="Student Name">
+										<input type="text" class="form-control" name="sibling_schoolname" value="" id="field-1" placeholder="School Name">
 									
 								</div>
 								
 								</div>
 								
 								</div> 		
-								
-							
-							
-							<div class="form-group-separator">
+								<div class="form-group-separator">
 								</div>
 								<div class="row">
 								<div class="form-group">
-								 <button type="submit" name="submit" class="btn btn-info btn-single pull-right">Save</button>
+								 <input type="submit" name="Save" Value="Save" class="btn btn-info btn-single pull-right"/>
 								</div>	
 								</div>
 						</form>
@@ -747,17 +824,17 @@
 								
 						<div class="row">
 				<!--student registration form-->
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<div class="panel panel-default">
 						
 						<div class="panel-body">
-						 <form role="form" class="form-horizontal" method="post" action="">
+						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>admission/update_registration/<?=$RegistrationId?>" enctype="multipart/form-data">
 							   
 								
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="Title">Title</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="Title" value="<?=isset($Title)?$Title:''?>" id="Title" placeholder="">
+										<input type="text" required class="form-control" name="Title" value="<?=isset($Title)?$Title:''?>" id="Title" placeholder="">
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -770,7 +847,7 @@
 									<script type="text/javascript">
 										jQuery(document).ready(function($)
 										{
-											$("#s2example-1").select2({
+											$("#s2example-6").select2({
 												placeholder: 'Select ...',
 												allowClear: true
 											}).on('select2-open', function()
@@ -782,7 +859,7 @@
 										});
 									</script>
 									<div class="col-sm-8">
-										<select class="form-control " id="s2example-1" name="StudentsDocuments">
+										<select class="form-control " required id="s2example-6" name="Document">
 											<option></option>
 										
 											      <?php foreach ($doc as $d){?>
@@ -802,7 +879,7 @@
 										<script type="text/javascript">
 										jQuery(document).ready(function($)
 										{
-											$("#s3example-1").select2({
+											$("#s3example-7").select2({
 												placeholder: 'Select ...',
 												allowClear: true
 											}).on('select2-open', function()
@@ -814,7 +891,7 @@
 										});
 									</script>
 									<div class="col-sm-8">
-									<select class="form-control col-sm-8" id="s3example-1" name="Resolution">
+									<select required class="form-control col-sm-8" id="s3example-7" name="Resolution">
 										<option></option>
 									
 										     <?php foreach ($photo as $pho){?>
@@ -834,22 +911,38 @@
 									
 									<div class="col-sm-8">
 										
-										<input type="file" name="Path" >
+										<input required type="file" name="image" >
 									</div>
 								</div>
 								<div class="form-group-separator">
 								</div>
 								<div class="form-group">
-		<input  type="submit" name="submit5" value="submit" class="btn btn btn-info btn-single pull-right"/>   
+		<input  type="submit" name="submit5" value="Save" class="btn btn btn-info btn-single pull-right"/>   
 																</div>	
 						</form>
 						</div>
 					</div>
-				</div></div>
+					
+				</div>
+				
+				<div class="col-sm-8">
+							<?php  foreach($student_documents as $student_documents){ ?>
+							<div class="col-md-2" style="margin:35px;padding:20px"><image style="width:150px" src="<?=base_url();?>upload/<?=$student_documents->Path?>"><span><?=$student_documents->MasterEntryValue?> <?php echo"<br>";?> <?=$student_documents->Title?></span></div>
+							<?php } ?>
+							</div>
+				
+				</div>
+				
 						</div>
 						
 						<div class="tab-pane" id="inbox-5">
-								
+					<?php	if(isset($TerminationRemarks) && isset($DateOfTermination) !=''){ ?>
+						<div class="alert alert-danger">This Student Is Already Terminated On <?=isset($DateOfTermination)?date("d M Y",$DateOfTermination):''?> With Following Remarks.
+						<?=isset($TerminationRemarks)?$TerminationRemarks:''?>
+						</div>
+								<?php }else{ ?>
+						
+						
 							<div class="row">
 				<!--student registration form-->
 				<div class="col-md-12">
@@ -863,8 +956,8 @@
 									<label class=" control-label col-sm-4" for="DateOfTermination">Date Of Termination</label>
 								
 										<div class="date-and-time col-sm-8">
-											<input type="text" name="DateOfTermination" id="DateOfTermination" value="<?=isset($DateOfTermination)?$DateOfTermination:''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input type="text"  id="DateOfTermination" value="<?=isset($DateOfTermination)?$DateOfTermination:''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input required readonly type="text" name="DateOfTermination" id="DateOfTermination" value="<?=isset($DateOfTermination)?date("d M Y",$DateOfTermination):''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input readonly type="text"  id="DateOfTermination" value="<?=isset($DateOfTermination)?date("D h:i a",$DateOfTermination):''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 								</div>
 								<div class="form-group-separator">
@@ -877,7 +970,7 @@
 									<script type="text/javascript">
 										jQuery(document).ready(function($)
 										{
-											$("#s2example-1").select2({
+											$("#s2example-8").select2({
 												placeholder: 'Select ...',
 												allowClear: true
 											}).on('select2-open', function()
@@ -889,7 +982,7 @@
 										});
 									</script>
 									<div class="col-sm-8">
-										<select class="form-control " id="s2example-1" name="TerminationReason">
+										<select required class="form-control " id="s2example-8" name="TerminationReason">
 											<option></option>
 		                                  <?php foreach ($termination as $ts){?>
 										<?php if($ts->MasterEntryName=='TerminationReason') { ?>
@@ -908,7 +1001,7 @@
 										<script type="text/javascript">
 										jQuery(document).ready(function($)
 										{
-											$("#s3example-1").select2({
+											$("#s3example-9").select2({
 												placeholder: 'Select ...',
 												allowClear: true
 											}).on('select2-open', function()
@@ -920,11 +1013,11 @@
 										});
 									</script>
 									<div class="col-sm-8">
-									<select class="form-control col-sm-8" id="s3example-1" >
+									<select class="form-control col-sm-8" id="s3example-9" >
 										<option></option>
 										
-											<option>2015-2016</option>
-											<option>2016-2017</option>
+											<option><?=$this->currentsession[0]->CurrentSession?></option>
+											
 										
 									</select>
 									</div>	
@@ -938,19 +1031,20 @@
 									
 									<div class="col-sm-8">
 										
-										<textarea name="TerminationRemarks" id="TerminationRemarks"  class="col-sm-12" ><?=isset($TerminationRemarks)?$TerminationRemarks:''?></textarea>
+										<textarea required name="TerminationRemarks" id="TerminationRemarks"  class="col-sm-12" ><?=isset($TerminationRemarks)?$TerminationRemarks:''?></textarea>
 									</div>
 								</div>
 								<div class="form-group-separator">
 								</div>
 								<div class="form-group">
-		<input  type="submit" name="submit4" value="submit" class="btn btn btn-info btn-single pull-right"/>   
+		<input  type="submit" name="submit4" value="Save" class="btn btn btn-info btn-single pull-right"/>   
 							</div>	
 						</form>
 						</div>
 					</div>
 				</div>
 				</div>
+				<?php } ?>
 						</div>
 						
 					</div>
@@ -1001,7 +1095,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="student_name" >Student Name</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="student_name"  value="" id="student_name" placeholder="Student Name">
+										<input type="text" required class="form-control" name="student_name"  value="" id="student_name" placeholder="Student Name">
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -1009,7 +1103,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="father_name">Father's Name</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="father_name" value="" id="father_name" placeholder="Father's Name">
+										<input type="text" required class="form-control" name="father_name" value="" id="father_name" placeholder="Father's Name">
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -1017,7 +1111,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="mother_name">Mother's Name</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="mother_name" value="" id="mother_name" placeholder="Mother's Name">
+										<input type="text"  required class="form-control" name="mother_name" value="" id="mother_name" placeholder="Mother's Name">
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -1025,7 +1119,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="mobile">Mobile Number</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" name="mobile" >
+										<input required type="text" class="form-control" name="mobile" >
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -1036,7 +1130,7 @@
 									<script type="text/javascript">
 										jQuery(document).ready(function($)
 										{
-											$("#s2example-1").select2({
+											$("#s2example-11").select2({
 												placeholder: 'Select ...',
 												allowClear: true
 											}).on('select2-open', function()
@@ -1048,7 +1142,7 @@
 										});
 									</script>
 									<div class="col-sm-8">
-										<select class="form-control " id="s2example-1" name="class">
+										<select required class="form-control " id="s2example-11" name="class">
 											<option></option>
 										
 																	<?php foreach($class_section as $cls){ ?>
@@ -1069,7 +1163,7 @@
 										<script type="text/javascript">
 										jQuery(document).ready(function($)
 										{
-											$("#s3example-1").select2({
+											$("#s3example-12").select2({
 												placeholder: 'Select ...',
 												allowClear: true
 											}).on('select2-open', function()
@@ -1081,7 +1175,7 @@
 										});
 									</script>
 									<div class="col-sm-8">
-									<select class="form-control col-sm-8" id="s3example-1" name="gender">
+									<select required class="form-control col-sm-8" id="s3example-12" name="gender">
 										<option></option>
 										<?php foreach ($gender as $gen){ //print_r($key);die;?>
 										<?php if($gen->MasterEntryName=='Gender') { ?>
@@ -1103,7 +1197,7 @@
 										
 										<div class="date-and-time">
 										
-											<input type="text" name="DOR" class="form-control datepicker" data-show="true" data-format="D, dd MM yyyy">
+											<input type="text" required name="DOR" class="form-control datepicker" data-show="true" data-format="D, dd MM yyyy">
 											<input type="text" name="DOR"  class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
@@ -1112,7 +1206,7 @@
 								</div>
 								<div class="form-group">
 								       
-								        <input  type="submit" name="submit" value="Submit" class="btn btn btn-info btn-single pull-right"/>   
+								        <input  type="submit" name="submit" value="Save" class="btn btn btn-info btn-single pull-right"/>   
 								
 								</div>	
 						</form>
@@ -1173,7 +1267,7 @@
 								<td><?=$rg->FatherName?></td>
 								<td><?=$rg->Mobile?></td>
 								<td><?=$rg->ClassName?><?=$rg->SectionName?></td>
-								<td><?=$rg->DOR?></td>
+								<td><?=isset($rg->DOR)?date("d-m-Y H:i",$rg->DOR):''?></td>
 								<td><i class="el-cancel-circled"></i></td>
 							</tr>
 							<?php } ?>

@@ -105,24 +105,22 @@
 										
 										<div class="col-sm-8">
 											
-											<script type="text/javascript">
-												jQuery(document).ready(function($)
-												{
-													$("#multi-select").multiSelect({
-														afterInit: function()
-														{
-															// Add alternative scrollbar to list
-															this.$selectableContainer.add(this.$selectionContainer).find('.ms-list').perfectScrollbar();
-														},
-														afterSelect: function()
-														{
-															// Update scrollbar size
-															this.$selectableContainer.add(this.$selectionContainer).find('.ms-list').perfectScrollbar('update');
-														}
-													});
-												});
-											</script>
-											<select class="form-control" required multiple="multiple" id="multi-select" name="addmissionid[]">
+											<style>.multiselectable { width:500px; display:block; overflow: hidden; width: 100%; }
+										.multiselectable select, .multiselectable div { width: 200px; float:left; }
+										.multiselectable div * { display: block; margin: 0 auto; }
+										.multiselectable div { display: inline; }
+										.multiselectable .m-selectable-controls { margin-top: 1em; width: 50px; }
+										.multiselectable .m-selectable-controls button { margin-top: 1em; }</style>
+									<script type="text/javascript">
+										$(document).ready(function() {
+											$('.multi').multiselectable({
+												
+												moveRightText: '+',
+												moveLeftText: '-'
+											});
+										});
+									</script>
+											<select class="form-control multi" required multiple="multiple"  name="addmissionid[]">
 												<?php foreach($students as $studentss){ ?>
 																						<option  value="<?=$studentss->AdmissionId?>" ><?=$studentss->StudentName?> (<?=$studentss->FatherName?>)</option>
 																								<?php  } ?>
@@ -133,15 +131,11 @@
 								
 								<div class="form-group-separator">
 								</div>
-								<select class="form-control" name="absent[]" multiple="multiple"  required>
-										<?php foreach($students as $students){ ?>
-																						<option  value="<?=$students->AdmissionId?>" ><?=$students->StudentName?> (<?=$students->FatherName?>)</option>
-																								<?php  } ?>
-										</select>
+								
 								</br>
 								<div class="form-group pull-right">
 								<input  type="hidden" name="sectionid" value="<?=$sectionid?>" />  
-								 <input  type="submit" name="Present" value="Present" class="btn btn btn-info btn-single "/>   
+								 <input  type="submit" name="Present" value="Present" class="btn btn btn-info btn-single "  onclick="selectAll('m-selectable',true)"/>   
 								<!-- <input  type="submit" name="Absent" value="Absent" class="btn btn btn-info btn-single "/>-->
 								  <input  type="submit" name="Halfday" value="Halfday" class="btn btn btn-info btn-single "/>
 								  <input  type="submit" name="Blank" value="Blank" class="btn btn btn-info btn-single "/>
@@ -152,5 +146,19 @@
 					</div>
 				</div>
 		</div>	
+				<script>
+		function selectAll(selectBox,selectAll) { 
+    // have we been passed an ID 
+    if (typeof selectBox == "string") { 
+        selectBox = document.getElementById(selectBox);
+    } 
+    // is the select box a multiple select box? 
+    if (selectBox.type == "select-multiple") { 
+        for (var i = 0; i < selectBox.options.length; i++) { 
+             selectBox.options[i].selected = selectAll; 
+        } 
+    }
+}
+		</script>
 	
 <?php } ?>

@@ -109,6 +109,62 @@ class Utilities extends CI_Controller {
 		return $query->Result();
 	}
 	
+	function getmext_class($NextSession)
+	{ 
+		$CI = & get_instance();
+		$query=$CI->db->query("select ClassName,SectionName,SectionId from class,section where 
+						class.ClassId=section.ClassId and class.ClassStatus='Active' and
+						section.SectionStatus='Active' and class.Session='$NextSession' order by ClassName");
+		return $query->Result();
+	}
+	
+	function checkfeeadded($Token=false,$FeeType=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("select FeePaymentId from feepayment where Token='$Token' and FeeType='$FeeType'");
+		return $query->Result();
+	}
+	
+	function selectfeestructure($CURRENTSESSION=false,$AdmissionId=false,$SectionId=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("select FeeStructure from studentfee where Session='$CURRENTSESSION' and AdmissionId='$AdmissionId' and SectionId='$SectionId'");
+		return $query->Result();
+	}
+	
+	function selectfeepayment($AdmissionId=false,$CURRENTSESSION=false,$FeeType=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("select SUM(feepayment.Amount) as PaidFeeType,MasterEntryValue as FeeName from feepayment,transaction,fee,masterentry where
+			feepayment.Token=transaction.Token and
+			feepayment.FeeType=fee.FeeId and
+			fee.FeeType=masterentry.MasterEntryId and
+			transaction.TransactionHead='Fee' and
+			transaction.TransactionHeadId='$AdmissionId' and
+			transaction.TransactionSession='$CURRENTSESSION' and 
+			transaction.TransactionStatus='Active' and
+			feepayment.FeeType='$FeeType' group by feepayment.FeeType");
+		return $query->Result();
+	}
+	
+	function insertpayment($Token=false,$FeeType=false,$Amount=false,$status=false)
+	{	
+		$CI = & get_instance();
+		$query=$CI->db->query("INSERT INTO feepayment(Token,FeeType,Amount,FeePaymentStatus) values('$Token','$FeeType','$Amount','$status')");
+	}
+	
+	function getpaymentpending($Token=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("select MasterEntryValue,feepayment.Amount,FeePaymentId from feepayment,fee,masterentry where 
+				fee.FeeId=feepayment.FeeType and 
+				fee.FeeType=masterentry.MasterEntryId and 
+				Token='$Token' and
+				FeePaymentStatus='Pending'");
+		return $query->Result();
+	}
+	
+	
 }
 
 

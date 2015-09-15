@@ -242,7 +242,7 @@ if(Authority::checkAuthority('ManageUser')==true){
                 $this->session->set_flashdata('message', $this->config->item("user").' User Save Successfully'); 
 				}else{
 					$this->session->set_flashdata('message_type', 'error');        
-                $this->session->set_flashdata('message', $this->config->item("user").' This Username is not available or Staff Id is already associated with one user!!');
+					$this->session->set_flashdata('message', $this->config->item("user").' This Username is not available or Staff Id is already associated with one user!!');
 				}
 		}
 			redirect('master/manageuser');

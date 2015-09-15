@@ -96,6 +96,8 @@
 	<script src="<?=base_url();?>assets/js/ckeditor/adapters/jquery.js"></script>
 	<script src="<?=base_url();?>assets/js/dropzone/dropzone.min.js"></script>
 	
+	<script src="<?=base_url();?>assets/js/multiselect/js/multiselectable.js"></script>
+	
 
 </body>
 </html>

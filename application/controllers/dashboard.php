@@ -36,6 +36,14 @@ class Dashboard extends CI_Controller {
 	}
 /*school management dashboard End...............................................................................*/
 	
+	/*school management help start...............................................................................*/
+	public function help()
+	{ 	
+		$this->load->view('help',$this->data);
+	}
+/*school management help End...............................................................................*/
+	
+	
 }
 
 /* End of file dashboard.php */

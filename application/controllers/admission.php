@@ -36,7 +36,6 @@ class Admission extends CI_Controller {
 		$this->breadcrumb->add_crumb('Student Registration', base_url().'admission/registration');
 		if($id){
 		$filter = array('RegistrationId'=>$id);
-		
 		$registration_info = $this->admission_model->get_info($filter,'registration');
 		$this->data['registration_update'] = $this->admission_model->get_info($filter,'registration');
 		 $this->data = array(
@@ -75,13 +74,17 @@ class Admission extends CI_Controller {
 		 		'TerminationRemarks'=>$registration_info[0]->TerminationRemarks);
 		 
 				 $this->data['RegistrationId']=$id;
+				 $this->data['student_qualification'] = $this->admission_model->student_qualification($id);
+				  $this->data['student_sibling'] = $this->admission_model->student_sibling($id);
+				  $this->data['student_documents'] = $this->admission_model->get_student_documents($id);
+				 
 				}
 				else{
 					$this->data['registration_info']='';
 				}
 		
-				 $this->data['regis'] = $this->admission_model->get_registration_info();
-				 $this->data['class_section'] = $this->admission_model->get_class_info('section');
+				 $this->data['regis'] = $this->admission_model->get_registration_info($this->currentsession[0]->CurrentSession);
+				 $this->data['class_section'] = $this->admission_model->get_class_info($this->currentsession[0]->CurrentSession);
 				 $this->data['gender'] = $this->admission_model->get_gender_info();
 				 $this->data['caste'] = $this->admission_model->get_gender_info();
 				 $this->data['category'] = $this->admission_model->get_gender_info();
@@ -113,9 +116,9 @@ class Admission extends CI_Controller {
 						'StudentName'=>$this->input->post('student_name'),
 						'FatherName'=>$this->input->post('father_name'),
 						'MotherName'=>$this->input->post('mother_name'),
-						'SectionId'=>$this->input->post('class'),
-						'DOB'=>$this->input->post('DOB'),
-						'DOR'=>$this->input->post('DOR'),
+						//'SectionId'=>$this->input->post('class'),
+						'DOB'=>strtotime($this->input->post('DOB')),
+						'DOR'=>strtotime($this->input->post('DOR')),
 						'BloodGroup'=>$this->input->post('BloodGroup'),
 						'Caste'=>$this->input->post('Caste'),
 						'Category'=>$this->input->post('Category'),
@@ -149,8 +152,8 @@ class Admission extends CI_Controller {
 		if($this->input->post('submit2'))
 		{
 			$info = array(
-					'FatherDateOfBirth'=>$this->input->post('FatherDateOfBirth'),
-					'MotherDateOfBirth'=>$this->input->post('MotherDateOfBirth'),
+					'FatherDateOfBirth'=>strtotime($this->input->post('FatherDateOfBirth')),
+					'MotherDateOfBirth'=>strtotime($this->input->post('MotherDateOfBirth')),
 					'FatherDesignation'=>$this->input->post('FatherDesignation'),
 					'FatherEmail'=>$this->input->post('FatherEmail'),
 					'MotherEmail'=>$this->input->post('MotherEmail'),
@@ -168,49 +171,64 @@ class Admission extends CI_Controller {
 			$this->session->set_flashdata('message', $this->config->item("registration").' updated successfully');
 			redirect('admission/registration');
 		}
-		if($this->input->post('submit3'))
-		{
-			$info = array(
-					'BoardUniversity'=>$this->input->post('BoardUniversity'),
-					'Year'=>$this->input->post('Year'),
-					'Remarks'=>$this->input->post('Remarks'),
-					'Class'=>$this->input->post('Class'),
-					'Marks'=>$this->input->post('Marks'));
-			$filter = array('RegistrationId'=>$RegistrationId,
-					'QualificationId'=>$QualificationId);
-		
-			$val =	$this->admission_model->update_qualification($info,$filter);
-			$this->session->set_flashdata('message_type', 'success');
-			$this->session->set_flashdata('message', $this->config->item("registration").' updated successfully');
-			redirect('admission/registration');
-		}
 		if($this->input->post('submit4'))
 		{
 			$info = array(
-					'DateOfTermination'=>$this->input->post('DateOfTermination'),
+					'DateOfTermination'=>strtotime($this->input->post('DateOfTermination')),
 					'TerminationReason'=>$this->input->post('TerminationReason'),
 					'TerminationRemarks'=>$this->input->post('TerminationRemarks'));
 			$filter = array('RegistrationId'=>$RegistrationId);
 			$val =	$this->admission_model->update_registration($info,$filter);
 			$this->session->set_flashdata('message_type', 'success');
-			$this->session->set_flashdata('message', $this->config->item("registration").' updated successfully');
+			$this->session->set_flashdata('message', $this->config->item("registration").' Student Terminated successfully');
 			redirect('admission/registration');
 		}
 		if($this->input->post('submit5'))
 		{
+			if($_FILES['image']['name']!=''){
+			$data['image_z1']= $_FILES['image']['name'];
+			 
+			$image=sha1($_FILES['image']['name']).time().rand(0, 9);
+			if(!empty($_FILES['image']['name'])){
+				
+				$config =  array(
+						'upload_path'	  => './upload/',
+						'file_name'       => $image,
+						'allowed_types'   => "gif|jpg|png|jpeg|JPG|JPEG|PNG|JPG",
+						'overwrite'       => true);
+				$this->upload->initialize($config);
+				$this->load->library('upload');
+				 
+				if($this->upload->do_upload("image")){
+					
+					$upload_data = $this->upload->data();
+					$image=$upload_data['file_name'];
+				}
+				else
+				{
+					$this->upload->display_errors()."file upload failed";
+					$image    ="";
+				}}}
+				
+				$Date=date("Y-m-d");
+				$Date=strtotime($Date);
+		
 			$info = array(
 					'Title'=>$this->input->post('Title'),
-					'Path'=>$this->input->post('Path'),
-					'Document'=>$this->input->post('Document'));
-			$filter = array('RegistrationId'=>$RegistrationId);
-			$val =	$this->admission_model->update_photos($info,$filter);
+					'Path'=>$image,
+					'Document'=>$this->input->post('Document'),
+					'Detail'=>'StudentDocuments',
+					'UniqueId'=>$RegistrationId,
+					'DOE'=>$Date);
+			
+			$this->admission_model->insert_photo($info);
 			$this->session->set_flashdata('message_type', 'success');
-			$this->session->set_flashdata('message', $this->config->item("registration").' updated successfully');
+			$this->session->set_flashdata('message', $this->config->item("registration").' Document Uploaded successfully');
 			redirect('admission/registration');
 		}
 	}
 
-	function add_qualification($QalificationId=false)
+	function add_qualification($RegistrationId=false)
 	{	if(Authority::checkAuthority('Registration')==true){
 			
 		}else{
@@ -222,14 +240,40 @@ class Admission extends CI_Controller {
 			$info = array(
 					'BoardUniversity'=>$this->input->post('BoardUniversity'),
 					'Year'=>$this->input->post('Year'),
+					'UniqueId'=>$RegistrationId,
 					'Remarks'=>$this->input->post('Remarks'),
 					'Class'=>$this->input->post('Class'),
-					'Marks'=>$this->input->post('Marks'));
+					'Marks'=>$this->input->post('Marks'),
+					'Type'=>'Student');
 			$r_id=$this->admission_model->insert_qualification($info);
 			$this->session->set_flashdata('message_type', 'success');
-			$this->session->set_flashdata('message', $this->config->item("registration").' Added successfully');
+			$this->session->set_flashdata('message', $this->config->item("registration").' Qualification Added successfully');
 			redirect('admission/registration');
 		}
+	}
+	
+	function insert_sibling($RegistrationId=false)
+	{	if(Authority::checkAuthority('Registration')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		if($this->input->post('Save'))
+		{
+			$info = array(
+					'SName'=>$this->input->post('sibling_name'),
+					'SClass'=>$this->input->post('sibling_class'),
+					'RegistrationId'=>$RegistrationId,
+					'SRemarks'=>$this->input->post('sibling_remark'),
+					'SDOB'=>strtotime($this->input->post('sibling_dob')),
+					'SSchool'=>$this->input->post('sibling_schoolname'));
+			$this->admission_model->insert_sibling($info);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("registration").' Sibling  Added successfully');
+			redirect('admission/registration');
+		}
+		redirect('admission/registration');
 	}
 	
 /*school management registration controller start...................................................................................................*/
@@ -247,7 +291,7 @@ class Admission extends CI_Controller {
 									'MotherName'=>$this->input->post('mother_name'),
 									'Mobile'=>$this->input->post('mobile'),
 									'SectionId'=>$this->input->post('class'),
-									'DOR'=>$this->input->post('DOR'),
+									'DOR'=>strtotime($this->input->post('DOR')),
 									'Session'=>$this->currentsession[0]->CurrentSession,
 									'Gender'=>$this->input->post('gender'),
 									'Status'=>'NotAdmitted');
@@ -284,7 +328,14 @@ class Admission extends CI_Controller {
 					'distance'=>$this->input->post('distance'),
 					'class'=>$class,
 					'section'=>$section);
-			$this->data['fee_info']=$this->admission_model->get_admission_class($section,$this->input->post('distance'),$this->currentsession[0]->CurrentSession);
+			$this->data['fee_info']=$check=$this->admission_model->get_admission_class($section,$this->input->post('distance'),$this->currentsession[0]->CurrentSession);
+			
+			if(count($check) ==0){
+				
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("admission_student").' No Fee Structure Set For This Class. Plz Check Transport Fee Or Set Fee Structure In Manage Fee');
+				redirect('admission/admission_student');
+			}
 		}
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -305,7 +356,7 @@ class Admission extends CI_Controller {
 		$data=array('AdmissionNo'=>$this->input->post('admission_no'),
 				'RegistrationId'=>$this->input->post('id'),
 				'Remarks'=>$this->input->post('remarks'),
-				'DOA'=>$this->input->post('DOA'));
+				'DOA'=>strtotime($this->input->post('DOA')));
 		$this->admission_model->insert_admission($data,'admission');
 		$this->session->set_flashdata('message_type', 'success');
 		$this->session->set_flashdata('message', $this->config->item("admission_student").' Admission Done successfully');
@@ -325,6 +376,22 @@ class Admission extends CI_Controller {
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Student Promotion', base_url().'admission/promotion');
+		
+		if($this->input->post('nextsession') && $this->input->post('nextclass') !=''){
+			$this->data['nextclass']=$this->input->post('nextclass');
+			$this->data['nextsession']=$this->input->post('nextsession');
+			$this->data['currentclass']=$this->input->post('currentclass');
+			$this->data['student']=implode(",",$this->input->post('student'));
+			$this->data['transport']=$this->input->post('transport');
+			$this->data['distance']=$this->input->post('distance');
+			
+			$feetype=$this->data['get_fee_structure']=$this->admission_model->get_nextclass_fee($this->input->post('nextclass'),$this->input->post('nextsession'));
+			
+			
+		}
+		
+		$this->data['class_info']=$this->admission_model->get_class($this->currentsession[0]->CurrentSession);
+		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -333,6 +400,67 @@ class Admission extends CI_Controller {
 	}
 	/*school management Promotion View Load..............................................................................................................*/
 
+	/*school management confirmpromotion .............................................................................................................*/
+	function confirmpromotion()
+	{	if(Authority::checkAuthority('Promotion')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		
+		$SectionId=$this->input->post('SectionId');
+		$NextSession=$this->input->post('NextSession');
+		$NextSectionId=$this->input->post('NextSectionId');
+		$AdmissionId=$this->input->post('AdmissionId');
+		$AdmissionId=explode(",",$AdmissionId);
+		$DOP=$this->input->post('DOP');
+		$Distance=$this->input->post('Distance');
+		$Remarks=$this->input->post('Remarks');
+		$FeeArray=$this->input->post('FeeArray');
+		$Count=count($FeeArray);
+		if($Count>1){
+			$FeeString=implode(",",$FeeArray);
+		}else{
+				$FeeString=$FeeArray[0];
+		}
+			
+		if($AdmissionId=="" || $DOP=="" || $SectionId=="" || $NextSession=="" || $NextSectionId=="")
+		{
+			$Message="All the fields are mandatory!!";
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("promotion").' All the fields are mandatory!!');
+		}
+		elseif($ErrorInFee>0)
+		{
+			
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("promotion")."$ErrorInFee number of fees are not numeric!!");
+		}else
+		{	
+			$DOP=strtotime($DOP);
+			$Date=date("Y-m-d");
+			$DOE=strtotime($Date);
+			
+			foreach($AdmissionId as $AdmissionIdValue)
+			{
+				$student=$this->admission_model->get_class($AdmissionIdValue,$NextSession);
+				$count22=count($student);
+				if($count22==0)
+				{
+					$this->admission_model->insert_promotion($AdmissionIdValue,$DOP,$DOE,$NextSectionId,$NextSession,$FeeString,$Distance,$Remarks);
+				}
+			}
+			
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("promotion").' Promoted successfully!!');
+		}
+				
+		redirect('admission/promotion');
+	}
+	/*school management confirmpromotion ..............................................................................................................*/
+	
+	
 	/*school management Updatefee View Load.............................................................................................................*/
 	function updatefee($sectionid=false,$admissionid=false)
 	{	
@@ -344,6 +472,7 @@ class Admission extends CI_Controller {
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Update Fee', base_url().'admission/updatefee');
+		
 		if($sectionid && $admissionid !=''){
 			$this->data['section']=$sectionid;
 			$this->data['admission']=$admissionid;
@@ -381,16 +510,150 @@ class Admission extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		
 		if($this->input->post('class_name') !=''){
-			$section=$this->input->post('class_name');
-			$admission=$this->input->post('student');
-			$feetype=$this->input->post('type');
-			$feeamount=$this->input->post('amount');
-			redirect('admission/updatefee/'.$section."/".$admission);
+			
+			$NewSectionId=$this->input->post('class_name');
+			$AdmissionId=$this->input->post('addmissionid');
+			$Feearray=$this->input->post('feearray');
+			
+		$row=$this->admission_model->updateclass_student($AdmissionId,$this->currentsession[0]->CurrentSession);
+		$count=count($row);
+		$OldSectionId=$row[0]->SectionId;
+		$OldFeeStructure=$row[0]->FeeStructure;
+		$Distance=$row[0]->Distance;
+		
+		$row1=$this->admission_model->transactioncheck($AdmissionId,$this->currentsession[0]->CurrentSession);
+		$count1=count($row1);
+		
+		$row3=$this->admission_model->feecheck($NewSectionId,$this->currentsession[0]->CurrentSession,$Distance);
+		$ErrorInFee=0;
+		foreach($Feearray as $row2)
+		{
+			$fee=explode(",",$row2);
+			
+			if(is_numeric($fee[1])==False)
+			$ErrorInFee++;
 		}
+		$FeeString=implode(",",$Feearray);
+		
+		if($NewSectionId=="" || $AdmissionId=="")
+		{
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("updatefee").' All the fields are mandatory!!');
+		}
+		elseif($NewSectionId==$OldSectionId)
+		{
+			$Message="New section & old section cannot be same!!";
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("updatefee").' All the fields are mandatory!!');
+		}
+		elseif($count==0)
+		{
+			$Message="This is not a valid link!!";
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("updatefee").' All the fields are mandatory!!');
+		}
+		elseif($count1>0)
+		{
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("updatefee").'This student has already paid the fee, Class cannot be changed!!');
+		}
+		elseif($ErrorInFee>0)
+		{
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("updatefee").' Fee should be numeric!!');
+		}else
+		{
+			$FeeString=implode(",",$FeeString);
+			$this->admission_model->insertupdateclass($NewSectionId,$FeeString,$AdmissionId,$this->currentsession[0]->CurrentSession,$Distance);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("updatefee").' Class updated!!');
+		}
+		
+		}
+		redirect('admission/updatefee/'.$OldSectionId."/".$AdmissionId);
 	}
 	/*school management update Class end.................................................................................................*/
 
+	/*school management setfee_structure start...................................................................................................*/
+	function setfee_structure()
+	{ 	
+	if(Authority::checkAuthority('UpdateClass')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		
+		if($this->input->post('addmissionid') !=''){
+			
+		$AdmissionId=$this->input->post('addmissionid');
+		$AdmissionNo=$this->input->post('admission_no');
+		$SectionId=$this->input->post('section');
+		$DOAP=$this->input->post('DOP');
+		$Remarks=$this->input->post('remarks');
+		$Feeid=$this->input->post('feeid');
+		$Feeamount=$this->input->post('feeamount');
+		
+		if(count($Feeid)>1){
+			$FeeString[]='';
+			$i=0;
+		foreach($Feeid as $Feeid){
+			$FeeString[$i]=$Feeid.'-'.$Feeamount[$i];
+			$i++;
+		}
+		$FeeString=implode(",",$FeeString);
+		}else{
+		$FeeString=$Feeid[0].'-'.$Feeamount[0];
+		}
+		
+		
+		$row11=$this->admission_model->feecheck($AdmissionNo,$AdmissionId);
+		$count11=count($row11);
+		
+		if($AdmissionId=="" || $DOAP=="" || $SectionId=="" || $AdmissionNo=="")
+		{
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("updatefee").'All the fields are mandatory!!');
+		}
+		elseif($count11>0)
+		{
+			$AdmissionName=$row11[0]->StudentName;
+			$AdmissionMobile=$row11[0]->Mobile;
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("updatefee")."This Admission No is already assigned to $AdmissionName $AdmissionMobile!!");
+		}
+		elseif($PaidFee>$Total)
+		{
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("updatefee")."$PaidFee $CURRENCY amount has already been paid, less than $PaidFee $CURRENCY can not be set!!");	
+		}
+		elseif($ErrorMsg!="")
+		{
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("updatefee")."$ErrorMsg");
+		}
+		elseif($ErrorInFee>0)
+		{
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("updatefee")."$ErrorInFee number of fees are not numeric!!");
+		}else
+		{	
+			$DOAP=strtotime($DOAP);
+			$Date=date("Y-m-d");
+			$DOE=strtotime($Date);
+			$this->admission_model->insertupfeestructure($AdmissionNo,$FeeString,$DOAP,$Remarks,$AdmissionId,$SectionId,$this->currentsession[0]->CurrentSession,$Distance);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("updatefee").' Saved successfully!!');
+		}
+			
+		}
+		redirect('admission/updatefee/'.$SectionId."/".$AdmissionId);
+	}
+	/*school management setfee_structure end.................................................................................................*/
+
+	
 	/*school management Admission Report View Load.............................................................................................................*/
 	function admissionreport($section=false)
 	{	

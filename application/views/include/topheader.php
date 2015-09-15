@@ -256,6 +256,20 @@
 			
 			</ul>
 					
+					<ul class="navbar-nav">
+				<li>
+					<a href="<?=base_url();?>dashboard/help" target="blank">
+						<i class=" title tooltip-primary" 
+						data-toggle="tooltip" data-placement="bottom" title="Help For Guidance" data-original-title="Help For Guidance">Help</i>
+						
+					</a>
+					
+				</li>
+				
+				
+				
+			
+			</ul>
 			
 			<!-- notifications and other links -->
 			<ul class="nav nav-userinfo navbar-right">

@@ -114,15 +114,16 @@
 											</thead>
 										 											
 											<tbody>
-												<tr>
+												
 												<?php foreach($student_details as $student_details){ ?>
+												<tr>
 													<td><?=$student_details->StudentName?></br><?=$student_details->Mobile?></td>
 													<td>
 														<div class="input-group spinner" data-step="1">
 															<span class="input-group-btn">
 																<button class="btn btn-gray" data-type="decrement">-</button>
 															</span>
-															<input type="text" class="form-control text-center" value="1" />
+															<input type="number" class="form-control text-center" name="Field_<?=$student_details->StudentName?>_<?=$student_details->StudentName?>" value="" />
 															<span class="input-group-btn">
 																<button class="btn btn-gray" data-type="increment">+</button>
 															</span>
@@ -130,8 +131,9 @@
 													</td>
 													<td>0</td>
 													<td>E2</td>
+													</tr>
 												<?php } ?>
-												</tr>
+												
 											</tbody>
 										</table>
 									</div>	

@@ -37,7 +37,7 @@ class Payments extends CI_Controller {
 			$this->data['fee_type']=explode(",",$get_fee_details[0]->FeeStructure);
 			$this->data['get_transaction']=$this->payment_model->get_transaction($this->currentsession[0]->CurrentSession,$admissionid);
 			$this->data['get_balance']=$this->payment_model->get_balance($this->currentsession[0]->CurrentSession,$admissionid);
-			
+			$this->data['account'] = $this->payment_model->get_account();
 		}
 		$this->data['student_info'] = $this->payment_model->get_student($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
@@ -65,6 +65,115 @@ class Payments extends CI_Controller {
 		}
 	}
 /*school management Get fee sturucture of student................................................................................*/
+	
+	/*school management confirm Payment of student..............................................................................*/
+	function confirmpayment()
+	{	
+	if(Authority::checkAuthority('FeePayment')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+	
+			$Token=$this->input->post('token');
+			$Account=$this->input->post('accountid');
+			$AdmissionId=$this->input->post('admissionid');
+			$SectionId=$this->input->post('sectionid');
+			$Remarks=$this->input->post('remark');
+			$DOP=$this->input->post('dop');
+
+			
+			$check2 = $this->payment_model->getfeepaid($AdmissionId,$this->currentsession[0]->CurrentSession);
+			$count2=count($check2);
+			foreach($check2 as $row2)
+			{
+				$PaidFeeTypeArray[]=$row2->FeeType;
+				$PaidFeeAmountArray[]=$row2->PaidFeeType;
+			}	
+			
+		
+			$check0 = $this->payment_model->getfeepaidstudentfeestructure($AdmissionId,$SectionId,$this->currentsession[0]->CurrentSession);
+			$count0=count($check0);
+			if($count0>0)
+			{
+			 
+			  $FeeStructure=explode(",",$check0[0]->FeeStructure);
+			  foreach($FeeStructure as $FeeStructureValue)
+			  {
+				$FeeStructureSubArray=explode("-",$FeeStructureValue);
+				$FeeTypeArray[]=$FeeStructureSubArray[0];
+				if($PaidFeeTypeArray!="")
+				{
+					$PaidFeeSearchIndex=array_search($FeeStructureSubArray[0],$PaidFeeTypeArray);
+					if($PaidFeeSearchIndex===FALSE)
+						$FeeAmountArray[]=$FeeStructureSubArray[1];
+					else
+						$FeeAmountArray[]=$FeeStructureSubArray[1]-$PaidFeeAmountArray[$PaidFeeSearchIndex];
+				}
+				else
+					$FeeAmountArray[]=$FeeStructureSubArray[1];
+			  }
+			}
+			
+			$check1 = $this->payment_model->getfeepaidstudentpending($Token);
+			$count1=count($check1);
+			foreach($check1 as $row1)
+			{
+				$ToBePaidAmountArray[]=$row1->Amount;
+				$Amount+=$row1->Amount;
+				$ToBePaidFeeTypeArray[]=$row1->FeeType;
+				$FeeName=$row1->MasterEntryValue;
+				$FeeSearchIndex=array_search($row1->FeeType,$FeeTypeArray);
+				$BalanceAmount=$FeeAmountArray[$FeeSearchIndex];
+				if($row1->Amount>$BalanceAmount)
+				{
+					$OverFeeError=1;
+					
+					$this->session->set_flashdata('message_type', 'error');
+					$this->session->set_flashdata('message', $this->config->item("payment")."<br> $FeeName is only $BalanceAmount $CURRENCY due.");
+				}
+			}
+				
+			
+			if($Token=="" || $Account=="" || $AdmissionId=="" || $DOP=="")
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("payment")."All the fields are mandatory!!");
+			}
+			elseif($count1==0)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("payment")."No fee added in the list!!");
+			}
+			elseif($count0==0)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("payment")."This is not a valid student id!!");
+			}	
+			elseif($OverFeeError==1)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("payment")."Following fee amount is greater than balance amount : $OverFeeErrorMessage");
+			}
+			else
+			{
+				$DOP=strtotime($DOP);
+				$Date=date("Y-m-d");
+				$Date=strtotime($Date);
+				
+				$this->payment_model->insertconfirmpayment($this->info['usermailid'],$Token,$this->currentsession[0]->CurrentSession,$Amount,$Account,$Fee,$AdmissionId,$Remarks,$DOP,$Date);
+				$this->payment_model->updateaccbal($Amount,$Account);
+				$this->payment_model->updatefeepaymentstatus($Token);
+				
+				$this->session->set_flashdata('message_type', 'success');
+				$this->session->set_flashdata('message', $this->config->item("payment")."Fee Paid successfully!!");
+			}
+			if($Type==error)
+			$_SESSION['PaymentToken']=$Token;
+			redirect('payments/payment/'.$AdmissionId);
+	}
+/*school management confirm Payment of student................................................................................*/
 	
 	
 }
