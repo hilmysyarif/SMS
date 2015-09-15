@@ -228,7 +228,7 @@
 															
 															<th><i class="fa fa-phone"></i></th>
 															<th><i class="fa fa-edit"></i></th>
-															<th><i class="fa fa-file-text-o"></th>
+															<th><i class="el-cancel-circled"></th>
 															
 														</tr>
 													</thead>
