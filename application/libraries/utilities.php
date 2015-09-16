@@ -164,6 +164,29 @@ class Utilities extends CI_Controller {
 		return $query->Result();
 	}
 	
+	function getsalarystructure()
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("Select SalaryStructureName,FixedSalaryHead,SalaryStructureId from salarystructure where SalaryStructureStatus='Active'");
+		return $query->Result();
+	}
+	
+	function selectsalaryhead()
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("select SalaryHeadId,MasterEntryValue,SalaryHead,Code from salaryhead,masterentry where 
+		salaryhead.SalaryHeadType=masterentry.MasterEntryId and
+		SalaryHeadStatus='Active'");
+		return $query->Result();
+	}
+	
+	function fixedsalaryhead($q=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("select FixedSalaryHead from salarystructure where SalaryStructureStatus='Active' and SalaryStructureId='$q' ");
+		return $query->Result();
+	}
+	
 	
 }
 

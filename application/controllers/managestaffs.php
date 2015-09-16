@@ -43,6 +43,158 @@ class Managestaffs extends CI_Controller {
 			$this->data['staff_qualification'] = $this->managestaff_model->get_staff_qualification($staffid);
 			$this->data['staff_documents'] = $this->managestaff_model->get_staff_documents($staffid);
 			
+			$DependedSalaryHeadId='';
+			$DependedArrayExpression='';
+			$DependedSalaryCode='';
+			$ArraySalaryStructureId='';
+			$ListSalaryStructure='';
+			
+			
+			$check1=$this->managestaff_model->getsalaryhead();
+			foreach($check1 as $row1)
+			{
+				$SalaryHeadIdArray[]=$row1->SalaryHeadId;
+				$SalaryHeadArray[]=$row1->SalaryHead;
+				$CodeArray[]=$row1->Code;
+				$SalaryHeadTypeArray[]=$row1->MasterEntryValue;
+			}
+
+			$check3=$this->managestaff_model->getsalarystructuredetail();
+			foreach($check3 as $row3)
+			{
+				$ArraySalaryHeadId[]=$row3->SalaryHeadId;
+				$ArrayExpression[]=$row3->Expression;
+				$ArrayCode[]=$row3->Code;
+				$ArraySalaryStructureId[]=$row3->SalaryStructureId;
+			}
+
+			
+			$check2= $this->managestaff_model->getsalarystructuredetailstaff($staffid);
+			$count2=count($check2);
+			if($count2>0)
+			{
+				foreach($check2 as $row2)
+				{
+					unset($DependedSalaryHeadId);
+					unset($DependedArrayExpression);
+					unset($DependedSalaryCode);
+					
+					$ListSalaryStructureId=$row2->SalaryStructureId;
+					$ListStaffSalaryId=$row2->StaffSalaryId;
+					
+					if($ArraySalaryStructureId!="")
+					{
+						$kk=0;
+						foreach($ArraySalaryStructureId as $ArraySalaryStructureIdValue)
+						{
+							if($ArraySalaryStructureIdValue==$ListSalaryStructureId)
+							{
+								$DependedSalaryHeadId[]=$ArraySalaryHeadId[$kk];
+								$DependedSalaryCode[]=$ArrayCode[$kk];
+								$DependedArrayExpression[]=$ArrayExpression[$kk];
+							}
+							$kk++;
+						}
+					}
+					
+					$ListSalaryStructureName=$row2->SalaryStructureName;
+					$ListFixedSalary=explode(",",$row2->FixedSalary);
+					$ListRemarks=$row2->Remarks;
+					foreach($ListFixedSalary as $ListFixedSalaryValue)
+					{
+						$SalaryIdWithAmount=explode("-",$ListFixedSalaryValue);
+						$SalaryId=$SalaryIdWithAmount[0];
+						$SalaryAmount=$SalaryIdWithAmount[1];
+						$SearchFixedSalaryIndex=array_search($SalaryId,$SalaryHeadIdArray);
+						$SalaryCode=$CodeArray[$SearchFixedSalaryIndex];
+						
+						$FinalSalaryCodeArray[]=$SalaryCode;
+						$FinalSalaryIdArray[]=$SalaryId;
+						$FinalSalaryAmountArray[]=$SalaryAmount;
+					}
+					
+					$mmm=0;
+					$DependedArrayExpression='';
+					if($DependedArrayExpression!="")
+					foreach($DependedArrayExpression as $DependedArrayExpressionValue)
+					{
+						$mm=0;
+						foreach($FinalSalaryCodeArray as $FinalSalaryCodeArrayValue)
+						{
+							$SalaryInInt=$FinalSalaryAmountArray[$mm];
+							$DependedArrayExpressionValue=str_replace($FinalSalaryCodeArrayValue, $SalaryInInt, $DependedArrayExpressionValue);
+							$mm++;
+						}
+						$answer = eval( 'return ' . $DependedArrayExpressionValue . ';' );
+						$DependedSalaryId=$DependedSalaryHeadId[$mmm];
+						$DependedSalaryCodeC=$DependedSalaryCode[$mmm];
+						$FinalSalaryCodeArray[]=$DependedSalaryCodeC;
+						$FinalSalaryIdArray[]=$DependedSalaryId;
+						$FinalSalaryAmountArray[]=$answer;
+						$mmm++;
+					}
+					
+					$p=0;
+					$FixedSalaryString="";
+					$TotalSalary=0;
+					foreach($FinalSalaryIdArray as $FinalSalaryIdArrayValue)
+					{
+						$Index=array_search($FinalSalaryIdArrayValue,$SalaryHeadIdArray);
+						$LastSalaryHead=$SalaryHeadArray[$Index];
+						$LastSalaryCode=$CodeArray[$Index];
+						$LastSalaryHeadType=$SalaryHeadTypeArray[$Index];
+						$LastSalaryAmount=$FinalSalaryAmountArray[$p];
+						if($LastSalaryHeadType=="Earning")
+						{
+							$FontColor="green";
+							$TotalSalary+=$LastSalaryAmount;
+						}
+						else
+						{
+							$FontColor="red";
+							$TotalSalary-=$LastSalaryAmount;
+						}
+						$p++;
+						$FixedSalaryString.="<tr><td><font color=$FontColor>$LastSalaryHead ($LastSalaryCode)</font></td><td>$LastSalaryAmount INR</b></td></tr>";
+						
+						
+					}
+					$FixedSalaryString="<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"table table-small-font table-bordered table-striped\" width=\"100%\">
+										<thead>
+											<tr>
+												<th>Salary Head</th>
+												<th>Salary Amount</th>
+											</tr>
+										</thead>
+										<tbody>$FixedSalaryString</tbody>
+										<thead>
+											<tr>
+												<Th>Total</th>
+												<Th>$TotalSalary INR</Th>
+											</tr>
+										</thead>
+									</table>";
+					
+					unset($FinalSalaryCodeArray);
+					unset($FinalSalaryIdArray);
+					unset($FinalSalaryAmountArray);
+					
+					$ListStaffPaidLeave=$row2->StaffPaidLeave;
+					$ListEffectiveFrom=date("d M Y",$row2->EffectiveFrom);
+					$Delete="";
+					$ListSalaryStructure.="<tr>
+											<td>$ListSalaryStructureName</td>
+											<td>$FixedSalaryString</Td>
+											<td>$ListStaffPaidLeave</td>
+											<td>$ListEffectiveFrom</td>
+											<Td>$ListRemarks</td>
+											<td>$Delete</td>
+										</tr>";
+										$this->data['ListSalaryStructure']=$ListSalaryStructure;
+				}
+				
+			}
+			
 		}
 		
 		$this->data['staff'] = $this->managestaff_model->get_staff();
@@ -132,7 +284,89 @@ class Managestaffs extends CI_Controller {
 		redirect('managestaffs/managestaff/'.$this->input->post('staffid'));
 	}
 	 /*ManageStaff Insert And Update Staff  End................................................................................................*/
-	 
+	
+	/*ManageStaff Insert Staff   salary head start................................................................................................*/
+	function insert_staffsalaryhead()
+	{	
+	if(Authority::checkAuthority('ManageStaff')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		if($this->input->post('staffid')){
+			
+			$SalaryStructureId=$this->input->post('salarytemplate');
+			$PaidLeave=$this->input->post('paidleave');
+			$EffectiveFrom=$this->input->post('dateofeffective');
+			$StaffId=$this->input->post('staffid');
+			$Remarks=$this->input->post('remarks');
+			$EffectiveFrom=strtotime($EffectiveFrom);
+			$Date=date("Y-m-d");
+			$row=$this->managestaff_model->selectfixedsalarystructre($SalaryStructureId);
+			
+			$count=count($row);
+			$FixedSalaryHeadArray=explode(",",$row[0]->FixedSalaryHead);
+			foreach($FixedSalaryHeadArray as $FixedSalaryHeadArrayValue)
+			{
+				$FieldName="SalaryHead-$FixedSalaryHeadArrayValue";
+				$Salary=$this->input->post($FieldName);
+				if($Salary=="" || $Salary<0 || !is_numeric($Salary))
+				$ErrorInSalary++;
+				else
+				$SalaryString[]="$FixedSalaryHeadArrayValue-$Salary";
+			}
+			$SalaryString=implode(",",$SalaryString);
+			
+			
+			$row1=$this->managestaff_model->selectstaffdoj($StaffId);
+			$count1=count($row1);
+			$StaffDOJ=$row1[0]->StaffDOJ;
+			
+			if($SalaryStructureId=="" || $PaidLeave=="" || $EffectiveFrom=="" || $StaffId=="" || $SalaryString=="")
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("managestaff").' All the fields are mandatory!!');
+			}
+			elseif($count==0)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("managestaff").' This is not a valid Salary Structure!!');
+			}	
+			elseif($StaffDOJ>$EffectiveFrom)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("managestaff")."Salary can't be effective before staff joining date!!");
+			}	
+			elseif($ErrorInSalary>0)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("managestaff")."$ErrorInSalary Salary are set in negative. Please set it greater than or equal to zero!!");
+			}
+			elseif($count1==0)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("managestaff").'This is not a valid Staff!!');
+			}	
+			elseif(!is_numeric($PaidLeave) || $PaidLeave<0)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("managestaff").' Paid leave should be numeric!!');
+			}	
+			else
+			{
+				$DOE=strtotime($Date);
+				$this->managestaff_model->insert_staffsalaryhead($StaffId,$SalaryStructureId,$SalaryString,$PaidLeave,$EffectiveFrom,$DOE,$Remarks);
+				$this->session->set_flashdata('message_type', 'success');
+				$this->session->set_flashdata('message', $this->config->item("managestaff").' Salary structure saved successfully!!');
+			}
+		}
+		
+		redirect('managestaffs/managestaff/'.$this->input->post('staffid'));
+	}
+	 /*ManageStaff Insert salary head  End................................................................................................*/
+	
+	
 	 /*ManageStaff Insert And Update Staff Documents start................................................................................................*/
 	function insert_staffdocuments()
 	{	

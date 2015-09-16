@@ -86,3 +86,22 @@ function addfeelist(form)
 		
 		return false;
 }
+
+function showfixedsalaryhead(id)
+{ 
+	$.ajax({
+				type: "POST",
+				url : base_url+'common_functions/showfixedsalaryhead',
+				data: {					id: id,
+										
+										},
+			})	
+				.done(function(msg){
+					
+					$('#showfixedsalaryhead').html(msg);					
+					
+					return false;	
+				});
+		
+		return false;
+}

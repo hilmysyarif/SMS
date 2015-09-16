@@ -174,5 +174,45 @@ class Common_functions extends CI_Controller {
 		echo "</table>";
 		echo "<input type='hidden' value='".$Token."' name='token' class='form-control' >";
 	 }
+	 
+	 
+	 public function showfixedsalaryhead()
+	{
+		
+		$id = $this->input->post('id');
+		$currentsession=$this->currentsession[0]->CurrentSession;
+		
+		$check1 = $this->utilities->selectsalaryhead();
+		
+
+			foreach($check1 as $row1 )
+			{
+				$SalaryHeadIdArray[]=$row1->SalaryHeadId;
+				$SalaryHeadArray[]=$row1->SalaryHead;
+				$CodeArray[]=$row1->Code;
+				$SalaryHeadTypeArray[]=$row1->MasterEntryValue;
+			}
+				
+			$row = $this->utilities->fixedsalaryhead($id);
+			
+			$FixedSalaryHeadArray=explode(",",$row[0]->FixedSalaryHead);
+			foreach($FixedSalaryHeadArray as $FixedSalaryHeadArrayValue)
+			{
+				$FieldName="SalaryHead-$FixedSalaryHeadArrayValue";
+				$SearchIndex=array_search($FixedSalaryHeadArrayValue,$SalaryHeadIdArray);
+				$SalaryHead=$SalaryHeadArray[$SearchIndex];
+				echo "<div class='form-group'>
+							<label class=\"control-label col-sm-4\" for=\"field-1\">$SalaryHead</label>
+							<div class=\"col-sm-8\">
+									<input  class=\"form-control\" type=\"number\" name=\"$FieldName\" id=\"field-1\" required />
+								</div>
+						</div>";
+			}
+		
+		
+		
+	}
+	 
+	 
 }	
 ?>
