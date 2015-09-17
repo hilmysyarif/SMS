@@ -215,9 +215,9 @@
 									<tbody>
 									<?php foreach($section_info as $sectioninfo){ ?>
 										<tr>
-										<?php $filter=array('ClassId' => $sectioninfo->ClassId); $classname= $this->utilities->get_masterval('class',$filter); ?>
-											<td><?=isset($classname[0]->ClassName)?$classname[0]->ClassName:''?></td>
-											<td><?=$sectioninfo->SectionName?></td>
+										
+											<td><?=isset($sectioninfo->ClassName)?$sectioninfo->ClassName:''?></td>
+											<td><?=isset($sectioninfo->SectionName)?$sectioninfo->SectionName:''?></td>
 											<td><a href="<?=base_url();?>master/manageclass/section/<?=$sectioninfo->SectionId?>"><i class="fa fa-edit"></a></i></td>
 											
 										</tr>

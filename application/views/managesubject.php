@@ -54,11 +54,11 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																		<select class="form-control " required id="s2example-1" name="class" multiple>
+																		<select class="form-control " required id="s2example-1" name="class[]" multiple>
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($class_info as $classinfo){ ?>
-																	<option value="<?=$classinfo->ClassId?>" <?php if(empty($id)==''){ $cal_id=$sub_update[0]->Class; $cal_id=explode(',',$cal_id); foreach($cal_id as $val){ echo (!empty($val==$classinfo->ClassId) ? "selected" : ''); }} ?>><?=$classinfo->ClassName?></option>
+																	<option value="<?=$classinfo->SectionId?>" <?php if(empty($id)==''){ $cal_id=$sub_update[0]->Class;  $cal_id=explode(',',$cal_id); foreach($cal_id as $val){ echo (!empty($val==$classinfo->SectionId) ? "selected" : ''); }} ?>><?=$classinfo->ClassName?> <?=$classinfo->SectionName?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -130,7 +130,7 @@
 											<td><?=$subinfo->SubjectName?></td>
 											<td><?=$subinfo->SubjectAbb?></td>
 											<?php $filter=$subinfo->Class; $classname= $this->utilities->get_classval('class',$filter); ?>
-											<td><?php foreach($classname as $classname){ echo $classname->ClassName ; echo $classname->SectionName ;  }?></td>
+											<td><?php foreach($classname as $classname){ echo $classname->ClassName; echo"&nbsp&nbsp";  echo $classname->SectionName; echo"<br>";  }?></td>
 											<td><a href="<?=base_url();?>master/managesubject/<?=$subinfo->SubjectId?>"><i class="fa fa-edit"></a></i></td>
 										</tr>
 									<?php } ?>

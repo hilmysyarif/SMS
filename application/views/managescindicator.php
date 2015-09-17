@@ -97,7 +97,6 @@
 										<tr>
 											<th>Area Name</th>
 											<th>Indicator Name</th>
-											
 											<th><a href="#"><i class="fa fa-edit"></i></a></th>
 											
 										</tr>
@@ -107,7 +106,6 @@
 										<tr>
 											<th>Area Name</th>
 											<th>Indicator Name</th>
-											
 											<th><a href="#"><i class="fa fa-edit"></i></a></th>
 											
 										</tr>

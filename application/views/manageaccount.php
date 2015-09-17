@@ -185,7 +185,7 @@
 											
 											<td><?=$accinfo->AccountBalance+$accinfo->OpeningBalance?></td>
 											
-											<td><?=$accinfo->AccountDate?></td>
+											<td><?php  echo (isset($accinfo->AccountDate) ?  date("d-m-Y",$accinfo->AccountDate) : '');  ?></td>
 											
 											<td><a href="<?=base_url();?>master/manageaccount/<?=$accinfo->AccountId?>"><i class="fa fa-edit"></a></i></td>
 											<td><a href="<?=base_url();?>master/modal/<?=$accinfo->AccountId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>

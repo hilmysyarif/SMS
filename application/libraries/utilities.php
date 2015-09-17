@@ -41,13 +41,17 @@ class Utilities extends CI_Controller {
 		$CI = & get_instance();
 		$CI->db->select('*');
 		$query = $CI->db->get_where($table,$filter);
+			
 		return $query->Result();
 	}
 	
 	function get_classval($table=false,$filter=false)
 	{
 		$CI = & get_instance();
-		$query=$CI->db->query("select ClassName,SectionName from class,section where section.SectionId in(".$filter.") and section.SectionId=class.ClassId");
+		$query=$CI->db->query("select ClassName,SectionName,SectionId from class,section where 
+						class.ClassId=section.ClassId and  section.SectionId in(".$filter.") and class.ClassStatus='Active' and
+						section.SectionStatus='Active'  order by ClassName  ");
+	//	echo $CI->db->last_query();
 		return $query->Result();
 	}
 	

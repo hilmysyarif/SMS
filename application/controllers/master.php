@@ -329,8 +329,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 						$this->data['section_update'] = $this->master_model->get_info('section',$filter);
 		}
 		}
-		$this->data['class_info'] = $this->master_model->get_acc(' class');
-		$this->data['section_info'] = $this->master_model->get_acc('section');
+		$this->data['class_info'] = $this->master_model->get_acc('class',$this->currentsession[0]->CurrentSession);
+		$this->data['section_info'] = $this->master_model->get_class_info($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -350,7 +350,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}
 		if($type=='class'){
 		$data=array(	'ClassName'=>$this->input->post('class_name'),
-						'Session'=>$this->currentsession[0]-CurrentSession,
+						'Session'=>$this->currentsession[0]->CurrentSession,
 						'DOE'=>"16-7-2015",
 						'ClassStatus'=>"Active");
 						
@@ -413,8 +413,9 @@ if(Authority::checkAuthority('ManageUser')==true){
 		$filter=array('SubjectId'=>$this->data['id']=$id);
 		$this->data['sub_update'] = $this->master_model->get_info('subject',$filter);
 		}
-		$this->data['sub_info'] = $this->master_model->get_acc('subject');
-		$this->data['class_info'] = $this->master_model->get_acc('class');
+		$this->data['sub_info'] = $this->master_model->get_acc('subject',$this->currentsession[0]->CurrentSession);
+		$this->data['class_info'] = $this->master_model->get_class_info($this->currentsession[0]->CurrentSession);
+		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -433,8 +434,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 					redirect('dashboard');
 		}
 		$class=$this->input->post('class');
-		$class=explode(",",$class);
-		$data=array(	'Session'=>$this->currentsession[0]-CurrentSession,
+		$class=implode(",",$class);
+		$data=array(	'Session'=>$this->currentsession[0]->CurrentSession,
 						'SubjectName'=>$this->input->post('subject_name'),
 						'SubjectAbb'=>$this->input->post('abbreviation'),
 						'Class'=>$class,
@@ -473,8 +474,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 			$filter=array('ExamId'=>$this->data['id']=$id);
 			$this->data['exam_update'] = $this->master_model->get_info('exam',$filter);
 		}
-		$this->data['class_info'] = $this->master_model->get_acc(' class');
-		$this->data['exam_info'] = $this->master_model->get_acc('exam');
+		$this->data['class_info'] = $this->master_model->get_class_info($this->currentsession[0]->CurrentSession);
+		$this->data['exam_info'] = $this->master_model->get_acc('exam',$this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -492,7 +493,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
-		$data=array('Session'=>$this->currentsession[0]-CurrentSession,
+		$data=array('Session'=>$this->currentsession[0]->CurrentSession,
 				'ExamName'=>$this->input->post('exam_name'),
 				'SectionId'=>$this->input->post('class_name'),
 				'Weightage'=>$this->input->post('weightage'),
@@ -533,8 +534,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 			$this->data['scarea_update'] = $this->master_model->get_info('scarea',$filter);
 			
 		}
-		$this->data['scarea_info'] = $this->master_model->get_scarea('scarea');
-		$this->data['class_info'] = $this->master_model->get_acc('class');
+		$this->data['scarea_info'] = $this->master_model->get_scarea($this->currentsession[0]->CurrentSession);
+		$this->data['class_info'] = $this->master_model->get_class_info($this->currentsession[0]->CurrentSession);
 		$filter=array('MasterEntryName'=>'GradingPoint');
 		$this->data['scarea_gradingpoint'] = $this->master_model->get_info('masterentry',$filter);
 		$filter1=array('MasterEntryName'=>'CoScholasticPart');
@@ -556,10 +557,11 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
-		$data=array('Session'=>$this->currentsession[0]-CurrentSession,
+		$class=implode(",",$this->input->post('class'));
+		$data=array('Session'=>$this->currentsession[0]->CurrentSession,
 				'SCAreaName'=>$this->input->post('area_name'),
 				'SCPartId'=>$this->input->post('part'),
-				'SCAreaClass'=>$this->input->post('class'),
+				'SCAreaClass'=>$class,
 				'GradingPoint'=>$this->input->post('grading_point'),
 				'DOE'=>"16-7-2015",
 				'SCAreaStatus'=>"Active");
@@ -599,7 +601,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 				
 		}
 		$this->data['scindicator_info'] = $this->master_model->get_acc('scindicator');
-		$this->data['scarea_info'] = $this->master_model->get_scarea('scarea');
+		
+		$this->data['scarea_info'] = $this->master_model->get_scarea($this->currentsession[0]->CurrentSession);
 		$this->data['user_info'] = $this->master_model->get_userinfo();
 		$this->data['user_type'] = $this->master_model->get_selectstaff();
 		$this->parser->parse('include/header',$this->data);
@@ -661,8 +664,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 		$this->data['fee_type'] = $this->master_model->get_info('masterentry',$filter);
 		$filter1=array('MasterEntryName'=>'Distance');
 		$this->data['distance'] = $this->master_model->get_info('masterentry',$filter1);
-		$this->data['class_info'] = $this->master_model->get_acc('class');
-		$this->data['fee_info'] = $this->master_model->get_fee('fee');
+		$this->data['class_info'] = $this->master_model->get_class_info($this->currentsession[0]->CurrentSession);
+		$this->data['fee_info'] = $this->master_model->get_fee($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -686,7 +689,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 				'FeeType'=>$this->input->post('fee_type'),
 				'Amount'=>$this->input->post('amount'),
 				'Distance'=>$this->input->post('distance'),
-				'Session'=>$this->currentsession[0]-CurrentSession,
+				'Session'=>$this->currentsession[0]->CurrentSession,
 				'DOE'=>"16-7-2015",
 				'FeeStatus'=>"Active");
 		}else{
@@ -695,7 +698,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 					'SectionId'=>$this->input->post('class'),
 					'FeeType'=>$this->input->post('fee_type'),
 					'Amount'=>$this->input->post('amount'),
-					'Session'=>$this->currentsession[0]-CurrentSession,
+					'Session'=>$this->currentsession[0]->CurrentSession,
 					'DOE'=>"16-7-2015",
 					'FeeStatus'=>"Active");
 		}
@@ -856,9 +859,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 			$filter=array('SchoolMaterialId'=>$this->data['id']=$id);
 			$this->data['material_update'] = $this->master_model->get_info('schoolmaterial',$filter);
 		}
-		$filter=array('SchoolMaterialType'=>'Books');
+		$filter=array('SchoolMaterialType'=>'Books',
+		'Session'=>$this->currentsession[0]->CurrentSession);
 			$this->data['material'] = $this->master_model->get_info('schoolmaterial',$filter);
-			$this->data['class_info'] = $this->master_model->get_acc('class');
+			$this->data['class_info'] = $this->master_model->get_acc('class',$this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -883,7 +887,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 				'BranchPrice'=>$this->input->post('branch_price'),
 				'SellingPrice'=>$this->input->post('selling_price'),
 				'SchoolMaterialStatus'=>"Active",
-				'Session'=>$this->currentsession[0]-CurrentSession,
+				'Session'=>$this->currentsession[0]->CurrentSession,
 				'Date'=>"18-7-2015",
 		);
 			

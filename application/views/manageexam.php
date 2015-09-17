@@ -38,7 +38,7 @@
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($class_info as $classinfo){ ?>
-																	<option value="<?=$classinfo->ClassId?>" <?php if(empty($id)==''){ echo (!empty($exam_update[0]->SectionId==$classinfo->ClassId) ? "selected" : ''); } ?>><?=$classinfo->ClassName?>  </option>
+																	<option value="<?=$classinfo->SectionId?>" <?php if(empty($id)==''){ $cal_id=$exam_update[0]->SectionId;  $cal_id=explode(',',$cal_id); foreach($cal_id as $val){ echo (!empty($val==$classinfo->SectionId) ? "selected" : ''); }} ?>><?=$classinfo->ClassName?> <?=$classinfo->SectionName?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>

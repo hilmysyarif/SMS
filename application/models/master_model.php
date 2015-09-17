@@ -88,32 +88,38 @@ class Master_model extends CI_Model
  /* function show school selectstaff end.........................................................................  */ 
 
  /* function show school account start..........................................................................  */
- function get_acc($table=false,$filter=false)
+ function get_acc($table=false,$CURRENTSESSION=false)
    {	
-		$query=$this->db->query("SELECT * from ".$table." ");
-		//echo $this->db->last_query();die;
+	if($CURRENTSESSION){
+		$query=$this->db->query("SELECT * from ".$table." where $table.Session='$CURRENTSESSION'");
+	}else{
+		$query=$this->db->query("SELECT * from ".$table."");
+	}
+		
 				return $query->Result();
    }
  /* function show school account end.........................................................................  */ 
 
    /* function show school selectstaff start.........................................................................  */
-   function get_scarea($table=false,$filter=false)
+   function get_scarea($CURRENTSESSION=false)
    {
    	$query=$this->db->query("select SCAreaName,SCAreaClass,SCAreaId,MasterEntryValue,GradingPoint from scarea,masterentry where 
 						SCAreaStatus='Active' and
-						scarea.SCPartId=masterentry.MasterEntryId 
+						scarea.SCPartId=masterentry.MasterEntryId and
+						scarea.Session='$CURRENTSESSION'
 						order by SCAreaName");
    	return $query->Result();
    }
    /* function show school selectstaff end.........................................................................  */
 
    /* function show school selectstaff start.........................................................................  */
-   function get_fee($table=false,$filter=false)
+   function get_fee($CURRENTSESSION=false)
    {
    	$query=$this->db->query("select MasterEntryValue,ClassName,SectionName,Amount,FeeId,Distance from fee,section,class,masterentry where 
 		fee.SectionId=section.SectionId and
 		section.ClassId=class.ClassId and 
 		fee.FeeType=masterentry.MasterEntryId and 
+		fee.Session='$CURRENTSESSION' and
 		FeeStatus='Active' order by ClassName,SectionName");
    	return $query->Result();
    }
@@ -171,6 +177,14 @@ class Master_model extends CI_Model
    }
    /* function show school selectstaff end.........................................................................  */
      
+	function get_class_info($CURRENTSESSION=false)
+	{
+			$qry = $this->db->query("select ClassName,SectionName,SectionId from class,section where 
+						class.ClassId=section.ClassId and class.ClassStatus='Active' and
+						section.SectionStatus='Active' and class.Session='$CURRENTSESSION' order by ClassName ");	
+			return $qry->Result();	
+		
+	}
    
    
    
