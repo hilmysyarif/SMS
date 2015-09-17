@@ -302,7 +302,7 @@ class Managestaffs extends CI_Controller {
 			$PaidLeave=$this->input->post('paidleave');
 			$EffectiveFrom=$this->input->post('dateofeffective');
 			$StaffId=$this->input->post('staffid');
-			$Remarks=$this->input->post('remarks');
+			$Remarks=$this->input->post('remarks1');
 			$EffectiveFrom=strtotime($EffectiveFrom);
 			$Date=date("Y-m-d");
 			$row=$this->managestaff_model->selectfixedsalarystructre($SalaryStructureId);
@@ -438,7 +438,7 @@ class Managestaffs extends CI_Controller {
 			$StaffId=$this->input->post('staffid');
 			$DOP=strtotime($this->input->post('paymentdate'));
 			$MonthYear=strtotime("01-".$this->input->post('monthyear'));
-			$Remarks=$this->input->post('remarks');
+			$Remarks=$this->input->post('remarks2');
 			$Amount=$this->input->post('amount');
 			$Account=$this->input->post('account');
 			$SalaryPaymentType=$this->input->post('paymenttype');

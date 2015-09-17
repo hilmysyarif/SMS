@@ -357,7 +357,7 @@
 											<div class="form-group">
 										<label class="control-label col-sm-4"  for="field-1">Remarks</label>
 										<div class="col-sm-8">
-										<textarea class="form-control"  id="field-1" placeholder="Remarks" rows="1" name="remarks" ></textarea></div>
+										<textarea class="form-control"  id="field-1" placeholder="Remarks" rows="1" name="remarks1" ></textarea></div>
 										</div>
 								</div>	
 								
@@ -502,7 +502,7 @@
 											<div class="form-group">
 										<label class="control-label col-sm-4"  for="field-1">Remarks</label>
 										<div class="col-sm-8">
-										<textarea class="form-control"  id="field-1" placeholder="Remarks" rows="1" name="remarks" ></textarea></div>
+										<textarea class="form-control"  id="field-1" placeholder="Remarks" rows="1" name="remarks2" ></textarea></div>
 										</div>
 								</div>	
 								
