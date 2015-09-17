@@ -42,6 +42,8 @@ class Managestaffs extends CI_Controller {
 			$this->data['staff_up'] = $this->managestaff_model->get_staff_up($staffid);
 			$this->data['staff_qualification'] = $this->managestaff_model->get_staff_qualification($staffid);
 			$this->data['staff_documents'] = $this->managestaff_model->get_staff_documents($staffid);
+			$this->data['account'] = $this->managestaff_model->get_account();
+			$this->data['paymentlist'] = $this->managestaff_model->getpaymentlist($staffid);
 			
 			$DependedSalaryHeadId='';
 			$DependedArrayExpression='';
@@ -421,6 +423,82 @@ class Managestaffs extends CI_Controller {
 		redirect('managestaffs/managestaff/'.$this->input->post('staffid'));
 	}
 	 /*ManageStaff Insert And Update Staff Documents  End................................................................................................*/
+	
+	/*ManageStaff Pay salary Staff  start................................................................................................*/
+	function insert_paysalarystaff()
+	{	
+	if(Authority::checkAuthority('ManageStaff')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		if($this->input->post('staffid')){
+			
+			$StaffId=$this->input->post('staffid');
+			$DOP=strtotime($this->input->post('paymentdate'));
+			$MonthYear=strtotime("01-".$this->input->post('monthyear'));
+			$Remarks=$this->input->post('remarks');
+			$Amount=$this->input->post('amount');
+			$Account=$this->input->post('account');
+			$SalaryPaymentType=$this->input->post('paymenttype');
+			
+			$row=$this->managestaff_model->getstaffdetails($StaffId);	
+			$count=count($row);
+			if($count>0)
+			{
+				$StaffName=$row[0]->StaffName;
+				$StaffMobile=$row[0]->StaffMobile;
+				$StaffDOJ=$row[0]->StaffDOJ;
+				$StaffDOJName=date("d M Y",$StaffDOJ);
+			}
+			
+			$row1=$this->managestaff_model->getaccountbal($Account);
+			$TotalBalance=$row1[0]->TotalBalance;
+			$AccountName=$row1[0]->AccountName;
+			
+			if($StaffId=="" || $DOP=="" || $MonthYear=="" || $Amount=="" || $Account=="" || $SalaryPaymentType=="")
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("managestaff").'All the fields are mandatory!!');
+			}
+			elseif($count==0)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("managestaff").' Selected staff is either not active or its not a valid Staff Id!!');
+			}
+			elseif($Amount<=0 || !is_numeric($Amount))
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("managestaff").' Amount should be numeric and greater than zero!!');	
+			}
+			elseif($TotalBalance<$Amount)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("managestaff")."$AccountName has not sufficient balance in it!!");
+			}
+			elseif($StaffDOJ>$MonthYear)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("managestaff")."$StaffName has joined the school on $StaffDOJName, You cannot pay salary before that!!");		
+			}
+			elseif($SCHOOLSTARTDATE>$DOP)
+			{
+				$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("managestaff").' Date of payment cannot be less than Software start date!!');		
+			}else
+			{	$Date=date("Y-m-d");
+				$USERNAME=$this->info['usermailid'];
+				$Date=strtotime($Date);
+				$this->managestaff_model->insertexpanseandtransaction($USERNAME,$StaffId,$MonthYear,$SalaryPaymentType,$Amount,$Remarks,$DOP,$Date,$Account);
+				$this->session->set_flashdata('message_type', 'success');
+				$this->session->set_flashdata('message', $this->config->item("managestaff")."Salary paid to $StaffName ($StaffMobile)!! ");
+			}
+	}
+		
+		redirect('managestaffs/managestaff/'.$this->input->post('staffid'));
+	}
+	 /*ManageStaff  Pay salary Staff   End................................................................................................*/
 	
 	 
 	

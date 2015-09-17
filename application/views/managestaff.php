@@ -427,11 +427,11 @@
 																							
 																						});
 																				</script>
-																			<select  class="form-control " id="s2example-12" name="paymenttype" >
+																			<select   id="s2example-12" name="paymenttype" >
 																					<option></option>
-																					<?php $salastructure= $this->utilities->getsalarystructure();
-																					foreach($salastructure as $salastructure1){?>
-																					<option  value="<?=$salastructure1->SalaryStructureId?>"  ><?=$salastructure1->SalaryStructureName?> </option>
+																					<?php $filter=array('MasterEntryName'=>'SalaryPaymentType'); $paymenttype= $this->utilities->get_usertype($filter);
+																					foreach($paymenttype as $paymenttype1){?>
+																					<option  value="<?=$paymenttype1->MasterEntryId?>"  ><?=$paymenttype1->MasterEntryValue?> </option>
 																 <?php } ?>
 																				
 																				</select>
@@ -485,12 +485,11 @@
 																							
 																						});
 																				</script>
-																			<select  class="form-control" id="s2example-13" name="account" >
+																			<select   id="s2example-13" name="account" >
 																					<option></option>
-																					<?php $salastructure= $this->utilities->getsalarystructure();
-																					foreach($salastructure as $salastructure1){?>
-																					<option  value="<?=$salastructure1->SalaryStructureId?>"  ><?=$salastructure1->SalaryStructureName?> </option>
-																 <?php } ?>
+																					<?php foreach($account as $account2){ ?>
+															<option  value="<?=$account2->AccountId?>"><?=$account2->AccountName?> Balance : <?=$account2->OpeningBalance+$account2->AccountBalance?> INR </option>
+																													<?php } ?>
 																				
 																				</select>
 										</div>
@@ -528,7 +527,7 @@
 							
 							<div class="row">
 							<div class="form-group">
-										<input  type="submit"  class="btn btn-primary " formaction="<?=base_url();?>managestaffs/insert_staffsalaryhead" value="Save"/>
+										<input  type="submit"  class="btn btn-primary " formaction="<?=base_url();?>managestaffs/insert_paysalarystaff" value="Save"/>
 										</div>
 							</div>
 							
@@ -553,21 +552,23 @@
 											</thead>
 										 
 											
-										 <?php if(!empty($ListSalaryStructure)){ ?>
+										 <?php if(!empty($paymentlist)){ ?>
 											<tbody>
+											<?php foreach($paymentlist as $paymentlist1){ ?>
 												<tr>
-													<td>1</td>
-													<td>5000</td>
-													<td>cash</td>
-													<td>9-2015</td>
-													<td>05-09-2015</td>
-													<td>acc-231564879</td>
+													<td><?php echo (isset($paymentlist1->TransactionId) ? $paymentlist1->TransactionId : ''); ?></td>
+													<td><?php  echo (isset($paymentlist1->TransactionAmount) ? $paymentlist1->TransactionAmount : '');  ?></td>
+													<td><?php   echo (isset($paymentlist1->MasterEntryValue) ? $paymentlist1->MasterEntryValue : ''); ?></td>
+													<td><?php  echo (isset($paymentlist1->SalaryMonthYear) ?  date("1-m-Y",$paymentlist1->SalaryMonthYear) : '');  ?></td>
+													<td><?php   echo (isset($paymentlist1->TransactionDate) ? date("d-m-Y H:i",$paymentlist1->TransactionDate) : '');  ?></td>
+													<td><?php  echo (isset($paymentlist1->AccountName) ? $paymentlist1->AccountName : '');  ?></td>
 													<td><i class="fa fa-times"></i></td>
 													<td><i class="fa fa-times"></i></td>
 												</tr>
+											<?php } ?>
 											</tbody>
 											<?php }else{ ?>
-						<div class="alert alert-danger">No salary structure set yet for this staff!!</div>
+						<div class="alert alert-danger">No Salary Payment yet Paid For this staff!!</div>
 						<?php } ?>
 										</table>
 									</div>	
