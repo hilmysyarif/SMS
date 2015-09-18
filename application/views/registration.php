@@ -242,8 +242,8 @@
 									
 										
 										<div class="date-and-time">
-											<input readonly type="text" name="DOB" value="<?=isset($DOB)?date("d M Y",$DOB):''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input readonly type="text" name="DOB" value="<?=isset($DOB)?date("D h:i a",$DOB):''?>"  class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input readonly type="text" name="DOB" value="<?=!empty($DOB)?date("d M Y",$DOB):''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input readonly type="text" name="DOB" value="<?=!empty($DOB)?date("D h:i a",$DOB):''?>"  class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 								</div>
@@ -434,8 +434,8 @@
 									
 										
 										<div class="date-and-time">
-											<input readonly type="text" name="FatherDateOfBirth" value="<?=isset($FatherDateOfBirth)?date("d M Y",$FatherDateOfBirth):''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input readonly type="text" name="FatherDateOfBirth" value="<?=isset($FatherDateOfBirth)?date("D h:i a",$FatherDateOfBirth):''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input readonly type="text" name="FatherDateOfBirth" value="<?=!empty($FatherDateOfBirth)?date("d M Y",$FatherDateOfBirth):''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input readonly type="text" name="FatherDateOfBirth" value="<?=!empty($FatherDateOfBirth)?date("D h:i a",$FatherDateOfBirth):''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 							</div>
@@ -445,8 +445,8 @@
 									
 										
 										<div class="date-and-time">
-											<input type="text" readonly name="MotherDateOfBirth" class="form-control datepicker" value="<?=isset($MotherDateOfBirth)?date("d M Y",$MotherDateOfBirth):''?>" data-format="D, dd MM yyyy">
-											<input type="text" readonly name="MotherDateOfBirth" class="form-control timepicker" value="<?=isset($MotherDateOfBirth)?date("D h:i a",$MotherDateOfBirth):''?>" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input type="text" readonly name="MotherDateOfBirth" class="form-control datepicker" value="<?=!empty($MotherDateOfBirth)?date("d M Y",$MotherDateOfBirth):''?>" data-format="D, dd MM yyyy">
+											<input type="text" readonly name="MotherDateOfBirth" class="form-control timepicker" value="<?=!empty($MotherDateOfBirth)?date("D h:i a",$MotherDateOfBirth):''?>" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 								
@@ -725,7 +725,7 @@
 												<?php foreach($student_sibling as $student_sibling){?>
 												<tr>
 													<td><?=$student_sibling->SName?> </td>
-													<td><?=isset($student_sibling->SDOB)?date("d M Y",$student_sibling->SDOB):''?></td>
+													<td><?=!empty($student_sibling->SDOB)?date("d M Y",$student_sibling->SDOB):''?></td>
 													<td><?=$student_sibling->SClass?></td>
 													<td><?=$student_sibling->SSchool?></td>
 													<td><?=$student_sibling->SRemarks?></td>
@@ -936,8 +936,8 @@
 						</div>
 						
 						<div class="tab-pane" id="inbox-5">
-					<?php	if(isset($TerminationRemarks) && isset($DateOfTermination) !=''){ ?>
-						<div class="alert alert-danger">This Student Is Already Terminated On <?=isset($DateOfTermination)?date("d M Y",$DateOfTermination):''?> With Following Remarks.
+					<?php	if(!empty($TerminationRemarks) && !empty($DateOfTermination)){ ?>
+						<div class="alert alert-danger">This Student Is Already Terminated On <?=!empty($DateOfTermination)?date("d M Y",$DateOfTermination):''?> With Following Remarks.
 						<?=isset($TerminationRemarks)?$TerminationRemarks:''?>
 						</div>
 								<?php }else{ ?>
@@ -956,8 +956,8 @@
 									<label class=" control-label col-sm-4" for="DateOfTermination">Date Of Termination</label>
 								
 										<div class="date-and-time col-sm-8">
-											<input required readonly type="text" name="DateOfTermination" id="DateOfTermination" value="<?=isset($DateOfTermination)?date("d M Y",$DateOfTermination):''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
-											<input readonly type="text"  id="DateOfTermination" value="<?=isset($DateOfTermination)?date("D h:i a",$DateOfTermination):''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input required readonly type="text" name="DateOfTermination" id="DateOfTermination" value="<?=!empty($DateOfTermination)?date("d M Y",$DateOfTermination):''?>" class="form-control datepicker" data-format="D, dd MM yyyy">
+											<input readonly type="text"  id="DateOfTermination" value="<?=!empty($DateOfTermination)?date("D h:i a",$DateOfTermination):''?>" class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 								</div>
 								<div class="form-group-separator">

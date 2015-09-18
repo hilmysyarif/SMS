@@ -38,6 +38,7 @@ class Admission extends CI_Controller {
 		$filter = array('RegistrationId'=>$id);
 		$registration_info = $this->admission_model->get_info($filter,'registration');
 		$this->data['registration_update'] = $this->admission_model->get_info($filter,'registration');
+		
 		 $this->data = array(
 		 		'RegistrationId'=>$registration_info[0]->RegistrationId,
 		 		'StudentName'=>$registration_info[0]->StudentName,
