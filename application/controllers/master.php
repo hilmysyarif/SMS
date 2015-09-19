@@ -15,7 +15,7 @@ class Master extends CI_Controller {
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
 		$this->load->library('authority');
-		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
+		if (!$this->session->userdata('user_data')){ $this->session->set_flashdata('category_error_login', " Your Session Is Expired!! Please Login Again. "); redirect(base_url());}
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
 		$this->session->set_userdata('currentsession',$currentsession);
@@ -471,6 +471,32 @@ if(Authority::checkAuthority('ManageUser')==true){
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Exams', base_url().'master/manageexam');
 		if($id){
+			$filter=array('Exam_Type'=>$this->data['id']=$id);
+			$this->data['exam_update'] = $this->master_model->get_info('examtype',$filter);
+		}
+		$this->data['exam_info'] = $this->master_model->get_acc('examtype');
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('manageexam',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+/*school management manageExam End.............................................................................*/
+
+
+
+/* Comment Previous Verion
+	function manageexam($id=false)
+	{
+	if(Authority::checkAuthority('ManageExam')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Manage Exams', base_url().'master/manageexam');
+		if($id){
 			$filter=array('ExamId'=>$this->data['id']=$id);
 			$this->data['exam_update'] = $this->master_model->get_info('exam',$filter);
 		}
@@ -484,7 +510,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 	}
 /*school management manageExam End.............................................................................*/
 
-/*school management Exam insert and update start........................................................*/
+/*Comment previous version 
 	function insert_exam()
 	{
 	if(Authority::checkAuthority('ManageExam')==true){
@@ -510,6 +536,44 @@ if(Authority::checkAuthority('ManageUser')==true){
 		else
 		{
 			$this->master_model->insert_gen_setting('exam',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("manageexam").' Exam Added Successfully');
+		}
+		redirect('master/manageexam');
+	}
+/*Comment previous version */
+
+
+
+
+/*school management Exam insert and update start........................................................*/
+	function insert_exam()
+	{
+	if(Authority::checkAuthority('ManageExam')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		$data=array(
+				'Exam_Type'=>$this->input->post('examtype'),
+				'Duration'=>$this->input->post('duration'),
+				'Remarks'=>$this->input->post('remarks'),
+				'Exam_Status'=>$this->input->post('examstatus'));
+	
+		if($this->input->post('examtypeup'))
+		{	
+			$data=array('Duration'=>$this->input->post('duration'),
+				'Remarks'=>$this->input->post('remarks'),
+				'Exam_Status'=>$this->input->post('examstatus'));
+			$filter=array('Exam_Type'=>$this->input->post('examtypeup'));
+			$this->master_model->insert_gen_setting('examtype',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("manageexam").' Exam Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('examtype',$data);
 			$this->session->set_flashdata('message_type', 'success');
 			$this->session->set_flashdata('message', $this->config->item("manageexam").' Exam Added Successfully');
 		}
@@ -1151,6 +1215,29 @@ if(Authority::checkAuthority('ManageUser')==true){
 	}
 /*school management header and footer insert and update End.............................................................*/
 	
+	
+/*school management Master Delete start........................................................................*/	
+	function delete($id=false)
+	{
+	if(Authority::checkAuthority('ManageExam')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		
+		if($id){
+			$filter=array('Exam_Type'=>$this->data['id']=$id);
+			$this->master_model->delete('examtype',$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("delete").' Deleted Successfully!!');
+		}
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	
+	}
+/*school management Master Delete End.............................................................................*/
+
+
 	
 	
 }

@@ -189,12 +189,12 @@
 						<ul>
 							<li class="active">
 								<a href="<?=base_url();?>exam/markssetup">
-									<span class="title">Scholastic Grade</span>
+									<span class="title">SetUp Exam</span>
 								</a>
 							</li>
 							<li>
 								<a href="<?=base_url();?>exam/scmarkssetup">
-									<span class="title">Co Scholastic Grade</span>
+									<span class="title">Online Exam SetUp</span>
 								</a>
 							</li>
 							<li class="active opened active">

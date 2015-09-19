@@ -14,61 +14,63 @@
 									<div class="panel-body">
 											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_exam" method="post">
 											<?php if(empty($id)==''){ ?>
-														<input type="hidden" name="id" value="<?=$exam_update[0]->ExamId?>">
+														<input type="hidden" name="examtypeup" value="<?php echo (isset($exam_update[0]->Exam_Type) ? $exam_update[0]->Exam_Type : '');?>">
 											<?php } ?>
 																<div class="form-group">
-																		<label class="col-sm-4 control-label" for="field-1">Class</label>
-																		
-																		<script type="text/javascript">
-																				jQuery(document).ready(function($)
-																				{
-																					$("#s2example-1").select2({
-																						placeholder: 'Select your Class...',
-																						allowClear: true
-																					}).on('select2-open', function()
-																					{
-																						// Adding Custom Scrollbar
-																						$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
-																					});
-																					
-																				});
-																			</script>
-																	<div class="col-sm-8">
-																		<select class="form-control " required id="s2example-1" name="class_name">
-																			<option></option>
-																			<optgroup label="Select">
-																	<?php foreach($class_info as $classinfo){ ?>
-																	<option value="<?=$classinfo->SectionId?>" <?php if(empty($id)==''){ $cal_id=$exam_update[0]->SectionId;  $cal_id=explode(',',$cal_id); foreach($cal_id as $val){ echo (!empty($val==$classinfo->SectionId) ? "selected" : ''); }} ?>><?=$classinfo->ClassName?> <?=$classinfo->SectionName?></option>
-																			<?php } ?>
-																		</optgroup>
-																		</select>
-																</div>	
+																		<label class="col-sm-4 control-label" for="field-1">Exam Type</label>
+																		<div class="col-sm-8">
+																			<input type="text" required class="form-control" id="field-1" placeholder="Exam Type" name="examtype" value="<?php echo (isset($exam_update[0]->Exam_Type) ? $exam_update[0]->Exam_Type : '');?>">
+																		</div>
+																			
 																	</div>
 																
 																<div class="form-group">
-																	<label class="control-label col-sm-4 ">Exam Name</label>
+																	<label class="control-label col-sm-4 ">Exam Duration</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" required class="form-control" id="field-1" placeholder="Exam Name" name="exam_name" value="<?php echo (isset($exam_update[0]->ExamName) ? $exam_update[0]->ExamName : '');?>">
+																				<div class="input-group input-group-minimal">
+											<input type="text" required name="duration" class="form-control timepicker" data-template="dropdown"   data-minute-step="5" 
+											value="<?php echo (isset($exam_update[0]->Duration) ? $exam_update[0]->Duration : '');?>"/>
+											
+											<div class="input-group-addon">
+												<a href="#"><i class="linecons-clock"></i></a>
+											</div>
 																		</div>
 
 																		
+																</div>
 																</div>
 																
 																	
 																	
 																	<div class="form-group">
-																	<label class="control-label col-sm-4 ">Weightage</label>
+																	<label class="control-label col-sm-4 ">Remarks</label>
 																	
 																			<div class="col-sm-8">
-																			<input type="text" required class="form-control" id="field-1" placeholder="Weightage" name="weightage" value="<?php echo (isset($exam_update[0]->Weightage) ? $exam_update[0]->Weightage : '');?>">
+																			<textarea required class="form-control" id="field-1" placeholder="Remarks" name="remarks" ><?php echo (isset($exam_update[0]->Remarks) ? $exam_update[0]->Remarks : '');?></textarea>
 																		</div>
+
+																		
+																</div>
+																
+																<div class="form-group">
+																	<label class="control-label col-sm-4 ">Exam Status</label>
+																	<div class="col-sm-8">
+										<div class="form-block">
+										<label class="control-label col-sm-6 ">Active	
+										<input type="radio" class="cbr cbr-secondary" required name="examstatus" <?=(isset($exam_update[0]->Exam_Status)&&$exam_update[0]->Exam_Status=='Active')?"checked":""?> value="Active"></label>
+										<label class="control-label col-sm-6 ">Inactive
+										<input type="radio" required class="cbr cbr-red" name="examstatus" <?=(isset($exam_update[0]->Exam_Status)&&$exam_update[0]->Exam_Status=='Inactive')?"checked":""?> value="Inactive">
+										</label>	
+										</div>
+									</div>
+																			
 
 																		
 																</div>
 																	
 																
-									<input type="submit" class="btn btn-info btn-single " value="Add">
+									<input type="submit" class="btn btn-info btn-single " value="Add"/>
 													</form>
 											
 													<div class="form-group-separator"></div>
@@ -106,20 +108,24 @@
 						<table id="example-1" class="table table-striped table-bordered" cellspacing="0" width="100%">
 									<thead>
 										<tr>
-											<th>Class</th>
-											<th>Exam Name</th>
-											<th>Weightage</th>
+											<th>Exam Type</th>
+											<th>Exam Duration</th>
+											<th>Remarks</th>
+											<th>Date Of Create</th>
 											<th><a href="#"><i class="fa fa-edit"></i></a></th>
+											<th><a href="#"><i class="fa fa-times"></i></a></th>
 											
 										</tr>
 									</thead>
 						
 									<tfoot>
 										<tr>
-											<th>Class</th>
-											<th>Exam Name</th>
-											<th>Weightage</th>
+											<th>Exam Type</th>
+											<th>Exam Duration</th>
+											<th>Remarks</th>
+											<th>Date Of Create</th>
 											<th><a href="#"><i class="fa fa-edit"></i></a></th>
+											<th><a href="#"><i class="fa fa-times"></i></a></th>
 											
 										</tr>
 									</tfoot>
@@ -127,11 +133,13 @@
 									<tbody>
 									<?php foreach($exam_info as $examinfo){ ?>
 										<tr>
-											<?php $filter=$examinfo->SectionId; $classname= $this->utilities->get_classval('class',$filter); ?>
-											<td><?php foreach($classname as $classname){ echo $classname->ClassName ; echo $classname->SectionName ; }?></td>
-											<td><?=$examinfo->ExamName?></td>
-											<td><?=$examinfo->Weightage?></td>
-											<td><a href="<?=base_url();?>master/manageexam/<?=$examinfo->ExamId?>"><i class="fa fa-edit"></a></i></td>
+											
+											<td><?=$examinfo->Exam_Type?></br><span <?php if($examinfo->Exam_Status=='Active'){ ?> class="label label-success" <?php }else{ ?>class="label label-danger"<?php } ?>><?=$examinfo->Exam_Status?></span></td>
+											<td><?=$examinfo->Duration?></td>
+											<td><?=$examinfo->Remarks?></td>
+											<td><?=$examinfo->DOC?></td>
+											<td><a href="<?=base_url();?>master/manageexam/<?=$examinfo->Exam_Type?>"><i class="fa fa-edit"></a></i></td>
+											<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>master/delete/<?=$examinfo->Exam_Type?>"><i class="fa fa-times"></a></i></td>
 										</tr>
 									<?php } ?>
 								</tbody>

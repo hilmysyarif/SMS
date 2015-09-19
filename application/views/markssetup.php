@@ -23,7 +23,7 @@
 				<div class="panel-body">
 						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>exam/get_markssetup">
 												<div class="form-group">
-													<label class="col-sm-4 control-label" for="exam" >Exam</label>
+													<label class="col-sm-4 control-label" for="exam" >Exam Type</label>
 														<script type="text/javascript">
 																jQuery(document).ready(function($)
 																{
@@ -39,7 +39,7 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-1" name="examid">
+																<select class="form-control " id="s2example-1" name="examtype">
 																	<option></option>
 																	<?php foreach($exam as $exam){ ?>
 																						<option  value="<?=$exam->ExamId?>-<?=$exam->SectionId?>" <?php if(empty($examid)==''){ echo (!empty($exam->SectionId==$examid) ? "selected" : ''); } ?> ><?=$exam->ExamName?> <?=$exam->ClassName?> <?=$exam->SectionName?></option>
@@ -48,6 +48,62 @@
 																</select>
 															</div>	
 												</div>
+												<div class="form-group-separator"></div>
+													<div class="form-group">
+													<label class="col-sm-4 control-label" for="" >Class</label>
+														<script type="text/javascript">
+																jQuery(document).ready(function($)
+																{
+																	$("#s2example-2").select2({
+																		placeholder: 'Select ...',
+																		allowClear: true
+																	}).on('select2-open', function()
+																	{
+																		// Adding Custom Scrollbar
+																		$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+																	});
+																	
+																});
+															</script>
+															<div class="col-sm-8">
+																<select class="form-control " id="s2example-2" name="sectionid">
+																	<option></option>
+																	<?php foreach($subject as $subject){ ?>
+																						<option  value="<?=$subject->SubjectId?>" <?php if(empty($subjectid)==''){ echo (!empty($subject->SubjectId==$subjectid) ? "selected" : ''); } ?> ><?=$subject->SubjectName?> </option>
+																								<?php  } ?>
+																
+																</select>
+															</div>	
+												</div>
+												
+												<div class="form-group-separator"></div>
+													<div class="form-group">
+													<label class="col-sm-4 control-label" for="" >Student</label>
+														<script type="text/javascript">
+																jQuery(document).ready(function($)
+																{
+																	$("#s2example-2").select2({
+																		placeholder: 'Select ...',
+																		allowClear: true
+																	}).on('select2-open', function()
+																	{
+																		// Adding Custom Scrollbar
+																		$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+																	});
+																	
+																});
+															</script>
+															<div class="col-sm-8">
+																<select class="form-control " id="s2example-2" name="Studentid">
+																	<option></option>
+																	<?php foreach($subject as $subject){ ?>
+																						<option  value="<?=$subject->SubjectId?>" <?php if(empty($subjectid)==''){ echo (!empty($subject->SubjectId==$subjectid) ? "selected" : ''); } ?> ><?=$subject->SubjectName?> </option>
+																								<?php  } ?>
+																
+																</select>
+															</div>	
+												</div>
+												
 												<div class="form-group-separator"></div>
 													<div class="form-group">
 													<label class="col-sm-4 control-label" for="" >Subject</label>
@@ -66,7 +122,7 @@
 																});
 															</script>
 															<div class="col-sm-8">
-																<select class="form-control " id="s2example-2" name="subjectid">
+																<select class="form-control " id="s2example-2" name=" ">
 																	<option></option>
 																	<?php foreach($subject as $subject){ ?>
 																						<option  value="<?=$subject->SubjectId?>" <?php if(empty($subjectid)==''){ echo (!empty($subject->SubjectId==$subjectid) ? "selected" : ''); } ?> ><?=$subject->SubjectName?> </option>
@@ -75,6 +131,7 @@
 																</select>
 															</div>	
 												</div>
+												
 												<div class="form-group pull-right">
 														<input  type="submit" name="submit" value="Get Student" class="btn btn btn-info btn-single "/>
 												</div>
