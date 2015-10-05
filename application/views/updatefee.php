@@ -242,11 +242,12 @@
 
 																		
 																</div>
-																<?php foreach($fee_type as $fee_type){ 
+																<?php if(!empty($fee_type)) { foreach($fee_type as $fee_type){ 
 																$fee_remove_underscope=explode("-",$fee_type);
 																?>
 																<div class="form-group">
 																<?php $filter=array('FeeId' => $fee_remove_underscope[0]); $feety= $this->utilities->get_masterval('fee',$filter);
+																
 																$filter=array('MasterEntryId' => $feety[0]->FeeType); $fee= $this->utilities->get_usertype($filter); ?>
 																	<label class="control-label col-sm-4 "><?=$fee[0]->MasterEntryValue?></label>
 																	
@@ -257,7 +258,7 @@
 
 																		
 																</div>
-																<?php } ?>
+																<?php } } ?>
 																
 																<div class="form-group">
 																	<label class="control-label col-sm-4 ">Remarks</label>

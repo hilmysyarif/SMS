@@ -192,7 +192,7 @@
 								<td><?php if($visitor->InDateTime){ echo date("d M Y,h:ia",$visitor->InDateTime);}?></td>
 								<td><?php if($visitor->OutDateTime){ echo date("d M Y,h:ia",$visitor->OutDateTime);}?></td>
 								<td><a href="<?=base_url();?>frontoffice/visitor/<?=$visitor->VisitorBookId?>"><i class="fa fa-edit"></i></td>
-								<td><i class="el-cancel-circled"></i></td>
+								<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>frontoffice/delete/visitorbook/VisitorBookId/<?=$visitor->VisitorBookId?>"  ><i class="fa fa-times"></i></a></td>
 							</tr>
 							<?php } ?>
 						</tbody>

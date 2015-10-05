@@ -256,7 +256,7 @@
 														<td><?=date("d M Y, D h:i a",$enquiry->EnquiryDate)?></td>
 														<td><a href="<?=base_url();?>frontoffice/followup_enquiry/<?=$enquiry->EnquiryId?>"><i class="fa fa-phone"></a></td>
 														<td><a href="<?=base_url();?>frontoffice/enquiry/<?=$enquiry->EnquiryId?>"><i class="fa fa-edit"></a></i></td>
-														<td><a href="<?=base_url();?>master/enquiry/<?=$enquiry->EnquiryId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="el-cancel-circled"></i></a></td>
+														<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>frontoffice/delete/enquiry/EnquiryId/<?=$enquiry->EnquiryId?>"  ><i class="fa fa-times"></i></a></td>
 															
 														</tr>
 													<?php } ?>

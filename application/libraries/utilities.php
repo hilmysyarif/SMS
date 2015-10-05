@@ -101,6 +101,18 @@ class Utilities extends CI_Controller {
 		return $query->Result();
 	}
 	
+	function show_subject($sec_id,$CURRENTSESSION)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("Select * from subject where
+						Session='$CURRENTSESSION' and
+						Class LIKE '%{$sec_id}%' and
+						SubjectStatus='Active'
+						order by SubjectName");
+						
+		return $query->Result();
+	}
+	
 	function get_student_name($currentsession=false,$admissionid=false)
 	{ 
 		$CI = & get_instance();
@@ -188,6 +200,13 @@ class Utilities extends CI_Controller {
 	{
 		$CI = & get_instance();
 		$query=$CI->db->query("select FixedSalaryHead from salarystructure where SalaryStructureStatus='Active' and SalaryStructureId='$q' ");
+		return $query->Result();
+	}
+	
+	function get_onlineexamreport($filter=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("select count(online_student_id) as total_student, SUM(IF(online_student_status = 'Pass', 1,0)) as total_pass,SUM(IF(online_student_status = 'Fail', 1,0)) as total_fail,MAX(total_marks) as max_marks, MIN(total_marks) as min_marks from online_exam_student where online_exam_id='$filter' ");
 		return $query->Result();
 	}
 	

@@ -171,7 +171,7 @@
 						
 						<p>Dear user, log in to access the admin area!</p>
 					</div>
-				<!--	<div class="form-group">
+				<div class="form-group">
 					<select class="form-control " name="db_name" id="db_name">
 					
 					<option value="db_school">db_school</option>
@@ -179,7 +179,7 @@
 					<option value="test2">test2</option>
 					<option value="test3">test3</option>
 					</select>
-					</div>	-->
+					</div>	
 					<div class="form-group">
 						<label class="control-label" for="username">Username</label>
 						<input type="text" class="form-control " name="username" id="username" autocomplete="off" value="masteruser"/>

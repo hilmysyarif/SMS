@@ -123,7 +123,7 @@ class Admission_model extends CI_Model
    function get_admission_class($SectionIdSelected=false,$Distance=false,$CURRENTSESSION=false)
    {
    	 
-   	$query=$this->db->query("select MasterEntryValue,FeeType,Amount,FeeId,Distance from fee,masterentry where
+   	$query=$this->db->query("select MasterEntryId,MasterEntryValue,FeeType,Amount,FeeId,Distance from fee,masterentry where
 								fee.FeeType=masterentry.MasterEntryId and SectionId='$SectionIdSelected' and Session='$CURRENTSESSION' and (Distance='' or Distance='$Distance')");
    			return $query->Result();
    }
@@ -131,12 +131,19 @@ class Admission_model extends CI_Model
    function insert_admission($data=false,$table=false)
    { 
    	 if($this->db->insert($table,$data)){
-   	 	$filter=array('RegistrationId'=>$data['RegistrationId']);
+		 $insert_id = $this->db->insert_id();
+		$filter=array('RegistrationId'=>$data['RegistrationId']);
    	 	$value=array('Status'=>'Studying');
    	 	$this->db->where($filter);
    	 	$this->db->update('registration',$value);
+		return  $insert_id;
    	 }
     }
+	
+	function insert_studentfee($data=false,$table=false)
+   { 
+   	 $this->db->insert($table,$data);
+	}
    
    function get_class($CURRENTSESSION=false)
    {
@@ -255,5 +262,13 @@ class Admission_model extends CI_Model
    {
 		$this->db->query("update studentfee set AdmissionNo='$AdmissionNo',FeeStructure='$FeeString',Date='$DOAP',Remarks='$Remarks' where AdmissionId='$AdmissionId' and SectionId='$SectionId' and Session='$CURRENTSESSION'");
    }
+   
+     /* function Delete start.........................................................................  */
+   function delete($table=false,$filter=false)
+   {
+		$this->db->delete($table,$filter);
+   }
+   /* function Delete end.........................................................................  */
+   
   
 }

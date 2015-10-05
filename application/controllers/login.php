@@ -46,9 +46,9 @@ class Login extends CI_Controller {
 						$user_session_data = $this->session->userdata('user_data');
 						echo "accesGrant";
 						
-						/*$db_name=$this->input->post('db_name');
+						$db_name=$this->input->post('db_name');
 						$this->session->set_userdata('db_name',$db_name);
-						 $this->session->userdata('db_name');*/
+						 $this->session->userdata('db_name');
 					}
 			else{	
 				}

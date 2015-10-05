@@ -284,10 +284,12 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		
 		$data=array(	'ManagedBy'=>$this->input->post('manage_by'),
 						'AccountType'=>$this->input->post('account_type'),
+						'AccountName'=>$this->input->post('accountname'),
 						'OpeningBalance'=>$this->input->post('open_bal'),
-						'DOE'=>$this->input->post('acc_start_date'),
+						'AccountDate'=>strtotime($this->input->post('acc_start_date')),
 						'AccountStatus'=>"Active");
 						
 		if($this->input->post('id'))
@@ -1237,6 +1239,73 @@ if(Authority::checkAuthority('ManageUser')==true){
 	}
 /*school management Master Delete End.............................................................................*/
 
+	/*school management Calendar start..................................................................*/	
+	function calendar($id=false)
+	{	
+	if(Authority::checkAuthority('calendar')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Calendar', base_url().'master/calendar');
+		
+		if($id){
+			$filter=array('CalendarId'=>$id,'CalendarStatus' =>'Active');
+			$this->data['updatecalendar'] = $this->master_model->get_info('calendar',$filter);
+			$this->data['id']=$id;
+		}
+		
+		$filter=array('CalendarStatus' =>'Active');
+		$this->data['calendar'] = $this->master_model->get_info('calendar',$filter);
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('calendar',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	}
+/*school management Calendar End.......................................................................*/
+
+/*school management Calendar insert and update start........................................................*/
+	function insert_calendar($id=false)
+	{	
+	if(Authority::checkAuthority('calendar')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		
+		
+		$data=array(
+				'Title'=>$this->input->post('title'),
+				'Color'=>$this->input->post('color'),
+				'StartTime'=>strtotime($this->input->post('starttime')),
+				'EndTime'=>strtotime($this->input->post('endtime')),
+				'Username'=>$this->info['usermailid'],
+				'CalendarStatus'=>'Active',
+				'Date'=>date("Y-m-d"),
+				);
+			
+		if($this->input->post('id'))
+		{
+			$filter=array('CalendarId'=>$this->input->post('id'));
+			$this->master_model->insert_gen_setting('calendar',$data,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("calendar").' Calendar Updated Successfully');
+		}
+		else
+		{
+			$this->master_model->insert_gen_setting('calendar',$data);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("calendar").' Calendar Added Successfully');
+		}
+		redirect('master/calendar');
+	}
+/*school management Calendar insert and update End.............................................................*/
+	
 
 	
 	

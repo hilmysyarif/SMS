@@ -1197,8 +1197,8 @@
 										
 										<div class="date-and-time">
 										
-											<input type="text" required name="DOR" class="form-control datepicker" data-show="true" data-format="D, dd MM yyyy">
-											<input type="text" name="DOR"  class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
+											<input readonly type="text" required name="DOR" class="form-control datepicker" data-show="true" data-format="D, dd MM yyyy">
+											<input readonly type="text" name="DOR"  class="form-control timepicker" data-template="dropdown" data-show-seconds="true"  data-show-meridian="true" data-minute-step="5" data-second-step="5" />
 										</div>
 									</div>
 								</div>
@@ -1268,7 +1268,7 @@
 								<td><?=$rg->Mobile?></td>
 								<td><?=$rg->ClassName?><?=$rg->SectionName?></td>
 								<td><?=isset($rg->DOR)?date("d-m-Y H:i",$rg->DOR):''?></td>
-								<td><i class="el-cancel-circled"></i></td>
+								<td><a <?php if($rg->Status=='NotAdmitted'){ ?> onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>admission/delete/registration/RegistrationId/<?=$rg->RegistrationId?>" <?php }else{ ?> onClick="return confirm('This Student Can Not Be Deleted. Admission Done!!')" <?php } ?> ><i class="fa fa-times"></i></a></td>
 							</tr>
 							<?php } ?>
 						</tbody>

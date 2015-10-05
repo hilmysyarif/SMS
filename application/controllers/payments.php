@@ -37,6 +37,7 @@ class Payments extends CI_Controller {
 			$this->data['fee_type']=explode(",",$get_fee_details[0]->FeeStructure);
 			$this->data['get_transaction']=$this->payment_model->get_transaction($this->currentsession[0]->CurrentSession,$admissionid);
 			$this->data['get_balance']=$this->payment_model->get_balance($this->currentsession[0]->CurrentSession,$admissionid);
+			
 			$this->data['account'] = $this->payment_model->get_account();
 		}
 		$this->data['student_info'] = $this->payment_model->get_student($this->currentsession[0]->CurrentSession);

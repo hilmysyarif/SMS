@@ -45,7 +45,7 @@
 | the active record class
 */
 
-   /* $CI =& get_instance();
+  /*  $CI =& get_instance();
     $CI->load->library('session'); //if it's not autoloaded in your CI setup
 	$db_name=$CI->session->userdata('db_name');*/
 	

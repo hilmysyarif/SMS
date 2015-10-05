@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 26, 2015 at 03:35 PM
+-- Generation Time: Sep 22, 2015 at 07:11 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 --
 
 INSERT INTO `accounts` (`AccountId`, `AccountStatus`, `ManagedBy`, `AccountName`, `BankAccountName`, `AccountType`, `BankName`, `BranchName`, `IFSCCode`, `OpeningBalance`, `AccountBalance`, `AccountDate`, `DOE`) VALUES
-(1, 'Active', '47', '410201010714', 'JUNCTION SCHOOL', 2, 'SBI', 'AASHIMA MALL', '7845', '1000.00', '5350.00', '1435257000', '1435303380');
+(1, 'Active', '47', '410201010714', 'JUNCTION SCHOOL', 2, 'SBI', 'AASHIMA MALL', '7845', '1000.00', '4562.00', '1435257000', '1435303380');
 
 -- --------------------------------------------------------
 
@@ -222,7 +222,6 @@ CREATE TABLE IF NOT EXISTS `calling` (
 INSERT INTO `calling` (`CallId`, `CallStatus`, `Mobile`, `Landline`, `Name`, `NoOfChild`, `CallResponse`, `ResponseDetail`, `FollowUpDate`, `Remarks`, `Address`, `DOC`, `DOE`, `DOD`, `DLU`) VALUES
 (1, 'Active', '8817507649', '0755258547', 'palak', 2, 32, 'good', '1438466400', '', 'm.p nagar', '1440626400', '1435298100', '', ''),
 (2, 'Active', '548798659', '4898989', 'ankit', 5, 33, 'good', '1438552800', '', 'rewa', '1439848800', '', '', ''),
-(3, 'Active', '5654646564', '', '', 0, 31, '', '0', '', '', '0', '', '', ''),
 (4, 'Active', '5435345345', '', 'gdfgdg', 3, 31, 'gdfgsdg', '0', '', 'gdfgsdg', '0', '', '', '');
 
 -- --------------------------------------------------------
@@ -260,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `class` (
   `ClassStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `class`
@@ -276,7 +275,8 @@ INSERT INTO `class` (`ClassId`, `Session`, `ClassName`, `ClassStatus`, `DOE`, `D
 (7, '2015-2016', '6th', 'Active', '1435382160', ''),
 (8, '2015-2016', '12 th', 'Active', '1438593600', ''),
 (9, '2015-2016', '11th', 'Active', '1438593660', ''),
-(10, '2015-2016', '10 th', 'Active', '1438593660', '');
+(10, '2015-2016', '10 th', 'Active', '1438593660', ''),
+(11, '2016-2017', '1st', 'Active', '1442485080', '');
 
 -- --------------------------------------------------------
 
@@ -299,7 +299,7 @@ CREATE TABLE IF NOT EXISTS `complaint` (
   `DOLUsername` varchar(100) NOT NULL,
   `DOD` varchar(10) NOT NULL,
   `DODUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `complaint`
@@ -307,8 +307,7 @@ CREATE TABLE IF NOT EXISTS `complaint` (
 
 INSERT INTO `complaint` (`ComplaintId`, `ComplaintStatus`, `ComplaintType`, `Name`, `Mobile`, `Description`, `Action`, `DOC`, `DOE`, `DOEUsername`, `DOL`, `DOLUsername`, `DOD`, `DODUsername`) VALUES
 (1, 'Fresh', 40, 'jayadevi', '8817509443', '<p>Driver drink and drive...........</p>', '<p>fire right now</p>', '0', '1435299120', 'masteruser', '', '', '', ''),
-(2, 'Fresh', 39, 'Mr.X', '45876598', 'xyz', 'abc', '0', '', 'masteruser', '', '', '', ''),
-(3, 'Fresh', 39, 'fgdfg', '4543534', 'fdgdgdf', 'fdgdfg', '1440885600', '', 'masteruser', '', '', '', '');
+(2, 'Fresh', 39, 'Mr.X', '45876598', 'xyz', 'abc', '0', '', 'masteruser', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -355,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `enquiry` (
   `Reference` int(11) NOT NULL,
   `DLU` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `enquiry`
@@ -363,8 +362,7 @@ CREATE TABLE IF NOT EXISTS `enquiry` (
 
 INSERT INTO `enquiry` (`EnquiryId`, `EnquiryStatus`, `EnquiryType`, `Name`, `Mobile`, `NoOfChild`, `EnquiryResponse`, `AlternateMobile`, `Address`, `EnquiryDate`, `DOE`, `ResponseDetail`, `Remarks`, `Reference`, `DLU`, `DOD`) VALUES
 (1, 'Active', 34, 'vishal', '7896307894', 1, 32, '', 'shaket nagar bhopal', '1435298760', '1435298760', 'good', '', 36, '', ''),
-(2, 'Active', 35, 'ankit', '8745874578', 5, 31, '5896966985', 'aashima mall', '0', '', 'very bad', '', 37, '', ''),
-(3, 'Active', 34, 'fgdsg', '4354354353', 3, 31, '', 'gdfssg', '0', '', '', '', 36, '', '');
+(2, 'Active', 35, 'ankit', '8745874578', 5, 31, '5896966985', 'aashima mall', '0', '', 'very bad', '', 37, '', '');
 
 -- --------------------------------------------------------
 
@@ -381,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `exam` (
   `Weightage` decimal(10,2) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `exam`
@@ -393,8 +391,11 @@ INSERT INTO `exam` (`ExamId`, `ExamStatus`, `Session`, `SectionId`, `ExamName`, 
 (3, 'Active', '2015-2016', 1, 'final eaxm', '60.00', '1435305900', ''),
 (4, 'Active', '2015-2016', 7, 'MAIN', '100.00', '1438595400', ''),
 (5, 'Active', '2015-2016', 9, 'MAIN', '100.00', '1438595460', ''),
-(6, 'Active', '2015-2016', 11, 'MAIN', '100.00', '1438595460', ''),
-(7, 'Active', '2015-2016', 1, 'main 1st', '40.00', '1439447340', '');
+(7, 'Active', '2015-2016', 1, 'main 1st', '40.00', '1439447340', ''),
+(8, 'Active', '2015-2016', 2, 'final exam', '60.00', '1442308320', ''),
+(9, 'Active', '2016-2017', 12, 'fsdf', '0.00', '16-7-2015', ''),
+(10, 'Active', '2016-2017', 12, 'ghgfh', '5.00', '16-7-2015', ''),
+(11, 'Active', '2016-2017', 13, 'tsest', '55.00', '16-7-2015', '');
 
 -- --------------------------------------------------------
 
@@ -421,10 +422,66 @@ CREATE TABLE IF NOT EXISTS `examdetail` (
 --
 
 INSERT INTO `examdetail` (`ExamDetailId`, `ExamDetailStatus`, `Locked`, `ExamId`, `SubjectId`, `ExamActivityName`, `ExamActivityType`, `MaximumMarks`, `Marks`, `DOE`, `DOL`) VALUES
-(1, 'Active', 0, 3, 1, 'palak', 55, '60', '80', '1435306680', ''),
-(2, 'Active', 1, 3, 2, 'pass', 55, '60', '80', '1438598760', ''),
-(3, 'Active', 1, 1, 2, 'palak', 55, '10', '1-9,4-8', '1439447340', ''),
+(1, 'Active', 0, 3, 1, 'palak', 55, '60', '1-1.17,4-50', '1435306680', ''),
+(2, 'Active', 0, 3, 2, 'pass', 55, '60', '80', '1438598760', ''),
+(3, 'Active', 0, 1, 2, 'palak', 55, '10', '1-9,4-8', '1439447340', ''),
 (4, 'Active', 0, 2, 2, 'testing2', 56, '40', '1-30,4-35', '1439447460', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `examdetails`
+--
+
+CREATE TABLE IF NOT EXISTS `examdetails` (
+`Exam_Detail_Id` int(11) NOT NULL,
+  `Exam_Type` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `Exam_Detail_Status` enum('Active','Inactive','Deleted') CHARACTER SET utf8 NOT NULL,
+  `Section_Id` int(11) NOT NULL,
+  `Student_Id` int(11) NOT NULL,
+  `Session` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `Subject_Id` int(11) NOT NULL,
+  `Marks_Obtain` float NOT NULL,
+  `Max_Marks` float NOT NULL,
+  `Result` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `Grade` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `Remarks` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `DateOfExam` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `DOC` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `DOU` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `Evaluated_By` varchar(20) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `examdetails`
+--
+
+INSERT INTO `examdetails` (`Exam_Detail_Id`, `Exam_Type`, `Exam_Detail_Status`, `Section_Id`, `Student_Id`, `Session`, `Subject_Id`, `Marks_Obtain`, `Max_Marks`, `Result`, `Grade`, `Remarks`, `DateOfExam`, `DOC`, `DOU`, `Evaluated_By`) VALUES
+(5, 'Final_exam', 'Active', 3, 2, '2015-2016', 2, 35, 50, '91', 'B', 'testing', 'Mon, 21 Se', '2015-09-21 10:30:25', '0000-00-00 00:00:00', 'rohit');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `examtype`
+--
+
+CREATE TABLE IF NOT EXISTS `examtype` (
+  `Exam_Type` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `Exam_Status` enum('Active','Inactive','Deleted') CHARACTER SET utf8 NOT NULL,
+  `DOC` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date OF Creation',
+  `DOU` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT 'Date Of Modify',
+  `Remarks` text CHARACTER SET utf8 NOT NULL,
+  `Duration` varchar(20) CHARACTER SET utf8 NOT NULL COMMENT 'Time Duration Of Exam'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `examtype`
+--
+
+INSERT INTO `examtype` (`Exam_Type`, `Exam_Status`, `DOC`, `DOU`, `Remarks`, `Duration`) VALUES
+('Final_exam', 'Active', '2015-09-19 08:30:59', '0000-00-00 00:00:00', 'tsesting exammm', '3:00 PM'),
+('Half_yearly', 'Inactive', '2015-09-19 08:30:28', '0000-00-00 00:00:00', 'testing eaxamm 2', '1:00 PM'),
+('unit_test', 'Active', '2015-09-19 08:29:56', '0000-00-00 00:00:00', 'testing exam', '2:00 PM');
 
 -- --------------------------------------------------------
 
@@ -449,7 +506,7 @@ CREATE TABLE IF NOT EXISTS `expense` (
   `DLU` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
   `DODUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `expense`
@@ -469,7 +526,9 @@ INSERT INTO `expense` (`ExpenseId`, `Username`, `ExpenseStatus`, `ExpenseAccount
 (11, 'masteruser', 'Active', '48', '1', '', '', '', '12000.00', '200.00', 'dfssd', '1440108000', '1440108000', '', '', ''),
 (12, 'masteruser', 'Active', '48', '1', '', '', '', '25000.00', '200.00', 'asdasd', '1440108000', '1440108000', '', '', ''),
 (13, 'masteruser', 'Active', '48', '1', '', '', '', '20.00', '10.00', 'dsadasd', '1440799200', '1440540000', '', '', ''),
-(14, 'masteruser', 'Active', '48', '1', '', '', '', '100.00', '50.00', 'hfgh', '1440108000', '1440108000', '', '', '');
+(14, 'masteruser', 'Active', '48', '1', '', '', '', '100.00', '50.00', 'hfgh', '1440108000', '1440108000', '', '', ''),
+(15, 'masteruser', 'Active', '', '', '1', '1441045800', '89', '500.00', '500.00', 'fgdsgdg', '1442341800', '1442404380', '', '', ''),
+(16, 'masteruser', 'Active', '', '', '6', '1441058400', '90', '500.00', '500.00', 'tsesting', '1442440800', '1442440800', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -487,7 +546,7 @@ CREATE TABLE IF NOT EXISTS `fee` (
   `Distance` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fee`
@@ -508,7 +567,6 @@ INSERT INTO `fee` (`FeeId`, `FeeStatus`, `Session`, `SectionId`, `FeeType`, `Amo
 (12, 'Active', '2015-2016', 8, 43, 2500, '70', '1438594320', ''),
 (13, 'Active', '2015-2016', 10, 43, 2000, '69', '1438594320', ''),
 (14, 'Active', '2015-2016', 9, 44, 700, '', '1438594380', ''),
-(15, 'Active', '', 7, 44, 700, '68', '16-7-2015', ''),
 (16, 'Active', '2015-2016', 8, 43, 2500, '', '1438594500', ''),
 (17, 'Active', '2015-2016', 8, 44, 700, '', '1438594560', ''),
 (18, 'Active', '2015-2016', 11, 43, 2500, '83', '1438934700', '1438935300'),
@@ -516,7 +574,13 @@ INSERT INTO `fee` (`FeeId`, `FeeStatus`, `Session`, `SectionId`, `FeeType`, `Amo
 (20, 'Active', '2015-2016', 6, 43, 2000, '', '1439447580', ''),
 (21, 'Active', '2015-2016', 6, 44, 1000, '', '1439447580', ''),
 (22, 'Active', '2016-2017', 12, 43, 1000, '', '1440401160', ''),
-(23, 'Active', '1', 1, 45, 500, '70', '16-7-2015', '');
+(23, 'Active', '1', 3, 44, 555888, '83', '16-7-2015', ''),
+(24, 'Active', '1', 8, 43, 445566, '69', '16-7-2015', ''),
+(25, 'Active', '2016-2017', 13, 42, 600, '', '1442490960', ''),
+(26, 'Active', '2016-2017', 12, 42, 600, '', '1442490960', ''),
+(27, 'Active', '2016-2017', 13, 44, 45000, '', '1442491020', ''),
+(28, 'Active', '2016-2017', 12, 44, 45000, '', '1442491020', ''),
+(29, 'Active', '2015-2016', 9, 43, 568000, '', '16-7-2015', '');
 
 -- --------------------------------------------------------
 
@@ -526,12 +590,12 @@ INSERT INTO `fee` (`FeeId`, `FeeStatus`, `Session`, `SectionId`, `FeeType`, `Amo
 
 CREATE TABLE IF NOT EXISTS `feepayment` (
 `FeePaymentId` int(11) NOT NULL,
-  `Token` varchar(100) NOT NULL,
+  `Token` varchar(200) NOT NULL,
   `FeeType` int(11) NOT NULL,
   `Amount` decimal(10,0) NOT NULL,
   `FeePaymentStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `feepayment`
@@ -577,7 +641,56 @@ INSERT INTO `feepayment` (`FeePaymentId`, `Token`, `FeeType`, `Amount`, `FeePaym
 (37, '1aQ5OOpCUQmzKBq3pmENVMo6IU8mI', 18, '200', 'Pending', ''),
 (38, 'zGoEvp0GFbjwYZkeXzxsMUVZLtRm', 18, '200', 'Pending', ''),
 (39, 'ByuDxcBBWPvTyHVMClP8BglU2pnH0', 18, '200', 'Pending', ''),
-(40, 'cmkJgAWYtsa6AnQcWeWAJQFMCLy0G', 11, '200', 'Pending', '');
+(40, 'cmkJgAWYtsa6AnQcWeWAJQFMCLy0G', 11, '200', 'Pending', ''),
+(41, 'DwCuWl9qiQaUVs0fi5ktBek7Jjr1C', 19, '200', 'Active', ''),
+(42, 'V7mE0RC6IZAVVacxmRLQlLGUlWlqX', 18, '50', 'Pending', ''),
+(43, 'P9Sy9Iq1otFYMnuI7StEfGPayUeBEp', 18, '200', 'Pending', ''),
+(44, '0pXyp2dGS0QgPmfI5ji9sjeinAyK', 18, '200', 'Pending', ''),
+(45, '0pXyp2dGS0QgPmfI5ji9sjeinAyK', 19, '200', 'Pending', ''),
+(46, '46izn7tmxjztL6pKTo2xBEoYStti8', 11, '1100', 'Pending', ''),
+(47, 'ZHDnTxCtFsLPdXhEEeQ8qjFQiBYxaJ', 20, '1100', 'Pending', ''),
+(51, 'b040d338ec1945f900973e80734ffd31a4c623645f85d51f59d05800eb5a', 44, '20', 'Pending', ''),
+(52, '92f2a9bd4da4f5e099b10dc101f562357c12ac5a1ae6e5fe2956047d92a9', 44, '20', 'Pending', ''),
+(53, 'e3936e8617029ca3d726a6b1150ef71af7f1b9c0ac71ece2c777b5aa5e00', 44, '20', 'Pending', ''),
+(54, '2908cf26608f4d28ba481e0bca5fe19673b1045dc866ba4b852bea57391c', 44, '20', 'Pending', ''),
+(55, '163353103577d43152a80a6988c55322cfd271938a45269c7a960604f64a', 44, '20', 'Pending', ''),
+(56, 'e2837495f61dc8b73a2b32f4a5f64191bc29de1633a07c386e0850f74fcf', 43, '100', 'Pending', ''),
+(57, 'df5a716f95fd83524a4699e9caede7679abe111f4975e2be09af6d28086a', 43, '100', 'Pending', ''),
+(58, '21472ffe14453550bc5f3d1f737228ed020b6291b208caad6d2c6dde7fe1', 43, '100', 'Pending', ''),
+(59, '20a06605ffe42b20ea2799eed91102a6c7cc00ba6eb8b6a96f18f2c727e1', 43, '100', 'Pending', ''),
+(60, '5d05a39cf120043577a41714bc2b318192105bae4715cc0f02088d58ae38', 43, '100', 'Pending', ''),
+(61, 'c10c5c9682cd8a17130eeb4649d8915e68d23ab52d9f4472268746cabedd', 43, '100', 'Pending', ''),
+(62, '81e101352ea52669a98b146115cd21792fbe8a33983c5c7c1f75dc4ad884', 43, '100', 'Pending', ''),
+(63, 'c95ac132a9c81c5a415cab6aa0bc3acff39f98b64dc2d587fd61cc7340af', 43, '100', 'Pending', ''),
+(64, '19a86fae0b5d6e9b7afdca494faf6b7e1abc674bba7fadc83fcc1fe5c3f3', 43, '100', 'Pending', ''),
+(65, '4afe1e5c28b8176e32165bb49e732665ed3735e80dfa75b1815b9f71798a', 43, '100', 'Pending', ''),
+(66, '566e3cdc8da56099d76e', 43, '100', 'Pending', ''),
+(67, 'XbrGOL7AmSjC97eB74SVu5o2YXLQD9', 18, '20', 'Pending', ''),
+(68, '8c80f85bb44d450f5055', 44, '25', 'Pending', ''),
+(69, '2699cda41984a629c41c', 44, '12', 'Pending', ''),
+(70, 'c5990a9f2297f2a9f800', 43, '20', 'Pending', ''),
+(71, 'a92777486b80b9b4549e', 16, '20', 'Pending', ''),
+(72, '8308b95594b9fc4470e3', 16, '20', 'Pending', ''),
+(73, 'ec6e53ac71161b283ddd', 16, '20', 'Pending', ''),
+(74, 'b16d3d302e8c69bcf88c', 16, '20', 'Pending', ''),
+(75, '0cff5daf2aed8ae60d23', 16, '20', 'Pending', ''),
+(76, '10e44e77fd2b6b5a4db0', 16, '20', 'Pending', ''),
+(77, 'fe2d84889450d309b4ae', 16, '20', 'Pending', ''),
+(78, 'd475d974f86f0dcc37f8', 16, '20', 'Pending', ''),
+(79, 'f4cf34636614eef7bcf0', 16, '20', 'Pending', ''),
+(80, 'df52dde96e66cbf1fc0b', 11, '100', 'Pending', ''),
+(81, 'aaa061e81b9913bbe0d7', 3, '10', 'Pending', ''),
+(82, '0118a74f3ba0e8bb243e', 4, '100', 'Pending', ''),
+(83, '59944b69c75ab6b316c9', 4, '20', 'Pending', ''),
+(84, '9d77cccc893224db9e96', 4, '20', 'Pending', ''),
+(85, '985e9601237223a2bebc', 4, '500', 'Pending', ''),
+(86, '9f36e098bbc96bf77559', 4, '20', 'Pending', ''),
+(87, '658bdf7bad27d7627cb4', 4, '11', 'Pending', ''),
+(88, 'b97f5dad675749bf4838', 4, '12', 'Active', ''),
+(89, '742423850bf25931e203', 3, '45', 'Pending', ''),
+(90, '475f6ea7c84291fcfa5e', 18, '200', 'Pending', ''),
+(91, '91cfce4845f2eed48839', 18, '300', 'Pending', ''),
+(92, '4464571067e6861aad31', 18, '200', 'Pending', '');
 
 -- --------------------------------------------------------
 
@@ -824,7 +937,7 @@ CREATE TABLE IF NOT EXISTS `masterentry` (
   `MasterEntryStatus` varchar(10) NOT NULL,
   `MasterEntryName` varchar(100) NOT NULL,
   `MasterEntryValue` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `masterentry`
@@ -914,7 +1027,15 @@ INSERT INTO `masterentry` (`MasterEntryId`, `MasterEntryStatus`, `MasterEntryNam
 (81, 'Active', 'UserType', 'Parents'),
 (82, 'Active', 'UserType', 'students'),
 (83, 'Active', 'Distance', '50km'),
-(84, 'Active', 'StaffPosition', 'driver');
+(84, 'Active', 'StaffPosition', 'driver'),
+(85, 'Active', 'UserType', 'Transportor'),
+(86, 'Active', 'UserType', 'Teacher'),
+(87, 'Active', 'UserType', 'Manage Event'),
+(88, 'Active', 'UserType', 'bus condactor'),
+(89, 'Active', 'SalaryPaymentType', 'Cash'),
+(90, 'Active', 'SalaryPaymentType', 'Check'),
+(91, 'Active', 'Result', 'Pass'),
+(92, 'Active', 'Result', 'Fail');
 
 -- --------------------------------------------------------
 
@@ -927,7 +1048,7 @@ CREATE TABLE IF NOT EXISTS `masterentrycategory` (
   `MasterEntryCategoryName` varchar(100) NOT NULL,
   `MasterEntryCategoryValue` varchar(100) NOT NULL,
   `Permission` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `masterentrycategory`
@@ -966,7 +1087,9 @@ INSERT INTO `masterentrycategory` (`MasterEntryCategoryId`, `MasterEntryCategory
 (31, 'Other Assign To', 'OtherAssignTo', 'Webmaster'),
 (32, 'Header Footer', 'HeaderFooter', 'Webmaster'),
 (33, 'Route To', 'RouteTo', 'Webmaster'),
-(34, 'Termination Reason', 'TerminationReason', '');
+(34, 'Termination Reason', 'TerminationReason', ''),
+(35, 'SalaryPaymentType', 'SalaryPaymentType', ''),
+(36, 'Result', 'Result', '');
 
 -- --------------------------------------------------------
 
@@ -1093,17 +1216,20 @@ CREATE TABLE IF NOT EXISTS `permission` (
 `PermissionId` int(11) NOT NULL,
   `UserType` int(11) NOT NULL,
   `PermissionString` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `permission`
 --
 
 INSERT INTO `permission` (`PermissionId`, `UserType`, `PermissionString`) VALUES
-(1, 47, '4,8'),
+(1, 47, '44,43,45,3'),
 (2, 80, '4,5'),
-(3, 81, '34,38,10,9'),
-(4, 82, '3,4,6,7,5,2,1,8');
+(3, 81, '10,43,9'),
+(4, 82, '32,43,9'),
+(5, 87, '21,25,17,16,18,15'),
+(6, 86, '21,25,32,4,6,12,7,11,5,33,20,26,9,24,23'),
+(7, 85, '46,47');
 
 -- --------------------------------------------------------
 
@@ -1119,7 +1245,7 @@ CREATE TABLE IF NOT EXISTS `photos` (
   `Detail` varchar(100) NOT NULL,
   `UniqueId` int(11) NOT NULL,
   `DOE` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `photos`
@@ -1132,7 +1258,11 @@ INSERT INTO `photos` (`PhotoId`, `Title`, `Path`, `Document`, `Detail`, `UniqueI
 (15, 'testing 3', '987a9b2c872ca170f543814f68db96e760298f9514405710642.jpg', 73, 'StaffDocuments', 1, '1440540000'),
 (16, 'testing4', 'bf985db725ae8b45c015baab1dea441297b6785d14405711421.jpg', 71, 'StaffDocuments', 1, '1440540000'),
 (17, 'tsesting5', '8118173f6961cbfe79d7861da85d0dd35158492f14405711655.jpg', 72, 'StaffDocuments', 1, '1440540000'),
-(18, 'testing6', 'da405a634b6e23353a86a1acdff0a847b16770ca14405711868.jpg', 72, 'StaffDocuments', 1, '1440540000');
+(18, 'testing6', 'da405a634b6e23353a86a1acdff0a847b16770ca14405711868.jpg', 72, 'StaffDocuments', 1, '1440540000'),
+(19, 'testing', 'testing-StudentDocuments-6.jpg', 74, 'StudentDocuments', 6, '1441023360'),
+(20, 'testing2', '8118173f6961cbfe79d7861da85d0dd35158492f14410250864.jpg', 75, 'StudentDocuments', 6, '1440972000'),
+(21, 'testing3', '80d172edd16c3e72166685de9b3f3a4a671aea4c14410253952.jpg', 74, 'StudentDocuments', 6, '1440972000'),
+(22, 'testing4', '2360caf2992d2d569804b0cc926e17a6ff5fcaae14410254299.jpg', 75, 'StudentDocuments', 6, '1440972000');
 
 -- --------------------------------------------------------
 
@@ -1298,7 +1428,7 @@ CREATE TABLE IF NOT EXISTS `qualification` (
   `Year` varchar(100) NOT NULL,
   `Marks` varchar(100) NOT NULL,
   `Remarks` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `qualification`
@@ -1306,7 +1436,9 @@ CREATE TABLE IF NOT EXISTS `qualification` (
 
 INSERT INTO `qualification` (`QualificationId`, `Type`, `UniqueId`, `BoardUniversity`, `Class`, `Year`, `Marks`, `Remarks`) VALUES
 (1, 'Staff', 1, 'RGPV', 'BE,CSE', '2013', '75', 'good'),
-(2, 'Staff', 1, 'CBSE', '12th', '2009', '82.22', 'good');
+(2, 'Staff', 1, 'CBSE', '12th', '2009', '82.22', 'good'),
+(3, 'Student', 6, 'mp board', '8th', '2011', '66.60', 'testing'),
+(4, 'Student', 6, 'm.p board', '9th', '2012', '75.8', 'good');
 
 -- --------------------------------------------------------
 
@@ -1360,7 +1492,7 @@ CREATE TABLE IF NOT EXISTS `registration` (
   `TerminationReason` varchar(10) NOT NULL,
   `TerminationRemarks` text NOT NULL,
   `DOT` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `registration`
@@ -1372,7 +1504,7 @@ INSERT INTO `registration` (`RegistrationId`, `Session`, `Status`, `StudentName`
 (3, '2015-2016', 'Studying', 'john', 'petor', '', '', '', '', '', '', '', 'aena', '', '', '', '', '', '', '', '1122334455', 3, '', '1435300440', '1435300440', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '717349', '953527', '', '', '', '', '', '', '', ''),
 (4, '2015-2016', 'Studying', 'ramesh', 'shyam', '', '', '', '', '', '', '', 'shivwati', '', '', '', '', '', '', '', '8847956845', 1, '', '1435300440', '1435300500', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '856381', '159820', '', '', '', '', '', '', '', ''),
 (5, '2015-2016', 'Studying', 'munna pal', 'rajesh pal', '', '', '', '', '', '', '', 'mala pal', '', '', '', '', '', '', '', '8967678956', 9, '', '1438577280', '1438593840', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '277072', '515228', '', '', '', '', '', '', '', ''),
-(6, '2015-2016', 'Studying', 'amar singh', 'narsingh singh', '7865786798', '05-06-1985', 'narsingh@gmail.com', 'MBBS', 'doctor', '', '', 'suseela', '7689098767', '07-06-1988', '', 'BSC.', 'Home maker', '', '', '7689785643', 7, '1092853800', '1438567080', '1438593900', '0755456788', '', '10 no. stop bhopal', '', 62, 65, '', 7, 0, 'masteruser', '909088', '230874', '', '', '', '', '', '', '', ''),
+(6, '2015-2016', 'Terminated', 'amar singh', 'narsingh singh', '7865786798', '1440990379', 'narsingh@gmail.com', 'MBBS', 'doctor', 'senior doctor', 'private hospital', 'suseela', '7689098767', '1440997579', 'mother@gmail.com', 'BSC.', 'Home maker', 'nill', 'self', '7689785600', 7, '1092853800', '1438567080', '1438593900', '0755456788', '6598875487', '10 no. stop bhopal', 'bhopal', 62, 65, '', 7, 0, 'masteruser', '909088', '230874', '', '', '', '', '1440972000', '77', 'testing', '1441021260'),
 (7, '2015-2016', 'Studying', 'raam sharma', 'mohan sharma', '', '', '', '', '', '', '', 'neeta', '', '', '', '', '', '', '', '8978677898', 7, '', '1438571100', '1438593960', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '442910', '516491', '', '', '', '', '', '', '', ''),
 (8, '2015-2016', 'Studying', 'rahul gupta', 'ramesh gupta', '', '', '', '', '', '', '', 'juhi gupta', '', '', '', '', '', '', '', '9898789089', 8, '', '1438649760', '1438594080', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '303027', '401547', '', '', '', '', '', '', '', ''),
 (9, '2015-2016', 'Studying', 'seema tiwari', 'om tiwari', '', '', '', '', '', '', '', 'veenita tiwari', '', '', '', '', '', '', '', '7865788987', 8, '', '1438671720', '1438594140', '', '', '', '', 0, 0, '', 8, 0, 'masteruser', '277841', '958526', '', '', '', '', '', '', '', ''),
@@ -1382,10 +1514,9 @@ INSERT INTO `registration` (`RegistrationId`, `Session`, `Status`, `StudentName`
 (13, '2015-2016', 'Studying', 'shyam chourasiya', 'ram singh chourasiya', '', '', '', '', '', '', '', 'vimla chourasiya', '', '', '', '', '', '', '', '9878908990', 9, '', '1438934280', '1438934280', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '953198', '650057', '', '', '', '', '', '', '', ''),
 (14, '2015-2016', 'Studying', 'Rooma singh thakur', 'Roop singh thakur', '', '', '', '', '', '', '', 'payal singh thakur', '', '', '', '', '', '', '', '8978980987', 8, '', '1438934400', '1438934400', '', '', '', '', 0, 0, '', 8, 0, 'masteruser', '161825', '940948', '', '', '', '', '', '', '', ''),
 (15, '2015-2016', 'Studying', 'tinku verma', 'Amit verma', '', '', '', '', '', '', '', 'Reeta verma', '', '', '', '', '', '', '', '7889988778', 8, '', '1438649760', '1438934460', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '631463', '400173', '', '', '', '', '', '', '', ''),
-(16, '2015-2016', 'Studying', 'amit yadav', 'mahesh yadav', '8978768989', '', '', '', '', '', '', 'sushila yadav', '9876890987', '', '', '', '', '', '', '9987867566', 11, '', '1438566480', '1438934520', '0755457683', '', 'ashok garden h.no. 234 bank colony', '', 0, 0, '', 7, 0, 'masteruser', '660769', '610864', '', '', '', '', '', '', '', ''),
+(16, '2015-2016', 'Studying', 'amit yadav', 'mahesh yadav', '8978768989', '', '', '', '', '', '', 'sushila yadav', '9876890987', '', '', '', '', '', '', '9987867566', 11, '1442581815', '1442540880', '1438934520', '0755457683', '', 'ashok garden h.no. 234 bank colony', '', 0, 0, '', 7, 0, 'masteruser', '660769', '610864', '', '', '', '', '', '', '', ''),
 (17, '2015-2016', 'Studying', 'nidhi sisodiya', 'rajesh sisodiya', '', '', '', '', '', '', '', 'kamla sisodiya', '', '', '', '', '', '', '', '8909787898', 8, '', '1438664820', '1438934640', '', '', '', '', 0, 0, '', 8, 0, 'masteruser', '683703', '234225', '', '', '', '', '', '', '', ''),
-(18, '2015-2016', 'NotAdmitted', 'testing', 'teasting', '', '', '', '', '', '', '', 'testing', '', '', '', '', '', '', '', '4587985487', 11, '', '1:15:30 PM', '', '', '', '', '', 0, 0, '', 7, 0, '', '', '', '', '', '', '', '', '', '', ''),
-(19, '2015-2016', 'Studying', 'testing', 'testing', '', '', '', '', '', '', '', 'testing', '', '', '', '', '', '', '', '1245879865', 11, '', '10:35:15 AM', '', '', '', '', '', 0, 0, '', 7, 0, '', '', '', '', '', '', '', '', '', '', '');
+(22, '2016-2017', 'NotAdmitted', 'simmy', 'kaur', '', '', '', '', '', '', '', 'kaur', '', '', '', '', '', '', '', '5698874578', 12, '', '1440959400', '1441002720', '', '', '', '', 0, 0, '', 8, 0, 'masteruser', '583700', '350323', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1460,16 +1591,18 @@ CREATE TABLE IF NOT EXISTS `scarea` (
   `SCAreaStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `scarea`
 --
 
 INSERT INTO `scarea` (`SCAreaId`, `Session`, `SCPartId`, `GradingPoint`, `SCAreaName`, `SCAreaClass`, `SCAreaStatus`, `DOE`, `DOL`) VALUES
-(1, '2015-2016', 58, 28, 'xyz', '1', 'Active', '1435307040', ''),
+(1, '2015-2016', 58, 28, 'xyz', '1,8', 'Active', '16-7-2015', ''),
 (2, '2015-2016', 57, 28, 'abc', '1,2', 'Active', '1435307520', ''),
-(3, '2015-2016', 57, 28, 'testing', '6', 'Active', '1439447160', '');
+(3, '2015-2016', 57, 28, 'testing', '6,9', 'Active', '16-7-2015', ''),
+(5, '2016-2017', 57, 26, 'gvsdfgs', '13,12', 'Active', '16-7-2015', ''),
+(6, '2015-2016', 58, 26, 'hfgghfh', '7,1,2,4,5', 'Active', '16-7-2015', '');
 
 -- --------------------------------------------------------
 
@@ -1517,7 +1650,14 @@ CREATE TABLE IF NOT EXISTS `schoolmaterial` (
   `DLU` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
   `DODUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `schoolmaterial`
+--
+
+INSERT INTO `schoolmaterial` (`SchoolMaterialId`, `SchoolMaterialStatus`, `Session`, `SchoolMaterialType`, `ClassId`, `Name`, `Quantity`, `BranchPrice`, `SellingPrice`, `Date`, `DLU`, `DOD`, `DODUsername`) VALUES
+(2, 'Active', '2016-2017', 'Books', 6, 'fdgd', 0, '56.00', '45.00', '1442491740', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1553,7 +1693,7 @@ CREATE TABLE IF NOT EXISTS `section` (
   `SectionStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `section`
@@ -1571,7 +1711,8 @@ INSERT INTO `section` (`SectionId`, `ClassId`, `SectionName`, `SectionStatus`, `
 (9, 8, 'B', 'Active', '1438593720', ''),
 (10, 10, 'A', 'Active', '1438593720', ''),
 (11, 9, 'B', 'Active', '1438593780', ''),
-(12, 6, 'A', 'Active', '1440401100', '');
+(12, 6, 'A', 'Active', '1440401100', ''),
+(13, 11, 'A', 'Active', '1442485080', '');
 
 -- --------------------------------------------------------
 
@@ -1587,7 +1728,15 @@ CREATE TABLE IF NOT EXISTS `sibling` (
   `SClass` varchar(100) NOT NULL,
   `SSchool` text NOT NULL,
   `SRemarks` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sibling`
+--
+
+INSERT INTO `sibling` (`SiblingId`, `RegistrationId`, `SName`, `SDOB`, `SClass`, `SSchool`, `SRemarks`) VALUES
+(1, 6, 'sohan', '1440959400', '9th', 'red rose', 'testing'),
+(2, 6, 'Roma', '1438725600', '8th', 'Maharishi', 'good');
 
 -- --------------------------------------------------------
 
@@ -1614,7 +1763,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `DLU` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
   `DODUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `staff`
@@ -1626,7 +1775,12 @@ INSERT INTO `staff` (`StaffId`, `StaffStatus`, `StaffPosition`, `StaffName`, `St
 (3, 'Active', 50, 'sandeep ', '5869475896', '', '', '', '', '1435343400', '', '', '', '', '1435397700', '', '', ''),
 (4, 'Active', 84, 'ramesh', '4587895698', '', '', '', '', '1439231400', '1440441000', '', '', '', '1439288280', '1440503400', '', ''),
 (5, 'Active', 84, 'Rakesh', '8754986578', 'rakesh@junctiontech.in', '6598784521', '0', '0', '1440453600', '1439935200', 'indore', 'bhopal', '0', '1440453600', '', '', ''),
-(6, 'Active', 84, 'kamal', '5456987821', '0', '6598875412', '0', '0', '1434479400', '605314800', 'aashima mall bhopal', 'karond bhopal', '0', '1440453600', '', '', '');
+(6, 'Active', 84, 'kamal', '5456987821', 'kamal@gmail.com', '6598875412', '0', '0', '1434479400', '605314800', 'aashima mall bhopal', 'karond bhopal', '0', '1442440800', '', '', ''),
+(7, 'Active', 84, 'ramaa', '5698875478', '', '', '', '', '1442268000', '', '', '', '', '1442268000', '', '', ''),
+(8, 'Active', 50, 'simmi', '2365898754', '', '', '', '', '1442255400', '', '', '', '', '1442315760', '', '', ''),
+(9, 'Active', 84, 'ramlakhan', '5478986565', '', '', '', '', '1442268000', '', '', '', '', '1442268000', '', '', ''),
+(10, 'Active', 0, '', '', '', '', '', '', '0', '', '', '', '', '1442354400', '', '', ''),
+(11, 'Active', 50, 'testing', '8817507639', '', '', '', '', '1442354400', '', '', '', '', '1442354400', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1640,7 +1794,7 @@ CREATE TABLE IF NOT EXISTS `staffattendance` (
   `Attendance` text NOT NULL,
   `DOL` varchar(10) NOT NULL,
   `DOLUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `staffattendance`
@@ -1648,7 +1802,15 @@ CREATE TABLE IF NOT EXISTS `staffattendance` (
 
 INSERT INTO `staffattendance` (`StaffAttendanceId`, `Date`, `Attendance`, `DOL`, `DOLUsername`) VALUES
 (50, '1439762400', '1-P-1439330400-1439815810-1439803500,3-P-1439330400-1439815810-1439803500,4-A-1439330400-1439815810-1439803500,2-A-1439330400-1439815810-1439803500', '1439330400', 'masteruser'),
-(51, '1438552800', '4-P-1439330400-1438606510-1438593900,2-P-1439330400-1438606510-1438593900,1-A-1439330400-1438606510-1438593900,3-A-1439330400-1438606510-1438593900', '1439330400', 'masteruser');
+(51, '1438552800', '4-P-1439330400-1438606510-1438593900,2-P-1439330400-1438606510-1438593900,1-A-1439330400-1438606510-1438593900,3-A-1439330400-1438606510-1438593900', '1439330400', 'masteruser'),
+(52, '1442181600', '---1442236510-1442222700,1-P-1442181600-1442236510-1442222700,6-A-1442181600-1442236510-1442222700,5-A-1442181600-1442236510-1442222700,4-A-1442181600-1442236510-1442222700', '1442181600', ''),
+(53, '1442268000', '1-P-1442181600-1442322955-1442309100,6-P-1442181600-1442322955-1442309100,5-P-1442181600-1442322955-1442309100,4-P-1442181600-1442322955-1442309100,3-A-1442181600-1442322955-1442309100,2-A-1442181600-1442322955-1442309100', '1442181600', ''),
+(54, '1442169000', '1-P-1442223900-1442223900-1442224980,6-P-1442223900-1442223900-1442224980,5-A-1442223900-1442223900-1442224980,4-A-1442223900-1442223900-1442224980,3-A-1442223900-1442223900-1442224980,2-A-1442223900-1442223900-1442224980', '1442223900', 'masteruser'),
+(55, '1442959200', '1-P-1442181600-1443014400-1443000300,6-P-1442181600-1443014400-1443000300,5-P-1442181600-1443014400-1443000300,4-P-1442181600-1443014400-1443000300,3-P-1442181600-1443014400-1443000300,2-P-1442181600-1443014400-1443000300', '1442181600', ''),
+(56, '1444687200', '1-P-1442181600-1444742420-1444728300,6-P-1442181600-1444742420-1444728300,5-P-1442181600-1444742420-1444728300,4-P-1442181600-1444742420-1444728300,3-P-1442181600-1444742420-1444728300,2-P-1442181600-1444742420-1444728300', '1442181600', ''),
+(57, '1444082400', '6-P-1442181600-1444137955-1444123500,1-A-1442181600-1444137955-1444123500,5-A-1442181600-1444137955-1444123500,4-A-1442181600-1444137955-1444123500,3-A-1442181600-1444137955-1444123500,2-A-1442181600-1444137955-1444123500', '1442181600', ''),
+(58, '1441490400', '1-P-1442181600-1441545905-1441531500,6-A-1442181600-1441545905-1441531500,5-A-1442181600-1441545905-1441531500,4-A-1442181600-1441545905-1441531500,3-A-1442181600-1441545905-1441531500,2-A-1442181600-1441545905-1441531500', '1442181600', ''),
+(59, '1443650400', '1-P-1442181600-1443705950-1443691500,6-A-1442181600-1443705950-1443691500,5-A-1442181600-1443705950-1443691500,4-A-1442181600-1443705950-1443691500,3-A-1442181600-1443705950-1443691500,2-A-1442181600-1443705950-1443691500', '1442181600', '');
 
 -- --------------------------------------------------------
 
@@ -1666,7 +1828,7 @@ CREATE TABLE IF NOT EXISTS `staffsalary` (
   `EffectiveFrom` varchar(20) NOT NULL,
   `DOE` varchar(20) NOT NULL,
   `Remarks` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `staffsalary`
@@ -1674,7 +1836,12 @@ CREATE TABLE IF NOT EXISTS `staffsalary` (
 
 INSERT INTO `staffsalary` (`StaffSalaryId`, `StaffSalaryStatus`, `StaffId`, `SalaryStructureId`, `FixedSalary`, `StaffPaidLeave`, `EffectiveFrom`, `DOE`, `Remarks`) VALUES
 (1, 'Active', 5, 1, '1-1', 2, '1440527400', '1440498540', 'testing'),
-(2, 'Active', 1, 1, '1-5', 1, '1440613800', '1440572160', 'xyz');
+(2, 'Active', 1, 1, '1-5', 1, '1440613800', '1440572160', 'xyz'),
+(3, 'Active', 7, 2, '1-12', 1, '1443551400', '1442323920', 'fdgf'),
+(4, 'Active', 7, 3, '1-11', 2, '1443551400', '1442323980', 'bcb'),
+(5, 'Active', 1, 2, '1-2', 2, '1442354400', '1442354400', 'dfgdfg'),
+(6, 'Active', 6, 3, '1-122', 2, '1442440800', '1442440800', ''),
+(7, 'Active', 6, 2, '1-12', 5, '1442440800', '1442440800', '');
 
 -- --------------------------------------------------------
 
@@ -1734,7 +1901,7 @@ CREATE TABLE IF NOT EXISTS `studentattendance` (
   `Attendance` text NOT NULL,
   `DOL` varchar(10) NOT NULL,
   `DOLUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `studentattendance`
@@ -1742,7 +1909,8 @@ CREATE TABLE IF NOT EXISTS `studentattendance` (
 
 INSERT INTO `studentattendance` (`StudentAttendanceId`, `Date`, `Attendance`, `DOL`, `DOLUsername`) VALUES
 (27, '1439244000', '12-P-1439330400,10-P-1439330400,14-P-1439330400,7-P-1439330400,9-P-1439330400,17-A-1439330400', '1439330400', ''),
-(28, '1440972000', '12-P-1439330400,10-P-1439330400,14-P-1439330400,7-P-1439330400,17-P-1439330400,9-A-1439330400', '1439330400', '');
+(28, '1440972000', '12-P-1439330400,10-P-1439330400,14-P-1439330400,7-P-1439330400,17-P-1439330400,9-A-1439330400', '1439330400', ''),
+(29, '1442181600', '--,14-P-1442181600,7-P-1442181600,9-P-1442181600,17-P-1442181600,12-A-1442181600', '1442181600', '');
 
 -- --------------------------------------------------------
 
@@ -1763,7 +1931,7 @@ CREATE TABLE IF NOT EXISTS `studentfee` (
   `Date` varchar(20) NOT NULL,
   `DOE` varchar(20) NOT NULL,
   `Username` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `studentfee`
@@ -1777,17 +1945,16 @@ INSERT INTO `studentfee` (`StudentFeeId`, `StudentFeeStatus`, `AdmissionNo`, `Ad
 (5, '', '4565', 5, '2015-2016', 9, '14-700', '69', '', '1438540200', '1438594440', 'masteruser'),
 (6, '', '876', 6, '2015-2016', 7, '15-700', '70', '', '1438540200', '1438594440', 'masteruser'),
 (7, '', '4556', 7, '2015-2016', 8, '16-2500,17-700', '', '', '1438540200', '1438594560', 'masteruser'),
-(8, '', '4532', 8, '2015-2016', 7, '15-700', '', '', '1438540200', '1438594560', 'masteruser'),
+(8, 'Terminated', '4532', 8, '2015-2016', 7, '15-700', '', '', '1438540200', '1438594560', 'masteruser'),
 (9, '', '4532', 9, '2015-2016', 8, '16-2500,17-700', '', '', '1438540200', '1438594620', 'masteruser'),
 (10, '', '6543', 10, '2015-2016', 6, '20-2000,21-1000', '68', '....', '1438540200', '1438594620', 'masteruser'),
-(11, '', '7865', 11, '2015-2016', 11, '18-2500,19-700', '83', '', '1438885800', '1438935420', 'masteruser'),
-(12, '', '7889', 12, '2015-2016', 8, '16-2500,17-700', '83', '', '1438885800', '1438935600', 'masteruser'),
+(11, '', '7865', 11, '2015-2016', 11, '18-1000,19-600', '83', 'gdsfgdsfg', '1438639200', '1438935420', 'masteruser'),
+(12, '', '7889', 12, '2015-2016', 8, '16-4000,17-3000', '83', 'gfdsg', '1438799400', '1438935600', 'masteruser'),
 (13, '', '6778', 13, '2015-2016', 9, '14-700', '83', '', '1438885800', '1438935660', 'masteruser'),
 (14, '', '4567', 14, '2015-2016', 8, '16-2500,17-700', '83', '', '1438972200', '1438935660', 'masteruser'),
 (15, '', '5647', 15, '2015-2016', 7, '11-5000,15-700', '83', '', '1438626600', '1438935660', 'masteruser'),
 (16, '', '7657', 16, '2015-2016', 9, '14-700', '83', '', '1438540200', '1438935720', 'masteruser'),
-(17, '', '9876', 17, '2015-2016', 8, '16-2500,17-700', '83', '', '1438713000', '1438935720', 'masteruser'),
-(18, '', '', 12, '2016-2017', 12, '22-1000', '', '', '1440354600', '1440401220', '');
+(17, '', '9876', 17, '2015-2016', 8, '16-2500,17-700', '83', '', '1438713000', '1438935720', 'masteruser');
 
 -- --------------------------------------------------------
 
@@ -1804,7 +1971,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `SubjectStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subject`
@@ -1813,7 +1980,15 @@ CREATE TABLE IF NOT EXISTS `subject` (
 INSERT INTO `subject` (`SubjectId`, `Session`, `SubjectName`, `SubjectAbb`, `Class`, `SubjectStatus`, `DOE`, `DOL`) VALUES
 (1, '2015-2016', 'english', 'en', '1,2,3,4,5', 'Active', '1435305960', ''),
 (2, '2015-2016', 'Hindi', 'HIN', '1,2,3,4,5', 'Active', '1435306260', ''),
-(3, '2015-2016', 'science', 'REGULER', '2,3,4,5,6', 'Active', '1435382280', '');
+(3, '2015-2016', 'science', 'REGULER', '2,3,4,5,6', 'Active', '1435382280', ''),
+(4, '2015-2016', 'testing22', 'TN', '1,2,3,4', 'Active', '16-7-2015', ''),
+(5, '2015-2016', 'fdsfdsf', 'sdf', '10,11,2', 'Active', '16-7-2015', ''),
+(6, '2015-2016', 'vxcvxcv', 'xcvxv', '3', 'Active', '16-7-2015', ''),
+(7, '2015-2016', 'dfsgdfsg', 'gdfgdsg', '7,3,4', 'Active', '16-7-2015', ''),
+(8, '2016-2017', 'fghfh', 'ghf', '12', 'Active', '16-7-2015', ''),
+(9, '2015-2016', 'jhgjhg', 'ghj', '3', 'Active', '16-7-2015', ''),
+(10, '2016-2017', 'gfdgdg', 'gdg', '13,12', 'Active', '16-7-2015', ''),
+(11, '2015-2016', 'tytryrtyry', 'rtyrtyry', '3,4,6', 'Active', '16-7-2015', '');
 
 -- --------------------------------------------------------
 
@@ -2378,7 +2553,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `TransactionIP` varchar(50) NOT NULL,
   `TransactionStatus` varchar(10) NOT NULL,
   `TransactionDODUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaction`
@@ -2439,7 +2614,11 @@ INSERT INTO `transaction` (`TransactionId`, `Username`, `Token`, `TransactionSes
 (52, 'masteruser', '', '', '50', '0', '1', 'Expense', '', '14', 'fdgdsf', '1440108000', '1440108000', '', '', '', 'Active', ''),
 (53, 'masteruser', '', '', '5000', '1', '1', 'Income', '', '46', 'tsesting\r\n', '1440235500', '1440194400', '', '', '', 'Active', ''),
 (54, 'masteruser', '', '', '5000', '1', '1', 'Income', '', '46', 'testing2', '1440235500', '1440194400', '', '', '', 'Active', ''),
-(55, 'masteruser', '', '', '10000', '1', '1', 'Income', '', '46', 'testing3', '1440235500', '1440194400', '', '', '', 'Active', '');
+(55, 'masteruser', '', '', '10000', '1', '1', 'Income', '', '46', 'testing3', '1440235500', '1440194400', '', '', '', 'Active', ''),
+(56, 'masteruser', 'DwCuWl9qiQaUVs0fi5ktBek7Jjr1C', '2015-2016', '200', '1', '1', 'Fee', '', '11', 'hj', '1441967820', '1441967820', '', '', '', 'Active', ''),
+(57, 'masteruser', 'b97f5dad675749bf4838', '2015-2016', '12', '1', '1', 'Fee', '', '1', 'tseting', '1442181600', '1442181600', '', '', '', 'Active', ''),
+(58, 'masteruser', '', '', '500', '0', '1', 'Expense', '', '15', 'fgdsgdg', '1442341800', '1442404380', '', '', '::1', 'Active', ''),
+(59, 'masteruser', '', '', '500', '0', '1', 'Expense', '', '16', 'tsesting', '1442440800', '1442440800', '', '', '123456', 'Active', '');
 
 -- --------------------------------------------------------
 
@@ -2481,7 +2660,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL,
   `DOLUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -2490,8 +2669,17 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`UserId`, `StaffId`, `Username`, `Password`, `UserType`, `DOE`, `DOL`, `DOLUsername`) VALUES
 (1, '', 'webmaster', '50a9c7dbf0fa09e8969978317dca12e8', 0, '', '', ''),
 (2, '', 'masteruser', 'e10adc3949ba59abbe56e057f20f883e', 0, '', '', ''),
-(3, '1', 'parents', 'e10adc3949ba59abbe56e057f20f883e', 81, '1435321200', '', ''),
-(4, '2', 'parents1', 'e10adc3949ba59abbe56e057f20f883e', 81, '1435381980', '', '');
+(3, '1', 'students', 'e10adc3949ba59abbe56e057f20f883e', 82, '1435321200', 'masteruser', ''),
+(4, '2', 'parents', 'e10adc3949ba59abbe56e057f20f883e', 81, '1435381980', '', ''),
+(5, '6', 'manageEvents', 'e10adc3949ba59abbe56e057f20f883e', 87, '1440997920', '', ''),
+(6, '5', 'teachers', 'e10adc3949ba59abbe56e057f20f883e', 86, '1440997980', '', ''),
+(7, '4', 'transportors', 'e10adc3949ba59abbe56e057f20f883e', 85, '1440998040', '', ''),
+(8, '3', 'accountants', 'e10adc3949ba59abbe56e057f20f883e', 47, '1440998040', '', ''),
+(9, '7', 'sdfsdf', 'e10adc3949ba59abbe56e057f20f883e', 87, '1442315580', 'masteruser', ''),
+(10, '8', 'khfdkjsfh', 'e9abc6354e23f7afd071773837be0bf9', 82, '', '', ''),
+(11, '8', 'sdhfjksdhf', '9e1a95136bec22eba997f378cec0e025', 81, '', '', ''),
+(12, '8', 'fhdskjf', '202cb962ac59075b964b07152d234b70', 47, '', '', ''),
+(13, '9', 'dfgdfg', '29c37d6f631beeadb5fd63b63e7c4acd', 47, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -2655,7 +2843,7 @@ CREATE TABLE IF NOT EXISTS `visitorbook` (
   `DOD` varchar(10) NOT NULL,
   `DODUsername` varchar(100) NOT NULL,
   `Remarks` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `visitorbook`
@@ -2667,8 +2855,7 @@ INSERT INTO `visitorbook` (`VisitorBookId`, `VisitorBookStatus`, `Name`, `NoOfPe
 (3, 'Active', 'Rushda', 1, '9827556789', '', '30', 'admission enquiry', '1435792140', '1435798620', '1435839840', 'masteruser', '1435839840', 'masteruser', '', '', ''),
 (4, 'Active', 'sandeep', 2, '8989161488', '', '29', '', '1438582380', '', '1438596060', 'masteruser', '', '', '', '', ''),
 (5, 'Fresh', 'xyz', 5, '2154875487', '', '30', 'abcd', '1439848800', '1439244000', '', 'masteruser', '', '', '', '', ''),
-(6, 'Fresh', '', 0, '', '', '', '', '0', '', '', 'masteruser', '', '', '', '', ''),
-(7, 'Fresh', 'fdsgsg', 3, '5443534534', '', '30', 'fgdgdfg', '1440540000', '1440453600', '', 'masteruser', '', '', '', '', '');
+(6, 'Fresh', '', 0, '', '', '', '', '0', '', '', 'masteruser', '', '', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -2757,6 +2944,18 @@ ALTER TABLE `exam`
 --
 ALTER TABLE `examdetail`
  ADD PRIMARY KEY (`ExamDetailId`);
+
+--
+-- Indexes for table `examdetails`
+--
+ALTER TABLE `examdetails`
+ ADD PRIMARY KEY (`Exam_Detail_Id`);
+
+--
+-- Indexes for table `examtype`
+--
+ALTER TABLE `examtype`
+ ADD PRIMARY KEY (`Exam_Type`);
 
 --
 -- Indexes for table `expense`
@@ -3124,12 +3323,12 @@ MODIFY `CircularId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-MODIFY `ClassId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `ClassId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-MODIFY `ComplaintId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `ComplaintId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `drregister`
 --
@@ -3139,32 +3338,37 @@ MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `enquiry`
 --
 ALTER TABLE `enquiry`
-MODIFY `EnquiryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `EnquiryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `exam`
 --
 ALTER TABLE `exam`
-MODIFY `ExamId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `ExamId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `examdetail`
 --
 ALTER TABLE `examdetail`
 MODIFY `ExamDetailId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `examdetails`
+--
+ALTER TABLE `examdetails`
+MODIFY `Exam_Detail_Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `expense`
 --
 ALTER TABLE `expense`
-MODIFY `ExpenseId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `ExpenseId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `fee`
 --
 ALTER TABLE `fee`
-MODIFY `FeeId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+MODIFY `FeeId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `feepayment`
 --
 ALTER TABLE `feepayment`
-MODIFY `FeePaymentId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
+MODIFY `FeePaymentId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=93;
 --
 -- AUTO_INCREMENT for table `followup`
 --
@@ -3214,12 +3418,12 @@ MODIFY `LocationId` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `masterentry`
 --
 ALTER TABLE `masterentry`
-MODIFY `MasterEntryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=85;
+MODIFY `MasterEntryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=93;
 --
 -- AUTO_INCREMENT for table `masterentrycategory`
 --
 ALTER TABLE `masterentrycategory`
-MODIFY `MasterEntryCategoryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+MODIFY `MasterEntryCategoryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `note`
 --
@@ -3239,12 +3443,12 @@ MODIFY `PageNameId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-MODIFY `PermissionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `PermissionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `photos`
 --
 ALTER TABLE `photos`
-MODIFY `PhotoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+MODIFY `PhotoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `phrase`
 --
@@ -3269,12 +3473,12 @@ MODIFY `PurchaseListId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `qualification`
 --
 ALTER TABLE `qualification`
-MODIFY `QualificationId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `QualificationId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-MODIFY `RegistrationId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `RegistrationId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `salaryhead`
 --
@@ -3294,7 +3498,7 @@ MODIFY `SalaryStructureDetailId` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `scarea`
 --
 ALTER TABLE `scarea`
-MODIFY `SCAreaId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `SCAreaId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `scexamdetail`
 --
@@ -3304,7 +3508,7 @@ MODIFY `SCExamDetailId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `schoolmaterial`
 --
 ALTER TABLE `schoolmaterial`
-MODIFY `SchoolMaterialId` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `SchoolMaterialId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `scindicator`
 --
@@ -3314,27 +3518,27 @@ MODIFY `SCIndicatorId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-MODIFY `SectionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `SectionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `sibling`
 --
 ALTER TABLE `sibling`
-MODIFY `SiblingId` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `SiblingId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-MODIFY `StaffId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `StaffId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `staffattendance`
 --
 ALTER TABLE `staffattendance`
-MODIFY `StaffAttendanceId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
+MODIFY `StaffAttendanceId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT for table `staffsalary`
 --
 ALTER TABLE `staffsalary`
-MODIFY `StaffSalaryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `StaffSalaryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `stock`
 --
@@ -3349,17 +3553,17 @@ MODIFY `StockAssignId` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `studentattendance`
 --
 ALTER TABLE `studentattendance`
-MODIFY `StudentAttendanceId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+MODIFY `StudentAttendanceId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `studentfee`
 --
 ALTER TABLE `studentfee`
-MODIFY `StudentFeeId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+MODIFY `StudentFeeId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `supplier`
 --
@@ -3374,7 +3578,7 @@ MODIFY `TimezoneId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=420;
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-MODIFY `TransactionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
+MODIFY `TransactionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT for table `translate`
 --
@@ -3384,7 +3588,7 @@ MODIFY `TranslateId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `vehicle`
 --
@@ -3414,7 +3618,7 @@ MODIFY `VehicleRouteDetailId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `visitorbook`
 --
 ALTER TABLE `visitorbook`
-MODIFY `VisitorBookId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `VisitorBookId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

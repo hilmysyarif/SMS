@@ -354,11 +354,41 @@ class Admission extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		
 		$data=array('AdmissionNo'=>$this->input->post('admission_no'),
 				'RegistrationId'=>$this->input->post('id'),
 				'Remarks'=>$this->input->post('remarks'),
 				'DOA'=>strtotime($this->input->post('DOA')));
-		$this->admission_model->insert_admission($data,'admission');
+				
+		$admissionid=$this->admission_model->insert_admission($data,'admission');
+		
+		$date=date("Y-m-d");
+		$date=strtotime($date);
+		
+		$amount=$this->input->post('amount');
+		$feeid=$this->input->post('feeid');
+		
+		$feestring='';
+		
+		for($i=0;$i<=count($feeid)-1;$i++){
+		$feestring.="$feeid[$i]-$amount[$i]";
+		if($i<=count($feeid)-2){
+		$feestring.=",";
+		}
+		}
+		
+		$data1=array('AdmissionId'=>$admissionid,
+		'AdmissionNo'=>$this->input->post('admission_no'),
+		'Session'=>$this->currentsession[0]->CurrentSession,
+		'SectionId'=>$this->input->post('section'),
+		'Date'=>strtotime($this->input->post('DOA')),
+		'DOE'=>$date,
+		'FeeStructure'=>$feestring,
+		'Distance'=>$this->input->post('distance'),
+		'Username'=>$this-info['usermailid']);
+		
+		$this->admission_model->insert_studentfee($data1,'studentfee');
+		
 		$this->session->set_flashdata('message_type', 'success');
 		$this->session->set_flashdata('message', $this->config->item("admission_student").' Admission Done successfully');
 		redirect('admission/admission_student');
@@ -480,7 +510,9 @@ class Admission extends CI_Controller {
 			$this->data['class_info2']=$this->admission_model->get_class2($sectionid,$this->currentsession[0]->CurrentSession);
 			$feetype=$this->data['get_fee_structure']=$this->admission_model->get_fee_structure($sectionid,$this->currentsession[0]->CurrentSession,$admissionid);
 			$this->data['get_fee_details']=$this->admission_model->get_fee_details($admissionid);
+			
 			$this->data['fee_type']=explode(",",$feetype[0]->FeeStructure);
+			
 		}
 		$this->data['class_info']=$this->admission_model->get_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
@@ -706,4 +738,26 @@ class Admission extends CI_Controller {
 		}
 	}*/
 	/*school management get Admission report end.................................................................................................*/
+	
+	/*school management Admission Delete start........................................................................*/	
+	function delete($action=false,$on=false,$id=false)
+	{
+	if(Authority::checkAuthority('registration')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		
+		if($id){
+			$filter=array($on=>$this->data['id']=$id);
+			$this->master_model->delete($action,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("delete").' Deleted Successfully!!');
+		}
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	
+	}
+/*school management Admission Delete End.............................................................................*/
+
 }
