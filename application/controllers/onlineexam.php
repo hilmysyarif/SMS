@@ -337,6 +337,7 @@ class Onlineexam extends CI_Controller {
 							   'subject'=>$checkexam[0]->online_subject_id,
 							   'class'=>$checkexam[0]->online_section_id,
 							   'totalquscount'=>$checkexam[0]->no_of_qustion,
+							   'online_cuttoff'=>$checkexam[0]->online_cuttoff,
 							   'quscount'=>0,
 							   'examstudentid'=>0,
 							   'sno'=>1,
@@ -380,33 +381,29 @@ class Onlineexam extends CI_Controller {
 			$studentinfo=$this->session->userdata('studentinfo');
 			$correctans=0;
 			$wrongans=0;
-			if($this->input->post('qus_option')==$this->input->post('qus_option')){
+			if($this->input->post('qus_option')==$this->input->post('answer')){
 				
 				$correctans=1;
 			}else{
 				$wrongans=1;
 			}
-			if($studentinfo['sno'] == $studentinfo['totalquscount']-1){
-				$status="Finish";
+			if($studentinfo['online_cuttoff']  <= $studentinfo['sno']){
+				$status="Pass";
 			}else{
-				$status="Running";
+				$status="Pending";
 			}
 			if($studentinfo['examstudentid']!=0){
 				$qustionansstrngdb=$this->onlineexam_model->get_qustionid($studentinfo['examstudentid']);	
 				$ansstrng=$qustionansstrngdb[0]->online_qust_ans_id;
 				
+			if($studentinfo['sno'] <= $studentinfo['totalquscount']){
+				$ansstrng.=",";
+			}
 			$ansstrng.=$this->input->post('qustionid')."-".$this->input->post('qus_option');
-			$ansstrng.=",";
-			$filter=array('online_exam_st_id'=>$studentinfo['examstudentid']);
-			$data=array('online_qust_ans_id'=>$ansstrng,
-						 'correct_ans'=>$correctans,
-						 'wrong_ans'=>+$wrongans,
-						 'total_marks'=>+$correctans,
-						 'online_student_status'=>$status,
-						 'time_duration'=>$studentinfo['timer'],
-						 'no_of_qus_attemp'=>+1);
-				
-			$this->onlineexam_model->insert_exam_details("online_exam_student",$data,$filter);	
+			
+			
+			
+			$this->onlineexam_model->updateexaminfo($studentinfo['examstudentid'],$ansstrng,$correctans,$wrongans,$status,$studentinfo['timer']);	
 			
 			$studentinfo=array('AdmissionId'=>$studentinfo['AdmissionId'],
 							   'AdmissionNo'=>$studentinfo['AdmissionNo'],
@@ -419,6 +416,7 @@ class Onlineexam extends CI_Controller {
 							   'level'=>$studentinfo['level'],
 							   'subject'=>$studentinfo['subject'],
 							   'class'=>$studentinfo['class'],
+							   'online_cuttoff'=>$studentinfo['online_cuttoff'],
 							   'totalquscount'=>$studentinfo['totalquscount'],
 							   'quscount'=>$studentinfo['quscount'].",".$this->input->post('qustionid'),
 							   'examstudentid'=>$studentinfo['examstudentid'],
@@ -431,7 +429,7 @@ class Onlineexam extends CI_Controller {
 			}else
 			{
 			$qustansstrng=$this->input->post('qustionid')."-".$this->input->post('qus_option');
-			$qustansstrng.=",";
+			//$qustansstrng.=",";
 			$data=array('online_exam_id'=>$studentinfo['examid'],
 						 'online_student_id'=>$studentinfo['AdmissionId'],
 						 'online_qust_ans_id'=>$qustansstrng,
@@ -454,6 +452,7 @@ class Onlineexam extends CI_Controller {
 							   'level'=>$studentinfo['level'],
 							   'subject'=>$studentinfo['subject'],
 							   'class'=>$studentinfo['class'],
+							   'online_cuttoff'=>$studentinfo['online_cuttoff'],
 							   'totalquscount'=>$studentinfo['totalquscount'],
 							   'quscount'=>$studentinfo['quscount'].",".$this->input->post('qustionid'),
 							   'examstudentid'=>$examstudentid,

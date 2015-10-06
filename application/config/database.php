@@ -49,13 +49,29 @@
     $CI->load->library('session'); //if it's not autoloaded in your CI setup
 	$db_name=$CI->session->userdata('db_name');*/
 	
+if($_SERVER['HTTP_HOST']=="localhost"){
+$dbname="db_school";
+$password="";
+$username="root";
+}
+if($_SERVER['HTTP_HOST']=="junctiondev.cloudapp.net"){
+$dbname="db_school";
+$password="bitnami";
+$username="root";	
+}
+if($_SERVER['HTTP_HOST']=="junctiontech.in"){
+$dbname="junctwhx_school";
+$password="junction4$";
+$username="junctwhx";
+}
+	
 $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'db_school';
+$db['default']['username'] = $username;
+$db['default']['password'] = $password;
+$db['default']['database'] = $dbname;
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

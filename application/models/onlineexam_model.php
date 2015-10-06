@@ -126,6 +126,11 @@ class Onlineexam_model extends CI_Model
    			return $query->Result();
    }
    
+   function updateexaminfo($examstudentid=false,$ansstrng=false,$correctans=false,$wrongans=false,$status=false,$timer=false)
+	{
+			$this->db->query("update online_exam_student set `online_qust_ans_id`='$ansstrng',`correct_ans`=`correct_ans`+$correctans,`wrong_ans`=`wrong_ans`+$wrongans,`total_marks`=`total_marks`+$correctans,`online_student_status`='$status',`time_duration`='$timer',`no_of_qus_attemp`=`no_of_qus_attemp`+1 where `online_exam_st_id`='$examstudentid' ");	
+	}
+   
  
 	
 	
