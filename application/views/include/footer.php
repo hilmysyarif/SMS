@@ -57,6 +57,7 @@
 		<script src="<?=base_url();?>assets/js/daterangepicker/daterangepicker.js"></script>
 	<script src="<?=base_url();?>assets/js/datepicker/bootstrap-datepicker.js"></script>
 	<script src="<?=base_url();?>assets/js/timepicker/bootstrap-timepicker.min.js"></script>
+	<script src="<?=base_url();?>assets/js/timepicker/clockface.js"></script>
 			<!-- Imported styles on this page -->
 	<link rel="stylesheet" href="<?=base_url();?>assets/js/fullcalendar/fullcalendar.min.css">
 		<script src="<?=base_url();?>assets/js/moment.min.js"></script>

@@ -196,24 +196,24 @@
 							</div>
 						</div>
 																
-									
+		
 						<div class="col-md-4">
 							<div class="form-group">
 								<label class="control-label col-sm-4 ">Exam Duration</label>
 									<div class="col-sm-8">
 									<div class="input-group input-group-minimal">
-											<input type="text" required name="duration" class="form-control timepicker" data-template="dropdown"   data-minute-step="5" 
+											<input type="text" required name="duration" id="timepicker" class="form-control " data-format="hh:mm " class="input-small"
 											value="<?php echo (isset($updateonlineexam[0]->online_ex_duration) ? $updateonlineexam[0]->online_ex_duration : '');?>"/>
 											
 											<div class="input-group-addon">
-												<a href="#"><i class="linecons-clock"></i></a>
+												<a href="javascript:;"><i class="linecons-clock"></i></a>
 											</div>
 																		</div>
 									</div>
 							</div>
 						</div>
 					</div>
-																
+													
 						<div class="form-group-separator"></div>
 											
 					<div class="row">
@@ -222,12 +222,15 @@
 							<div class="form-group">
 								<label class="control-label col-sm-4 ">Duration Per Qustion</label>
 									<div class="col-sm-8">
-										<input type="text" required class="form-control" id="field-1" placeholder="Duration Per Qustion" name="durationqustion" value="<?php echo (isset($updateonlineexam[0]->duration_per_qus) ? $updateonlineexam[0]->duration_per_qus : '');?>">
+										<input type="text" required class="form-control" id="timepicker1" data-format=":mm " placeholder="Duration Per Qustion" name="durationqustion" value="<?php echo (isset($updateonlineexam[0]->duration_per_qus) ? $updateonlineexam[0]->duration_per_qus : '');?>">
 									</div>
 
 							</div>
 						</div>
-						
+															<script>
+															$(function(){
+															$('#timepicker,#timepicker1').clockface();  
+															});</script>	
 						<div class="col-md-4">
 							<div class="form-group">
 								<label class="control-label col-sm-4 ">Remarks</label>
