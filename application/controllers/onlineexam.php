@@ -305,6 +305,32 @@ class Onlineexam extends CI_Controller {
 	/*school management Online Exam preview view Load................................................................................................*/
 	function preview($studentid=false,$examid=false)
 	{	
+		if(!empty($_POST)){
+		
+		$timer=$this->input->post('timer');
+		$studentinfo=$this->session->userdata('studentinfo');
+		$studentinfo=array('AdmissionId'=>$studentinfo['AdmissionId'],
+							   'AdmissionNo'=>$studentinfo['AdmissionNo'],
+							   'StudentName'=>$studentinfo['StudentName'],
+							   'ClassName'=>$studentinfo['ClassName'],
+							   'SectionName'=>$studentinfo['SectionName'],
+							   'SectionId'=>$studentinfo['SectionId'],
+							   'examid'=>$studentinfo['examid'],
+							   'examname'=>$studentinfo['examname'],
+							   'level'=>$studentinfo['level'],
+							   'subject'=>$studentinfo['subject'],
+							   'class'=>$studentinfo['class'],
+							   'online_cuttoff'=>$studentinfo['online_cuttoff'],
+							   'totalquscount'=>$studentinfo['totalquscount'],
+							   'quscount'=>$studentinfo['quscount'],
+							   'examstudentid'=>$studentinfo['examstudentid'],
+							   'sno'=>$studentinfo['sno'],
+							   'timer'=>$timer);
+							   
+			$this->session->set_userdata('studentinfo',$studentinfo);
+			$this->onlineexam=$this->session->userdata('studentinfo');
+		
+		}
 		if(Authority::checkAuthority('ScMarksSetUp')==true){
 			
 		}else{
@@ -325,6 +351,35 @@ class Onlineexam extends CI_Controller {
 			
 			if($studentdata && count($checkexam)>0){
 				
+				if($checkexam[0]->online_ex_duration !=''){
+					
+					$time=explode(":",$checkexam[0]->online_ex_duration);
+					
+					$h=$time[0];
+					$m=$time[1];
+					
+					if($h==0 && $m !=0){
+						$h=0;
+						$m=$m-1;
+						$s=59;
+					}else{
+						
+						if($m==0){
+							$h=$h-1;
+							$m=59;
+							$s=59;
+						}else{
+							$h=$h;
+							$m=$m-1;
+							$s=59;
+						}
+					}
+					
+				}else{
+					$h=0;
+					$m=0;
+					$s=0;
+				}
 			$studentinfo=array('AdmissionId'=>$studentid,
 							   'AdmissionNo'=>$studentdata[0]->AdmissionNo,
 							   'StudentName'=>$studentdata[0]->StudentName,
@@ -341,8 +396,8 @@ class Onlineexam extends CI_Controller {
 							   'quscount'=>0,
 							   'examstudentid'=>0,
 							   'sno'=>1,
-							   'timer'=>0);
-							   
+							   'timer'=>$h.":".$m.":".$s);
+							
 			$this->session->set_userdata('studentinfo',$studentinfo);
 			$this->onlineexam=$this->session->userdata('studentinfo');
 			
@@ -350,6 +405,9 @@ class Onlineexam extends CI_Controller {
 			redirect('onlineexam/preview');
 		}}
 		if(!empty($this->session->userdata('studentinfo'))){
+			$check=$this->session->userdata('studentinfo');
+		}
+		if(!empty($check['examid'])){
 			
 			$this->data['studentinfo']=$studentinfo=$this->session->userdata('studentinfo');
 			
@@ -363,10 +421,15 @@ class Onlineexam extends CI_Controller {
 				
 			}else{
 					$this->data['completed']="ok";
-					$this->session->set_flashdata('message_type', 'success');
-					$this->session->set_flashdata('message', $this->config->item("onlineexamcreate")." Thank You For Participating In Exam!! ");
+					$this->data['stopcounter']="done";
+					//$this->session->set_flashdata('message_type', 'success');
+					//$this->session->set_flashdata('message', $this->config->item("onlineexamcreate")." Thank You For Participating In Exam!! ");
 			}
 			
+		}else{
+					$this->data['completed']="ok";
+					$this->data['stopcounter']="done";
+					$this->data['finish']="finish";
 		}
 		
 		$this->load->view('onlinetest',$this->data);
@@ -378,23 +441,30 @@ class Onlineexam extends CI_Controller {
 		
 		
 		if($this->input->post('qustionid') && $this->input->post('qus_option')){
+			
 			$studentinfo=$this->session->userdata('studentinfo');
+			//print_r($studentinfo);die;
 			$correctans=0;
 			$wrongans=0;
+			$status="Fail";
+			
 			if($this->input->post('qus_option')==$this->input->post('answer')){
 				
 				$correctans=1;
 			}else{
 				$wrongans=1;
 			}
-			if($studentinfo['online_cuttoff']  <= $studentinfo['sno']){
-				$status="Pass";
-			}else{
-				$status="Pending";
-			}
+			
 			if($studentinfo['examstudentid']!=0){
 				$qustionansstrngdb=$this->onlineexam_model->get_qustionid($studentinfo['examstudentid']);	
 				$ansstrng=$qustionansstrngdb[0]->online_qust_ans_id;
+				
+				if($studentinfo['online_cuttoff']  <= $qustionansstrngdb[0]->total_marks+$correctans){
+					
+				$status="Pass";
+			}else{
+				$status="Fail";
+			}
 				
 			if($studentinfo['sno'] <= $studentinfo['totalquscount']){
 				$ansstrng.=",";
@@ -421,7 +491,7 @@ class Onlineexam extends CI_Controller {
 							   'quscount'=>$studentinfo['quscount'].",".$this->input->post('qustionid'),
 							   'examstudentid'=>$studentinfo['examstudentid'],
 							   'sno'=>$studentinfo['sno']+1,
-							   'timer'=>0);
+							   'timer'=>$studentinfo['timer']);
 							   
 			$this->session->set_userdata('studentinfo',$studentinfo);
 			$this->onlineexam=$this->session->userdata('studentinfo');
@@ -457,7 +527,7 @@ class Onlineexam extends CI_Controller {
 							   'quscount'=>$studentinfo['quscount'].",".$this->input->post('qustionid'),
 							   'examstudentid'=>$examstudentid,
 							   'sno'=>$studentinfo['sno']+1,
-							   'timer'=>0);
+							   'timer'=>$studentinfo['timer']);
 							    
 			$this->session->set_userdata('studentinfo',$studentinfo);
 			$this->onlineexam=$this->session->userdata('studentinfo');

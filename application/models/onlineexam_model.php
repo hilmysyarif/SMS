@@ -121,7 +121,7 @@ class Onlineexam_model extends CI_Model
    
    function get_qustionid($examstudentid=false)
    {
-		$query=$this->db->query("select online_qust_ans_id from online_exam_student where 
+		$query=$this->db->query("select online_qust_ans_id,total_marks from online_exam_student where 
 					online_exam_st_id='$examstudentid'");
    			return $query->Result();
    }

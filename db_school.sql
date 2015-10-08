@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2015 at 07:11 AM
+-- Generation Time: Oct 08, 2015 at 07:45 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -40,14 +40,17 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `AccountBalance` decimal(10,2) NOT NULL,
   `AccountDate` varchar(20) NOT NULL,
   `DOE` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accounts`
 --
 
 INSERT INTO `accounts` (`AccountId`, `AccountStatus`, `ManagedBy`, `AccountName`, `BankAccountName`, `AccountType`, `BankName`, `BranchName`, `IFSCCode`, `OpeningBalance`, `AccountBalance`, `AccountDate`, `DOE`) VALUES
-(1, 'Active', '47', '410201010714', 'JUNCTION SCHOOL', 2, 'SBI', 'AASHIMA MALL', '7845', '1000.00', '4562.00', '1435257000', '1435303380');
+(1, 'Active', '47', '410201010714', 'JUNCTION SCHOOL', 2, 'SBI', 'AASHIMA MALL', '7845', '1000.00', '38262.00', '1435257000', '1435303380'),
+(6, 'Active', '88', '45564465465', 'ghfhfgh', 2, 'gfhfh', 'hfghfgh', '5465', '100.00', '0.00', '1443033000', '1443095820'),
+(7, 'Active', '87', 'sdfsfsdf', '', 1, '', '', '', '15.00', '0.00', '1443033000', '1443095820'),
+(8, 'Active', '80', 'testing', '', 1, '', '', '', '5300.00', '0.00', '1443045600', '1443132000');
 
 -- --------------------------------------------------------
 
@@ -62,31 +65,18 @@ CREATE TABLE IF NOT EXISTS `admission` (
   `Remarks` text NOT NULL,
   `DOA` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admission`
 --
 
 INSERT INTO `admission` (`AdmissionId`, `AdmissionNo`, `RegistrationId`, `Remarks`, `DOA`, `DOE`) VALUES
-(1, '', 2, 'no dues', '1435257000', '1435301160'),
-(2, '', 3, '', '1435257000', '1435301220'),
-(3, '', 1, '', '1435257000', '1435301220'),
-(4, '', 4, '', '1435257000', '1435301220'),
-(5, '', 5, '', '1438540200', '1438594440'),
-(6, '', 7, '', '1438540200', '1438594440'),
-(7, '', 10, '', '1438540200', '1438594560'),
-(8, '', 6, '', '1438540200', '1438594560'),
-(9, '', 9, '', '1438540200', '1438594620'),
-(10, '', 8, '', '1438540200', '1438594620'),
-(11, '', 16, '', '1438885800', '1438935420'),
-(12, '', 17, '', '1438885800', '1438935600'),
-(13, '', 12, '', '1438885800', '1438935660'),
-(14, '', 14, '', '1438972200', '1438935660'),
-(15, '', 11, '', '1438626600', '1438935660'),
-(16, '', 13, '', '1438540200', '1438935720'),
-(17, '', 15, '', '1438713000', '1438935720'),
-(18, '122', 19, 'fdg', 'Tue, 25 Au', '');
+(1, '1A1', 2, 'testing', '1443564000', ''),
+(2, '1B1', 1, 'testing', '1443564000', ''),
+(3, '', 3, 'testing', '1443551400', '1443608940'),
+(4, '1A2', 4, 'tsesting', '1443564000', ''),
+(5, '1A3', 5, '......', '1443650400', '');
 
 -- --------------------------------------------------------
 
@@ -121,16 +111,7 @@ CREATE TABLE IF NOT EXISTS `book` (
   `DOEUsername` varchar(100) NOT NULL,
   `DOL` varchar(10) NOT NULL,
   `DOLUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `book`
---
-
-INSERT INTO `book` (`BookId`, `BookStatus`, `BookName`, `AuthorName`, `Publisher`, `SubjectId`, `Purpose`, `Price`, `DOE`, `DOEUsername`, `DOL`, `DOLUsername`) VALUES
-(1, 'Active', 'english vol-1', 'renu', 'shivani', 1, 5, '200', '1435310640', 'masteruser', '', ''),
-(2, 'Active', 'samanya gyan', 'shakuntla', 'rk ', 2, 5, '500', '1435408080', 'masteruser', '', ''),
-(3, 'Active', 'science vol1', 'sharma', 'G.K', 3, 5, '400', '1435409760', 'masteruser', '', '');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -151,18 +132,7 @@ CREATE TABLE IF NOT EXISTS `bookissue` (
   `DOEUsername` varchar(100) NOT NULL,
   `DOD` varchar(10) NOT NULL,
   `DODUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `bookissue`
---
-
-INSERT INTO `bookissue` (`BookIssueId`, `IRTo`, `IRToDetail`, `Books`, `DOI`, `BookReturn`, `BookIssueStatus`, `Remarks`, `DOE`, `DOEUsername`, `DOD`, `DODUsername`) VALUES
-(1, 'Student', 1, '1', '1435408560', '', 'Active', 'fd', '1435408560', 'masteruser', '', ''),
-(2, 'Student', 2, '10', '1435409880', '', 'Active', 'fd', '1435409880', 'masteruser', '', ''),
-(3, '1', 3, '9', '1435409940', '', 'Active', 'df', '1435409940', 'masteruser', '', ''),
-(4, 'Student', 1, '2', '1435840140', '', 'Active', '', '1435840140', 'masteruser', '', ''),
-(5, 'Student', 1, '3', '1438599180', '', 'Active', '.', '1438599180', 'masteruser', '', '');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -182,14 +152,16 @@ CREATE TABLE IF NOT EXISTS `calendar` (
   `DLU` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
   `DODUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `calendar`
 --
 
 INSERT INTO `calendar` (`CalendarId`, `CalendarStatus`, `Username`, `StartTime`, `EndTime`, `Title`, `Color`, `Date`, `DLU`, `DOD`, `DODUsername`) VALUES
-(1, 'Active', 'masteruser', '1435315980', '1437882780', ' testing calendar', '#123456', '1435315980', '', '', '');
+(1, 'Deleted', 'masteruser', '1435315980', '1437882780', ' testing calendar', '#123456', '1435315980', '', '1443257220', 'masteruser'),
+(2, 'Active', 'masteruser', '1443252060', '1443551400', 'tseting4', '#12564b', '1443252060', '1443253380', '', ''),
+(3, 'Active', 'masteruser', '1441045800', '1442354400', 'final exam', '#f7e521', '2015-09-26', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -259,24 +231,14 @@ CREATE TABLE IF NOT EXISTS `class` (
   `ClassStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `class`
 --
 
 INSERT INTO `class` (`ClassId`, `Session`, `ClassName`, `ClassStatus`, `DOE`, `DOL`) VALUES
-(1, '2015-2016', '1st', 'Active', '1435299960', ''),
-(2, '2015-2016', '2nd ', 'Active', '1435300020', ''),
-(3, '2015-2016', '3rd', 'Active', '1435300020', ''),
-(4, '2015-2016', '4th', 'Active', '1435300080', ''),
-(5, '2015-2016', '5th', 'Active', '1435300080', ''),
-(6, '2016-2017', '2nd ', 'Active', '1435301760', ''),
-(7, '2015-2016', '6th', 'Active', '1435382160', ''),
-(8, '2015-2016', '12 th', 'Active', '1438593600', ''),
-(9, '2015-2016', '11th', 'Active', '1438593660', ''),
-(10, '2015-2016', '10 th', 'Active', '1438593660', ''),
-(11, '2016-2017', '1st', 'Active', '1442485080', '');
+(1, '2015-2016', '1st', 'Active', '16-7-2015', '');
 
 -- --------------------------------------------------------
 
@@ -379,23 +341,7 @@ CREATE TABLE IF NOT EXISTS `exam` (
   `Weightage` decimal(10,2) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `exam`
---
-
-INSERT INTO `exam` (`ExamId`, `ExamStatus`, `Session`, `SectionId`, `ExamName`, `Weightage`, `DOE`, `DOL`) VALUES
-(1, 'Active', '2015-2016', 1, 'unit test', '5.00', '1435305840', ''),
-(2, 'Active', '2015-2016', 1, 'half yearly', '40.00', '1435305840', ''),
-(3, 'Active', '2015-2016', 1, 'final eaxm', '60.00', '1435305900', ''),
-(4, 'Active', '2015-2016', 7, 'MAIN', '100.00', '1438595400', ''),
-(5, 'Active', '2015-2016', 9, 'MAIN', '100.00', '1438595460', ''),
-(7, 'Active', '2015-2016', 1, 'main 1st', '40.00', '1439447340', ''),
-(8, 'Active', '2015-2016', 2, 'final exam', '60.00', '1442308320', ''),
-(9, 'Active', '2016-2017', 12, 'fsdf', '0.00', '16-7-2015', ''),
-(10, 'Active', '2016-2017', 12, 'ghgfh', '5.00', '16-7-2015', ''),
-(11, 'Active', '2016-2017', 13, 'tsest', '55.00', '16-7-2015', '');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -415,17 +361,7 @@ CREATE TABLE IF NOT EXISTS `examdetail` (
   `Marks` text NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `examdetail`
---
-
-INSERT INTO `examdetail` (`ExamDetailId`, `ExamDetailStatus`, `Locked`, `ExamId`, `SubjectId`, `ExamActivityName`, `ExamActivityType`, `MaximumMarks`, `Marks`, `DOE`, `DOL`) VALUES
-(1, 'Active', 0, 3, 1, 'palak', 55, '60', '1-1.17,4-50', '1435306680', ''),
-(2, 'Active', 0, 3, 2, 'pass', 55, '60', '80', '1438598760', ''),
-(3, 'Active', 0, 1, 2, 'palak', 55, '10', '1-9,4-8', '1439447340', ''),
-(4, 'Active', 0, 2, 2, 'testing2', 56, '40', '1-30,4-35', '1439447460', '');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -448,16 +384,9 @@ CREATE TABLE IF NOT EXISTS `examdetails` (
   `Remarks` varchar(20) CHARACTER SET utf8 NOT NULL,
   `DateOfExam` varchar(10) CHARACTER SET utf8 NOT NULL,
   `DOC` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `DOU` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `DOU` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `Evaluated_By` varchar(20) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `examdetails`
---
-
-INSERT INTO `examdetails` (`Exam_Detail_Id`, `Exam_Type`, `Exam_Detail_Status`, `Section_Id`, `Student_Id`, `Session`, `Subject_Id`, `Marks_Obtain`, `Max_Marks`, `Result`, `Grade`, `Remarks`, `DateOfExam`, `DOC`, `DOU`, `Evaluated_By`) VALUES
-(5, 'Final_exam', 'Active', 3, 2, '2015-2016', 2, 35, 50, '91', 'B', 'testing', 'Mon, 21 Se', '2015-09-21 10:30:25', '0000-00-00 00:00:00', 'rohit');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -469,19 +398,10 @@ CREATE TABLE IF NOT EXISTS `examtype` (
   `Exam_Type` varchar(20) CHARACTER SET utf8 NOT NULL,
   `Exam_Status` enum('Active','Inactive','Deleted') CHARACTER SET utf8 NOT NULL,
   `DOC` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date OF Creation',
-  `DOU` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT 'Date Of Modify',
+  `DOU` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date Of Modify',
   `Remarks` text CHARACTER SET utf8 NOT NULL,
   `Duration` varchar(20) CHARACTER SET utf8 NOT NULL COMMENT 'Time Duration Of Exam'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `examtype`
---
-
-INSERT INTO `examtype` (`Exam_Type`, `Exam_Status`, `DOC`, `DOU`, `Remarks`, `Duration`) VALUES
-('Final_exam', 'Active', '2015-09-19 08:30:59', '0000-00-00 00:00:00', 'tsesting exammm', '3:00 PM'),
-('Half_yearly', 'Inactive', '2015-09-19 08:30:28', '0000-00-00 00:00:00', 'testing eaxamm 2', '1:00 PM'),
-('unit_test', 'Active', '2015-09-19 08:29:56', '0000-00-00 00:00:00', 'testing exam', '2:00 PM');
 
 -- --------------------------------------------------------
 
@@ -506,29 +426,7 @@ CREATE TABLE IF NOT EXISTS `expense` (
   `DLU` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
   `DODUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `expense`
---
-
-INSERT INTO `expense` (`ExpenseId`, `Username`, `ExpenseStatus`, `ExpenseAccountType`, `SupplierId`, `StaffId`, `SalaryMonthYear`, `SalaryPaymentType`, `ExpenseAmount`, `AmountPaid`, `ExpenseRemarks`, `ExpenseDate`, `DOE`, `DLU`, `DOD`, `DODUsername`) VALUES
-(1, 'masteruser', 'Active', '49', '1', '', '', '', '120.00', '120.00', 'gh', '1435397220', '1435397220', '', '', ''),
-(2, 'masteruser', 'Active', '48', '1', '', '', '', '7660.00', '6660.00', '', '1438578180', '1438595040', '', '', ''),
-(3, 'masteruser', 'Active', '49', '1', '', '', '', '78.00', '50.00', '..', '1438598040', '1438598040', '', '', ''),
-(4, 'masteruser', 'Active', '49', '1', '', '', '', '1000.00', '1000.00', '.......', '1439017380', '1439017380', '', '', ''),
-(5, 'masteruser', 'Active', '48', '1', '', '', '', '50.00', '0.00', 'xyz', '1440143100', '1440143100', '', '', ''),
-(6, 'masteruser', 'Active', '49', '1', '', '', '', '453.00', '0.00', 'gddfg', '1440143340', '1440143400', '', '', ''),
-(7, 'masteruser', 'Active', '48', '1', '', '', '', '99999999.99', '324.00', 'asdasd', '1440143400', '1440143400', '', '', ''),
-(8, 'masteruser', 'Active', '48', '1', '', '', '', '500.00', '20.00', 'sdad', '1440280800', '1439244000', '', '', ''),
-(9, 'masteruser', 'Active', '48', '1', '', '', '', '500.00', '200.00', 'fdhs', '1440367200', '1440367200', '', '', ''),
-(10, 'masteruser', 'Active', '48', '1', '', '', '', '1200.00', '200.00', 'dasda', '1440108000', '1440108000', '', '', ''),
-(11, 'masteruser', 'Active', '48', '1', '', '', '', '12000.00', '200.00', 'dfssd', '1440108000', '1440108000', '', '', ''),
-(12, 'masteruser', 'Active', '48', '1', '', '', '', '25000.00', '200.00', 'asdasd', '1440108000', '1440108000', '', '', ''),
-(13, 'masteruser', 'Active', '48', '1', '', '', '', '20.00', '10.00', 'dsadasd', '1440799200', '1440540000', '', '', ''),
-(14, 'masteruser', 'Active', '48', '1', '', '', '', '100.00', '50.00', 'hfgh', '1440108000', '1440108000', '', '', ''),
-(15, 'masteruser', 'Active', '', '', '1', '1441045800', '89', '500.00', '500.00', 'fgdsgdg', '1442341800', '1442404380', '', '', ''),
-(16, 'masteruser', 'Active', '', '', '6', '1441058400', '90', '500.00', '500.00', 'tsesting', '1442440800', '1442440800', '', '', '');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -546,41 +444,19 @@ CREATE TABLE IF NOT EXISTS `fee` (
   `Distance` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fee`
 --
 
 INSERT INTO `fee` (`FeeId`, `FeeStatus`, `Session`, `SectionId`, `FeeType`, `Amount`, `Distance`, `DOE`, `DOL`) VALUES
-(1, 'Active', '2015-2016', 1, 43, 1000, '', '1435300920', ''),
-(2, 'Active', '2015-2016', 1, 44, 600, '', '1435300980', ''),
-(3, 'Active', '2015-2016', 2, 43, 1200, '', '1435300980', ''),
-(4, 'Active', '2015-2016', 2, 44, 700, '', '1435300980', ''),
-(5, 'Active', '2015-2016', 3, 43, 1300, '', '1435300980', ''),
-(6, 'Active', '2015-2016', 3, 44, 800, '', '1435301040', ''),
-(7, 'Active', '2015-2016', 4, 43, 1300, '', '1435301040', ''),
-(8, 'Active', '2015-2016', 4, 44, 900, '', '1435301040', ''),
-(9, 'Active', '2015-2016', 5, 43, 1400, '', '1435301040', ''),
-(10, 'Active', '2015-2016', 5, 44, 1000, '', '1435301100', ''),
-(11, 'Active', '2015-2016', 7, 43, 5000, '83', '1438594320', ''),
-(12, 'Active', '2015-2016', 8, 43, 2500, '70', '1438594320', ''),
-(13, 'Active', '2015-2016', 10, 43, 2000, '69', '1438594320', ''),
-(14, 'Active', '2015-2016', 9, 44, 700, '', '1438594380', ''),
-(16, 'Active', '2015-2016', 8, 43, 2500, '', '1438594500', ''),
-(17, 'Active', '2015-2016', 8, 44, 700, '', '1438594560', ''),
-(18, 'Active', '2015-2016', 11, 43, 2500, '83', '1438934700', '1438935300'),
-(19, 'Active', '2015-2016', 11, 44, 700, '83', '1438934760', '1438935180'),
-(20, 'Active', '2015-2016', 6, 43, 2000, '', '1439447580', ''),
-(21, 'Active', '2015-2016', 6, 44, 1000, '', '1439447580', ''),
-(22, 'Active', '2016-2017', 12, 43, 1000, '', '1440401160', ''),
-(23, 'Active', '1', 3, 44, 555888, '83', '16-7-2015', ''),
-(24, 'Active', '1', 8, 43, 445566, '69', '16-7-2015', ''),
-(25, 'Active', '2016-2017', 13, 42, 600, '', '1442490960', ''),
-(26, 'Active', '2016-2017', 12, 42, 600, '', '1442490960', ''),
-(27, 'Active', '2016-2017', 13, 44, 45000, '', '1442491020', ''),
-(28, 'Active', '2016-2017', 12, 44, 45000, '', '1442491020', ''),
-(29, 'Active', '2015-2016', 9, 43, 568000, '', '16-7-2015', '');
+(1, 'Active', '2015-2016', 1, 42, 500, '', '16-7-2015', ''),
+(2, 'Active', '2015-2016', 1, 43, 1000, '', '16-7-2015', ''),
+(3, 'Active', '2015-2016', 1, 44, 600, '', '16-7-2015', ''),
+(4, 'Active', '2015-2016', 2, 42, 500, '', '16-7-2015', ''),
+(5, 'Active', '2015-2016', 2, 43, 1000, '', '16-7-2015', ''),
+(6, 'Active', '2015-2016', 2, 44, 600, '', '16-7-2015', '');
 
 -- --------------------------------------------------------
 
@@ -595,102 +471,17 @@ CREATE TABLE IF NOT EXISTS `feepayment` (
   `Amount` decimal(10,0) NOT NULL,
   `FeePaymentStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `feepayment`
 --
 
 INSERT INTO `feepayment` (`FeePaymentId`, `Token`, `FeeType`, `Amount`, `FeePaymentStatus`, `DOE`) VALUES
-(1, 'va31y5x86rr21ITowW25bxkuRFAtVp', 3, '1200', 'Pending', ''),
-(2, 'k7pJdCoKrPruYXMBQC2NLAqgKK79n', 3, '1200', 'Active', ''),
-(3, 'URPmt6jXApUYB5DHxzRpN6NooBbRg', 4, '400', 'Active', ''),
-(4, 'DryzCMR1eEKU7UkzlhhswxJ9Z2XCiG', 4, '200', 'Active', ''),
-(5, '3cUul3XC76lio7Mc6vtngs0DlpDu67', 5, '1300', 'Active', ''),
-(6, '5aBNEbk36HdpyOfJ28pJ2Eaw0HtN9', 1, '1000', 'Pending', ''),
-(7, 'yqwssRnqNgeKrR7G8IYvWqgkGDC6ap', 1, '1000', 'Active', ''),
-(8, 'kNk57ulSKlZWN9ZApZrz6kEsgJdELZ', 2, '600', 'Active', ''),
-(9, 'abnycJM5jiBMC01u2zr3uvJLTWV8aC', 15, '700', 'Active', ''),
-(10, 'OyZeOIwLFlRZFDuGfB7L3OHGu5uG4r', 1, '500', 'Active', ''),
-(11, 'OyZeOIwLFlRZFDuGfB7L3OHGu5uG4r', 2, '600', 'Active', ''),
-(12, 'zDItdxQvTf4NJvemJfVOMFmPi21aQ', 14, '600', 'Active', ''),
-(13, 'wbS9AlBqqd2yf3l9BDEKgJALnMcP7d', 16, '1500', 'Active', ''),
-(14, 'uLhv4IXB8zb1msXJUp8FOQzx6m1lDw', 16, '1500', 'Active', ''),
-(15, 'P7283cmKZJy6LLEmARMjxffefUMnOz', 11, '3000', 'Pending', ''),
-(16, 'ehWh7LkS92oIZjqbPJntFL0YuguUbH', 11, '3000', 'Pending', ''),
-(17, 'ehWh7LkS92oIZjqbPJntFL0YuguUbH', 15, '550', 'Pending', ''),
-(18, 'tsPBShty3qtKEWYaV3LXRUZk3WlKWg', 11, '3000', 'Pending', ''),
-(19, 'CuWl9qiQaUVs0fi5ktBek7Jjr1CAo', 11, '3000', 'Pending', ''),
-(20, 'uxqe9EOhJvx8Go8G75eZQKupg0hKR', 11, '3000', 'Pending', ''),
-(21, '7IQmywz9fAWrW6CIzI0U2Vq0ntnmTy', 11, '3000', 'Active', ''),
-(22, 'P89yzCyvn9VNPl0SeajYHAMlfEVo2w', 15, '200', 'Active', ''),
-(23, 'oJSDKlUb785NuleQKFIymErsBxhFnp', 11, '500', 'Pending', ''),
-(24, 'oJSDKlUb785NuleQKFIymErsBxhFnp', 15, '100', 'Pending', ''),
-(25, 'lwR3MkZRF20rv0j3HyWHMnz3cZ6CIF', 11, '100', 'Pending', ''),
-(26, 'lwR3MkZRF20rv0j3HyWHMnz3cZ6CIF', 15, '200', 'Pending', ''),
-(27, '9f8bHQhjDU5ScfbwTM7LqhxFVIzgr', 11, '200', 'Pending', ''),
-(28, 'u9qHRPuJ5j1XpsYoAhE8ufdHlW4WL', 11, '100', 'Active', ''),
-(29, 'u9qHRPuJ5j1XpsYoAhE8ufdHlW4WL', 15, '50', 'Active', ''),
-(30, 'kyxn2SrUB50pXyp2dGS0QgPmfI5ji', 11, '100', 'Pending', ''),
-(31, 'HT8n7aphDtWLnsMMZjp1EIWXCo9CS', 11, '500', 'Pending', ''),
-(32, 'lIHobdaeiXeFpr9Mg2BAXuoUynHKA', 11, '100', 'Pending', ''),
-(33, 'lIHobdaeiXeFpr9Mg2BAXuoUynHKA', 15, '10', 'Pending', ''),
-(34, '0A3ICkiJbGMoEd5XXOE6EjJhBmhuYn', 18, '400', 'Pending', ''),
-(35, '0A3ICkiJbGMoEd5XXOE6EjJhBmhuYn', 19, '100', 'Pending', ''),
-(36, 'WTzcVjOdH0IBLYOlmTQPwqUd2UHifT', 18, '400', 'Active', ''),
-(37, '1aQ5OOpCUQmzKBq3pmENVMo6IU8mI', 18, '200', 'Pending', ''),
-(38, 'zGoEvp0GFbjwYZkeXzxsMUVZLtRm', 18, '200', 'Pending', ''),
-(39, 'ByuDxcBBWPvTyHVMClP8BglU2pnH0', 18, '200', 'Pending', ''),
-(40, 'cmkJgAWYtsa6AnQcWeWAJQFMCLy0G', 11, '200', 'Pending', ''),
-(41, 'DwCuWl9qiQaUVs0fi5ktBek7Jjr1C', 19, '200', 'Active', ''),
-(42, 'V7mE0RC6IZAVVacxmRLQlLGUlWlqX', 18, '50', 'Pending', ''),
-(43, 'P9Sy9Iq1otFYMnuI7StEfGPayUeBEp', 18, '200', 'Pending', ''),
-(44, '0pXyp2dGS0QgPmfI5ji9sjeinAyK', 18, '200', 'Pending', ''),
-(45, '0pXyp2dGS0QgPmfI5ji9sjeinAyK', 19, '200', 'Pending', ''),
-(46, '46izn7tmxjztL6pKTo2xBEoYStti8', 11, '1100', 'Pending', ''),
-(47, 'ZHDnTxCtFsLPdXhEEeQ8qjFQiBYxaJ', 20, '1100', 'Pending', ''),
-(51, 'b040d338ec1945f900973e80734ffd31a4c623645f85d51f59d05800eb5a', 44, '20', 'Pending', ''),
-(52, '92f2a9bd4da4f5e099b10dc101f562357c12ac5a1ae6e5fe2956047d92a9', 44, '20', 'Pending', ''),
-(53, 'e3936e8617029ca3d726a6b1150ef71af7f1b9c0ac71ece2c777b5aa5e00', 44, '20', 'Pending', ''),
-(54, '2908cf26608f4d28ba481e0bca5fe19673b1045dc866ba4b852bea57391c', 44, '20', 'Pending', ''),
-(55, '163353103577d43152a80a6988c55322cfd271938a45269c7a960604f64a', 44, '20', 'Pending', ''),
-(56, 'e2837495f61dc8b73a2b32f4a5f64191bc29de1633a07c386e0850f74fcf', 43, '100', 'Pending', ''),
-(57, 'df5a716f95fd83524a4699e9caede7679abe111f4975e2be09af6d28086a', 43, '100', 'Pending', ''),
-(58, '21472ffe14453550bc5f3d1f737228ed020b6291b208caad6d2c6dde7fe1', 43, '100', 'Pending', ''),
-(59, '20a06605ffe42b20ea2799eed91102a6c7cc00ba6eb8b6a96f18f2c727e1', 43, '100', 'Pending', ''),
-(60, '5d05a39cf120043577a41714bc2b318192105bae4715cc0f02088d58ae38', 43, '100', 'Pending', ''),
-(61, 'c10c5c9682cd8a17130eeb4649d8915e68d23ab52d9f4472268746cabedd', 43, '100', 'Pending', ''),
-(62, '81e101352ea52669a98b146115cd21792fbe8a33983c5c7c1f75dc4ad884', 43, '100', 'Pending', ''),
-(63, 'c95ac132a9c81c5a415cab6aa0bc3acff39f98b64dc2d587fd61cc7340af', 43, '100', 'Pending', ''),
-(64, '19a86fae0b5d6e9b7afdca494faf6b7e1abc674bba7fadc83fcc1fe5c3f3', 43, '100', 'Pending', ''),
-(65, '4afe1e5c28b8176e32165bb49e732665ed3735e80dfa75b1815b9f71798a', 43, '100', 'Pending', ''),
-(66, '566e3cdc8da56099d76e', 43, '100', 'Pending', ''),
-(67, 'XbrGOL7AmSjC97eB74SVu5o2YXLQD9', 18, '20', 'Pending', ''),
-(68, '8c80f85bb44d450f5055', 44, '25', 'Pending', ''),
-(69, '2699cda41984a629c41c', 44, '12', 'Pending', ''),
-(70, 'c5990a9f2297f2a9f800', 43, '20', 'Pending', ''),
-(71, 'a92777486b80b9b4549e', 16, '20', 'Pending', ''),
-(72, '8308b95594b9fc4470e3', 16, '20', 'Pending', ''),
-(73, 'ec6e53ac71161b283ddd', 16, '20', 'Pending', ''),
-(74, 'b16d3d302e8c69bcf88c', 16, '20', 'Pending', ''),
-(75, '0cff5daf2aed8ae60d23', 16, '20', 'Pending', ''),
-(76, '10e44e77fd2b6b5a4db0', 16, '20', 'Pending', ''),
-(77, 'fe2d84889450d309b4ae', 16, '20', 'Pending', ''),
-(78, 'd475d974f86f0dcc37f8', 16, '20', 'Pending', ''),
-(79, 'f4cf34636614eef7bcf0', 16, '20', 'Pending', ''),
-(80, 'df52dde96e66cbf1fc0b', 11, '100', 'Pending', ''),
-(81, 'aaa061e81b9913bbe0d7', 3, '10', 'Pending', ''),
-(82, '0118a74f3ba0e8bb243e', 4, '100', 'Pending', ''),
-(83, '59944b69c75ab6b316c9', 4, '20', 'Pending', ''),
-(84, '9d77cccc893224db9e96', 4, '20', 'Pending', ''),
-(85, '985e9601237223a2bebc', 4, '500', 'Pending', ''),
-(86, '9f36e098bbc96bf77559', 4, '20', 'Pending', ''),
-(87, '658bdf7bad27d7627cb4', 4, '11', 'Pending', ''),
-(88, 'b97f5dad675749bf4838', 4, '12', 'Active', ''),
-(89, '742423850bf25931e203', 3, '45', 'Pending', ''),
-(90, '475f6ea7c84291fcfa5e', 18, '200', 'Pending', ''),
-(91, '91cfce4845f2eed48839', 18, '300', 'Pending', ''),
-(92, '4464571067e6861aad31', 18, '200', 'Pending', '');
+(1, 'QFM7kWf6zcpfNCxiWhCQVqK8qvDAC', 1, '200', 'Active', ''),
+(2, 'cf9d6e9bc748f4806777', 1, '200', 'Active', ''),
+(3, '95b4a70dee4cdcbd25e9', 3, '100', 'Active', ''),
+(4, '053225a3197ecf7bcbba', 1, '200', 'Active', '');
 
 -- --------------------------------------------------------
 
@@ -773,14 +564,15 @@ CREATE TABLE IF NOT EXISTS `header` (
   `HeaderTitle` varchar(1000) NOT NULL,
   `HeaderContent` text NOT NULL,
   `HeaderDefault` varchar(3) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `header`
 --
 
 INSERT INTO `header` (`HeaderId`, `HRType`, `HeaderTitle`, `HeaderContent`, `HeaderDefault`) VALUES
-(1, '14', 'sadad', '', '');
+(1, '14', 'sadad', '<p><em><strong>gdhdh</strong></em></p>\r\n', ''),
+(2, '15', 'gfhfh', '<table border="1" cellpadding="1" cellspacing="1" style="width:100%">\r\n	<tbody>\r\n		<tr>\r\n			<td>gdfg</td>\r\n			<td>dfg</td>\r\n		</tr>\r\n		<tr>\r\n			<td>fdgdfg</td>\r\n			<td>dfgdfg</td>\r\n		</tr>\r\n		<tr>\r\n			<td>dfg</td>\r\n			<td>dfgd</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n', '');
 
 -- --------------------------------------------------------
 
@@ -865,25 +657,7 @@ CREATE TABLE IF NOT EXISTS `listbook` (
   `IRStatus` varchar(10) NOT NULL,
   `ListBookStatus` varchar(10) NOT NULL,
   `ListBookCondition` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `listbook`
---
-
-INSERT INTO `listbook` (`ListBookId`, `Token`, `BookId`, `AccessionNo`, `IRStatus`, `ListBookStatus`, `ListBookCondition`) VALUES
-(1, '7l6PIcuoQbz4kP3GLrOePnZQkYnpkn', 1, '2', 'Issued', 'Active', 2),
-(2, 'kpIlsEIu9BfNHo1KXKmmBVI4JDQj9', 1, '1', 'Issued', 'Active', 3),
-(3, '1', 1, '11', 'Issued', 'Active', 0),
-(4, '1', 1, '45', '', 'Active', 0),
-(5, 'FzcHDXIh9maKo6Fcw8he8OfCndydS', 1, '2', '', 'Pending', 0),
-(6, 'FzcHDXIh9maKo6Fcw8he8OfCndydS', 1, '12', '', 'Pending', 0),
-(7, 'nI5dDAC1eEqytl36oAbLbmLg1J6qY8', 1, '2', '', 'Pending', 0),
-(8, '3l3mr5TDoSoLlNSm3QxNC0RXXYpqd', 2, '1', '', 'Pending', 0),
-(9, 'GrBsN0t82j8Yp8zaHXezjFsmUtrnd', 1, '8', 'Issued', 'Active', 6),
-(10, 'B9WWLnUUSz3w2f6tsPBShty3qtKEWY', 3, '90', 'Issued', 'Active', 0),
-(11, '1', 3, '8987', '', 'Active', 0),
-(12, 'e1KukweMTvIG6N7lnyPZPidv7uUu09', 2, '321', '', 'Active', 0);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -899,17 +673,7 @@ CREATE TABLE IF NOT EXISTS `listbookconfirm` (
   `DOEUsername` varchar(100) NOT NULL,
   `ListBookConfirmStatus` varchar(10) NOT NULL,
   `Remarks` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `listbookconfirm`
---
-
-INSERT INTO `listbookconfirm` (`ListBookConfirmId`, `Token`, `DOA`, `DOE`, `DOEUsername`, `ListBookConfirmStatus`, `Remarks`) VALUES
-(1, 'B9WWLnUUSz3w2f6tsPBShty3qtKEWY', '1435409880', '1435409880', 'masteruser', 'Active', ''),
-(2, '1', '1439836200', '1438599120', 'masteruser', 'Active', ''),
-(3, '1', '1438599420', '1438599420', 'masteruser', 'Active', ''),
-(4, 'e1KukweMTvIG6N7lnyPZPidv7uUu09', '1438599480', '1438599480', 'masteruser', 'Active', '');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -924,7 +688,14 @@ CREATE TABLE IF NOT EXISTS `location` (
   `LocationStatus` varchar(10) NOT NULL,
   `DOD` varchar(20) NOT NULL,
   `DODUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `location`
+--
+
+INSERT INTO `location` (`LocationId`, `LocationName`, `CalledAs`, `LocationStatus`, `DOD`, `DODUsername`) VALUES
+(1, 'Rohit', 'Abd', 'Active', '18-7-2015', '');
 
 -- --------------------------------------------------------
 
@@ -937,7 +708,7 @@ CREATE TABLE IF NOT EXISTS `masterentry` (
   `MasterEntryStatus` varchar(10) NOT NULL,
   `MasterEntryName` varchar(100) NOT NULL,
   `MasterEntryValue` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `masterentry`
@@ -1035,7 +806,10 @@ INSERT INTO `masterentry` (`MasterEntryId`, `MasterEntryStatus`, `MasterEntryNam
 (89, 'Active', 'SalaryPaymentType', 'Cash'),
 (90, 'Active', 'SalaryPaymentType', 'Check'),
 (91, 'Active', 'Result', 'Pass'),
-(92, 'Active', 'Result', 'Fail');
+(92, 'Active', 'Result', 'Fail'),
+(93, 'Active', 'Level', 'Tough'),
+(94, 'Active', 'Level', 'Medium'),
+(95, 'Active', 'Level', 'Eaisy');
 
 -- --------------------------------------------------------
 
@@ -1048,7 +822,7 @@ CREATE TABLE IF NOT EXISTS `masterentrycategory` (
   `MasterEntryCategoryName` varchar(100) NOT NULL,
   `MasterEntryCategoryValue` varchar(100) NOT NULL,
   `Permission` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `masterentrycategory`
@@ -1089,7 +863,8 @@ INSERT INTO `masterentrycategory` (`MasterEntryCategoryId`, `MasterEntryCategory
 (33, 'Route To', 'RouteTo', 'Webmaster'),
 (34, 'Termination Reason', 'TerminationReason', ''),
 (35, 'SalaryPaymentType', 'SalaryPaymentType', ''),
-(36, 'Result', 'Result', '');
+(36, 'Result', 'Result', ''),
+(37, 'Level', 'Level', '');
 
 -- --------------------------------------------------------
 
@@ -1133,14 +908,68 @@ CREATE TABLE IF NOT EXISTS `ocalling` (
   `DOE` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
   `DLU` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `online_exam_details`
+--
+
+CREATE TABLE IF NOT EXISTS `online_exam_details` (
+`online_exam_id` int(11) NOT NULL,
+  `online_exam_status` enum('Active','Inactive','Postpond','Remove','Done') CHARACTER SET utf8 NOT NULL,
+  `online_exam_date` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `online_subject_id` int(10) NOT NULL,
+  `online_section_id` int(10) NOT NULL,
+  `session` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `exam_name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `online_max_marks` float NOT NULL,
+  `online_cuttoff` float NOT NULL,
+  `doc` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dou` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `online_exam_level` enum('Tough','Medium','Eaisy') CHARACTER SET utf8 NOT NULL,
+  `no_of_qustion` int(10) NOT NULL,
+  `online_ex_duration` time NOT NULL,
+  `duration_per_qus` time NOT NULL,
+  `remarks` varchar(20) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ocalling`
+-- Dumping data for table `online_exam_details`
 --
 
-INSERT INTO `ocalling` (`OCallId`, `CallStatus`, `Mobile`, `Landline`, `Name`, `FollowUpDate`, `CallDuration`, `Remarks`, `DOC`, `DOE`, `DOD`, `DLU`) VALUES
-(1, 'Active', '9630709559', '0755258547', 'ankit', '1440540000', '5 min', '..', '1440540000', '1435298280', '', '1435298340');
+INSERT INTO `online_exam_details` (`online_exam_id`, `online_exam_status`, `online_exam_date`, `online_subject_id`, `online_section_id`, `session`, `exam_name`, `online_max_marks`, `online_cuttoff`, `doc`, `dou`, `online_exam_level`, `no_of_qustion`, `online_ex_duration`, `duration_per_qus`, `remarks`) VALUES
+(1, 'Active', '0', 1, 1, '2015-2016', 'Unit Test Oct 2015', 2, 2, '2015-10-08 05:42:05', '2015-10-08 11:12:05', 'Medium', 2, '01:00:00', '00:00:30', 'testing');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `online_exam_student`
+--
+
+CREATE TABLE IF NOT EXISTS `online_exam_student` (
+`online_exam_st_id` int(10) NOT NULL,
+  `online_exam_id` int(10) NOT NULL,
+  `online_student_id` int(10) NOT NULL,
+  `online_qust_ans_id` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `correct_ans` int(10) NOT NULL,
+  `wrong_ans` int(10) NOT NULL,
+  `total_marks` float NOT NULL,
+  `online_student_status` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `time_duration` time NOT NULL,
+  `no_of_qus_attemp` int(10) NOT NULL,
+  `date_of_ex_taken` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `online_exam_student`
+--
+
+INSERT INTO `online_exam_student` (`online_exam_st_id`, `online_exam_id`, `online_student_id`, `online_qust_ans_id`, `correct_ans`, `wrong_ans`, `total_marks`, `online_student_status`, `time_duration`, `no_of_qus_attemp`, `date_of_ex_taken`) VALUES
+(1, 1, 5, '1-1,2-1', 2, 0, 2, 'Pass', '00:59:52', 2, '2015-10-08 05:42:56'),
+(2, 1, 5, '2-2,1-3', 0, 2, 0, 'Fail', '00:59:52', 2, '2015-10-08 05:43:12'),
+(3, 1, 5, '2-1,1-2', 1, 1, 1, 'Fail', '00:59:53', 2, '2015-10-08 05:44:27');
 
 -- --------------------------------------------------------
 
@@ -1224,7 +1053,7 @@ CREATE TABLE IF NOT EXISTS `permission` (
 
 INSERT INTO `permission` (`PermissionId`, `UserType`, `PermissionString`) VALUES
 (1, 47, '44,43,45,3'),
-(2, 80, '4,5'),
+(2, 80, '2,4,5'),
 (3, 81, '10,43,9'),
 (4, 82, '32,43,9'),
 (5, 87, '21,25,17,16,18,15'),
@@ -1380,14 +1209,7 @@ CREATE TABLE IF NOT EXISTS `purchase` (
   `DOE` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `DOD` varchar(20) NOT NULL,
   `Remarks` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `purchase`
---
-
-INSERT INTO `purchase` (`PurchaseId`, `PurchaseStatus`, `Token`, `SupplierId`, `Total`, `Paid`, `DOP`, `DOE`, `DOD`, `Remarks`) VALUES
-(1, 'Active', '4CuX77yOU7yG1d6bAT5Uf39T1drp7', 1, '10.00', '0.00', '1435315500', '1435315500', '', '....');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1404,14 +1226,7 @@ CREATE TABLE IF NOT EXISTS `purchaselist` (
   `PurchasePrice` decimal(10,2) NOT NULL,
   `OtherInfo` text NOT NULL,
   `Date` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `purchaselist`
---
-
-INSERT INTO `purchaselist` (`PurchaseListId`, `Token`, `MaterialType`, `UniqueId`, `Quantity`, `PurchasePrice`, `OtherInfo`, `Date`) VALUES
-(1, '4CuX77yOU7yG1d6bAT5Uf39T1drp7', 'Stock', 1, '1.00', '10.00', '...,', '1435315500');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1428,17 +1243,41 @@ CREATE TABLE IF NOT EXISTS `qualification` (
   `Year` varchar(100) NOT NULL,
   `Marks` varchar(100) NOT NULL,
   `Remarks` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `qualification`
+-- Table structure for table `qustion_ans_bank`
 --
 
-INSERT INTO `qualification` (`QualificationId`, `Type`, `UniqueId`, `BoardUniversity`, `Class`, `Year`, `Marks`, `Remarks`) VALUES
-(1, 'Staff', 1, 'RGPV', 'BE,CSE', '2013', '75', 'good'),
-(2, 'Staff', 1, 'CBSE', '12th', '2009', '82.22', 'good'),
-(3, 'Student', 6, 'mp board', '8th', '2011', '66.60', 'testing'),
-(4, 'Student', 6, 'm.p board', '9th', '2012', '75.8', 'good');
+CREATE TABLE IF NOT EXISTS `qustion_ans_bank` (
+`qust_id` int(10) NOT NULL,
+  `qust_status` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `qustion` text CHARACTER SET utf8 NOT NULL,
+  `qus_option` varchar(500) CHARACTER SET utf8 NOT NULL,
+  `answer` text CHARACTER SET utf8 NOT NULL,
+  `qust_ans_description` text CHARACTER SET utf8 NOT NULL,
+  `qust_solution` text CHARACTER SET utf8 NOT NULL,
+  `toal_count_hit` int(10) NOT NULL,
+  `wrong_hit` int(10) NOT NULL,
+  `correct_hit` int(10) NOT NULL,
+  `class_id` int(10) NOT NULL,
+  `subject_id` int(10) NOT NULL,
+  `qust_level` enum('Tough','Medium','Eaisy') CHARACTER SET utf8 NOT NULL,
+  `doc` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dou` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `username` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `session` varchar(10) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `qustion_ans_bank`
+--
+
+INSERT INTO `qustion_ans_bank` (`qust_id`, `qust_status`, `qustion`, `qus_option`, `answer`, `qust_ans_description`, `qust_solution`, `toal_count_hit`, `wrong_hit`, `correct_hit`, `class_id`, `subject_id`, `qust_level`, `doc`, `dou`, `username`, `session`) VALUES
+(1, 'Active', 'Who is the CM Of Bhopal?\r\n', '1-shivaraaj singh chouhan,2-narendra modi,3-pandit khushilal,4-babu lal gaur', '1', 'testing online qustion.\r\n', 'testing online exam solution.\r\n', 0, 0, 0, 1, 1, 'Medium', '2015-10-05 06:39:01', '0000-00-00 00:00:00', 'masteruser', '2015-2016'),
+(2, 'Active', 'Who is the PM Of India?\r\n', '1-narendra modi,2-rahul gandhi,3-soniya gandhi,4-arvind kejriwal', '1', 'testing paprer qusation\r\n', 'testing soltuin\r\n', 0, 0, 0, 1, 1, 'Medium', '2015-10-05 06:41:43', '0000-00-00 00:00:00', 'masteruser', '2015-2016');
 
 -- --------------------------------------------------------
 
@@ -1492,31 +1331,18 @@ CREATE TABLE IF NOT EXISTS `registration` (
   `TerminationReason` varchar(10) NOT NULL,
   `TerminationRemarks` text NOT NULL,
   `DOT` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `registration`
 --
 
 INSERT INTO `registration` (`RegistrationId`, `Session`, `Status`, `StudentName`, `FatherName`, `FatherMobile`, `FatherDateOfBirth`, `FatherEmail`, `FatherQualification`, `FatherOccupation`, `FatherDesignation`, `FatherOrganization`, `MotherName`, `MotherMobile`, `MotherDateOfBirth`, `MotherEmail`, `MotherQualification`, `MotherOccupation`, `MotherDesignation`, `MotherOrganization`, `Mobile`, `SectionId`, `DOB`, `DOR`, `DOE`, `Landline`, `AlternateMobile`, `PresentAddress`, `PermanentAddress`, `BloodGroup`, `Caste`, `Category`, `Gender`, `Nationality`, `Username`, `ParentsPassword`, `StudentsPassword`, `DOL`, `DOLUsername`, `DOD`, `DODUsername`, `DateOfTermination`, `TerminationReason`, `TerminationRemarks`, `DOT`) VALUES
-(1, '2015-2016', 'Studying', 'mohan', 'sumit', '', '', '', '', '', '', '', 'preety', '', '', '', '', '', '', '', '7894881750', 1, '', '1435300320', '1435300320', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '237576', '955834', '', '', '', '', '', '', '', ''),
-(2, '2015-2016', 'Studying', 'geeta', 'rajesh', '', '', '', '', '', '', '', 'sita', '', '', '', '', '', '', '', '7788994455', 2, '1433097000', '1435300380', '1435300380', '', '', '', '', 61, 66, '', 8, 0, 'masteruser', '711471', '458319', '', '', '', '', '', '', '', ''),
-(3, '2015-2016', 'Studying', 'john', 'petor', '', '', '', '', '', '', '', 'aena', '', '', '', '', '', '', '', '1122334455', 3, '', '1435300440', '1435300440', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '717349', '953527', '', '', '', '', '', '', '', ''),
-(4, '2015-2016', 'Studying', 'ramesh', 'shyam', '', '', '', '', '', '', '', 'shivwati', '', '', '', '', '', '', '', '8847956845', 1, '', '1435300440', '1435300500', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '856381', '159820', '', '', '', '', '', '', '', ''),
-(5, '2015-2016', 'Studying', 'munna pal', 'rajesh pal', '', '', '', '', '', '', '', 'mala pal', '', '', '', '', '', '', '', '8967678956', 9, '', '1438577280', '1438593840', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '277072', '515228', '', '', '', '', '', '', '', ''),
-(6, '2015-2016', 'Terminated', 'amar singh', 'narsingh singh', '7865786798', '1440990379', 'narsingh@gmail.com', 'MBBS', 'doctor', 'senior doctor', 'private hospital', 'suseela', '7689098767', '1440997579', 'mother@gmail.com', 'BSC.', 'Home maker', 'nill', 'self', '7689785600', 7, '1092853800', '1438567080', '1438593900', '0755456788', '6598875487', '10 no. stop bhopal', 'bhopal', 62, 65, '', 7, 0, 'masteruser', '909088', '230874', '', '', '', '', '1440972000', '77', 'testing', '1441021260'),
-(7, '2015-2016', 'Studying', 'raam sharma', 'mohan sharma', '', '', '', '', '', '', '', 'neeta', '', '', '', '', '', '', '', '8978677898', 7, '', '1438571100', '1438593960', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '442910', '516491', '', '', '', '', '', '', '', ''),
-(8, '2015-2016', 'Studying', 'rahul gupta', 'ramesh gupta', '', '', '', '', '', '', '', 'juhi gupta', '', '', '', '', '', '', '', '9898789089', 8, '', '1438649760', '1438594080', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '303027', '401547', '', '', '', '', '', '', '', ''),
-(9, '2015-2016', 'Studying', 'seema tiwari', 'om tiwari', '', '', '', '', '', '', '', 'veenita tiwari', '', '', '', '', '', '', '', '7865788987', 8, '', '1438671720', '1438594140', '', '', '', '', 0, 0, '', 8, 0, 'masteruser', '277841', '958526', '', '', '', '', '', '', '', ''),
-(10, '2015-2016', 'Studying', 'rushada khan', 'wasim khan', '', '', '', '', '', '', '', 'sakila khan', '', '', '', '', '', '', '', '8970896789', 8, '', '1438668660', '1438594200', '', '', '', '', 0, 0, '', 8, 0, 'masteruser', '426019', '519046', '', '', '', '', '', '', '', ''),
-(11, '2015-2016', 'Studying', 'amrish sharma', 'ritesh sharma', '', '', '', '', '', '', '', 'mala sharma', '', '', '', '', '', '', '', '9867567890', 7, '', '1438934100', '1438934100', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '414923', '551455', '', '', '', '', '', '', '', ''),
-(12, '2015-2016', 'Studying', 'rajnish mehta', 'dinesh mehta', '', '', '', '', '', '', '', 'priya mehta', '', '', '', '', '', '', '', '7898897876', 9, '', '1438934220', '1438934220', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '467520', '302038', '', '', '', '', '', '', '', ''),
-(13, '2015-2016', 'Studying', 'shyam chourasiya', 'ram singh chourasiya', '', '', '', '', '', '', '', 'vimla chourasiya', '', '', '', '', '', '', '', '9878908990', 9, '', '1438934280', '1438934280', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '953198', '650057', '', '', '', '', '', '', '', ''),
-(14, '2015-2016', 'Studying', 'Rooma singh thakur', 'Roop singh thakur', '', '', '', '', '', '', '', 'payal singh thakur', '', '', '', '', '', '', '', '8978980987', 8, '', '1438934400', '1438934400', '', '', '', '', 0, 0, '', 8, 0, 'masteruser', '161825', '940948', '', '', '', '', '', '', '', ''),
-(15, '2015-2016', 'Studying', 'tinku verma', 'Amit verma', '', '', '', '', '', '', '', 'Reeta verma', '', '', '', '', '', '', '', '7889988778', 8, '', '1438649760', '1438934460', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '631463', '400173', '', '', '', '', '', '', '', ''),
-(16, '2015-2016', 'Studying', 'amit yadav', 'mahesh yadav', '8978768989', '', '', '', '', '', '', 'sushila yadav', '9876890987', '', '', '', '', '', '', '9987867566', 11, '1442581815', '1442540880', '1438934520', '0755457683', '', 'ashok garden h.no. 234 bank colony', '', 0, 0, '', 7, 0, 'masteruser', '660769', '610864', '', '', '', '', '', '', '', ''),
-(17, '2015-2016', 'Studying', 'nidhi sisodiya', 'rajesh sisodiya', '', '', '', '', '', '', '', 'kamla sisodiya', '', '', '', '', '', '', '', '8909787898', 8, '', '1438664820', '1438934640', '', '', '', '', 0, 0, '', 8, 0, 'masteruser', '683703', '234225', '', '', '', '', '', '', '', ''),
-(22, '2016-2017', 'NotAdmitted', 'simmy', 'kaur', '', '', '', '', '', '', '', 'kaur', '', '', '', '', '', '', '', '5698874578', 12, '', '1440959400', '1441002720', '', '', '', '', 0, 0, '', 8, 0, 'masteruser', '583700', '350323', '', '', '', '', '', '', '', '');
+(1, '2015-2016', 'Studying', 'sagar', 'ramesh maliviya', '', '', '', '', '', '', '', 'seeta maliviya', '', '', '', '', '', '', '', '8754875487', 1, '', '1443609600', '', '', '', '', '', 0, 0, '', 7, 0, '', '', '', '', '', '', '', '', '', '', ''),
+(2, '2015-2016', 'Studying', 'radha', 'mohan sharma', '', '', '', '', '', '', '', 'ismiriti sharma', '', '', '', '', '', '', '', '9865986598', 2, '', '1443609630', '', '', '', '', '', 0, 0, '', 7, 0, '', '', '', '', '', '', '', '', '', '', ''),
+(3, '2015-2016', 'Studying', 'chatrapal', 'sharma', '', '', '', '', '', '', '', 'miss sharma', '', '', '', '', '', '', '', '5487986598', 1, '', '1443608880', '1443608880', '', '', '', '', 0, 0, '', 7, 0, 'masteruser', '363424', '405584', '', '', '', '', '', '', '', ''),
+(4, '2015-2016', 'Studying', 'rohit', 'thakur', '', '', '', '', '', '', '', 'thakur', '', '', '', '', '', '', '', '5478548754', 1, '', '1443622840', '', '', '', '', '', 0, 0, '', 7, 0, '', '', '', '', '', '', '', '', '', '', ''),
+(5, '2015-2016', 'Studying', 'demotest', 'demofather', '', '', '', '', '', '', '', 'demomother', '', '', '', '', '', '', '', '8817507639', 2, '', '1443698730', '', '', '', '', '', 0, 0, '', 7, 0, '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1531,14 +1357,7 @@ CREATE TABLE IF NOT EXISTS `salaryhead` (
   `Code` varchar(100) NOT NULL,
   `DailyBasis` int(1) NOT NULL,
   `SalaryHeadStatus` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `salaryhead`
---
-
-INSERT INTO `salaryhead` (`SalaryHeadId`, `SalaryHeadType`, `SalaryHead`, `Code`, `DailyBasis`, `SalaryHeadStatus`) VALUES
-(1, 13, 'GH', '2', 1, 'Active');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1551,16 +1370,7 @@ CREATE TABLE IF NOT EXISTS `salarystructure` (
   `SalaryStructureName` varchar(100) NOT NULL,
   `FixedSalaryHead` text NOT NULL,
   `SalaryStructureStatus` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `salarystructure`
---
-
-INSERT INTO `salarystructure` (`SalaryStructureId`, `SalaryStructureName`, `FixedSalaryHead`, `SalaryStructureStatus`) VALUES
-(1, 'xyz', '1', 'Active'),
-(2, 'nidhi', '1', 'Active'),
-(3, 'sandeep', '1', 'Active');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1693,26 +1503,15 @@ CREATE TABLE IF NOT EXISTS `section` (
   `SectionStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `section`
 --
 
 INSERT INTO `section` (`SectionId`, `ClassId`, `SectionName`, `SectionStatus`, `DOE`, `DOL`) VALUES
-(1, 1, 'section A', 'Active', '1435300020', ''),
-(2, 2, 'section A', 'Active', '1435300020', ''),
-(3, 3, 'section A', 'Active', '1435300080', ''),
-(4, 4, 'section A', 'Active', '1435300080', ''),
-(5, 5, 'section A', 'Active', '1435300080', ''),
-(6, 7, 'section A', 'Active', '1435382220', ''),
-(7, 8, 'A', 'Active', '1438593660', ''),
-(8, 9, 'A', 'Active', '1438593720', ''),
-(9, 8, 'B', 'Active', '1438593720', ''),
-(10, 10, 'A', 'Active', '1438593720', ''),
-(11, 9, 'B', 'Active', '1438593780', ''),
-(12, 6, 'A', 'Active', '1440401100', ''),
-(13, 11, 'A', 'Active', '1442485080', '');
+(1, 1, 'A', 'Active', '16-7-2015', ''),
+(2, 1, 'B', 'Active', '16-7-2015', '');
 
 -- --------------------------------------------------------
 
@@ -1728,15 +1527,7 @@ CREATE TABLE IF NOT EXISTS `sibling` (
   `SClass` varchar(100) NOT NULL,
   `SSchool` text NOT NULL,
   `SRemarks` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sibling`
---
-
-INSERT INTO `sibling` (`SiblingId`, `RegistrationId`, `SName`, `SDOB`, `SClass`, `SSchool`, `SRemarks`) VALUES
-(1, 6, 'sohan', '1440959400', '9th', 'red rose', 'testing'),
-(2, 6, 'Roma', '1438725600', '8th', 'Maharishi', 'good');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1794,7 +1585,7 @@ CREATE TABLE IF NOT EXISTS `staffattendance` (
   `Attendance` text NOT NULL,
   `DOL` varchar(10) NOT NULL,
   `DOLUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `staffattendance`
@@ -1810,7 +1601,8 @@ INSERT INTO `staffattendance` (`StaffAttendanceId`, `Date`, `Attendance`, `DOL`,
 (56, '1444687200', '1-P-1442181600-1444742420-1444728300,6-P-1442181600-1444742420-1444728300,5-P-1442181600-1444742420-1444728300,4-P-1442181600-1444742420-1444728300,3-P-1442181600-1444742420-1444728300,2-P-1442181600-1444742420-1444728300', '1442181600', ''),
 (57, '1444082400', '6-P-1442181600-1444137955-1444123500,1-A-1442181600-1444137955-1444123500,5-A-1442181600-1444137955-1444123500,4-A-1442181600-1444137955-1444123500,3-A-1442181600-1444137955-1444123500,2-A-1442181600-1444137955-1444123500', '1442181600', ''),
 (58, '1441490400', '1-P-1442181600-1441545905-1441531500,6-A-1442181600-1441545905-1441531500,5-A-1442181600-1441545905-1441531500,4-A-1442181600-1441545905-1441531500,3-A-1442181600-1441545905-1441531500,2-A-1442181600-1441545905-1441531500', '1442181600', ''),
-(59, '1443650400', '1-P-1442181600-1443705950-1443691500,6-A-1442181600-1443705950-1443691500,5-A-1442181600-1443705950-1443691500,4-A-1442181600-1443705950-1443691500,3-A-1442181600-1443705950-1443691500,2-A-1442181600-1443705950-1443691500', '1442181600', '');
+(59, '1443650400', '1-P-1442181600-1443705950-1443691500,6-A-1442181600-1443705950-1443691500,5-A-1442181600-1443705950-1443691500,4-A-1442181600-1443705950-1443691500,3-A-1442181600-1443705950-1443691500,2-A-1442181600-1443705950-1443691500', '1442181600', ''),
+(60, '1442872800', '1-P-1442872800-1442933440-1442913900,6-P-1442872800-1442933440-1442913900,5-P-1442872800-1442933440-1442913900,7-P-1442872800-1442933440-1442913900,4-A-1442872800-1442933440-1442913900,9-A-1442872800-1442933440-1442913900,3-A-1442872800-1442933440-1442913900,2-A-1442872800-1442933440-1442913900,8-A-1442872800-1442933440-1442913900,11-A-1442872800-1442933440-1442913900', '1442872800', '');
 
 -- --------------------------------------------------------
 
@@ -1860,14 +1652,16 @@ CREATE TABLE IF NOT EXISTS `stock` (
   `Date` varchar(20) NOT NULL,
   `DLU` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `stock`
 --
 
 INSERT INTO `stock` (`StockId`, `StockStatus`, `StockType`, `StockName`, `Unit`, `OpeningStock`, `CurrentStock`, `Date`, `DLU`, `DOD`) VALUES
-(1, 'Active', 51, 'xyz', 59, '2.00', '1.00', '1435315200', '', '');
+(1, 'Active', 51, 'xyz', 59, '2.00', '1.00', '1435315200', '', ''),
+(2, 'Active', 51, 'xyyy', 59, '25.00', '-18.00', '1442903880', '', ''),
+(3, 'Active', 51, 'testing3', 59, '5.00', '0.00', '1443521880', '', '');
 
 -- --------------------------------------------------------
 
@@ -1887,7 +1681,14 @@ CREATE TABLE IF NOT EXISTS `stockassign` (
   `DOT` varchar(20) NOT NULL,
   `Remarks` text NOT NULL,
   `DOE` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stockassign`
+--
+
+INSERT INTO `stockassign` (`StockAssignId`, `Username`, `StockAssignStatus`, `StockId`, `Quantity`, `Returning`, `AssignTo`, `AssignToDetail`, `DOT`, `Remarks`, `DOE`) VALUES
+(1, 'masteruser', 'Active', 2, '20.00', '0.00', '4', '1', '1442903940', '', '1442903940');
 
 -- --------------------------------------------------------
 
@@ -1901,16 +1702,7 @@ CREATE TABLE IF NOT EXISTS `studentattendance` (
   `Attendance` text NOT NULL,
   `DOL` varchar(10) NOT NULL,
   `DOLUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `studentattendance`
---
-
-INSERT INTO `studentattendance` (`StudentAttendanceId`, `Date`, `Attendance`, `DOL`, `DOLUsername`) VALUES
-(27, '1439244000', '12-P-1439330400,10-P-1439330400,14-P-1439330400,7-P-1439330400,9-P-1439330400,17-A-1439330400', '1439330400', ''),
-(28, '1440972000', '12-P-1439330400,10-P-1439330400,14-P-1439330400,7-P-1439330400,17-P-1439330400,9-A-1439330400', '1439330400', ''),
-(29, '1442181600', '--,14-P-1442181600,7-P-1442181600,9-P-1442181600,17-P-1442181600,12-A-1442181600', '1442181600', '');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1931,30 +1723,18 @@ CREATE TABLE IF NOT EXISTS `studentfee` (
   `Date` varchar(20) NOT NULL,
   `DOE` varchar(20) NOT NULL,
   `Username` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `studentfee`
 --
 
 INSERT INTO `studentfee` (`StudentFeeId`, `StudentFeeStatus`, `AdmissionNo`, `AdmissionId`, `Session`, `SectionId`, `FeeStructure`, `Distance`, `Remarks`, `Date`, `DOE`, `Username`) VALUES
-(1, '', '1', 1, '2015-2016', 2, '3-1200,4-700', '', '', '1435257000', '1435301160', 'masteruser'),
-(2, '', '2', 2, '2015-2016', 3, '5-1300,6-800', '', '', '1435257000', '1435301220', 'masteruser'),
-(3, '', '3', 3, '2015-2016', 1, '1-1000,2-600', '', '', '1435257000', '1435301220', 'masteruser'),
-(4, '', '4', 4, '2015-2016', 1, '1-1000,2-600', '', '', '1435257000', '1435301220', 'masteruser'),
-(5, '', '4565', 5, '2015-2016', 9, '14-700', '69', '', '1438540200', '1438594440', 'masteruser'),
-(6, '', '876', 6, '2015-2016', 7, '15-700', '70', '', '1438540200', '1438594440', 'masteruser'),
-(7, '', '4556', 7, '2015-2016', 8, '16-2500,17-700', '', '', '1438540200', '1438594560', 'masteruser'),
-(8, 'Terminated', '4532', 8, '2015-2016', 7, '15-700', '', '', '1438540200', '1438594560', 'masteruser'),
-(9, '', '4532', 9, '2015-2016', 8, '16-2500,17-700', '', '', '1438540200', '1438594620', 'masteruser'),
-(10, '', '6543', 10, '2015-2016', 6, '20-2000,21-1000', '68', '....', '1438540200', '1438594620', 'masteruser'),
-(11, '', '7865', 11, '2015-2016', 11, '18-1000,19-600', '83', 'gdsfgdsfg', '1438639200', '1438935420', 'masteruser'),
-(12, '', '7889', 12, '2015-2016', 8, '16-4000,17-3000', '83', 'gfdsg', '1438799400', '1438935600', 'masteruser'),
-(13, '', '6778', 13, '2015-2016', 9, '14-700', '83', '', '1438885800', '1438935660', 'masteruser'),
-(14, '', '4567', 14, '2015-2016', 8, '16-2500,17-700', '83', '', '1438972200', '1438935660', 'masteruser'),
-(15, '', '5647', 15, '2015-2016', 7, '11-5000,15-700', '83', '', '1438626600', '1438935660', 'masteruser'),
-(16, '', '7657', 16, '2015-2016', 9, '14-700', '83', '', '1438540200', '1438935720', 'masteruser'),
-(17, '', '9876', 17, '2015-2016', 8, '16-2500,17-700', '83', '', '1438713000', '1438935720', 'masteruser');
+(1, '', '1A1', 1, '2015-2016', 2, '42-500,43-1000,44-600', '0', '', '1443564000', '1443564000', '1'),
+(2, '', '1B1', 2, '2015-2016', 1, '42-500,43-1000,44-600', '0', '', '1443564000', '1443564000', '1'),
+(3, '', '1A2', 3, '2015-2016', 1, '1-500,2-1000,3-600', '', '', '1443551400', '1443608940', 'masteruser'),
+(4, '', '1A2', 4, '2015-2016', 1, '1-500,2-1000,3-600', '0', '', '1443564000', '1443564000', '1'),
+(5, '', '1A3', 5, '2015-2016', 2, '4-500,5-1000,6-600', '0', '', '1443650400', '1443650400', '1');
 
 -- --------------------------------------------------------
 
@@ -1971,24 +1751,15 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `SubjectStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subject`
 --
 
 INSERT INTO `subject` (`SubjectId`, `Session`, `SubjectName`, `SubjectAbb`, `Class`, `SubjectStatus`, `DOE`, `DOL`) VALUES
-(1, '2015-2016', 'english', 'en', '1,2,3,4,5', 'Active', '1435305960', ''),
-(2, '2015-2016', 'Hindi', 'HIN', '1,2,3,4,5', 'Active', '1435306260', ''),
-(3, '2015-2016', 'science', 'REGULER', '2,3,4,5,6', 'Active', '1435382280', ''),
-(4, '2015-2016', 'testing22', 'TN', '1,2,3,4', 'Active', '16-7-2015', ''),
-(5, '2015-2016', 'fdsfdsf', 'sdf', '10,11,2', 'Active', '16-7-2015', ''),
-(6, '2015-2016', 'vxcvxcv', 'xcvxv', '3', 'Active', '16-7-2015', ''),
-(7, '2015-2016', 'dfsgdfsg', 'gdfgdsg', '7,3,4', 'Active', '16-7-2015', ''),
-(8, '2016-2017', 'fghfh', 'ghf', '12', 'Active', '16-7-2015', ''),
-(9, '2015-2016', 'jhgjhg', 'ghj', '3', 'Active', '16-7-2015', ''),
-(10, '2016-2017', 'gfdgdg', 'gdg', '13,12', 'Active', '16-7-2015', ''),
-(11, '2015-2016', 'tytryrtyry', 'rtyrtyry', '3,4,6', 'Active', '16-7-2015', '');
+(1, '2015-2016', 'English', 'EN', '1,2', 'Active', '16-7-2015', ''),
+(2, '2015-2016', 'Hindi', 'HIN', '1,2', 'Active', '16-7-2015', '');
 
 -- --------------------------------------------------------
 
@@ -2553,72 +2324,17 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `TransactionIP` varchar(50) NOT NULL,
   `TransactionStatus` varchar(10) NOT NULL,
   `TransactionDODUsername` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaction`
 --
 
 INSERT INTO `transaction` (`TransactionId`, `Username`, `Token`, `TransactionSession`, `TransactionAmount`, `TransactionType`, `TransactionFrom`, `TransactionHead`, `TransactionSubHead`, `TransactionHeadId`, `TransactionRemarks`, `TransactionDate`, `TransactionDOE`, `TransactionDLU`, `TransactionDOD`, `TransactionIP`, `TransactionStatus`, `TransactionDODUsername`) VALUES
-(1, 'masteruser', 'k7pJdCoKrPruYXMBQC2NLAqgKK79n', '2015-2016', '1200', '1', '1', 'Fee', '', '1', '', '1435303440', '1435303440', '', '', '', 'Active', ''),
-(2, 'masteruser', 'URPmt6jXApUYB5DHxzRpN6NooBbRg', '2015-2016', '400', '1', '1', 'Fee', '', '1', '', '1435303440', '1435303440', '', '', '', 'Active', ''),
-(3, 'masteruser', '', '', '5000', '1', '1', 'Income', '', '46', 'from cm donation', '1435304400', '1435304400', '', '', '::1', 'Active', ''),
-(4, 'masteruser', 'DryzCMR1eEKU7UkzlhhswxJ9Z2XCiG', '2015-2016', '200', '1', '1', 'Fee', '', '1', '', '1435381920', '1435381920', '', '', '', 'Active', ''),
-(5, 'masteruser', '', '', '120', '0', '1', 'Expense', '', '1', 'jh<br />\r\n', '1435397220', '1435397220', '', '', '::1', 'Active', ''),
-(6, 'masteruser', '', '', '5000', '1', '1', 'Income', '', '46', 'gh', '1435397280', '1435397280', '', '', '::1', 'Active', ''),
-(7, 'masteruser', '3cUul3XC76lio7Mc6vtngs0DlpDu67', '2015-2016', '1300', '1', '1', 'Fee', '', '2', 'gh', '1435398540', '1435398540', '', '', '', 'Active', ''),
-(8, 'masteruser', 'yqwssRnqNgeKrR7G8IYvWqgkGDC6ap', '2015-2016', '1000', '1', '1', 'Fee', '', '4', '', '1438218840', '1438251900', '', '', '', 'Active', ''),
-(9, 'masteruser', 'kNk57ulSKlZWN9ZApZrz6kEsgJdELZ', '2015-2016', '600', '1', '1', 'Fee', '', '4', '', '1438229460', '1438251960', '', '', '', 'Active', ''),
-(10, 'masteruser', 'abnycJM5jiBMC01u2zr3uvJLTWV8aC', '2015-2016', '700', '1', '1', 'Fee', '', '8', '', '1438597260', '1438594680', '', '', '', 'Active', ''),
-(11, 'masteruser', 'OyZeOIwLFlRZFDuGfB7L3OHGu5uG4r', '2015-2016', '1100', '1', '1', 'Fee', '', '3', '', '1438668840', '1438594800', '', '', '', 'Active', ''),
-(12, 'masteruser', '', '', '6000', '0', '1', 'Expense', '', '2', '', '1438600680', '1438595040', '', '', '::1', 'Active', ''),
-(13, 'masteruser', '', '', '700', '1', '1', 'Income', '', '46', '..', '1438597920', '1438597920', '', '', '::1', 'Active', ''),
-(14, 'masteruser', '', '', '50', '0', '1', 'Expense', '', '3', '..', '1438598100', '1438598100', '', '', '::1', 'Active', ''),
-(15, 'masteruser', 'zDItdxQvTf4NJvemJfVOMFmPi21aQ', '2015-2016', '600', '1', '1', 'Fee', '', '5', '..', '1438598280', '1438598280', '', '', '', 'Active', ''),
-(16, 'masteruser', 'wbS9AlBqqd2yf3l9BDEKgJALnMcP7d', '2015-2016', '1500', '1', '1', 'Fee', '', '7', '', '1438940700', '1438940700', '', '', '', 'Active', ''),
-(17, 'masteruser', 'uLhv4IXB8zb1msXJUp8FOQzx6m1lDw', '2015-2016', '1500', '1', '1', 'Fee', '', '12', '', '1438940940', '1438940940', '', '', '', 'Active', ''),
-(18, 'masteruser', '', '', '7000', '1', '1', 'Income', '', '46', '........', '1439017260', '1439017260', '', '', '::1', 'Active', ''),
-(19, 'masteruser', '', '', '1000', '0', '1', 'Expense', '', '4', '...........', '1439017380', '1439017380', '', '', '::1', 'Active', ''),
-(20, 'masteruser', '', '', '660', '0', '1', 'Expense', '', '2', '............', '1439017560', '1439017560', '', '', '::1', 'Active', ''),
-(21, 'masteruser', '7IQmywz9fAWrW6CIzI0U2Vq0ntnmTy', '2015-2016', '3000', '1', '1', 'Fee', '', '15', '........', '1439193540', '1439193540', '', '', '', 'Active', ''),
-(22, 'masteruser', 'P89yzCyvn9VNPl0SeajYHAMlfEVo2w', '2015-2016', '200', '1', '1', 'Fee', '', '15', '..........', '1439193600', '1439193600', '', '', '', 'Active', ''),
-(23, 'masteruser', 'u9qHRPuJ5j1XpsYoAhE8ufdHlW4WL', '2015-2016', '150', '1', '1', 'Fee', '', '15', '............', '1439202300', '1439202300', '', '', '', 'Active', ''),
-(24, 'masteruser', 'WTzcVjOdH0IBLYOlmTQPwqUd2UHifT', '2015-2016', '400', '1', '1', 'Fee', '', '11', '<..................>', '1439270520', '1439270520', '', '', '', 'Active', ''),
-(25, 'masteruser', '', '', '324', '0', '1', 'Expense', '', '7', 'dsfsdf', '1440143400', '1440143400', '', '', '::1', 'Active', ''),
-(26, 'masteruser', '', '', '', '0', '', 'Expense', '', '9', 'fkldsjfkl', '', '1440108000', '', '', '', 'Active', ''),
-(27, 'masteruser', '', '', '200', '0', '1', 'Expense', '', '10', 'sdadasd', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(28, 'masteruser', '', '', '200', '0', '1', 'Expense', '', '11', 'fsdfs', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(29, 'masteruser', '', '', '200', '0', '1', 'Expense', '', '12', 'dasdad', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(30, 'masteruser', '', '', '100', '0', '1', 'Expense', '', '10', 'dfsafasdf', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(31, 'masteruser', '', '', '20', '0', '1', 'Expense', '', '10', 'gfdg', '1440159120', '1440159120', '', '', '::1', 'Active', ''),
-(32, 'masteruser', '', '', '30', '0', '1', 'Expense', '', '10', 'sdffdsf', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(33, 'masteruser', '', '', '30', '0', '1', 'Expense', '', '10', 'jhgjhgj', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(34, 'masteruser', '', '', '10', '0', '1', 'Expense', '', '13', 'asdadad', '1440540000', '1440108000', '', '', '', 'Active', ''),
-(35, 'masteruser', '', '', '20', '0', '1', 'Expense', '', '10', 'gfdgd', '1440021600', '1440108000', '', '', '', 'Active', ''),
-(36, 'masteruser', '', '', '20', '0', '1', 'Expense', '', '10', 'hjfhf', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(37, 'masteruser', '', '', '20', '0', '1', 'Expense', '', '10', 'fdsfs', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(38, 'masteruser', '', '', '20', '0', '1', 'Expense', '', '10', 'saadad', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(39, 'masteruser', '', '', '20', '0', '1', 'Expense', '', '10', 'fghgf', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(40, 'masteruser', '', '', '20', '0', '1', 'Expense', '', '10', 'jkghj', '1440021600', '1440108000', '', '', '', 'Active', ''),
-(41, 'masteruser', '', '', '20', '0', '1', 'Expense', '', '10', 'sasa', '1440540000', '1440108000', '', '', '', 'Active', ''),
-(42, 'masteruser', '', '', '20', '0', '1', 'Expense', '', '10', 'fdgdfg', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(43, 'masteruser', '', '', '100', '0', '1', 'Expense', '', '10', 'hgjfghf', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(44, 'masteruser', '', '', '100', '0', '1', 'Expense', '', '10', 'ghhfhf', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(45, 'masteruser', '', '', '100', '0', '1', 'Expense', '', '10', 'fgdsgd', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(46, 'masteruser', '', '', '100', '0', '1', 'Expense', '', '10', 'gfhgfh', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(47, 'masteruser', '', '', '100', '0', '1', 'Expense', '', '10', 'ffdgdfg', '1439935200', '1440108000', '', '', '', 'Active', ''),
-(48, 'masteruser', '', '', '100', '0', '1', 'Expense', '', '10', 'gjghj', '1440021600', '1440108000', '', '', '', 'Active', ''),
-(49, 'masteruser', '', '', '100', '0', '1', 'Expense', '', '10', 'fgdgdf', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(50, 'masteruser', '', '', '100', '0', '1', 'Expense', '', '10', 'fdgdfg', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(51, 'masteruser', '', '', '100', '0', '1', 'Expense', '', '10', 'ghfhfg', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(52, 'masteruser', '', '', '50', '0', '1', 'Expense', '', '14', 'fdgdsf', '1440108000', '1440108000', '', '', '', 'Active', ''),
-(53, 'masteruser', '', '', '5000', '1', '1', 'Income', '', '46', 'tsesting\r\n', '1440235500', '1440194400', '', '', '', 'Active', ''),
-(54, 'masteruser', '', '', '5000', '1', '1', 'Income', '', '46', 'testing2', '1440235500', '1440194400', '', '', '', 'Active', ''),
-(55, 'masteruser', '', '', '10000', '1', '1', 'Income', '', '46', 'testing3', '1440235500', '1440194400', '', '', '', 'Active', ''),
-(56, 'masteruser', 'DwCuWl9qiQaUVs0fi5ktBek7Jjr1C', '2015-2016', '200', '1', '1', 'Fee', '', '11', 'hj', '1441967820', '1441967820', '', '', '', 'Active', ''),
-(57, 'masteruser', 'b97f5dad675749bf4838', '2015-2016', '12', '1', '1', 'Fee', '', '1', 'tseting', '1442181600', '1442181600', '', '', '', 'Active', ''),
-(58, 'masteruser', '', '', '500', '0', '1', 'Expense', '', '15', 'fgdsgdg', '1442341800', '1442404380', '', '', '::1', 'Active', ''),
-(59, 'masteruser', '', '', '500', '0', '1', 'Expense', '', '16', 'tsesting', '1442440800', '1442440800', '', '', '123456', 'Active', '');
+(1, 'masteruser', 'QFM7kWf6zcpfNCxiWhCQVqK8qvDAC', '2015-2016', '200', '1', '1', 'Fee', '', '4', '...', '1443611220', '1443611220', '', '', '', 'Active', ''),
+(2, 'masteruser', 'cf9d6e9bc748f4806777', '2015-2016', '200', '1', '1', 'Fee', '', '4', 'f', '1443564000', '1443564000', '', '', '', 'Active', ''),
+(3, 'masteruser', '95b4a70dee4cdcbd25e9', '2015-2016', '100', '1', '1', 'Fee', '', '4', 'd', '1443564000', '1443564000', '', '', '', 'Active', ''),
+(4, 'masteruser', '053225a3197ecf7bcbba', '2015-2016', '200', '1', '1', 'Fee', '', '3', 'testing', '1443564000', '1443564000', '', '', '', 'Active', '');
 
 -- --------------------------------------------------------
 
@@ -3054,6 +2770,18 @@ ALTER TABLE `ocalling`
  ADD PRIMARY KEY (`OCallId`);
 
 --
+-- Indexes for table `online_exam_details`
+--
+ALTER TABLE `online_exam_details`
+ ADD PRIMARY KEY (`online_exam_id`);
+
+--
+-- Indexes for table `online_exam_student`
+--
+ALTER TABLE `online_exam_student`
+ ADD PRIMARY KEY (`online_exam_st_id`);
+
+--
 -- Indexes for table `pagename`
 --
 ALTER TABLE `pagename`
@@ -3100,6 +2828,12 @@ ALTER TABLE `purchaselist`
 --
 ALTER TABLE `qualification`
  ADD PRIMARY KEY (`QualificationId`);
+
+--
+-- Indexes for table `qustion_ans_bank`
+--
+ALTER TABLE `qustion_ans_bank`
+ ADD PRIMARY KEY (`qust_id`);
 
 --
 -- Indexes for table `registration`
@@ -3283,12 +3017,12 @@ ALTER TABLE `visitorbook`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-MODIFY `AccountId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `AccountId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `admission`
 --
 ALTER TABLE `admission`
-MODIFY `AdmissionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+MODIFY `AdmissionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `backuprestore`
 --
@@ -3298,17 +3032,17 @@ MODIFY `BackUpRestoreId` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-MODIFY `BookId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `BookId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `bookissue`
 --
 ALTER TABLE `bookissue`
-MODIFY `BookIssueId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `BookIssueId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `calendar`
 --
 ALTER TABLE `calendar`
-MODIFY `CalendarId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `CalendarId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `calling`
 --
@@ -3323,7 +3057,7 @@ MODIFY `CircularId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-MODIFY `ClassId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `ClassId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `complaint`
 --
@@ -3343,32 +3077,32 @@ MODIFY `EnquiryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `exam`
 --
 ALTER TABLE `exam`
-MODIFY `ExamId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `ExamId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `examdetail`
 --
 ALTER TABLE `examdetail`
-MODIFY `ExamDetailId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `ExamDetailId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `examdetails`
 --
 ALTER TABLE `examdetails`
-MODIFY `Exam_Detail_Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `Exam_Detail_Id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `expense`
 --
 ALTER TABLE `expense`
-MODIFY `ExpenseId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+MODIFY `ExpenseId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `fee`
 --
 ALTER TABLE `fee`
-MODIFY `FeeId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+MODIFY `FeeId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `feepayment`
 --
 ALTER TABLE `feepayment`
-MODIFY `FeePaymentId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=93;
+MODIFY `FeePaymentId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `followup`
 --
@@ -3383,7 +3117,7 @@ MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `header`
 --
 ALTER TABLE `header`
-MODIFY `HeaderId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `HeaderId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `house`
 --
@@ -3403,27 +3137,27 @@ MODIFY `LanguageId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `listbook`
 --
 ALTER TABLE `listbook`
-MODIFY `ListBookId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `ListBookId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `listbookconfirm`
 --
 ALTER TABLE `listbookconfirm`
-MODIFY `ListBookConfirmId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `ListBookConfirmId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-MODIFY `LocationId` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `LocationId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `masterentry`
 --
 ALTER TABLE `masterentry`
-MODIFY `MasterEntryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=93;
+MODIFY `MasterEntryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=96;
 --
 -- AUTO_INCREMENT for table `masterentrycategory`
 --
 ALTER TABLE `masterentrycategory`
-MODIFY `MasterEntryCategoryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+MODIFY `MasterEntryCategoryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `note`
 --
@@ -3433,7 +3167,17 @@ MODIFY `NoteId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `ocalling`
 --
 ALTER TABLE `ocalling`
-MODIFY `OCallId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `OCallId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `online_exam_details`
+--
+ALTER TABLE `online_exam_details`
+MODIFY `online_exam_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `online_exam_student`
+--
+ALTER TABLE `online_exam_student`
+MODIFY `online_exam_st_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pagename`
 --
@@ -3463,32 +3207,37 @@ MODIFY `PrintOptionId` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-MODIFY `PurchaseId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `PurchaseId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `purchaselist`
 --
 ALTER TABLE `purchaselist`
-MODIFY `PurchaseListId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `PurchaseListId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `qualification`
 --
 ALTER TABLE `qualification`
-MODIFY `QualificationId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `QualificationId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `qustion_ans_bank`
+--
+ALTER TABLE `qustion_ans_bank`
+MODIFY `qust_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-MODIFY `RegistrationId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+MODIFY `RegistrationId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `salaryhead`
 --
 ALTER TABLE `salaryhead`
-MODIFY `SalaryHeadId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `SalaryHeadId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `salarystructure`
 --
 ALTER TABLE `salarystructure`
-MODIFY `SalaryStructureId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `SalaryStructureId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `salarystructuredetail`
 --
@@ -3518,12 +3267,12 @@ MODIFY `SCIndicatorId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-MODIFY `SectionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+MODIFY `SectionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `sibling`
 --
 ALTER TABLE `sibling`
-MODIFY `SiblingId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `SiblingId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `staff`
 --
@@ -3533,7 +3282,7 @@ MODIFY `StaffId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 -- AUTO_INCREMENT for table `staffattendance`
 --
 ALTER TABLE `staffattendance`
-MODIFY `StaffAttendanceId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
+MODIFY `StaffAttendanceId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `staffsalary`
 --
@@ -3543,27 +3292,27 @@ MODIFY `StaffSalaryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-MODIFY `StockId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `StockId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `stockassign`
 --
 ALTER TABLE `stockassign`
-MODIFY `StockAssignId` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `StockAssignId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `studentattendance`
 --
 ALTER TABLE `studentattendance`
-MODIFY `StudentAttendanceId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+MODIFY `StudentAttendanceId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `studentfee`
 --
 ALTER TABLE `studentfee`
-MODIFY `StudentFeeId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+MODIFY `StudentFeeId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `supplier`
 --
@@ -3578,7 +3327,7 @@ MODIFY `TimezoneId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=420;
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-MODIFY `TransactionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
+MODIFY `TransactionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `translate`
 --

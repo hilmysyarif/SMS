@@ -21,14 +21,67 @@
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/custom.css">
 
 	<script src="<?=base_url();?>assets/js/jquery-1.11.1.min.js"></script>
+	
 	<style>
 	td, th {
     padding: 2px;
 }
 	</style>
+	
+	<script>
+	<?php if(isset($studentinfo['timer'])){ $time=explode(":",$studentinfo['timer']); $h=$time[0]; $m=$time[1]; $s=$time[2];?>
+	var h = <?=$h?>;
+    var m = <?=$m?>;
+    var s = <?=$s?>;
+	
+function startTime() 
+	{
+		
+		 hs = h < 10 ? "0" + h : h;
+		 ms = m < 10 ? "0" + m : m;
+		 ss = s < 10 ? "0" + s : s;
+		document.getElementById('txt').innerHTML ="Timer :" + hs + ":" + ms + ":" + ss;
+		
+		var t = setTimeout(startTime, 1000);
+		
+		<?php if(!empty($stopcounter)){?>
+		clearTimeout(t);
+		<?php }else{ ?>
+		if(m==0 && h==0 && s==0){
+			
+		clearTimeout(t);
+		<?php //$this->session->unset_userdata('studentinfo');?>
+		window.location = "<?=base_url();?>onlineexam/preview";
+		}
+		<?php } ?>
+		
+		if(0<s){
+			s=s-1;
+										$.post(window.location,
+											{
+											  timer: hs +":"+ ms +":"+ ss,
+											}, function(data,status){
+										//	alert("Data: " + data + "\nStatus: " + status);
+											});
+		}else{
+			s=59;
+			m=m-1;
+		}
+		if(0==m && h !=0){
+			h=h-1;
+			m=59;
+		}
+	}
+	<?php } ?>
+	  function next() {
+		 
+        document.getElementById('examform').submit();
+    }
+
+</script>
 </head>
 
-<body class="page-body">
+<body class="page-body" onload="startTime()" >
 <center>
 	<div class="page-container container">
 		
@@ -40,15 +93,19 @@
 					<!-- Default panel -->
 					<div class="panel panel-default">
 						<div class="panel-heading">
+						<?php if(empty($finish)){?>
 							<div class="row">
 							
-								<table  style="td.padding: 3px"><th><tr><td>Online Exam :</td><td><?=isset($studentinfo['examname'])? $studentinfo['examname'] : ''?></td><td style="padding-left: 150px"> Timer :</td></tr>
+								<table  style="td.padding: 3px"><th><tr><td>Online Exam :</td><td><?=isset($studentinfo['examname'])? $studentinfo['examname'] : ''?></td><td style="padding-left: 150px" id="txt"> </td></tr>
 								<tr><td> Name :</td><td><?=isset($studentinfo['StudentName'])? $studentinfo['StudentName'] : ''?></td></tr>
 								<tr><td> Roll No :</td><td><?=isset($studentinfo['AdmissionNo'])? $studentinfo['AdmissionNo'] : ''?></td></tr>
 								<tr><td> Class:</td><td><?=isset($studentinfo['ClassName'])? $studentinfo['ClassName'] : ''?> <?=isset($studentinfo['SectionName'])? $studentinfo['SectionName'] : ''?></td></tr>
 								</th></table>
 								
 							</div>
+						<?php }else{ ?>
+						<div class="row"><p>Your Time Is Finish !!</p></div>
+						<?php } ?>
 						</div>
 						
 						<div class="panel-body">
@@ -92,7 +149,7 @@
 						<tr><td>
 							<table width="100%" border="0"><tbody><tr>
 							<td align="left" width="5%" nowrap=""></td>
-							<td align="right" width="95%">&nbsp;<a id="cmdNext" class="ActionLink" tabindex="3" href="javascript:;" onclick="document.getElementById('examform').submit()">Next</a>
+							<td align="right" width="95%">&nbsp;<a id="cmdNext" class="ActionLink" tabindex="3" href="javascript:;" onclick="next()">Next</a>
 </td>
 							</tr></tbody></table>
 						</td>
