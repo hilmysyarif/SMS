@@ -58,7 +58,7 @@ class Onlineexam extends CI_Controller {
 		}
 		
 		$this->breadcrumb->clear();
-		$this->breadcrumb->add_crumb('Online Exam SetUp', base_url().'onlineexam/onlineexam');
+		$this->breadcrumb->add_crumb('Online Exam SetUp', base_url().'onlineexam/onlineexamcreate');
 		
 		if($id !=''){
 			$filter=array('online_exam_id'=>$id);

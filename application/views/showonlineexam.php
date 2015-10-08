@@ -82,8 +82,8 @@
 															<td><?=$onlineexam->duration_per_qus?></td>
 															<td><?=$onlineexam->online_exam_status?></td>
 															<td><?=$onlineexam->doc?></td>
-															<td><a href="<?=base_url();?>Onlineexam/onlineexamcreate/<?=$onlineexam->online_exam_id?>"><i class="fa fa-edit"></a></i></td>
-															<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>Onlineexam/delete/online_exam_details/online_exam_id/<?=$onlineexam->online_exam_id?>"  ><i class="fa fa-times"></i></a></td>
+															<td><a href="<?=base_url();?>onlineexam/onlineexamcreate/<?=$onlineexam->online_exam_id?>"><i class="fa fa-edit"></a></i></td>
+															<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>onlineexam/delete/online_exam_details/online_exam_id/<?=$onlineexam->online_exam_id?>"  ><i class="fa fa-times"></i></a></td>
 															
 														</tr>
 													<?php } ?>
