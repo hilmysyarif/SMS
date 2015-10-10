@@ -281,7 +281,20 @@ class Onlineexam extends CI_Controller {
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Online Exam Report', base_url().'onlineexam/onlineexamreport');
-		if($id){
+		
+			if(isset($_GET['search'])?$_GET['search']=="examreport":''=="examreport"){
+				
+							$filtersrch=array();
+							if(!empty($this->input->post('class'))){ $filtersrch['online_section_id']=$this->input->post('class');}
+							if(!empty($this->input->post('subject'))){ $filtersrch['online_subject_id']=$this->input->post('subject');}
+							if(!empty($this->input->post('examname'))){ $filtersrch['exam_name']=$this->input->post('examname');}
+							if(!empty($this->input->post('time'))){ $filtersrch['online_exam_date']=strtotime($this->input->post('time'));}
+							if(!empty($this->input->post('level'))){ $filtersrch['online_exam_level']=$this->input->post('level');}
+							
+							$this->data['onlineexamreport'] = $this->onlineexam_model->searchexam($filtersrch);	
+			}else{
+				
+			if($id){
 			
 			$filter=$id;
 			$this->data['onlineexamstudent']=$onlineexamstudent = $this->onlineexam_model->get_student_report($filter);
@@ -292,7 +305,8 @@ class Onlineexam extends CI_Controller {
 			}
 			$this->data['examid']=$id;
 		}else{
-			$this->data['onlineexamreport'] = $this->onlineexam_model->get_exam_report($this->currentsession[0]->CurrentSession);
+			$this->data['onlineexamreport'] = $this->onlineexam_model->get_exam_report();
+		}
 		}
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -422,6 +436,7 @@ class Onlineexam extends CI_Controller {
 			}else{
 					$this->data['completed']="ok";
 					$this->data['stopcounter']="done";
+					$this->session->unset_userdata('studentinfo');
 					//$this->session->set_flashdata('message_type', 'success');
 					//$this->session->set_flashdata('message', $this->config->item("onlineexamcreate")." Thank You For Participating In Exam!! ");
 			}
@@ -451,10 +466,14 @@ class Onlineexam extends CI_Controller {
 			if($this->input->post('qus_option')==$this->input->post('answer')){
 				
 				$correctans=1;
+				$chit=1;
+				$whit=0;
 			}else{
 				$wrongans=1;
+				$chit=0;
+				$whit=1;
 			}
-			
+			$this->onlineexam_model->updatequsthit($this->input->post('qustionid'),$chit,$whit);
 			if($studentinfo['examstudentid']!=0){
 				$qustionansstrngdb=$this->onlineexam_model->get_qustionid($studentinfo['examstudentid']);	
 				$ansstrng=$qustionansstrngdb[0]->online_qust_ans_id;
@@ -538,6 +557,47 @@ class Onlineexam extends CI_Controller {
 		}
 		redirect('onlineexam/preview');
 	}
+	
+	/*online exam Search Start..............................................................*/
+	function search($action=false,$key=false){
+		$action=$this->input->post('action');
+		
+		if($action !=''){
+			$filter=array();
+			if($action=="studentreport"){
+				
+				
+				if(!empty($this->input->post('resulttype'))){
+					$filter['online_student_status']=$this->input->post('resulttype');	
+				}
+				if(!empty($this->input->post('examid'))){
+					$filter['online_exam_id']=$this->input->post('examid');
+				}
+				
+				
+				
+				$this->data['onlineexamstudent']=$this->onlineexam_model->select_for_update('online_exam_student',$filter);
+				print_r($this->data['onlineexamstudent']);die;
+			}elseif($action=="examreport"){
+				
+				$class=$this->input->post('class');
+				$subject=$this->input->post('subject');
+				$examname=$this->input->post('examname');
+				$time=$this->input->post('time');
+				$level=$this->input->post('level');
+				
+				//$filter=array(''=>);
+				$this->data['onlineexamreport']=$this->onlineexam_model->select_for_update('online_exam_details',$filter);	
+				
+			}
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		}else{
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		}
+		
+	}
+	/*online exam Search End..............................................................*/
+	
 	/*online exam insert qustion and ans END..............................................................*/
 
 

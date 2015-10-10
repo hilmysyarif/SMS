@@ -136,7 +136,7 @@
 								<label class="col-xs-1 control-label">Option</label>
 								<?php if(isset($qustionupdate[0]->qus_option)){ $option=explode(",",$qustionupdate[0]->qus_option); $count=1; foreach($option as $option){ $option1=explode("-",$option); if($count <=1){ ?>
 								<div>
-									<div class="col-xs-6">
+									<div class="col-xs-6 ">
 										<input type="text" required  class="form-control" name="option[]" placeholder="Option" value="<?php echo (isset($option1[1]) ? $option1[1] : '');?>"/>
 									</div>
 									
@@ -145,19 +145,19 @@
 									</div>
 								</div>
 								<?php }else{ ?>
-								<div>
-									<div class="col-xs-6">
+								<div  id="remove<?=$count-1?>">
+									<div class="col-xs-6 col-xs-offset-1">
 										<input type="text" required  class="form-control" name="option[]" placeholder="Option" value="<?php echo (isset($option1[1]) ? $option1[1] : '');?>"/>
 									</div>
 									
 									<div class="col-xs-1">
-										<button type="button" id="rohit" onclick="testing()" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
+										<button type="button"  onclick="testing('remove<?=$count-1?>')" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
 									</div>
 								</div>
 								<?php } $count++; }}else{?>
 								
 								
-								<div>
+								<div > 
 									<div class="col-xs-6">
 										<input type="text" required  class="form-control" name="option[]" placeholder="Option" value=""/>
 									</div>
@@ -175,7 +175,7 @@
 								</div>
 								
 								<div class="col-xs-1">
-									<button type="button" id="rohit" onclick="testing()" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
+									<button type="button" name="remove" onclick="testing(this.id)" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
 								</div>
 							</div>
 						</div>
@@ -332,48 +332,10 @@
 
 	<script>
 	
-	function addRow()
-    { 
-    			var table=document.getElementById();
-    			var rowCount=table.rows.length;
-    			var row=table.insertRow(rowCount);
-    			var	last_row = rowCount+1;
-    			var colCount=table.rows[0].cells.length;
-    			
-    	for(var i=0;i<colCount;i++)
-    {
-    				var newcell= row.insertCell(i);
-    				newcell.innerHTML=table.rows[0].cells[i].innerHTML;
-    		
-    	switch(newcell.childNodes[0].type)
-    	{
-    		
-    		case"text":
-    				 newcell.childNodes[0].value="";
-    				 var get_data = newcell.childNodes[0].id.split('_');	
-    				 var textbox_name =  get_data[0];
-    				 var textbox_id = get_data[1];
-    		case"text":
-    				newcell.childNodes[0].id=textbox_name+"_"+(last_row);
-    				break;
-    		
-    		default:
-    			//var h=newcell.childNodes[0].id;
-    				var get_data = newcell.childNodes[0].id.split('_');	
-    				var span_name =  get_data[0];
-    				var span_id = get_data[1];
-    				newcell.childNodes[0].id=span_name+"_"+(last_row);
-    			break;
-    	}
-    	}
-    	
-    }
 	
-											
-	
-
+ bookIndex=<?=$count?>;
 $(document).ready(function() {
-	 bookIndex=1;
+	
    $(".addButton").click(function() {
 			
             var $template = $('#taskTemplate'),
@@ -384,21 +346,16 @@ $(document).ready(function() {
 								.insertBefore($template);
 
             $clone
-                .find('[name="title"]').attr('name', 'book[' + bookIndex + '].title').end()
-                .find('[name="isbn"]').attr('name', 'book[' + bookIndex + '].isbn').end()
-                .find('[name="price"]').attr('name', 'book[' + bookIndex + '].price').end();
-				 $clone.attr('id', 'rohit'+bookIndex).end();
+                
+                .find('[name="remove"]').attr('id', 'remove' + bookIndex + '').end();
+				 $clone.attr('id', 'remove'+bookIndex).end();
                 
             bookIndex++;
         });
-		
-
- });
-function testing(){
+	});
+function testing(m){
 			
-			 var row=document.getElementById('rohit1').remove();
-				
-         
+			 var row=document.getElementById(m).remove();
 		}
 
 	

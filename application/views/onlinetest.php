@@ -50,7 +50,7 @@ function startTime()
 		if(m==0 && h==0 && s==0){
 			
 		clearTimeout(t);
-		<?php //$this->session->unset_userdata('studentinfo');?>
+		<?php  if($h==00 && $m==00 && $s==01){ $this->session->unset_userdata('studentinfo');}?>
 		window.location = "<?=base_url();?>onlineexam/preview";
 		}
 		<?php } ?>

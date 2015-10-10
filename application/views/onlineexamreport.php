@@ -13,21 +13,23 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						
-						<form class="navbar-form navbar-left" role="search">
+						<form action="<?=base_url();?>onlineexam/onlineexamreport/<?=$examid?>?search=studentreport" method="post" class="navbar-form navbar-left" role="search">
+						<input type="hidden" name="action" value="studentreport"/>
+						<input type="hidden" name="examid" value="<?=$examid?>"/>
 						<div class="form-group">
-							<input type="text" class="form-control col-xs-3" placeholder="Marks From">
+							<input type="text" class="form-control col-xs-3" name="marksfrom" placeholder="Marks From">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control col-xs-3" placeholder="Marks To">
+							<input type="text" class="form-control col-xs-3" name="marksto" placeholder="Marks To">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Student Name">
+							<input type="text" class="form-control" name="studentname" placeholder="Student Name">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Student Roll No">
+							<input type="text" class="form-control" name="rollno" placeholder="Student Roll No">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Result Type">
+							<input type="text" class="form-control" name="resulttype" placeholder="Result Type">
 						</div>
 						<button type="submit" class="btn btn-white">Search</button>
 					</form>
@@ -126,23 +128,12 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Level <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="javascript:;">Tough</a>
-								</li>
-								<li>
-									<a href="#">Medium</a>
-								</li>
-								<li>
-									<a href="#">Eaisy</a>
-								</li>
-								<li class="divider"></li>
-								
-							</ul>
-						</li>
-						<form class="navbar-form navbar-left" action="" role="search">
+						
+						<form class="navbar-form navbar-left" action="<?=base_url();?>onlineexam/onlineexamreport?search=examreport" method="post" role="search">
+						<input type="hidden" name="action" value="examreport"/>
+						<div class="form-group">
+							<input type="text" class="form-control" name="level" placeholder="Level">
+						</div>
 						<div class="form-group">
 							<input type="text" class="form-control" name="class" placeholder="Class">
 						</div>
