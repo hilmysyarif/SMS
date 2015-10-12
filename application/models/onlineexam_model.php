@@ -91,6 +91,20 @@ class Onlineexam_model extends CI_Model
 						return $res->Result();
 	}
 	
+	function searchstudent($filter=false,$marksfrom=false,$marksto=false){
+					
+						$this->db->select('online_exam_st_id,StudentName,AdmissionNo,online_student_status,total_marks,no_of_qus_attemp,online_qust_ans_id,correct_ans,wrong_ans,time_duration,date_of_ex_taken'); 
+						$this->db->from('online_exam_student,admission, registration'); 
+						$this->db->where("`online_exam_student`.`online_student_id`=`admission`.`AdmissionId`" );
+						$this->db->where("`admission`.`RegistrationId`=`registration`.`RegistrationId`" );
+						$this->db->where($filter);
+						if($marksfrom){
+						$this->db->where('total_marks >=',$marksfrom);}if($marksto){ 
+						$this->db->where('total_marks <=',$marksto); }
+						$res = $this->db->get();
+						return $res->Result();
+	}
+	
 	function get_student_report($filter=false)
 	{
 			$qry = $this->db->query("select online_exam_st_id,StudentName,AdmissionNo,online_student_status,total_marks,no_of_qus_attemp,online_qust_ans_id,correct_ans,wrong_ans,time_duration,date_of_ex_taken from online_exam_student,admission, registration where

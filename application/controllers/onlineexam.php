@@ -282,11 +282,36 @@ class Onlineexam extends CI_Controller {
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Online Exam Report', base_url().'onlineexam/onlineexamreport');
 		
-			if(isset($_GET['search'])?$_GET['search']=="examreport":''=="examreport"){
+			if(isset($_GET['search'])?$_GET['search']=="studentreport":''=="studentreport"){
+							$filtersrch=array();
+						
+							if(!empty($this->input->post('resulttype'))){
+								$filtersrch['online_student_status']=$this->input->post('resulttype');	
+							}
+							if(!empty($this->input->post('examid'))){
+								$filtersrch['online_exam_id']=$this->input->post('examid');
+							}
+							if(!empty($this->input->post('studentname'))){
+								$filtersrch['StudentName']=$this->input->post('studentname');
+							}
+							if(!empty($this->input->post('rollno'))){
+								$filtersrch['AdmissionNo']=$this->input->post('rollno');
+							}
+							
+							$this->data['onlineexamstudent']=$onlineexamstudent = $this->onlineexam_model->searchstudent($filtersrch,$this->input->post('marksfrom'),$this->input->post('marksto'));
+			
+							if($this->data['onlineexamstudent'] !=''){
+							$filter1=array('online_exam_id'=>$id);
+							$this->data['examname'] = $this->onlineexam_model->select_for_update('online_exam_details',$filter1);
+							}
+							$this->data['examid']=$id;
+							
+							
+			}elseif(isset($_GET['search'])?$_GET['search']=="examreport":''=="examreport"){
 				
 							$filtersrch=array();
 							if(!empty($this->input->post('class'))){ $filtersrch['online_section_id']=$this->input->post('class');}
-							if(!empty($this->input->post('subject'))){ $filtersrch['online_subject_id']=$this->input->post('subject');}
+							if(!empty($this->input->post('subjectid1'))){ $filtersrch['online_subject_id']=$this->input->post('subjectid1');}
 							if(!empty($this->input->post('examname'))){ $filtersrch['exam_name']=$this->input->post('examname');}
 							if(!empty($this->input->post('time'))){ $filtersrch['online_exam_date']=strtotime($this->input->post('time'));}
 							if(!empty($this->input->post('level'))){ $filtersrch['online_exam_level']=$this->input->post('level');}
@@ -308,6 +333,7 @@ class Onlineexam extends CI_Controller {
 			$this->data['onlineexamreport'] = $this->onlineexam_model->get_exam_report();
 		}
 		}
+		$this->data['class_info']=$this->onlineexam_model->get_class($this->currentsession[0]->CurrentSession);
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);

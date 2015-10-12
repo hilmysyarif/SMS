@@ -278,7 +278,7 @@
 													<i class="fa-rotate-right"></i>
 												</a>
 												
-												<a <a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>Onlineexam/delete/qustion_ans_bank/qust_id/<?=$qustionlist->qust_id?>"  >
+												<a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>Onlineexam/delete/qustion_ans_bank/qust_id/<?=$qustionlist->qust_id?>"  >
 													&times;
 												</a>
 											</div>

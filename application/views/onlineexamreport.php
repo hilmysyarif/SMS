@@ -132,19 +132,87 @@
 						<form class="navbar-form navbar-left" action="<?=base_url();?>onlineexam/onlineexamreport?search=examreport" method="post" role="search">
 						<input type="hidden" name="action" value="examreport"/>
 						<div class="form-group">
-							<input type="text" class="form-control" name="level" placeholder="Level">
-						</div>
+								
+									<script type="text/javascript">
+										jQuery(document).ready(function($)
+										{
+											$("#s2example-5").select2({
+											placeholder: 'Select Level',
+											allowClear: true
+											}).on('select2-open', function()
+											{
+											// Adding Custom Scrollbar
+											$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+											});
+										});
+									</script>
+										<div >
+											<select class="form-control "  id="s2example-5" name="level">
+												
+												<option></option>
+																			<?php $filter=array('MasterEntryName' => 'Level'); $user= $this->utilities->get_usertype($filter); ?>
+																	<?php foreach($user as $usertype){ ?>
+																	<option value="<?=$usertype->MasterEntryValue?>" <?php if(empty($ol_exam_id)==''){ echo (!empty($updateonlineexam[0]->online_exam_level==$usertype->MasterEntryValue) ? "selected" : ''); } ?>><?=$usertype->MasterEntryValue?></option>
+																			<?php } ?>
+																		
+											</select>
+										</div>	
+							</div>
 						<div class="form-group">
-							<input type="text" class="form-control" name="class" placeholder="Class">
-						</div>
+								
+									<script type="text/javascript">
+										jQuery(document).ready(function($)
+										{
+											$("#s2example-2").select2({
+											placeholder: 'Select Class ...',
+											allowClear: true
+											}).on('select2-open', function()
+											{
+											// Adding Custom Scrollbar
+											$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+											});
+																	
+										});
+									</script>
+										<div >
+											<select class="form-control "  id="s2example-2" name="class" onchange="show_student_exam(this.value,0),show_subject(this.value,0)">
+												<option></option>
+													<?php foreach($class_info as $cls){ ?>
+																	<option  value="<?=$cls->SectionId?>" <?php if(isset($ol_exam_id)){ echo (!empty($cls->SectionId==$updateonlineexam[0]->online_section_id) ? "selected" : ''); } ?> ><?=$cls->ClassName?> <?=$cls->SectionName?></option>
+																			<?php  } ?>
+											</select>
+										</div>	
+							</div>
 						<div class="form-group">
-							<input type="text" class="form-control" name="subject" placeholder="Subject">
-						</div>
+								
+									<script type="text/javascript">
+										jQuery(document).ready(function($)
+										{
+										$("#s2example-4").select2({
+										placeholder: 'Select Subject',
+										allowClear: true
+										}).on('select2-open', function()
+										{
+										// Adding Custom Scrollbar
+										$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+										});
+																	
+										});
+									</script>
+										<div   id="show_subject">
+											<select class="form-control "  id="s2example-4" name="subjectid1">
+												<option></option>
+												<option>Please Select Class First</option>
+												<option  <?php if(isset($subject)){ ?> value="<?=$subject[0]->SubjectId?>"  selected <?php  }?> ><?php if(isset($subject)){ echo $subject[0]->SubjectName;}?> </option>
+																
+											</select>
+										</div>	
+							</div>
 						<div class="form-group">
 							<input type="text" class="form-control" name="examname" placeholder="Exam Name">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" name="time" placeholder="Month/Year">
+							<input type="text" class="form-control datepicker" name="time" placeholder="Month/Year">
 						</div>
 						<button type="submit" class="btn btn-white">Search</button>
 					</form>
