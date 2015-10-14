@@ -25,7 +25,20 @@ class Common_functions extends CI_Controller {
 		$current_val = $this->input->post('current_value');
 		$currentsession=$this->currentsession[0]->CurrentSession;
 		$student_list = $this->utilities->get_student($sec_id,$currentsession);
-		echo "<select name='student' id='s2example-2' class='form-control' data-rule-required='true'  >
+		echo "<script type='text/javascript'>";
+		echo"								jQuery(document).ready(function($)
+										{
+											$('#s2example-12').select2({
+											placeholder: 'Select ...',
+											allowClear: true
+											}).on('select2-open', function()
+											{
+											
+											$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+											});
+										});";
+		echo"</script>";
+		echo "<select name='student' id='s2example-12' class='form-control' data-rule-required='true'  >
 				<option value='' >Select</option> ";
 		foreach($student_list as $ct)	
 		{ 
@@ -33,6 +46,38 @@ class Common_functions extends CI_Controller {
 				echo "<option value='".$ct->AdmissionId."' selected >".$ct->StudentName." ".$ct->FatherName." ".$ct->Mobile."</option>";
 			else
 				echo "<option value='".$ct->AdmissionId."'  >".$ct->StudentName." ".$ct->FatherName." ".$ct->Mobile."</option>";
+		}
+		echo "</select>";	
+	}
+	
+	public function show_subjectexam()
+	{
+		$sec_id = $this->input->post('sec_id');
+		$current_val = $this->input->post('current_value');
+		$currentsession=$this->currentsession[0]->CurrentSession;
+		$subjectlist = $this->utilities->show_subject($sec_id,$currentsession);
+		
+		echo "<script type='text/javascript'>";
+		echo"								jQuery(document).ready(function($)
+										{
+											$('#s2example-11').select2({
+											placeholder: 'Select ...',
+											allowClear: true
+											}).on('select2-open', function()
+											{
+											
+											$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+											});
+										});";
+		echo"</script>";
+		echo "<select  name='subjectid1' id='s2example-11' class='form-control' data-rule-required='true'  >
+				<option value='' >Select</option> ";
+		foreach($subjectlist as $subjectlist)	
+		{ 
+			if($current_val==$subjectlist->chap_id)
+				echo "<option value='".$subjectlist->SubjectId."' selected >".$subjectlist->SubjectName." </option>";
+			else
+				echo "<option value='".$subjectlist->SubjectId."'  >".$subjectlist->SubjectName."</option>";
 		}
 		echo "</select>";	
 	}

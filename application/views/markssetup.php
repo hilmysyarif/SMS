@@ -355,7 +355,7 @@
 															<td><?=$markssetup->Marks_Obtain?></td>
 															<td><?=$markssetup->Grade?></td>
 															<td><?=$markssetup->MasterEntryValue?></td>
-															<td><?=$markssetup->DateOfExam?></td>
+															<td><?php if(isset($markssetup->DateOfExam)){echo date("d-m-Y",$markssetup->DateOfExam);}?></td>
 															<td><?=$markssetup->Remarks?></td>
 															<td><?=$markssetup->Evaluated_By?></td>
 															<td><?=$markssetup->DOC?></td>

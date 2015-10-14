@@ -230,7 +230,7 @@ function CGPA($Grade)
 			$Marks_Obtain=$this->input->post('obtainmarks');
 			$Grade=$this->input->post('grade');
 			$Result=$this->input->post('result');
-			$DateOfExam=$this->input->post('doe');
+			$DateOfExam=strtotime($this->input->post('doe'));
 			$Remarks=$this->input->post('remarks');
 			$Evaluated_By=$this->input->post('evaluatedby');
 			$Exam_Detail_Status='Active';
@@ -302,7 +302,10 @@ function CGPA($Grade)
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Exam Report', base_url().'exam/examreport');
+		
 		$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
+		$this->data['exam'] = $this->exam_model->get_exam($this->currentsession[0]->CurrentSession);
+		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -311,22 +314,7 @@ function CGPA($Grade)
 	}
 	/*school management Exam Report Load..............................................................................................................*/
 	
-/*school management Get ExamReport ...............................................................................................*/
-	function get_examreport()
-	{	
-		if(Authority::checkAuthority('ExamReport')==true){
-			
-		}else{
-					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-					redirect('dashboard');
-		}
-		if($this->input->post('student')  !=''){
-			redirect('exam/print_examreport/'.$this->input->post('student'));
-		}else{
-			redirect('exam/examreport');
-	}}
-/*school management get Exam Report.........................................................................................................*/
-	
+
 /*school management Print ExamReport ...............................................................................................*/
 	function print_examreport($admissionid=false)
 	{	
@@ -336,30 +324,42 @@ function CGPA($Grade)
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
-		if($admissionid)
-		{
-			$this->data['student_details']=$student_details= $this->exam_model->get_report_student_details($this->currentsession[0]->CurrentSession,$admissionid);
-		
-			$count10=count($student_details);
-			if($count10!=1){
+		if(!empty($this->input->post('examtype')))
+		{	
+							$filter=array('examdetails.Exam_Type'=>$this->input->post('examtype'));
+							if(!empty($this->input->post('sectionid'))){
+								$filter['Section_Id']=$this->input->post('sectionid');	
+							}
+							if(!empty($this->input->post('student'))){
+								$filter['Student_Id']=$this->input->post('student');
+							}
+							if(!empty($this->input->post('subjectid1'))){
+								$filter['Subject_Id']=$this->input->post('subjectid1');
+							}
+							
+			$examreportprint= $this->exam_model->get_report_student_details($filter,$this->currentsession[0]->CurrentSession);
+			$this->data['schoolinfo']=$this->exam_model->get_report_school_details();
+			if(!empty($this->input->post('student')) && empty($this->input->post('subjectid1'))){
+								$this->data['examreportprintmarksheet']=$examreportprint;
+							}else{
+								$this->data['examreportprint']=$examreportprint;
+							}
+			$count10=count($examreportprint);
+			if($count10==0){
 				$this->session->set_flashdata('message_type', 'error');
-				$this->session->set_flashdata('message', $this->config->item("examreport").' This is not a valid student!!');
+				$this->session->set_flashdata('message', $this->config->item("examreport").' No Report Is Found Regarding These Parameters!!');
 				redirect('exam/examreport');
 			}else
 			{
 				
-			$this->data['exam_details']=$row0= $this->exam_model->get_report_exam_details($this->currentsession[0]->CurrentSession,$admissionid);
-			$SectionId=$row0[0]->SectionId;
-			$examid=$row0[0]->ExamId;
 			
-			$this->data['subject_details']=$subject= $this->exam_model->get_report_sub_details($this->currentsession[0]->CurrentSession,$SectionId);
-			$subject_id='';
-			if($subject){
-			$subject_id=$subject[0]->SubjectId;}
-			$this->data['marks_details']= $this->exam_model->get_report_marks_details($examid,$subject_id);
 			$this->load->view('printexamreport',$this->data);
 
 			}
+		}else{
+			$this->session->set_flashdata('message_type', 'error');
+				$this->session->set_flashdata('message', $this->config->item("examreport").' Please Select Exam Type!!');
+			redirect('exam/examreport');
 		}
 	}
 /*school management Print Exam Report.........................................................................................................*/

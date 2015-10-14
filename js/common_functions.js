@@ -66,6 +66,23 @@ function show_subject(sec_id,current_value)
 		return false;
 }
 
+function show_subject1(sec_id,current_value)
+{
+	$.ajax({
+				type: "POST",
+				url : base_url+'common_functions/show_subjectexam',
+				data: {sec_id: sec_id , current_value: current_value },
+			})	
+				.done(function(msg){
+					
+					$('#show_subject').html(msg);					
+					
+					return false;	
+				});
+		
+		return false;
+}
+
 function show_fee(sec_id,current_value)
 {
 	$.ajax({

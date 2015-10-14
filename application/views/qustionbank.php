@@ -274,12 +274,12 @@
 													<span class="expand-icon">+</span>
 												</a>
 												
-												<a href="<?=base_url();?>Onlineexam/qustionbank/<?=$qustionlist->qust_id?>" >
+												<a href="<?=base_url();?>onlineexam/qustionbank/<?=$qustionlist->qust_id?>" >
 													<i class="fa-rotate-right"></i>
 												</a>
 												
-												<a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>Onlineexam/delete/qustion_ans_bank/qust_id/<?=$qustionlist->qust_id?>"  >
-													&times;
+												<a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>onlineexam/delete/qustion_ans_bank/qust_id/<?=$qustionlist->qust_id?>"  >
+													<span class="collapse-icon">&times;</span>
 												</a>
 											</div>
 										</div>
@@ -333,7 +333,7 @@
 	<script>
 	
 	
- bookIndex=<?=$count?>;
+ bookIndex=<?=isset($count)?$count:1?>;
 $(document).ready(function() {
 	
    $(".addButton").click(function() {

@@ -102,15 +102,27 @@ class Exam_model extends CI_Model
 			return $qry->Result();	
 	}
 	
-	function get_report_student_details($CURRENTSESSION=false,$AdmissionId=false)
+	function get_report_student_details($filter=false,$session=false)
 	{
-			$qry = $this->db->query("select registration.RegistrationId,StudentName,FatherName,MotherName,Mobile,ClassName,SectionName,DOB from registration,admission,studentfee,class,section where
-	registration.RegistrationId=admission.RegistrationId and
-	admission.AdmissionId=studentfee.AdmissionId and
-	studentfee.Session='$CURRENTSESSION' and
-	admission.AdmissionId='$AdmissionId' and
-	studentfee.SectionId=section.SectionId and 
-	section.ClassId=class.ClassId");	
+			
+			$this->db->select('Exam_Type,Student_Id,ClassName,SectionName,StudentName,FatherName,MotherName,DOB,AdmissionNo,SubjectName,examdetails.Session,Marks_Obtain,Max_Marks,Result,Grade,examdetails.Remarks,MasterEntryValue,DateOfExam,Evaluated_By'); 
+						$this->db->from('examdetails,class,section,admission, registration,subject,masterentry'); 
+						$this->db->where($filter);
+						$this->db->where("`examdetails`.`Section_Id`=`section`.`SectionId`" );
+						$this->db->where("`section`.`ClassId`=`class`.`ClassId`" );
+						$this->db->where("`examdetails`.`Student_Id`=`admission`.`AdmissionId`" );
+						$this->db->where("`admission`.`RegistrationId`=`registration`.`RegistrationId`" );
+						$this->db->where("`examdetails`.`Result`=`masterentry`.`MasterEntryId`" );
+						$this->db->where('examdetails.Session',$session );
+						$this->db->where("`examdetails`.`Subject_Id`=`subject`.`SubjectId`" );
+						
+						$res = $this->db->get();
+						return $res->Result();
+	}
+	
+	function get_report_school_details()
+	{
+			$qry = $this->db->query("select SchoolName,SchoolAddress,District,State,RegistrationNo,AffiliationNo from generalsetting  ");	
 			return $qry->Result();	
 	}
 	
