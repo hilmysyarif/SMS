@@ -91,6 +91,14 @@
 																		
 																</div>
 																
+																<div class="form-group">
+																		<label class="col-sm-4 control-label" for="field-1">Account Name</label>
+																		
+																		<div class="col-sm-8">
+																			<input type="text" required class="form-control" id="field-1" placeholder="Account Name" name="accountname" value="<?php echo (isset($acc_update[0]->AccountName) ? $acc_update[0]->AccountName : '');?>">
+																		</div>
+																	</div>
+																	
 																	<div class="form-group">
 																		<label class="col-sm-4 control-label" for="field-1">Opening Balance</label>
 																		
@@ -103,7 +111,7 @@
 																		<label class="col-sm-4 control-label" for="field-1">Account Start Date</label>
 																		
 																		<div class="col-sm-8">
-																			<input type="text" class="form-control datepicker" data-show="true" data-format="dd MM yyyy" required id="field-1" placeholder="Account Date" name="acc_start_date" value="<?php echo (isset($acc_update[0]->AccountDate) ? $acc_update[0]->AccountDate : '');?>">
+																			<input type="text" class="form-control datepicker" data-show="true" data-format="dd MM yyyy" required id="field-1" placeholder="Account Date" name="acc_start_date" value="<?php echo (isset($acc_update[0]->AccountDate) ? date("d-m-Y",$acc_update[0]->AccountDate) : '');?>">
 																		</div>
 																	</div>
 																	

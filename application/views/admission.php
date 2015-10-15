@@ -122,12 +122,13 @@
 											<?php if(empty($id)==''){ ?>
 														<input type="hidden" name="id" value="<?=$id?>">
 											<?php } ?>
+											<input type="hidden" name="section" value="<?=$section?>">
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Date Of Admission</label>
 												
 												<div class="col-sm-8">
 													<div class="input-group">
-														<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy" name="DOA" value="">
+														<input readonly type="text" class="form-control datepicker" data-format="D, dd MM yyyy" name="DOA" value="">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
@@ -152,9 +153,9 @@
 																	<label class="control-label col-sm-4 "><?=$fee_info->MasterEntryValue?></label>
 																	<span>Actual Fee: <?=$fee_info->Amount?> INR</span>
 																			<div class="col-sm-8">
-																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="<?=$fee_info->MasterEntryValue?>" value="<?=$fee_info->Amount?>">
+																			<input type="text" class="form-control" id="field-1" placeholder="Placeholder" name="amount[]" value="<?=$fee_info->Amount?>">
 																		</div>
-
+																	<input type="hidden"  name="feeid[]" value="<?=$fee_info->FeeId?>">
 																		
 																</div>
 																<?php } ?>

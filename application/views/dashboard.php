@@ -49,7 +49,7 @@
 							</script>
 			
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-7">
 				
 					<div class="panel panel-color panel-gray">
 						<div class="panel-heading">
@@ -67,28 +67,19 @@
 								jQuery(document).ready(function($)
 								{
 									var dataSource = [
-										{ year: 1950, europe: 546,  africa: 227 },
-										{ year: 1960, europe: 705,  africa: 283 },
-										{ year: 1970, europe: 856, africa: 361 },
-										{ year: 1980, europe: 1294,  africa: 471 },
-										{ year: 1990, europe: 321,  africa: 623 },
-										{ year: 2000, europe: 730,  africa: 1297 },
-										{ year: 2010, europe: 728,  africa: 982 },
-										{ year: 2020, europe: 721,  africa: 1189 },
-										{ year: 2030, europe: 704,  africa: 1416 },
-										{ year: 2040, europe: 680,  africa: 1665 },
-										{ year: 2050, europe: 650,  africa: 1937 }
+										<?php echo $testing;?>
+										
 									];
 									
 									$("#bar-3").dxChart({
 										dataSource: dataSource,
 										commonSeriesSettings: {
-											argumentField: "year"
+											argumentField: "Day"
 										},
 										series: [
-											{ valueField: "europe", name: "Income", color: "rgb(136, 187, 200)" },
+											{ valueField: "Income", name: "Income", color: "rgb(136, 187, 200)" },
 											
-											{ valueField: "africa", name: "Expense", color: "rgb(237,122,83)" }
+											{ valueField: "Expense", name: "Expense", color: "rgb(237,122,83)" }
 										],
 										argumentAxis:{
 											grid:{
@@ -103,6 +94,7 @@
 											verticalAlignment: "bottom",
 											horizontalAlignment: "center"
 										},
+										
 										commonPaneSettings: {
 											border:{
 												visible: true,
@@ -117,7 +109,7 @@
 					</div>
 						
 				</div>
-				  <div class="col-md-6">
+				  <div class="col-md-5">
 									<script type="text/javascript">
 								// Calendar Initialization
 								jQuery(document).ready(function($)
@@ -174,64 +166,11 @@
 											prev: 'prev fa-angle-left',
 											next: 'next fa-angle-right',
 										},
-										defaultDate: '2014-09-12',
+										defaultDate: new Date(),
 										editable: true,
 										eventLimit: true,
 										events: [
-											{
-												title: 'All Day Event',
-												start: '2014-09-01'
-											},
-											{
-												title: 'Long Event',
-												start: '2014-09-07',
-												end: '2014-09-10'
-											},
-											{
-												id: 999,
-												title: 'Repeating Event',
-												start: '2014-09-09T16:00:00'
-											},
-											{
-												id: 999,
-												title: 'Repeating Event',
-												start: '2014-09-16T16:00:00'
-											},
-											{
-												title: 'Conference',
-												start: '2014-09-11',
-												end: '2014-09-13'
-											},
-											{
-												title: 'Meeting',
-												start: '2014-09-12T10:30:00',
-												end: '2014-09-12T12:30:00'
-											},
-											{
-												title: 'Lunch',
-												start: '2014-09-12T12:00:00'
-											},
-											{
-												title: 'Meeting',
-												start: '2014-09-12T14:30:00'
-											},
-											{
-												title: 'Happy Hour',
-												start: '2014-09-12T17:30:00'
-											},
-											{
-												title: 'Dinner',
-												start: '2014-09-12T20:00:00'
-											},
-											{
-												title: 'Birthday Party',
-												start: '2014-09-13T07:00:00'
-											},
-											{
-												title: 'Click for Google',
-												url: 'http://google.com/',
-												start: '2014-09-28'
-											}
+										<?php echo $EVENTS;?>
 										],
 										droppable: true,
 										drop: function(date) {
@@ -251,7 +190,6 @@
 									});
 									
 									
-									// Draggable Events
 									$("#events-list li").draggable({
 										revert: true,
 										revertDuration: 50,
@@ -274,7 +212,7 @@
 											<div class="calendar-env">
 												<div class="calendar-main">
 															
-															<div id="calendar"></div>
+															<div id="calendar" ></div>
 															
 														</div>
 													</div>
@@ -301,46 +239,70 @@
 								jQuery(document).ready(function($)
 								{
 									var dataSource = [
-										{region: "Asia", val: 4119626293},
-										{region: "Africa", val: 1012956064},
-										{region: "Northern America", val: 344124520},
-										{region: "Latin America and the Caribbean", val: 590946440},
-										{region: "Europe", val: 727082222},
-										{region: "Oceania", val: 35104756}
+										<?php echo $AdmissionData; ?>
 									], timer;
 									
 									$("#bar-10").dxPieChart({
 										dataSource: dataSource,
 										
 										tooltip: {
-											enabled: false,
-										  	format:"millions",
+											enabled: true,
+										  	
+											tooltipOpts: {
+												content: "%s : %y"+"",
+												shifts: {
+													x: -30,
+													y: -50
+												}
+											},
+											
 											customizeText: function() { 
-												return this.argumentText + "<br/>" + this.valueText;
+												return this.argumentText + "<br/>" +this.valueText+'%';
 											}
 										},
+										
+										
 										size: {
-											height: 420
+											height: 300
 										},
+										
 										pointClick: function(point) {
 											point.showTooltip();
-											clearTimeout(timer);
-											timer = setTimeout(function() { point.hideTooltip(); }, 2000);
+											//clearTimeout(timer);
+											//timer = setTimeout(function() { point.hideTooltip(); }, 2000);
 											$("select option:contains(" + point.argument + ")").prop("selected", true);
 										},
-										legend: {
-											visible: false
+										
+										legend:{visible:false},
+										grid: {
+											hoverable: true,
+											clickable: true
 										},  
 										series: [{
-											type: "doughnut",
-											argumentField: "region"
-										}],
-									//	palette: xenonPalette
+											type: "pie",
+											
+											innerRadius: 0.4,
+											highlight: {
+												opacity: 0.1
+											},
+											argumentField: "label",
+											label: {
+											visible: true,
+											radius: 1,
+											
+											customizeText: function() { 
+												return this.argumentText + "<br/>" +this.valueText+"%";
+											}
+											},
+											grow: {	active: false}
+											}],
+										
 									});
 									
 								});
+								
 							</script>
-							<div id="bar-10" style="height: 450px; width: 100%;"></div>
+							<div id="bar-10" style="height: 300px; width: 100%;"></div>
 						</div>
 					</div>
 						

@@ -534,5 +534,26 @@ class Frontoffice extends CI_Controller {
 	}
 	 /*Front office Insert And Update visitor  End....................................................................................*/
 	
+	/*school management Exam Delete start........................................................................*/	
+	function delete($action=false,$on=false,$id=false)
+	{
+	if(Authority::checkAuthority('Call')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		
+		if($id){
+			$filter=array($on=>$this->data['id']=$id);
+			$this->master_model->delete($action,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("delete").' Deleted Successfully!!');
+		}
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	
+	}
+/*school management Exam Delete End.............................................................................*/
+
 	
 }

@@ -14,7 +14,17 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/SMS/';
+
+if($_SERVER['HTTP_HOST']=="localhost"){
+	$port=$_SERVER['SERVER_PORT'];
+$config['base_url']	= "http://localhost:$port/SMS/";
+}
+if($_SERVER['HTTP_HOST']=="junctiondev.cloudapp.net"){
+$config['base_url']	= 'http://junctiondev.cloudapp.net/sms/';	
+}
+if($_SERVER['HTTP_HOST']=="junctiontech.in"){
+$config['base_url']	= 'http://junctiontech.in/projects/school_management/';	
+}
 
 /*
 |--------------------------------------------------------------------------

@@ -19,6 +19,7 @@
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/xenon-components.css">
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/xenon-skins.css">
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/custom.css">
+	<link rel="stylesheet" href="<?=base_url();?>assets/css/clockface.css">
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/fonts/elusive/css/elusive.css">
 	<link rel="shortcut icon" href="<?=base_url();?>assets/images/junctionerplogo.png">
 	<script src="<?=base_url();?>assets/js/jquery-1.11.1.min.js"></script>

@@ -1312,4 +1312,5 @@ if(Authority::checkAuthority('ManageUser')==true){
 }
 
 /* End of file Master.php */
+>>>>>>> refs/remotes/origin/master
 /* Location: ./application/controllers/Master.php */

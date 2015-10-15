@@ -177,7 +177,7 @@
 														<td><?=date("d M Y,h:ia",$ocall->FollowUpDate)?><span class="label label-secondary"></span></td>
 														<td><a href="<?=base_url();?>frontoffice/followup_other/<?=$ocall->OCallId?>"><i class="fa fa-phone"></a></td>
 														<td><a href="<?=base_url();?>frontoffice/ocall/<?=$ocall->OCallId?>"><i class="fa fa-edit"></a></i></td>
-														<td><a href="<?=base_url();?><?=$ocall->OCallId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="el-cancel-circled"></i></a></td>
+														<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>frontoffice/delete/ocalling/OCallId/<?=$ocall->OCallId?>"  ><i class="fa fa-times"></i></a></td>
 															
 														</tr>
 													<?php } ?>

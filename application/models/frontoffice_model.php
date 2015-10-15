@@ -144,6 +144,14 @@ class Frontoffice_model extends CI_Model
 			$qry = $this->db->query("select MasterEntryId,MasterEntryValue from masterentry where MasterEntryName='GuestVistingPurpose' ");	
 			return $qry->Result();	
 	}
+	
+	  /* function Delete start.........................................................................  */
+   function delete($table=false,$filter=false)
+   {
+		$this->db->delete($table,$filter);
+   }
+   /* function Delete end.........................................................................  */
+   
    
   
    

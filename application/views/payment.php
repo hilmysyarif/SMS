@@ -91,10 +91,16 @@
 																					<select class="form-control " id="s2example-2" name="feetype">
 																						<option></option>
 																					
-												<?php  foreach($get_balance as $get_balance1){ ?>
-												<?php $filter=array('FeeId' => $get_balance1->FeeType); $feety= $this->utilities->get_masterval('fee',$filter); 
-													$filter=array('MasterEntryId' => $feety[0]->FeeType); $fee= $this->utilities->get_usertype($filter);  ?>
-												<option  value="<?=$get_balance1->FeeType?>" ><?=$fee[0]->MasterEntryValue?> fee Balance: <?=$feety[0]->Amount-$get_balance1->Paid?></option>
+												<?php  foreach($fee_type as $feetype1){ $feetype2=explode("-",$feetype1); ?>
+												<?php $filter=array('FeeId' => $feetype2[0]); $feety= $this->utilities->get_masterval('fee',$filter); 
+													$filter=array('MasterEntryId' => $feety[0]->FeeType); $fee= $this->utilities->get_usertype($filter); 
+															$remainbal=$feety[0]->Amount;
+															foreach($get_balance as $bal1){
+																if($feetype2[0]==$bal1->FeeType){
+																	$remainbal=$feety[0]->Amount-$bal1->Paid;
+																}
+															}?>
+												<option  value="<?=$feetype2[0]?>" ><?=$fee[0]->MasterEntryValue?>  Balance: <?=$remainbal?></option>
 													<?php  } ?>
 																													</optgroup>
 																												
@@ -127,14 +133,26 @@
 																	
 																 
 																	<tbody>
-																	<?php $amount=''; $paid=''; $bal='';  foreach($get_balance as $get_balance){?>
+																	<?php $amount=''; $paid=''; $bal='';  foreach($fee_type as $fee_type1){
+																		$fee_type2=explode("-",$fee_type1);?>
 																		<tr>
-													<?php $filter=array('FeeId' => $get_balance->FeeType); $feety= $this->utilities->get_masterval('fee',$filter); 
-													$filter=array('MasterEntryId' => $feety[0]->FeeType); $fee= $this->utilities->get_usertype($filter); $amount=$amount+$feety[0]->Amount; $paid=$paid+$get_balance->Paid; $bal+=$feety[0]->Amount-$get_balance->Paid; ?>
+													<?php $filter=array('FeeId' => $fee_type2[0]); $feety= $this->utilities->get_masterval('fee',$filter); 
+													$filter=array('MasterEntryId' => $feety[0]->FeeType); $fee= $this->utilities->get_usertype($filter); 
+													
+													$remainbal1=$feety[0]->Amount;
+													$paidamount=0;
+															foreach($get_balance as $bal2){
+																if($fee_type2[0]==$bal2->FeeType){
+																	$paidamount=$bal2->Paid;
+																	$remainbal1=$feety[0]->Amount-$bal2->Paid;
+																}
+															}
+													
+													$amount=$amount+$feety[0]->Amount; $paid=$paid+$paidamount; $bal+=$remainbal1; ?>
 																			<td><?=$fee[0]->MasterEntryValue?></td>
 																			<td><?=$feety[0]->Amount?> INR</td>
-																			<td><?=$get_balance->Paid?> INR</td>
-																			<td><?=$feety[0]->Amount-$get_balance->Paid?> INR</td>
+																			<td><?=$paidamount?> INR</td>
+																			<td><?=$remainbal1?> INR</td>
 																		</tr>
 																		<?php  } ?>
 																		<tfoot><tr>

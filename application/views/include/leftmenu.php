@@ -393,4 +393,5 @@
 </div>
 </div>
 <?php }?>
+>>>>>>> refs/remotes/origin/master
 		<!-- User Info, Notifications and Menu Bar -->

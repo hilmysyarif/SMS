@@ -173,7 +173,9 @@
 										{ ?>
 											<td><span class="badge badge-blue pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="In Time: <?=$InTime?> Out Time: <?=$OutTime?>">PL</span></td>
 									<?php		$PL++;
-										}
+										}else{?>
+											<td>-</td>
+										<?php }
 										$Found=1;
 									}
 								}

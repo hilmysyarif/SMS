@@ -181,7 +181,7 @@
 														<td><?=$complaint->Description?></td>
 														<td><?=$complaint->Action?></td>
 														<td><a href="<?=base_url();?>frontoffice/complaint/<?=$complaint->ComplaintId?>"><i class="fa fa-edit"></a></i></td>
-														<td><a href="<?=base_url();?>master/modal/<?=$complaint->ComplaintId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="el-cancel-circled"></i></a></td>
+														<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>frontoffice/delete/complaint/ComplaintId/<?=$complaint->ComplaintId?>"  ><i class="fa fa-times"></i></a></td>
 															
 														</tr>
 													<?php } ?>

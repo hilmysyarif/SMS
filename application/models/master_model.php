@@ -195,4 +195,5 @@ class Master_model extends CI_Model
    
    
    
+>>>>>>> refs/remotes/origin/master
 }
