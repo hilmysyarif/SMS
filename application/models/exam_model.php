@@ -224,5 +224,4 @@ class Exam_model extends CI_Model
    /* function Delete end.........................................................................  */
    
 	
->>>>>>> refs/remotes/origin/master
 }
