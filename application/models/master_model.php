@@ -183,8 +183,15 @@ class Master_model extends CI_Model
 						class.ClassId=section.ClassId and class.ClassStatus='Active' and
 						section.SectionStatus='Active' and class.Session='$CURRENTSESSION' order by ClassName ");	
 			return $qry->Result();	
-		
 	}
+	
+	/* function Delete start.........................................................................  */
+   function delete($table=false,$filter=false)
+   {
+		$this->db->delete($table,$filter);
+   }
+   /* function Delete end.........................................................................  */
+     
    
    
    

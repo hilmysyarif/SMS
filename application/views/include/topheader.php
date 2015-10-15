@@ -140,11 +140,11 @@
 			<ul class="navbar-nav">
 				<li>
 							<a href="javascript:;">
-								<span class="title"><?php  if(!empty($this->currentsession)){ print_r($this->currentsession[0]->CurrentSession);}else{ echo "Please Select Session";} ?></span><span class="caret"></span>
+								<span class="title"><?php  if(!empty($this->currentsession)){ $year=$this->currentsession[0]->SchoolStartDate; $schoolstartyear=date("Y",$year); echo $this->currentsession[0]->CurrentSession; } else{ echo "Please Select Session"; } ?></span><span class="caret"></span>
 							</a> 
 					<ul>
 					<?php 
-					if(!empty($this->currentsession[0]->CurrentSession)){
+					if(!empty($this->currentsession[0]->SchoolStartDate)){
 					$DDMMYYYY=date("d-m-Y");
 					$SCHOOLSTARTDATE=$this->currentsession[0]->SchoolStartDate;
 					$SCHOOLSTARTYEAR=date("Y",$SCHOOLSTARTDATE);

@@ -18,7 +18,7 @@
 								<a href="<?=base_url();?>dashboard"  class="btn btn-icon btn-gray shortcut">
 									<i class="fa fa-lock" style="font-size:2em;"></i>
 								</a>
-								<a href="<?=base_url();?>dashboard" class="btn btn-icon btn-gray shortcut">
+								<a href="<?=base_url();?>master/calendar" class="btn btn-icon btn-gray shortcut">
 									<i class="fa fa-calendar" style="font-size:2em;"></i>
 								</a>
 						</div>		
@@ -189,15 +189,49 @@
 						<ul>
 							<li class="active">
 								<a href="<?=base_url();?>exam/markssetup">
-									<span class="title">Scholastic Grade</span>
+									<span class="title">SetUp Exam</span>
 								</a>
 							</li>
 							<li>
-								<a href="<?=base_url();?>exam/scmarkssetup">
-									<span class="title">Co Scholastic Grade</span>
+								<a href="javascript:;">
+									<i class=""></i>
+										<span class="title">Online Exam SetUp</span>
 								</a>
+									<ul>
+										<li class="active">
+											<a href="<?=base_url();?>onlineexam/onlineexamcreate">
+												<span class="title">Create Online Exam</span>
+											</a>
+										</li>
+										<li class="">
+											<a href="<?=base_url();?>onlineexam/qustionbank">
+												<span class="title">Qustion Bank</span>
+											</a>
+										</li>
+										<li class="">
+											<a href="<?=base_url();?>onlineexam/olineexamlist">
+												<span class="title">Show Exam</span>
+											</a>
+										</li>
+										<li class="">
+											<a href="<?=base_url();?>onlineexam/onlineexamreport">
+												<span class="title">Report</span>
+											</a>
+										</li>	
+										<li class="">
+											<a href="javascript:;">
+												<span class="title">Feed Back</span>
+											</a>
+										</li>
+										<li class="">
+											<a target="blank" href="<?=base_url();?>onlineexam/preview/5/1">
+												<span class="title">Preview</span>
+											</a>
+										</li>
+											
+									</ul>
 							</li>
-							<li class="active opened active">
+							<li class="">
 						<a href="javascript:;">
 							<i class="fa fa-area-chart"></i>
 							<span class="title">Reports</span>
