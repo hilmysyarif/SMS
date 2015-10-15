@@ -57,7 +57,7 @@ class Attendences extends CI_Controller {
 	if($this->input->post('intime') && $this->input->post('date') && $this->input->post('outtime') !=''){
 		
 	$Date= date("Y-m-d");
-	$USERNAME=$this->info[0]->usermailid;	
+	$USERNAME=$this->info['usermailid'];	
 	$Attendance=$_POST['staff'];
 	$Attendance1=$_POST['absent'];
 	$AttendanceDate=$_POST['date'];
@@ -71,26 +71,25 @@ class Attendences extends CI_Controller {
 	$SessionStartinDateTS=strtotime($SessionStartingDate);
 	$SessionEndingDateTS=strtotime($SessionEndingDate);
 	$CountStaff=count($Attendance);
-	if($_POST['Present']!=""){
+	if(!empty($_POST['Present'])){
 	$Att="P";
 	}
-	elseif($_POST['Absent']!=""){
+	elseif(!empty($_POST['Absent'])){
 	$Att="A";}
-	elseif($_POST['HalfDay']!=""){
+	elseif(!empty($_POST['Halfday'])){
 	$Att="H"; }
-	elseif($_POST['Holiday']!=""){
+	elseif(!empty($_POST['Holiday'])){
 	$Att="HD"; }
-	elseif($_POST['OnDuty']!=""){
+	elseif(!empty($_POST['OnDuty'])){
 	$Att="OD"; }
-	elseif($_POST['PaidLeave']!=""){
+	elseif(!empty($_POST['PaidLeave'])){
 	$Att="PL"; }
-	elseif($_POST['Blank']!=""){
-	$Att=""; }
+	
 	$DateTimeStamp=strtotime($Date);
 	
 	if($CountStaff==1 && $Att=="PL")
 	{
-		foreach($box2View as $Staff)
+		foreach($Attendance as $Staff)
 		$StaffId=$Staff;
 		$row2=$this->data['get_staff']=$this->attendence_model->get_staff_pl($StaffId,$DateTimeStamp);
 		$count2=count($row2);
@@ -186,22 +185,28 @@ class Attendences extends CI_Controller {
 			$this->attendence_model->update_attendance($NewAttendance,$AttendanceDate);
 			else
 			$this->attendence_model->delete_attendance($AttendanceDate);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("staffattendence").' Attendance updated successfully!!');
 		}
 		else
-		{
-			foreach($Attendance as $AttendanceValue)
-				if($Att!="")
-				$AttendanceString[]="$AttendanceValue-$Att-$DateTimeStamp-$ITS-$OTS";
-			foreach($Attendance1 as $AttendanceValue2)
-				if($Att!="")
-				$AttendanceString[]="$AttendanceValue2-A-$DateTimeStamp-$ITS-$OTS";
+		{ 
+			foreach($Attendance as $AttendanceValue){
+				if($Att!=""){
+				$AttendanceString[]="$AttendanceValue-$Att-$DateTimeStamp-$ITS-$OTS";}
+				}
+			foreach($Attendance1 as $AttendanceValue2){
+				if($Att=="P"){
+				$AttendanceString[]="$AttendanceValue2-A-$DateTimeStamp-$ITS-$OTS";}
+				if($Att!="P"){
+			$AttendanceString[]="$AttendanceValue2---$DateTimeStamp-$ITS-$OTS";}
+			}
 				$AttendanceString=implode(",",$AttendanceString);
 			if($AttendanceString!="")
 			{
 				$this->attendence_model->insert_attendance($AttendanceDate,$AttendanceString,$DateTimeStamp,$USERNAME);
 			}
 			$this->session->set_flashdata('message_type', 'success');
-		$this->session->set_flashdata('message', $this->config->item("staffattendence").' Attendance updated successfully!!');
+			$this->session->set_flashdata('message', $this->config->item("staffattendence").' Attendance Added Successfully!!');
 		}
 	}
 	redirect('attendences/staffattendence');

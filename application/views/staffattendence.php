@@ -112,11 +112,11 @@
 								       
 								 <input  type="submit" name="Present" value="Present" class="btn btn btn-info btn-single " onclick="selectAll('m-selectable',true)"/>   
 								<!-- <input  type="submit" name="Absent" value="Absent" class="btn btn btn-info btn-single "/> -->
-								  <input  type="submit" name="Halfday" value="Halfday" class="btn btn btn-info btn-single "/>
-								   <input  type="submit" name="Paid Leave" value="Paid Leave" class="btn btn btn-info btn-single "/>
-								    <input  type="submit" name="On Duty" value="On Duty" class="btn btn btn-info btn-single "/>
-								     <input  type="submit" name="Blank" value="Blank" class="btn btn btn-info btn-single "/>
-								      <input  type="submit" name="Holiday" value="Holiday" class="btn btn btn-info btn-single"/>
+								  <input  type="submit" name="Halfday" value="Halfday" class="btn btn btn-info btn-single " onclick="selectAll('m-selectable',true)"/>
+								   <input  type="submit" name="PaidLeave" value="Paid Leave" class="btn btn btn-info btn-single " onclick="selectAll('m-selectable',true)"/>
+								    <input  type="submit" name="OnDuty" value="On Duty" class="btn btn btn-info btn-single " onclick="selectAll('m-selectable',true)"/>
+								   <!--  <input  type="submit" name="Blank" value="Blank" class="btn btn btn-info btn-single "/>-->
+								      <input  type="submit" name="Holiday" value="Holiday" class="btn btn btn-info btn-single" onclick="selectAll('m-selectable',true)"/>
 							</div>	
 						</form>
 						</div>
