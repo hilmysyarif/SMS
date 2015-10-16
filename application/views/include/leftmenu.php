@@ -372,7 +372,7 @@
 				<div class="title-env">
 		
 					<h1 class="title"><strong><?php echo($this->breadcrumb->output());?></strong>
-					<span class="title pull-right"> Current Session : <?=$this->currentsession[0]->CurrentSession?></span> </h1>
+					<span class="title pull-right"> Current Session : <?php if(isset($this->currentsession[0])){ echo $this->currentsession[0]->CurrentSession; }?></span> </h1>
 				</div>
 				
 				
