@@ -37,7 +37,7 @@ class User_management extends CI_Controller {
 		{
 			$this->session->set_flashdata('category_success', 'success message');        
 			$this->session->set_flashdata('message', $this->config->item("user").' Organization Add for Application successfully');
-			redirect('http://localhost/manage_application/login/application_login?id=login');
+			redirect('http://junctionerp.com/manage/login/application_login?id=login');
 		}
 		else
 		{

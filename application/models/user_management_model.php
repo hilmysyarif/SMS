@@ -17,7 +17,22 @@ class User_management_model extends CI_Model{
     function clone_db($database_name=false,$data=false)
     {
     	$this->db->query('CREATE DATABASE '.$database_name);
-    	$connect=mysqli_connect('localhost','root','bitnami',$database_name);
+    	if($_SERVER['HTTP_HOST']=="localhost"){
+    		//$dbname=$database_name;
+    		$password="";
+    		$username="root";
+    	}
+    	if($_SERVER['HTTP_HOST']=="junctiondev.cloudapp.net"){
+    		//$dbname=$database_name;
+    		$password="bitnami";
+    		$username="root";
+    	}
+    	if($_SERVER['HTTP_HOST']=="junctiontech.in"){
+    		//$dbname=$database_name;
+    		$password="junction4$";
+    		$username="junctwhx";
+    	}
+    	$connect=mysqli_connect('localhost',$username,$password,$database_name);
     	$db_file=file_get_contents('school_mgt.sql');
     	mysqli_multi_query($connect, $db_file);
     	do {
