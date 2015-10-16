@@ -17,7 +17,7 @@ class User_management_model extends CI_Model{
     function clone_db($database_name=false,$data=false)
     {
     	$this->db->query('CREATE DATABASE '.$database_name);
-    	$connect=mysqli_connect('localhost','root','',$database_name);
+    	$connect=mysqli_connect('localhost','root','bitnami',$database_name);
     	$db_file=file_get_contents('school_mgt.sql');
     	mysqli_multi_query($connect, $db_file);
     	do {
