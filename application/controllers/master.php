@@ -50,7 +50,7 @@ class Master extends CI_Controller {
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('General Setting', base_url().'master/generalsetting');
-		$this->data['school_info'] = $this->master_model->get_info('generalsetting');
+		$school_info=$this->data['school_info'] = $this->master_model->get_info('generalsetting');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
