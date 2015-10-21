@@ -40,11 +40,11 @@ class Login extends CI_Controller {
 			);
 			$row=$this->login_model->login_check($data);
 			if($row){
-				$data=array(
-						'status'=>'200',
-						'result'=>'success',
-						'userType'=>$row->UserType,
-				);
+				//$data=array(
+					//	'status'=>'200',
+					//	'result'=>'success',
+					//	'userType'=>$row->UserType,
+				//);
 				print_r($data);
 				$user_data = array(
 						'usermailid' => $row->Username,
