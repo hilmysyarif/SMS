@@ -40,6 +40,12 @@ class Login extends CI_Controller {
 			);
 			$row=$this->login_model->login_check($data);
 			if($row){
+				$data=array(
+						'status'=>'200',
+						'result'=>'success',
+						'userType'=>$row->UserType,
+				);
+				print_r($data);
 				$user_data = array(
 						'usermailid' => $row->Username,
 						'user_id' => $row->UserId,
@@ -47,11 +53,16 @@ class Login extends CI_Controller {
 				);
 				$this->session->set_userdata('user_data',$user_data);
 				$user_session_data = $this->session->userdata('user_data');
-				echo "accesGrant";
+				//echo "accesGrant";
 				redirect('dashboard');
 			}
 			else
 			{
+				$data=array(
+						'status'=>'400',
+						'result'=>'Error'
+				);
+				print_r($data);
 				?><script>alert('User id and Password does not match');</script><?php
 				redirect($json_data->url,'refresh');
 			}
