@@ -72,4 +72,11 @@ class User_management_model extends CI_Model{
     	$data=mysqli_fetch_array($query);
     	return $data; 
     }
+    
+    function delete_function($db_name=false)
+    {	
+    	$this->load->database('default',TRUE);
+    	$this->db->query('DROP DATABASE '.$db_name);
+    	return true;
+    }
 }

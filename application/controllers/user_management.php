@@ -37,7 +37,7 @@ class User_management extends CI_Controller {
 		{
 			$this->session->set_flashdata('category_success', 'success message');        
 			$this->session->set_flashdata('message', $this->config->item("user").' Organization Add for Application successfully');
-			redirect('http://junctionerp.com/manage/login/application_login?id=login');
+			redirect('http://localhost/manage_application/login/application_login?id=login');
 		}
 		else
 		{
@@ -68,5 +68,20 @@ class User_management extends CI_Controller {
 		$get_db_size=$this->data['get_db_size']=$this->user_management_model->get_db_size($db_name);
 		//print_r($get_db_size);die;
 		redirect('http://localhost/manage_application/admin_panel/report?size='.$get_db_size['db_size_in_mb']);
+	}
+	
+	function delete_function()
+	{
+		$json_data=$_GET['data'];
+		$var=json_decode($json_data);
+		$database_name=$var->db_name;
+		$this->session->set_userdata('db_name',$database_name);
+		$delete_function=$this->data['delete_function']=$this->user_management_model->delete_function($database_name);
+		$data=array(
+				'status'=>'success',
+				'reg_app_id'=>$var->reg_app_id,
+					);
+		$json=json_encode($data);
+		redirect('http://localhost/manage_application/admin_panel/delete_app_org?json='.$json);
 	}
 }

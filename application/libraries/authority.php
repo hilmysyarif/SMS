@@ -5,7 +5,7 @@ class Authority
 	public static function checkAuthority($function)
 	{
 		$obj =& get_instance();
-		$user_session_data = $obj->session->userdata('user_data');	
+		$user_session_data = $obj->session->userdata('user_data');
 		$role=$user_session_data['UserType'];
 		$list_permision=$obj->data['list_permision']=$obj->authority_model->list_permision($role);
 		if($list_permision !=''){

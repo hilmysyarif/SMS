@@ -149,6 +149,7 @@ class Dashboard extends CI_Controller {
 		// Calendar Event End.................................
 		
 		// Pei chart admission report start...................................
+		error_reporting(1);
 		$check = $this->Dashboard_model->getstudentreport($this->currentsession[0]->CurrentSession);
 		$sumofstudent=0;
 		$AdmissionData=null;

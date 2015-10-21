@@ -42,7 +42,8 @@ class Login extends CI_Controller {
 			if($row){
 				$user_data = array(
 						'usermailid' => $row->Username,
-						'user_id' => $row->UserId
+						'user_id' => $row->UserId,
+						'UserType'=>'masteruser'
 				);
 				$this->session->set_userdata('user_data',$user_data);
 				$user_session_data = $this->session->userdata('user_data');
@@ -51,7 +52,8 @@ class Login extends CI_Controller {
 			}
 			else
 			{
-				redirect($json_data->url);
+				?><script>alert('User id and Password does not match');</script><?php
+				redirect($json_data->url,'refresh');
 			}
 		}
 			//$data=array(
