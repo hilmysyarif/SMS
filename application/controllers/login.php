@@ -65,8 +65,7 @@ class Login extends CI_Controller {
 				{
 					$data=array(
 							'status'=>'400',
-							'result'=>'success',
-							'userType'=>$row->UserType,
+							'result'=>'Error',
 					);
 					print_r($data);die;
 				}
