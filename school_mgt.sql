@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 2.11.6
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Sep 25, 2014 at 02:12 PM
--- Server version: 5.0.51
--- PHP Version: 5.2.6
+-- Host: 127.0.0.1
+-- Generation Time: Oct 26, 2015 at 07:15 AM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,7 +17,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `newschool`
+-- Database: `db_school`
 --
 
 -- --------------------------------------------------------
@@ -25,8 +26,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `accounts`
 --
 
-CREATE TABLE `accounts` (
-  `AccountId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `accounts` (
+`AccountId` int(11) NOT NULL,
   `AccountStatus` varchar(10) NOT NULL,
   `ManagedBy` varchar(100) NOT NULL,
   `AccountName` varchar(100) NOT NULL,
@@ -38,14 +39,8 @@ CREATE TABLE `accounts` (
   `OpeningBalance` decimal(10,2) NOT NULL,
   `AccountBalance` decimal(10,2) NOT NULL,
   `AccountDate` varchar(20) NOT NULL,
-  `DOE` varchar(20) NOT NULL,
-  PRIMARY KEY  (`AccountId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `accounts`
---
-
+  `DOE` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -53,20 +48,14 @@ CREATE TABLE `accounts` (
 -- Table structure for table `admission`
 --
 
-CREATE TABLE `admission` (
-  `AdmissionId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `admission` (
+`AdmissionId` int(11) NOT NULL,
   `AdmissionNo` varchar(100) NOT NULL,
   `RegistrationId` int(11) NOT NULL,
   `Remarks` text NOT NULL,
   `DOA` varchar(10) NOT NULL,
-  `DOE` varchar(10) NOT NULL,
-  PRIMARY KEY  (`AdmissionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `admission`
---
-
+  `DOE` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -74,19 +63,13 @@ CREATE TABLE `admission` (
 -- Table structure for table `backuprestore`
 --
 
-CREATE TABLE `backuprestore` (
-  `BackUpRestoreId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `backuprestore` (
+`BackUpRestoreId` int(11) NOT NULL,
   `BackUpRestoreType` varchar(20) NOT NULL,
   `BackUpRestoreDate` varchar(20) NOT NULL,
   `Username` varchar(100) NOT NULL,
-  `Result` text NOT NULL,
-  PRIMARY KEY  (`BackUpRestoreId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `backuprestore`
---
-
+  `Result` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -94,8 +77,8 @@ CREATE TABLE `backuprestore` (
 -- Table structure for table `book`
 --
 
-CREATE TABLE `book` (
-  `BookId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `book` (
+`BookId` int(11) NOT NULL,
   `BookStatus` varchar(10) NOT NULL,
   `BookName` varchar(100) NOT NULL,
   `AuthorName` varchar(100) NOT NULL,
@@ -106,14 +89,8 @@ CREATE TABLE `book` (
   `DOE` varchar(100) NOT NULL,
   `DOEUsername` varchar(100) NOT NULL,
   `DOL` varchar(10) NOT NULL,
-  `DOLUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`BookId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `book`
---
-
+  `DOLUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -121,8 +98,8 @@ CREATE TABLE `book` (
 -- Table structure for table `bookissue`
 --
 
-CREATE TABLE `bookissue` (
-  `BookIssueId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `bookissue` (
+`BookIssueId` int(11) NOT NULL,
   `IRTo` varchar(10) NOT NULL,
   `IRToDetail` int(11) NOT NULL,
   `Books` text NOT NULL,
@@ -133,14 +110,8 @@ CREATE TABLE `bookissue` (
   `DOE` varchar(10) NOT NULL,
   `DOEUsername` varchar(100) NOT NULL,
   `DOD` varchar(10) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`BookIssueId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `bookissue`
---
-
+  `DODUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -148,8 +119,8 @@ CREATE TABLE `bookissue` (
 -- Table structure for table `calendar`
 --
 
-CREATE TABLE `calendar` (
-  `CalendarId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `calendar` (
+`CalendarId` int(11) NOT NULL,
   `CalendarStatus` varchar(10) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `StartTime` varchar(20) NOT NULL,
@@ -159,14 +130,8 @@ CREATE TABLE `calendar` (
   `Date` varchar(20) NOT NULL,
   `DLU` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`CalendarId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `calendar`
---
-
+  `DODUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -174,8 +139,8 @@ CREATE TABLE `calendar` (
 -- Table structure for table `calling`
 --
 
-CREATE TABLE `calling` (
-  `CallId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `calling` (
+`CallId` int(11) NOT NULL,
   `CallStatus` varchar(10) NOT NULL,
   `Mobile` varchar(10) NOT NULL,
   `Landline` varchar(12) NOT NULL,
@@ -189,23 +154,23 @@ CREATE TABLE `calling` (
   `DOC` varchar(20) NOT NULL,
   `DOE` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
-  `DLU` varchar(20) NOT NULL,
-  PRIMARY KEY  (`CallId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `DLU` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `calling`
+-- Table structure for table `circular`
 --
 
-CREATE TABLE `circular` (
-  `CircularId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `circular` (
+`CircularId` int(11) NOT NULL,
   `Title` varchar(10000) NOT NULL,
   `Circular` text NOT NULL,
   `DateReleased` varchar(10) NOT NULL,
   `CircularStatus` varchar(10) NOT NULL,
-  `Username` varchar(100) NOT NULL,
-  PRIMARY KEY  (`CircularId`)
-);
+  `Username` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -213,20 +178,14 @@ CREATE TABLE `circular` (
 -- Table structure for table `class`
 --
 
-CREATE TABLE `class` (
-  `ClassId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `class` (
+`ClassId` int(11) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `ClassName` varchar(100) NOT NULL,
   `ClassStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
-  `DOL` varchar(10) NOT NULL,
-  PRIMARY KEY  (`ClassId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `class`
---
-
+  `DOL` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -234,8 +193,8 @@ CREATE TABLE `class` (
 -- Table structure for table `complaint`
 --
 
-CREATE TABLE `complaint` (
-  `ComplaintId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `complaint` (
+`ComplaintId` int(11) NOT NULL,
   `ComplaintStatus` varchar(10) NOT NULL,
   `ComplaintType` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
@@ -248,14 +207,8 @@ CREATE TABLE `complaint` (
   `DOL` varchar(10) NOT NULL,
   `DOLUsername` varchar(100) NOT NULL,
   `DOD` varchar(10) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`ComplaintId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `complaint`
---
-
+  `DODUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -263,8 +216,8 @@ CREATE TABLE `complaint` (
 -- Table structure for table `drregister`
 --
 
-CREATE TABLE `drregister` (
-  `Id` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `drregister` (
+`Id` int(11) NOT NULL,
   `DRStatus` varchar(10) NOT NULL,
   `DRType` varchar(100) NOT NULL,
   `Reference` text NOT NULL,
@@ -276,14 +229,8 @@ CREATE TABLE `drregister` (
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL,
   `DOD` varchar(10) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `drregister`
---
-
+  `DODUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -291,8 +238,8 @@ CREATE TABLE `drregister` (
 -- Table structure for table `enquiry`
 --
 
-CREATE TABLE `enquiry` (
-  `EnquiryId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `enquiry` (
+`EnquiryId` int(11) NOT NULL,
   `EnquiryStatus` varchar(10) NOT NULL,
   `EnquiryType` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
@@ -307,14 +254,8 @@ CREATE TABLE `enquiry` (
   `Remarks` text NOT NULL,
   `Reference` int(11) NOT NULL,
   `DLU` varchar(20) NOT NULL,
-  `DOD` varchar(20) NOT NULL,
-  PRIMARY KEY  (`EnquiryId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `enquiry`
---
-
+  `DOD` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -322,22 +263,16 @@ CREATE TABLE `enquiry` (
 -- Table structure for table `exam`
 --
 
-CREATE TABLE `exam` (
-  `ExamId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `exam` (
+`ExamId` int(11) NOT NULL,
   `ExamStatus` varchar(10) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `SectionId` int(11) NOT NULL,
   `ExamName` varchar(100) NOT NULL,
   `Weightage` decimal(10,2) NOT NULL,
   `DOE` varchar(10) NOT NULL,
-  `DOL` varchar(10) NOT NULL,
-  PRIMARY KEY  (`ExamId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `exam`
---
-
+  `DOL` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -345,8 +280,8 @@ CREATE TABLE `exam` (
 -- Table structure for table `examdetail`
 --
 
-CREATE TABLE `examdetail` (
-  `ExamDetailId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `examdetail` (
+`ExamDetailId` int(11) NOT NULL,
   `ExamDetailStatus` varchar(10) NOT NULL,
   `Locked` int(11) NOT NULL,
   `ExamId` int(11) NOT NULL,
@@ -356,14 +291,48 @@ CREATE TABLE `examdetail` (
   `MaximumMarks` decimal(10,0) NOT NULL,
   `Marks` text NOT NULL,
   `DOE` varchar(10) NOT NULL,
-  `DOL` varchar(10) NOT NULL,
-  PRIMARY KEY  (`ExamDetailId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `DOL` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `examdetail`
+-- Table structure for table `examdetails`
 --
 
+CREATE TABLE IF NOT EXISTS `examdetails` (
+`Exam_Detail_Id` int(11) NOT NULL,
+  `Exam_Type` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `Exam_Detail_Status` enum('Active','Inactive','Deleted') CHARACTER SET utf8 NOT NULL,
+  `Section_Id` int(11) NOT NULL,
+  `Student_Id` int(11) NOT NULL,
+  `Session` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `Subject_Id` int(11) NOT NULL,
+  `Marks_Obtain` float NOT NULL,
+  `Max_Marks` float NOT NULL,
+  `Result` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `Grade` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `Remarks` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `DateOfExam` varchar(25) CHARACTER SET utf8 NOT NULL,
+  `DOC` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `DOU` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `Evaluated_By` varchar(20) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `examtype`
+--
+
+CREATE TABLE IF NOT EXISTS `examtype` (
+  `Exam_Type` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `Exam_Status` enum('Active','Inactive','Deleted') CHARACTER SET utf8 NOT NULL,
+  `DOC` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date OF Creation',
+  `DOU` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date Of Modify',
+  `Remarks` text CHARACTER SET utf8 NOT NULL,
+  `Duration` varchar(20) CHARACTER SET utf8 NOT NULL COMMENT 'Time Duration Of Exam'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -371,8 +340,8 @@ CREATE TABLE `examdetail` (
 -- Table structure for table `expense`
 --
 
-CREATE TABLE `expense` (
-  `ExpenseId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `expense` (
+`ExpenseId` int(11) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `ExpenseStatus` varchar(10) NOT NULL,
   `ExpenseAccountType` varchar(20) NOT NULL,
@@ -387,14 +356,8 @@ CREATE TABLE `expense` (
   `DOE` varchar(20) NOT NULL,
   `DLU` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`ExpenseId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `expense`
---
-
+  `DODUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -402,8 +365,8 @@ CREATE TABLE `expense` (
 -- Table structure for table `fee`
 --
 
-CREATE TABLE `fee` (
-  `FeeId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `fee` (
+`FeeId` int(11) NOT NULL,
   `FeeStatus` varchar(10) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `SectionId` int(11) NOT NULL,
@@ -411,14 +374,8 @@ CREATE TABLE `fee` (
   `Amount` int(11) NOT NULL,
   `Distance` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
-  `DOL` varchar(10) NOT NULL,
-  PRIMARY KEY  (`FeeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `fee`
---
-
+  `DOL` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -426,20 +383,14 @@ CREATE TABLE `fee` (
 -- Table structure for table `feepayment`
 --
 
-CREATE TABLE `feepayment` (
-  `FeePaymentId` int(11) NOT NULL auto_increment,
-  `Token` varchar(100) NOT NULL,
+CREATE TABLE IF NOT EXISTS `feepayment` (
+`FeePaymentId` int(11) NOT NULL,
+  `Token` varchar(200) NOT NULL,
   `FeeType` int(11) NOT NULL,
   `Amount` decimal(10,0) NOT NULL,
   `FeePaymentStatus` varchar(10) NOT NULL,
-  `DOE` varchar(10) NOT NULL,
-  PRIMARY KEY  (`FeePaymentId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `feepayment`
---
-
+  `DOE` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -447,8 +398,8 @@ CREATE TABLE `feepayment` (
 -- Table structure for table `followup`
 --
 
-CREATE TABLE `followup` (
-  `FollowUpId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `followup` (
+`FollowUpId` int(11) NOT NULL,
   `FollowUpStatus` varchar(10) NOT NULL,
   `FollowUpType` varchar(10) NOT NULL,
   `FollowUpUniqueId` int(11) NOT NULL,
@@ -456,14 +407,8 @@ CREATE TABLE `followup` (
   `Remarks` text NOT NULL,
   `NextFollowUpDate` varchar(20) NOT NULL,
   `DOF` varchar(20) NOT NULL,
-  `DOD` varchar(20) NOT NULL,
-  PRIMARY KEY  (`FollowUpId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `followup`
---
-
+  `DOD` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -471,8 +416,8 @@ CREATE TABLE `followup` (
 -- Table structure for table `generalsetting`
 --
 
-CREATE TABLE `generalsetting` (
-  `Id` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `generalsetting` (
+`Id` int(11) NOT NULL,
   `CurrentSession` varchar(10) NOT NULL,
   `BackUpPath` varchar(100) NOT NULL,
   `SchoolStartDate` varchar(20) NOT NULL,
@@ -496,14 +441,8 @@ CREATE TABLE `generalsetting` (
   `DOE` varchar(20) NOT NULL,
   `DOEUsername` varchar(100) NOT NULL,
   `DOL` varchar(20) NOT NULL,
-  `DOLUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `generalsetting`
---
-
+  `DOLUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -511,19 +450,32 @@ CREATE TABLE `generalsetting` (
 -- Table structure for table `header`
 --
 
-CREATE TABLE `header` (
-  `HeaderId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `header` (
+`HeaderId` int(11) NOT NULL,
   `HRType` varchar(10) NOT NULL,
   `HeaderTitle` varchar(1000) NOT NULL,
   `HeaderContent` text NOT NULL,
-  `HeaderDefault` varchar(3) NOT NULL,
-  PRIMARY KEY  (`HeaderId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `HeaderDefault` varchar(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `header`
+-- Table structure for table `homework`
 --
 
+CREATE TABLE IF NOT EXISTS `homework` (
+`homeworkid` int(11) NOT NULL,
+  `sectionid` int(11) NOT NULL,
+  `subjectid` int(11) NOT NULL,
+  `homework` text CHARACTER SET utf8 NOT NULL,
+  `createdon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dosubmission` datetime NOT NULL,
+  `studentstatus` text CHARACTER SET utf8 NOT NULL,
+  `createdby` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `updatedon` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(20) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -531,8 +483,8 @@ CREATE TABLE `header` (
 -- Table structure for table `house`
 --
 
-CREATE TABLE `house` (
-  `HouseId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `house` (
+`HouseId` int(11) NOT NULL,
   `HouseName` varchar(100) NOT NULL,
   `HouseStatus` varchar(10) NOT NULL,
   `Session` varchar(10) NOT NULL,
@@ -544,14 +496,8 @@ CREATE TABLE `house` (
   `DOL` varchar(10) NOT NULL,
   `DOLUsername` varchar(100) NOT NULL,
   `DOD` varchar(10) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`HouseId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `house`
---
-
+  `DODUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -559,8 +505,8 @@ CREATE TABLE `house` (
 -- Table structure for table `issue`
 --
 
-CREATE TABLE `issue` (
-  `IssueId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `issue` (
+`IssueId` int(11) NOT NULL,
   `IssueStatus` varchar(10) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `AdmissionId` int(11) NOT NULL,
@@ -573,13 +519,32 @@ CREATE TABLE `issue` (
   `PaidFrom` varchar(20) NOT NULL,
   `Remarks` text NOT NULL,
   `DOI` varchar(20) NOT NULL,
-  `DOE` varchar(20) NOT NULL,
-  PRIMARY KEY  (`IssueId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `DOE` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `issue`
+-- Table structure for table `lang`
 --
+
+CREATE TABLE IF NOT EXISTS `lang` (
+`LanguageId` int(11) NOT NULL,
+  `LanguageName` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lang`
+--
+
+INSERT INTO `lang` (`LanguageId`, `LanguageName`) VALUES
+(1, 'Hindi'),
+(2, 'Dutch'),
+(3, 'German'),
+(4, 'Portuguese'),
+(5, 'Spanish'),
+(6, 'French'),
+(7, 'urdu');
 
 -- --------------------------------------------------------
 
@@ -587,21 +552,15 @@ CREATE TABLE `issue` (
 -- Table structure for table `listbook`
 --
 
-CREATE TABLE `listbook` (
-  `ListBookId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `listbook` (
+`ListBookId` int(11) NOT NULL,
   `Token` varchar(100) NOT NULL,
   `BookId` int(11) NOT NULL,
   `AccessionNo` varchar(100) NOT NULL,
   `IRStatus` varchar(10) NOT NULL,
   `ListBookStatus` varchar(10) NOT NULL,
-  `ListBookCondition` int(11) NOT NULL,
-  PRIMARY KEY  (`ListBookId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `listbook`
---
-
+  `ListBookCondition` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -609,21 +568,15 @@ CREATE TABLE `listbook` (
 -- Table structure for table `listbookconfirm`
 --
 
-CREATE TABLE `listbookconfirm` (
-  `ListBookConfirmId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `listbookconfirm` (
+`ListBookConfirmId` int(11) NOT NULL,
   `Token` varchar(100) NOT NULL,
   `DOA` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOEUsername` varchar(100) NOT NULL,
   `ListBookConfirmStatus` varchar(10) NOT NULL,
-  `Remarks` text NOT NULL,
-  PRIMARY KEY  (`ListBookConfirmId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `listbookconfirm`
---
-
+  `Remarks` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -631,20 +584,14 @@ CREATE TABLE `listbookconfirm` (
 -- Table structure for table `location`
 --
 
-CREATE TABLE `location` (
-  `LocationId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `location` (
+`LocationId` int(11) NOT NULL,
   `LocationName` varchar(100) NOT NULL,
   `CalledAs` varchar(100) NOT NULL,
   `LocationStatus` varchar(10) NOT NULL,
   `DOD` varchar(20) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`LocationId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `location`
---
-
+  `DODUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -652,47 +599,12 @@ CREATE TABLE `location` (
 -- Table structure for table `masterentry`
 --
 
-CREATE TABLE `masterentry` (
-  `MasterEntryId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `masterentry` (
+`MasterEntryId` int(11) NOT NULL,
   `MasterEntryStatus` varchar(10) NOT NULL,
   `MasterEntryName` varchar(100) NOT NULL,
-  `MasterEntryValue` varchar(100) NOT NULL,
-  PRIMARY KEY  (`MasterEntryId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
-
---
--- Dumping data for table `masterentry`
---
-
-INSERT INTO `masterentry` (`MasterEntryId`, `MasterEntryStatus`, `MasterEntryName`, `MasterEntryValue`) VALUES
-(1, 'Active', 'AccountType', 'Cash'),
-(2, 'Active', 'AccountType', 'Bank'),
-(3, 'Active', 'AssignTo', 'Student'),
-(4, 'Active', 'AssignTo', 'Staff'),
-(5, 'Active', 'BookPurpose', 'Issue'),
-(6, 'Active', 'BookPurpose', 'Reference'),
-(7, 'Active', 'Gender', 'Male'),
-(8, 'Active', 'Gender', 'Female'),
-(9, 'Active', 'OtherAssignTo', 'Missing'),
-(10, 'Active', 'OtherAssignTo', 'Damage'),
-(11, 'Active', 'Resolution', '800x600'),
-(12, 'Active', 'SalaryHeadType', 'Earning'),
-(13, 'Active', 'SalaryHeadType', 'Deduction'),
-(14, 'Active', 'HeaderFooter', 'Header'),
-(15, 'Active', 'HeaderFooter', 'Footer'),
-(16, 'Active', 'RouteTo', 'To Home'),
-(17, 'Active', 'RouteTo', 'To School'),
-(18, 'Active', 'AssignTo', 'Location'),
-(19, 'Active', 'AssignTo', 'Other'),
-(20, 'Active', 'GradingPoint', '1'),
-(21, 'Active', 'GradingPoint', '2'),
-(22, 'Active', 'GradingPoint', '3'),
-(23, 'Active', 'GradingPoint', '4'),
-(24, 'Active', 'GradingPoint', '5'),
-(25, 'Active', 'GradingPoint', '6'),
-(26, 'Active', 'GradingPoint', '7'),
-(27, 'Active', 'GradingPoint', '8'),
-(28, 'Active', 'GradingPoint', '9');
+  `MasterEntryValue` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -700,13 +612,12 @@ INSERT INTO `masterentry` (`MasterEntryId`, `MasterEntryStatus`, `MasterEntryNam
 -- Table structure for table `masterentrycategory`
 --
 
-CREATE TABLE `masterentrycategory` (
-  `MasterEntryCategoryId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `masterentrycategory` (
+`MasterEntryCategoryId` int(11) NOT NULL,
   `MasterEntryCategoryName` varchar(100) NOT NULL,
   `MasterEntryCategoryValue` varchar(100) NOT NULL,
-  `Permission` varchar(10) NOT NULL,
-  PRIMARY KEY  (`MasterEntryCategoryId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+  `Permission` varchar(10) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `masterentrycategory`
@@ -745,7 +656,10 @@ INSERT INTO `masterentrycategory` (`MasterEntryCategoryId`, `MasterEntryCategory
 (31, 'Other Assign To', 'OtherAssignTo', 'Webmaster'),
 (32, 'Header Footer', 'HeaderFooter', 'Webmaster'),
 (33, 'Route To', 'RouteTo', 'Webmaster'),
-(34, 'Termination Reason', 'TerminationReason', '');
+(34, 'Termination Reason', 'TerminationReason', ''),
+(35, 'SalaryPaymentType', 'SalaryPaymentType', ''),
+(36, 'Result', 'Result', ''),
+(37, 'Level', 'Level', '');
 
 -- --------------------------------------------------------
 
@@ -753,20 +667,14 @@ INSERT INTO `masterentrycategory` (`MasterEntryCategoryId`, `MasterEntryCategory
 -- Table structure for table `note`
 --
 
-CREATE TABLE `note` (
-  `NoteId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `note` (
+`NoteId` int(11) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `UniqueId` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
   `Content` text NOT NULL,
-  `Date` varchar(20) NOT NULL,
-  PRIMARY KEY  (`NoteId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `note`
---
-
+  `Date` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -774,8 +682,8 @@ CREATE TABLE `note` (
 -- Table structure for table `ocalling`
 --
 
-CREATE TABLE `ocalling` (
-  `OCallId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `ocalling` (
+`OCallId` int(11) NOT NULL,
   `CallStatus` varchar(10) NOT NULL,
   `Mobile` varchar(10) NOT NULL,
   `Landline` varchar(12) NOT NULL,
@@ -786,14 +694,53 @@ CREATE TABLE `ocalling` (
   `DOC` varchar(20) NOT NULL,
   `DOE` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
-  `DLU` varchar(20) NOT NULL,
-  PRIMARY KEY  (`OCallId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `DLU` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `ocalling`
+-- Table structure for table `online_exam_details`
 --
 
+CREATE TABLE IF NOT EXISTS `online_exam_details` (
+`online_exam_id` int(11) NOT NULL,
+  `online_exam_status` enum('Active','Inactive','Postpond','Remove','Done') CHARACTER SET utf8 NOT NULL,
+  `online_exam_date` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `online_subject_id` int(10) NOT NULL,
+  `online_section_id` int(10) NOT NULL,
+  `session` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `exam_name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `online_max_marks` float NOT NULL,
+  `online_cuttoff` float NOT NULL,
+  `doc` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dou` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `online_exam_level` enum('Tough','Medium','Eaisy') CHARACTER SET utf8 NOT NULL,
+  `no_of_qustion` int(10) NOT NULL,
+  `online_ex_duration` time NOT NULL,
+  `duration_per_qus` time NOT NULL,
+  `remarks` varchar(20) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `online_exam_student`
+--
+
+CREATE TABLE IF NOT EXISTS `online_exam_student` (
+`online_exam_st_id` int(10) NOT NULL,
+  `online_exam_id` int(10) NOT NULL,
+  `online_student_id` int(10) NOT NULL,
+  `online_qust_ans_id` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `correct_ans` int(10) NOT NULL,
+  `wrong_ans` int(10) NOT NULL,
+  `total_marks` float NOT NULL,
+  `online_student_status` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `time_duration` time NOT NULL,
+  `no_of_qus_attemp` int(10) NOT NULL,
+  `date_of_ex_taken` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -801,11 +748,10 @@ CREATE TABLE `ocalling` (
 -- Table structure for table `pagename`
 --
 
-CREATE TABLE `pagename` (
-  `PageNameId` int(11) NOT NULL auto_increment,
-  `PageName` varchar(100) NOT NULL,
-  PRIMARY KEY  (`PageNameId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+CREATE TABLE IF NOT EXISTS `pagename` (
+`PageNameId` int(11) NOT NULL,
+  `PageName` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pagename`
@@ -819,7 +765,46 @@ INSERT INTO `pagename` (`PageNameId`, `PageName`) VALUES
 (5, 'ManageSubject'),
 (6, 'ManageExam'),
 (7, 'ManageSCArea'),
-(8, 'Payment');
+(8, 'Payment'),
+(9, 'StudentAttendanceReport'),
+(10, 'ExamReport'),
+(11, 'ManageSCIndicator'),
+(12, 'ManageFee'),
+(13, 'salaryhead'),
+(14, 'salarystructure'),
+(15, 'schoolmaterial'),
+(16, 'ManageLocation'),
+(17, 'ManageHeaderFooter'),
+(18, 'PrintOption'),
+(19, 'Permission'),
+(20, 'Registration'),
+(21, 'Admission'),
+(22, 'Promotion'),
+(23, 'UpdateFee'),
+(24, 'UpdateClass'),
+(25, 'AdmissionReport'),
+(26, 'StaffAttendence'),
+(27, 'StaffAttendenceReport'),
+(28, 'StudentAttendence'),
+(29, 'StudentAttendenceReport'),
+(30, 'MarksSetUp'),
+(31, 'ScMarksSetUp'),
+(32, 'ExamReport'),
+(33, 'PrintExamReport'),
+(34, 'Call'),
+(35, 'FollowUp'),
+(36, 'OCall'),
+(37, 'FollowUpOtherCall'),
+(38, 'Enquiry'),
+(39, 'FollowUpEnquiry'),
+(40, 'Complaint'),
+(41, 'Visitor'),
+(42, 'ManageStaff'),
+(43, 'FeePayment'),
+(44, 'Expense'),
+(45, 'Income'),
+(46, 'Transport'),
+(47, 'TransportRoute');
 
 -- --------------------------------------------------------
 
@@ -827,17 +812,11 @@ INSERT INTO `pagename` (`PageNameId`, `PageName`) VALUES
 -- Table structure for table `permission`
 --
 
-CREATE TABLE `permission` (
-  `PermissionId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `permission` (
+`PermissionId` int(11) NOT NULL,
   `UserType` int(11) NOT NULL,
-  `PermissionString` text NOT NULL,
-  PRIMARY KEY  (`PermissionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `permission`
---
-
+  `PermissionString` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -845,21 +824,26 @@ CREATE TABLE `permission` (
 -- Table structure for table `photos`
 --
 
-CREATE TABLE `photos` (
-  `PhotoId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `photos` (
+`PhotoId` int(11) NOT NULL,
   `Title` varchar(100) NOT NULL,
   `Path` varchar(100) NOT NULL,
   `Document` int(11) NOT NULL,
   `Detail` varchar(100) NOT NULL,
   `UniqueId` int(11) NOT NULL,
-  `DOE` varchar(10) NOT NULL,
-  PRIMARY KEY  (`PhotoId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `DOE` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `photos`
+-- Table structure for table `phrase`
 --
 
+CREATE TABLE IF NOT EXISTS `phrase` (
+`PhraseId` int(11) NOT NULL,
+  `Phrase` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -867,20 +851,14 @@ CREATE TABLE `photos` (
 -- Table structure for table `printoption`
 --
 
-CREATE TABLE `printoption` (
-  `PrintOptionId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `printoption` (
+`PrintOptionId` int(11) NOT NULL,
   `PrintCategory` int(11) NOT NULL,
   `Width` decimal(10,0) NOT NULL,
   `HeaderId` varchar(10) NOT NULL,
   `FooterId` varchar(10) NOT NULL,
-  `PrintOptionStatus` varchar(10) NOT NULL,
-  PRIMARY KEY  (`PrintOptionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `printoption`
---
-
+  `PrintOptionStatus` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -888,24 +866,18 @@ CREATE TABLE `printoption` (
 -- Table structure for table `purchase`
 --
 
-CREATE TABLE `purchase` (
-  `PurchaseId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `purchase` (
+`PurchaseId` int(11) NOT NULL,
   `PurchaseStatus` varchar(10) NOT NULL,
-  `Token` varchar(100) character set utf8 collate utf8_unicode_ci NOT NULL,
+  `Token` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `SupplierId` int(11) NOT NULL,
   `Total` decimal(10,2) NOT NULL,
   `Paid` decimal(10,2) NOT NULL,
   `DOP` varchar(20) NOT NULL,
-  `DOE` varchar(20) character set utf8 collate utf8_unicode_ci NOT NULL,
+  `DOE` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `DOD` varchar(20) NOT NULL,
-  `Remarks` text character set utf8 collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`PurchaseId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `purchase`
---
-
+  `Remarks` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -913,22 +885,16 @@ CREATE TABLE `purchase` (
 -- Table structure for table `purchaselist`
 --
 
-CREATE TABLE `purchaselist` (
-  `PurchaseListId` int(11) NOT NULL auto_increment,
-  `Token` varchar(100) character set utf8 collate utf8_unicode_ci NOT NULL,
+CREATE TABLE IF NOT EXISTS `purchaselist` (
+`PurchaseListId` int(11) NOT NULL,
+  `Token` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `MaterialType` varchar(100) NOT NULL,
   `UniqueId` int(11) NOT NULL,
   `Quantity` decimal(10,2) NOT NULL,
   `PurchasePrice` decimal(10,2) NOT NULL,
   `OtherInfo` text NOT NULL,
-  `Date` varchar(100) character set utf8 collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`PurchaseListId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `purchaselist`
---
-
+  `Date` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -936,22 +902,42 @@ CREATE TABLE `purchaselist` (
 -- Table structure for table `qualification`
 --
 
-CREATE TABLE `qualification` (
-  `QualificationId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `qualification` (
+`QualificationId` int(11) NOT NULL,
   `Type` varchar(10) NOT NULL,
   `UniqueId` int(11) NOT NULL,
   `BoardUniversity` varchar(200) NOT NULL,
   `Class` varchar(100) NOT NULL,
   `Year` varchar(100) NOT NULL,
   `Marks` varchar(100) NOT NULL,
-  `Remarks` text NOT NULL,
-  PRIMARY KEY  (`QualificationId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `Remarks` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `qualification`
+-- Table structure for table `qustion_ans_bank`
 --
 
+CREATE TABLE IF NOT EXISTS `qustion_ans_bank` (
+`qust_id` int(10) NOT NULL,
+  `qust_status` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `qustion` text CHARACTER SET utf8 NOT NULL,
+  `qus_option` varchar(500) CHARACTER SET utf8 NOT NULL,
+  `answer` text CHARACTER SET utf8 NOT NULL,
+  `qust_ans_description` text CHARACTER SET utf8 NOT NULL,
+  `qust_solution` text CHARACTER SET utf8 NOT NULL,
+  `toal_count_hit` int(10) NOT NULL,
+  `wrong_hit` int(10) NOT NULL,
+  `correct_hit` int(10) NOT NULL,
+  `class_id` int(10) NOT NULL,
+  `subject_id` int(10) NOT NULL,
+  `qust_level` enum('Tough','Medium','Eaisy') CHARACTER SET utf8 NOT NULL,
+  `doc` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dou` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `username` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `session` varchar(10) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -959,8 +945,8 @@ CREATE TABLE `qualification` (
 -- Table structure for table `registration`
 --
 
-CREATE TABLE `registration` (
-  `RegistrationId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `registration` (
+`RegistrationId` int(11) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `Status` varchar(20) NOT NULL,
   `StudentName` varchar(100) NOT NULL,
@@ -1004,14 +990,8 @@ CREATE TABLE `registration` (
   `DateOfTermination` varchar(10) NOT NULL,
   `TerminationReason` varchar(10) NOT NULL,
   `TerminationRemarks` text NOT NULL,
-  `DOT` varchar(10) NOT NULL,
-  PRIMARY KEY  (`RegistrationId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `registration`
---
-
+  `DOT` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1019,20 +999,14 @@ CREATE TABLE `registration` (
 -- Table structure for table `salaryhead`
 --
 
-CREATE TABLE `salaryhead` (
-  `SalaryHeadId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `salaryhead` (
+`SalaryHeadId` int(11) NOT NULL,
   `SalaryHeadType` int(11) NOT NULL,
   `SalaryHead` varchar(100) NOT NULL,
   `Code` varchar(100) NOT NULL,
   `DailyBasis` int(1) NOT NULL,
-  `SalaryHeadStatus` varchar(10) NOT NULL,
-  PRIMARY KEY  (`SalaryHeadId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `salaryhead`
---
-
+  `SalaryHeadStatus` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1040,18 +1014,12 @@ CREATE TABLE `salaryhead` (
 -- Table structure for table `salarystructure`
 --
 
-CREATE TABLE `salarystructure` (
-  `SalaryStructureId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `salarystructure` (
+`SalaryStructureId` int(11) NOT NULL,
   `SalaryStructureName` varchar(100) NOT NULL,
   `FixedSalaryHead` text NOT NULL,
-  `SalaryStructureStatus` varchar(10) NOT NULL,
-  PRIMARY KEY  (`SalaryStructureId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `salarystructure`
---
-
+  `SalaryStructureStatus` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1059,18 +1027,12 @@ CREATE TABLE `salarystructure` (
 -- Table structure for table `salarystructuredetail`
 --
 
-CREATE TABLE `salarystructuredetail` (
-  `SalaryStructureDetailId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `salarystructuredetail` (
+`SalaryStructureDetailId` int(11) NOT NULL,
   `SalaryStructureId` int(11) NOT NULL,
   `SalaryHeadId` int(11) NOT NULL,
-  `Expression` text NOT NULL,
-  PRIMARY KEY  (`SalaryStructureDetailId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `salarystructuredetail`
---
-
+  `Expression` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1078,8 +1040,8 @@ CREATE TABLE `salarystructuredetail` (
 -- Table structure for table `scarea`
 --
 
-CREATE TABLE `scarea` (
-  `SCAreaId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `scarea` (
+`SCAreaId` int(11) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `SCPartId` int(11) NOT NULL,
   `GradingPoint` int(11) NOT NULL,
@@ -1087,14 +1049,8 @@ CREATE TABLE `scarea` (
   `SCAreaClass` text NOT NULL,
   `SCAreaStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
-  `DOL` varchar(10) NOT NULL,
-  PRIMARY KEY  (`SCAreaId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `scarea`
---
-
+  `DOL` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1102,21 +1058,15 @@ CREATE TABLE `scarea` (
 -- Table structure for table `scexamdetail`
 --
 
-CREATE TABLE `scexamdetail` (
-  `SCExamDetailId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `scexamdetail` (
+`SCExamDetailId` int(11) NOT NULL,
   `ExamId` int(11) NOT NULL,
   `SCAreaId` int(11) NOT NULL,
   `Marks` text NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL,
-  `DOLUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`SCExamDetailId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `scexamdetail`
---
-
+  `DOLUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1124,8 +1074,8 @@ CREATE TABLE `scexamdetail` (
 -- Table structure for table `schoolmaterial`
 --
 
-CREATE TABLE `schoolmaterial` (
-  `SchoolMaterialId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `schoolmaterial` (
+`SchoolMaterialId` int(11) NOT NULL,
   `SchoolMaterialStatus` varchar(10) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `SchoolMaterialType` varchar(11) NOT NULL,
@@ -1137,14 +1087,8 @@ CREATE TABLE `schoolmaterial` (
   `Date` varchar(20) NOT NULL,
   `DLU` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`SchoolMaterialId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `schoolmaterial`
---
-
+  `DODUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1152,18 +1096,12 @@ CREATE TABLE `schoolmaterial` (
 -- Table structure for table `scindicator`
 --
 
-CREATE TABLE `scindicator` (
-  `SCIndicatorId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `scindicator` (
+`SCIndicatorId` int(11) NOT NULL,
   `SCAreaId` int(11) NOT NULL,
   `SCIndicatorName` varchar(100) NOT NULL,
-  `SCIndicatorStatus` varchar(10) NOT NULL,
-  PRIMARY KEY  (`SCIndicatorId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `scindicator`
---
-
+  `SCIndicatorStatus` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1171,20 +1109,14 @@ CREATE TABLE `scindicator` (
 -- Table structure for table `section`
 --
 
-CREATE TABLE `section` (
-  `SectionId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `section` (
+`SectionId` int(11) NOT NULL,
   `ClassId` int(11) NOT NULL,
   `SectionName` varchar(100) NOT NULL,
   `SectionStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
-  `DOL` varchar(10) NOT NULL,
-  PRIMARY KEY  (`SectionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `section`
---
-
+  `DOL` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1192,21 +1124,15 @@ CREATE TABLE `section` (
 -- Table structure for table `sibling`
 --
 
-CREATE TABLE `sibling` (
-  `SiblingId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `sibling` (
+`SiblingId` int(11) NOT NULL,
   `RegistrationId` int(11) NOT NULL,
   `SName` varchar(100) NOT NULL,
   `SDOB` varchar(10) NOT NULL,
   `SClass` varchar(100) NOT NULL,
   `SSchool` text NOT NULL,
-  `SRemarks` text NOT NULL,
-  PRIMARY KEY  (`SiblingId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `sibling`
---
-
+  `SRemarks` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1214,8 +1140,8 @@ CREATE TABLE `sibling` (
 -- Table structure for table `staff`
 --
 
-CREATE TABLE `staff` (
-  `StaffId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `staff` (
+`StaffId` int(11) NOT NULL,
   `StaffStatus` varchar(10) NOT NULL,
   `StaffPosition` int(11) NOT NULL,
   `StaffName` varchar(100) NOT NULL,
@@ -1232,14 +1158,8 @@ CREATE TABLE `staff` (
   `DOE` varchar(20) NOT NULL,
   `DLU` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`StaffId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `staff`
---
-
+  `DODUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1247,19 +1167,13 @@ CREATE TABLE `staff` (
 -- Table structure for table `staffattendance`
 --
 
-CREATE TABLE `staffattendance` (
-  `StaffAttendanceId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `staffattendance` (
+`StaffAttendanceId` int(11) NOT NULL,
   `Date` varchar(20) NOT NULL,
   `Attendance` text NOT NULL,
   `DOL` varchar(10) NOT NULL,
-  `DOLUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`StaffAttendanceId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `staffattendance`
---
-
+  `DOLUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1267,8 +1181,8 @@ CREATE TABLE `staffattendance` (
 -- Table structure for table `staffsalary`
 --
 
-CREATE TABLE `staffsalary` (
-  `StaffSalaryId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `staffsalary` (
+`StaffSalaryId` int(11) NOT NULL,
   `StaffSalaryStatus` varchar(10) NOT NULL,
   `StaffId` int(11) NOT NULL,
   `SalaryStructureId` int(11) NOT NULL,
@@ -1276,14 +1190,8 @@ CREATE TABLE `staffsalary` (
   `StaffPaidLeave` int(11) NOT NULL,
   `EffectiveFrom` varchar(20) NOT NULL,
   `DOE` varchar(20) NOT NULL,
-  `Remarks` text NOT NULL,
-  PRIMARY KEY  (`StaffSalaryId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `staffsalary`
---
-
+  `Remarks` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1291,8 +1199,8 @@ CREATE TABLE `staffsalary` (
 -- Table structure for table `stock`
 --
 
-CREATE TABLE `stock` (
-  `StockId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `stock` (
+`StockId` int(11) NOT NULL,
   `StockStatus` varchar(10) NOT NULL,
   `StockType` int(11) NOT NULL,
   `StockName` varchar(500) NOT NULL,
@@ -1301,14 +1209,8 @@ CREATE TABLE `stock` (
   `CurrentStock` decimal(10,2) NOT NULL,
   `Date` varchar(20) NOT NULL,
   `DLU` varchar(20) NOT NULL,
-  `DOD` varchar(20) NOT NULL,
-  PRIMARY KEY  (`StockId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `stock`
---
-
+  `DOD` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1316,8 +1218,8 @@ CREATE TABLE `stock` (
 -- Table structure for table `stockassign`
 --
 
-CREATE TABLE `stockassign` (
-  `StockAssignId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `stockassign` (
+`StockAssignId` int(11) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `StockAssignStatus` varchar(10) NOT NULL,
   `StockId` int(11) NOT NULL,
@@ -1327,14 +1229,8 @@ CREATE TABLE `stockassign` (
   `AssignToDetail` varchar(100) NOT NULL,
   `DOT` varchar(20) NOT NULL,
   `Remarks` text NOT NULL,
-  `DOE` varchar(20) NOT NULL,
-  PRIMARY KEY  (`StockAssignId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `stockassign`
---
-
+  `DOE` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1342,19 +1238,13 @@ CREATE TABLE `stockassign` (
 -- Table structure for table `studentattendance`
 --
 
-CREATE TABLE `studentattendance` (
-  `StudentAttendanceId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `studentattendance` (
+`StudentAttendanceId` int(11) NOT NULL,
   `Date` varchar(10) NOT NULL,
   `Attendance` text NOT NULL,
   `DOL` varchar(10) NOT NULL,
-  `DOLUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`StudentAttendanceId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `studentattendance`
---
-
+  `DOLUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1362,8 +1252,8 @@ CREATE TABLE `studentattendance` (
 -- Table structure for table `studentfee`
 --
 
-CREATE TABLE `studentfee` (
-  `StudentFeeId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `studentfee` (
+`StudentFeeId` int(11) NOT NULL,
   `StudentFeeStatus` varchar(10) NOT NULL,
   `AdmissionNo` varchar(10) NOT NULL,
   `AdmissionId` int(11) NOT NULL,
@@ -1374,14 +1264,8 @@ CREATE TABLE `studentfee` (
   `Remarks` text NOT NULL,
   `Date` varchar(20) NOT NULL,
   `DOE` varchar(20) NOT NULL,
-  `Username` varchar(100) NOT NULL,
-  PRIMARY KEY  (`StudentFeeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `studentfee`
---
-
+  `Username` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1389,22 +1273,16 @@ CREATE TABLE `studentfee` (
 -- Table structure for table `subject`
 --
 
-CREATE TABLE `subject` (
-  `SubjectId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `subject` (
+`SubjectId` int(11) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `SubjectName` varchar(100) NOT NULL,
   `SubjectAbb` varchar(100) NOT NULL,
   `Class` text NOT NULL,
   `SubjectStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
-  `DOL` varchar(10) NOT NULL,
-  PRIMARY KEY  (`SubjectId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `subject`
---
-
+  `DOL` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1412,8 +1290,8 @@ CREATE TABLE `subject` (
 -- Table structure for table `supplier`
 --
 
-CREATE TABLE `supplier` (
-  `SupplierId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `supplier` (
+`SupplierId` int(11) NOT NULL,
   `SupplierStatus` varchar(10) NOT NULL,
   `SupplierName` varchar(100) NOT NULL,
   `SupplierMobile` varchar(10) NOT NULL,
@@ -1422,14 +1300,8 @@ CREATE TABLE `supplier` (
   `Date` varchar(20) NOT NULL,
   `DLU` varchar(20) NOT NULL,
   `DOD` varchar(20) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`SupplierId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `supplier`
---
-
+  `DODUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1437,7 +1309,7 @@ CREATE TABLE `supplier` (
 -- Table structure for table `tablename`
 --
 
-CREATE TABLE `tablename` (
+CREATE TABLE IF NOT EXISTS `tablename` (
   `TableName` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1510,319 +1382,21 @@ INSERT INTO `tablename` (`TableName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaction`
+-- Table structure for table `timetable`
 --
 
-CREATE TABLE `transaction` (
-  `TransactionId` int(11) NOT NULL auto_increment,
-  `Username` varchar(100) NOT NULL,
-  `Token` varchar(100) NOT NULL,
-  `TransactionSession` varchar(10) NOT NULL,
-  `TransactionAmount` varchar(100) NOT NULL,
-  `TransactionType` varchar(100) NOT NULL,
-  `TransactionFrom` varchar(100) NOT NULL,
-  `TransactionHead` varchar(100) NOT NULL,
-  `TransactionSubHead` varchar(10) NOT NULL,
-  `TransactionHeadId` varchar(100) NOT NULL,
-  `TransactionRemarks` text NOT NULL,
-  `TransactionDate` varchar(20) NOT NULL,
-  `TransactionDOE` varchar(20) NOT NULL,
-  `TransactionDLU` varchar(20) NOT NULL,
-  `TransactionDOD` varchar(20) NOT NULL,
-  `TransactionIP` varchar(50) NOT NULL,
-  `TransactionStatus` varchar(10) NOT NULL,
-  `TransactionDODUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`TransactionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `transaction`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `UserId` int(11) NOT NULL auto_increment,
-  `StaffId` varchar(10)  NULL,
-  `Username` varchar(100) NOT NULL,
-  `Password` varchar(100) NOT NULL,
-  `UserType` varchar(100) NOT NULL,
-  `DOE` varchar(10) NOT NULL,
-  `DOL` varchar(10) NOT NULL,
-  `DOLUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`UserId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `user`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vehicle`
---
-
-CREATE TABLE `vehicle` (
-  `VehicleId` int(11) NOT NULL auto_increment,
-  `VehicleStatus` varchar(10) NOT NULL,
-  `VehicleNumber` varchar(100) NOT NULL,
-  `VehicleName` varchar(100) NOT NULL,
-  `DOE` varchar(10) NOT NULL,
-  `DOL` varchar(10) NOT NULL,
-  PRIMARY KEY  (`VehicleId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `vehicle`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vehiclefuel`
---
-
-CREATE TABLE `vehiclefuel` (
-  `FuelId` int(11) NOT NULL auto_increment,
-  `FuelStatus` varchar(10) NOT NULL,
-  `VehicleId` int(11) NOT NULL,
-  `ReceiptNo` varchar(100) NOT NULL,
-  `Quantity` decimal(10,2) NOT NULL,
-  `Rate` decimal(10,2) NOT NULL,
-  `DOF` varchar(20) NOT NULL,
-  `DOE` varchar(20) NOT NULL,
-  `DOL` varchar(20) NOT NULL,
-  `DOD` varchar(20) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  `Remarks` text NOT NULL,
-  PRIMARY KEY  (`FuelId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `vehiclefuel`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vehiclereading`
---
-
-CREATE TABLE `vehiclereading` (
-  `VehicleReadingId` int(11) NOT NULL auto_increment,
-  `VehicleReadingStatus` varchar(10) NOT NULL,
-  `VehicleId` int(11) NOT NULL,
-  `Reading` int(11) NOT NULL,
-  `DOR` varchar(20) NOT NULL,
-  `Remarks` text NOT NULL,
-  `DOE` varchar(20) NOT NULL,
-  `DOL` varchar(20) NOT NULL,
-  `DOD` varchar(20) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  PRIMARY KEY  (`VehicleReadingId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `vehiclereading`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vehicleroute`
---
-
-CREATE TABLE `vehicleroute` (
-  `VehicleRouteId` int(11) NOT NULL auto_increment,
-  `Session` varchar(10) NOT NULL,
-  `VehicleRouteStatus` varchar(10) NOT NULL,
-  `VehicleRouteName` varchar(100) NOT NULL,
-  `VehicleId` int(11) NOT NULL,
-  `Route` text NOT NULL,
-  `RouteTo` int(11) NOT NULL,
-  `VehicleRouteRemarks` text NOT NULL,
-  `DOE` varchar(10) NOT NULL,
-  `DOL` varchar(10) NOT NULL,
-  PRIMARY KEY  (`VehicleRouteId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `vehicleroute`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vehicleroutedetail`
---
-
-CREATE TABLE `vehicleroutedetail` (
-  `VehicleRouteDetailId` int(11) NOT NULL auto_increment,
-  `VehicleRouteDetailStatus` varchar(10) NOT NULL,
-  `VehicleRouteId` int(11) NOT NULL,
-  `RouteStoppageId` int(11) NOT NULL,
-  `Students` text NOT NULL,
-  `DOE` varchar(10) NOT NULL,
-  `DOL` varchar(10) NOT NULL,
-  PRIMARY KEY  (`VehicleRouteDetailId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `vehicleroutedetail`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `visitorbook`
---
-
-CREATE TABLE `visitorbook` (
-  `VisitorBookId` int(11) NOT NULL auto_increment,
-  `VisitorBookStatus` varchar(10) NOT NULL,
-  `Name` varchar(100) NOT NULL,
-  `NoOfPeople` int(11) NOT NULL,
-  `Mobile` varchar(10) NOT NULL,
-  `Address` text NOT NULL,
-  `Purpose` text NOT NULL,
-  `Description` text NOT NULL,
-  `InDateTime` varchar(10) NOT NULL,
-  `OutDateTime` varchar(10) NOT NULL,
-  `DOE` varchar(10) NOT NULL,
-  `DOEUsername` varchar(100) NOT NULL,
-  `DOL` varchar(10) NOT NULL,
-  `DOLUsername` varchar(100) NOT NULL,
-  `DOD` varchar(10) NOT NULL,
-  `DODUsername` varchar(100) NOT NULL,
-  `Remarks` text NOT NULL,
-  PRIMARY KEY  (`VisitorBookId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `visitorbook`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `lang`
---
-
-CREATE TABLE `lang` (
-  `LanguageId` int(11) NOT NULL auto_increment,
-  `LanguageName` varchar(100) NOT NULL,
-  PRIMARY KEY  (`LanguageId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `lang`
---
-
-INSERT INTO `lang` (`LanguageId`, `LanguageName`) VALUES
-(1, 'हिंदी'),
-(2, 'Dutch'),
-(3, 'German'),
-(4, 'Portuguese'),
-(5, 'Spanish'),
-(6, 'French');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `phrase`
---
-
-CREATE TABLE `phrase` (
-  `PhraseId` int(11) NOT NULL auto_increment,
-  `Phrase` text NOT NULL,
-  PRIMARY KEY  (`PhraseId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=68 ;
-
---
--- Dumping data for table `phrase`
---
-
-INSERT INTO `phrase` (`PhraseId`, `Phrase`) VALUES
-(1, 'Front Office'),
-(2, 'Call & Follow-up'),
-(3, 'Other Call'),
-(4, 'Enquiry'),
-(5, 'Complaint'),
-(6, 'Visitor Book'),
-(7, 'Admission'),
-(8, 'Registration'),
-(9, 'Promotion'),
-(10, 'Update Fee'),
-(11, 'Reports'),
-(12, 'Admission Report'),
-(13, 'Fee Payment'),
-(14, 'Transaction'),
-(15, 'Expense'),
-(16, 'Income'),
-(17, 'Attendance'),
-(18, 'Staff Attendance'),
-(19, 'Student Attendance'),
-(20, 'Staff Attendance Report'),
-(21, 'Student Attendance Report'),
-(22, 'Transport'),
-(23, 'Transport Route'),
-(24, 'Exam'),
-(25, 'Scholastic Grade'),
-(26, 'Co Scholastic Grade'),
-(27, 'Exam Report'),
-(28, 'Manage Staff'),
-(29, 'Library'),
-(30, 'Manage Books'),
-(31, 'Issue & Return'),
-(32, 'Dispatch & Receiving'),
-(33, 'Dispatch'),
-(34, 'Receiving'),
-(35, 'Stock'),
-(36, 'Manage Stock'),
-(37, 'Stock Transfer'),
-(38, 'Purchase Material'),
-(39, 'Supplier'),
-(40, 'Purchase'),
-(41, 'Issue Material'),
-(42, 'Stock Report'),
-(43, 'School Material'),
-(44, 'Issue Report'),
-(45, 'Purchase Report'),
-(46, 'SMS'),
-(47, 'Setting'),
-(48, 'General Setting'),
-(49, 'Master Entry'),
-(50, 'Manage User'),
-(51, 'Manage Accounts'),
-(52, 'Manage Class'),
-(53, 'Manage Subject'),
-(54, 'Manage Exam'),
-(55, 'Manage SC Area'),
-(56, 'Manage SC Indicator'),
-(57, 'Manage Fee'),
-(58, 'Salary Head'),
-(59, 'Salary Structure'),
-(60, 'School Material'),
-(61, 'Manage Location'),
-(62, 'Header & Footer'),
-(63, 'Permission'),
-(64, 'Current Session'),
-(65, 'Navigation'),
-(66, 'Graph Report'),
-(67, 'Calendar');
+CREATE TABLE IF NOT EXISTS `timetable` (
+`timetableid` int(11) NOT NULL,
+  `sectionid` int(11) NOT NULL,
+  `subjectid` int(11) NOT NULL,
+  `staffid` int(11) NOT NULL,
+  `datetime` text CHARACTER SET utf8 NOT NULL,
+  `remarks` text CHARACTER SET utf8 NOT NULL,
+  `doc` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dou` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `createdby` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `updatedby` varchar(20) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1830,11 +1404,10 @@ INSERT INTO `phrase` (`PhraseId`, `Phrase`) VALUES
 -- Table structure for table `timezone`
 --
 
-CREATE TABLE `timezone` (
-  `TimezoneId` int(11) NOT NULL auto_increment,
-  `TimezoneName` varchar(100) NOT NULL,
-  PRIMARY KEY  (`TimezoneId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=420 ;
+CREATE TABLE IF NOT EXISTS `timezone` (
+`TimezoneId` int(11) NOT NULL,
+  `TimezoneName` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=420 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `timezone`
@@ -2264,24 +1837,993 @@ INSERT INTO `timezone` (`TimezoneId`, `TimezoneName`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transaction`
+--
+
+CREATE TABLE IF NOT EXISTS `transaction` (
+`TransactionId` int(11) NOT NULL,
+  `Username` varchar(100) NOT NULL,
+  `Token` varchar(100) NOT NULL,
+  `TransactionSession` varchar(10) NOT NULL,
+  `TransactionAmount` varchar(100) NOT NULL,
+  `TransactionType` varchar(100) NOT NULL,
+  `TransactionFrom` varchar(100) NOT NULL,
+  `TransactionHead` varchar(100) NOT NULL,
+  `TransactionSubHead` varchar(10) NOT NULL,
+  `TransactionHeadId` varchar(100) NOT NULL,
+  `TransactionRemarks` text NOT NULL,
+  `TransactionDate` varchar(20) NOT NULL,
+  `TransactionDOE` varchar(20) NOT NULL,
+  `TransactionDLU` varchar(20) NOT NULL,
+  `TransactionDOD` varchar(20) NOT NULL,
+  `TransactionIP` varchar(50) NOT NULL,
+  `TransactionStatus` varchar(10) NOT NULL,
+  `TransactionDODUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `translate`
 --
 
-CREATE TABLE `translate` (
-  `TranslateId` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `translate` (
+`TranslateId` int(11) NOT NULL,
   `LanguageId` int(11) NOT NULL,
-  `Translation` text NOT NULL,
-  PRIMARY KEY  (`TranslateId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `Translation` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `translate`
+-- Table structure for table `user`
 --
 
-INSERT INTO `translate` (`TranslateId`, `LanguageId`, `Translation`) VALUES
-(1, 1, '1**&#2347;&#2381;&#2352;&#2306;&#2335; &#2321;&#2347;&#2367;&#2360; \r||2**&#2325;&#2377;&#2354; &#2324;&#2352; &#2309;&#2344;&#2369;&#2357;&#2352;&#2381;&#2340;&#2368; \r||3**&#2309;&#2344;&#2381;&#2351; &#2325;&#2377;&#2354; \r||4**&#2346;&#2370;&#2331;&#2340;&#2366;&#2331; \r||5**&#2358;&#2367;&#2325;&#2366;&#2351;&#2340; \r||6**&#2357;&#2367;&#2332;&#2367;&#2335;&#2352; &#2348;&#2369;&#2325; \r||7**&#2319;&#2337;&#2350;&#2367;&#2358;&#2344; \r||8**&#2346;&#2306;&#2332;&#2368;&#2325;&#2352;&#2339; \r||9**&#2346;&#2342;&#2379;&#2344;&#2381;&#2344;&#2340;&#2367; \r||10**&#2309;&#2342;&#2381;&#2351;&#2340;&#2344; &#2358;&#2369;&#2354;&#2381;&#2325; \r||11**&#2352;&#2367;&#2346;&#2379;&#2352;&#2381;&#2335; \r||12**&#2319;&#2337;&#2350;&#2367;&#2358;&#2344; &#2325;&#2368; &#2352;&#2367;&#2346;&#2379;&#2352;&#2381;&#2335; \r||13**&#2358;&#2369;&#2354;&#2381;&#2325; &#2349;&#2369;&#2327;&#2340;&#2366;&#2344; \r||14**&#2335;&#2381;&#2352;&#2366;&#2306;&#2332;&#2376;&#2325;&#2381;&#2358;&#2344; \r||15**&#2357;&#2381;&#2351;&#2351; \r||16**&#2310;&#2351; \r||17**&#2313;&#2346;&#2360;&#2381;&#2341;&#2367;&#2340;&#2367; \r||18**&#2360;&#2381;&#2335;&#2366;&#2347; &#2313;&#2346;&#2360;&#2381;&#2341;&#2367;&#2340;&#2367; \r||19**&#2331;&#2366;&#2340;&#2381;&#2352; &#2313;&#2346;&#2360;&#2381;&#2341;&#2367;&#2340;&#2367; \r||20**&#2360;&#2381;&#2335;&#2366;&#2347; &#2313;&#2346;&#2360;&#2381;&#2341;&#2367;&#2340;&#2367; &#2352;&#2367;&#2346;&#2379;&#2352;&#2381;&#2335; \r||21**&#2331;&#2366;&#2340;&#2381;&#2352; &#2313;&#2346;&#2360;&#2381;&#2341;&#2367;&#2340;&#2367; &#2352;&#2367;&#2346;&#2379;&#2352;&#2381;&#2335; \r||22**&#2346;&#2352;&#2367;&#2357;&#2361;&#2344; \r||23**&#2346;&#2352;&#2367;&#2357;&#2361;&#2344; &#2335;&#2381;&#2352;&#2375;&#2344; \r||24**&#2346;&#2352;&#2368;&#2325;&#2381;&#2359;&#2366; \r||25**&#2358;&#2376;&#2325;&#2381;&#2359;&#2367;&#2325; &#2327;&#2381;&#2352;&#2375;&#2337; \r||26**&#2360;&#2361; &#2358;&#2376;&#2325;&#2381;&#2359;&#2367;&#2325; &#2327;&#2381;&#2352;&#2375;&#2337; \r||27**&#2346;&#2352;&#2368;&#2325;&#2381;&#2359;&#2366; &#2352;&#2367;&#2346;&#2379;&#2352;&#2381;&#2335; \r||28**&#2325;&#2352;&#2381;&#2350;&#2330;&#2366;&#2352;&#2367;&#2351;&#2379;&#2306; &#2325;&#2366; &#2346;&#2381;&#2352;&#2348;&#2306;&#2343;&#2344; \r||29**&#2354;&#2366;&#2311;&#2348;&#2381;&#2352;&#2375;&#2352;&#2368; \r||30**&#2346;&#2369;&#2360;&#2381;&#2340;&#2325;&#2375;&#2306; &#2346;&#2381;&#2352;&#2348;&#2306;&#2343;&#2367;&#2340; &#2325;&#2352;&#2375;&#2306; \r||31**&#2309;&#2306;&#2325; &#2324;&#2352; &#2357;&#2366;&#2346;&#2360;&#2368; \r||32**&#2337;&#2367;&#2360;&#2381;&#2346;&#2376;&#2330; &#2357; &#2346;&#2381;&#2352;&#2366;&#2346;&#2381;&#2340; \r||33**&#2337;&#2367;&#2360;&#2381;&#2346;&#2376;&#2330; \r||34**&#2346;&#2381;&#2352;&#2366;&#2346;&#2381;&#2340; \r||35**&#2358;&#2375;&#2351;&#2352; \r||36**&#2360;&#2381;&#2335;&#2377;&#2325; &#2346;&#2381;&#2352;&#2348;&#2306;&#2343;&#2367;&#2340; \r||37**&#2358;&#2375;&#2351;&#2352; &#2335;&#2381;&#2352;&#2366;&#2306;&#2360;&#2347;&#2352; \r||38**&#2325;&#2381;&#2352;&#2351; &#2360;&#2366;&#2350;&#2327;&#2381;&#2352;&#2368; \r||39**&#2346;&#2381;&#2352;&#2342;&#2366;&#2351;&#2325; \r||40**&#2326;&#2352;&#2368;&#2342; \r||41**&#2350;&#2369;&#2342;&#2381;&#2342;&#2366; &#2360;&#2366;&#2350;&#2327;&#2381;&#2352;&#2368; \r||42**&#2360;&#2381;&#2335;&#2377;&#2325; &#2352;&#2367;&#2346;&#2379;&#2352;&#2381;&#2335; \r||43**&#2360;&#2381;&#2325;&#2370;&#2354; &#2360;&#2366;&#2350;&#2327;&#2381;&#2352;&#2368; \r||44**&#2350;&#2366;&#2350;&#2354;&#2375; &#2325;&#2368; &#2352;&#2367;&#2346;&#2379;&#2352;&#2381;&#2335; \r||45**&#2325;&#2381;&#2352;&#2351; &#2352;&#2367;&#2346;&#2379;&#2352;&#2381;&#2335; \r||46**&#2319;&#2360;&#2319;&#2350;&#2319;&#2360; \r||47**&#2360;&#2375;&#2335;&#2367;&#2306;&#2327; \r||48**&#2360;&#2366;&#2350;&#2366;&#2344;&#2381;&#2351; &#2360;&#2375;&#2335;&#2367;&#2306;&#2327; \r||49**&#2350;&#2366;&#2360;&#2381;&#2335;&#2352; &#2319;&#2306;&#2335;&#2381;&#2352;&#2368; \r||50**&#2313;&#2346;&#2351;&#2379;&#2327;&#2325;&#2352;&#2381;&#2340;&#2366; &#2346;&#2381;&#2352;&#2348;&#2306;&#2343;&#2367;&#2340; \r||51**&#2326;&#2366;&#2340;&#2379;&#2306; &#2325;&#2366; &#2346;&#2381;&#2352;&#2348;&#2306;&#2343;&#2344; \r||52**&#2325;&#2325;&#2381;&#2359;&#2366; &#2346;&#2381;&#2352;&#2348;&#2306;&#2343;&#2367;&#2340; \r||53**&#2357;&#2367;&#2359;&#2351; &#2346;&#2381;&#2352;&#2348;&#2306;&#2343;&#2367;&#2340; \r||54**&#2346;&#2352;&#2368;&#2325;&#2381;&#2359;&#2366; &#2325;&#2366; &#2346;&#2381;&#2352;&#2348;&#2306;&#2343;&#2344; \r||55**&#2309;&#2344;&#2369;&#2360;&#2370;&#2330;&#2367;&#2340; &#2332;&#2366;&#2340;&#2367; &#2325;&#2381;&#2359;&#2375;&#2340;&#2381;&#2352; &#2346;&#2381;&#2352;&#2348;&#2306;&#2343;&#2367;&#2340; &#2325;&#2352;&#2375;&#2306; \r||56**&#2309;&#2344;&#2369;&#2360;&#2370;&#2330;&#2367;&#2340; &#2332;&#2366;&#2340;&#2367; &#2360;&#2370;&#2330;&#2325; &#2346;&#2381;&#2352;&#2348;&#2306;&#2343;&#2367;&#2340; \r||57**&#2358;&#2369;&#2354;&#2381;&#2325; &#2346;&#2381;&#2352;&#2348;&#2306;&#2343;&#2367;&#2340; \r||58**&#2357;&#2375;&#2340;&#2344; &#2361;&#2375;&#2337; \r||59**&#2357;&#2375;&#2340;&#2344; &#2360;&#2306;&#2352;&#2330;&#2344;&#2366; \r||60**&#2360;&#2381;&#2325;&#2370;&#2354; &#2360;&#2366;&#2350;&#2327;&#2381;&#2352;&#2368; \r||61**&#2360;&#2381;&#2341;&#2366;&#2344; &#2346;&#2381;&#2352;&#2348;&#2306;&#2343;&#2367;&#2340; &#2325;&#2352;&#2375;&#2306; \r||62**&#2361;&#2376;&#2337;&#2352; &#2324;&#2352; &#2346;&#2366;&#2342; \r||63**&#2309;&#2344;&#2369;&#2350;&#2340;&#2367; \r||64**&#2357;&#2352;&#2381;&#2340;&#2350;&#2366;&#2344; &#2360;&#2340;&#2381;&#2352; \r||65**&#2344;&#2375;&#2357;&#2367;&#2327;&#2375;&#2358;&#2344; \r||66**&#2327;&#2381;&#2352;&#2366;&#2347; &#2352;&#2367;&#2346;&#2379;&#2352;&#2381;&#2335; \r||67**&#2325;&#2376;&#2354;&#2375;&#2306;&#2337;&#2352;'),
-(2, 6, '1**Front Office \r||2**Call & Suivi \r||3**autre appel \r||4**Demande de renseignements \r||5**plainte \r||6**livre d''\r||7**admission \r||8**inscription \r||9**promotion \r||10**Mise à jour Fee \r||11**rapports \r||12**admission rapport \r||13**Paiement des droits \r||14**transaction \r||15**frais \r||16**revenu \r||17**présence \r||18**Participation du personnel \r||19**Participation des étudiants \r||20**Rapport du personnel de présence \r||21**Rapport de l''assiduité des élèves \r||22**transport \r||23**Transport Route \r||24**exam \r||25**Scholastic année \r||26**Co Scholastic année \r||27**Rapport d''examen \r||28**gérer du personnel \r||29**bibliothèque \r||30**gérer les livres \r||31**Question et de retour \r||32**Envoi et réception \r||33**dépêche \r||34**recevoir \r||35**stock \r||36**gérer Stock \r||37**Transfert de stock \r||38**Matériau achat \r||39**fournisseur \r||40**achat \r||41**problème Matériel \r||42**Rapport sur l''action \r||43**Matériel scolaire \r||44**Rapport d''émission \r||45**Rapport achat \r||46**SMS \r||47**Cadre \r||48**Cadre général \r||49**maître d''entrée \r||50**gérer l''utilisateur \r||51**gérer les comptes \r||52**gérer classe \r||53**gérer Sujet \r||54**gérer examen \r||55**Gérer Zone SC \r||56**Gérer SC Indicateur \r||57**gérer Fee \r||58**salaire chef \r||59**Structure des salaires \r||60**Matériel scolaire \r||61**gérer Lieu \r||62**En-tête et pied de page \r||63**autorisation \r||64**session en cours \r||65**navigation \r||66**Rapport graphique \r||67**calendrier'),
-(3, 5, '1**Front Office \r||2**Call & Seguimiento \r||3**otro Call \r||4**Consulta \r||5**Queja \r||6**libro de Visitantes \r||7**Admisión \r||8**registro \r||9**Promoción \r||10**Tarifa de Actualización \r||11**Informes \r||12**Informe de Admisión \r||13**Cargo por pago \r||14**Transacción \r||15**gastos \r||16**Ingresos \r||17**Asistencia \r||18**El personal de asistencia \r||19**Asistencia Estudiantil \r||20**Personal Informe de asistencia \r||21**Informe de Asistencia Estudiantil \r||22**Transporte \r||23**Ruta de Transporte \r||24**examen \r||25**Scholastic Grado \r||26**Co Scholastic Grado \r||27**Informe de examen \r||28**Gestionar personal \r||29**Biblioteca \r||30**administrar libros \r||31**Edición y vuelta \r||32**Envío y recepción \r||33**Despacho \r||34**Recibir \r||35**Stock \r||36**Gestionar Stock \r||37**Stock Transfer \r||38**material de Compra \r||39**Proveedor \r||40**Compra \r||41**material Issue \r||42**Stock Informe \r||43**material de la Escuela \r||44**Informe de Cuestiones \r||45**Informe Compra \r||46**sMS \r||47**ajuste \r||48**Configuración general \r||49**Entrada Maestro \r||50**Gestionar usuario \r||51**administrar cuentas \r||52**Gestionar Clase \r||53**Gestionar Asunto \r||54**Gestionar Exam \r||55**Gestionar Area SC \r||56**Gestionar SC Indicador \r||57**Gestionar Fee \r||58**Jefe Salario \r||59**Estructura salarial \r||60**material de la Escuela \r||61**Gestionar Ubicación \r||62**Encabezado y pie de página \r||63**permiso \r||64**Sesión actual \r||65**Navegación \r||66**Gráfico Informe \r||67**Calendario'),
-(4, 2, '1**Front Office \r||2**Bel & Follow-up \r||3**andere Call \r||4**Aanvraag \r||5**klacht \r||6**bezoeker Boek \r||7**toelating \r||8**registratie \r||9**promotie \r||10**Fee-update \r||11**rapporten \r||12**toelating Report \r||13**vergoeding betalen \r||14**transactie \r||15**Expense \r||16**inkomen \r||17**Aanwezigheid \r||18**personeel Aanwezigheid \r||19**Aanwezigheid \r||20**Personeel Rapport Aanwezigheid \r||21**Student Rapport Aanwezigheid \r||22**Transport \r||23**Transport Route \r||24**examen \r||25**Scholastic Grade \r||26**Co Scholastic Grade \r||27**examen Report \r||28**Beheer Personeel \r||29**bibliotheek \r||30**Boeken beheren \r||31**Kwestie & Return \r||32**Dispatch & ontvangen \r||33**Dispatch \r||34**ontvangende \r||35**voorraad \r||36**Beheer Stock \r||37**Stock Transfer \r||38**aankoop Material \r||39**Leverancier \r||40**aankoop \r||41**kwestie Materiaal \r||42**Stock Report \r||43**School Materiaal \r||44**issue Report \r||45**aankoop Report \r||46**SMS \r||47**instelling \r||48**algemene instelling \r||49**Master Entry \r||50**Beheer Gebruiker \r||51**Accounts beheren \r||52**Beheer Class \r||53**Beheer Onderwerp \r||54**Beheer Examen \r||55**Beheer SC Area \r||56**Beheer SC Indicator \r||57**Beheer Fee \r||58**salaris Hoofd \r||59**salarisstructuur \r||60**School Materiaal \r||61**Beheer Locatie \r||62**Koptekst en voettekst \r||63**toestemming \r||64**huidige sessie \r||65**Navigatie \r||66**grafiek Report \r||67**Kalender'),
-(5, 3, '1**Front Office \r||2**Call & Follow-up \r||3**andere Anruf \r||4**Anfrage \r||5**Beschwerde \r||6**Besucher buchen \r||7**Eintritt \r||8**Anmeldung \r||9**Förderung \r||10**Update Fee \r||11**Berichte \r||12**Eintritt Bericht \r||13**Gebührenzahlung \r||14**Transaktion \r||15**Ausgabe \r||16**Einkommen \r||17**Teilnahme \r||18**Personal Teilnahme \r||19**Schülerzahl \r||20**Mitarbeiter Anwesenheitsbericht \r||21**Schülerzahl Bericht \r||22**Transport \r||23**Transportroute \r||24**Prüfung \r||25**Scholastic Grade \r||26**Co Scholastic Grade \r||27**Untersuchungsbericht \r||28**Mitarbeiter verwalten \r||29**Bibliothek \r||30**Bücher verwalten \r||31**Frage & Return \r||32**Versand & Empfang \r||33**Versand \r||34**Empfang \r||35**Lager \r||36**Auf verwalten \r||37**Umlagerung \r||38**Kauf-Material \r||39**Lieferant \r||40**Kauf \r||41**Ausgabe-Material \r||42**stock Report \r||43**Schulmaterial \r||44**Problem melden \r||45**Kauf Bericht \r||46**SMS \r||47**Einstellung \r||48**Allgemeine Einstellung \r||49**Master-Eintrag \r||50**Benutzer verwalten \r||51**Konten verwalten \r||52**Klasse verwalten \r||53**Betreff verwalten \r||54**Exam verwalten \r||55**Verwalten SC Umgebung \r||56**SC-Anzeige verwalten \r||57**Fee verwalten \r||58**Gehalt Leiter \r||59**Gehaltsstruktur \r||60**Schulmaterial \r||61**Ort verwalten \r||62**Kopf-und Fußzeile \r||63**Erlaubnis \r||64**aktuelle Sitzung \r||65**Navigation \r||66**Graph Bericht \r||67**Kalender'),
-(6, 4, '1**Front Office \r||2**Ligue e Acompanhamento \r||3**outros Chamada \r||4**Inquérito \r||5**queixa \r||6**Livro de Visitas \r||7**admissão \r||8**Inscrição \r||9**promoção \r||10**Taxa de atualização \r||11**relatórios \r||12**Relatório de admissão \r||13**taxa de pagamento \r||14**transação \r||15**despesa \r||16**renda \r||17**Presença \r||18**Atendimento pessoal \r||19**comparecimento do Aluno \r||20**Relatório do Corpo Técnico de Atendimento \r||21**Relatório de Frequência Student \r||22**transporte \r||23**Itinerários \r||24**exame \r||25**Scholastic Grade \r||26**Co Scholastic Grade \r||27**Relatório de exame \r||28**Gerenciar equipe \r||29**biblioteca \r||30**Gerenciar livros \r||31**Emissão & Return \r||32**Despacho e Recebimento \r||33**Despacho \r||34**receber \r||35**Banco \r||36**Controle Stock \r||37**Transferência de estoque \r||38**compra de materiais \r||39**fornecedor \r||40**compra \r||41**Emissão de materiais \r||42**Relatório de estoque \r||43**material escolar \r||44**Reportagem Edição \r||45**Relatório de Compra \r||46**SMS \r||47**definição \r||48**Ajustes Gerais \r||49**Mestre entrada \r||50**Gerenciar usuário \r||51**Gerenciar Contas \r||52**Gerenciar Classe \r||53**Gerenciar Assunto \r||54**Gerenciar Exame \r||55**Gerenciar Área SC \r||56**Gerenciar Indicador SC \r||57**Gerenciar Fee \r||58**salário Cabeça \r||59**Estrutura salarial \r||60**material escolar \r||61**Gerenciar Localização \r||62**Cabeçalho e Rodapé \r||63**permissão \r||64**Sessão Atual \r||65**Navegação \r||66**gráfico Relatório \r||67**Calendário');
+CREATE TABLE IF NOT EXISTS `user` (
+`UserId` int(11) NOT NULL, auto_increment,
+  `StaffId` varchar(10) NOT NULL,
+  `Username` varchar(100) NOT NULL,
+  `Password` varchar(100) NOT NULL,
+  `UserType` int(11) NOT NULL,
+  `DOE` varchar(10) NOT NULL,
+  `DOL` varchar(10) NOT NULL,
+  `DOLUsername` varchar(100) NOT NULL
+  PRIMARY KEY  (`UserId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle`
+--
+
+CREATE TABLE IF NOT EXISTS `vehicle` (
+`VehicleId` int(11) NOT NULL,
+  `VehicleStatus` varchar(10) NOT NULL,
+  `VehicleNumber` varchar(100) NOT NULL,
+  `VehicleName` varchar(100) NOT NULL,
+  `DOE` varchar(10) NOT NULL,
+  `DOL` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehiclefuel`
+--
+
+CREATE TABLE IF NOT EXISTS `vehiclefuel` (
+`FuelId` int(11) NOT NULL,
+  `FuelStatus` varchar(10) NOT NULL,
+  `VehicleId` int(11) NOT NULL,
+  `ReceiptNo` varchar(100) NOT NULL,
+  `Quantity` decimal(10,2) NOT NULL,
+  `Rate` decimal(10,2) NOT NULL,
+  `DOF` varchar(20) NOT NULL,
+  `DOE` varchar(20) NOT NULL,
+  `DOL` varchar(20) NOT NULL,
+  `DOD` varchar(20) NOT NULL,
+  `DODUsername` varchar(100) NOT NULL,
+  `Remarks` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehiclereading`
+--
+
+CREATE TABLE IF NOT EXISTS `vehiclereading` (
+`VehicleReadingId` int(11) NOT NULL,
+  `VehicleReadingStatus` varchar(10) NOT NULL,
+  `VehicleId` int(11) NOT NULL,
+  `Reading` int(11) NOT NULL,
+  `DOR` varchar(20) NOT NULL,
+  `Remarks` text NOT NULL,
+  `DOE` varchar(20) NOT NULL,
+  `DOL` varchar(20) NOT NULL,
+  `DOD` varchar(20) NOT NULL,
+  `DODUsername` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicleroute`
+--
+
+CREATE TABLE IF NOT EXISTS `vehicleroute` (
+`VehicleRouteId` int(11) NOT NULL,
+  `Session` varchar(10) NOT NULL,
+  `VehicleRouteStatus` varchar(10) NOT NULL,
+  `VehicleRouteName` varchar(100) NOT NULL,
+  `VehicleId` int(11) NOT NULL,
+  `Route` text NOT NULL,
+  `RouteTo` int(11) NOT NULL,
+  `VehicleRouteRemarks` text NOT NULL,
+  `DOE` varchar(10) NOT NULL,
+  `DOL` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicleroutedetail`
+--
+
+CREATE TABLE IF NOT EXISTS `vehicleroutedetail` (
+`VehicleRouteDetailId` int(11) NOT NULL,
+  `VehicleRouteDetailStatus` varchar(10) NOT NULL,
+  `VehicleRouteId` int(11) NOT NULL,
+  `RouteStoppageId` int(11) NOT NULL,
+  `Students` text NOT NULL,
+  `DOE` varchar(10) NOT NULL,
+  `DOL` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visitorbook`
+--
+
+CREATE TABLE IF NOT EXISTS `visitorbook` (
+`VisitorBookId` int(11) NOT NULL,
+  `VisitorBookStatus` varchar(10) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `NoOfPeople` int(11) NOT NULL,
+  `Mobile` varchar(10) NOT NULL,
+  `Address` text NOT NULL,
+  `Purpose` text NOT NULL,
+  `Description` text NOT NULL,
+  `InDateTime` varchar(10) NOT NULL,
+  `OutDateTime` varchar(10) NOT NULL,
+  `DOE` varchar(10) NOT NULL,
+  `DOEUsername` varchar(100) NOT NULL,
+  `DOL` varchar(10) NOT NULL,
+  `DOLUsername` varchar(100) NOT NULL,
+  `DOD` varchar(10) NOT NULL,
+  `DODUsername` varchar(100) NOT NULL,
+  `Remarks` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `accounts`
+--
+ALTER TABLE `accounts`
+ ADD PRIMARY KEY (`AccountId`);
+
+--
+-- Indexes for table `admission`
+--
+ALTER TABLE `admission`
+ ADD PRIMARY KEY (`AdmissionId`);
+
+--
+-- Indexes for table `backuprestore`
+--
+ALTER TABLE `backuprestore`
+ ADD PRIMARY KEY (`BackUpRestoreId`);
+
+--
+-- Indexes for table `book`
+--
+ALTER TABLE `book`
+ ADD PRIMARY KEY (`BookId`);
+
+--
+-- Indexes for table `bookissue`
+--
+ALTER TABLE `bookissue`
+ ADD PRIMARY KEY (`BookIssueId`);
+
+--
+-- Indexes for table `calendar`
+--
+ALTER TABLE `calendar`
+ ADD PRIMARY KEY (`CalendarId`);
+
+--
+-- Indexes for table `calling`
+--
+ALTER TABLE `calling`
+ ADD PRIMARY KEY (`CallId`);
+
+--
+-- Indexes for table `circular`
+--
+ALTER TABLE `circular`
+ ADD PRIMARY KEY (`CircularId`);
+
+--
+-- Indexes for table `class`
+--
+ALTER TABLE `class`
+ ADD PRIMARY KEY (`ClassId`);
+
+--
+-- Indexes for table `complaint`
+--
+ALTER TABLE `complaint`
+ ADD PRIMARY KEY (`ComplaintId`);
+
+--
+-- Indexes for table `drregister`
+--
+ALTER TABLE `drregister`
+ ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `enquiry`
+--
+ALTER TABLE `enquiry`
+ ADD PRIMARY KEY (`EnquiryId`);
+
+--
+-- Indexes for table `exam`
+--
+ALTER TABLE `exam`
+ ADD PRIMARY KEY (`ExamId`);
+
+--
+-- Indexes for table `examdetail`
+--
+ALTER TABLE `examdetail`
+ ADD PRIMARY KEY (`ExamDetailId`);
+
+--
+-- Indexes for table `examdetails`
+--
+ALTER TABLE `examdetails`
+ ADD PRIMARY KEY (`Exam_Detail_Id`);
+
+--
+-- Indexes for table `examtype`
+--
+ALTER TABLE `examtype`
+ ADD PRIMARY KEY (`Exam_Type`);
+
+--
+-- Indexes for table `expense`
+--
+ALTER TABLE `expense`
+ ADD PRIMARY KEY (`ExpenseId`);
+
+--
+-- Indexes for table `fee`
+--
+ALTER TABLE `fee`
+ ADD PRIMARY KEY (`FeeId`);
+
+--
+-- Indexes for table `feepayment`
+--
+ALTER TABLE `feepayment`
+ ADD PRIMARY KEY (`FeePaymentId`);
+
+--
+-- Indexes for table `followup`
+--
+ALTER TABLE `followup`
+ ADD PRIMARY KEY (`FollowUpId`);
+
+--
+-- Indexes for table `generalsetting`
+--
+ALTER TABLE `generalsetting`
+ ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `header`
+--
+ALTER TABLE `header`
+ ADD PRIMARY KEY (`HeaderId`);
+
+--
+-- Indexes for table `homework`
+--
+ALTER TABLE `homework`
+ ADD PRIMARY KEY (`homeworkid`), ADD KEY `sectionid` (`sectionid`,`subjectid`);
+
+--
+-- Indexes for table `house`
+--
+ALTER TABLE `house`
+ ADD PRIMARY KEY (`HouseId`);
+
+--
+-- Indexes for table `issue`
+--
+ALTER TABLE `issue`
+ ADD PRIMARY KEY (`IssueId`);
+
+--
+-- Indexes for table `lang`
+--
+ALTER TABLE `lang`
+ ADD PRIMARY KEY (`LanguageId`);
+
+--
+-- Indexes for table `listbook`
+--
+ALTER TABLE `listbook`
+ ADD PRIMARY KEY (`ListBookId`);
+
+--
+-- Indexes for table `listbookconfirm`
+--
+ALTER TABLE `listbookconfirm`
+ ADD PRIMARY KEY (`ListBookConfirmId`);
+
+--
+-- Indexes for table `location`
+--
+ALTER TABLE `location`
+ ADD PRIMARY KEY (`LocationId`);
+
+--
+-- Indexes for table `masterentry`
+--
+ALTER TABLE `masterentry`
+ ADD PRIMARY KEY (`MasterEntryId`);
+
+--
+-- Indexes for table `masterentrycategory`
+--
+ALTER TABLE `masterentrycategory`
+ ADD PRIMARY KEY (`MasterEntryCategoryId`);
+
+--
+-- Indexes for table `note`
+--
+ALTER TABLE `note`
+ ADD PRIMARY KEY (`NoteId`);
+
+--
+-- Indexes for table `ocalling`
+--
+ALTER TABLE `ocalling`
+ ADD PRIMARY KEY (`OCallId`);
+
+--
+-- Indexes for table `online_exam_details`
+--
+ALTER TABLE `online_exam_details`
+ ADD PRIMARY KEY (`online_exam_id`);
+
+--
+-- Indexes for table `online_exam_student`
+--
+ALTER TABLE `online_exam_student`
+ ADD PRIMARY KEY (`online_exam_st_id`);
+
+--
+-- Indexes for table `pagename`
+--
+ALTER TABLE `pagename`
+ ADD PRIMARY KEY (`PageNameId`);
+
+--
+-- Indexes for table `permission`
+--
+ALTER TABLE `permission`
+ ADD PRIMARY KEY (`PermissionId`);
+
+--
+-- Indexes for table `photos`
+--
+ALTER TABLE `photos`
+ ADD PRIMARY KEY (`PhotoId`);
+
+--
+-- Indexes for table `phrase`
+--
+ALTER TABLE `phrase`
+ ADD PRIMARY KEY (`PhraseId`);
+
+--
+-- Indexes for table `printoption`
+--
+ALTER TABLE `printoption`
+ ADD PRIMARY KEY (`PrintOptionId`);
+
+--
+-- Indexes for table `purchase`
+--
+ALTER TABLE `purchase`
+ ADD PRIMARY KEY (`PurchaseId`);
+
+--
+-- Indexes for table `purchaselist`
+--
+ALTER TABLE `purchaselist`
+ ADD PRIMARY KEY (`PurchaseListId`);
+
+--
+-- Indexes for table `qualification`
+--
+ALTER TABLE `qualification`
+ ADD PRIMARY KEY (`QualificationId`);
+
+--
+-- Indexes for table `qustion_ans_bank`
+--
+ALTER TABLE `qustion_ans_bank`
+ ADD PRIMARY KEY (`qust_id`);
+
+--
+-- Indexes for table `registration`
+--
+ALTER TABLE `registration`
+ ADD PRIMARY KEY (`RegistrationId`);
+
+--
+-- Indexes for table `salaryhead`
+--
+ALTER TABLE `salaryhead`
+ ADD PRIMARY KEY (`SalaryHeadId`);
+
+--
+-- Indexes for table `salarystructure`
+--
+ALTER TABLE `salarystructure`
+ ADD PRIMARY KEY (`SalaryStructureId`);
+
+--
+-- Indexes for table `salarystructuredetail`
+--
+ALTER TABLE `salarystructuredetail`
+ ADD PRIMARY KEY (`SalaryStructureDetailId`);
+
+--
+-- Indexes for table `scarea`
+--
+ALTER TABLE `scarea`
+ ADD PRIMARY KEY (`SCAreaId`);
+
+--
+-- Indexes for table `scexamdetail`
+--
+ALTER TABLE `scexamdetail`
+ ADD PRIMARY KEY (`SCExamDetailId`);
+
+--
+-- Indexes for table `schoolmaterial`
+--
+ALTER TABLE `schoolmaterial`
+ ADD PRIMARY KEY (`SchoolMaterialId`);
+
+--
+-- Indexes for table `scindicator`
+--
+ALTER TABLE `scindicator`
+ ADD PRIMARY KEY (`SCIndicatorId`);
+
+--
+-- Indexes for table `section`
+--
+ALTER TABLE `section`
+ ADD PRIMARY KEY (`SectionId`);
+
+--
+-- Indexes for table `sibling`
+--
+ALTER TABLE `sibling`
+ ADD PRIMARY KEY (`SiblingId`);
+
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+ ADD PRIMARY KEY (`StaffId`);
+
+--
+-- Indexes for table `staffattendance`
+--
+ALTER TABLE `staffattendance`
+ ADD PRIMARY KEY (`StaffAttendanceId`);
+
+--
+-- Indexes for table `staffsalary`
+--
+ALTER TABLE `staffsalary`
+ ADD PRIMARY KEY (`StaffSalaryId`);
+
+--
+-- Indexes for table `stock`
+--
+ALTER TABLE `stock`
+ ADD PRIMARY KEY (`StockId`);
+
+--
+-- Indexes for table `stockassign`
+--
+ALTER TABLE `stockassign`
+ ADD PRIMARY KEY (`StockAssignId`);
+
+--
+-- Indexes for table `studentattendance`
+--
+ALTER TABLE `studentattendance`
+ ADD PRIMARY KEY (`StudentAttendanceId`);
+
+--
+-- Indexes for table `studentfee`
+--
+ALTER TABLE `studentfee`
+ ADD PRIMARY KEY (`StudentFeeId`);
+
+--
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+ ADD PRIMARY KEY (`SubjectId`);
+
+--
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
+ ADD PRIMARY KEY (`SupplierId`);
+
+--
+-- Indexes for table `timetable`
+--
+ALTER TABLE `timetable`
+ ADD PRIMARY KEY (`timetableid`), ADD KEY `classid` (`sectionid`,`subjectid`,`staffid`);
+
+--
+-- Indexes for table `timezone`
+--
+ALTER TABLE `timezone`
+ ADD PRIMARY KEY (`TimezoneId`);
+
+--
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+ ADD PRIMARY KEY (`TransactionId`);
+
+--
+-- Indexes for table `translate`
+--
+ALTER TABLE `translate`
+ ADD PRIMARY KEY (`TranslateId`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`UserId`);
+
+--
+-- Indexes for table `vehicle`
+--
+ALTER TABLE `vehicle`
+ ADD PRIMARY KEY (`VehicleId`);
+
+--
+-- Indexes for table `vehiclefuel`
+--
+ALTER TABLE `vehiclefuel`
+ ADD PRIMARY KEY (`FuelId`);
+
+--
+-- Indexes for table `vehiclereading`
+--
+ALTER TABLE `vehiclereading`
+ ADD PRIMARY KEY (`VehicleReadingId`);
+
+--
+-- Indexes for table `vehicleroute`
+--
+ALTER TABLE `vehicleroute`
+ ADD PRIMARY KEY (`VehicleRouteId`);
+
+--
+-- Indexes for table `vehicleroutedetail`
+--
+ALTER TABLE `vehicleroutedetail`
+ ADD PRIMARY KEY (`VehicleRouteDetailId`);
+
+--
+-- Indexes for table `visitorbook`
+--
+ALTER TABLE `visitorbook`
+ ADD PRIMARY KEY (`VisitorBookId`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+MODIFY `AccountId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `admission`
+--
+ALTER TABLE `admission`
+MODIFY `AdmissionId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `backuprestore`
+--
+ALTER TABLE `backuprestore`
+MODIFY `BackUpRestoreId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `book`
+--
+ALTER TABLE `book`
+MODIFY `BookId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `bookissue`
+--
+ALTER TABLE `bookissue`
+MODIFY `BookIssueId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `calendar`
+--
+ALTER TABLE `calendar`
+MODIFY `CalendarId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `calling`
+--
+ALTER TABLE `calling`
+MODIFY `CallId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `circular`
+--
+ALTER TABLE `circular`
+MODIFY `CircularId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `class`
+--
+ALTER TABLE `class`
+MODIFY `ClassId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `complaint`
+--
+ALTER TABLE `complaint`
+MODIFY `ComplaintId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `drregister`
+--
+ALTER TABLE `drregister`
+MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `enquiry`
+--
+ALTER TABLE `enquiry`
+MODIFY `EnquiryId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `exam`
+--
+ALTER TABLE `exam`
+MODIFY `ExamId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `examdetail`
+--
+ALTER TABLE `examdetail`
+MODIFY `ExamDetailId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `examdetails`
+--
+ALTER TABLE `examdetails`
+MODIFY `Exam_Detail_Id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `expense`
+--
+ALTER TABLE `expense`
+MODIFY `ExpenseId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `fee`
+--
+ALTER TABLE `fee`
+MODIFY `FeeId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `feepayment`
+--
+ALTER TABLE `feepayment`
+MODIFY `FeePaymentId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `followup`
+--
+ALTER TABLE `followup`
+MODIFY `FollowUpId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `generalsetting`
+--
+ALTER TABLE `generalsetting`
+MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `header`
+--
+ALTER TABLE `header`
+MODIFY `HeaderId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `homework`
+--
+ALTER TABLE `homework`
+MODIFY `homeworkid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `house`
+--
+ALTER TABLE `house`
+MODIFY `HouseId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `issue`
+--
+ALTER TABLE `issue`
+MODIFY `IssueId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `lang`
+--
+ALTER TABLE `lang`
+MODIFY `LanguageId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `listbook`
+--
+ALTER TABLE `listbook`
+MODIFY `ListBookId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `listbookconfirm`
+--
+ALTER TABLE `listbookconfirm`
+MODIFY `ListBookConfirmId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `location`
+--
+ALTER TABLE `location`
+MODIFY `LocationId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `masterentry`
+--
+ALTER TABLE `masterentry`
+MODIFY `MasterEntryId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `masterentrycategory`
+--
+ALTER TABLE `masterentrycategory`
+MODIFY `MasterEntryCategoryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+--
+-- AUTO_INCREMENT for table `note`
+--
+ALTER TABLE `note`
+MODIFY `NoteId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `ocalling`
+--
+ALTER TABLE `ocalling`
+MODIFY `OCallId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `online_exam_details`
+--
+ALTER TABLE `online_exam_details`
+MODIFY `online_exam_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `online_exam_student`
+--
+ALTER TABLE `online_exam_student`
+MODIFY `online_exam_st_id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `pagename`
+--
+ALTER TABLE `pagename`
+MODIFY `PageNameId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
+--
+-- AUTO_INCREMENT for table `permission`
+--
+ALTER TABLE `permission`
+MODIFY `PermissionId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `photos`
+--
+ALTER TABLE `photos`
+MODIFY `PhotoId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `phrase`
+--
+ALTER TABLE `phrase`
+MODIFY `PhraseId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `printoption`
+--
+ALTER TABLE `printoption`
+MODIFY `PrintOptionId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `purchase`
+--
+ALTER TABLE `purchase`
+MODIFY `PurchaseId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `purchaselist`
+--
+ALTER TABLE `purchaselist`
+MODIFY `PurchaseListId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `qualification`
+--
+ALTER TABLE `qualification`
+MODIFY `QualificationId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `qustion_ans_bank`
+--
+ALTER TABLE `qustion_ans_bank`
+MODIFY `qust_id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `registration`
+--
+ALTER TABLE `registration`
+MODIFY `RegistrationId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `salaryhead`
+--
+ALTER TABLE `salaryhead`
+MODIFY `SalaryHeadId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `salarystructure`
+--
+ALTER TABLE `salarystructure`
+MODIFY `SalaryStructureId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `salarystructuredetail`
+--
+ALTER TABLE `salarystructuredetail`
+MODIFY `SalaryStructureDetailId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `scarea`
+--
+ALTER TABLE `scarea`
+MODIFY `SCAreaId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `scexamdetail`
+--
+ALTER TABLE `scexamdetail`
+MODIFY `SCExamDetailId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `schoolmaterial`
+--
+ALTER TABLE `schoolmaterial`
+MODIFY `SchoolMaterialId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `scindicator`
+--
+ALTER TABLE `scindicator`
+MODIFY `SCIndicatorId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `section`
+--
+ALTER TABLE `section`
+MODIFY `SectionId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `sibling`
+--
+ALTER TABLE `sibling`
+MODIFY `SiblingId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `staff`
+--
+ALTER TABLE `staff`
+MODIFY `StaffId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `staffattendance`
+--
+ALTER TABLE `staffattendance`
+MODIFY `StaffAttendanceId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `staffsalary`
+--
+ALTER TABLE `staffsalary`
+MODIFY `StaffSalaryId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `stock`
+--
+ALTER TABLE `stock`
+MODIFY `StockId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `stockassign`
+--
+ALTER TABLE `stockassign`
+MODIFY `StockAssignId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `studentattendance`
+--
+ALTER TABLE `studentattendance`
+MODIFY `StudentAttendanceId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `studentfee`
+--
+ALTER TABLE `studentfee`
+MODIFY `StudentFeeId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
+MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+MODIFY `SupplierId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `timetable`
+--
+ALTER TABLE `timetable`
+MODIFY `timetableid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `timezone`
+--
+ALTER TABLE `timezone`
+MODIFY `TimezoneId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=420;
+--
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
+MODIFY `TransactionId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `translate`
+--
+ALTER TABLE `translate`
+MODIFY `TranslateId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `vehicle`
+--
+ALTER TABLE `vehicle`
+MODIFY `VehicleId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `vehiclefuel`
+--
+ALTER TABLE `vehiclefuel`
+MODIFY `FuelId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `vehiclereading`
+--
+ALTER TABLE `vehiclereading`
+MODIFY `VehicleReadingId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `vehicleroute`
+--
+ALTER TABLE `vehicleroute`
+MODIFY `VehicleRouteId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `vehicleroutedetail`
+--
+ALTER TABLE `vehicleroutedetail`
+MODIFY `VehicleRouteDetailId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `visitorbook`
+--
+ALTER TABLE `visitorbook`
+MODIFY `VisitorBookId` int(11) NOT NULL AUTO_INCREMENT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
