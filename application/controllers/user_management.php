@@ -33,12 +33,20 @@ class User_management extends CI_Controller {
 					'UserType'=>$var->UserType
 				   );
 		$status=$this->user_management_model->set_user($data,$var->db_name);
-		if($status)   
+		if($status)
 		{
-			$this->session->set_flashdata('category_success', 'success message');        
-			$this->session->set_flashdata('message', $this->config->item("user").' Organization Add for Application successfully');
-			redirect('http://junctionerp.com/manage/login/application_login?id=login');
-		}
+			$data=array(
+							'organization_id'=>$var->organization_id,
+							'organization_name'=>$var->organization_name,
+							'email'=>$var->email,
+							'code'=>'200',
+						);
+			$database_name=$this->session->userdata('db_name');
+			$this->session->unset_userdata($database_name);
+			$this->session->sess_destroy();
+			$datas=json_encode($data);
+			redirect('http://junctionerp.com/manage/login/set_registration_application?json='.$datas);
+		}		
 		else
 		{
 			redirect('http://junctionerp.com/manage/login/application_login?id=login');

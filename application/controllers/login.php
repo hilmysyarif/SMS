@@ -56,7 +56,6 @@ class Login extends CI_Controller {
 				);
 				$this->session->set_userdata('user_data',$user_data);
 				$user_session_data = $this->session->userdata('user_data');
-				//echo "accesGrant";
 				redirect('dashboard');
 			}
 			else

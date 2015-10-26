@@ -1880,7 +1880,7 @@ CREATE TABLE IF NOT EXISTS `translate` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-`UserId` int(11) NOT NULL, auto_increment,
+`UserId` int(11) NOT NULL,
   `StaffId` varchar(10) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `Password` varchar(100) NOT NULL,
@@ -1888,8 +1888,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL,
   `DOLUsername` varchar(100) NOT NULL
-  PRIMARY KEY  (`UserId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
