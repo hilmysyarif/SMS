@@ -127,7 +127,7 @@
 									
 									<div class="col-sm-9">
 										<div class="input-group">
-											<input type="text"  class="form-control datepicker" data-format="D, dd MM yyyy" name="dob" value="<?php if(isset($staff_up[0]->StaffDOB)){echo date("d-m-Y H:i",$staff_up[0]->StaffDOB);}?>">
+											<input type="text"  class="form-control datepicker" data-format="D, dd MM yyyy" name="dob" value="<?php if(!empty($staff_up[0]->StaffDOB)){echo date("d-m-Y H:i",$staff_up[0]->StaffDOB);}?>">
 											
 											<div class="input-group-addon">
 												<a href="#"><i class="linecons-calendar"></i></a>
@@ -211,7 +211,7 @@
 													<td><?=$staff_qualification->Year?></td>
 													<td><?=$staff_qualification->Marks?></td>
 													<td><?=$staff_qualification->Remarks?></td>
-													<td><a href="<?=base_url();?>managestaffs/managestaff/<?php //=$staff_qualification->QualificationId ?>" ><i class="fa fa-times"></i></a></td>
+													<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>managestaffs/delete/qualification/QualificationId/<?=$staff_qualification->QualificationId ?>" ><i class="fa fa-times"></i></a></td>
 												</tr>
 												<?php  } ?>
 											</tbody>
@@ -670,7 +670,7 @@
 								
 								<div class="col-sm-8">
 							<?php foreach($staff_documents as $staff_documents){ ?>
-							<div class="col-md-2" style="margin:35px;padding:20px"><image style="width:150px" src="<?=base_url();?>upload/<?=$staff_documents->Path?>"><span><?=$staff_documents->MasterEntryValue?> <?php echo"<br>";?> <?=$staff_documents->Title?></span></div>
+							<div class="col-md-2" style="margin:35px;padding:20px"><image style="width:150px" src="<?=base_url();?>upload/<?=$staff_documents->Path?>"><span><?=$staff_documents->MasterEntryValue?> <?php echo"<br>";?> <?=$staff_documents->Title?><br><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>managestaffs/delete/photos/PhotoId/<?=$staff_documents->PhotoId ?>" ><i class="fa fa-times"></i></a></span></div>
 							<?php } ?>
 							</div>
 							</div>							
@@ -773,7 +773,7 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">Staff List</h3>
 							<div class="panel-options">
-							<span class="print-icon"><i class="fa fa-print"></i></span>
+							<span class="print-icon"><a href="<?=base_url();?>master/prints/stafflist" target="_blank"><i class="fa fa-print"></i></a></span>
 								<a href="#" data-toggle="panel">
 									<span class="collapse-icon">&ndash;</span>
 									<span class="expand-icon">+</span>

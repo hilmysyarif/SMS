@@ -76,7 +76,7 @@
 											<th>Name</th>
 											<th>Called As</th>
 											<th><i class="fa fa-edit"></i></th>
-											<th><i class="fa fa-file-text-o"></th>
+											<th><i class="el-cancel-circled"></th>
 											
 										</tr>
 									</thead>
@@ -85,8 +85,8 @@
 										<tr>
 											<th>Name</th>
 											<th>Called As</th>
-											<th><a href="#"><i class="fa fa-edit"></i></a></th>
-											<th><a href="#"><i class="fa fa-file-text-o"></a></th>
+											<th><a href="javascript:;"><i class="fa fa-edit"></i></a></th>
+											<th><a href="javascript:;"><i class="el-cancel-circled"></a></th>
 											
 										</tr>
 									</tfoot>
@@ -98,7 +98,7 @@
 											<td><?=$location->CalledAs?></td>
 											
 											<td><a href="<?=base_url();?>master/managelocation/<?=$location->LocationId?>"><i class="fa fa-edit"></a></i></td>
-											<td><a href="<?=base_url();?>master/modal/<?=$location->LocationId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
+											<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>master/delete/location/LocationId/<?=$location->LocationId?>"  ><i class="el-cancel-circled"></i></a></td>
 											
 										</tr>
 									<?php } ?>

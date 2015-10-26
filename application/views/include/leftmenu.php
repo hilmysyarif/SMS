@@ -224,7 +224,7 @@
 											</a>
 										</li>
 										<li class="">
-											<a target="blank" href="<?=base_url();?>onlineexam/preview/5/1">
+											<a target="blank" href="<?=base_url();?>onlineexam/preview/1/1">
 												<span class="title">Preview</span>
 											</a>
 										</li>
@@ -259,12 +259,12 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="javascript:;">
+								<a href="<?=base_url();?>library/managebook">
 									<span class="title">Manage Books</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>library/issuereturn">
 									<span class="title">Issue & Return</span>
 								</a>
 							</li>
@@ -278,12 +278,12 @@
 						</a>
 						<ul>
 							<li class="active">
-								<a href="javascript:;">
+								<a href="<?=base_url();?>dispatchreceiving/dispatch">
 									<span class="title">Dispatch</span>
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="<?=base_url();?>dispatchreceiving/receiving">
 									<span class="title">Receiving</span>
 								</a>
 							</li>
@@ -366,18 +366,20 @@
 					</ul>
 			</div>
 	</div>
+	
 	<div class="main-content bg-image" >
 			<div class="page-title">
 				
 				<div class="title-env">
 		
 					<h1 class="title"><strong><?php echo($this->breadcrumb->output());?></strong>
-					<span class="title pull-right"> Current Session : <?php if(isset($this->currentsession[0])){ echo $this->currentsession[0]->CurrentSession; }?></span> </h1>
+					<span class="title pull-right"> Current Session : <?=!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:''?></span> </h1>
 				</div>
 				
 				
 					
 			</div>
+			
 	<?php  if($this->session->flashdata('set_session')) { ?>
 <div class="row" >
 <div class="alert alert-success" >

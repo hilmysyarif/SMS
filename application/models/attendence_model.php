@@ -24,7 +24,7 @@ class Attendence_model extends CI_Model
 	
 	function get_staff_pl($StaffId=false,$DateTimeStamp=false)
 	{
-			$qry = $this->db->query("select StaffName,PaidLeave from staff,staffsalary where
+			$qry = $this->db->query("select StaffName,StaffPaidLeave from staff,staffsalary where
 			staff.StaffId=staffsalary.StaffId and 
 			staff.StaffId='$StaffId' and
 			EffectiveFrom<='$DateTimeStamp'

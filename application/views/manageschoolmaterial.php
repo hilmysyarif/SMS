@@ -86,6 +86,7 @@
 					<h3 class="panel-title">Book List</h3>
 					
 					<div class="panel-options">
+					<a href="<?=base_url();?>master/prints/schoolmaterial/books" target="_blank"><i class="fa fa-print"></i></a>
 						<a href="#" data-toggle="panel">
 							<span class="collapse-icon">&ndash;</span>
 							<span class="expand-icon">+</span>
@@ -118,7 +119,7 @@
 											<th>Branch Price</th>
 											<th>Selling Price</th>
 											<th><i class="fa fa-edit"></i></th>
-											<th><i class="fa fa-file-text-o"></th>
+											<th><i class="fa fa-times"></th>
 											
 										</tr>
 									</thead>
@@ -131,8 +132,8 @@
 											<th>Quantity</th>
 											<th>Branch Price</th>
 											<th>Selling Price</th>
-											<th><a href="#"><i class="fa fa-edit"></i></a></th>
-											<th><a href="#"><i class="fa fa-file-text-o"></a></th>
+											<th><a href="javascript:;"><i class="fa fa-edit"></i></a></th>
+											<th><a href="javascript:;"><i class="fa fa-times"></a></th>
 											
 										</tr>
 									</tfoot>
@@ -148,7 +149,7 @@
 											<td><?=$material->BranchPrice?></td>
 											<td><?=$material->SellingPrice?></td>
 											<td><a href="<?=base_url();?>master/manageschoolmaterial/<?=$material->SchoolMaterialId?>"><i class="fa fa-edit"></a></i></td>
-											<td><a href="<?=base_url();?>master/modal/<?=$material->SchoolMaterialId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
+											<td><a href="<?=base_url();?>master/delete/schoolmaterial/SchoolMaterialId/<?=$material->SchoolMaterialId?>" ><i class="fa fa-times"></i></a></td>
 											
 										</tr>
 									<?php } ?>

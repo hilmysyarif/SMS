@@ -83,6 +83,7 @@
 					<h3 class="panel-title">My Calendar List</h3>
 					
 					<div class="panel-options">
+					<a href="<?=base_url();?>master/prints/calendar" target="blank"><i class="fa fa-print"></i></a>
 						<a href="#" data-toggle="panel">
 							<span class="collapse-icon">&ndash;</span>
 							<span class="expand-icon">+</span>

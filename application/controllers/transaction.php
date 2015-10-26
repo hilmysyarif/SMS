@@ -16,7 +16,7 @@ class Transaction extends CI_Controller {
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
 		$this->load->library('authority');
-		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
+		if (!$this->session->userdata('user_data')){ $this->session->set_flashdata('category_error_login', " Your Session Is Expired!! Please Login Again. "); redirect(base_url());}
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
 		$this->session->set_userdata('currentsession',$currentsession);
@@ -324,6 +324,21 @@ class Transaction extends CI_Controller {
 	}
 	 /*transaction Insert And Update Income  End................................................................................................*/
 	
+	/*school management Transaction Delete start........................................................................*/	
+	function delete($action=false,$on=false,$id=false)
+	{
+	
+		if($id){
+			$filter=array($on=>$this->data['id']=$id);
+			$this->Transaction_model->delete($action,$filter,$on);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("delete").' Deleted Successfully!!');
+		}
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	
+	}
+/*school management Transaction Delete End.............................................................................*/
+
 	
 		
 	

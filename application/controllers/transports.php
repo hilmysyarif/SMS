@@ -16,7 +16,7 @@ class Transports extends CI_Controller {
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
 		$this->load->library('authority');
-		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
+		if (!$this->session->userdata('user_data')){ $this->session->set_flashdata('category_error_login', " Your Session Is Expired!! Please Login Again. "); redirect(base_url());}
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
 		$this->session->set_userdata('currentsession',$currentsession);
@@ -237,10 +237,10 @@ class Transports extends CI_Controller {
 		
 		if($action=="updateroute"){
 			$this->data['routeid']=$id;
-			$this->data['route_update'] = $this->Transport_model->get_route_update($this->currentsession[0]->CurrentSession,$id);
+			$this->data['route_update'] = $this->Transport_model->get_route_update(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',$id);
 		}elseif($action=="viewroute"){
 			$this->data['viewrouteid']=$id;
-			$this->data['route_single'] = $this->Transport_model->get_route_single($id,$this->currentsession[0]->CurrentSession);
+			$this->data['route_single'] = $this->Transport_model->get_route_single($id,!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 			$this->data['student'] = $this->Transport_model->get_student($this->currentsession[0]->CurrentSession);
 			$this->data['routedetails_list'] = $this->Transport_model->get_route_details($id);
 			if($uproutedetail=="updateroutedetail" && $updetailid){
@@ -250,7 +250,7 @@ class Transports extends CI_Controller {
 			
 		}
 		
-		$this->data['route_list'] = $this->Transport_model->get_route_list($this->currentsession[0]->CurrentSession);
+		$this->data['route_list'] = $this->Transport_model->get_route_list(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->data['vehicle_list'] = $this->Transport_model->get_vehicle();
 		
 		$this->parser->parse('include/header',$this->data);

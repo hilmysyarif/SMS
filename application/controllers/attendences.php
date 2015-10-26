@@ -16,7 +16,7 @@ class Attendences extends CI_Controller {
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
 		$this->load->library('authority');
-		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
+		if (!$this->session->userdata('user_data')){ $this->session->set_flashdata('category_error_login', " Your Session Is Expired!! Please Login Again. "); redirect(base_url());}
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
 		$this->session->set_userdata('currentsession',$currentsession);
@@ -35,7 +35,7 @@ class Attendences extends CI_Controller {
 					redirect('dashboard');
 		}
 		$this->breadcrumb->clear();
-		$this->breadcrumb->add_crumb('Staff Attendance', base_url().'attendence/staffattendence');
+		$this->breadcrumb->add_crumb('Staff Attendance', base_url().'attendences/staffattendence');
 		$this->data['get_staff']=$this->attendence_model->get_staff();
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -66,11 +66,13 @@ class Attendences extends CI_Controller {
 	$CurrentSessionArray=explode("-",$this->currentsession[0]->CurrentSession);
 	$StartingYear=$CurrentSessionArray[0];
 	$EndingYear=$CurrentSessionArray[1];
-	$SessionStartingDate="01-04-$StartingYear 00:00am";
-	$SessionEndingDate="31-03-$EndingYear 23:59am";
+	$SessionStartingDate="01-04-$StartingYear ";
+	$SessionEndingDate="31-03-$EndingYear ";
 	$SessionStartinDateTS=strtotime($SessionStartingDate);
 	$SessionEndingDateTS=strtotime($SessionEndingDate);
+	
 	$CountStaff=count($Attendance);
+	$UsedPL='';
 	if(!empty($_POST['Present'])){
 	$Att="P";
 	}
@@ -95,12 +97,12 @@ class Attendences extends CI_Controller {
 		$count2=count($row2);
 		if($count2>0)
 		{
-			$PaidLeave=$row2['PaidLeave'];
+			$PaidLeave=$row2[0]->StaffPaidLeave;
 		}
 		$row1=$this->data['get_staff']=$this->attendence_model->get_staff_att($SessionStartinDateTS,$SessionEndingDateTS);
 		
-		while($row1=$row1)
-			$MarkedAttendance[]=$row1['Attendance'];
+		foreach($row1 as $row1)
+			$MarkedAttendance[]=$row1->Attendance;
 		
 		foreach($MarkedAttendance as $MarkedAttendanceValue)
 		{
@@ -154,7 +156,8 @@ class Attendences extends CI_Controller {
 		if($AlreadyMarked>0)
 		{
 			$row=$row;
-			$LastAttendance=explode(",",$row['Attendance']);
+			$LastAttendance=explode(",",$row[0]->Attendance);
+			
 			foreach($LastAttendance as $LastAttendanceValue)
 			{
 				$LastStaffAttAttendance=explode("-",$LastAttendanceValue);
@@ -198,7 +201,7 @@ class Attendences extends CI_Controller {
 				if($Att=="P"){
 				$AttendanceString[]="$AttendanceValue2-A-$DateTimeStamp-$ITS-$OTS";}
 				if($Att!="P"){
-			$AttendanceString[]="$AttendanceValue2---$DateTimeStamp-$ITS-$OTS";}
+			$AttendanceString[]="$AttendanceValue2-A-$DateTimeStamp-$ITS-$OTS";}
 			}
 				$AttendanceString=implode(",",$AttendanceString);
 			if($AttendanceString!="")
@@ -228,10 +231,10 @@ class Attendences extends CI_Controller {
 					redirect('dashboard');
 		}
 				$this->breadcrumb->clear();
-				$this->breadcrumb->add_crumb('Staff Attendance Report', base_url().'attendence/staffattendancereport');
-				$Sessions=explode("-",$this->currentsession[0]->CurrentSession);
+				$this->breadcrumb->add_crumb('Staff Attendance Report', base_url().'attendences/staffattendancereport');
+				$Sessions=explode("-",!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 				$StartingYear=$Sessions[0];
-				$EndingYear=$Sessions[1];
+				$EndingYear=!empty($Sessions[1])?$Sessions[1]:'';
 				$MonthYear=$count1=$ShowMonth=$Valid=$u=$STRHeading="";
 				$STR=array();
 				$DateArray=array();
@@ -269,18 +272,9 @@ class Attendences extends CI_Controller {
 					$date1timestamp=strtotime($date1);
 					$date2timestamp=strtotime($date2);
 					$this->data['row']=$this->data['staff_attendance']=$this->attendence_model->get_staff_attendance($date1timestamp,$date2timestamp);
-				/*	print_r($POSTMonthYear); echo"<br>";
-					print_r($SelectedMonth); echo"<br>";
-					print_r($SelectedYear); echo"<br>";
-					print_r($DaysInMonth); echo"<br>";
-					print_r($date1); echo"<br>";
-					print_r($date2); echo"<br>";
-					print_r($date1timestamp); echo"<br>";
-					print_r($date2timestamp); echo"<br>";
-					print_r($this->data['row']);die;*/
+				
 					$this->data['row1']=$row1=$this->data['staff']=$this->attendence_model->get_staff_show();
-					//print_r($this->data['staff_attendance']);die;
-		}
+			}
 				
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -300,12 +294,12 @@ class Attendences extends CI_Controller {
 					redirect('dashboard');
 		}
 		$this->breadcrumb->clear();
-		$this->breadcrumb->add_crumb('Student Attendance', base_url().'attendence/studentattendence');
+		$this->breadcrumb->add_crumb('Student Attendance', base_url().'attendences/studentattendence');
 		if($sectionid !=''){
 			$this->data['sectionid']=$sectionid;
-			$this->data['students']=$this->attendence_model->get_student($this->currentsession[0]->CurrentSession,$sectionid);
+			$this->data['students']=$this->attendence_model->get_student(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',$sectionid);
 		}
-		$this->data['class_section']=$this->attendence_model->get_class($this->currentsession[0]->CurrentSession);
+		$this->data['class_section']=$this->attendence_model->get_class(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -339,7 +333,7 @@ class Attendences extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
-			$USERNAME=$this->info[0]->usermailid;
+			$USERNAME=$this->info['usermailid'];
 			$Date= date("Y-m-d");
 			$Attendance=$_POST['addmissionid'];
 			$Attendance1=$_POST['absent'];
@@ -357,7 +351,7 @@ class Attendences extends CI_Controller {
 			$Att="P";
 			elseif($_POST['Absent']!="")
 			$Att="A";
-			elseif($_POST['HalfDay']!="")
+			elseif($_POST['Halfday']!="")
 			$Att="H";
 			elseif($_POST['Holiday']!="")
 			$Att="HD";
@@ -373,19 +367,16 @@ class Attendences extends CI_Controller {
 				$this->session->set_flashdata('message_type', 'error');
 				$this->session->set_flashdata('message', $this->config->item("studentattendence").' All the fields are mandatory!!"');
 			}
-			elseif($TOKEN!=$RandomNumber)
-			{
-				$this->session->set_flashdata('message_type', 'error');
-				$this->session->set_flashdata('message', $this->config->item("studentattendence").' Illegal data posted!!"');
-			}
 			else
 			{
 				$AttendanceDate=strtotime($AttendanceDate);
 				$row=$this->attendence_model->get_student_attendance($AttendanceDate);
 				$AlreadyMarked=count($row);
+				
 				if($AlreadyMarked>0)
 				{
-					$LastAttendance=explode(",",$row['Attendance']);
+					$LastAttendance=explode(",",$row[0]->Attendance);
+					
 					foreach($LastAttendance as $LastAttendanceValue)
 					{
 						$LastAttAttendance=explode("-",$LastAttendanceValue);
@@ -418,6 +409,9 @@ class Attendences extends CI_Controller {
 					$this->attendence_model->update_student_attendance($NewAttendance,$AttendanceDate);
 					else
 					$this->attendence_model->delete_student_attendance($AttendanceDate);
+				
+					$this->session->set_flashdata('message_type', 'success');
+					$this->session->set_flashdata('message', $this->config->item("studentattendence").' Attendance Updated Successfully"');
 				}
 				else
 				{	$AttendanceString='';
@@ -432,10 +426,10 @@ class Attendences extends CI_Controller {
 					{
 						$this->attendence_model->insert_student_attendance($AttendanceDate,$AttendanceString,$DateTimeStamp,$USERNAME);
 					}
+					
+					$this->session->set_flashdata('message_type', 'success');
+					$this->session->set_flashdata('message', $this->config->item("studentattendence").' Attendance Added Successfully"');
 				}
-		
-				$this->session->set_flashdata('message_type', 'success');
-				$this->session->set_flashdata('message', $this->config->item("studentattendence").' Attendance Updated Successfully"');		
 	}
 				redirect('attendences/studentattendence');
 	}
@@ -452,10 +446,10 @@ class Attendences extends CI_Controller {
 					redirect('dashboard');
 		}
 		$this->breadcrumb->clear();
-		$this->breadcrumb->add_crumb('Student Attendance Report', base_url().'attendence/studentattendancereport');
-				$Sessions=explode("-",$this->currentsession[0]->CurrentSession);
+		$this->breadcrumb->add_crumb('Student Attendance Report', base_url().'attendences/studentattendancereport');
+				$Sessions=explode("-",!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 				$StartingYear=$Sessions[0];
-				$EndingYear=$Sessions[1];
+				$EndingYear=!empty($Sessions[1])?$Sessions[1]:'';
 				$MonthYear=$count1=$ShowMonth=$Valid=$u=$STRHeading="";
 				$STR=array();
 				$DateArray=array();
@@ -479,7 +473,7 @@ class Attendences extends CI_Controller {
 				}
 				$this->data['month']=$MonthYearComb;
 				
-				$this->data['class_section']=$this->attendence_model->get_class($this->currentsession[0]->CurrentSession);
+				$this->data['class_section']=$this->attendence_model->get_class(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		
 				if($this->input->post('class') && $this->input->post('month') !=''){
 					

@@ -76,10 +76,11 @@
 					<div class="col-md-12">
 						<div class="panel panel-color panel-gray">
 								<div class="panel-heading">
-									<h3 class="panel-title">Admission Report Session <?=$this->currentsession[0]->CurrentSession?></h3>
+									<h3 class="panel-title">Admission Report Session <?=!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:''?></h3>
 									
 									<div class="panel-options">
 										<a href="#" data-toggle="panel">
+										<a href="<?=base_url();?>master/prints/admission<?php if(!empty($login)){ echo"/";echo"login";}if(!empty($terminate)){echo"/";echo"terminate";}?><?php if(!empty($section)){echo"/";echo$section;}?>" target="_blank"><i class="fa fa-print"></i></a>
 											<span class="collapse-icon">&ndash;</span>
 											<span class="expand-icon">+</span>
 										</a>

@@ -168,7 +168,7 @@
 											<th>Print Category</th>
 											<th>Width</th>
 											<th><i class="fa fa-edit"></i></th>
-											<th><i class="fa fa-file-text-o"></th>
+											<th><i class="el-cancel-circled"></th>
 											
 										</tr>
 									</thead>
@@ -180,7 +180,7 @@
 											<th>Print Category</th>
 											<th>Width</th>
 											<th><a href="#"><i class="fa fa-edit"></i></a></th>
-											<th><a href="#"><i class="fa fa-file-text-o"></a></th>
+											<th><a  href="javascript:;"  ><i class="el-cancel-circled"></a></th>
 											
 										</tr>
 									</tfoot>
@@ -195,7 +195,7 @@
 											<td><?=$printoption->MasterEntryValue?></td>
 											<td><?=$printoption->Width?></td>
 											<td><a href="<?=base_url();?>master/printoption/<?=$printoption->PrintOptionId?>"><i class="fa fa-edit"></a></i></td>
-											<td><a href="<?=base_url();?>master/modal/<?=$printoption->PrintOptionId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
+											<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>master/delete/printoption/PrintOptionId/<?=$printoption->PrintOptionId?>"  ><i class="el-cancel-circled"></i></a></td>
 											
 										</tr>
 									<?php } ?>

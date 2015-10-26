@@ -139,7 +139,7 @@
 											<td><?=$examinfo->Remarks?></td>
 											<td><?=$examinfo->DOC?></td>
 											<td><a href="<?=base_url();?>master/manageexam/<?=$examinfo->Exam_Type?>"><i class="fa fa-edit"></a></i></td>
-											<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>master/delete/<?=$examinfo->Exam_Type?>"><i class="fa fa-times"></a></i></td>
+											<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>master/delete/examtype/Exam_Type/<?=$examinfo->Exam_Type?>"><i class="fa fa-times"></a></i></td>
 										</tr>
 									<?php } ?>
 								</tbody>

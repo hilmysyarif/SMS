@@ -90,7 +90,7 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">Student Attendance Report of <?=$attendance?></h3>
 							<div class="panel-options">
-							<span class="print-icon"><i class="fa fa-print"></i></span>
+							<span class="print-icon"><a href="<?=base_url();?>master/prints/student/<?php if(!empty($attendance)){echo $attendance;}?>/<?php if(!empty($sectionid)){ echo$sectionid;}?>" target="_blank"><i class="fa fa-print"></i></a></span>
 								<a href="#" data-toggle="panel">
 									<span class="collapse-icon">&ndash;</span>
 									<span class="expand-icon">+</span>
@@ -111,7 +111,7 @@
 											<?php } ?>
 											<th>P</th>
 											<th>A</th>
-											<th>HL</th>
+											<th>HD</th>
 											<th>H</th>
 											</tr>
 											</thead>
@@ -125,7 +125,7 @@
 											<?php } ?>
 											<th>P</th>
 											<th>A</th>
-											<th>HL</th>
+											<th>HD</th>
 											<th>H</th>
 											</tr>
 											</tfoot>
@@ -140,7 +140,7 @@
 						<tr>
 						<td><?=$id->StudentName?> F/n <?=$id->FatherName?> </td>
 						<?php						
-						$A=$P=$H=$HL=0; 
+						$A=$P=$H=$HD=0; 
 						for($l=1;$l<=$DaysInMonth;$l++)
 						{ 
 							$Found=0;
@@ -173,7 +173,7 @@
 											<td><span class="badge badge-danger pull-right" data-toggle="tooltip" data-placement="top" title="" >A</span></td>
 										<?php	$A++;
 										}
-										elseif($AllAttendanceOfDayValue[1]=="HL")
+										elseif($AllAttendanceOfDayValue[1]=="HD")
 										{ ?>
 											<td><span class="badge badge-warning pull-right" data-toggle="tooltip" data-placement="top" title="" >HD</span></td>
 									<?php		$HD++;
@@ -182,16 +182,16 @@
 										{ ?>
 										<td><span class="badge badge-info pull-right" data-toggle="tooltip" data-placement="top" title="" >H</span></td>
 										<?php	$H++;
-										}
-										
-										
+										}else{?>
+										<td>-</td>
+										<?php }
 										$Found=1;
 									}
 								}
-								//if($Found!=1) ?>
-								
-						<?php 	} 
-					}  ?><td><?=$P?></td><td><?=$A?></td><td><?=$HL?></td><td><?=$H?></td></tr><?php } ?>
+								if($Found!=1){ ?>
+								<td>-</td>
+								<?php 	}} 
+					}  ?><td><?=$P?></td><td><?=$A?></td><td><?=$HD?></td><td><?=$H?></td></tr><?php } ?>
 											</tbody>
 										</table>
 									</div>	

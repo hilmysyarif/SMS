@@ -197,7 +197,7 @@
 															<tr>
 																<td></td>
 																<td></td>
-																<td><i class="fa fa-times"></i></td>
+																<td></td>
 															
 																
 															</tr>
@@ -285,7 +285,6 @@
 											<th>Amount</th>
 											<th>Date</th>
 											<th>Remarks</th>
-											<th><i class="fa fa-times"></i></th>
 											<th><i class="fa fa-print"></i></th>
 											
 										</tr>
@@ -300,8 +299,7 @@
 											<td><?=$get_transaction->TransactionAmount?> INR</td>
 											<td><?=date("d M Y,h:ia",$get_transaction->TransactionDate)?></td>
 											<td><?=$get_transaction->TransactionRemarks?></td>
-											<td><i class="fa fa-times"></i></td>
-											<td><i class="fa fa-print"></i></td>
+											<td><a href="<?=base_url();?>master/prints/fee/<?=$get_transaction->TransactionId?>" target="_blank"><i class="fa fa-print"></i></a></td>
 										</tr>
 										<?php  } ?>
 									</tbody>

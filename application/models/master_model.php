@@ -192,6 +192,102 @@ class Master_model extends CI_Model
    }
    /* function Delete end.........................................................................  */
      
+    function get_student_details($StudentStatus=false,$SectionQuery=false,$CURRENTSESSION=false)
+   {
+   	$query=$this->db->query("select ParentsPassword,StudentsPassword,PresentAddress,studentfee.AdmissionNo,StudentName,FatherName,Mobile,Date,DOB,ClassName,SectionName from registration,admission,studentfee,class,section where
+					registration.RegistrationId=admission.RegistrationId and
+					admission.AdmissionId=studentfee.AdmissionId and
+					studentfee.StudentFeeStatus='$StudentStatus' and class.ClassId=section.ClassId and section.SectionId=studentfee.SectionId and 
+					studentfee.Session='$CURRENTSESSION' $SectionQuery");
+   	return $query->Result();
+   }
    
-
+   function get_staff_show()
+	{
+			$qry = $this->db->query("select StaffName,StaffMobile,StaffId,MasterEntryValue from staff,masterentry where
+						staff.StaffPosition=masterentry.MasterEntryId and StaffStatus='Active'
+						order by StaffName");
+			return $qry->Result();
+	}
+	
+	function get_staff_attendance($date1timestamp=false,$date2timestamp=false)
+	{
+			$qry = $this->db->query("select Attendance,Date from staffattendance where Date>='$date1timestamp' and Date<='$date2timestamp'");
+			return $qry->Result();
+	}
+	function student_attendance_report($date1timestamp=false,$date2timestamp=false)
+	{
+			$qry = $this->db->query("select Attendance,Date from studentattendance where Date>='$date1timestamp' and Date<='$date2timestamp'");
+			return $qry->Result();
+	}
+	function get_student_attendance_report($POSTSectionId=false)
+	{
+			$qry = $this->db->query("select StudentName,FatherName,Mobile,admission.AdmissionId from registration,admission,studentfee where
+						registration.RegistrationId=admission.RegistrationId and
+						admission.AdmissionId=studentfee.AdmissionId and
+						studentfee.SectionId='$POSTSectionId'");
+			return $qry->Result();
+	}
+	function printfee($TransactionId=false)
+	{
+			$qry = $this->db->query("select TransactionDate,Token,StudentName,TransactionSession,FatherName,MotherName,Mobile,ClassName,SectionName from transaction,studentfee,registration,admission,class,section where
+	TransactionId='$TransactionId' and
+	TransactionHead='Fee' and
+	TransactionStatus='Active' and
+	transaction.TransactionHeadId=admission.AdmissionId and
+	studentfee.AdmissionId=admission.AdmissionId and
+	registration.RegistrationId=admission.RegistrationId and
+	studentfee.SectionId=section.SectionId and 
+	class.ClassId=section.ClassId and
+	ClassStatus='Active' and
+	SectionStatus='Active'");
+			return $qry->Result();
+	}
+	function printfeenam($Token=false)
+	{
+			$qry = $this->db->query("Select MasterEntryValue as FeeName,feepayment.Amount as Paid from fee,feepayment,masterentry where
+				feepayment.Token='$Token' and
+				fee.FeeId=feepayment.FeeType and
+				fee.FeeType=masterentry.MasterEntryId");
+			return $qry->Result();
+	}
+	function get_route_list($CURRENTSESSION=false)
+	{
+			$qry = $this->db->query("select VehicleRouteId,VehicleRouteName,VehicleName,VehicleNumber,Route,MasterEntryValue from vehicle,vehicleroute,masterentry where
+		VehicleRouteStatus='Active' and
+		vehicleroute.VehicleId=vehicle.VehicleId and
+		vehicleroute.RouteTo=masterentry.MasterEntryId and
+		vehicleroute.Session='$CURRENTSESSION' 
+		order by VehicleRouteName");	
+			return $qry->Result();	
+	}
+	function get_route_details($UniqueId=false)
+	{
+			$qry = $this->db->query("Select VehicleRouteDetailId,RouteStoppageId,MasterEntryValue,Students,DOE from vehicleroutedetail,masterentry where
+		vehicleroutedetail.RouteStoppageId=masterentry.MasterEntryId and
+		VehicleRouteId='$UniqueId' and
+		VehicleRouteDetailStatus='Active'");	
+			return $qry->Result();	
+	}
+	function get_route_single($UniqueId=false,$CURRENTSESSION=false)
+	{
+			$qry = $this->db->query("select * from vehicleroute where VehicleRouteId='$UniqueId' and Session='$CURRENTSESSION'");	
+			return $qry->Result();	
+	}
+	function get_staff($table=false)
+	{
+			$qry = $this->db->query("select * from staff,masterentry where staff.StaffPosition=masterentry.MasterEntryId order by StaffDOJ ");	
+			return $qry->Result();	
+	}
+	function getprintbook()
+	{
+			$qry = $this->db->query("Select BookId,BookName,AuthorName,Publisher,MasterEntryValue,SubjectName from book,masterentry,subject where 
+			book.Purpose=masterentry.MasterEntryId and
+			book.SubjectId=subject.SubjectId and
+					BookStatus='Active'");	
+			return $qry->Result();	
+		
+	}
+   
+   
 }

@@ -1,4 +1,7 @@
 <body class="page-body skin-white" id="element">
+<div class="page-loading-overlay">
+				<div class="loader-2"></div>
+			</div>
 <nav class="navbar horizontal-menu navbar-fixed-top" style="background:url(<?=base_url();?>assets/images/4.png) repeat"><!-- set fixed position by adding class "navbar-fixed-top" -->
 		
 		<div class="navbar-inner">

@@ -181,9 +181,9 @@ function CGPA($Grade)
 			
 		}	
 		
-		$this->data['exam'] = $this->exam_model->get_exam($this->currentsession[0]->CurrentSession);
-		$this->data['class_info']=$this->exam_model->get_class($this->currentsession[0]->CurrentSession);
-		$this->data['marksetup'] = $this->exam_model->get_markssetup($this->currentsession[0]->CurrentSession);
+		$this->data['exam'] = $this->exam_model->get_exam(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+		$this->data['class_info']=$this->exam_model->get_class(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+		$this->data['marksetup'] = $this->exam_model->get_markssetup(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -303,8 +303,8 @@ function CGPA($Grade)
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Exam Report', base_url().'exam/examreport');
 		
-		$this->data['class'] = $this->exam_model->get_report_class($this->currentsession[0]->CurrentSession);
-		$this->data['exam'] = $this->exam_model->get_exam($this->currentsession[0]->CurrentSession);
+		$this->data['class'] = $this->exam_model->get_report_class(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+		$this->data['exam'] = $this->exam_model->get_exam(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);

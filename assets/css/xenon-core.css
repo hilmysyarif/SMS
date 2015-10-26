@@ -6457,18 +6457,15 @@ lesshat-selector {
   }
 }
 .loader-2 {
-  -webkit-animation: loaderAnimate2 1000ms linear infinite;
-  -moz-animation: loaderAnimate2 1000ms linear infinite;
-  -o-animation: loaderAnimate2 1000ms linear infinite;
-  animation: loaderAnimate2 1000ms linear infinite;
-  clip: rect(0, 30px, 30px, 15px);
-  height: 30px;
-  width: 30px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -15px;
-  margin-top: -15px;
+   width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -80px;
+    margin-left: -40px;
+    background: url(../images/loader.gif) no-repeat;
+    z-index: 667999;
 }
 lesshat-selector {
   -lh-property: 0; } 
@@ -6485,16 +6482,8 @@ lesshat-selector {
 @keyframes loaderAnimate22{ 0%{ box-shadow: inset #ffffff 0 0 0 8px;-webkit-transform: rotate(-140deg);-moz-transform: rotate(-140deg);-ms-transform: rotate(-140deg);transform: rotate(-140deg); } 50%{ box-shadow: inset #ffffff 0 0 0 2px; } 100%{ box-shadow: inset #ffffff 0 0 0 8px;-webkit-transform: rotate(140deg);-moz-transform: rotate(140deg);-ms-transform: rotate(140deg);transform: rotate(140deg); };
 }
 .loader-2:after {
-  -webkit-animation: loaderAnimate22 1000ms ease-in-out infinite;
-  -moz-animation: loaderAnimate22 1000ms ease-in-out infinite;
-  -o-animation: loaderAnimate22 1000ms ease-in-out infinite;
-  animation: loaderAnimate22 1000ms ease-in-out infinite;
-  clip: rect(0, 30px, 30px, 15px);
-  content: '';
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
-  position: absolute;
+display: none;
+  
 }
 @keyframes loaderAnimate22 {
   0% {

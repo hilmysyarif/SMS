@@ -28,7 +28,7 @@
 							</div>
 						</div>
 				<div class="panel-body">
-						 <form role="form" class="form-horizontal" method="post" target="blank" action="<?=base_url();?>exam/print_examreport">
+						 <form role="form" class="form-horizontal" method="post" target="_blank" action="<?=base_url();?>exam/print_examreport">
 												<div class="row">
 												<div class="col-sm-6">
 												<div class="form-group">
@@ -152,5 +152,4 @@
 	
 	   
 	
->>>>>>> refs/remotes/origin/master
 <?php //} ?>

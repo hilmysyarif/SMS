@@ -15,15 +15,76 @@
 	<div class="row">
 					<div class="col-md-4">
 					<!--Select student starts-->
-							<div class="panel panel-color panel-gray">
+					    <div class="panel panel-color panel-gray">
 											<div class="panel-heading">
-												Expense
+												Book Return
 											</div>
 										<div class="panel-body">
-												<form role="form" class="form-horizontal" action="<?=base_url();?>transaction/insert_expense" method="post">
+												<form role="form" class="form-horizontal" action="<?=base_url();?>librarydetail/bookreturn" method="post">
 												
 												<div class="form-group">
-																		<label class="control-label col-sm-4 ">For</label>
+																		
+												<label class="control-label col-sm-4 ">Books</label>
+																		
+												<script type="text/javascript">
+												jQuery(document).ready(function($)
+												{
+											   $("#s2example-1").select2({
+											placeholder: 'Select book',allowClear: true
+											}).on('select2-open', function()
+																							{
+																								// Adding Custom Scrollbar
+																								$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+																							});
+																							
+																						});
+												</script>
+												<?php
+									             foreach($return_booklist as $list){ 
+									            ?>
+												<input type="hidden" name="bookissue" value="<?=$list->BookIssueId; ?>">
+                                                <div class="col-sm-8">
+												
+											    <select class="form-control " id="bookreturn" name="bookreturn">
+												<option></option>
+									<option value="<?=$list->ListBookId;?>">(<?php echo $list->AccessionNo; ?>)&nbsp;&nbsp;<?php echo $list->BookName; ?>&nbsp;(<?php echo $list->AuthorName; ?>)&nbsp;</option>
+                                     <?php } ?>
+																				
+									</optgroup></select>
+									</div>
+									</div>
+																	
+								   <div class="form-group">
+																	<label class="control-label col-sm-4 ">Date of Return</label>
+																	
+																			<div class="col-sm-8">
+																			<div class="date-and-time">
+																				<input type="text" required class="form-control datepicker" data-format="D, dd MM yyyy" name="dor">
+																				<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="toi"/>
+																			</div>
+																		</div>	
+																</div>
+																							
+																	
+																	
+																	<div class="form-group pull-right">
+									
+																	<input type="submit" class="btn btn-info btn-single " value="Return">
+																	</div>
+														</form>
+												
+										</div>
+							</div>
+					
+							<div class="panel panel-color panel-gray">
+											<div class="panel-heading">
+												Select Books to Issue to Student
+											</div>
+										<div class="panel-body">
+												<form role="form" class="form-horizontal" action="<?=base_url();?>librarydetail/add_issuebook" method="post">
+												
+												<div class="form-group">
+																		<label class="control-label col-sm-4 ">Books</label>
 																		
 																			<script type="text/javascript">
 																						jQuery(document).ready(function($)
@@ -40,12 +101,12 @@
 																						});
 																				</script>
 																			<div class="col-sm-8">
-																				<select class="form-control " required id="s2example-1" name="for">
+																				<select class="form-control " required id="s2example-1" name="book">
 																					<option></option>
-																				
-															<?php foreach($for as $for){ ?>
-															<option  value="<?=$for->MasterEntryId?>"><?=$for->MasterEntryValue?> </option>
-																													<?php } ?>
+															
+																					<?php foreach($books as $book){ ?>
+                                                                           <option value="<?php echo $book->BookId; ?>">(<?php echo $book->AccessionNo; ?>)&nbsp;&nbsp;&nbsp;<?php echo $book->BookName; ?> &nbsp;</option>
+                                                                          <?php } ?>
 																												</optgroup>
 																											
 																				</select>
@@ -53,7 +114,7 @@
 																	</div>
 																	
 																	<div class="form-group">
-																		<label class="control-label col-sm-4 ">Supplier</label>
+																		<label class="control-label col-sm-4 ">Select Student</label>
 																		
 																			<script type="text/javascript">
 																						jQuery(document).ready(function($)
@@ -70,11 +131,11 @@
 																						});
 																				</script>
 																			<div class="col-sm-8">
-																				<select class="form-control " required id="s2example-2" name="supplier">
+																				<select class="form-control " required id="s2example-2" name="student">
 																					<option></option>
 																				
-															<?php foreach($supplier as $supplier){ ?>
-															<option  value="<?=$supplier->SupplierId?>" ><?=$supplier->SupplierName?> </option>
+															<?php foreach($students as $student){ ?>
+															<option  value="<?=$student->RegistrationId?>" ><?=$student->StudentName?></br></br>&nbsp;(<?=$student->FatherName?>)&nbsp;</br></br>&nbsp;(<?=$student->Mobile?> )&nbsp;</option>
 																													<?php  } ?>
 																												</optgroup>
 																											
@@ -82,103 +143,39 @@
 																			</div>	
 																	</div>
 																	
-																	<div class="form-group">
-																			<label class="control-label col-sm-4 ">Amount</label>
-																				<div class="col-sm-8">
-																					<input type="text" required class="form-control" name="amount" value=""  placeholder="">
-																				</div>	
-																		</div>
+																	
 																		
 																		<div class="form-group">
-																	<label class="control-label col-sm-4 ">Date Of Expense</label>
+																	<label class="control-label col-sm-4 ">Date of Issue</label>
 																	
 																			<div class="col-sm-8">
 																			<div class="date-and-time">
-																				<input type="text" required class="form-control datepicker" data-format="D, dd MM yyyy" name="doe">
-																				<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="toe"/>
+																				<input type="text" required class="form-control datepicker" data-format="D, dd MM yyyy" name="dor">
+																				<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="toi"/>
 																			</div>
 																		</div>	
 																</div>
 																
 																<div class="form-group">
-																<label class="control-label col-sm-4 ">Expense Remark</label>
+																<label class="control-label col-sm-4 ">Remarks</label>
 																<div class="col-sm-8">
-																<textarea class="form-control" required name="expense_remark"></textarea>
+																<textarea class="form-control" required name="remarks"></textarea>
 																</div>
 																</div>
 																
-																<div class="form-group">
-																<label class="control-label col-sm-4 ">Amount Paid</label>
-																<div class="col-sm-2">
-																<input type="checkbox" name="amount_paid" value="Yes"/> 
-																</div>
-																<label class="control-label col-sm-3 ">Payment</label> 
-																<div class="col-sm-3">
-																<input type="text" class="form-control" name="payment" value="" id="payment" placeholder=""/>
-																</div>
-																</div>
-																
-																<div class="form-group">
-																		<label class="control-label col-sm-4 ">Account</label>
-																		
-																			<script type="text/javascript">
-																						jQuery(document).ready(function($)
-																						{
-																							$("#s2example-3").select2({
-																								placeholder: 'Select...........',
-																								allowClear: true
-																							}).on('select2-open', function()
-																							{
-																								// Adding Custom Scrollbar
-																								$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
-																							});
-																							
-																						});
-																				</script>
-																			<div class="col-sm-8">
-																				<select class="form-control " required id="s2example-3" name="account">
-																					<option></option>
-																				
-															<?php foreach($account as $account2){ ?>
-															<option  value="<?=$account2->AccountId?>"><?=$account2->AccountName?> Balance : <?=$account2->OpeningBalance+$account2->AccountBalance?> INR </option>
-																													<?php } ?>
-																												</optgroup>
-																											
-																				</select>
-																			</div>	
-																	</div>
-																	
-																	<div class="form-group">
-																	<label class="control-label col-sm-4 ">Date Of Payment</label>
-																	
-																			<div class="col-sm-8">
-																			<div class="date-and-time">
-																				<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy" name="dop">
-																				<input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="top"/>
-																			</div>
-																		</div>	
-																</div>
-																
-																<div class="form-group">
-																<label class="control-label col-sm-4 ">Payment Remark</label>
-																<div class="col-sm-8">
-																<textarea class="form-control" name="payment_remark"></textarea>
-																</div>
-																</div>
 																		
 																	<div class="form-group pull-right" >
-																	<input type="submit" class="btn btn-info btn-single " name="add"value="Add">
+																	<input type="submit" class="btn btn-info btn-single " name="add"value="Issue">
 																	</div>
 														</form>
 												
 										</div>
 							</div>
 								<!--Select student ends-->
-								
-							
 											
-								
-										
+						
+
+						
 					</div>
 
 			<div class="col-md-8">
@@ -210,7 +207,7 @@
 																<td><?=$payment_list->AccountName?></td>
 																<td><?=$payment_list->TransactionAmount?> INR</td>
 																<td><?=date("d M Y,h:ia",$payment_list->TransactionDate)?></td>
-																<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>transaction/delete/transaction/TransactionId/<?=$payment_list->TransactionId ?>" ><i class="fa fa-times"></i></a></td>
+																<td><i class="fa fa-times"></i></td>
 															
 																
 															</tr>
@@ -297,7 +294,7 @@
 						<!--Select fee list paid student starts-->
 						<div class="panel panel-color panel-gray">
 								<div class="panel-heading">
-									<h3 class="panel-title">Expense List</h3>
+									<h3 class="panel-title">Listing all Issued book to student</h3>
 									<div class="panel-options">
 										<a href="#" data-toggle="panel">
 											<span class="collapse-icon">&ndash;</span>
@@ -311,35 +308,37 @@
 								<table class="table table-bordered table-striped" id="example-4">
 									<thead>
 										<tr>
-											<th>For</th>
-											<th>Supplier Name</th>
-											<th>Amount</th>
-											<th>Paid</th>
-											<th>Expense Date</th>
+											<th>Issued Id</th>
+											<th>Issued to</th>
+											<th>Books</th>
+											<th>Date of Issue</th>
 											<th>Remarks</th>
+
 											<th><i class="fa fa-dollar"></th>
 											<th><i class="fa fa-times"></i></th>
-											<th><i class="fa fa-file-text-o"></i></th>
+											
 											
 										</tr>
 									</thead>
-								 
 									
 								 
 									<tbody>
-									<?php foreach($expense as $expense){?>
+                                       <?php 
+									   foreach($lists as $list){
+									   ?>
 										<tr>
-											<td><?=$expense->MasterEntryValue?></td>
-											<td><?=$expense->SupplierName?></td>
-											<td><?=$expense->ExpenseAmount?></td>
-											<td><?=$expense->AmountPaid?></td>
-											<td><?=date("d M Y,h:i a",$expense->ExpenseDate)?></td>
-											<td><?=$expense->ExpenseRemarks?></td>
-											<td><a href="<?=base_url();?>transaction/expense/<?=$expense->ExpenseId?>"><i class="fa fa-dollar"></i></a></td>
-											<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>transaction/delete/expense/ExpenseId/<?=$expense->ExpenseId ?>" ><i class="fa fa-times"></i></a></td>
-											<td><i class="fa fa-file-text-o"></i></td>
+											<td><?php echo $list->BookIssueId;?></td>
+											<td><?php echo $list->StudentName; ?>&nbsp;&nbsp;(<?php echo $list->Mobile; ?>)</td>
+											<td>(<?php echo $list->AccessionNo; ?>)&nbsp;&nbsp;<?php echo $list->BookName;?>&nbsp;&nbsp;(<?php echo $list->AuthorName; ?>)</td>
+											<td><?php echo $list->DOI; ?></td>
+											<td><?php echo $list->Remarks; ?></td>
+									
+											<td><a href="transaction/expense/"><i class="fa fa-dollar"></i></a></td>
+											<td><a href="transaction/expense"><i class="fa fa-times"></i></a></td>
+										
+											
 										</tr>
-										<?php  } ?>
+									   <?php } ?>
 									</tbody>
 								</table>
 						</div>

@@ -331,8 +331,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 						$this->data['section_update'] = $this->master_model->get_info('section',$filter);
 		}
 		}
-		$this->data['class_info'] = $this->master_model->get_acc('class',$this->currentsession[0]->CurrentSession);
-		$this->data['section_info'] = $this->master_model->get_class_info($this->currentsession[0]->CurrentSession);
+		$this->data['class_info'] = $this->master_model->get_acc('class',!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+		$this->data['section_info'] = $this->master_model->get_class_info(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -415,8 +415,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 		$filter=array('SubjectId'=>$this->data['id']=$id);
 		$this->data['sub_update'] = $this->master_model->get_info('subject',$filter);
 		}
-		$this->data['sub_info'] = $this->master_model->get_acc('subject',$this->currentsession[0]->CurrentSession);
-		$this->data['class_info'] = $this->master_model->get_class_info($this->currentsession[0]->CurrentSession);
+		$this->data['sub_info'] = $this->master_model->get_acc('subject',!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+		$this->data['class_info'] = $this->master_model->get_class_info(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -437,7 +437,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}
 		$class=$this->input->post('class');
 		$class=implode(",",$class);
-		$data=array(	'Session'=>$this->currentsession[0]->CurrentSession,
+		$data=array(	'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',
 						'SubjectName'=>$this->input->post('subject_name'),
 						'SubjectAbb'=>$this->input->post('abbreviation'),
 						'Class'=>$class,
@@ -600,8 +600,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 			$this->data['scarea_update'] = $this->master_model->get_info('scarea',$filter);
 			
 		}
-		$this->data['scarea_info'] = $this->master_model->get_scarea($this->currentsession[0]->CurrentSession);
-		$this->data['class_info'] = $this->master_model->get_class_info($this->currentsession[0]->CurrentSession);
+		$this->data['scarea_info'] = $this->master_model->get_scarea(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+		$this->data['class_info'] = $this->master_model->get_class_info(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$filter=array('MasterEntryName'=>'GradingPoint');
 		$this->data['scarea_gradingpoint'] = $this->master_model->get_info('masterentry',$filter);
 		$filter1=array('MasterEntryName'=>'CoScholasticPart');
@@ -668,7 +668,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}
 		$this->data['scindicator_info'] = $this->master_model->get_acc('scindicator');
 		
-		$this->data['scarea_info'] = $this->master_model->get_scarea($this->currentsession[0]->CurrentSession);
+		$this->data['scarea_info'] = $this->master_model->get_scarea(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->data['user_info'] = $this->master_model->get_userinfo();
 		$this->data['user_type'] = $this->master_model->get_selectstaff();
 		$this->parser->parse('include/header',$this->data);
@@ -730,8 +730,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 		$this->data['fee_type'] = $this->master_model->get_info('masterentry',$filter);
 		$filter1=array('MasterEntryName'=>'Distance');
 		$this->data['distance'] = $this->master_model->get_info('masterentry',$filter1);
-		$this->data['class_info'] = $this->master_model->get_class_info($this->currentsession[0]->CurrentSession);
-		$this->data['fee_info'] = $this->master_model->get_fee($this->currentsession[0]->CurrentSession);
+		$this->data['class_info'] = $this->master_model->get_class_info(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+		$this->data['fee_info'] = $this->master_model->get_fee(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -926,9 +926,9 @@ if(Authority::checkAuthority('ManageUser')==true){
 			$this->data['material_update'] = $this->master_model->get_info('schoolmaterial',$filter);
 		}
 		$filter=array('SchoolMaterialType'=>'Books',
-		'Session'=>$this->currentsession[0]->CurrentSession);
+		'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 			$this->data['material'] = $this->master_model->get_info('schoolmaterial',$filter);
-			$this->data['class_info'] = $this->master_model->get_acc('class',$this->currentsession[0]->CurrentSession);
+			$this->data['class_info'] = $this->master_model->get_acc('class',!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -1219,18 +1219,11 @@ if(Authority::checkAuthority('ManageUser')==true){
 	
 	
 /*school management Master Delete start........................................................................*/	
-	function delete($id=false)
+	function delete($action=false,$on=false,$id=false)
 	{
-	if(Authority::checkAuthority('ManageExam')==true){
-			
-		}else{
-					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-					redirect('dashboard');
-		}
-		
 		if($id){
-			$filter=array('Exam_Type'=>$this->data['id']=$id);
-			$this->master_model->delete('examtype',$filter);
+			$filter=array($on=>$this->data['id']=$id);
+			$this->master_model->delete($action,$filter);
 			$this->session->set_flashdata('message_type', 'success');
 			$this->session->set_flashdata('message', $this->config->item("delete").' Deleted Successfully!!');
 		}
@@ -1305,6 +1298,160 @@ if(Authority::checkAuthority('ManageUser')==true){
 		redirect('master/calendar');
 	}
 /*school management Calendar insert and update End.............................................................*/
+	
+/*school management Print for All start........................................................*/
+	function prints($action=false,$on=false,$section=false)
+	{	
+		if($action=="schoolmaterial"){
+			$this->data['heading']="Showing List of School Material $on";
+			$this->data['on']=$on;
+			$filter=array('SchoolMaterialType'=>ucwords($on),'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+			$this->data['schoolmaterial']=$this->master_model->get_info('schoolmaterial',$filter);
+		}elseif($action=="calendar"){
+			$this->data['heading']="Showing List of Calendars";
+			$filter=array('CalendarStatus'=>'Active');
+			$this->data['calendar']=$this->master_model->get_info('calendar',$filter);
+		}elseif($action=="call"){
+			$this->data['heading']="Showing List of Call";
+			$filter=array('CallStatus'=>'Active');
+			$this->data['call']=$this->master_model->get_info('calling',$filter);
+		}elseif($action=="ocall"){
+			$this->data['heading']="Showing List of Other Call";
+			$filter=array('CallStatus'=>'Active');
+			$this->data['ocall']=$this->master_model->get_info('ocalling',$filter);
+		}elseif($action=="enquiry"){
+			$this->data['heading']="Showing List of Enquiry";
+			$filter=array('EnquiryStatus'=>'Active');
+			$this->data['enquiry']=$this->master_model->get_info('enquiry',$filter);
+		}elseif($action=="complaint"){
+			$this->data['heading']="Showing List of Complaint";
+			$this->data['complaint']=$this->master_model->get_info('complaint');
+		}elseif($action=="visitor"){
+			$this->data['heading']="Showing List of Visitor Book";
+			$this->data['visitor']=$this->master_model->get_info('visitorbook');
+		}elseif($action=="registration"){
+			$this->data['heading']="Showing List of Registration";
+			$this->data['registration']=$this->master_model->get_info('registration');
+		}elseif($action=="admission"){
+			$status='';$section='';
+			//$this->uri->segment();
+			if(!empty($section)){
+			$section=$this->data['section']=$section;
+			$section="and studentfee.SectionId='$section' ";
+			}
+			$this->data['heading']="Showing List of Admission Report";
+			if($on=="terminate"){
+			$status='Terminated';}
+			if($on=="login"){
+				$this->data['login']='login';
+			}
+			$this->data['admission']=$this->master_model->get_student_details($status,$section,!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+		}elseif($action=="staff"){
+			$this->data['heading']="Staff Attendance Report Of $on";
+			$this->data['staff']="staff";
+			if(!empty($on)){
+			$POSTMonthYear=$this->data['attendance']=$on;
+			$MonthYearArray=explode("-",$POSTMonthYear);
+					$this->data['SelectedMonth']=$SelectedMonth=$MonthYearArray[0];
+					$this->data['SelectedYear']=$SelectedYear=$MonthYearArray[1];
+					$DaysInMonth=cal_days_in_month(CAL_GREGORIAN,$SelectedMonth,$SelectedYear);
+					$this->data['DaysInMonth']=$DaysInMonth;
+					$date1="$SelectedYear-$SelectedMonth-01";
+					$date2="$SelectedYear-$SelectedMonth-$DaysInMonth";
+					$date1timestamp=strtotime($date1);
+					$date2timestamp=strtotime($date2);
+					$this->data['row']=$this->data['staff_attendance']=$this->master_model->get_staff_attendance($date1timestamp,$date2timestamp);
+					$this->data['row1']=$row1=$this->data['staff']=$this->master_model->get_staff_show();
+			}
+		}elseif($action=="student"){
+			$this->data['heading']="Student Attendance Report Of $on";
+			$this->data['student']="student";
+			if(!empty($on) && !empty($section)){
+					
+					$POSTSectionId=$this->data['sectionid']=$section;
+					$POSTMonthYear=$this->data['attendance']=$on;
+					$MonthYearArray=explode("-",$POSTMonthYear);
+					$this->data['SelectedMonth']=$SelectedMonth=$MonthYearArray[0];
+					$this->data['SelectedYear']=$SelectedYear=$MonthYearArray[1];
+					$DaysInMonth=cal_days_in_month(CAL_GREGORIAN,$SelectedMonth,$SelectedYear);
+					$this->data['DaysInMonth']=$DaysInMonth;
+					$date1="$SelectedYear-$SelectedMonth-01";
+					$date2="$SelectedYear-$SelectedMonth-$DaysInMonth";
+					$date1timestamp=strtotime($date1);
+					$date2timestamp=strtotime($date2);
+					$this->data['row']=$this->data['student_attendance']=$this->master_model->student_attendance_report($date1timestamp,$date2timestamp);
+					$this->data['row1']=$row1=$this->data['student']=$this->master_model->get_student_attendance_report($POSTSectionId);
+				}
+		}elseif($action=="fee"){
+			$this->data['heading']="Fee Payment Reciept";
+			$filter=$on;
+			$this->data['fee']="fee";
+			$check=$this->master_model->printfee($filter);
+			$count=count($check);
+		
+			$row=$check;
+			$Token=$row[0]->Token;
+			$TransactionDate=date("d M Y,h:ia",$row[0]->TransactionDate);
+			$StudentName=$row[0]->StudentName;
+			$Session=$row[0]->TransactionSession;
+			$FatherName=$row[0]->FatherName;
+			$MotherName=$row[0]->MotherName;
+			$Mobile=$row[0]->Mobile;
+			$ClassName=$row[0]->ClassName;
+			$SectionName=$row[0]->SectionName;
+			$Print="";
+			$this->data['datetime']="Date Time of Payment : $TransactionDate";
+			$Print.="<caption ><p style='float:right'>Date Time of Payment : $TransactionDate</p></caption>
+				<Tr>
+				<th>Student Name</th><td>$StudentName</td>
+				<th>Father Name</th><td>$FatherName</td>
+				</tr>
+				<Tr>
+				<th>Mother Name</th><td>$MotherName</td>
+				<th>Mobile</th><td>$Mobile</td>
+				</tr>
+				<th>Class</th><td>$ClassName</td>
+				<th>Section</th><td>$SectionName</td>
+				</tr>";
+			$Print.="<tr>
+				<Th colspan='2'>Fee Type</th><th colspan='2'>Amount</th></tr>";
+			$check2=$this->master_model->printfeenam($Token);
+			
+			$SumAmount=0;
+			foreach($check2 as $row2)
+			{
+				$FeeName=$row2->FeeName;
+				$Amount=$row2->Paid;
+				$Print.="<Tr><Td colspan='2'>$FeeName</Td><Td colspan='2'>$Amount INR</td></tr>";
+				$SumAmount+=$Amount;
+			}	
+			$Print.="<tr><th colspan='2'>Total</th><th colspan='2'>$SumAmount INR</th>";
+			
+			$this->data['print']=$Print;
+		}elseif($action=="route"){
+			$session=$this->currentsession[0]->CurrentSession;
+			$this->data['heading']="All Route List Of Session $session";
+			$this->data['route']=$this->master_model->get_route_list(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+		}elseif($action=="viewroute"){
+			$session=$this->currentsession[0]->CurrentSession;
+			$routename=$this->master_model->get_route_single($on,!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+			$routename=$routename[0]->VehicleRouteName;
+			$this->data['heading']=" $routename Route Detail list for Session $session";
+			$this->data['viewroute']=$this->master_model->get_route_details($on);
+		}elseif($action=="stafflist"){
+			$this->data['heading']=" Showing List Of Staff";
+			$this->data['stafflist']=$this->master_model->get_staff();
+		}elseif($action=="listbook"){
+			$this->data['heading']=" Showing List Of Books";
+			$this->data['booklist']=$this->master_model->getprintbook();
+		}
+			
+		date_default_timezone_set("Asia/Kolkata");
+		$this->data['datetime']=$Date=date("M d, Y, h:i a");
+		$this->load->view('print',$this->data);
+	
+	}
+/*school management Print for All End.............................................................*/
 	
 
 	

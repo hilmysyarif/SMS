@@ -71,8 +71,8 @@ class Onlineexam extends CI_Controller {
 			
 		}
 		
-		$this->data['class_info']=$this->onlineexam_model->get_class($this->currentsession[0]->CurrentSession);
-		$this->data['onlineexam'] = $this->onlineexam_model->get_exam_details($this->currentsession[0]->CurrentSession);
+		$this->data['class_info']=$this->onlineexam_model->get_class(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+		$this->data['onlineexam'] = $this->onlineexam_model->get_exam_details(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -168,7 +168,7 @@ class Onlineexam extends CI_Controller {
 				}
 		}
 	
-		$this->data['class_info']=$this->onlineexam_model->get_class($this->currentsession[0]->CurrentSession);
+		$this->data['class_info']=$this->onlineexam_model->get_class(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->data['qustionlist']=$updateonlineexam = $this->onlineexam_model->get_qustion();
 		
 		$this->parser->parse('include/header',$this->data);
@@ -260,7 +260,7 @@ class Onlineexam extends CI_Controller {
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Online Exam List', base_url().'onlineexam/olineexamlist');
 		
-		$this->data['onlineexam'] = $this->onlineexam_model->get_exam_details($this->currentsession[0]->CurrentSession);
+		$this->data['onlineexam'] = $this->onlineexam_model->get_exam_details(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -333,7 +333,7 @@ class Onlineexam extends CI_Controller {
 			$this->data['onlineexamreport'] = $this->onlineexam_model->get_exam_report();
 		}
 		}
-		$this->data['class_info']=$this->onlineexam_model->get_class($this->currentsession[0]->CurrentSession);
+		$this->data['class_info']=$this->onlineexam_model->get_class(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);

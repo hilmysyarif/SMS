@@ -15,7 +15,7 @@ class Admission extends CI_Controller {
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
 		$this->load->library('authority');
-		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
+		if (!$this->session->userdata('user_data')){ $this->session->set_flashdata('category_error_login', " Your Session Is Expired!! Please Login Again. "); redirect(base_url());}
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
 		$this->session->set_userdata('currentsession',$currentsession);
@@ -84,8 +84,8 @@ class Admission extends CI_Controller {
 					$this->data['registration_info']='';
 				}
 		
-				 $this->data['regis'] = $this->admission_model->get_registration_info($this->currentsession[0]->CurrentSession);
-				 $this->data['class_section'] = $this->admission_model->get_class_info($this->currentsession[0]->CurrentSession);
+				 $this->data['regis'] = $this->admission_model->get_registration_info(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+				 $this->data['class_section'] = $this->admission_model->get_class_info(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 				 $this->data['gender'] = $this->admission_model->get_gender_info();
 				 $this->data['caste'] = $this->admission_model->get_gender_info();
 				 $this->data['category'] = $this->admission_model->get_gender_info();
@@ -421,7 +421,7 @@ class Admission extends CI_Controller {
 			
 		}
 		
-		$this->data['class_info']=$this->admission_model->get_class($this->currentsession[0]->CurrentSession);
+		$this->data['class_info']=$this->admission_model->get_class(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -514,7 +514,7 @@ class Admission extends CI_Controller {
 			$this->data['fee_type']=explode(",",$feetype[0]->FeeStructure);
 			
 		}
-		$this->data['class_info']=$this->admission_model->get_class($this->currentsession[0]->CurrentSession);
+		$this->data['class_info']=$this->admission_model->get_class(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -710,8 +710,8 @@ class Admission extends CI_Controller {
 			if($this->input->post('login')){
 			$this->data['login']='login';
 			}
-		$this->data['class_info']=$this->admission_model->get_class($this->currentsession[0]->CurrentSession);
-		$this->data['student_info']=$this->admission_model->get_student_details($status,$section,$this->currentsession[0]->CurrentSession);
+		$this->data['class_info']=$this->admission_model->get_class(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
+		$this->data['student_info']=$this->admission_model->get_student_details($status,$section,!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
