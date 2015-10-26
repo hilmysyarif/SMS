@@ -1016,7 +1016,7 @@
 									<select class="form-control col-sm-8" id="s3example-9" >
 										<option></option>
 										
-											<option><?=$this->currentsession[0]->CurrentSession?></option>
+											<option><?=!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:''?></option>
 											
 										
 									</select>
@@ -1087,7 +1087,7 @@
 							    <div class="form-group">
 									<label class="col-sm-4 control-label" for="field-1">For Session</label>
 									<div class="col-sm-8">
-									<label class="control-label" for="field-1"><?=$this->currentsession[0]->CurrentSession?></label>
+									<label class="control-label" for="field-1"><?=!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:''?></label>
 									</div>
 								</div>
 								<div class="form-group-separator">
@@ -1220,6 +1220,7 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">Registration List</h3>
 							<div class="panel-options">
+							<a href="<?=base_url();?>master/prints/registration" target="_blank"><i class="fa fa-print"></i></a>
 								<a href="#" data-toggle="panel">
 									<span class="collapse-icon">&ndash;</span>
 									<span class="expand-icon">+</span>

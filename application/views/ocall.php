@@ -115,6 +115,7 @@
 									<h3 class="panel-title">Other Call List</h3>
 									
 									<div class="panel-options">
+									<a href="<?=base_url();?>master/prints/ocall" target="blank"><i class="fa fa-print"></i></a>
 										<a href="#" data-toggle="panel">
 											<span class="collapse-icon">&ndash;</span>
 											<span class="expand-icon">+</span>

@@ -15,7 +15,7 @@ class Payments extends CI_Controller {
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
 		$this->load->library('authority');
-		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
+		if (!$this->session->userdata('user_data')){ $this->session->set_flashdata('category_error_login', " Your Session Is Expired!! Please Login Again. "); redirect(base_url());}
 		$this->info= $this->session->userdata('user_data');
 		$currentsession=$this->currentsession = $this->session->userdata('currentsession');
 	 }
@@ -40,7 +40,7 @@ class Payments extends CI_Controller {
 			
 			$this->data['account'] = $this->payment_model->get_account();
 		}
-		$this->data['student_info'] = $this->payment_model->get_student($this->currentsession[0]->CurrentSession);
+		$this->data['student_info'] = $this->payment_model->get_student(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
@@ -176,5 +176,26 @@ class Payments extends CI_Controller {
 	}
 /*school management confirm Payment of student................................................................................*/
 	
+	/*school management Feepayment Delete start........................................................................*/	
+	function delete($action=false,$on=false,$id=false)
+	{
+	if(Authority::checkAuthority('MarksSetUp')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		
+		if($id){
+			$filter=array($on=>$this->data['id']=$id);
+			$this->master_model->delete($action,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("delete").' Deleted Successfully!!');
+		}
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	
+	}
+/*school management Feepayment Delete End.............................................................................*/
+
 	
 }

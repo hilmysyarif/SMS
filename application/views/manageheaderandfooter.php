@@ -108,7 +108,7 @@
 											<th>Title</th>
 											<th>Content</th>
 											<th><i class="fa fa-edit"></i></th>
-											<th><i class="fa fa-file-text-o"></th>
+											<th><i class="el-cancel-circled"></th>
 											
 										</tr>
 									</thead>
@@ -118,8 +118,8 @@
 											<th>Type</th>
 											<th>Title</th>
 											<th>Content</th>
-											<th><a href="#"><i class="fa fa-edit"></i></a></th>
-											<th><a href="#"><i class="fa fa-file-text-o"></a></th>
+											<th><a href="javascript:;"><i class="fa fa-edit"></i></a></th>
+											<th><a href="javascript:;"><i class="el-cancel-circled"></a></th>
 											
 										</tr>
 									</tfoot>
@@ -131,7 +131,7 @@
 											<td><?=$header->HeaderTitle?> <?php if($header->HeaderDefault=="Yes"){?> <span class="label label-secondary"><?php  echo "Default";?></span><?php }else{?><span class="label label-red"><?php echo"Make Default";?></span><?php }?></td>
 											<td><?=$header->HeaderContent?></td>
 											<td><a href="<?=base_url();?>master/manageheaderandfooter/<?=$header->HeaderId?>"><i class="fa fa-edit"></a></i></td>
-											<td><a href="<?=base_url();?>master/modal/<?=$header->HeaderId?>" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-7"><i class="fa fa-file-text-o"></i></a></td>
+											<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>master/delete/header/HeaderId/<?=$header->HeaderId?>"  ><i class="el-cancel-circled"></i></a></td>
 											
 										</tr>
 									<?php } ?>

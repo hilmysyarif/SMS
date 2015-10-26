@@ -152,7 +152,7 @@
 											<th>Remarks</th>
 											
 											<th><i class="fa fa-times"></i></th>
-											<th><i class="fa fa-print"></i></th>
+											<th><i class="fa fa-file-text-o"></i></th>
 											
 										</tr>
 									</thead>
@@ -169,8 +169,8 @@
 											<td><?=date("d M Y,h:ia",$income->TransactionDate)?></td>
 											<td><?=$income->TransactionRemarks?></td>
 											
-											<td><i class="fa fa-times"></i></td>
-											<td><i class="fa fa-print"></i></td>
+											<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>transaction/delete/income/TransactionId/<?=$income->TransactionId ?>" ><i class="fa fa-times"></i></a></td>
+											<td><i class="fa fa-file-text-o"></i></td>
 										</tr>
 										<?php  } ?>
 									</tbody>

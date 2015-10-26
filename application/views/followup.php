@@ -137,7 +137,7 @@
 								<td><?=date("d-m-Y H:i",$followup_details_show->DOF)?></td>
 								<td><?=date("d-m-Y H:i",$followup_details_show->NextFollowUpDate)?></td>
 								<td><a href="<?=base_url();?>frontoffice/<?php if(isset($ocall)){ echo"followup_other"; }elseif(isset($enquiry)){echo"followup_enquiry";}else{ echo"followup";}?>/<?php if(isset($followupid)){ echo $followupid[0];}?>/<?=$followup_details_show->FollowUpId?>"><i class="fa fa-edit"></i></a></td>
-								<td><i class="el-cancel-circled"></i></td>
+								<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>frontoffice/delete/followup/FollowUpId/<?=$followup_details_show->FollowUpId?>"  ><i class="el-cancel-circled"></i></a></td>
 							</tr>
 							<?php } ?>
 						</tbody>

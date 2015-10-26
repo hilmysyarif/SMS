@@ -16,7 +16,7 @@ class Managestaffs extends CI_Controller {
 		$this->data['base_url']=base_url();
 		$this->load->library('session');
 		$this->load->library('authority');
-		if (!$this->session->userdata('user_data')) show_error('Direct access is not allowed');
+		if (!$this->session->userdata('user_data')){ $this->session->set_flashdata('category_error_login', " Your Session Is Expired!! Please Login Again. "); redirect(base_url());}
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
 		$this->session->set_userdata('currentsession',$currentsession);
@@ -183,7 +183,8 @@ class Managestaffs extends CI_Controller {
 					
 					$ListStaffPaidLeave=$row2->StaffPaidLeave;
 					$ListEffectiveFrom=date("d M Y",$row2->EffectiveFrom);
-					$Delete="";
+					$Delete="<a onClick=\"return confirm('Are you sure to delete this ? This will delete all the related records')\" 
+					href='".base_url()."managestaffs/delete/staffsalary/StaffSalaryId/$ListStaffSalaryId' ><i class='fa fa-times'></i></a>";
 					$ListSalaryStructure.="<tr>
 											<td>$ListSalaryStructureName</td>
 											<td>$FixedSalaryString</Td>
@@ -500,6 +501,22 @@ class Managestaffs extends CI_Controller {
 	}
 	 /*ManageStaff  Pay salary Staff   End................................................................................................*/
 	
+	
+	/*school management Staff Delete start........................................................................*/	
+	function delete($action=false,$on=false,$id=false)
+	{
+	
+		if($id){
+			$filter=array($on=>$this->data['id']=$id);
+			$this->master_model->delete($action,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("delete").' Deleted Successfully!!');
+		}
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	
+	}
+/*school management Staff Delete End.............................................................................*/
+
 	 
 	
 	

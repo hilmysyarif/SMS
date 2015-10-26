@@ -33,12 +33,12 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																	<?php  $student= $this->utilities->get_student_admission($this->currentsession[0]->CurrentSession);  ?>
+																	<?php  $student= $this->utilities->get_student_admission(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');  ?>
 																		<select class="form-control " id="s2example-1" name="student">
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($student as $student){ ?>
-																	<option value="<?=$student->RegistrationId?>,<?=$student->ClassId?>,<?=$student->SectionId?>" <?php if(empty($id)==''){ echo (!empty(isset($id)==$student->RegistrationId) ? "selected" : ''); } ?>><?=$student->StudentName?> <?=$student->FatherName?> <?=$student->Mobile?> <?=$student->ClassName?> <?=$student->SectionName?></option>
+																	<option value="<?=!empty($student->RegistrationId)?$student->RegistrationId:''?>,<?=$student->ClassId?>,<?=$student->SectionId?>" <?php if(empty($id)==''){ echo (!empty(isset($id)==$student->RegistrationId) ? "selected" : ''); } ?>><?=$student->StudentName?> <?=$student->FatherName?> <?=$student->Mobile?> <?=$student->ClassName?> <?=$student->SectionName?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>

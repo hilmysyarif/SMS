@@ -122,6 +122,7 @@
 									<h3 class="panel-title">Complaint List</h3>
 									
 									<div class="panel-options">
+									<a href="<?=base_url();?>master/prints/complaint" target="_blank"><i class="fa fa-print"></i></a>
 										<a href="#" data-toggle="panel">
 											<span class="collapse-icon">&ndash;</span>
 											<span class="expand-icon">+</span>

@@ -65,7 +65,7 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">Staff Attendance Report of <?=$attendance?></h3>
 							<div class="panel-options">
-							<span class="print-icon"><i class="fa fa-print"></i></span>
+							<span class="print-icon"><a href="<?=base_url();?>master/prints/staff/<?php if(empty($attendance)==''){echo $attendance;}?>" target="_blank"><i class="fa fa-print"></i></a></span>
 								<a href="#" data-toggle="panel">
 									<span class="collapse-icon">&ndash;</span>
 									<span class="expand-icon">+</span>
@@ -179,9 +179,9 @@
 										$Found=1;
 									}
 								}
-								//if($Found!=1) ?>
-								
-						<?php 	} 
+								if($Found!=1){ ?>
+								<td>-</td>
+								<?php 	} } 
 					}  ?><td><?=$P?></td><td><?=$A?></td><td><?=$HD?></td><td><?=$H?></td><td><?=$OD?></td><td><?=$PL?></td></tr><?php } ?>
 											</tbody>
 										</table>

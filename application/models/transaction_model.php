@@ -114,6 +114,44 @@ class Transaction_model extends CI_Model
 			return $qry->Result();	
 	}
 	
+	/* function Delete start.........................................................................  */
+   function delete($table=false,$filter=false,$on=false)
+   {	
+		
+		if($table=="income"){
+			$qry = $this->db->query("select TransactionFrom,TransactionAmount,TransactionHead from transaction where TransactionId='$filter[$on]' ");
+			$qry=$qry->Result();
+			$Account=$qry[0]->TransactionFrom;
+			$AmountPaid=$qry[0]->TransactionAmount;
+			$type=$qry[0]->TransactionHead;
+			$this->db->query("update accounts set AccountBalance=AccountBalance-$AmountPaid where AccountId='$Account' ");	
+			$this->db->delete('transaction',$filter);
+		}elseif($table=="expense"){
+			$qry = $this->db->query("select TransactionAmount,TransactionFrom from transaction where TransactionHeadId='$filter[$on]' and TransactionHead='Expense'");
+			$qry=$qry->Result();
+			if(count($qry)>0){
+			$Account=$qry[0]->TransactionFrom;
+			$AmountPaid=$qry[0]->TransactionAmount;
+			$this->db->query("update accounts set AccountBalance=AccountBalance+$AmountPaid where AccountId='$Account' ");
+			$this->db->delete('transaction',array('TransactionHeadId'=>$filter[$on],'TransactionHead'=>'Expense')); }
+			$this->db->delete($table,$filter);
+		}elseif($table=="transaction"){
+			$qry = $this->db->query("select TransactionFrom,TransactionAmount,TransactionHeadId from transaction where TransactionId='$filter[$on]'");
+			$qry=$qry->Result();
+			if(count($qry)>0){
+			$Account=$qry[0]->TransactionFrom;
+			$AmountPaid=$qry[0]->TransactionAmount;
+			$expenseid=$qry[0]->TransactionHeadId;
+			$this->db->query("update accounts set AccountBalance=AccountBalance+$AmountPaid where AccountId='$Account' ");
+			$this->db->query("update expense set AmountPaid=AmountPaid-$AmountPaid where ExpenseId='$expenseid' ");
+			$this->db->delete($table,$filter);
+			 }
+		}
+		
+	 }
+   /* function Delete end.........................................................................  */
+     
+  
 	
 	 
 }

@@ -16,6 +16,7 @@ class Common_functions extends CI_Controller {
 		$this->data['base_url']=base_url();
 		$this->load->model('mhome');
 		$this->load->library('session');
+		if (!$this->session->userdata('user_data')){ $this->session->set_flashdata('category_error_login', " Your Session Is Expired!! Please Login Again. "); redirect(base_url());}
 		$currentsession=$this->currentsession = $this->session->userdata('currentsession');
 	}
 	
@@ -270,7 +271,8 @@ class Common_functions extends CI_Controller {
 			echo  "<tr>";
 			echo  "<td>$row->MasterEntryValue </td>";
 			echo  "<td>$row->Amount</td>";
-			echo  "<td><a href='javascript:;' class='delete'><span class='fa fa-times'></span></a></td>";
+			echo  "<td><a onClick=\"return confirm('Are you sure to delete this ? This will delete all the related records')\" 
+					href='".base_url()."payments/delete/feepayment/FeePaymentId/$row->FeePaymentId' ><span class='fa fa-times'></span></a></td>";
 			echo  "</tr>";
 		
 			}
@@ -280,6 +282,59 @@ class Common_functions extends CI_Controller {
 		echo "<input type='hidden' value='".$Token."' name='token' class='form-control' >";
 	 }
 	 
+	 public function addbooklist()
+	{ 	
+		$bookid = $this->input->post('bookid');
+		$accessionno = $this->input->post('accessionno');
+		$token = $this->input->post('token');
+		
+		$CURRENTSESSION=$this->currentsession[0]->CurrentSession;
+	
+		$checkaccession = $this->utilities->checkaccession($accessionno,$token);
+		$count1=count($checkaccession);
+		  
+		 
+		  if($bookid=="" || $accessionno=="" || $token==""){
+			echo "<div class=\"alert alert-danger\">All the fields are mandatory!!</div>";
+		  }elseif($count1>0){
+			echo "<div class=\"alert alert-danger\">This accession no \"$accessionno\" is already used!!</div>";
+		  }else
+		  {
+			$this->utilities->insertbook($token,$bookid,$accessionno);
+			echo "<div class=\"alert alert-success\">book added successfully!!</div>";
+		   }
+	
+			$result = $this->utilities->getbookconfirm($token);
+		
+		
+		    echo   "<table class='table table-bordered table-striped' id='example-5'>";
+		    echo   "<thead>";
+			echo   "<tr>";
+			echo   "<th>Book Name</th>";
+			echo   "<th>Author Name</th>";
+			echo   "<th>Accession No</th>";
+			echo   "<th><span class='fa fa-times'></span></th>";
+			echo   "</tr>";
+			echo   "</thead>";
+			echo   "<tbody>";
+				
+			foreach($result as $row )
+			{
+			
+			echo  "<tr id=\"$row->ListBookId\">";
+			echo  "<td>$row->BookName </td>";
+			echo  "<td>$row->AuthorName</td>";
+			echo  "<td>$row->AccessionNo</td>";
+			echo  "<td><a onClick=\"return confirm('Are you sure to delete this ? This will delete all the related records')\" 
+					href='".base_url()."library/delete/listbook/ListBookId/$row->ListBookId' ><span class='fa fa-times'></span></a></td>";
+			echo  "</tr>";
+		
+			}
+			
+		echo "</tbody>";
+		echo "</table>";
+		
+	 }
 	 
 	 public function showfixedsalaryhead()
 	{

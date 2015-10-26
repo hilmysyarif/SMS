@@ -11,8 +11,17 @@
 						<div class="panel panel-color panel-gray">
 										<div class="panel-heading">
 											Listing All Vehicle Route 
+											<div class="panel-options">
+									<a href="<?=base_url();?>master/prints/route" target="_blank"><i class="fa fa-print"></i></a>
+										<a href="#" data-toggle="panel">
+											<span class="collapse-icon">&ndash;</span>
+											<span class="expand-icon">+</span>
+										</a>
+										
+									</div>
 										</div>
 								<div class="panel-body">
+								
 								<div class="table-responsive">	
 						<script type="text/javascript">
 					jQuery(document).ready(function($)
@@ -268,6 +277,7 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Listing <?=$route_single[0]->VehicleRouteName?> Students</h3>
 									<div class="panel-options">
+									<a href="<?=base_url();?>master/prints/viewroute/<?=$viewrouteid?>" target="_blank"><i class="fa fa-print"></i></a>
 										<a href="#" data-toggle="panel">
 											<span class="collapse-icon">&ndash;</span>
 											<span class="expand-icon">+</span>
@@ -305,7 +315,7 @@
 											<td><?=$serial?></td>
 											<td><?=$routedetails_list->MasterEntryValue?></td>
 											<?php $filter=array('AdmissionId'=>$routedetails_list->Students); $studentname= $this->utilities->get_student_name($this->currentsession[0]->CurrentSession,$routedetails_list->Students);  ?>
-											<td><?=$studentname[0]->StudentName?></td>
+											<td><?php foreach($studentname as $studentname){echo $studentname->StudentName; echo"<br>";}?></td>
 											<td><?php if($routedetails_list->DOE){ echo date("d M Y, h:ia",$routedetails_list->DOE); } ?></td>
 											<td><a href="<?=base_url();?>transports/route/viewroute/<?=$route_single[0]->VehicleRouteId?>/updateroutedetail/<?=$routedetails_list->VehicleRouteDetailId?>"><i class="fa fa-edit"></i></a></td>
 										</tr>
