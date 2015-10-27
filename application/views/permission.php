@@ -13,8 +13,8 @@
 										</div>
 									<div class="panel-body">
 											<form role="form" class="form-horizontal" action="<?=base_url();?>master/insert_permission" method="post">
-											<?php if(empty($page_name)==''){ ?>
-														<input type="hidden" name="id" value="<?=$permission_page[0]->PermissionId?>">
+											<?php if(!empty($page_name)){ ?>
+														<input type="hidden" name="id" value="<?=!empty($permission_page[0]->PermissionId)?$permission_page[0]->PermissionId:''?>">
 														<input type="hidden" name="usertype" value="<?=$user_type?>">
 											<?php } ?>
 																<div class="form-group">
@@ -70,7 +70,7 @@
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($page_name as $pagename){ ?>
-																	<option value="<?=$pagename->PageNameId?>" <?php if(empty($page_name)==''){ $page_id=$permission_page[0]->PermissionString; $page_id=explode(',',$page_id); foreach($page_id as $val){ echo (!empty($val==$pagename->PageNameId) ? "selected" : ''); }} ?>><?=$pagename->PageName?></option>
+																	<option value="<?=$pagename->PageNameId?>" <?php if(!empty($permission_page)){ $page_id=$permission_page[0]->PermissionString; $page_id=explode(',',$page_id); foreach($page_id as $val){ echo (!empty($val==$pagename->PageNameId) ? "selected" : ''); }} ?>><?=$pagename->PageName?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -89,5 +89,4 @@
 									</div>
 						</div>
 					</div>
-	
-</div>
+	</div>
