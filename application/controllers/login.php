@@ -27,6 +27,7 @@ class Login extends CI_Controller {
 	/* Function for login and create session .......................................................................*/	
 	function login_user($info=false)
 	{		
+		echo $_GET['json'];die;
 		$json= $_GET['json']; echo $json;die;
 		$data=json_decode($json);print_r($data);die;
 		$this->session->set_userdata('url',$json_data->url);
