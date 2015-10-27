@@ -28,7 +28,7 @@ class Login extends CI_Controller {
 	function login_user($info=false)
 	{	
 		$json= $_GET['json']; 
-		$data=json_decode($json);
+		$json_data=json_decode($json);
 		$this->session->set_userdata('url',$json_data->url);
 		$this->session->set_userdata('db_name',$json_data->database_name);
 		$this->session->userdata('db_name');
@@ -39,7 +39,7 @@ class Login extends CI_Controller {
 					'password'=>$json_data->password
 			);
 			$row=$this->login_model->login_check($data);
-			if($row){   print_r($row);die;
+			if($row){  
 			if(isset($json_data->url)&&$json_data->url=='androide')
 				{
 					$data=array(
