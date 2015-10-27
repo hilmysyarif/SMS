@@ -39,7 +39,7 @@ class Login extends CI_Controller {
 					'password'=>$json_data->password
 			);
 			$row=$this->login_model->login_check($data);
-			if($row){  
+			if($row){   
 			if(isset($json_data->url)&&$json_data->url=='androide')
 				{
 					$data=array(
