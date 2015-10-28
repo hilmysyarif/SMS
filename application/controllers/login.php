@@ -42,12 +42,13 @@ function login_user($info=false)
 			if($row){   
 				if(isset($json_data->url)&&$json_data->url=='androide')
 				{
-					if($row->UserType!=='0')
+					if(isset($row->UserType)&& $row->UserType!=='0')
 					{
+						print_r($row);die;
 						$row=$this->login_model->userType($row->UserType);
 						$userType=$row->MasterEntryValue;
 					}
-					if($row->UserType=='0')
+					if(isset($row->UserType)&& $row->UserType=='0')
 					{
 						$row->UserType=='admin';
 						$userType=$row->UserType;
