@@ -17,7 +17,8 @@ class Utilities extends CI_Controller {
 	function get_balance()
 	{
 		$CI = & get_instance();
-		$query=$CI->db->query("SELECT SUM(AccountBalance+OpeningBalance) as totalamount,AccountName from `accounts` ");
+		$query=$CI->db->query("select AccountName,(OpeningBalance+AccountBalance) as totalamount from accounts 
+			order by AccountName ");
 		return $query->Result();
 	}
 	
@@ -207,6 +208,44 @@ class Utilities extends CI_Controller {
 	{
 		$CI = & get_instance();
 		$query=$CI->db->query("select count(online_student_id) as total_student, SUM(IF(online_student_status = 'Pass', 1,0)) as total_pass,SUM(IF(online_student_status = 'Fail', 1,0)) as total_fail,MAX(total_marks) as max_marks, MIN(total_marks) as min_marks from online_exam_student where online_exam_id='$filter' ");
+		return $query->Result();
+	}
+	
+	function getbooktotal($filter=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("select Count(ListBookId) as TotalBook from listbook where ListBookStatus='Active' and BookId='$filter' ");
+		return $query->Result();
+	}
+	
+	function checkaccession($AccessionNo=false,$Token=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("select AccessionNo from listbook where AccessionNo='$AccessionNo' and (ListBookStatus='Active' or (ListBookStatus='Pending' and Token='$Token')) ");
+		return $query->Result();
+	}
+	
+	function insertbook($Token=false,$BookId=false,$AccessionNo=false)
+	{	
+		$CI = & get_instance();
+		$query=$CI->db->query("INSERT INTO listbook(Token,BookId,AccessionNo,ListBookStatus) values('$Token','$BookId','$AccessionNo','Pending')");
+	}
+	
+	function getbookconfirm($Token=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("select ListBookId,BookName,AuthorName,AccessionNo from book,listbook where 
+			book.BookId=listbook.BookId and 
+			ListBookStatus='Pending' and
+			Token='$Token'");
+		return $query->Result();
+	}
+	function getbooks($filter=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("Select BookName,AuthorName,AccessionNo from book,listbook where
+						ListBookId='$filter' and
+						book.BookId=listbook.BookId ");
 		return $query->Result();
 	}
 	
