@@ -18,14 +18,6 @@ class Login_model extends CI_Model
 		
     }
     
-    /* function for list of database name from central database */
-    function list_dbname()
-    {
-    	$this->db->select('db_name');
-    	$qry=$this->db->get('sw_registration');
-    	return $qry->result();
-    }     
-    
     /* function for login check email id ragisterd or not   */
  function login_check($data=false,$db_name=false)
    {
@@ -42,7 +34,14 @@ class Login_model extends CI_Model
 		  }
    }
    
-   
+   /* function for insert user data and if not already exist */
+   function userType($filter=false)
+   {
+   		$this->db->select('*');
+   		$this->db->where('MasterEntryId',$filter);
+   		$qry=$this->db->get('masterentry');
+   		return $qry->result();
+   }
    	/* function for insert user data and if not already exist */
  function insert_sign()
    {

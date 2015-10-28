@@ -24,8 +24,8 @@ class Login extends CI_Controller {
 	}
 	/*school management login page end...............................................................................*/
 	
-	/* Function for login and create session .......................................................................*/	
-	function login_user($info=false)
+	/* Function for login and create session ........................................................................*/	
+function login_user($info=false)
 	{	
 		$json= $_GET['json']; 
 		$json_data=json_decode($json);
@@ -40,12 +40,22 @@ class Login extends CI_Controller {
 			);
 			$row=$this->login_model->login_check($data);
 			if($row){   
-			if(isset($json_data->url)&&$json_data->url=='androide')
+				if(isset($json_data->url)&&$json_data->url=='androide')
 				{
+					if($row->UserType!=='0')
+					{
+						$row=$this->login_model->userType($row->UserType);
+						$userType=$row->MasterEntryValue;
+					}
+					if($row->UserType=='0')
+					{
+						$row->UserType=='admin';
+						$userType=$row->UserType;
+					}
 					$data=array(
 							'status'=>'200',
 							'result'=>'success',
-							'userType'=>$row->UserType,
+							'userType'=>$userType,
 					);
 					print_r($data);die;
 				}
@@ -68,8 +78,66 @@ class Login extends CI_Controller {
 					);
 					print_r($data);die;
 				}
-				?><script>alert('User id and Password does not match');</script><?php
-				redirect($json_data->url,'refresh');
+				?>
+				<style>
+#dialogoverlay{
+	display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #FFF;
+	width: 100%;
+	z-index: 10;
+}
+#dialogbox{
+	display: none;
+	position: fixed;
+	background: #000;
+	border-radius:7px; 
+	width:550px;
+	z-index: 10;
+}
+#dialogbox > div{ background:#FFF; margin:8px; }
+#dialogbox > div > #dialogboxhead{ background: #666; font-size:19px; padding:10px; color:#CCC; }
+#dialogbox > div > #dialogboxbody{ background:#333; padding:20px; color:#FFF; }
+#dialogbox > div > #dialogboxfoot{ background: #666; padding:10px; text-align:right; }
+</style>
+<body>				
+<div id="dialogoverlay"></div>
+<div id="dialogbox">
+  <div>
+    <div id="dialogboxhead"></div>
+    <div id="dialogboxbody"></div>
+    <div id="dialogboxfoot"></div>
+  </div>
+</div>
+</body>
+				<script> 
+				function CustomAlert(){
+				   	    this.render = function(dialog){
+				        var winW = window.innerWidth;
+				        var winH = window.innerHeight;
+				        var dialogoverlay = document.getElementById('dialogoverlay');
+				        var dialogbox = document.getElementById('dialogbox');
+				        dialogoverlay.style.display = "block";
+				        dialogoverlay.style.height = winH+"px";
+				        dialogbox.style.left = (winW/2) - (550 * .5)+"px";
+				        dialogbox.style.top = "100px";
+				        dialogbox.style.display = "block";
+				        document.getElementById('dialogboxhead').innerHTML = "Acknowledge This Message";
+				        document.getElementById('dialogboxbody').innerHTML = dialog;
+				        document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Alert.ok()">OK</button>';
+				    }
+					this.ok = function(){
+						document.getElementById('dialogbox').style.display = "none";
+						document.getElementById('dialogoverlay').style.display = "none";
+					}
+				}
+				var Alert = new CustomAlert();
+				 window.onload = Alert.render('user id and password does not exist.');
+				 </script> <?php 
+				 redirect($json_data->url,'refresh');
 			}
 		}
 			//$data=array(
