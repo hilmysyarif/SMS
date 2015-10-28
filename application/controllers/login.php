@@ -45,11 +45,11 @@ function login_user($info=false)
 					if(isset($row->UserType)&& $row->UserType!=='0')
 					{
 						$row=$this->login_model->userType($row->UserType);
-						print_r($row);die;
+					//	print_r($row[0]);die;
 						$data=array(
 								'status'=>'200',
 								'result'=>'success',
-								'userType'=>$row->MasterEntryValue,
+								'userType'=>$row[0]->MasterEntryValue,
 						);
 						print_r($data);die;
 					}
