@@ -73,7 +73,7 @@ class Onlineexam extends CI_Controller {
 		
 		$this->data['class_info']=$this->onlineexam_model->get_class(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		$this->data['onlineexam'] = $this->onlineexam_model->get_exam_details(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
-		print_r($this->currentsession[0]->CurrentSession);die;
+		print_r(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');die;
 				$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
