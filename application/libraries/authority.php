@@ -7,9 +7,12 @@ class Authority
 		$obj =& get_instance();
 		$user_session_data = $obj->session->userdata('user_data');
 		$role=$user_session_data['UserType'];
+		
 		$list_permision=$obj->data['list_permision']=$obj->authority_model->list_permision($role);
+		
 		if($list_permision !=''){
 		$permissionstring=explode(",",$list_permision[0]->PermissionString);
+		
 		foreach($permissionstring as $var)
 		{	
 			$checkpage=$obj->authority_model->checkpage($var);
@@ -19,7 +22,7 @@ class Authority
 			return true;
 			}
 		}
-		}elseif($list_permision =='' || $role==0){
+		}elseif($role==0){
 			return true;
 		}else{
 					$obj->session->set_flashdata('category_error', " You Are Not Authorised To Access $function");        

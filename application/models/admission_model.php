@@ -198,7 +198,18 @@ class Admission_model extends CI_Model
 					studentfee.Session='$CURRENTSESSION' $SectionQuery");
    	return $query->Result();
    }
-   
+   function get_balance($CURRENTSESSION=false,$admissionid=false)
+   {
+   	$query=$this->db->query("select SUM(Amount) as Paid,FeeType from feepayment,transaction where
+						transaction.Token=feepayment.Token and
+						transaction.TransactionStatus='Active' and
+						feepayment.FeePaymentStatus='Active' and
+						transaction.TransactionHead='Fee' and 
+						transaction.TransactionSession='$CURRENTSESSION' and 
+						transaction.TransactionHeadId='$admissionid' 
+						group by FeeType");
+   	return $query->Result();
+   }
    function get_nextclass_fee($NextSectionId=false,$NextSession=false,$Distance=false)
    {
    	$query=$this->db->query("select MasterEntryValue,FeeType,Amount,FeeId,Distance from fee,masterentry where
@@ -270,5 +281,10 @@ class Admission_model extends CI_Model
    }
    /* function Delete end.........................................................................  */
    
+   function get_check($table=false,$filter=false)
+   {
+		$query=$this->db->get_where($table,$filter);
+		return $query->result();
+   }
   
 }

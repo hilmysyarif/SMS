@@ -10,7 +10,7 @@
 			<div class="navbar-brand">
 				<a href="javascript:;" class="logo">
 				
-				<p class="center  text-blac"><img src="<?=base_url();?>assets/images/junctionerplogo.png" width="20" alt="" class="hidden-xs" /><?php  if(!empty($this->currentsession)){ print_r($this->currentsession[0]->SchoolName);}else{ echo "School Management";} ?></p>
+				<p class="center  text-blac"><?php  if(!empty($this->currentsession)){ print_r($this->currentsession[0]->SchoolName);}else{ echo "School Management";} ?></p>
 					<!--<img src="<?=base_url();?>assets/images/logo-white-bg@2x.png" width="80" alt="" class="hidden-xs" />
 					<img src="<?=base_url();?>assets/images/logo@2x.png" width="80" alt="" class="visible-xs" />-->
 				</a>
@@ -39,7 +39,7 @@
 			
 			
 			<!-- main menu -->
-					
+				<?php   if(in_array('Settings',$this->session->userdata('pagename'))   ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>	
 			<ul class="navbar-nav">
 				<li>
 					<a href="javascript:;">
@@ -47,91 +47,109 @@
 						<span class="title"> Setting </span><span class="caret"></span>
 					</a>
 					<ul>
+					<?php  if(in_array('GeneralSetting',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/generalsetting">
 								<span class="title">General Setting</span>
 							</a>
 						</li>
+					<?php }  if(in_array('MasterEntry',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/masterentry">
 								<span class="title">Master Entry</span>
 							</a>
 						</li>
+						<?php } if(in_array('ManageUser',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/manageuser">
 								<span class="title">Manage User</span>
 							</a>
 						</li>
+						<?php } if(in_array('ManageAccounts',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/manageaccount">
 								<span class="title">Manage Accounts</span>
 							</a>
 						</li>
+						<?php } if(in_array('ManageClass',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/manageclass">
 								<span class="title">Manage Class</span>
 							</a>
 						</li>
+						<?php } if(in_array('ManageSubject',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/managesubject">
 								<span class="title">Manage Subject</span>
 							</a>
 						</li>
+						<?php } if(in_array('ManageExam',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/manageexam">
 								<span class="title">Manage Exam</span>
 							</a>
 						</li>
+						<?php } if(in_array('ManageSCArea',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/managescarea">
 								<span class="title">Manage SC Area</span>
 							</a>
 						</li>
+						<?php } if(in_array('ManageSCIndicator',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/managescindicator">
 								<span class="title">Manage SC Indicator</span>
 							</a>
 						</li>
+						<?php } if(in_array('ManageFee',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/managefee">
 								<span class="title">Manage Fees</span>
 							</a>
 						</li>
+						<?php } if(in_array('salaryhead',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/salaryhead">
 								<span class="title">Salary Head</span>
 							</a>
 						</li>
+						<?php } if(in_array('salarystructure',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/structuretemplate">
 								<span class="title">Salary Structure</span>
 							</a>
 						</li>
+						<?php } if(in_array('schoolmaterial',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/manageschoolmaterial">
 								<span class="title">School Material</span>
 							</a>
 						</li>
+						<?php } if(in_array('ManageLocation',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/managelocation">
 								<span class="title">Manage Location</span>
 							</a>
 						</li>
+						<?php } if(in_array('ManageHeaderFooter',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/manageheaderandfooter">
 								<span class="title">Header & Footer</span>
 							</a>
 						</li>
+						<?php } if(in_array('PrintOption',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/printoption">
 								<span class="title">Print Option</span>
 							</a>
 						</li>
+						<?php } if(in_array('Permission',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/permission">
 								<span class="title">Permission</span>
 							</a>
 						</li>
+						<?php } ?>
 					</ul>
 				</li>
 				
@@ -139,11 +157,11 @@
 				
 			
 			</ul>
-			
+				<?php  } if(in_array('ChangeSession',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 			<ul class="navbar-nav">
 				<li>
 							<a href="javascript:;">
-								<span class="title"><?php  if(!empty($this->currentsession)){ $year=$this->currentsession[0]->SchoolStartDate; $schoolstartyear=date("Y",$year); echo $this->currentsession[0]->CurrentSession; } else{ echo "Please Select Session"; } ?></span><span class="caret"></span>
+								<span class="title"><?php  if(!empty($this->currentsession)){ $year=$this->currentsession[0]->SchoolStartDate; $schoolstartyear=date("Y",$year); if(!empty($this->currentsession[0]->CurrentSession)){echo $this->currentsession[0]->CurrentSession;}else{ echo "Please Select Session"; } }else{ echo "Please Select Session"; } ?></span><span class="caret"></span>
 							</a> 
 					<ul>
 					<?php 
@@ -188,15 +206,16 @@
 			
 			</ul>
 			
-			
+				<?php } if(in_array('Balance',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 			<ul class="navbar-nav">
 				<li>
 				<?php $AccountBalance= $this->utilities->get_balance(); ?>
 				<a href="javascript:;">
 					<i class="linecons-database"></i>
+					
 						<span class="title tooltip-primary" 
-						data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<?=$AccountBalance[0]->AccountName?>: <?=$AccountBalance[0]->totalamount?> INR">
-						 Balance </span>
+						data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<?php foreach($AccountBalance as $AccountBalance){?><?=$AccountBalance->AccountName?>: <?=$AccountBalance->totalamount?> INR <?php echo"\r\n"; } ?>">
+					Balance </span>
 					</a>
 				</li>
 				
@@ -204,7 +223,7 @@
 				
 			
 			</ul>
-			
+				<?php } ?>
 			<ul class="navbar-nav">
 				<li>
 				

@@ -104,4 +104,22 @@ class Login_model extends CI_Model
 		$qry=$this->db->get_where('sw_registration',array('organization_name'=>$val));
 		return $qry->result();
 	}
+	
+	function studentparentcheck($data1=false,$whom=false)
+	{ $this->load->database('default',TRUE);
+		$qry=$this->db->query("select AdmissionId,$whom as name from registration,admission where 
+		$data1 and
+		admission.RegistrationId=registration.RegistrationId");
+		
+	
+		return $qry->result();
+	}
+	function getusertype($data1=false)
+	{ $this->load->database('default',TRUE);
+		$qry=$this->db->query("select MasterEntryId from masterentry where 
+		$data1");
+		//echo $this->db->last_query();die;
+		return $qry->result();
+	}
+	
 }

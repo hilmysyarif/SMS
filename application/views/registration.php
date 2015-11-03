@@ -60,7 +60,7 @@
 						<div class="panel-body">
 						
 						
-						 <form role="form" class=""  method="post" action="<?=base_url()?>admission/update_registration/<?=$RegistrationId?>">
+						 <form role="form" class="validate"  method="post" action="<?=base_url()?>admission/update_registration/<?=$RegistrationId?>">
 								<div class="form-group-separator">
 								</div>
 								<div class="row">
@@ -318,7 +318,7 @@
 					<div class="panel panel-default">
 						
 						<div class="panel-body">
-						 <form role="form" class=""  method="post" action="<?=base_url()?>admission/update_registration/<?=$RegistrationId?>">
+						 <form role="form" class="validate"  method="post" action="<?=base_url()?>admission/update_registration/<?=$RegistrationId?>">
 													   
 								<div class="form-group-separator">
 								</div>
@@ -423,7 +423,7 @@
 					<div class="panel panel-default">
 						
 						<div class="panel-body">
-						 <form role="form" class="" method="post" action="<?=base_url()?>admission/update_registration/<?=$RegistrationId?>">
+						 <form role="form" class="validate" method="post" action="<?=base_url()?>admission/update_registration/<?=$RegistrationId?>">
 							   
 								<div class="form-group-separator">
 								</div>
@@ -469,7 +469,7 @@
 							<div class="form-group ">
 									<label class=" control-label" for="FatherEmail">Father Email</label>
 								
-										<input type="text" class="form-control" name="FatherEmail" value="<?=isset($FatherEmail)?$FatherEmail:''?>" id="FatherEmail" placeholder="">
+										<input type="text" class="form-control" name="FatherEmail"  data-validate="email" value="<?=isset($FatherEmail)?$FatherEmail:''?>" id="FatherEmail" placeholder="">
 									
 								</div>
 							 
@@ -479,7 +479,7 @@
 							 <div class="form-group ">
 									<label class=" control-label" for="MotherEmail">Mother Email</label>
 								
-										<input type="text" class="form-control" name="MotherEmail" value="<?=isset($MotherEmail)?$MotherEmail:''?>" id="MotherEmail" placeholder="">
+										<input type="text" class="form-control" name="MotherEmail" data-validate="email" value="<?=isset($MotherEmail)?$MotherEmail:''?>" id="MotherEmail" placeholder="">
 									
 								</div>
 								
@@ -608,7 +608,7 @@
 													<td><?=$student_qualification->Year?></td>
 													<td><?=$student_qualification->Marks?></td>
 													<td><?=$student_qualification->Remarks?></td>
-													<td><a href="<?=base_url();?>admission/registration/<?php//=$student_qualification->QualificationId?>" ><i class="fa fa-times"></i></a></td>
+													<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>admission/delete/qualification/QualificationId/<?=$student_qualification->QualificationId?>" ><i class="fa fa-times"></i></a></td>
 												</tr>
 												<?php  } ?>
 											</tbody>
@@ -729,7 +729,7 @@
 													<td><?=$student_sibling->SClass?></td>
 													<td><?=$student_sibling->SSchool?></td>
 													<td><?=$student_sibling->SRemarks?></td>
-													<td><a href="<?=base_url();?>admission/registration/<?php//=$student_sibling->SiblingId?>" ><i class="fa fa-times"></i></a></td>
+													<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>admission/delete/sibling/SiblingId/<?=$student_sibling->SiblingId?>" ><i class="fa fa-times"></i></a></td>
 												</tr>
 												<?php  } ?>
 											</tbody>
@@ -925,11 +925,32 @@
 					
 				</div>
 				
-				<div class="col-sm-8">
+				<div class="col-sm-8 gallery-left">
+				<div class="album-images row">
+				
 							<?php  foreach($student_documents as $student_documents){ ?>
-							<div class="col-md-2" style="margin:35px;padding:20px"><image style="width:150px" src="<?=base_url();?>upload/<?=$student_documents->Path?>"><span><?=$student_documents->MasterEntryValue?> <?php echo"<br>";?> <?=$student_documents->Title?></span></div>
-							<?php } ?>
+							
+							<div class="col-md-3 col-sm-4 col-xs-6">
+								<div class="album-image">
+									<a href="javascript:;" class="thumb" data-action="edit">
+										<img src="<?=base_url();?>upload/<?=$student_documents->Path?>" class="img-responsive" />
+									</a>
+									
+									<a href="javascript:;" class="name">
+										<span><?=$student_documents->MasterEntryValue?></span>
+										<em><?php echo"<br>";?> <?=$student_documents->Title?></em>
+									</a>
+									
+									<div class="image-options">
+										<a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>managestaffs/delete/photos/PhotoId/<?=$student_documents->PhotoId ?>" data-action="trash"><i class="fa-trash"></i></a>
+									</div>
+									
+									
+								</div>
 							</div>
+							<?php } ?>
+				</div>
+				</div>
 				
 				</div>
 				
@@ -1079,7 +1100,7 @@
 							</div>
 						</div>
 						<div class="panel-body">
-						 <form role="form" class="form-horizontal" method="post" action="<?=base_url();?>admission/add_registration">
+						 <form role="form" class="form-horizontal validate" method="post" action="<?=base_url();?>admission/add_registration">
 						  <?php if(empty($var)==''){ ?>
 														<input type="hidden" name="id" value="<?=$var[0]->RegistrationId?>">
 											<?php } ?>
@@ -1119,7 +1140,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="mobile">Mobile Number</label>
 									<div class="col-sm-8">
-										<input required type="text" class="form-control" name="mobile" >
+										<input required type="text" class="form-control" data-validate="number,minlength[10],maxlength[10]" name="mobile" >
 									</div>
 								</div>
 								<div class="form-group-separator">

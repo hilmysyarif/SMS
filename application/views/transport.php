@@ -350,7 +350,7 @@
 																			<td><?=$showfuel->Rate?></td>
 																			<td><?=date("d M Y",$showfuel->DOF)?></td>
 																			<td><a href="<?=base_url();?>transports/transport/fuel/<?=$showfuel->FuelId?>"><i class="ffa fa-edit"></i></a></td>
-																			<td><i class="fa fa-times"></i></td>
+																			<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>transports/delete/vehiclefuel/FuelId/<?=$showfuel->FuelId?>"  ><i class="fa fa-times"></i></a></td>
 																		</tr>
 																		<?php  } ?>
 																		
@@ -452,7 +452,7 @@
 																			<td><?=$showreading->Reading?></td>
 																			<td><?=date("d M Y",$showreading->DOR)?></td>
 																			<td><a href="<?=base_url();?>transports/transport/reading/<?=$showreading->VehicleReadingId?>"><i class="fa fa-edit"></i></a></td>
-																			<td><i class="fa fa-times"></i></td>
+																			<td><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>transports/delete/vehiclereading/VehicleReadingId/<?=$showreading->VehicleReadingId?>"  ><i class="fa fa-times"></i></a></td>
 																		</tr>
 																		<?php  } ?>
 																		

@@ -21,15 +21,22 @@ class Dispatchreceiving extends CI_Controller {
 	 }
 	 
 	function dispatch($id=false)
-	{			
+	{	
+		if(Authority::checkAuthority('Dispatch')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 	   if($id!='')
 	   {
-		  
-		 
 		  $this->data['id']=$id;
 		  $did=$this->data['did']=$this->dispatchreceiving_model->dispatch_up($id);
-		 //print_r($did);die;
-	   }
+		}
 	   
 	   $this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Dispatch Register ', base_url().'dispatchreceiving/dispatch');
@@ -43,7 +50,17 @@ class Dispatchreceiving extends CI_Controller {
 	}
 	
 	function add_dispatch()
-	{		
+	{	
+		if(Authority::checkAuthority('Dispatch')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('add'))
 		{
 		$data=array('Reference'=>$this->input->post('Reference'),
@@ -72,28 +89,41 @@ class Dispatchreceiving extends CI_Controller {
 		
 	}
 	redirect('dispatchreceiving/dispatch');
-		
 	}
 	
 	function delete_dispatch_data($id)
 	{
+		if(Authority::checkAuthority('Dispatch')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($id)
-			//print_r($id);die;
 		{
 		$this->dispatchreceiving_model->delete_dispatch($id);
 		$this->session->set_flashdata('message_type', 'success');
 		$this->session->set_flashdata('message', $this->config->item("delete_receiving_data").' Deleted Successfully');
 				redirect('dispatchreceiving/dispatch');
-
 		}
 	}
 	
-	
-
-	
-	
 	function receiving($id=false)
 	{	
+		if(Authority::checkAuthority('Receiving')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($id!='')
 		{
 			
@@ -114,6 +144,16 @@ class Dispatchreceiving extends CI_Controller {
 	
     function add_receiving()
 	{
+		if(Authority::checkAuthority('Receiving')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('add'))
 		{
 		$data=array('Reference'=>$this->input->post('Reference'),
@@ -148,8 +188,17 @@ class Dispatchreceiving extends CI_Controller {
 
 	function delete_receiving_data($id)
 	{
+		if(Authority::checkAuthority('Receiving')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($id)
-			//print_r($id);die;
 		{
 		$this->dispatchreceiving_model->delete_receiving($id);
 		$this->session->set_flashdata('message_type', 'success');

@@ -25,6 +25,12 @@ class Master extends CI_Controller {
 	 /*school management Set School Session start........................................*/	
 	function set_session($session=false)
 	{
+		if(Authority::checkAuthority('ChangeSession')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
 		if($session){
 			$data=array('CurrentSession'=>$session);		
 			$this->master_model->set_session('generalsetting',$data);
@@ -129,6 +135,10 @@ class Master extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		Authority::checkAuthority('MasterEntry');
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Master Entry', base_url().'master/masterentry');
@@ -154,6 +164,10 @@ class Master extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$data=array(	'MasterEntryName'=>$this->input->post('cat_name'),
 						'MasterEntryValue'=>$this->input->post('cat_val'),
@@ -187,6 +201,10 @@ class Master extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage User', base_url().'master/manageuser');
 		if($id){
@@ -211,7 +229,11 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
-		}	
+		}
+			if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('id'))
 		{ 	if($this->input->post('reset')){
 			
@@ -259,6 +281,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Accounts', base_url().'master/manageaccount');
 		if($id){
@@ -283,6 +309,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		
 		$data=array(	'ManagedBy'=>$this->input->post('manage_by'),
@@ -319,6 +349,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Class And Section', base_url().'master/manageclass');
 		if($id){
@@ -350,10 +384,18 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($type=='class'){
 		$data=array(	'ClassName'=>$this->input->post('class_name'),
-						'Session'=>$this->currentsession[0]->CurrentSession,
-						'DOE'=>"16-7-2015",
+						'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',
+						'DOE'=>date("d m Y"),
 						'ClassStatus'=>"Active");
 						
 		if($this->input->post('id'))
@@ -371,7 +413,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}}else{
 			$data=array(	'ClassId'=>$this->input->post('class_name'),
 							'SectionName'=>$this->input->post('section_name'),
-							'DOE'=>"16-7-2015",
+							'DOE'=>date("d m Y"),
 							'SectionStatus'=>"Active");
 						
 		if($this->input->post('id'))
@@ -409,6 +451,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Subjects', base_url().'master/managesubject');
 		if($id){
@@ -435,13 +481,17 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$class=$this->input->post('class');
 		$class=implode(",",$class);
 		$data=array(	'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',
 						'SubjectName'=>$this->input->post('subject_name'),
 						'SubjectAbb'=>$this->input->post('abbreviation'),
 						'Class'=>$class,
-						'DOE'=>"16-7-2015",
+						'DOE'=>date("d m Y"),
 						'SubjectStatus'=>"Active");
 						
 		if($this->input->post('id'))
@@ -469,6 +519,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Exams', base_url().'master/manageexam');
@@ -557,6 +611,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$data=array(
 				'Exam_Type'=>$this->input->post('examtype'),
 				'Duration'=>$this->input->post('duration'),
@@ -593,6 +651,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Scholastic Co-Scholastic Area', base_url().'master/managescarea');
 		if($id){
@@ -623,13 +685,17 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$class=implode(",",$this->input->post('class'));
-		$data=array('Session'=>$this->currentsession[0]->CurrentSession,
+		$data=array('Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',
 				'SCAreaName'=>$this->input->post('area_name'),
 				'SCPartId'=>$this->input->post('part'),
 				'SCAreaClass'=>$class,
 				'GradingPoint'=>$this->input->post('grading_point'),
-				'DOE'=>"16-7-2015",
+				'DOE'=>date("d m Y"),
 				'SCAreaStatus'=>"Active");
 	
 		if($this->input->post('id'))
@@ -659,6 +725,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Scholastic Co-Scholastic Indicators', base_url().'master/managescindicator');
 		if($id){
@@ -687,6 +757,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$data=array(
 				'SCAreaId'=>$this->input->post('area'),
@@ -720,6 +794,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Fee', base_url().'master/managefee');
 		if($id){
@@ -749,14 +827,18 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('yes')){
 		$data=array(
 				'SectionId'=>$this->input->post('class'),
 				'FeeType'=>$this->input->post('fee_type'),
 				'Amount'=>$this->input->post('amount'),
 				'Distance'=>$this->input->post('distance'),
-				'Session'=>$this->currentsession[0]->CurrentSession,
-				'DOE'=>"16-7-2015",
+				'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',
+				'DOE'=>date("d m Y"),
 				'FeeStatus'=>"Active");
 		}else{
 			
@@ -764,8 +846,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 					'SectionId'=>$this->input->post('class'),
 					'FeeType'=>$this->input->post('fee_type'),
 					'Amount'=>$this->input->post('amount'),
-					'Session'=>$this->currentsession[0]->CurrentSession,
-					'DOE'=>"16-7-2015",
+					'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',
+					'DOE'=>date("d m Y"),
 					'FeeStatus'=>"Active");
 		}
 	
@@ -796,6 +878,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Salary Head', base_url().'master/salaryhead');
 		if($id){
@@ -823,6 +909,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$data=array(
 					'SalaryHeadType'=>$this->input->post('type'),
@@ -858,6 +948,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Salary Structure Template', base_url().'master/structuretemplate');
 		if($id){
@@ -886,6 +980,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$data=array(
 				'SalaryStructureName'=>$this->input->post('templatename'),
@@ -919,6 +1017,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage School Material', base_url().'master/manageschoolmaterial');
 		if($id){
@@ -946,6 +1048,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$data=array(
 				'SchoolMaterialType'=>'Books',
 				'ClassId'=>$this->input->post('class'),
@@ -953,13 +1059,13 @@ if(Authority::checkAuthority('ManageUser')==true){
 				'BranchPrice'=>$this->input->post('branch_price'),
 				'SellingPrice'=>$this->input->post('selling_price'),
 				'SchoolMaterialStatus'=>"Active",
-				'Session'=>$this->currentsession[0]->CurrentSession,
-				'Date'=>"18-7-2015",
+				'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',
+				'Date'=>date("d m Y"),
 		);
 			
 		if($this->input->post('id'))
 		{
-			$filter=array('LocationId'=>$this->input->post('id'));
+			$filter=array('SchoolMaterialId'=>$this->input->post('id'));
 			$this->master_model->insert_gen_setting('schoolmaterial',$data,$filter);
 			$this->session->set_flashdata('message_type', 'success');
 			$this->session->set_flashdata('message', $this->config->item("manageschoolmaterial").' Material Updated Successfully');
@@ -983,6 +1089,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Location', base_url().'master/managelocation');
@@ -1009,11 +1119,15 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$data=array(
 				'LocationName'=>$this->input->post('name'),
 				'CalledAs'=>$this->input->post('calledas'),
 				'LocationStatus'=>"Active",
-				'DOD'=>"18-7-2015",
+				'DOD'=>date("d m Y"),
 				);
 			
 		if($this->input->post('id'))
@@ -1044,6 +1158,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Manage Header & Footer', base_url().'master/manageheaderandfooter');
 		if($id){
@@ -1069,6 +1187,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$data=array(
 				'HRType'=>$this->input->post('type'),
@@ -1102,6 +1224,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Print Option', base_url().'master/printoption');
 		if($id){
@@ -1129,6 +1255,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$data=array(
 				'PrintCategory'=>$this->input->post('print_cat'),
@@ -1165,6 +1295,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Permission', base_url().'master/permission');
 		if($this->data['user_type']=$this->input->post('user_type')){
@@ -1192,6 +1326,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$pages=$this->input->post('pages');
 		$pages=implode(',',$pages);
@@ -1235,11 +1373,15 @@ if(Authority::checkAuthority('ManageUser')==true){
 	/*school management Calendar start..................................................................*/	
 	function calendar($id=false)
 	{	
-	if(Authority::checkAuthority('calendar')==true){
+	if(Authority::checkAuthority('Calendar')==true){
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		
 		$this->breadcrumb->clear();
@@ -1264,11 +1406,15 @@ if(Authority::checkAuthority('ManageUser')==true){
 /*school management Calendar insert and update start........................................................*/
 	function insert_calendar($id=false)
 	{	
-	if(Authority::checkAuthority('calendar')==true){
+	if(Authority::checkAuthority('Calendar')==true){
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		
 		
@@ -1302,6 +1448,16 @@ if(Authority::checkAuthority('ManageUser')==true){
 /*school management Print for All start........................................................*/
 	function prints($action=false,$on=false,$section=false)
 	{	
+		if(Authority::checkAuthority('Print')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($action=="schoolmaterial"){
 			$this->data['heading']="Showing List of School Material $on";
 			$this->data['on']=$on;
@@ -1429,11 +1585,11 @@ if(Authority::checkAuthority('ManageUser')==true){
 			
 			$this->data['print']=$Print;
 		}elseif($action=="route"){
-			$session=$this->currentsession[0]->CurrentSession;
+			$session=!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'';
 			$this->data['heading']="All Route List Of Session $session";
 			$this->data['route']=$this->master_model->get_route_list(!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 		}elseif($action=="viewroute"){
-			$session=$this->currentsession[0]->CurrentSession;
+			$session=!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'';
 			$routename=$this->master_model->get_route_single($on,!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
 			$routename=$routename[0]->VehicleRouteName;
 			$this->data['heading']=" $routename Route Detail list for Session $session";
@@ -1459,4 +1615,3 @@ if(Authority::checkAuthority('ManageUser')==true){
 }
 
 /* End of file Master.php */
-/* Location: ./application/controllers/Master.php */

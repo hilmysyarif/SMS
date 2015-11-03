@@ -49,6 +49,7 @@
 							</script>
 			
 			<div class="row">
+			<?php  if(in_array('IncomeExpanceGraph',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>	
 				<div class="col-md-7">
 				
 					<div class="panel panel-color panel-gray">
@@ -109,7 +110,8 @@
 					</div>
 						
 				</div>
-				  <div class="col-md-5">
+				<?php } ?>
+				  <div class="col-md-<?php  if(in_array('IncomeExpanceGraph',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){ echo "5";}else{echo"12";} ?>">
 									<script type="text/javascript">
 								// Calendar Initialization
 								jQuery(document).ready(function($)
@@ -220,6 +222,7 @@
 								</div>
 						</div>
 				</div>
+				<?php  if(in_array('AdmissionPiechart',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>	
 			<div class="row">
 				<div class="col-md-12">
 				
@@ -308,7 +311,7 @@
 						
 				</div>
 			</div>	
-			
+				<?php } ?>
 			
 	
 			

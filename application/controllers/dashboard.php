@@ -27,6 +27,23 @@ class Dashboard extends CI_Controller {
 	{ 	
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Dashboard', base_url());
+		$pagename1=array();
+		if($this->info['UserType']!=0){
+			$permissionstr = $this->Dashboard_model->checkpermission($this->info['UserType']);
+			if(!empty($permissionstr)){
+			$pageid=explode(",",$permissionstr[0]->PermissionString);
+			foreach($pageid as $permissionstr1){
+				$pagename = $this->Dashboard_model->getpagename($permissionstr1);
+				if(!empty($pagename)){
+				$pagename1[]=$pagename[0]->PageName; }
+			}
+			}
+			}
+			
+			$this->session->set_userdata('pagename',$pagename1);
+			$this->session->userdata('pagename');
+				
+		
 		
 		//Pei Chart , Line Chart and calender Reports Start From there............................................
 		

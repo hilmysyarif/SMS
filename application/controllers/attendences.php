@@ -34,6 +34,10 @@ class Attendences extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Staff Attendance', base_url().'attendences/staffattendence');
 		$this->data['get_staff']=$this->attendence_model->get_staff();
@@ -53,6 +57,10 @@ class Attendences extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 	if($this->input->post('intime') && $this->input->post('date') && $this->input->post('outtime') !=''){
 		
@@ -230,6 +238,10 @@ class Attendences extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 				$this->breadcrumb->clear();
 				$this->breadcrumb->add_crumb('Staff Attendance Report', base_url().'attendences/staffattendancereport');
 				$Sessions=explode("-",!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'');
@@ -293,6 +305,10 @@ class Attendences extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Student Attendance', base_url().'attendences/studentattendence');
 		if($sectionid !=''){
@@ -317,6 +333,10 @@ class Attendences extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('class') !=''){
 			redirect('attendences/studentattendence/'.$this->input->post('class'));
 		}else{
@@ -332,6 +352,10 @@ class Attendences extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 			$USERNAME=$this->info['usermailid'];
 			$Date= date("Y-m-d");
@@ -439,11 +463,15 @@ class Attendences extends CI_Controller {
 	/*school management Student Attendance report View Load.............................................................................................................*/
 	function studentattendancereport()
 	{		
-	if(Authority::checkAuthority('StudentAttendenceReport')==true){
+	if(Authority::checkAuthority('StudentAttendanceReport')==true){
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Student Attendance Report', base_url().'attendences/studentattendancereport');

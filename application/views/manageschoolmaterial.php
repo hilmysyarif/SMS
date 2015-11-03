@@ -115,7 +115,7 @@
 											<th>Session</th>
 											<th>Class</th>
 											<th>Name</th>
-											<th>Quantity</th>
+										<!--	<th>Quantity</th>-->
 											<th>Branch Price</th>
 											<th>Selling Price</th>
 											<th><i class="fa fa-edit"></i></th>
@@ -129,7 +129,7 @@
 											<th>Session</th>
 											<th>Class</th>
 											<th>Name</th>
-											<th>Quantity</th>
+										<!--	<th>Quantity</th> -->
 											<th>Branch Price</th>
 											<th>Selling Price</th>
 											<th><a href="javascript:;"><i class="fa fa-edit"></i></a></th>
@@ -145,7 +145,7 @@
 											<?php $filter=array('ClassId'=>$material->ClassId); $classname= $this->utilities->get_masterval('class',$filter); ?>
 											<td><?=$classname[0]->ClassName?></td>
 											<td><?=$material->Name?></td>
-											<td><?=$material->Quantity?></td>
+											<!--<td><?php //=$material->Quantity?></td>-->
 											<td><?=$material->BranchPrice?></td>
 											<td><?=$material->SellingPrice?></td>
 											<td><a href="<?=base_url();?>master/manageschoolmaterial/<?=$material->SchoolMaterialId?>"><i class="fa fa-edit"></a></i></td>

@@ -97,7 +97,7 @@
 								<div class="form-group">
 									<label class="col-sm-4 control-label" for="mother_name">Next Session</label>
 									<div class="col-sm-8">
-										<input type="text" onchange="show_nextclass(this.value,0)" class="form-control" name="nextsession" value="<?php if(isset($nextsession)){ echo $nextsession;}?>" id="nextsession" placeholder="">
+										<input data-mask="9999-9999" type="text" onchange="show_nextclass(this.value,0)" class="form-control" name="nextsession" value="<?php if(isset($nextsession)){ echo $nextsession;}?>" id="nextsession" placeholder="">
 									</div>
 								</div>
 								<div class="form-group-separator">

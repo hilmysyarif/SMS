@@ -169,6 +169,10 @@ function CGPA($Grade)
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Marks Setup', base_url().'exam/markssetup');
 		
@@ -220,6 +224,10 @@ function CGPA($Grade)
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		if($this->input->post('save') !=''){
 			$Exam_Type=$this->input->post('examtype');
@@ -280,6 +288,10 @@ function CGPA($Grade)
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Co Scholastic Marks Setup', base_url().'exam/scmarkssetup');
 		$this->data['exam'] = $this->exam_model->get_scmark_exam($this->currentsession[0]->CurrentSession);
@@ -299,6 +311,10 @@ function CGPA($Grade)
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Exam Report', base_url().'exam/examreport');
@@ -323,6 +339,10 @@ function CGPA($Grade)
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		if(!empty($this->input->post('examtype')))
 		{	
@@ -368,12 +388,7 @@ function CGPA($Grade)
 	/*school management Exam Delete start........................................................................*/	
 	function delete($action=false,$on=false,$id=false)
 	{
-	if(Authority::checkAuthority('MarksSetUp')==true){
-			
-		}else{
-					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-					redirect('dashboard');
-		}
+	
 		
 		if($id){
 			$filter=array($on=>$this->data['id']=$id);

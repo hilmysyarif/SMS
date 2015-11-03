@@ -242,8 +242,8 @@
 
 																		
 																</div>
-																<?php if(!empty($fee_type)) { foreach($fee_type as $fee_type){ 
-																$fee_remove_underscope=explode("-",$fee_type);
+																<?php if(!empty($fee_type)) { foreach($fee_type as $fee_types){ 
+																$fee_remove_underscope=explode("-",$fee_types);
 																?>
 																<div class="form-group">
 																<?php $filter=array('FeeId' => $fee_remove_underscope[0]); $feety= $this->utilities->get_masterval('fee',$filter);
@@ -330,18 +330,35 @@
 						</tfoot>
 					 
 						<tbody>
-						<?php foreach($get_fee_details as $rg){ $i=0;?>
-						
-							<tr>
-								<td><?=$rg->MasterEntryValue?></td>
-								<?php $filter=array('FeeId' => $rg->FeeId); $amount= $this->utilities->get_masterval('fee',$filter);?>
-								<td><?=$amount[0]->Amount?> INR</td>
-								<td><?=$rg->Paid?> INR</td>
-								<td><?=$amount[0]->Amount-$rg->Paid?> INR</td>
-								
-							</tr>
-							<?php  } ?>
-						</tbody>
+																	<?php $amount=''; $paid=''; $bal='';  foreach($fee_type as $fee_type1){
+																		$fee_type2=explode("-",$fee_type1);?>
+																		<tr>
+													<?php $filter=array('FeeId' => $fee_type2[0]); $feety= $this->utilities->get_masterval('fee',$filter); 
+													$filter=array('MasterEntryId' => $feety[0]->FeeType); $fee= $this->utilities->get_usertype($filter); 
+													
+													$remainbal1=$fee_type2[1];
+													$paidamount=0;
+															foreach($get_balance as $bal2){
+																if($fee_type2[0]==$bal2->FeeType){
+																	$paidamount=$bal2->Paid;
+																	$remainbal1=$fee_type2[1]-$bal2->Paid;
+																}
+															}
+													
+													$amount=$amount+$feety[0]->Amount; $paid=$paid+$paidamount; $bal+=$remainbal1; ?>
+																			<td><?=$fee[0]->MasterEntryValue?></td>
+																			<td><?=$fee_type2[1]?> INR</td>
+																			<td><?=$paidamount?> INR</td>
+																			<td><?=$remainbal1?> INR</td>
+																		</tr>
+																		<?php  } ?>
+																		<tfoot><tr>
+																		<td>Total</td>
+																			<td><?=$amount?> INR</td>
+																			<td><?=$paid?> INR</td>
+																			<td><?=$bal?> INR</td>
+																			</tr></tfoot>
+																	</tbody>
 					</table>
 						</div>
 					</div>

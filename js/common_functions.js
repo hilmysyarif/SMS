@@ -138,6 +138,27 @@ function addfeelist(form)
 		return false;
 }
 
+function addbooklist(form)
+{ 
+	$.ajax({
+				type: "POST",
+				url : base_url+'common_functions/addbooklist',
+				data: {					bookid: $('#s2example-3').val(),
+										accessionno: $('#accessionno').val(),
+										token: $('#token').val(),
+										
+										},
+			})	
+				.done(function(msg){
+					
+					$('#showpending').html(msg);					
+					
+					return false;	
+				});
+		
+		return false;
+}
+
 function showfixedsalaryhead(id)
 { 
 	$.ajax({

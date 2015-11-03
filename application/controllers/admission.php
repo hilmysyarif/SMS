@@ -31,6 +31,10 @@ class Admission extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Student Registration', base_url().'admission/registration');
@@ -111,6 +115,10 @@ class Admission extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		if($this->input->post('submit')){
 				$info = array(
@@ -236,6 +244,10 @@ class Admission extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('submit3'))
 		{
 			$info = array(
@@ -259,6 +271,10 @@ class Admission extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		if($this->input->post('Save'))
 		{
@@ -285,7 +301,13 @@ class Admission extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('submit')){
+			$StudentsPassword=rand(100000,999999);
+			$ParentsPassword=rand(100000,999999);
 							$info = array(
 									'StudentName'=>$this->input->post('student_name'),
 									'FatherName'=>$this->input->post('father_name'),
@@ -295,7 +317,11 @@ class Admission extends CI_Controller {
 									'DOR'=>strtotime($this->input->post('DOR')),
 									'Session'=>$this->currentsession[0]->CurrentSession,
 									'Gender'=>$this->input->post('gender'),
-									'Status'=>'NotAdmitted');
+									'Status'=>'NotAdmitted',
+									'DOE'=>strtotime(date("Y-m-d")),
+									'Username'=>$this->info['usermailid'],
+									'ParentsPassword'=>$ParentsPassword,
+									'StudentsPassword'=>$StudentsPassword);
 				$r_id=$this->admission_model->insert_registration($info);
 			 	$this->session->set_flashdata('message_type', 'success');
 				$this->session->set_flashdata('message', $this->config->item("registration").' Registration Done successfully');
@@ -311,6 +337,10 @@ class Admission extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Student Admission', base_url().'admission/admission_student');
@@ -354,6 +384,26 @@ class Admission extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
+		
+		$filter01=array('RegistrationId'=>$this->input->post('id'));
+		$filter02=array('AdmissionNo'=>$this->input->post('admission_no'));
+		$count=$this->admission_model->get_check('admission',$filter01);
+		$count2=$this->admission_model->get_check('admission',$filter02);
+		
+		if(count($count)>0)
+		{
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("admission_student").'This student is already admitted!!');	
+		}
+		elseif(count($count2)>0)
+		{
+			$this->session->set_flashdata('message_type', 'error');
+			$this->session->set_flashdata('message', $this->config->item("admission_student").'This admission no already exists!!');	
+		}else{
 		
 		$data=array('AdmissionNo'=>$this->input->post('admission_no'),
 				'RegistrationId'=>$this->input->post('id'),
@@ -391,6 +441,7 @@ class Admission extends CI_Controller {
 		
 		$this->session->set_flashdata('message_type', 'success');
 		$this->session->set_flashdata('message', $this->config->item("admission_student").' Admission Done successfully');
+		}
 		redirect('admission/admission_student');
 	}
 	/*school management admission Insert..............................................................................................................*/
@@ -404,6 +455,10 @@ class Admission extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Student Promotion', base_url().'admission/promotion');
@@ -438,6 +493,10 @@ class Admission extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		
 		$SectionId=$this->input->post('SectionId');
@@ -501,6 +560,10 @@ class Admission extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Update Fee', base_url().'admission/updatefee');
 		
@@ -509,6 +572,7 @@ class Admission extends CI_Controller {
 			$this->data['admission']=$admissionid;
 			$this->data['class_info2']=$this->admission_model->get_class2($sectionid,$this->currentsession[0]->CurrentSession);
 			$feetype=$this->data['get_fee_structure']=$this->admission_model->get_fee_structure($sectionid,$this->currentsession[0]->CurrentSession,$admissionid);
+			$this->data['get_balance']=$this->admission_model->get_balance($this->currentsession[0]->CurrentSession,$admissionid);
 			$this->data['get_fee_details']=$this->admission_model->get_fee_details($admissionid);
 			
 			$this->data['fee_type']=explode(",",$feetype[0]->FeeStructure);
@@ -542,6 +606,10 @@ class Admission extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		
 		if($this->input->post('class_name') !=''){
@@ -617,6 +685,10 @@ class Admission extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		
 		if($this->input->post('addmissionid') !=''){
@@ -696,6 +768,10 @@ class Admission extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Admission Report', base_url().'admission/admissionreport');
 		$status='';
@@ -742,13 +818,7 @@ class Admission extends CI_Controller {
 	/*school management Admission Delete start........................................................................*/	
 	function delete($action=false,$on=false,$id=false)
 	{
-	if(Authority::checkAuthority('registration')==true){
-			
-		}else{
-					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-					redirect('dashboard');
-		}
-		
+	
 		if($id){
 			$filter=array($on=>$this->data['id']=$id);
 			$this->master_model->delete($action,$filter);

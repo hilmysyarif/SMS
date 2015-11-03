@@ -31,6 +31,10 @@ class Transports extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Transport Reading And Fuel', base_url().'transports/transport');
 		
@@ -121,6 +125,10 @@ class Transports extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('add')){
 			
 			$Date=date("Y-m-d");
@@ -154,6 +162,10 @@ class Transports extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		if($this->input->post('add')){
 			
@@ -194,6 +206,10 @@ class Transports extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('add')){
 			
 			$Date1=date("Y-m-d");
@@ -231,6 +247,10 @@ class Transports extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Transport Route', base_url().'transports/route');
@@ -270,6 +290,10 @@ class Transports extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('add')){
 			
 			$Date1=date("Y-m-d");
@@ -308,6 +332,10 @@ class Transports extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('add')){
 			
 			$Date1=date("Y-m-d");
@@ -334,7 +362,21 @@ class Transports extends CI_Controller {
 	}
 	 /*Transport Insert And Update route Details End........................................................................................*/
 	
+	/*school management transport Delete start........................................................................*/	
+	function delete($action=false,$on=false,$id=false)
+	{
 	
+		if($id){
+			$filter=array($on=>$this->data['id']=$id);
+			$this->master_model->delete($action,$filter);
+			$this->session->set_flashdata('message_type', 'success');
+			$this->session->set_flashdata('message', $this->config->item("delete").' Deleted Successfully!!');
+		}
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	
+	}
+/*school management transport Delete End.............................................................................*/
+
 	
 		
 	

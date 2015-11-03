@@ -27,20 +27,13 @@ class Onlineexam extends CI_Controller {
 	/*school management online Exam Delete start........................................................................*/	
 	function delete($action=false,$on=false,$id=false)
 	{
-	if(Authority::checkAuthority('MarksSetUp')==true){
-			
-		}else{
-					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-					redirect('dashboard');
-		}
-		
 		if($id){
 			$filter=array($on=>$this->data['id']=$id);
 			$this->master_model->delete($action,$filter);
 			$this->session->set_flashdata('message_type', 'success');
 			$this->session->set_flashdata('message', $this->config->item("delete").' Deleted Successfully!!');
 		}
-		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		header('Location: '. $_SERVER['HTTP_REFERER']);
 	
 	}
 /*school management online Exam Delete End.............................................................................*/
@@ -50,11 +43,15 @@ class Onlineexam extends CI_Controller {
 /*school management Online Exam create view Load.............................................................................................................*/
 	function onlineexamcreate($id=false)
 	{	
-		if(Authority::checkAuthority('ScMarksSetUp')==true){
+		if(Authority::checkAuthority('onlineexamcreate')==true){
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		
 		$this->breadcrumb->clear();
@@ -85,11 +82,15 @@ class Onlineexam extends CI_Controller {
 /*school management Online exam create insert and update start .........................................................................................*/
 	function insert_onlineexam()
 	{	
-	if(Authority::checkAuthority('MarksSetUp')==true){
+	if(Authority::checkAuthority('onlineexamcreate')==true){
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		if($this->input->post('save') !=''){
 			$examname=$this->input->post('examname');
@@ -148,11 +149,15 @@ class Onlineexam extends CI_Controller {
 	/*school management Online Exam Qustion Bank view Load.............................................................................................................*/
 	function qustionbank($id=false)
 	{	
-		if(Authority::checkAuthority('ScMarksSetUp')==true){
+		if(Authority::checkAuthority('Qustionbank')==true){
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Qustion Bank', base_url().'onlineexam/qustionbank');
@@ -182,11 +187,15 @@ class Onlineexam extends CI_Controller {
 	/*school management Qustion bank insert and update start .........................................................................................*/
 	function insert_qustionbank()
 	{	
-	if(Authority::checkAuthority('MarksSetUp')==true){
+	if(Authority::checkAuthority('Qustionbank')==true){
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		if($this->input->post('save') !=''){
 			
@@ -251,11 +260,15 @@ class Onlineexam extends CI_Controller {
 	/*school management Online Exam Show Exam List view Load................................................................................................*/
 	function olineexamlist()
 	{	
-		if(Authority::checkAuthority('ScMarksSetUp')==true){
+		if(Authority::checkAuthority('OnlineExamList')==true){
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Online Exam List', base_url().'onlineexam/olineexamlist');
@@ -273,11 +286,15 @@ class Onlineexam extends CI_Controller {
 	/*school management Online Exam Report view Load................................................................................................*/
 	function onlineexamreport($id=false)
 	{	
-		if(Authority::checkAuthority('ScMarksSetUp')==true){
+		if(Authority::checkAuthority('onlineexamreport')==true){
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Online Exam Report', base_url().'onlineexam/onlineexamreport');

@@ -72,6 +72,21 @@ class Dashboard_model extends CI_Model {
 	
     }
 	
+	function checkpermission($userid=false)
+    {
+    	$query=$this->db->query("select PermissionString from  permission where
+						UserType='$userid'");
+		return $query->Result();
+	
+    }
+	function getpagename($pageid=false)
+    {
+    	$query=$this->db->query("select PageName from pagename where
+						PageNameId='$pageid'");
+		return $query->Result();
+	
+    }
+	
 	
 	
 }

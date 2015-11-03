@@ -25,11 +25,15 @@ class Library extends CI_Controller {
 	 /*school management Library controller start*/	
 	function managebook($id=false)
 	{	
-		if(Authority::checkAuthority('managebook')==true){
+		if(Authority::checkAuthority('ManageBook')==true){
 			
 		}else{
 		$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 		redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		
 		$this->breadcrumb->clear();
@@ -54,11 +58,15 @@ class Library extends CI_Controller {
 	/*school management Library Insert/Update Book start*/	
 	function insertbook($id=false)
 	{	
-		if(Authority::checkAuthority('managebook')==true){
+		if(Authority::checkAuthority('ManageBook')==true){
 			
 		}else{
 		$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 		redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		
 		if($this->input->post('bookname') && $this->input->post('authorname') && $this->input->post('publisher')){
@@ -92,11 +100,15 @@ class Library extends CI_Controller {
 	/*school management Library Confirm List Book start*/	
 	function confirmlist()
 	{	
-		if(Authority::checkAuthority('managebook')==true){
+		if(Authority::checkAuthority('ManageBook')==true){
 			
 		}else{
 		$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 		redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		
 		if($this->input->post('date') && $this->input->post('remarks') && $this->input->post('token')){
@@ -157,11 +169,15 @@ class Library extends CI_Controller {
 	 /*school management Library controller start*/	
 	function issuereturn($action=false,$id=false)
 	{	
-		if(Authority::checkAuthority('issuereturn')==true){
+		if(Authority::checkAuthority('IssueReturn')==true){
 			
 		}else{
 		$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 		redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 		
 		$this->breadcrumb->clear();
@@ -247,13 +263,16 @@ class Library extends CI_Controller {
 	/*school management Library Insert/Update Book start*/	
 	function issuebook($id=false)
 	{	
-		if(Authority::checkAuthority('issuereturn')==true){
+		if(Authority::checkAuthority('IssueReturn')==true){
 			
 		}else{
 		$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 		redirect('dashboard');
 		}
-		
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('bookid') && $this->input->post('issueto') && $this->input->post('doissue') && $this->input->post('remarks')){
 				$Books=$this->input->post('bookid');
 				$IRToDetail=$this->input->post('issueto');
@@ -330,13 +349,16 @@ class Library extends CI_Controller {
 	/*school management Library Return Book start*/	
 	function bookreturn()
 	{	
-		if(Authority::checkAuthority('issuereturn')==true){
+		if(Authority::checkAuthority('IssueReturn')==true){
 			
 		}else{
 		$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 		redirect('dashboard');
 		}
-		
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		if($this->input->post('irto') && $this->input->post('bookissueid') && $this->input->post('bookreturnid') && $this->input->post('dor')){
 				$IRTo=$this->input->post('irto');
 				$BookIssueId=$this->input->post('bookissueid');

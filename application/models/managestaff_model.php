@@ -106,6 +106,7 @@ class Managestaff_model extends CI_Model
 			ExpenseStatus='Active' and
 			transaction.TransactionFrom=accounts.AccountId and 
 			expense.SalaryPaymentType=masterentry.MasterEntryId and
+			transaction.TransactionType='0' and
 			expense.StaffId='$StaffId'
 			order by SalaryMonthYear desc");	
 			return $qry->Result();	

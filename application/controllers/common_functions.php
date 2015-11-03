@@ -89,6 +89,19 @@ class Common_functions extends CI_Controller {
 		$current_val = $this->input->post('current_value');
 		$currentsession=$this->currentsession[0]->CurrentSession;
 		$student_list = $this->utilities->get_student($sec_id,$currentsession);
+		echo "<script type='text/javascript'>";
+		echo"								jQuery(document).ready(function($)
+										{
+											$('#s2example-2').select2({
+											placeholder: 'Select ...',
+											allowClear: true
+											}).on('select2-open', function()
+											{
+											
+											$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+											});
+										});";
+		echo"</script>";
 		echo "<select name='student[]' id='s2example-2' class='form-control' data-rule-required='true'  multiple>
 				<option value='' >Select</option> ";
 		foreach($student_list as $ct)	
@@ -191,6 +204,19 @@ class Common_functions extends CI_Controller {
 		$next_session = $this->input->post('next_session');
 		$currentsession=$this->currentsession[0]->CurrentSession;
 		$nextclass = $this->utilities->getmext_class($next_session);
+		echo "<script type='text/javascript'>";
+		echo"								jQuery(document).ready(function($)
+										{
+											$('#s2example-3').select2({
+											placeholder: 'Select ...',
+											allowClear: true
+											}).on('select2-open', function()
+											{
+											
+											$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+											});
+										});";
+		echo"</script>";
 		echo "<select name='nextclass' id='s2example-3' class='form-control' data-rule-required='true'  >
 				<option value='' >Select</option> ";
 		foreach($nextclass as $ct)	

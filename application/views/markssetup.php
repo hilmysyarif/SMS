@@ -229,7 +229,7 @@
 								<label class="control-label col-sm-4 ">Date Of Exam</label>
 									<div class="col-sm-8">
 									<div class="input-group">
-										<input type="text" required readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="doe" value="<?php if(isset($marksetup_up[0]->DateOfExam)){echo $marksetup_up[0]->DateOfExam ;}?>">
+										<input type="text" required readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="doe" value="<?php if(isset($marksetup_up[0]->DateOfExam)){echo date("d M Y",$marksetup_up[0]->DateOfExam) ;}?>">
 											<div class="input-group-addon">
 												<a href="#"><i class="linecons-calendar"></i></a>
 											</div></div>

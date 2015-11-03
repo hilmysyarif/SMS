@@ -38,7 +38,7 @@
 																			<option></option>
 																			<optgroup label="Select">
 																	<?php foreach($student as $student){ ?>
-																	<option value="<?=!empty($student->RegistrationId)?$student->RegistrationId:''?>,<?=$student->ClassId?>,<?=$student->SectionId?>" <?php if(empty($id)==''){ echo (!empty(isset($id)==$student->RegistrationId) ? "selected" : ''); } ?>><?=$student->StudentName?> <?=$student->FatherName?> <?=$student->Mobile?> <?=$student->ClassName?> <?=$student->SectionName?></option>
+																	<option value="<?=!empty($student->RegistrationId)?$student->RegistrationId:''?>,<?=$student->ClassId?>,<?=$student->SectionId?>" <?php if(!empty($id)){ echo (!empty($id==$student->RegistrationId) ? "selected" : ''); } ?>><?=$student->StudentName?> <?=$student->FatherName?> <?=$student->Mobile?> <?=$student->ClassName?> <?=$student->SectionName?></option>
 																			<?php } ?>
 																		</optgroup>
 																		</select>
@@ -52,7 +52,7 @@
 																	<div class="col-sm-8">
 																	<div class="checkbox">
 																		<label>
-																			<input type="checkbox" name="transport" <?php echo (isset($transport) ? "Checked=checked"
+																			<input type="checkbox" name="transport" <?php echo (!empty($transport) ? "Checked=checked"
 																			: '');?> value="Yes">
 																		 Check only if Transport facility is required
 																		</label>

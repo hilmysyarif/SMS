@@ -29,12 +29,17 @@ class Payments extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Payment', base_url().'payments/payment');
 		if($admissionid !=''){
 			$this->data['admission']=$admissionid;
 			$get_fee_details=$this->data['get_fee_details']=$this->payment_model->get_fee_structure($this->currentsession[0]->CurrentSession,$admissionid);
 			$this->data['fee_type']=explode(",",$get_fee_details[0]->FeeStructure);
+			
 			$this->data['get_transaction']=$this->payment_model->get_transaction($this->currentsession[0]->CurrentSession,$admissionid);
 			$this->data['get_balance']=$this->payment_model->get_balance($this->currentsession[0]->CurrentSession,$admissionid);
 			
@@ -58,6 +63,10 @@ class Payments extends CI_Controller {
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
 		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
 	if($this->input->post('admission') !=''){
 			$admission=$this->input->post('admission');
 			redirect('payments/payment/'.$admission);
@@ -75,6 +84,10 @@ class Payments extends CI_Controller {
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
 					redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
 		}
 	
 			$Token=$this->input->post('token');
@@ -179,13 +192,6 @@ class Payments extends CI_Controller {
 	/*school management Feepayment Delete start........................................................................*/	
 	function delete($action=false,$on=false,$id=false)
 	{
-	if(Authority::checkAuthority('MarksSetUp')==true){
-			
-		}else{
-					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-					redirect('dashboard');
-		}
-		
 		if($id){
 			$filter=array($on=>$this->data['id']=$id);
 			$this->master_model->delete($action,$filter);

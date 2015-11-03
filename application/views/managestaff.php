@@ -654,8 +654,8 @@
 										
 										<div class="form-group">
 										<label class="control-label col-sm-4 " for="field-1">Select Image</label>
-										<div class="col-sm-4">
-										<input type="file"  class="droppable-area" name="image" >
+										<div class="col-sm-4 droppable-area">
+										<input type="file" style=" opacity: -0.7; height: 150px;  width: 150px;" class="form-control" name="image" >
 										</div>
 									
 										</div>
@@ -668,11 +668,35 @@
 										
 									</div>	
 								
-								<div class="col-sm-8">
+								
+									<div class="col-sm-8 gallery-left">
+									<div class="album-images row">
+				
 							<?php foreach($staff_documents as $staff_documents){ ?>
-							<div class="col-md-2" style="margin:35px;padding:20px"><image style="width:150px" src="<?=base_url();?>upload/<?=$staff_documents->Path?>"><span><?=$staff_documents->MasterEntryValue?> <?php echo"<br>";?> <?=$staff_documents->Title?><br><a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>managestaffs/delete/photos/PhotoId/<?=$staff_documents->PhotoId ?>" ><i class="fa fa-times"></i></a></span></div>
-							<?php } ?>
+							
+							<div class="col-md-3 col-sm-4 col-xs-6">
+								<div class="album-image">
+									<a href="javascript:;" class="thumb" data-action="edit">
+										<img src="<?=base_url();?>upload/<?=$staff_documents->Path?>" class="img-responsive" />
+									</a>
+									
+									<a href="javascript:;" class="name">
+										<span><?=$staff_documents->MasterEntryValue?></span>
+										<em><?php echo"<br>";?> <?=$staff_documents->Title?></em>
+									</a>
+									
+									<div class="image-options">
+										
+										<a onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>managestaffs/delete/photos/PhotoId/<?=$staff_documents->PhotoId ?>" data-action="trash"><i class="fa-trash"></i></a>
+									</div>
+									
+									
+								</div>
 							</div>
+							<?php } ?>
+				</div>
+				</div>
+								
 							</div>							
 							
 				
