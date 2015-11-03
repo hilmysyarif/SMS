@@ -79,13 +79,13 @@ for($i=0;$i<=count($class2)-1;$i++)
 						$subjectarr[]=array('subjectid'=>$subject2[$c][0],'subjectname'=>$subject2[$c][2]);
 					}	
 				}
-				$sectionarr[]=array('section'=>$section2[$a][1],'subject'=>$subjectarr,'student_name'=>$studentname,'student_id'=>$studentid);
+				$sectionarr[]=array('section'=>$section2[$a][1],'sectionid'=>$section2[$a][0],'subject'=>$subjectarr,'student_name'=>$studentname,'student_id'=>$studentid);
 				$studentname='';$studentid='';$subjectarr='';
 			}
 			
 		} 
 		
-		$classarr1=array('class'=>$class2[$i][1],'student'=>$sectionarr);
+		$classarr1=array('class'=>$class2[$i][1],'classid'=>$class2[$i][0],'student'=>$sectionarr);
 		unset($sectionarr);
 		$classarr[]=$classarr1;
 		unset($classarr1);
