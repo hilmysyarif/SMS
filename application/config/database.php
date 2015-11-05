@@ -48,6 +48,10 @@
     $CI =& get_instance();
     $CI->load->library('session'); //if it's not autoloaded in your CI setup
 	$database_name=$CI->session->userdata('db_name');
+	if($database_name=='')
+	{
+		$database_name='sss';
+	}
 	//$CI->session->unset_userdata($database_name);
 	//$CI->session->sess_destroy();
 if($_SERVER['HTTP_HOST']=="localhost"){
