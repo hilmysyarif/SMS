@@ -65,7 +65,7 @@ $dbname=$database_name;
 $password="junction4$";
 $username="junctwhx";
 }
-echo $_SERVER['HTTP_HOST'];echo $database_name;die;	
+echo $_SERVER['HTTP_HOST'];echo $database_name; echo $username; echo $password;die;	
 $active_group = 'default';
 $active_record = TRUE;
 
