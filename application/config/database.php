@@ -48,8 +48,8 @@
     $CI =& get_instance();
     $CI->load->library('session'); //if it's not autoloaded in your CI setup
 	$database_name=$CI->session->userdata('db_name'); 
-	//$CI->session->unset_userdata($database_name);
-	//$CI->session->sess_destroy();
+	$CI->session->unset_userdata($database_name);
+	$CI->session->sess_destroy();die;
 if($_SERVER['HTTP_HOST']=="localhost"){
 $dbname=$database_name;
 $password="";
@@ -65,7 +65,6 @@ $dbname=$database_name;
 $password="junction4$";
 $username="junctwhx";
 }
-echo $_SERVER['HTTP_HOST'];echo $database_name; echo $username; echo $password;die;	
 $active_group = 'default';
 $active_record = TRUE;
 
