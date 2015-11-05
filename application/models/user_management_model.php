@@ -26,8 +26,8 @@ class User_management_model extends CI_Model{
 				$json_data=json_encode($value);
 				redirect('http://junctiondev.cloudapp.net/appmanager/login/result_application?json='.$json_data);
     		} */
-		$this->session->set_userdata('db_name',$database_name);
-    	$this->session->userdata('db_name');
+	//	$this->session->set_userdata('db_name',$database_name);
+    	//$this->session->userdata('db_name');
     	if($_SERVER['HTTP_HOST']=="localhost"){
     		//$dbname=$database_name;
     		$password="";
