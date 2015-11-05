@@ -32,7 +32,7 @@ class User_management extends CI_Controller {
 		$data=array(
 					'Username'=>$var->Username,
 					'Password'=>$var->Password,
-					'role_id'=>'admin'
+					'UserType'=>'masteruser'
 				   );
 		$status=$this->user_management_model->set_user($data);
 		if($status)
