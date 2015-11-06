@@ -48,7 +48,7 @@ class User_management extends CI_Controller {
 							'username'=>$var->Username,
 							'Password'=>$var->Password,
 						);
-			$database_name=$this->session->userdata('db_name');
+			$database_name=$this->session->userdata('db_name'); 
 			$this->session->unset_userdata($database_name);
 			$this->session->sess_destroy();
 			$datas=json_encode($data);
