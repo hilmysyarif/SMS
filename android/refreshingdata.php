@@ -26,6 +26,7 @@ if(!$CONNECTION)
 			$senddataarray[] = $dataArray;
 			
 			$a++;
+			
 		}
 	
 		print_r(json_encode($senddataarray));
