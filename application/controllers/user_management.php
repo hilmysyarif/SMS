@@ -39,6 +39,7 @@ class User_management extends CI_Controller {
 		{
 			$data=array(
 							'organization_id'=>$var->organization_id,
+							'registration_id'=>$var->registration_id,
 							'organization_name'=>$var->organization_name,
 							'application_admin_email'=>$var->application_admin_email,
 							'organization_admin_email'=>$var->organization_admin_email,
