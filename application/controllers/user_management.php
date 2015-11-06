@@ -72,7 +72,7 @@ class User_management extends CI_Controller {
 				'Password'=>$var->password,
 		);
 		$status=$this->user_management_model->update_pwd_admin_user($data,$var->old_username);
-		redirect('http://junctionerp.com/manage/admin_panel/manage_admin?session='.$var->session);
+		redirect('http://junctiondev.cloudapp.net/appmanager/admin_panel/manage_admin?session='.$var->session);
 	}
 	
 	function delete_function()
