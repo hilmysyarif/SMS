@@ -51,8 +51,7 @@ foreach($dataarray['SchoolData']['SchoolHomeWork'] as $clsdataarray){
 					
 				}	
 					
-				
-			
+							
 				
 			}
 			
