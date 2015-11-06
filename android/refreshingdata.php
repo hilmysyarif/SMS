@@ -38,9 +38,6 @@ if(!$CONNECTION)
 	
 	
 	
-	
-	
-	
 }
 
 }
