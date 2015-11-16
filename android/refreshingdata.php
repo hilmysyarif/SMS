@@ -50,7 +50,6 @@ if(!$CONNECTION)
 			
 		$senddataarray1[]=array('date'=>date('Y-m-d',$data1['Date']) ,'data'=>$firstarray);
 
-
 	}	
        print_r(json_encode($senddataarray1));
           
