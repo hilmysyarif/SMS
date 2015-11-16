@@ -42,6 +42,7 @@ if(!$CONNECTION)
 			
 		$ab=explode(",",  $data1['Attendance']);
 
+		
  			$firstarray =null;
 			for ($v =0; $v < count($ab);$v++){
 				$abcd=explode("-", $ab[$v]);
