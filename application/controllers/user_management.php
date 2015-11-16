@@ -39,6 +39,7 @@ class User_management extends CI_Controller {
 		{
 			$data=array(
 							'organization_id'=>$var->organization_id,
+							'registration_id'=>$var->registration_id,
 							'organization_name'=>$var->organization_name,
 							'application_admin_email'=>$var->application_admin_email,
 							'organization_admin_email'=>$var->organization_admin_email,
@@ -47,7 +48,7 @@ class User_management extends CI_Controller {
 							'username'=>$var->Username,
 							'Password'=>$var->Password,
 						);
-			$database_name=$this->session->userdata('db_name');
+			$database_name=$this->session->userdata('db_name'); 
 			$this->session->unset_userdata($database_name);
 			$this->session->sess_destroy();
 			$datas=json_encode($data);
@@ -71,7 +72,7 @@ class User_management extends CI_Controller {
 				'Password'=>$var->password,
 		);
 		$status=$this->user_management_model->update_pwd_admin_user($data,$var->old_username);
-		redirect('http://junctionerp.com/manage/admin_panel/manage_admin?session='.$var->session);
+		redirect('http://junctiondev.cloudapp.net/appmanager/admin_panel/manage_admin?session='.$var->session);
 	}
 	
 	function delete_function()
@@ -82,11 +83,12 @@ class User_management extends CI_Controller {
 		$this->session->set_userdata('db_name',$database_name);
 		$delete_function=$this->data['delete_function']=$this->user_management_model->delete_function($database_name);
 		$data=array(
+				'session'=>$var->session,
 				'status'=>'success',
 				'reg_app_id'=>$var->reg_app_id,
 		);
 		$json=json_encode($data);
-		redirect('http://junctionerp.com/manage/admin_panel/delete_app_org?json='.$json);
+		redirect('http://junctiondev.cloudapp.net/appmanager/admin_panel/delete_app_org?json='.$json);
 	}
 	
 }
