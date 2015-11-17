@@ -80,13 +80,13 @@ for($i=0;$i<=count($class2)-1;$i++)
 						$subjectarr[]=array('subjectid'=>$subject2[$c][0],'subjectname'=>$subject2[$c][2]);
 					}	
 				}
-				$sectionarr[]=array('section'=>$section2[$a][1],'subject'=>$subjectarr,'student_name'=>$studentname,'student_id'=>$studentid);
+				$sectionarr[]=array('sectionid'=>$section2[$a][0],'section'=>$section2[$a][1],'subject'=>$subjectarr,'student_name'=>$studentname,'student_id'=>$studentid);
 				$studentname='';$studentid='';$subjectarr='';
 			}
 			
 		} 
 		
-		$classarr1=array('class'=>$class2[$i][1],'student'=>$sectionarr);
+		$classarr1=array('classid'=>$class2[$i][0],'class'=>$class2[$i][1],'student'=>$sectionarr);
 		unset($sectionarr);
 		$classarr[]=$classarr1;
 		unset($classarr1);
@@ -176,6 +176,7 @@ print_r(json_encode($mainarr));
 							$queryInsert="update studentattendance set Attendance='$NewAttendance' where Date='$AttendanceDate' ";
 							$Message="Attendance updated successfully!!";
 							$Type=success;	
+							
 							}else{
 							$queryInsert="delete from studentattendance where Date='$AttendanceDate' ";}
 							mysqli_query($CONNECTION,$queryInsert);
