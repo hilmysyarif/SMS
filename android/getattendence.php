@@ -1,7 +1,7 @@
 <?php
-$DBDATABASE="db_school";
+$DBDATABASE="rohit_sms";
 $DBUSERNAME="root";
-$DBPASSWORD="";
+$DBPASSWORD="bitnami";
 
 $CONNECTION=mysqli_connect("localhost",$DBUSERNAME,$DBPASSWORD,$DBDATABASE);
 if(!$CONNECTION)
@@ -9,8 +9,9 @@ if(!$CONNECTION)
 echo "Database not found or There is an error in connecting to DB!! Please fix this!!!";
 exit();
 }else{
-	$action = "insert";
-// $action=isset($_GET['action'])?$_GET['action']:'';
+// 	$action = "insert";
+
+$action=isset($_GET['action'])?$_GET['action']:'';
 if($action=="get"){
 	
 $class=mysqli_query($CONNECTION,"select ClassId,ClassName from class where Session='2015-2016'");
@@ -95,19 +96,12 @@ $mainarr=array('school'=>$classarr,'school_name'=>'DPS School');
 print_r(json_encode($mainarr));
 
 }elseif($action=="insert"){
-	
-	$dataarr1 = json_decode('{"SchoolData":{"DBName":"db_jaydevi","SchoolAttendance":[{"ClassId":"4","ClassData":[{"SectionId":"8","SectionData":[{"Date":"2015-11-01","PresentStudentId":["12","37","43","45","59","77","92","102","105","129","136","139","326","327","330","333","334","337","341","354"],"AbsentStudentId":["344","352"]},{"Date":"2015-11-02","PresentStudentId":["12","37","43","45","59","77","92","102","105","129","136","139","327","330","334","337","344","352","354"],"AbsentStudentId":["326","333","341"]}]}]},{"ClassId":"5","ClassData":[{"SectionId":"10","SectionData":[{"Date":"2015-11-01","PresentStudentId":["14","24","62","80","123","127","165","174","183","189","194","216","239","266","274","292"],"AbsentStudentId":["252","289"]},{"Date":"2015-11-02","PresentStudentId":["165","189","239","274"],"AbsentStudentId":["14","24","62","80","123","127","174","183","194","216","252","266","289","292"]}]}]}]}}
-			',true);
-	
-// 	$dataarr1=json_decode($_POST['Jaydevi'],true);
+	$dataarr1=json_decode($_POST['Jaydevi'],true);
 	$date='';
 	$pstudentid='';	
 	$astudentid='';
-	$Message="";
-	$Type="";
 		foreach($dataarr1['SchoolData']['SchoolAttendance'] as $dataarr2)
 		{
-			
 																		//print_r($dataarr2['Class']); Get class name from there...
 			
 			foreach($dataarr2['ClassData'] as $dataarr3)
@@ -143,12 +137,10 @@ print_r(json_encode($mainarr));
 					{
 						//$AttendanceDate=strtotime($AttendanceDate);
 						$query="select Attendance from studentattendance where Date='$AttendanceDate' ";
-						
-						
 						$check=mysqli_query($CONNECTION,$query);
 						$AlreadyMarked=mysqli_num_rows($check);
 						if($AlreadyMarked>0)
-						{ 
+						{  
 							/*$row=mysqli_fetch_array($check);
 							$LastAttendance=explode(",",$row['Attendance']);
 							foreach($LastAttendance as $LastAttendanceValue)
@@ -165,32 +157,25 @@ print_r(json_encode($mainarr));
 								//$NewAttendance[]="$LastAdmissionIdId-$Att-$DateTimeStamp";
 								$Marked[]=$LastAdmissionIdId;
 							}*/
-								
+							
 							foreach($Attendance as $AttendanceValue)
 							{ 
 								//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
 								//if($SearchForMarkedIndex===FALSE && $Att!="")
-								$NewAttendance1[]="$AttendanceValue-$Att-$DateTimeStamp";
-								
+								$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
 							}
 							foreach($Attendance1 as $AttendanceValue)
 							{	//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
 								//if($SearchForMarkedIndex!=FALSE && $Att!="")
-								$NewAttendance1[]="$AttendanceValue-A-$DateTimeStamp";
-								
+								$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
 							}
 							
-							$NewAttendance=implode(",",$NewAttendance1);
+							$NewAttendance=implode(",",$NewAttendance);
 							
 							if($NewAttendance!=""){
 							$queryInsert="update studentattendance set Attendance='$NewAttendance' where Date='$AttendanceDate' ";
 							$Message="Attendance updated successfully!!";
-// 							print ("RITU.......................");
-							print ("update");
-							print (date('Y-m-d',$AttendanceDate));
-							print_r($NewAttendance);
-							echo ('<br>');
-							$Type="success";	
+							$Type=success;	
 							}else{
 							$queryInsert="delete from studentattendance where Date='$AttendanceDate' ";}
 							mysqli_query($CONNECTION,$queryInsert);
@@ -198,30 +183,18 @@ print_r(json_encode($mainarr));
 						else
 						{	$AttendanceString='';
 							foreach($Attendance as $AttendanceValue)
- 								if($Att!="")
+								if($Att!="")
 								$AttendanceString[]="$AttendanceValue-$Att-$DateTimeStamp";
 							foreach($Attendance1 as $AttendanceValue)
- 								if($Att!="")
+								if($Att!="")
 								$AttendanceString[]="$AttendanceValue-A-$DateTimeStamp";
 								$AttendanceString=implode(",",$AttendanceString);
 							if($AttendanceString!="")
 							{
-								//print_r(date('Y-m-d',$AttendanceDate));
-								print ("\n");
-							///	print_r($AttendanceString);
-								print ("\n");
-								print_r($dataarr4['Date']);
-								print ("insert");								
-							
-								
-								echo ('<br>');
-								echo"<br>";
-								print_r($AttendanceString);echo"<br>";
 								$queryInsert="insert into studentattendance(Date,Attendance,DOL,DOLUsername) values('$AttendanceDate','$AttendanceString','$DateTimeStamp','rohit') ";
 								mysqli_query($CONNECTION,$queryInsert);
-								//print_r($Message);
 								$Message="Attendance Added successfully!!";
-								$Type="success";	
+								$Type=success;	
 							}
 						}
 							
@@ -230,8 +203,8 @@ print_r(json_encode($mainarr));
 				}
 			}
 		}
- //	print_r($Message);
-// 	print_r($Type);
+	print_r($Message);
+	print_r($Type);
 }else{
 	echo"Invalid Request!!";
 	exit();
