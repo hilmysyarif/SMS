@@ -1,5 +1,5 @@
 <?php
-$DBDATABASE="rohit_sms";
+$DBDATABASE="db_school";
 $DBUSERNAME="root";
 $DBPASSWORD="bitnami";
 
@@ -32,9 +32,7 @@ if(!$CONNECTION)
 			$queryInsert="insert into messages(senderID,receiverID,msg,sendDateTime,deliveredDateTime,readDateTime) values('$usertype','$aa','$msg','$sendtime','$today','') ";
 			mysqli_query($CONNECTION,$queryInsert);
 			
-			
-// 			echo ($aa);
- 			
+		
 			
 		}
 		
