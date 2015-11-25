@@ -83,7 +83,7 @@ function login_user($info=false)
 					print_r($data);die;
 				}
 				?>
-				<style>
+				<!-- <style>
 #dialogoverlay{
 	display: none;
 	opacity: .8;
@@ -140,7 +140,7 @@ function login_user($info=false)
 				}
 				var Alert = new CustomAlert();
 				 window.onload = Alert.render('user id and password does not exist.');
-				 </script> <?php 
+				 </script>--> <script> alert('User Id And Password Does Not Exist.');</script><?php 
 				 redirect($json_data->url,'refresh');
 			}
 		}
