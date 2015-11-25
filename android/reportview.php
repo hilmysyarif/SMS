@@ -1,5 +1,5 @@
 <?php
-$DBDATABASE="db_school";
+$DBDATABASE="rohit_sms";
 $DBUSERNAME="root";
 $DBPASSWORD="bitnami";
 
