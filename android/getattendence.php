@@ -9,9 +9,9 @@ if(!$CONNECTION)
 echo "Database not found or There is an error in connecting to DB!! Please fix this!!!";
 exit();
 }else{
- 	$action = "insert";
+//  	$action = "insert";
 
-// $action=isset($_GET['action'])?$_GET['action']:'';
+ $action=isset($_GET['action'])?$_GET['action']:'';
 if($action=="get"){
 	
 $class=mysqli_query($CONNECTION,"select ClassId,ClassName from class where Session='2015-2016'");
@@ -97,9 +97,9 @@ print_r(json_encode($mainarr));
 
 }elseif($action=="insert"){
 	
-$dataarr1=	json_decode('{"SchoolData":{"DBName":"db_jaydevi","SchoolAttendance":[{"ClassData":[{"SectionData":[{"Date":"2015-11-25","AbsentStudentId":["353"],"PresentStudentId":["50","52","67","88","98","126","134","138","141","150","177","184","195","259","265","267","317","332"]}],"SectionId":"2"}],"ClassId":"1"},{"ClassData":[{"SectionData":[{"Date":"2015-11-25","AbsentStudentId":["198","287"],"PresentStudentId":["6","55","57","60","73","83","111","119","130","179","208","221","306","329"]}],"SectionId":"3"}],"ClassId":"2"}]}}',true);
+// $dataarr1=	json_decode('{"SchoolData":{"DBName":"db_jaydevi","SchoolAttendance":[{"ClassData":[{"SectionData":[{"Date":"2015-11-25","AbsentStudentId":["353"],"PresentStudentId":["50","52","67","88","98","126","134","138","141","150","177","184","195","259","265","267","317","332"]}],"SectionId":"2"}],"ClassId":"1"},{"ClassData":[{"SectionData":[{"Date":"2015-11-25","AbsentStudentId":["198","287"],"PresentStudentId":["6","55","57","60","73","83","111","119","130","179","208","221","306","329"]}],"SectionId":"3"}],"ClassId":"2"}]}}',true);
 	
-// 	$dataarr1=json_decode($_POST['Jaydevi'],true);
+ 	$dataarr1=json_decode($_POST['Jaydevi'],true);
 	$date='';
 	$pstudentid='';	
 	$astudentid='';
