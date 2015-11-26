@@ -57,10 +57,11 @@ function login_user($info=false)
 					$data=array(
 							'code'=>'200',
 							'status'=>'success',
-							'userType'=>'admin',
+							'userType'=>$explode[1],
 							'user_id'=>$addmission_detail->AdmissionId,
 							'usermailid'=>$registration_detail->FatherName,// student/ parent must be changes depend on login id
 					);
+					
 					print_r($data);die;
 				}
 				else 
