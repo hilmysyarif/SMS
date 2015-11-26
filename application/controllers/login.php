@@ -58,8 +58,8 @@ function login_user($info=false)
 							'code'=>'200',
 							'status'=>'success',
 							'userType'=>'admin',
-							'user_id'=>$addmission_detail[0]->AdmissionId,
-							'usermailid'=>$registration_detail[0]->FatherName,// student/ parent must be changes depend on login id
+							'user_id'=>$addmission_detail->AdmissionId,
+							'usermailid'=>$registration_detail->FatherName,// student/ parent must be changes depend on login id
 					);
 					print_r($data);die;
 				}
