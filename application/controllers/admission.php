@@ -435,7 +435,7 @@ class Admission extends CI_Controller {
 		'DOE'=>$date,
 		'FeeStructure'=>$feestring,
 		'Distance'=>$this->input->post('distance'),
-		'Username'=>$this-info['usermailid']);
+		'Username'=>$this->info['usermailid']);
 		
 		$this->admission_model->insert_studentfee($data1,'studentfee');
 		
