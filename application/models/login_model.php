@@ -23,8 +23,7 @@ class Login_model extends CI_Model
    {
    		$this->load->database('default',TRUE);
    		 $query = $this->db->get_where('user',$data);
-		 
-		  if($query->num_rows()>0)
+		 if($query->num_rows()>0)
 		  {	
 			   return $query->row();   
 		  }
@@ -32,6 +31,21 @@ class Login_model extends CI_Model
 		  {
 				return false;
 		  }
+   }
+   
+   /* function for login for parent and student for fetch data   */
+   function addmission_detail($table=false,$data=false)
+   {
+	   	$this->load->database('default',TRUE);
+	   	$query = $this->db->get_where($table,$data);
+	   	if($query->num_rows()>0)
+	   	{
+	   		return $query->row();
+	   	}
+	   	else
+	   	{
+	   		return false;
+	   	}
    }
    
    /* function for insert user data and if not already exist */
