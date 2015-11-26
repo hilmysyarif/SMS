@@ -32,8 +32,8 @@ function login_user($info=false)
 		$this->session->set_userdata('url',$json_data->url);
 		$this->session->set_userdata('db_name',$json_data->database_name);
 		$this->session->userdata('db_name');
-		$explode=explode("@",$json_data->username);print_r($explode);die;
-		if($explode>2)
+		$explode=explode("@",$json_data->username);
+		if($explode > 1)
 		{ 
 			$addmission_detail=$this->data['addmission_detail']=$this->login_model->addmission_detail('admission',array('AdmissionNo'=>$explode[0]));
 			if($addmission_detail)
