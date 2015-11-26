@@ -41,14 +41,14 @@ function login_user($info=false)
 				if($explode[1]=='student')
 				{
 					$data=array(
-									'RegistrationId'=>$addmission_detail[0]->RegistrationId,
+									'RegistrationId'=>$addmission_detail->RegistrationId,
 									'StudentsPassword'=>$json_data->password
 								);
 				}
 				if($explode[1]=='parents')
 				{
 					$data=array(
-									'RegistrationId'=>$addmission_detail[0]->RegistrationId,
+									'RegistrationId'=>$addmission_detail->RegistrationId,
 									'ParentsPassword'=>$json_data->password);
 				}
 				$registration_detail=$this->data['registration_detail']=$this->login_model->addmission_detail('registration',$data);
