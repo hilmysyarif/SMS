@@ -45,7 +45,7 @@ function login_user($info=false)
 									'StudentsPassword'=>$json_data->password
 								);
 				}
-				if($explode[1]=='parent')
+				if($explode[1]=='parents')
 				{
 					$data=array(
 									'RegistrationId'=>$addmission_detail[0]->RegistrationId,
