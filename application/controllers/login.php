@@ -28,14 +28,14 @@ class Login extends CI_Controller {
 function login_user($info=false)
 	{	
 		$json= $_GET['json'];  
-		$json_data=json_decode($json);print_r($json_data);die;
+		$json_data=json_decode($json);
 		$this->session->set_userdata('url',$json_data->url);
 		$this->session->set_userdata('db_name',$json_data->database_name);
 		$this->session->userdata('db_name');
 		$explode=explode("@",$json_data->username);
 		if($explode>1)
 		{ 
-			$addmission_detail=$this->data['addmission_detail']=$this->login_model->addmission_detail('admission',array('AdmissionNo'=>$explode[0]));
+			$addmission_detail=$this->data['addmission_detail']=$this->login_model->addmission_detail('admission',array('AdmissionNo'=>$explode[0]));print_r($addmission_detail);die;
 			if($addmission_detail)
 			{
 				if($explode[1]=='student')
