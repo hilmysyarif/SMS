@@ -34,7 +34,7 @@ function login_user($info=false)
 		$this->session->userdata('db_name');
 		$explode=explode("@",$json_data->username);
 		if($explode>1)
-		{
+		{ echo 'hiiii';die;
 			$addmission_detail=$this->data['addmission_detail']=$this->login_model->addmission_detail('admission',array('AdmissionNo'=>$explode[0]));print_r($addmission_detail);die;
 			if($addmission_detail)
 			{
