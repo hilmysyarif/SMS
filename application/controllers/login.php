@@ -217,5 +217,4 @@ function login_user($info=false)
 	
 	}
 
-}
 	/* End of login controller */
