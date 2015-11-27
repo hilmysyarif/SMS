@@ -59,7 +59,7 @@ function login_user($info=false)
 						{
 							$data=array( 
 									'code'=>'200',
-									'status'=>'success',
+									'status'=>'success', 
 									'userType'=>$explode[1],
 									'user_id'=>$addmission_detail->AdmissionId,
 									'usermailid'=>$UserName,// student/ parent must be changes depend on login id
