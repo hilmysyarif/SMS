@@ -54,7 +54,7 @@ function login_user($info=false)
 					$registration_detail=$this->data['registration_detail']=$this->login_model->addmission_detail('registration',$data);
 					if($registration_detail)
 					{	
-						if($explode[1]=='parents'){ $UserType=$registration_detail->FatherName; }else { $UserType=$registration_detail->StudentName; }
+						if($explode[1]=='parents'){ $UserName=$registration_detail->FatherName;  $UserType=1; }else { $UserName=$registration_detail->StudentName; $UserType=2; }
 						if(isset($json_data->url)&&$json_data->url=='androide')
 						{
 							$data=array(
@@ -62,17 +62,15 @@ function login_user($info=false)
 									'status'=>'success',
 									'userType'=>$explode[1],
 									'user_id'=>$addmission_detail->AdmissionId,
-									'usermailid'=>$UserType,// student/ parent must be changes depend on login id
+									'usermailid'=>$UserName,// student/ parent must be changes depend on login id
 							);
 							
 							echo json_encode($data);die;
 						}
 						$user_data=array(
-								'code'=>'200',
-								'status'=>'success',
-								'userType'=>$explode[1],
+								'userType'=>$UserType,
 								'user_id'=>$addmission_detail->AdmissionId,
-								'usermailid'=>$UserType,// student/ parent must be changes depend on login id
+								'usermailid'=>$UserName,// student/ parent must be changes depend on login id
 						);
 						$this->session->set_userdata('user_data',$user_data);
 						$user_session_data = $this->session->userdata('user_data');
