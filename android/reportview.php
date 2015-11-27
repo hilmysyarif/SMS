@@ -11,35 +11,13 @@ if(!$CONNECTION)
 	exit();
 }else{	
 
-	$data = json_decode($_POST['requestedData'],true);	
+ 	$data = json_decode($_POST['requestedData'],true);	
+
+
 	
 	if (strcmp($data['userType'], "Teacher") == 0){		
 		
-		if (strcmp($data['viewRequest'], "homework") == 0){			
-			// 	print_r($data1['classID']);die;
-			
-			$clsID = $data['classID'];
-			$secID = $data['sectionID'];
-			$month = $data['monthName'];
-			$countrow=mysqli_query($CONNECTION,"select * from homework where classid='$clsID' AND sectionid='$secID'");
-			
-			// 		print_r(subjectid);die;
-			$resultarray = array();
-			
-			while($data1 = mysqli_fetch_array($countrow)){
-					
-				// 			print_r($data1['homework']);
-				//  			print_r($data1['subjectid']);die;
-				if (strpos($data1['createdon'], $month) !== false){
-			
-					$abb = array('date'=>$data1['createdon'], 'subjectID'=>$data1['subjectid'], 'homework'=>$data1['homework']);
-					$resultarray[] = $abb;
-				}
-			
-			}
-			print_r(json_encode($resultarray));
-			
-		}else if (strcmp($data['viewRequest'], "Attendance") == 0){		
+ 		if (strcmp($data['viewRequest'], "Attendance") == 0){		
 			
 			$studentIDarray = $data['studentID'];			
 			$mydate = strtotime($data['monthName']);
@@ -58,13 +36,112 @@ if(!$CONNECTION)
 					if ($cc[0]==$studentIDarray[$i])
 						$studentAttendance[$i] = $cc[1];
 						
+				    }
+				
+				
+			         }
+			
+			 print_r(json_encode($studentAttendance));die;
+			
+			
+ 		    }else if (strcmp($data['viewRequest'], "homework") == 0){
+		// 	print_r($data1['classID']);die;
+			
+		$clsID = $data['classID'];
+		$secID = $data['sectionID'];
+		$month = $data['monthName'];
+		$countrow=mysqli_query($CONNECTION,"select * from homework where classid='$clsID' AND sectionid='$secID'");
+			
+		// 		print_r(subjectid);die;
+		$resultarray = array();
+			
+		while($data1 = mysqli_fetch_array($countrow)){
+				
+			// 			print_r($data1['homework']);
+			//  			print_r($data1['subjectid']);die;
+			if (strpos($data1['createdon'], $month) !== false){
+					
+				$abb = array('date'=>$data1['createdon'], 'subjectID'=>$data1['subjectid'], 'homework'=>$data1['homework']);
+				$resultarray[] = $abb;
+			}
+				
+		}
+		print_r(json_encode($resultarray));
+			
+			
+	}
+ 		          
+	
+				
+	}else if (strcmp($data['userType'], "Parent") == 0 ){
+		
+		$stID =	$data['studentID'];
+		$month = $data['monthName'];
+		
+		if (strcmp($data['viewRequest'], "Attendance") == 0){		
+			
+				
+				$countrow=mysqli_query($CONNECTION,"select Date,Attendance from studentattendance");
+
+				$resultarray =array();
+					
+				while($data1 = mysqli_fetch_array($countrow))
+				{
+					
+					if (strpos($data1['Date'], $month) !== true){
+					
+						$mydate =$data1['Date'];	
+						
+						$abarray=explode(",",  $data1['Attendance']);
+							
+						foreach ($abarray as $bb ){
+							$cc=explode("-",  $bb);
+								
+							if ($cc[0]==$stID){
+								
+								$resultarray[] = array('onDate'=>date('Y-m-d',$mydate), 'presentStatus'=>$cc[1]);
+							}
+								
+						}
+							
+							
+					}
 				}
 				
-				
-			}
+		
+								
 			
-			print_r(json_encode($studentAttendance));die;
+			print_r(json_encode($resultarray));	
 			
+		
+		}else if (strcmp($data['viewRequest'], "homework") == 0){
+			
+			$countrow=mysqli_query($CONNECTION,"select SectionId from admission,registration where admission.RegistrationId=registration.RegistrationId and admission.AdmissionId='$stID'");
+			$datasectionId = mysqli_fetch_array($countrow);
+			
+//  			print_r($datasectionId['SectionId']);
+ 			
+ 			$SectionId= $datasectionId['SectionId'];
+ 			
+ 			
+ 			$countrow1=mysqli_query($CONNECTION,"select * from homework where sectionid='$SectionId'");
+ 				
+ 			// 		print_r(subjectid);die;
+ 			$resultarray = array();
+ 				
+ 			while($data1 = mysqli_fetch_array($countrow1)){
+ 			
+ 				if (strpos($data1['createdon'], $month) !== false){
+ 						
+ 					$abb = array('date'=>$data1['createdon'], 'subjectID'=>$data1['subjectid'], 'homework'=>$data1['homework']);
+ 					$resultarray[] = $abb;
+ 				}
+ 			
+ 			}
+ 			print_r(json_encode($resultarray));
+ 				
+ 			
+ 			
 			
 		}
 		
@@ -72,6 +149,8 @@ if(!$CONNECTION)
 	
 		
 		
+		
+	
 	}
 	
 
