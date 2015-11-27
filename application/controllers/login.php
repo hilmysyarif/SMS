@@ -134,7 +134,7 @@ function login_user($info=false)
 									'result'=>'success',
 									'userType'=>$row[0]->MasterEntryValue,
 							);
-							print_r($data);die;
+							echo json_encode($data);die;
 						}
 						if(isset($row->UserType)&& $row->UserType=='0')
 						{
