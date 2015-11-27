@@ -68,7 +68,7 @@ function login_user($info=false)
 							echo json_encode($data);die;
 						} 
 						$user_data=array(
-								'userType'=>$UserType,
+								'UserType'=>$UserType,
 								'user_id'=>$addmission_detail->AdmissionId,
 								'usermailid'=>$UserName,// student/ parent must be changes depend on login id
 						);
