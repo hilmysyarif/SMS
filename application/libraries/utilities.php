@@ -25,7 +25,14 @@ class Utilities extends CI_Controller {
 	function get_language()
 	{
 		$CI = & get_instance();
-		$query=$CI->db->query("SELECT LanguageName from `lang` ");
+		$query=$CI->db->query("SELECT LanguageId,LanguageName from `lang` ");
+		return $query->Result();
+	}
+	
+	function get_languagename($id=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("SELECT LanguageName from `lang` where LanguageId=$id");
 		return $query->Result();
 	}
 	
@@ -246,6 +253,20 @@ class Utilities extends CI_Controller {
 		$query=$CI->db->query("Select BookName,AuthorName,AccessionNo from book,listbook where
 						ListBookId='$filter' and
 						book.BookId=listbook.BookId ");
+		return $query->Result();
+	}
+	
+	function select_phrase($filter=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("select PhraseId,Phrase from phrase");
+		return $query->Result();
+	}
+	
+	function select_translate($LANGUAGE=false)
+	{
+		$CI = & get_instance();
+		$query=$CI->db->query("select Translation from translate where LanguageId='$LANGUAGE'");
 		return $query->Result();
 	}
 	

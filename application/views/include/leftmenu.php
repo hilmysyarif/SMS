@@ -29,37 +29,37 @@
 					<li class="">
 						<a href="javascript:;">
 							<i class="fa fa-desktop"></i>
-							<span class="title">Front Office</span>
+							<span class="title"><?php echo Translate('Front Office'); ?></span>
 						</a>
 						<ul>
 						<?php  if(in_array('Call',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="active">
 								<a href="<?=base_url();?>frontoffice/call">
-									<span class="title">Call & Follow-up</span>
+									<span class="title"><?php echo Translate('Call & Follow-up'); ?></span>
 								</a>
 							</li>
 						<?php } if(in_array('OCall',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>frontoffice/ocall">
-									<span class="title">Other Call</span>
+									<span class="title"><?php echo Translate('Other Call'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('Enquiry',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>frontoffice/enquiry">
-									<span class="title">Enquiry</span>
+									<span class="title"><?php echo Translate('Enquiry'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('Complaint',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>frontoffice/complaint">
-									<span class="title">Complaint</span>
+									<span class="title"><?php echo Translate('Complaint'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('Visitor',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>frontoffice/visitor">
-									<span class="title">Visitor Book</span>
+									<span class="title"><?php echo Translate('Visitor Book'); ?></span>
 								</a>
 							</li>
 							<?php } ?>
@@ -72,31 +72,31 @@
 					<li class="">
 						<a href="javascript:;">
 							<i class="fa fa-graduation-cap"></i>
-							<span class="title">Admission</span>
+							<span class="title"><?php echo Translate('Admission'); ?></span>
 						</a>
 						<ul>
 						<?php  if(in_array('Registration',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="active">
 								<a href="<?=base_url();?>admission/registration">
-									<span class="title">Registration</span>
+									<span class="title"><?php echo Translate('Registration'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('Admission',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li >
 								<a href="<?=base_url();?>admission/admission_student">
-									<span class="title">Admission</span>
+									<span class="title"><?php echo Translate('Admission'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('Promotion',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>admission/promotion">
-									<span class="title">Promotion</span>
+									<span class="title"><?php echo Translate('Promotion'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('UpdateFee',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>admission/updatefee">
-									<span class="title">Update Fee</span>
+									<span class="title"><?php echo Translate('Update Fee'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('AdmissionReport',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
@@ -104,12 +104,12 @@
 							<li class="">
 						<a href="javascript:;">
 							<i class="linecons-cog"></i>
-							<span class="title">Reports</span>
+							<span class="title"><?php echo Translate('Reports'); ?></span>
 						</a>
 						<ul>
 							<li class="active">
 								<a href="<?=base_url();?>admission/admissionreport">
-									<span class="title">Admission Report</span>
+									<span class="title"><?php echo Translate('Admission Report'); ?></span>
 								</a>
 							</li>
 						</ul>
@@ -121,26 +121,26 @@
 					<li>
 					<a href="<?=base_url();?>payments/payment">
 							<i class="fa fa-money"></i>	
-							<span class="title">Fee Payment</span>
+							<span class="title"><?php echo Translate('Fee Payment'); ?></span>
 					</a>
 					</li>
 					<?php } if(in_array('Transaction',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 					<li class="">
 						<a href="javascript:;">
 							<i class="linecons-cog"></i>
-							<span class="title">Transaction</span>
+							<span class="title"><?php echo Translate('Transaction'); ?></span>
 						</a>
 						<ul>
 						<?php  if(in_array('Expense',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="active">
 								<a href="<?=base_url();?>transaction/expense">
-									<span class="title">Expense</span>
+									<span class="title"><?php echo Translate('Expense'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('Income',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>transaction/income">
-									<span class="title">Income</span>
+									<span class="title"><?php echo Translate('Income'); ?></span>
 								</a>
 							</li>
 							<?php }?>
@@ -150,43 +150,96 @@
 					<li class="">
 						<a href="javascript:;">
 							<i class="fa fa-bar-chart"></i>
-							<span class="title">Attendance</span>
+							<span class="title"><?php echo Translate('Attendance'); ?></span>
 						</a>
 						<ul>
 						<?php  if(in_array('StaffAttendence',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="active">
 								<a href="<?=base_url();?>attendences/staffattendence">
-									<span class="title">Staff Attendance</span>
+									<span class="title"><?php echo Translate('Staff Attendance'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('StudentAttendence',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>attendences/studentattendence">
-									<span class="title">Student Attendance</span>
+									<span class="title"><?php echo Translate('Student Attendance'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('AttendanceReport',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="">
 								<a href="javascript:;">
 									<i class="fa fa-area-chart"></i>
-									<span class="title">Reports</span>
+									<span class="title"><?php echo Translate('Reports'); ?></span>
 								</a>
 						<ul>
 						<?php  if(in_array('StaffAttendenceReport',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="active">
 								<a href="<?=base_url();?>attendences/staffattendancereport">
-									<span class="title">Staff Attendance</span>
+									<span class="title"><?php echo Translate('Student Attendance'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('StudentAttendanceReport',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>attendences/studentattendancereport">
-									<span class="title">Student Attendance</span>
+									<span class="title"><?php echo Translate('Staff Attendance'); ?></span>
 								</a>
 							</li>
 							<?php } ?>
 						</ul>
 					</li>
+							<?php } ?>
+						</ul>
+					</li>
+					<?php } if(in_array('Homework',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
+					<li class="">
+						<a href="javascript:;">
+							<i class="fa-file-word-o"></i>
+							<span class="title"><?php echo Translate('Homework'); ?></span>
+						</a>
+						<ul>
+						<?php  if(in_array('CreateHome',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
+							<li class="active">
+								<a href="<?=base_url();?>homework/createhomework">
+									<span class="title"><?php echo Translate('Create Homework'); ?></span>
+								</a>
+							</li>
+							<?php } if(in_array('Homework Report',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
+							<li>
+								<a href="<?=base_url();?>homework/viewhomework">
+									<span class="title"><?php echo Translate('Homework Report'); ?></span>
+								</a>
+							</li>
+							
+							<?php } if(in_array('Homework Evaluation',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
+							<li>
+								<a href="<?=base_url();?>homework/evaluationofhomework">
+									<span class="title"><?php echo Translate('Homework Evaluation'); ?></span>
+								</a>
+							</li>
+							
+							<?php } ?>
+						</ul>
+					</li>
+					<?php } if(in_array('Timetable',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
+					<li class="">
+						<a href="javascript:;">
+							<i class="fa-calendar-o"></i>
+							<span class="title"><?php echo Translate('Time Table'); ?></span>
+						</a>
+						<ul>
+						<?php  if(in_array('Create Timetable',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
+							<li class="active">
+								<a href="javascript:;">
+									<span class="title"><?php echo Translate('Create TimeTable'); ?></span>
+								</a>
+							</li>
+							<?php } if(in_array('View Timetable',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
+							<li>
+								<a href="javascript:;">
+									<span class="title"><?php echo Translate('View TimeTable'); ?></span>
+								</a>
+							</li>
+							
 							<?php } ?>
 						</ul>
 					</li>
@@ -194,19 +247,19 @@
 					<li class="">
 						<a href="javascript:;">
 							<i class="fa fa-bus"></i>
-							<span class="title">Transport</span>
+							<span class="title"><?php echo Translate('Transport'); ?></span>
 						</a>
 						<ul>
 						<?php  if(in_array('Transport',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="active">
 								<a href="<?=base_url();?>transports/transport">
-									<span class="title">Transport</span>
+									<span class="title"><?php echo Translate('Transport'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('TransportRoute',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>transports/route">
-									<span class="title">Transport Route</span>
+									<span class="title"><?php echo Translate('Transport Route'); ?></span>
 								</a>
 							</li>
 							<?php } ?>
@@ -216,56 +269,56 @@
 					<li class="">
 						<a href="javascript:;">
 							<i class="fa fa-file-text"></i>
-							<span class="title">Exam</span>
+							<span class="title"><?php echo Translate('Exam'); ?></span>
 						</a>
 						<ul>
 						<?php  if(in_array('MarksSetUp',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="active">
 								<a href="<?=base_url();?>exam/markssetup">
-									<span class="title">SetUp Exam</span>
+									<span class="title"><?php echo Translate('SetUp Exam'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('OnlineExamMenu',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="javascript:;">
 									<i class=""></i>
-										<span class="title">Online Exam SetUp</span>
+										<span class="title"><?php echo Translate('Online Exam SetUp'); ?></span>
 								</a>
 									<ul>
 									<?php  if(in_array('onlineexamcreate',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 										<li class="active">
 											<a href="<?=base_url();?>onlineexam/onlineexamcreate">
-												<span class="title">Create Online Exam</span>
+												<span class="title"><?php echo Translate('Create Online Exam'); ?></span>
 											</a>
 										</li>
 										<?php } if(in_array('Qustionbank',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 										<li class="">
 											<a href="<?=base_url();?>onlineexam/qustionbank">
-												<span class="title">Qustion Bank</span>
+												<span class="title"><?php echo Translate('Qustion Bank'); ?></span>
 											</a>
 										</li>
 										<?php } if(in_array('OnlineExamList',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 										<li class="">
 											<a href="<?=base_url();?>onlineexam/olineexamlist">
-												<span class="title">Show Exam</span>
+												<span class="title"><?php echo Translate('Show Exam'); ?></span>
 											</a>
 										</li>
 										<?php } if(in_array('onlineexamreport',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 										<li class="">
 											<a href="<?=base_url();?>onlineexam/onlineexamreport">
-												<span class="title">Report</span>
+												<span class="title"><?php echo Translate('Reports'); ?></span>
 											</a>
 										</li>	
 										<?php } if(in_array('OnlineExamFeedBack',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 										<li class="">
 											<a href="javascript:;">
-												<span class="title">Feed Back</span>
+												<span class="title"><?php echo Translate('Feed Back'); ?></span>
 											</a>
 										</li>
 										<?php } if(in_array('OnlineTestLink',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 										<li class="">
 											<a target="blank" href="<?=base_url();?>onlineexam/preview/1/1">
-												<span class="title">Online Test Link</span>
+												<span class="title"><?php echo Translate('Online Test Link'); ?></span>
 											</a>
 										</li>
 										<?php } ?>
@@ -276,12 +329,12 @@
 							<li class="">
 						<a href="javascript:;">
 							<i class="fa fa-area-chart"></i>
-							<span class="title">Reports</span>
+							<span class="title"><?php echo Translate('Reports'); ?></span>
 						</a>
 						<ul>
 							<li class="active">
 								<a href="<?=base_url();?>exam/examreport">
-									<span class="title">ExamReport</span>
+									<span class="title"><?php echo Translate('ExamReport'); ?></span>
 								</a>
 							</li>
 							
@@ -293,26 +346,26 @@
 					<?php } if(in_array('ManageStaff',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 					<li><a href="<?=base_url();?>managestaffs/managestaff">
 						<i class="fa fa-users"></i>
-									<span class="title">Manage Staff</span>
+									<span class="title"><?php echo Translate('Manage Staff'); ?></span>
 								</a>
 					</li>
 					<?php } if(in_array('Library',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 					<li class=" ">			
 					<a href="javascript:;">
 							<i class="fa fa-book"></i>
-							<span class="title">Library</span>
+							<span class="title"><?php echo Translate('Library'); ?></span>
 						</a>
 						<ul>
 						<?php  if(in_array('ManageBook',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="active">
 								<a href="<?=base_url();?>library/managebook">
-									<span class="title">Manage Books</span>
+									<span class="title"><?php echo Translate('Manage Books</a>'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('IssueReturn',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>library/issuereturn">
-									<span class="title">Issue & Return</span>
+									<span class="title"><?php echo Translate('Issue & Return'); ?></span>
 								</a>
 							</li>
 							<?php } ?>
@@ -322,19 +375,19 @@
 					<li>			
 					<a href="javascript:;">
 							<i class="fa fa-exchange"></i>
-							<span class="title">Dispatch & Receiving</span>
+							<span class="title"><?php echo Translate('Dispatch & Receiving'); ?></span>
 						</a>
 						<ul>
 						<?php  if(in_array('Dispatch',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="active">
 								<a href="<?=base_url();?>dispatchreceiving/dispatch">
-									<span class="title">Dispatch</span>
+									<span class="title"><?php echo Translate('Dispatch'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('Receiving',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>dispatchreceiving/receiving">
-									<span class="title">Receiving</span>
+									<span class="title"><?php echo Translate('Receiving'); ?></span>
 								</a>
 							</li>
 							<?php } ?>
@@ -344,74 +397,74 @@
 					<li class="">
 						<a href="javascript:;">
 							<i class="fa fa-shopping-cart"></i>
-							<span class="title">Stock</span>
+							<span class="title"><?php echo Translate('Stock'); ?></span>
 						</a>
 						<ul>
 						<?php  if(in_array('ManageStock',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="active">
 								<a href="javascript:;">
-									<span class="title">Manage Stock</span>
+									<span class="title"><?php echo Translate('Manage Stock'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('StockTransfer',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="javascript:;">
-									<span class="title">Stock Transfer</span>
+									<span class="title"><?php echo Translate('Stock Transfer'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('PurchaseMaterial',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="javascript:;">
-									<span class="title">Purchase Material</span>
+									<span class="title"><?php echo Translate('Purchase Material'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('Supplier',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="javascript:;">
-									<span class="title">Supplier</span>
+									<span class="title"><?php echo Translate('Supplier'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('Purchase',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="javascript:;">
-									<span class="title">Purchase</span>
+									<span class="title"><?php echo Translate('Purchase'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('IssueMaterial',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="javascript:;">
-									<span class="title">Issue Material</span>
+									<span class="title"><?php echo Translate('Issue Material'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('StockReportMenu',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="">
 								<a href="javascript:;">
 									<i class="fa fa-area-chart"></i>
-									<span class="title">Reports</span>
+									<span class="title"><?php echo Translate('Reports'); ?></span>
 								</a>
 								<ul>
 								<?php  if(in_array('StockReport',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 									<li class="active">
 										<a href="javascript:;">
-											<span class="title">Stock Report</span>
+											<span class="title"><?php echo Translate('Stock Report'); ?></span>
 										</a>
 									</li>
 									<?php } if(in_array('SchoolMaterialReport',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 									<li>
 										<a href="javascript:;">
-											<span class="title">School Material</span>
+											<span class="title"><?php echo Translate('School Material'); ?></span>
 										</a>
 									</li>
 									<?php } if(in_array('IssueReport',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 									<li>
 										<a href="javascript:;">
-											<span class="title">Issue Report</span>
+											<span class="title"><?php echo Translate('Issue Report'); ?></span>
 										</a>
 									</li>
 									<?php } if(in_array('PurchaseReport',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 									<li>
 										<a href="javascript:;">
-											<span class="title">Purchase Report</span>
+											<span class="title"><?php echo Translate('Purchase Report'); ?></span>
 										</a>
 									</li>
 									<?php } ?>
@@ -424,7 +477,7 @@
 					<?php } if(in_array('SMS',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li><a href="javascript:;">
 						<i class="fa fa-envelope"></i>
-									<span class="title">SMS</span>
+									<span class="title"><?php echo Translate('SMS'); ?></span>
 								</a>
 					</li>
 					<?php } ?>
@@ -438,7 +491,7 @@
 				<div class="title-env">
 		
 					<h1 class="title"><strong><?php echo($this->breadcrumb->output());?></strong>
-					<span class="title pull-right"> Current Session : <?=!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:''?></span> </h1>
+					<span class="title pull-right"> <?php echo Translate('Current Session'); ?> : <?=!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:''?></span> </h1>
 				</div>
 				
 				

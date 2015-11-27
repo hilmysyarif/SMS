@@ -1,3 +1,61 @@
+<?php 
+$LANGUAGE=!empty($this->session->userdata('LANGUAGE')) ? $this->session->userdata('LANGUAGE'):'';
+
+	$check=$this->utilities->select_phrase();
+	$PhraseArray[]="";
+	$PhraseIdArray[]="";
+	foreach($check as $row)
+	{
+		$PhraseIdArray[]=$row->PhraseId;
+		$PhraseArray[]=$row->Phrase;
+	}	
+	if($PhraseArray!="")
+	$_SESSION['PHRASE']=implode(",",$PhraseArray);
+	if($PhraseIdArray!="")
+	$_SESSION['PHRASEID']=implode(",",$PhraseIdArray);
+	$check1=$this->utilities->select_translate($LANGUAGE);;	
+	$row1=$check1;
+	$_SESSION['TRANSLATION']=isset($row1[0]->Translation)?$row1[0]->Translation:'';
+	
+function Translate($Phrase)
+{
+	$PhrasePassed="";
+	if(!is_numeric($Phrase))
+	{
+		$PhrasePassed=1;
+		$PhraseArray=explode(",",$_SESSION['PHRASE']);
+		$PhraseIdArray=explode(",",$_SESSION['PHRASEID']);
+		$PhraseSearch=array_search($Phrase,$PhraseArray);
+		if($PhraseSearch===FALSE)
+		$PhraseId="";
+		else
+		$PhraseId=$PhraseIdArray[$PhraseSearch];
+	}
+	else
+	$PhraseId=$Phrase;
+	$Found="";
+	$Translation=$_SESSION['TRANSLATION'];
+	if($Translation!="")
+	$Translation=explode("||",$Translation);
+	if($Translation!="")
+	foreach($Translation as $TranslationValue)
+	{
+		$TP=explode("**",$TranslationValue);
+		if($TP[0]==$PhraseId)
+		{
+			$Found=1;
+			if(($TP[1]=="" && is_numeric($Phrase)) || $TP[1]!="")
+			return($TP[1]);		
+			else
+			return($Phrase);
+			break;
+		}
+	}
+	
+	if($Found!=1 && $PhrasePassed==1)
+	return($Phrase);
+}
+?>
 <body class="page-body skin-white" id="element">
 <div class="page-loading-overlay">
 				<div class="loader-2"></div>
@@ -44,109 +102,109 @@
 				<li>
 					<a href="javascript:;">
 						<i class="linecons-cog"></i>
-						<span class="title"> Setting </span><span class="caret"></span>
+						<span class="title"> <?php echo Translate('Setting'); ?> </span><span class="caret"></span>
 					</a>
 					<ul>
 					<?php  if(in_array('GeneralSetting',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/generalsetting">
-								<span class="title">General Setting</span>
+								<span class="title"><?php echo Translate('General Setting'); ?></span>
 							</a>
 						</li>
 					<?php }  if(in_array('MasterEntry',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/masterentry">
-								<span class="title">Master Entry</span>
+								<span class="title"><?php echo Translate('Master Entry'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('ManageUser',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/manageuser">
-								<span class="title">Manage User</span>
+								<span class="title"><?php echo Translate('Manage User'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('ManageAccounts',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/manageaccount">
-								<span class="title">Manage Accounts</span>
+								<span class="title"><?php echo Translate('Manage Accounts'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('ManageClass',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/manageclass">
-								<span class="title">Manage Class</span>
+								<span class="title"><?php echo Translate('Manage Class'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('ManageSubject',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/managesubject">
-								<span class="title">Manage Subject</span>
+								<span class="title"><?php echo Translate('Manage Subject'); ?>t</span>
 							</a>
 						</li>
 						<?php } if(in_array('ManageExam',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/manageexam">
-								<span class="title">Manage Exam</span>
+								<span class="title"><?php echo Translate('Manage Exam'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('ManageSCArea',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/managescarea">
-								<span class="title">Manage SC Area</span>
+								<span class="title"><?php echo Translate('Manage SC Area'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('ManageSCIndicator',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/managescindicator">
-								<span class="title">Manage SC Indicator</span>
+								<span class="title"><?php echo Translate('Manage SC Indicator'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('ManageFee',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/managefee">
-								<span class="title">Manage Fees</span>
+								<span class="title"><?php echo Translate('Manage Fees'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('salaryhead',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/salaryhead">
-								<span class="title">Salary Head</span>
+								<span class="title"><?php echo Translate('Salary Head'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('salarystructure',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/structuretemplate">
-								<span class="title">Salary Structure</span>
+								<span class="title"><?php echo Translate('Salary Structure'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('schoolmaterial',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/manageschoolmaterial">
-								<span class="title">School Material</span>
+								<span class="title"><?php echo Translate('School Material'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('ManageLocation',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/managelocation">
-								<span class="title">Manage Location</span>
+								<span class="title"><?php echo Translate('Manage Location'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('ManageHeaderFooter',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/manageheaderandfooter">
-								<span class="title">Header & Footer</span>
+								<span class="title"><?php echo Translate('Header & Footer'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('PrintOption',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/printoption">
-								<span class="title">Print Option</span>
+								<span class="title"><?php echo Translate('Print Option'); ?></span>
 							</a>
 						</li>
 						<?php } if(in_array('Permission',$this->session->userdata('pagename'))  ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 						<li>
 							<a href="<?=base_url();?>master/permission">
-								<span class="title">Permission</span>
+								<span class="title"><?php echo Translate('Permission'); ?></span>
 							</a>
 						</li>
 						<?php } ?>
@@ -257,18 +315,24 @@
 			<ul class="navbar-nav">
 				<li>
 				<?php $LanguageName= $this->utilities->get_language();  ?>
+				<?php if(!empty($LANGUAGE)){ $LanguageName1= $this->utilities->get_languagename($LANGUAGE);  }?>
 					<a href="javascript:;">
 						<i class="fa-language"></i>
-						<span class="title"> English</span> <span class="caret"></span>
+						<span class="title"><?=isset($LanguageName1[0]->LanguageName)?$LanguageName1[0]->LanguageName:'English'?></span> <span class="caret"></span>
 					</a>
 					<ul>
 					 <?php foreach($LanguageName as $lang){?>
 						<li>
-							<a href="javascript:;">
-								<span class="title"><?=$lang->LanguageName?></span>
+							<a href="<?=base_url();?>master/changelanguage/<?=isset($lang->LanguageId)?$lang->LanguageId:''?>">
+								<span class="title"><?=isset($lang->LanguageName)?$lang->LanguageName:''?></span>
 							</a>
 						</li>
 						<?php } ?>
+						<li>
+							<a href="<?=base_url();?>master/changelanguage/0">
+								<span class="title">English</span>
+							</a>
+						</li>
 					
 					</ul>
 				</li>

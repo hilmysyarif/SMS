@@ -44,7 +44,21 @@ class Master extends CI_Controller {
 		}
 	}
 /*school management Set School Session End..........................................................*/
-	 
+	
+/*school management change Language start........................................*/	
+	function changelanguage($lang=false)
+	{
+		
+		if($lang || $lang==0){
+			$this->session->set_flashdata('set_session', 'Language Change Successfully!!');
+			$this->session->set_userdata('LANGUAGE',$lang);
+			header('Location: ' . $_SERVER['HTTP_REFERER']);
+		}else{
+		redirect('dashboard'); 
+		}
+	}
+/*school management change Language  End..........................................................*/
+		
 
 /*school management generalsetting start........................................................................*/	
 	function generalsetting()
