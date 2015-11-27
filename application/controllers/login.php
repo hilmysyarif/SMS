@@ -33,7 +33,7 @@ function login_user($info=false)
 		$this->session->set_userdata('db_name',$json_data->database_name);
 		$this->session->userdata('db_name');
 		$explode=explode("@",$json_data->username);
-		if(count($explode)== 2 )
+		if(count($explode)>= 2 )
 		{  
 			$addmission_detail=$this->data['addmission_detail']=$this->login_model->addmission_detail('admission',array('AdmissionNo'=>$explode[0]));
 			if($addmission_detail)
@@ -62,16 +62,28 @@ function login_user($info=false)
 							'usermailid'=>$registration_detail->FatherName,// student/ parent must be changes depend on login id
 					);
 					
-					print_r($data);die;
+					echo json_encode($data);die;
 				}
 				else 
 				{
-					echo 'error 1';// todo error message
+					$data=array(
+							'code'=>'400',
+							'status'=>'error',
+							'result'=>'password does not exist',
+					);
+					
+					echo json_encode($data);die;
 				}
 			}
 			else 
 			{
-				echo 'error 2'; // todo error message
+				$data=array(
+							'code'=>'400',
+							'status'=>'error',
+							'result'=>'user id does not exist',
+					);
+					
+					echo json_encode($data);die;
 			}
 		}
 		else
