@@ -66,7 +66,7 @@ function login_user($info=false)
 							);
 							
 							echo json_encode($data);die;
-						}
+						} 
 						$user_data=array(
 								'userType'=>'parents',
 								'user_id'=>$addmission_detail->AdmissionId,
