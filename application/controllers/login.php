@@ -39,53 +39,82 @@ function login_user($info=false)
 			if($addmission_detail)
 			{
 				if($explode[1]=='student')
-				{
-					$data=array(
-									'RegistrationId'=>$addmission_detail->RegistrationId,
-									'StudentsPassword'=>$json_data->password
-								);
-				}
-				if($explode[1]=='parents')
-				{
-					$data=array(
-									'RegistrationId'=>$addmission_detail->RegistrationId,
-									'ParentsPassword'=>$json_data->password);
-				}
-				$registration_detail=$this->data['registration_detail']=$this->login_model->addmission_detail('registration',$data);
-				if($registration_detail)
-				{
-					$data=array(
-							'code'=>'200',
-							'status'=>'success',
-							'userType'=>$explode[1],
-							'user_id'=>$addmission_detail->AdmissionId,
-							'usermailid'=>$registration_detail->FatherName,// student/ parent must be changes depend on login id
-					);
+					{
+						$data=array(
+										'RegistrationId'=>$addmission_detail->RegistrationId,
+										'StudentsPassword'=>$json_data->password
+									);
+					}
+					if($explode[1]=='parents')
+					{
+						$data=array(
+										'RegistrationId'=>$addmission_detail->RegistrationId,
+										'ParentsPassword'=>$json_data->password);
+					}
+					$registration_detail=$this->data['registration_detail']=$this->login_model->addmission_detail('registration',$data);
+					if($registration_detail)
+					{	
+						if($explode[1]=='parents'){ $UserType=$registration_detail->FatherName; }else { $UserType=$registration_detail->StudentName; }
+						if(isset($json_data->url)&&$json_data->url=='androide')
+						{
+							$data=array(
+									'code'=>'200',
+									'status'=>'success',
+									'userType'=>$explode[1],
+									'user_id'=>$addmission_detail->AdmissionId,
+									'usermailid'=>$UserType,// student/ parent must be changes depend on login id
+							);
+							
+							echo json_encode($data);die;
+						}
+						$user_data=array(
+								'code'=>'200',
+								'status'=>'success',
+								'userType'=>$explode[1],
+								'user_id'=>$addmission_detail->AdmissionId,
+								'usermailid'=>$UserType,// student/ parent must be changes depend on login id
+						);
+						$this->session->set_userdata('user_data',$user_data);
+						$user_session_data = $this->session->userdata('user_data');
+						redirect('dashboard');
+					}
+					else 
+					{
+						if(isset($json_data->url)&&$json_data->url=='androide')
+						{
+							$data=array(
+									'code'=>'400',
+									'status'=>'error',
+									'result'=>'user id does not exist',
+							);
+							
+							echo json_encode($data);die;
+						}
+						?>
+						 <script> alert('User Id And Password Does Not Exist.');</script><?php 
+						 redirect($json_data->url,'refresh');
+					}
 					
-					echo json_encode($data);die;
-				}
-				else 
-				{
-					$data=array(
-							'code'=>'400',
-							'status'=>'error',
-							'result'=>'password does not exist',
-					);
-					
-					echo json_encode($data);die;
-				}
+				
 			}
 			else 
 			{
-				$data=array(
-							'code'=>'400',
-							'status'=>'error',
-							'result'=>'user id does not exist',
-					);
-					
-					echo json_encode($data);die;
+				if(isset($json_data->url)&&$json_data->url=='androide')
+				{
+						$data=array(
+									'code'=>'400',
+									'status'=>'error',
+									'result'=>'user id does not exist',
+							);
+							
+							echo json_encode($data);die;
+				}
+					?>
+					 <script> alert('User Id And Password Does Not Exist.');</script><?php 
+					 redirect($json_data->url,'refresh');
 			}
 		}
+		
 		else
 		{
 			if($json_data->database_name && $json_data->username && $json_data->password)
