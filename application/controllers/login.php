@@ -71,9 +71,10 @@ function login_user($info=false)
 								'userType'=>$UserType,
 								'user_id'=>$addmission_detail->AdmissionId,
 								'usermailid'=>$UserName,// student/ parent must be changes depend on login id
-						);print_r($user_data);die;
+						);
 						$this->session->set_userdata('user_data',$user_data);
 						$user_session_data = $this->session->userdata('user_data');
+						print_r($user_session_data);die;
 						redirect('dashboard');
 					}
 					else 
