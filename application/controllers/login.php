@@ -68,10 +68,10 @@ function login_user($info=false)
 							echo json_encode($data);die;
 						} 
 						$user_data=array(
-								'userType'=>'parents',
+								'userType'=>$UserType,
 								'user_id'=>$addmission_detail->AdmissionId,
 								'usermailid'=>$UserName,// student/ parent must be changes depend on login id
-						);
+						);print_r($user_data);die;
 						$this->session->set_userdata('user_data',$user_data);
 						$user_session_data = $this->session->userdata('user_data');
 						redirect('dashboard');
