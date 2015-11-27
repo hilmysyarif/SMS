@@ -74,7 +74,6 @@ function login_user($info=false)
 						);
 						$this->session->set_userdata('user_data',$user_data);
 						$user_session_data = $this->session->userdata('user_data');
-						print_r($user_session_data);die;
 						redirect('dashboard');
 					}
 					else 
