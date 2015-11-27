@@ -107,8 +107,6 @@ if(!$CONNECTION)
 							
 					}
 				}
-				
-		
 								
 			
 			print_r(json_encode($resultarray));	
