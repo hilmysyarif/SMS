@@ -57,7 +57,7 @@ function login_user($info=false)
 						if($explode[1]=='parents'){ $UserName=$registration_detail->FatherName;  $UserType=1; }else { $UserName=$registration_detail->StudentName; $UserType=2; }
 						if(isset($json_data->url)&&$json_data->url=='androide')
 						{
-							$data=array(
+							$data=array( 
 									'code'=>'200',
 									'status'=>'success',
 									'userType'=>$explode[1],
