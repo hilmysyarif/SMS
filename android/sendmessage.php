@@ -19,6 +19,7 @@ if(!$CONNECTION)
 		
 // 		$studentID = "493";
 
+ 		print_r($abb);
  		print_r($studentID);
 		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='493'");		
 		
@@ -29,7 +30,7 @@ if(!$CONNECTION)
 			$senddataarray[] = $dataArray;		
 		
 				}
-		print_r(json_encode($senddataarray));	
+// 		print_r(json_encode($senddataarray));	
 		
 				
 	} else if($action=="insert"){
