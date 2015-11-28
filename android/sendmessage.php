@@ -19,6 +19,7 @@ if(!$CONNECTION)
 
 		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='$studentID'");		
 		
+		print_r($studentID);
 		print_r($countrow);
 		print ("....");
 		$senddataarray =array();
