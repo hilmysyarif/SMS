@@ -28,8 +28,8 @@ class User_management extends CI_Controller {
 		$json_data=$_GET['data'];
 		$var=json_decode($json_data);
 		$data=array(
-					'Username'=>$var->Username,
-					'Password'=>$var->Password,
+					'Username'=>$var->application_admin_username,
+					'Password'=>md5($var->application_admin_password),
 					'UserType'=>$var->UserType
 				   );
 		$status=$this->user_management_model->set_user($data,$var->db_name);
@@ -37,19 +37,28 @@ class User_management extends CI_Controller {
 		{
 			$data=array(
 							'organization_id'=>$var->organization_id,
+							'registration_id'=>$var->registration_id,
 							'organization_name'=>$var->organization_name,
-							'email'=>$var->email,
+							'organization_admin_email'=>$var->organization_admin_email,
+							'organization_admin_UserName'=>$var->organization_admin_UserName,
+							'organization_admin_password'=>$var->organization_admin_password,
+							'organization_admin_mobile'=>$var->organization_admin_mobile,
+							'application_admin_email'=>$var->application_admin_email,
+							'application_admin_username'=>$var->application_admin_username,
+							'application_admin_password'=>$var->application_admin_password,
+							'application_admin_mobile'=>$var->application_admin_mobile,
+							'database_name'=>$var->db_name,
 							'code'=>'200',
 						);
 			$database_name=$this->session->userdata('db_name');
 			$this->session->unset_userdata($database_name);
 			$this->session->sess_destroy();
 			$datas=json_encode($data);
-			redirect('http://junctionerp.com/manage/login/set_registration_application?json='.$datas);
+			redirect('http://junctiondev.cloudapp.net/appmanager/login/result_application?json='.$datas);
 		}		
 		else
 		{
-			redirect('http://junctionerp.com/manage/login/application_login?id=login');
+			redirect('http://junctiondev.cloudapp.net/appmanager/login/application_login?id=login');
 		}
 	}
 	
@@ -65,7 +74,7 @@ class User_management extends CI_Controller {
 				'Password'=>$var->password,
 		);
 		$status=$this->user_management_model->update_pwd_admin_user($data,$var->old_username);
-		redirect('http://junctionerp.com/manage/admin_panel/manage_admin?session='.$var->session);
+	redirect('http://junctiondev.cloudapp.net/appmanager/admin_panel/manage_admin?session='.$var->session);
 	}
 	
 	function get_db_size()
@@ -90,6 +99,6 @@ class User_management extends CI_Controller {
 				'reg_app_id'=>$var->reg_app_id,
 					);
 		$json=json_encode($data);
-		redirect('http://junctionerp.com/manage/admin_panel/delete_app_org?json='.$json);
+		redirect('http://junctiondev.cloudapp.net/appmanager/admin_panel/delete_app_org?json='.$json);
 	}
 }
