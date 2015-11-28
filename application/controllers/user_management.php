@@ -27,7 +27,7 @@ class User_management extends CI_Controller {
 	{
 		$json_data=$_GET['data'];
 		$var=json_decode($json_data);
-		$data=array(
+		$data=array( 
 					'Username'=>$var->application_admin_username,
 					'Password'=>md5($var->application_admin_password),
 					'UserType'=>$var->UserType
@@ -77,7 +77,7 @@ class User_management extends CI_Controller {
 	redirect('http://junctiondev.cloudapp.net/appmanager/admin_panel/manage_admin?session='.$var->session);
 	}
 	
-	function get_db_size()
+	function get_db_size() 
 	{ 
 		$this->session->set_userdata('username','admin');
 		echo $this->session->userdata('username');
