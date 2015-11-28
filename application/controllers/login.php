@@ -39,53 +39,80 @@ function login_user($info=false)
 			if($addmission_detail)
 			{
 				if($explode[1]=='student')
-				{
-					$data=array(
-									'RegistrationId'=>$addmission_detail->RegistrationId,
-									'StudentsPassword'=>$json_data->password
-								);
-				}
-				if($explode[1]=='parents')
-				{
-					$data=array(
-									'RegistrationId'=>$addmission_detail->RegistrationId,
-									'ParentsPassword'=>$json_data->password);
-				}
-				$registration_detail=$this->data['registration_detail']=$this->login_model->addmission_detail('registration',$data);
-				if($registration_detail)
-				{
-					$data=array(
-							'code'=>'200',
-							'status'=>'success',
-							'userType'=>$explode[1],
-							'user_id'=>$addmission_detail->AdmissionId,
-							'usermailid'=>$registration_detail->FatherName,// student/ parent must be changes depend on login id
-					);
+					{
+						$data=array(
+										'RegistrationId'=>$addmission_detail->RegistrationId,
+										'StudentsPassword'=>$json_data->password
+									);
+					}
+					if($explode[1]=='parents')
+					{
+						$data=array(
+										'RegistrationId'=>$addmission_detail->RegistrationId,
+										'ParentsPassword'=>$json_data->password);
+					}
+					$registration_detail=$this->data['registration_detail']=$this->login_model->addmission_detail('registration',$data);
+					if($registration_detail)
+					{	
+						if($explode[1]=='parents'){ $UserName=$registration_detail->FatherName;  $UserType=1; }else { $UserName=$registration_detail->StudentName; $UserType=2; }
+						if(isset($json_data->url)&&$json_data->url=='androide')
+						{
+							$data=array( 
+									'code'=>'200',
+									'status'=>'success', 
+									'userType'=>$explode[1],
+									'user_id'=>$addmission_detail->AdmissionId,
+									'usermailid'=>$UserName,// student/ parent must be changes depend on login id
+							);
+							
+							echo json_encode($data);die;
+						} 
+						$user_data=array(
+								'UserType'=>$UserType,
+								'user_id'=>$addmission_detail->AdmissionId,
+								'usermailid'=>$UserName,// student/ parent must be changes depend on login id
+						);
+						$this->session->set_userdata('user_data',$user_data);
+						$user_session_data = $this->session->userdata('user_data');
+						redirect('dashboard');
+					}
+					else 
+					{
+						if(isset($json_data->url)&&$json_data->url=='androide')
+						{
+							$data=array(
+									'code'=>'400',
+									'status'=>'error',
+									'result'=>'user id does not exist',
+							);
+							
+							echo json_encode($data);die;
+						}
+						?>
+						 <script> alert('User Id And Password Does Not Exist.');</script><?php 
+						 redirect($json_data->url,'refresh');
+					}
 					
-					echo json_encode($data);die;
-				}
-				else 
-				{
-					$data=array(
-							'code'=>'400',
-							'status'=>'error',
-							'result'=>'password does not exist',
-					);
-					
-					echo json_encode($data);die;
-				}
+				
 			}
 			else 
 			{
-				$data=array(
-							'code'=>'400',
-							'status'=>'error',
-							'result'=>'user id does not exist',
-					);
-					
-					echo json_encode($data);die;
+				if(isset($json_data->url)&&$json_data->url=='androide')
+				{
+						$data=array(
+									'code'=>'400',
+									'status'=>'error',
+									'result'=>'user id does not exist',
+							);
+							
+							echo json_encode($data);die;
+				}
+					?>
+					 <script> alert('User Id And Password Does Not Exist.');</script><?php 
+					 redirect($json_data->url,'refresh');
 			}
 		}
+		
 		else
 		{
 			if($json_data->database_name && $json_data->username && $json_data->password)
@@ -103,17 +130,17 @@ function login_user($info=false)
 							$row=$this->login_model->userType($row->UserType);
 						//	print_r($row[0]);die;
 							$data=array(
-									'status'=>'200',
-									'result'=>'success',
+									'code'=>'200',
+									'status'=>'success',
 									'userType'=>$row[0]->MasterEntryValue,
 							);
-							print_r($data);die;
+							echo json_encode($data);die;
 						}
 						if(isset($row->UserType)&& $row->UserType=='0')
 						{
 							$data=array(
-								'status'=>'200',
-								'result'=>'success',
+								'code'=>'200',
+								'status'=>'success',
 								'userType'=>'admin',
 							);
 							print_r($data);die;
@@ -133,8 +160,8 @@ function login_user($info=false)
 				if(isset($json_data->url)&&$json_data->url=='androide')
 					{
 						$data=array(
-								'status'=>'400',
-								'result'=>'Error',
+								'code'=>'400',
+								'status'=>'error',
 						);
 						print_r($data);die;
 					}

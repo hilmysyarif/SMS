@@ -606,7 +606,18 @@ CREATE TABLE IF NOT EXISTS `masterentry` (
   `MasterEntryValue` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+--
+-- Dumping data for table `masterentry`
+--
+
+INSERT INTO `masterentry` (`MasterEntryId`, `MasterEntryStatus`, `MasterEntryName`, `MasterEntryValue`) VALUES
+(1, 'Active', 'UserType', 'parents'),
+(2, 'Active', 'UserType', 'student');
+
+
 -- --------------------------------------------------------
+
 
 --
 -- Table structure for table `masterentrycategory`
