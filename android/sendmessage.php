@@ -19,7 +19,8 @@ if(!$CONNECTION)
 		
 // 		$studentID = "493";
 
-		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='$studentID'");		
+ 		print_r($studentID);
+		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='493'");		
 		
 		$senddataarray =array();
 		while($data1 = mysqli_fetch_array($countrow)){			
