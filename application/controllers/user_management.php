@@ -26,12 +26,12 @@ class User_management extends CI_Controller {
 	function set_user($json_data=false)
 	{
 		$json_data=$_GET['data'];
-		$var=json_decode($json_data);
+		$var=json_decode($json_data); 
 		$data=array( 
 					'Username'=>$var->application_admin_username,
 					'Password'=>md5($var->application_admin_password),
 					'UserType'=>$var->UserType
-				   );
+				   ); 
 		$status=$this->user_management_model->set_user($data,$var->db_name);
 		if($status)
 		{
