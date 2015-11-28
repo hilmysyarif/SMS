@@ -29,7 +29,7 @@ if(!$CONNECTION)
 		
 		
 		}
-		print_r(json_encode($senddataarray));die;
+		print_r(json_encode($senddataarray));
 		
 		
 		
