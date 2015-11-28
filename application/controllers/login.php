@@ -130,8 +130,8 @@ function login_user($info=false)
 							$row=$this->login_model->userType($row->UserType);
 						//	print_r($row[0]);die;
 							$data=array(
-									'status'=>'200',
-									'result'=>'success',
+									'code'=>'200',
+									'status'=>'success',
 									'userType'=>$row[0]->MasterEntryValue,
 							);
 							echo json_encode($data);die;
@@ -139,8 +139,8 @@ function login_user($info=false)
 						if(isset($row->UserType)&& $row->UserType=='0')
 						{
 							$data=array(
-								'status'=>'200',
-								'result'=>'success',
+								'code'=>'200',
+								'status'=>'success',
 								'userType'=>'admin',
 							);
 							print_r($data);die;
@@ -160,8 +160,8 @@ function login_user($info=false)
 				if(isset($json_data->url)&&$json_data->url=='androide')
 					{
 						$data=array(
-								'status'=>'400',
-								'result'=>'Error',
+								'code'=>'400',
+								'status'=>'error',
 						);
 						print_r($data);die;
 					}
