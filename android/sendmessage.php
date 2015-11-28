@@ -13,9 +13,9 @@ if(!$CONNECTION)
 	
  	$action=isset($_GET['action'])?$_GET['action']:'';
 	if($action=="get"){
+		$abb = json_decode($_POST['loggedUserID'],true);
 		
-		
- 		$studentID = $_POST['loggedUserID'];
+ 		$studentID = $abb['UserID'];
 		
 // 		$studentID = "493";
 
@@ -28,11 +28,9 @@ if(!$CONNECTION)
 			$senddataarray[] = $dataArray;		
 		
 				}
-		print_r(json_encode($senddataarray));
+		print_r(json_encode($senddataarray));	
 		
-		
-		
-		
+				
 	} else if($action=="insert"){
 		
 		$dataarray = json_decode($_POST['messages'],true);
