@@ -13,26 +13,21 @@ if(!$CONNECTION)
 	
  	$action=isset($_GET['action'])?$_GET['action']:'';
 	if($action=="get"){
+		
+		
  		$studentID = $_POST['loggedUserID'];
 		
 // 		$studentID = "493";
 
 		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='$studentID'");		
 		
-		print_r($studentID);
-		print_r($countrow);
-		print ("....");
 		$senddataarray =array();
-		while($data1 = mysqli_fetch_array($countrow)){
-			
-			print_r($data1);
-			print ("....");
+		while($data1 = mysqli_fetch_array($countrow)){			
 		
 			$dataArray = array('senderID'=>$data1['senderID'], 'msg'=>$data1['msg'],'sendDataTime'=>$data1['deliveredDateTime']);
 			$senddataarray[] = $dataArray;		
 		
-		
-		}
+				}
 		print_r(json_encode($senddataarray));
 		
 		
