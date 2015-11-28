@@ -9,37 +9,64 @@ if(!$CONNECTION)
 	echo "Database not found or There is an error in connecting to DB!! Please fix this!!!";
 	exit();
 }else{	
+// 	$action="get";
 	
-	$dataarray = json_decode($_POST['messages'],true);
-
-	$usertype = $dataarray['userID'];
-	
-
-	
-	$today =  date('Y-m-d ,h:i:s A', time()+16230);
-// 	echo date('h:i:s a', time()+(360000000-1800));die;
-	
-// 	print_r(date('h:i:s A', time()+16230));
-	
-	foreach($dataarray['Messages'] as $clsdataarray){
+ 	$action=isset($_GET['action'])?$_GET['action']:'';
+	if($action=="get"){
+ 		$studentID = $_POST['loggedUserID'];
 		
-		foreach ($clsdataarray['studentsID'] as $aa){
-			
-			$msg= $clsdataarray['message'];
-			$sendtime = $clsdataarray['sendDateTime'];
-			
-			
-			$queryInsert="insert into messages(senderID,receiverID,msg,sendDateTime,deliveredDateTime,readDateTime) values('$usertype','$aa','$msg','$sendtime','$today','') ";
-			mysqli_query($CONNECTION,$queryInsert);
+// 		$studentID = "493";
+
+		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='$studentID'");		
+		
+		
+		$senddataarray =array();
+		while($data1 = mysqli_fetch_array($countrow)){
 			
 		
-			
+			$dataArray = array('senderID'=>$data1['senderID'], 'msg'=>$data1['msg'],'sendDataTime'=>$data1['deliveredDateTime']);
+			$senddataarray[] = $dataArray;		
+		
+		
 		}
+		print_r(json_encode($senddataarray));die;
 		
 		
+		
+		
+	} else if($action=="insert"){
+		
+		$dataarray = json_decode($_POST['messages'],true);
+		
+		$usertype = $dataarray['userID'];
+		
+		
+		
+		$today =  date('Y-m-d ,h:i:s A', time()+16230);
 
+		foreach($dataarray['Messages'] as $clsdataarray){
+		
+			foreach ($clsdataarray['studentsID'] as $aa){
+					
+				$msg= $clsdataarray['message'];
+				$sendtime = $clsdataarray['sendDateTime'];
+					
+					
+				$queryInsert="insert into messages(senderID,receiverID,msg,sendDateTime,deliveredDateTime,readDateTime) values('$usertype','$aa','$msg','$sendtime','$today','') ";
+				mysqli_query($CONNECTION,$queryInsert);
+		
+			}
+		
+		
+		
+		}
+		print ("message delivered");
 	}
-	print ("message delivered");
+	
+	
+	
+	
+
 }
 
 
