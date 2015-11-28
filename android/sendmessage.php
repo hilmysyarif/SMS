@@ -19,10 +19,13 @@ if(!$CONNECTION)
 
 		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='$studentID'");		
 		
-		
+		print_r($countrow);
+		print ("....");
 		$senddataarray =array();
 		while($data1 = mysqli_fetch_array($countrow)){
 			
+			print_r($data1);
+			print ("....");
 		
 			$dataArray = array('senderID'=>$data1['senderID'], 'msg'=>$data1['msg'],'sendDataTime'=>$data1['deliveredDateTime']);
 			$senddataarray[] = $dataArray;		
