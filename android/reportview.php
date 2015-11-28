@@ -133,7 +133,7 @@ if(!$CONNECTION)
  				if (strpos($data1['createdon'], $month) !== false){
  					$subjID = $data1['subjectid'];
 
- 					$countrow2=mysqli_query($CONNECTION,"select SubjectName from subject where SubjectId='$SectionId'");
+ 					$countrow2=mysqli_query($CONNECTION,"select SubjectName from subject where SubjectId='$subjID'");
  					$data2 = mysqli_fetch_array($countrow2);
  					
  					$subName = $data2['SubjectName'];
