@@ -13,15 +13,17 @@ if(!$CONNECTION)
 	
  	$action=isset($_GET['action'])?$_GET['action']:'';
 	if($action=="get"){
-		$abb = json_decode($_POST['loggedUserID'],true);
+ 		$abb = json_decode($_POST['ritu'],true);
+		
+// 		$abb = json_decode('{"DB_Name":"rohit_sms","UserID":"493"}',true);
 		
  		$studentID = $abb['UserID'];
 		
 // 		$studentID = "493";
 
- 		print_r($abb);
- 		print_r($studentID);
-		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='493'");		
+//  		print_r($abb);
+//  		print_r($studentID);
+		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='$studentID'");		
 		
 		$senddataarray =array();
 		while($data1 = mysqli_fetch_array($countrow)){			
@@ -30,15 +32,14 @@ if(!$CONNECTION)
 			$senddataarray[] = $dataArray;		
 		
 				}
-// 		print_r(json_encode($senddataarray));	
+ 		print_r(json_encode($senddataarray));	
 		
 				
 	} else if($action=="insert"){
 		
 		$dataarray = json_decode($_POST['messages'],true);
 		
-		$usertype = $dataarray['userID'];
-		
+		$usertype = $dataarray['userID'];	
 		
 		
 		$today =  date('Y-m-d ,h:i:s A', time()+16230);
