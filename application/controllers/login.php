@@ -143,7 +143,7 @@ function login_user($info=false)
 								'status'=>'success',
 								'userType'=>'admin',
 							);
-							print_r($data);die;
+							echo json_encode($data);die; 
 						}
 					}
 					$user_data = array(
