@@ -21,6 +21,7 @@ if(!$CONNECTION)
 		
 // 		$studentID = "493";
 
+ 		print_r("hello ritu");
   		print_r($abb);
 //  		print_r($studentID);
 		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='$studentID'");		
