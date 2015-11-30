@@ -95,10 +95,11 @@ class User_management extends CI_Controller {
 		$this->session->set_userdata('db_name',$database_name);
 		$delete_function=$this->data['delete_function']=$this->user_management_model->delete_function($database_name);
 		$data=array(
-				'status'=>'success',
-				'reg_app_id'=>$var->reg_app_id,
+					'session'=>$var->session,
+					'status'=>'success',
+					'reg_app_id'=>$var->reg_app_id,
 					);
-		$json=json_encode($data);
+		$json=json_encode($data);print_r($json);die;
 		redirect('http://junctiondev.cloudapp.net/appmanager/admin_panel/delete_app_org?json='.$json);
 	}
 }
