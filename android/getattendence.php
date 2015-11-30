@@ -1,5 +1,8 @@
 <?php
-$DBDATABASE="rohit_sms";
+
+$dataarr1=json_decode($_POST['Jaydevi'],true);
+
+$DBDATABASE=$dataarr1['DB_Name'];
 $DBUSERNAME="root";
 $DBPASSWORD="bitnami";
 
@@ -96,10 +99,8 @@ $mainarr=array('school'=>$classarr,'school_name'=>'DPS School');
 print_r(json_encode($mainarr));
 
 }elseif($action=="insert"){
-	
 
-	
-  	$dataarr1=json_decode($_POST['Jaydevi'],true);
+// 	$dataarr1=json_decode($_POST['Jaydevi'],true);
 	$date='';
 	$pstudentid='';	
 	$astudentid='';
