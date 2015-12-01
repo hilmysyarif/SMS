@@ -1,5 +1,8 @@
 <?php
-$DBDATABASE="rohit_sms";
+
+$data = json_decode($_POST['requestedData'],true);
+
+$DBDATABASE= $data['DB_Name'];
 $DBUSERNAME="root";
 $DBPASSWORD="bitnami";
 
@@ -11,9 +14,8 @@ if(!$CONNECTION)
 	exit();
 }else{	
 
- 	$data = json_decode($_POST['requestedData'],true);	
-
-
+ 	
+ 	
 	
 	if (strcmp($data['userType'], "Teacher") == 0){		
 		
@@ -136,8 +138,7 @@ if(!$CONNECTION)
  					$countrow2=mysqli_query($CONNECTION,"select SubjectName from subject where SubjectId='$subjID'");
  					$data2 = mysqli_fetch_array($countrow2);
  					
- 					$subName = $data2['SubjectName'];
- 					
+ 					$subName = $data2['SubjectName']; 					
  						
  					$abb = array('date'=>$data1['createdon'], 'subjectID'=>$subjID, 'SubjectName'=>$subName, 'homework'=>$data1['homework']);
  					$resultarray[] = $abb;

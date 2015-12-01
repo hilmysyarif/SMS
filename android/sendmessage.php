@@ -1,5 +1,8 @@
 <?php
-$DBDATABASE="db_school";
+
+$dataarray = json_decode($_POST['ritu'],true);
+
+$DBDATABASE=$dataarray['DB_Name'];
 $DBUSERNAME="root";
 $DBPASSWORD="bitnami";
 
@@ -13,11 +16,11 @@ if(!$CONNECTION)
 	
  	$action=isset($_GET['action'])?$_GET['action']:'';
 	if($action=="get"){
- 		$abb = json_decode($_POST['ritu'],true);
+//  		$dataarray = json_decode($_POST['ritu'],true);
 		
-// 		$abb = json_decode('{"DB_Name":"rohit_sms","UserID":"493"}',true);
+//  		$abb = json_decode('{"DB_Name":"rohit_sms","UserID":"493"}',true);
 		
- 		$studentID = $abb['UserID'];
+ 		$studentID = $dataarray['UserID'];
 
 		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='$studentID'");		
 		
@@ -33,7 +36,7 @@ if(!$CONNECTION)
 				
 	} else if($action=="insert"){
 		
-		$dataarray = json_decode($_POST['messages'],true);
+// 		$dataarray = json_decode($_POST['messages'],true);
 		
 		$usertype = $dataarray['userID'];	
 		
