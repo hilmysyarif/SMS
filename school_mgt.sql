@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.4.14
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2015 at 07:15 AM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: Dec 01, 2015 at 10:38 AM
+-- Server version: 5.6.26
+-- PHP Version: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,10 +14,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_school`
+-- Database: `school`
 --
 
 -- --------------------------------------------------------
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `accounts` (
-`AccountId` int(11) NOT NULL,
+  `AccountId` int(11) NOT NULL,
   `AccountStatus` varchar(10) NOT NULL,
   `ManagedBy` varchar(100) NOT NULL,
   `AccountName` varchar(100) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 --
 
 CREATE TABLE IF NOT EXISTS `admission` (
-`AdmissionId` int(11) NOT NULL,
+  `AdmissionId` int(11) NOT NULL,
   `AdmissionNo` varchar(100) NOT NULL,
   `RegistrationId` int(11) NOT NULL,
   `Remarks` text NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `admission` (
 --
 
 CREATE TABLE IF NOT EXISTS `backuprestore` (
-`BackUpRestoreId` int(11) NOT NULL,
+  `BackUpRestoreId` int(11) NOT NULL,
   `BackUpRestoreType` varchar(20) NOT NULL,
   `BackUpRestoreDate` varchar(20) NOT NULL,
   `Username` varchar(100) NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `backuprestore` (
 --
 
 CREATE TABLE IF NOT EXISTS `book` (
-`BookId` int(11) NOT NULL,
+  `BookId` int(11) NOT NULL,
   `BookStatus` varchar(10) NOT NULL,
   `BookName` varchar(100) NOT NULL,
   `AuthorName` varchar(100) NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `book` (
 --
 
 CREATE TABLE IF NOT EXISTS `bookissue` (
-`BookIssueId` int(11) NOT NULL,
+  `BookIssueId` int(11) NOT NULL,
   `IRTo` varchar(10) NOT NULL,
   `IRToDetail` int(11) NOT NULL,
   `Books` text NOT NULL,
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `bookissue` (
 --
 
 CREATE TABLE IF NOT EXISTS `calendar` (
-`CalendarId` int(11) NOT NULL,
+  `CalendarId` int(11) NOT NULL,
   `CalendarStatus` varchar(10) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `StartTime` varchar(20) NOT NULL,
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `calendar` (
 --
 
 CREATE TABLE IF NOT EXISTS `calling` (
-`CallId` int(11) NOT NULL,
+  `CallId` int(11) NOT NULL,
   `CallStatus` varchar(10) NOT NULL,
   `Mobile` varchar(10) NOT NULL,
   `Landline` varchar(12) NOT NULL,
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `calling` (
 --
 
 CREATE TABLE IF NOT EXISTS `circular` (
-`CircularId` int(11) NOT NULL,
+  `CircularId` int(11) NOT NULL,
   `Title` varchar(10000) NOT NULL,
   `Circular` text NOT NULL,
   `DateReleased` varchar(10) NOT NULL,
@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `circular` (
 --
 
 CREATE TABLE IF NOT EXISTS `class` (
-`ClassId` int(11) NOT NULL,
+  `ClassId` int(11) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `ClassName` varchar(100) NOT NULL,
   `ClassStatus` varchar(10) NOT NULL,
@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `class` (
 --
 
 CREATE TABLE IF NOT EXISTS `complaint` (
-`ComplaintId` int(11) NOT NULL,
+  `ComplaintId` int(11) NOT NULL,
   `ComplaintStatus` varchar(10) NOT NULL,
   `ComplaintType` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `complaint` (
 --
 
 CREATE TABLE IF NOT EXISTS `drregister` (
-`Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL,
   `DRStatus` varchar(10) NOT NULL,
   `DRType` varchar(100) NOT NULL,
   `Reference` text NOT NULL,
@@ -239,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `drregister` (
 --
 
 CREATE TABLE IF NOT EXISTS `enquiry` (
-`EnquiryId` int(11) NOT NULL,
+  `EnquiryId` int(11) NOT NULL,
   `EnquiryStatus` varchar(10) NOT NULL,
   `EnquiryType` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
@@ -264,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `enquiry` (
 --
 
 CREATE TABLE IF NOT EXISTS `exam` (
-`ExamId` int(11) NOT NULL,
+  `ExamId` int(11) NOT NULL,
   `ExamStatus` varchar(10) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `SectionId` int(11) NOT NULL,
@@ -281,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `exam` (
 --
 
 CREATE TABLE IF NOT EXISTS `examdetail` (
-`ExamDetailId` int(11) NOT NULL,
+  `ExamDetailId` int(11) NOT NULL,
   `ExamDetailStatus` varchar(10) NOT NULL,
   `Locked` int(11) NOT NULL,
   `ExamId` int(11) NOT NULL,
@@ -301,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `examdetail` (
 --
 
 CREATE TABLE IF NOT EXISTS `examdetails` (
-`Exam_Detail_Id` int(11) NOT NULL,
+  `Exam_Detail_Id` int(11) NOT NULL,
   `Exam_Type` varchar(50) CHARACTER SET utf8 NOT NULL,
   `Exam_Detail_Status` enum('Active','Inactive','Deleted') CHARACTER SET utf8 NOT NULL,
   `Section_Id` int(11) NOT NULL,
@@ -313,9 +313,9 @@ CREATE TABLE IF NOT EXISTS `examdetails` (
   `Result` varchar(10) CHARACTER SET utf8 NOT NULL,
   `Grade` varchar(10) CHARACTER SET utf8 NOT NULL,
   `Remarks` varchar(20) CHARACTER SET utf8 NOT NULL,
-  `DateOfExam` varchar(25) CHARACTER SET utf8 NOT NULL,
+  `DateOfExam` varchar(10) CHARACTER SET utf8 NOT NULL,
   `DOC` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `DOU` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `DOU` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `Evaluated_By` varchar(20) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -341,7 +341,7 @@ CREATE TABLE IF NOT EXISTS `examtype` (
 --
 
 CREATE TABLE IF NOT EXISTS `expense` (
-`ExpenseId` int(11) NOT NULL,
+  `ExpenseId` int(11) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `ExpenseStatus` varchar(10) NOT NULL,
   `ExpenseAccountType` varchar(20) NOT NULL,
@@ -366,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `expense` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee` (
-`FeeId` int(11) NOT NULL,
+  `FeeId` int(11) NOT NULL,
   `FeeStatus` varchar(10) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `SectionId` int(11) NOT NULL,
@@ -384,7 +384,7 @@ CREATE TABLE IF NOT EXISTS `fee` (
 --
 
 CREATE TABLE IF NOT EXISTS `feepayment` (
-`FeePaymentId` int(11) NOT NULL,
+  `FeePaymentId` int(11) NOT NULL,
   `Token` varchar(200) NOT NULL,
   `FeeType` int(11) NOT NULL,
   `Amount` decimal(10,0) NOT NULL,
@@ -399,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `feepayment` (
 --
 
 CREATE TABLE IF NOT EXISTS `followup` (
-`FollowUpId` int(11) NOT NULL,
+  `FollowUpId` int(11) NOT NULL,
   `FollowUpStatus` varchar(10) NOT NULL,
   `FollowUpType` varchar(10) NOT NULL,
   `FollowUpUniqueId` int(11) NOT NULL,
@@ -417,7 +417,7 @@ CREATE TABLE IF NOT EXISTS `followup` (
 --
 
 CREATE TABLE IF NOT EXISTS `generalsetting` (
-`Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL,
   `CurrentSession` varchar(10) NOT NULL,
   `BackUpPath` varchar(100) NOT NULL,
   `SchoolStartDate` varchar(20) NOT NULL,
@@ -451,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `generalsetting` (
 --
 
 CREATE TABLE IF NOT EXISTS `header` (
-`HeaderId` int(11) NOT NULL,
+  `HeaderId` int(11) NOT NULL,
   `HRType` varchar(10) NOT NULL,
   `HeaderTitle` varchar(1000) NOT NULL,
   `HeaderContent` text NOT NULL,
@@ -465,13 +465,15 @@ CREATE TABLE IF NOT EXISTS `header` (
 --
 
 CREATE TABLE IF NOT EXISTS `homework` (
-`homeworkid` int(11) NOT NULL,
+  `classid` int(11) NOT NULL,
   `sectionid` int(11) NOT NULL,
   `subjectid` int(11) NOT NULL,
   `homework` text CHARACTER SET utf8 NOT NULL,
-  `createdon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `dosubmission` datetime NOT NULL,
+  `dateofhomework` varchar(20) DEFAULT NULL,
+  `dosubmission` varchar(10) NOT NULL,
   `studentstatus` text CHARACTER SET utf8 NOT NULL,
+  `session` varchar(20) NOT NULL,
+  `createdon` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createdby` varchar(20) CHARACTER SET utf8 NOT NULL,
   `updatedon` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updatedby` varchar(20) CHARACTER SET utf8 NOT NULL
@@ -484,7 +486,7 @@ CREATE TABLE IF NOT EXISTS `homework` (
 --
 
 CREATE TABLE IF NOT EXISTS `house` (
-`HouseId` int(11) NOT NULL,
+  `HouseId` int(11) NOT NULL,
   `HouseName` varchar(100) NOT NULL,
   `HouseStatus` varchar(10) NOT NULL,
   `Session` varchar(10) NOT NULL,
@@ -506,7 +508,7 @@ CREATE TABLE IF NOT EXISTS `house` (
 --
 
 CREATE TABLE IF NOT EXISTS `issue` (
-`IssueId` int(11) NOT NULL,
+  `IssueId` int(11) NOT NULL,
   `IssueStatus` varchar(10) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `AdmissionId` int(11) NOT NULL,
@@ -529,7 +531,7 @@ CREATE TABLE IF NOT EXISTS `issue` (
 --
 
 CREATE TABLE IF NOT EXISTS `lang` (
-`LanguageId` int(11) NOT NULL,
+  `LanguageId` int(11) NOT NULL,
   `LanguageName` varchar(100) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
@@ -553,7 +555,7 @@ INSERT INTO `lang` (`LanguageId`, `LanguageName`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `listbook` (
-`ListBookId` int(11) NOT NULL,
+  `ListBookId` int(11) NOT NULL,
   `Token` varchar(100) NOT NULL,
   `BookId` int(11) NOT NULL,
   `AccessionNo` varchar(100) NOT NULL,
@@ -569,7 +571,7 @@ CREATE TABLE IF NOT EXISTS `listbook` (
 --
 
 CREATE TABLE IF NOT EXISTS `listbookconfirm` (
-`ListBookConfirmId` int(11) NOT NULL,
+  `ListBookConfirmId` int(11) NOT NULL,
   `Token` varchar(100) NOT NULL,
   `DOA` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
@@ -585,7 +587,7 @@ CREATE TABLE IF NOT EXISTS `listbookconfirm` (
 --
 
 CREATE TABLE IF NOT EXISTS `location` (
-`LocationId` int(11) NOT NULL,
+  `LocationId` int(11) NOT NULL,
   `LocationName` varchar(100) NOT NULL,
   `CalledAs` varchar(100) NOT NULL,
   `LocationStatus` varchar(10) NOT NULL,
@@ -595,17 +597,33 @@ CREATE TABLE IF NOT EXISTS `location` (
 
 -- --------------------------------------------------------
 
+
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE IF NOT EXISTS `messages` (
+  `senderID` varchar(10) NOT NULL,
+  `receiverID` varchar(10) NOT NULL,
+  `msg` varchar(500) NOT NULL,
+  `sendDateTime` varchar(20) NOT NULL,
+  `deliveredDateTime` varchar(20) NOT NULL,
+  `readDateTime` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `masterentry`
 --
 
 CREATE TABLE IF NOT EXISTS `masterentry` (
-`MasterEntryId` int(11) NOT NULL,
+  `MasterEntryId` int(11) NOT NULL,
   `MasterEntryStatus` varchar(10) NOT NULL,
   `MasterEntryName` varchar(100) NOT NULL,
   `MasterEntryValue` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `masterentry`
@@ -615,16 +633,14 @@ INSERT INTO `masterentry` (`MasterEntryId`, `MasterEntryStatus`, `MasterEntryNam
 (1, 'Active', 'UserType', 'parents'),
 (2, 'Active', 'UserType', 'student');
 
-
 -- --------------------------------------------------------
-
 
 --
 -- Table structure for table `masterentrycategory`
 --
 
 CREATE TABLE IF NOT EXISTS `masterentrycategory` (
-`MasterEntryCategoryId` int(11) NOT NULL,
+  `MasterEntryCategoryId` int(11) NOT NULL,
   `MasterEntryCategoryName` varchar(100) NOT NULL,
   `MasterEntryCategoryValue` varchar(100) NOT NULL,
   `Permission` varchar(10) NOT NULL
@@ -679,7 +695,7 @@ INSERT INTO `masterentrycategory` (`MasterEntryCategoryId`, `MasterEntryCategory
 --
 
 CREATE TABLE IF NOT EXISTS `note` (
-`NoteId` int(11) NOT NULL,
+  `NoteId` int(11) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `UniqueId` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
@@ -694,7 +710,7 @@ CREATE TABLE IF NOT EXISTS `note` (
 --
 
 CREATE TABLE IF NOT EXISTS `ocalling` (
-`OCallId` int(11) NOT NULL,
+  `OCallId` int(11) NOT NULL,
   `CallStatus` varchar(10) NOT NULL,
   `Mobile` varchar(10) NOT NULL,
   `Landline` varchar(12) NOT NULL,
@@ -715,7 +731,7 @@ CREATE TABLE IF NOT EXISTS `ocalling` (
 --
 
 CREATE TABLE IF NOT EXISTS `online_exam_details` (
-`online_exam_id` int(11) NOT NULL,
+  `online_exam_id` int(11) NOT NULL,
   `online_exam_status` enum('Active','Inactive','Postpond','Remove','Done') CHARACTER SET utf8 NOT NULL,
   `online_exam_date` varchar(10) CHARACTER SET utf8 NOT NULL,
   `online_subject_id` int(10) NOT NULL,
@@ -725,7 +741,7 @@ CREATE TABLE IF NOT EXISTS `online_exam_details` (
   `online_max_marks` float NOT NULL,
   `online_cuttoff` float NOT NULL,
   `doc` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `dou` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `dou` datetime DEFAULT NULL,
   `online_exam_level` enum('Tough','Medium','Eaisy') CHARACTER SET utf8 NOT NULL,
   `no_of_qustion` int(10) NOT NULL,
   `online_ex_duration` time NOT NULL,
@@ -740,7 +756,7 @@ CREATE TABLE IF NOT EXISTS `online_exam_details` (
 --
 
 CREATE TABLE IF NOT EXISTS `online_exam_student` (
-`online_exam_st_id` int(10) NOT NULL,
+  `online_exam_st_id` int(10) NOT NULL,
   `online_exam_id` int(10) NOT NULL,
   `online_student_id` int(10) NOT NULL,
   `online_qust_ans_id` varchar(200) CHARACTER SET utf8 NOT NULL,
@@ -760,9 +776,9 @@ CREATE TABLE IF NOT EXISTS `online_exam_student` (
 --
 
 CREATE TABLE IF NOT EXISTS `pagename` (
-`PageNameId` int(11) NOT NULL,
+  `PageNameId` int(11) NOT NULL,
   `PageName` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pagename`
@@ -797,10 +813,8 @@ INSERT INTO `pagename` (`PageNameId`, `PageName`) VALUES
 (26, 'StaffAttendence'),
 (27, 'StaffAttendenceReport'),
 (28, 'StudentAttendence'),
-(29, 'StudentAttendenceReport'),
 (30, 'MarksSetUp'),
 (31, 'ScMarksSetUp'),
-(32, 'ExamReport'),
 (33, 'PrintExamReport'),
 (34, 'Call'),
 (35, 'FollowUp'),
@@ -815,7 +829,48 @@ INSERT INTO `pagename` (`PageNameId`, `PageName`) VALUES
 (44, 'Expense'),
 (45, 'Income'),
 (46, 'Transport'),
-(47, 'TransportRoute');
+(47, 'TransportRoute'),
+(48, 'Dispatch'),
+(49, 'Receiving'),
+(50, 'ManageBook'),
+(51, 'IssueReturn'),
+(52, 'GeneralSetting'),
+(53, 'ChangeSession'),
+(54, 'Calendar'),
+(55, 'Print'),
+(56, 'onlineexamcreate'),
+(57, 'Qustionbank'),
+(58, 'OnlineExamList'),
+(59, 'onlineexamreport'),
+(60, 'FrontOffice'),
+(61, 'AdmissionMenu'),
+(62, 'Transaction'),
+(63, 'Attendance'),
+(64, 'AttendanceReport'),
+(65, 'TransportMenu'),
+(66, 'ExamMenu'),
+(67, 'OnlineExamMenu'),
+(68, 'OnlineExamFeedBack'),
+(69, 'OnlineTestLink'),
+(70, 'Library'),
+(71, 'Dispatch&Recieving'),
+(72, 'Stock'),
+(73, 'ManageStock'),
+(74, 'StockTransfer'),
+(75, 'ManageStock'),
+(76, 'StockTransfer'),
+(77, 'PurchaseMaterial'),
+(78, 'Supplier'),
+(79, 'Purchase'),
+(80, 'IssueMaterial'),
+(81, 'StockReportMenu'),
+(82, 'StockReport'),
+(83, 'SchoolMaterialReport'),
+(84, 'IssueReport'),
+(85, 'PurchaseReport'),
+(86, 'SMS'),
+(87, 'Settings'),
+(88, 'Balance');
 
 -- --------------------------------------------------------
 
@@ -824,10 +879,11 @@ INSERT INTO `pagename` (`PageNameId`, `PageName`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `permission` (
-`PermissionId` int(11) NOT NULL,
+  `PermissionId` int(11) NOT NULL,
   `UserType` int(11) NOT NULL,
   `PermissionString` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
 
 -- --------------------------------------------------------
 
@@ -836,7 +892,7 @@ CREATE TABLE IF NOT EXISTS `permission` (
 --
 
 CREATE TABLE IF NOT EXISTS `photos` (
-`PhotoId` int(11) NOT NULL,
+  `PhotoId` int(11) NOT NULL,
   `Title` varchar(100) NOT NULL,
   `Path` varchar(100) NOT NULL,
   `Document` int(11) NOT NULL,
@@ -852,9 +908,98 @@ CREATE TABLE IF NOT EXISTS `photos` (
 --
 
 CREATE TABLE IF NOT EXISTS `phrase` (
-`PhraseId` int(11) NOT NULL,
+  `PhraseId` int(11) NOT NULL,
   `Phrase` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `phrase`
+--
+
+INSERT INTO `phrase` (`PhraseId`, `Phrase`) VALUES
+(1, 'Front Office'),
+(2, 'Call & Follow-up'),
+(3, 'Other Call'),
+(4, 'Enquiry'),
+(5, 'Complaint'),
+(6, 'Visitor Book'),
+(7, 'Admission'),
+(8, 'Registration'),
+(9, 'Promotion'),
+(10, 'Update Fee'),
+(11, 'Reports'),
+(12, 'Admission Report'),
+(13, 'Fee Payment'),
+(14, 'Transaction'),
+(15, 'Expense'),
+(16, 'Income'),
+(17, 'Attendance'),
+(18, 'Staff Attendance'),
+(19, 'Student Attendance'),
+(20, 'Staff Attendance Report'),
+(21, 'Student Attendance Report'),
+(22, 'Transport'),
+(23, 'Transport Route'),
+(24, 'Exam'),
+(25, 'Scholastic Grade'),
+(26, 'Co Scholastic Grade'),
+(27, 'Exam Report'),
+(28, 'Manage Staff'),
+(29, 'Library'),
+(30, 'Manage Books'),
+(31, 'Issue & Return'),
+(32, 'Dispatch & Receiving'),
+(33, 'Dispatch'),
+(34, 'Receiving'),
+(35, 'Stock'),
+(36, 'Manage Stock'),
+(37, 'Stock Transfer'),
+(38, 'Purchase Material'),
+(39, 'Supplier'),
+(40, 'Purchase'),
+(41, 'Issue Material'),
+(42, 'Stock Report'),
+(43, 'School Material'),
+(44, 'Issue Report'),
+(45, 'Purchase Report'),
+(46, 'SMS'),
+(47, 'Setting'),
+(48, 'General Setting'),
+(49, 'Master Entry'),
+(50, 'Manage User'),
+(51, 'Manage Accounts'),
+(52, 'Manage Class'),
+(53, 'Manage Subject'),
+(54, 'Manage Exam'),
+(55, 'Manage SC Area'),
+(56, 'Manage SC Indicator'),
+(57, 'Manage Fee'),
+(58, 'Salary Head'),
+(59, 'Salary Structure'),
+(60, 'School Material'),
+(61, 'Manage Location'),
+(62, 'Header & Footer'),
+(63, 'Permission'),
+(64, 'Current Session'),
+(65, 'Navigation'),
+(66, 'Graph Report'),
+(67, 'Calendar'),
+(68, 'Print Option'),
+(69, 'Homework'),
+(70, 'Time Table'),
+(71, 'Create Homework'),
+(72, 'Homework Reports'),
+(73, 'Homework Evaluation'),
+(74, 'Create Time Table'),
+(75, 'View TimeTable'),
+(76, 'Setup Exam'),
+(77, 'Online Exam Setup'),
+(78, 'Create Online Exam'),
+(79, 'Qustion Bank'),
+(80, 'Show Exam'),
+(81, 'Feed Back'),
+(82, 'Online Test Link '),
+(83, 'Manage Fees');
 
 -- --------------------------------------------------------
 
@@ -863,7 +1008,7 @@ CREATE TABLE IF NOT EXISTS `phrase` (
 --
 
 CREATE TABLE IF NOT EXISTS `printoption` (
-`PrintOptionId` int(11) NOT NULL,
+  `PrintOptionId` int(11) NOT NULL,
   `PrintCategory` int(11) NOT NULL,
   `Width` decimal(10,0) NOT NULL,
   `HeaderId` varchar(10) NOT NULL,
@@ -878,7 +1023,7 @@ CREATE TABLE IF NOT EXISTS `printoption` (
 --
 
 CREATE TABLE IF NOT EXISTS `purchase` (
-`PurchaseId` int(11) NOT NULL,
+  `PurchaseId` int(11) NOT NULL,
   `PurchaseStatus` varchar(10) NOT NULL,
   `Token` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `SupplierId` int(11) NOT NULL,
@@ -897,7 +1042,7 @@ CREATE TABLE IF NOT EXISTS `purchase` (
 --
 
 CREATE TABLE IF NOT EXISTS `purchaselist` (
-`PurchaseListId` int(11) NOT NULL,
+  `PurchaseListId` int(11) NOT NULL,
   `Token` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `MaterialType` varchar(100) NOT NULL,
   `UniqueId` int(11) NOT NULL,
@@ -914,7 +1059,7 @@ CREATE TABLE IF NOT EXISTS `purchaselist` (
 --
 
 CREATE TABLE IF NOT EXISTS `qualification` (
-`QualificationId` int(11) NOT NULL,
+  `QualificationId` int(11) NOT NULL,
   `Type` varchar(10) NOT NULL,
   `UniqueId` int(11) NOT NULL,
   `BoardUniversity` varchar(200) NOT NULL,
@@ -931,7 +1076,7 @@ CREATE TABLE IF NOT EXISTS `qualification` (
 --
 
 CREATE TABLE IF NOT EXISTS `qustion_ans_bank` (
-`qust_id` int(10) NOT NULL,
+  `qust_id` int(10) NOT NULL,
   `qust_status` varchar(20) CHARACTER SET utf8 NOT NULL,
   `qustion` text CHARACTER SET utf8 NOT NULL,
   `qus_option` varchar(500) CHARACTER SET utf8 NOT NULL,
@@ -945,7 +1090,7 @@ CREATE TABLE IF NOT EXISTS `qustion_ans_bank` (
   `subject_id` int(10) NOT NULL,
   `qust_level` enum('Tough','Medium','Eaisy') CHARACTER SET utf8 NOT NULL,
   `doc` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `dou` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `dou` datetime NOT NULL,
   `username` varchar(20) CHARACTER SET utf8 NOT NULL,
   `session` varchar(10) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -957,7 +1102,7 @@ CREATE TABLE IF NOT EXISTS `qustion_ans_bank` (
 --
 
 CREATE TABLE IF NOT EXISTS `registration` (
-`RegistrationId` int(11) NOT NULL,
+  `RegistrationId` int(11) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `Status` varchar(20) NOT NULL,
   `StudentName` varchar(100) NOT NULL,
@@ -1011,7 +1156,7 @@ CREATE TABLE IF NOT EXISTS `registration` (
 --
 
 CREATE TABLE IF NOT EXISTS `salaryhead` (
-`SalaryHeadId` int(11) NOT NULL,
+  `SalaryHeadId` int(11) NOT NULL,
   `SalaryHeadType` int(11) NOT NULL,
   `SalaryHead` varchar(100) NOT NULL,
   `Code` varchar(100) NOT NULL,
@@ -1026,7 +1171,7 @@ CREATE TABLE IF NOT EXISTS `salaryhead` (
 --
 
 CREATE TABLE IF NOT EXISTS `salarystructure` (
-`SalaryStructureId` int(11) NOT NULL,
+  `SalaryStructureId` int(11) NOT NULL,
   `SalaryStructureName` varchar(100) NOT NULL,
   `FixedSalaryHead` text NOT NULL,
   `SalaryStructureStatus` varchar(10) NOT NULL
@@ -1039,7 +1184,7 @@ CREATE TABLE IF NOT EXISTS `salarystructure` (
 --
 
 CREATE TABLE IF NOT EXISTS `salarystructuredetail` (
-`SalaryStructureDetailId` int(11) NOT NULL,
+  `SalaryStructureDetailId` int(11) NOT NULL,
   `SalaryStructureId` int(11) NOT NULL,
   `SalaryHeadId` int(11) NOT NULL,
   `Expression` text NOT NULL
@@ -1052,7 +1197,7 @@ CREATE TABLE IF NOT EXISTS `salarystructuredetail` (
 --
 
 CREATE TABLE IF NOT EXISTS `scarea` (
-`SCAreaId` int(11) NOT NULL,
+  `SCAreaId` int(11) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `SCPartId` int(11) NOT NULL,
   `GradingPoint` int(11) NOT NULL,
@@ -1070,7 +1215,7 @@ CREATE TABLE IF NOT EXISTS `scarea` (
 --
 
 CREATE TABLE IF NOT EXISTS `scexamdetail` (
-`SCExamDetailId` int(11) NOT NULL,
+  `SCExamDetailId` int(11) NOT NULL,
   `ExamId` int(11) NOT NULL,
   `SCAreaId` int(11) NOT NULL,
   `Marks` text NOT NULL,
@@ -1086,7 +1231,7 @@ CREATE TABLE IF NOT EXISTS `scexamdetail` (
 --
 
 CREATE TABLE IF NOT EXISTS `schoolmaterial` (
-`SchoolMaterialId` int(11) NOT NULL,
+  `SchoolMaterialId` int(11) NOT NULL,
   `SchoolMaterialStatus` varchar(10) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `SchoolMaterialType` varchar(11) NOT NULL,
@@ -1108,7 +1253,7 @@ CREATE TABLE IF NOT EXISTS `schoolmaterial` (
 --
 
 CREATE TABLE IF NOT EXISTS `scindicator` (
-`SCIndicatorId` int(11) NOT NULL,
+  `SCIndicatorId` int(11) NOT NULL,
   `SCAreaId` int(11) NOT NULL,
   `SCIndicatorName` varchar(100) NOT NULL,
   `SCIndicatorStatus` varchar(10) NOT NULL
@@ -1121,7 +1266,7 @@ CREATE TABLE IF NOT EXISTS `scindicator` (
 --
 
 CREATE TABLE IF NOT EXISTS `section` (
-`SectionId` int(11) NOT NULL,
+  `SectionId` int(11) NOT NULL,
   `ClassId` int(11) NOT NULL,
   `SectionName` varchar(100) NOT NULL,
   `SectionStatus` varchar(10) NOT NULL,
@@ -1136,7 +1281,7 @@ CREATE TABLE IF NOT EXISTS `section` (
 --
 
 CREATE TABLE IF NOT EXISTS `sibling` (
-`SiblingId` int(11) NOT NULL,
+  `SiblingId` int(11) NOT NULL,
   `RegistrationId` int(11) NOT NULL,
   `SName` varchar(100) NOT NULL,
   `SDOB` varchar(10) NOT NULL,
@@ -1152,7 +1297,7 @@ CREATE TABLE IF NOT EXISTS `sibling` (
 --
 
 CREATE TABLE IF NOT EXISTS `staff` (
-`StaffId` int(11) NOT NULL,
+  `StaffId` int(11) NOT NULL,
   `StaffStatus` varchar(10) NOT NULL,
   `StaffPosition` int(11) NOT NULL,
   `StaffName` varchar(100) NOT NULL,
@@ -1179,7 +1324,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
 --
 
 CREATE TABLE IF NOT EXISTS `staffattendance` (
-`StaffAttendanceId` int(11) NOT NULL,
+  `StaffAttendanceId` int(11) NOT NULL,
   `Date` varchar(20) NOT NULL,
   `Attendance` text NOT NULL,
   `DOL` varchar(10) NOT NULL,
@@ -1193,7 +1338,7 @@ CREATE TABLE IF NOT EXISTS `staffattendance` (
 --
 
 CREATE TABLE IF NOT EXISTS `staffsalary` (
-`StaffSalaryId` int(11) NOT NULL,
+  `StaffSalaryId` int(11) NOT NULL,
   `StaffSalaryStatus` varchar(10) NOT NULL,
   `StaffId` int(11) NOT NULL,
   `SalaryStructureId` int(11) NOT NULL,
@@ -1211,7 +1356,7 @@ CREATE TABLE IF NOT EXISTS `staffsalary` (
 --
 
 CREATE TABLE IF NOT EXISTS `stock` (
-`StockId` int(11) NOT NULL,
+  `StockId` int(11) NOT NULL,
   `StockStatus` varchar(10) NOT NULL,
   `StockType` int(11) NOT NULL,
   `StockName` varchar(500) NOT NULL,
@@ -1230,7 +1375,7 @@ CREATE TABLE IF NOT EXISTS `stock` (
 --
 
 CREATE TABLE IF NOT EXISTS `stockassign` (
-`StockAssignId` int(11) NOT NULL,
+  `StockAssignId` int(11) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `StockAssignStatus` varchar(10) NOT NULL,
   `StockId` int(11) NOT NULL,
@@ -1250,7 +1395,7 @@ CREATE TABLE IF NOT EXISTS `stockassign` (
 --
 
 CREATE TABLE IF NOT EXISTS `studentattendance` (
-`StudentAttendanceId` int(11) NOT NULL,
+  `StudentAttendanceId` int(11) NOT NULL,
   `Date` varchar(10) NOT NULL,
   `Attendance` text NOT NULL,
   `DOL` varchar(10) NOT NULL,
@@ -1264,7 +1409,7 @@ CREATE TABLE IF NOT EXISTS `studentattendance` (
 --
 
 CREATE TABLE IF NOT EXISTS `studentfee` (
-`StudentFeeId` int(11) NOT NULL,
+  `StudentFeeId` int(11) NOT NULL,
   `StudentFeeStatus` varchar(10) NOT NULL,
   `AdmissionNo` varchar(10) NOT NULL,
   `AdmissionId` int(11) NOT NULL,
@@ -1285,7 +1430,7 @@ CREATE TABLE IF NOT EXISTS `studentfee` (
 --
 
 CREATE TABLE IF NOT EXISTS `subject` (
-`SubjectId` int(11) NOT NULL,
+  `SubjectId` int(11) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `SubjectName` varchar(100) NOT NULL,
   `SubjectAbb` varchar(100) NOT NULL,
@@ -1302,7 +1447,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
 --
 
 CREATE TABLE IF NOT EXISTS `supplier` (
-`SupplierId` int(11) NOT NULL,
+  `SupplierId` int(11) NOT NULL,
   `SupplierStatus` varchar(10) NOT NULL,
   `SupplierName` varchar(100) NOT NULL,
   `SupplierMobile` varchar(10) NOT NULL,
@@ -1397,7 +1542,7 @@ INSERT INTO `tablename` (`TableName`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `timetable` (
-`timetableid` int(11) NOT NULL,
+  `classid` int(11) NOT NULL,
   `sectionid` int(11) NOT NULL,
   `subjectid` int(11) NOT NULL,
   `staffid` int(11) NOT NULL,
@@ -1416,7 +1561,7 @@ CREATE TABLE IF NOT EXISTS `timetable` (
 --
 
 CREATE TABLE IF NOT EXISTS `timezone` (
-`TimezoneId` int(11) NOT NULL,
+  `TimezoneId` int(11) NOT NULL,
   `TimezoneName` varchar(100) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=420 DEFAULT CHARSET=latin1;
 
@@ -1852,7 +1997,7 @@ INSERT INTO `timezone` (`TimezoneId`, `TimezoneName`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `transaction` (
-`TransactionId` int(11) NOT NULL,
+  `TransactionId` int(11) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `Token` varchar(100) NOT NULL,
   `TransactionSession` varchar(10) NOT NULL,
@@ -1879,10 +2024,22 @@ CREATE TABLE IF NOT EXISTS `transaction` (
 --
 
 CREATE TABLE IF NOT EXISTS `translate` (
-`TranslateId` int(11) NOT NULL,
+  `TranslateId` int(11) NOT NULL,
   `LanguageId` int(11) NOT NULL,
-  `Translation` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Translation` text CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `translate`
+--
+
+INSERT INTO `translate` (`TranslateId`, `LanguageId`, `Translation`) VALUES
+(1, 1, '1**फ्रंट ऑफिस ||2**कॉल और अनुवर्ती ||3**अन्य कॉल ||4**पूछताछ ||5**शिकायत ||6**विजिटर बुक ||7**एडमिशन ||8**पंजीकरण ||9**पदोन्नति ||10**अद्यतन शुल्क ||11**रिपोर्ट ||12**एडमिशन की रिपोर्ट ||13**शुल्क भुगतान ||14**ट्रांजैक्शन ||15**व्यय ||16**आय ||17**उपस्थिति ||18**स्टाफ उपस्थिति ||19**छात्र उपस्थिति ||20**स्टाफ उपस्थिति रिपोर्ट ||21**छात्र उपस्थिति रिपोर्ट ||22**परिवहन ||23**परिवहन ट्रेन ||24**परीक्षा ||25**शैक्षिक ग्रेड ||26**सह शैक्षिक ग्रेड ||27**परीक्षा रिपोर्ट ||28**कर्मचारियों का प्रबंधन ||29**लाइब्रेरी ||30**पुस्तकें प्रबंधित करें ||31**अंक और वापसी ||32**डिस्पैच व प्राप्त ||33**डिस्पैच ||34**प्राप्त ||35**शेयर ||36**स्टॉक प्रबंधित ||37**शेयर ट्रांसफर ||38**क्रय सामग्री ||39**प्रदायक ||40**खरीद ||41**मुद्दा सामग्री ||42**स्टॉक रिपोर्ट ||43**स्कूल सामग्री ||44**मामले की रिपोर्ट ||45**क्रय रिपोर्ट ||46**एसएमएस ||47**सेटिंग ||48**सामान्य सेटिंग ||49**मास्टर एंट्री ||50**उपयोगकर्ता प्रबंधित ||51**खातों का प्रबंधन ||52**कक्षा प्रबंधित ||53**विषय प्रबंधित ||54**परीक्षा का प्रबंधन ||55**अनुसूचित जाति क्षेत्र प्रबंधित करें ||56**अनुसूचित जाति सूचक प्रबंधित ||57**शुल्क प्रबंधित ||58**वेतन हेड ||59**वेतन संरचना ||60**स्कूल सामग्री ||61**स्थान प्रबंधित करें ||62**हैडर और पाद ||63**अनुमति ||64**वर्तमान सत्र ||65**नेविगेशन ||66**ग्राफ रिपोर्ट ||67**कैलेंडर||68**प्रिंट विकल्प||69**घर का काम||70**टाइम टेबल||71**होमवर्क बना||72**होमवर्क रिपोर्ट||73**होमवर्क मूल्यांकन||74**टाइम टेबल बनाएं||75**देखें समय सारिणी||76**सेटअप परीक्षा||77**ऑनलाइन परीक्षा सेटअप||78**ऑनलाइन परीक्षा बनाएं||79**प्रश्न बैंक||80**दिखाएँ परीक्षा||81**वापस फ़ीड||82**ऑनलाइन टेस्ट लिंक||83**फीस की व्यवस्था करें'),
+(2, 6, '1**Front Office \r||2**Call & Suivi \r||3**autre appel \r||4**Demande de renseignements \r||5**plainte \r||6**livre d''\r||7**admission \r||8**inscription \r||9**promotion \r||10**Mise à jour Fee \r||11**rapports \r||12**admission rapport \r||13**Paiement des droits \r||14**transaction \r||15**frais \r||16**revenu \r||17**présence \r||18**Participation du personnel \r||19**Participation des étudiants \r||20**Rapport du personnel de présence \r||21**Rapport de l''assiduité des élèves \r||22**transport \r||23**Transport Route \r||24**exam \r||25**Scholastic année \r||26**Co Scholastic année \r||27**Rapport d''examen \r||28**gérer du personnel \r||29**bibliothèque \r||30**gérer les livres \r||31**Question et de retour \r||32**Envoi et réception \r||33**dépêche \r||34**recevoir \r||35**stock \r||36**gérer Stock \r||37**Transfert de stock \r||38**Matériau achat \r||39**fournisseur \r||40**achat \r||41**problème Matériel \r||42**Rapport sur l''action \r||43**Matériel scolaire \r||44**Rapport d''émission \r||45**Rapport achat \r||46**SMS \r||47**Cadre \r||48**Cadre général \r||49**maître d''entrée \r||50**gérer l''utilisateur \r||51**gérer les comptes \r||52**gérer classe \r||53**gérer Sujet \r||54**gérer examen \r||55**Gérer Zone SC \r||56**Gérer SC Indicateur \r||57**gérer Fee \r||58**salaire chef \r||59**Structure des salaires \r||60**Matériel scolaire \r||61**gérer Lieu \r||62**En-tête et pied de page \r||63**autorisation \r||64**session en cours \r||65**navigation \r||66**Rapport graphique \r||67**calendrier'),
+(3, 5, '1**Front Office \r||2**Call & Seguimiento \r||3**otro Call \r||4**Consulta \r||5**Queja \r||6**libro de Visitantes \r||7**Admisión \r||8**registro \r||9**Promoción \r||10**Tarifa de Actualización \r||11**Informes \r||12**Informe de Admisión \r||13**Cargo por pago \r||14**Transacción \r||15**gastos \r||16**Ingresos \r||17**Asistencia \r||18**El personal de asistencia \r||19**Asistencia Estudiantil \r||20**Personal Informe de asistencia \r||21**Informe de Asistencia Estudiantil \r||22**Transporte \r||23**Ruta de Transporte \r||24**examen \r||25**Scholastic Grado \r||26**Co Scholastic Grado \r||27**Informe de examen \r||28**Gestionar personal \r||29**Biblioteca \r||30**administrar libros \r||31**Edición y vuelta \r||32**Envío y recepción \r||33**Despacho \r||34**Recibir \r||35**Stock \r||36**Gestionar Stock \r||37**Stock Transfer \r||38**material de Compra \r||39**Proveedor \r||40**Compra \r||41**material Issue \r||42**Stock Informe \r||43**material de la Escuela \r||44**Informe de Cuestiones \r||45**Informe Compra \r||46**sMS \r||47**ajuste \r||48**Configuración general \r||49**Entrada Maestro \r||50**Gestionar usuario \r||51**administrar cuentas \r||52**Gestionar Clase \r||53**Gestionar Asunto \r||54**Gestionar Exam \r||55**Gestionar Area SC \r||56**Gestionar SC Indicador \r||57**Gestionar Fee \r||58**Jefe Salario \r||59**Estructura salarial \r||60**material de la Escuela \r||61**Gestionar Ubicación \r||62**Encabezado y pie de página \r||63**permiso \r||64**Sesión actual \r||65**Navegación \r||66**Gráfico Informe \r||67**Calendario'),
+(4, 2, '1**Front Office \r||2**Bel & Follow-up \r||3**andere Call \r||4**Aanvraag \r||5**klacht \r||6**bezoeker Boek \r||7**toelating \r||8**registratie \r||9**promotie \r||10**Fee-update \r||11**rapporten \r||12**toelating Report \r||13**vergoeding betalen \r||14**transactie \r||15**Expense \r||16**inkomen \r||17**Aanwezigheid \r||18**personeel Aanwezigheid \r||19**Aanwezigheid \r||20**Personeel Rapport Aanwezigheid \r||21**Student Rapport Aanwezigheid \r||22**Transport \r||23**Transport Route \r||24**examen \r||25**Scholastic Grade \r||26**Co Scholastic Grade \r||27**examen Report \r||28**Beheer Personeel \r||29**bibliotheek \r||30**Boeken beheren \r||31**Kwestie & Return \r||32**Dispatch & ontvangen \r||33**Dispatch \r||34**ontvangende \r||35**voorraad \r||36**Beheer Stock \r||37**Stock Transfer \r||38**aankoop Material \r||39**Leverancier \r||40**aankoop \r||41**kwestie Materiaal \r||42**Stock Report \r||43**School Materiaal \r||44**issue Report \r||45**aankoop Report \r||46**SMS \r||47**instelling \r||48**algemene instelling \r||49**Master Entry \r||50**Beheer Gebruiker \r||51**Accounts beheren \r||52**Beheer Class \r||53**Beheer Onderwerp \r||54**Beheer Examen \r||55**Beheer SC Area \r||56**Beheer SC Indicator \r||57**Beheer Fee \r||58**salaris Hoofd \r||59**salarisstructuur \r||60**School Materiaal \r||61**Beheer Locatie \r||62**Koptekst en voettekst \r||63**toestemming \r||64**huidige sessie \r||65**Navigatie \r||66**grafiek Report \r||67**Kalender'),
+(5, 3, '1**Front Office \r||2**Call & Follow-up \r||3**andere Anruf \r||4**Anfrage \r||5**Beschwerde \r||6**Besucher buchen \r||7**Eintritt \r||8**Anmeldung \r||9**Förderung \r||10**Update Fee \r||11**Berichte \r||12**Eintritt Bericht \r||13**Gebührenzahlung \r||14**Transaktion \r||15**Ausgabe \r||16**Einkommen \r||17**Teilnahme \r||18**Personal Teilnahme \r||19**Schülerzahl \r||20**Mitarbeiter Anwesenheitsbericht \r||21**Schülerzahl Bericht \r||22**Transport \r||23**Transportroute \r||24**Prüfung \r||25**Scholastic Grade \r||26**Co Scholastic Grade \r||27**Untersuchungsbericht \r||28**Mitarbeiter verwalten \r||29**Bibliothek \r||30**Bücher verwalten \r||31**Frage & Return \r||32**Versand & Empfang \r||33**Versand \r||34**Empfang \r||35**Lager \r||36**Auf verwalten \r||37**Umlagerung \r||38**Kauf-Material \r||39**Lieferant \r||40**Kauf \r||41**Ausgabe-Material \r||42**stock Report \r||43**Schulmaterial \r||44**Problem melden \r||45**Kauf Bericht \r||46**SMS \r||47**Einstellung \r||48**Allgemeine Einstellung \r||49**Master-Eintrag \r||50**Benutzer verwalten \r||51**Konten verwalten \r||52**Klasse verwalten \r||53**Betreff verwalten \r||54**Exam verwalten \r||55**Verwalten SC Umgebung \r||56**SC-Anzeige verwalten \r||57**Fee verwalten \r||58**Gehalt Leiter \r||59**Gehaltsstruktur \r||60**Schulmaterial \r||61**Ort verwalten \r||62**Kopf-und Fußzeile \r||63**Erlaubnis \r||64**aktuelle Sitzung \r||65**Navigation \r||66**Graph Bericht \r||67**Kalender'),
+(6, 4, '1**Front Office \r||2**Ligue e Acompanhamento \r||3**outros Chamada \r||4**Inquérito \r||5**queixa \r||6**Livro de Visitas \r||7**admissão \r||8**Inscrição \r||9**promoção \r||10**Taxa de atualização \r||11**relatórios \r||12**Relatório de admissão \r||13**taxa de pagamento \r||14**transação \r||15**despesa \r||16**renda \r||17**Presença \r||18**Atendimento pessoal \r||19**comparecimento do Aluno \r||20**Relatório do Corpo Técnico de Atendimento \r||21**Relatório de Frequência Student \r||22**transporte \r||23**Itinerários \r||24**exame \r||25**Scholastic Grade \r||26**Co Scholastic Grade \r||27**Relatório de exame \r||28**Gerenciar equipe \r||29**biblioteca \r||30**Gerenciar livros \r||31**Emissão & Return \r||32**Despacho e Recebimento \r||33**Despacho \r||34**receber \r||35**Banco \r||36**Controle Stock \r||37**Transferência de estoque \r||38**compra de materiais \r||39**fornecedor \r||40**compra \r||41**Emissão de materiais \r||42**Relatório de estoque \r||43**material escolar \r||44**Reportagem Edição \r||45**Relatório de Compra \r||46**SMS \r||47**definição \r||48**Ajustes Gerais \r||49**Mestre entrada \r||50**Gerenciar usuário \r||51**Gerenciar Contas \r||52**Gerenciar Classe \r||53**Gerenciar Assunto \r||54**Gerenciar Exame \r||55**Gerenciar Área SC \r||56**Gerenciar Indicador SC \r||57**Gerenciar Fee \r||58**salário Cabeça \r||59**Estrutura salarial \r||60**material escolar \r||61**Gerenciar Localização \r||62**Cabeçalho e Rodapé \r||63**permissão \r||64**Sessão Atual \r||65**Navegação \r||66**gráfico Relatório \r||67**Calendário');
 
 -- --------------------------------------------------------
 
@@ -1891,7 +2048,7 @@ CREATE TABLE IF NOT EXISTS `translate` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-`UserId` int(11) NOT NULL,
+  `UserId` int(11) NOT NULL,
   `StaffId` varchar(10) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `Password` varchar(100) NOT NULL,
@@ -1908,7 +2065,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 CREATE TABLE IF NOT EXISTS `vehicle` (
-`VehicleId` int(11) NOT NULL,
+  `VehicleId` int(11) NOT NULL,
   `VehicleStatus` varchar(10) NOT NULL,
   `VehicleNumber` varchar(100) NOT NULL,
   `VehicleName` varchar(100) NOT NULL,
@@ -1923,7 +2080,7 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
 --
 
 CREATE TABLE IF NOT EXISTS `vehiclefuel` (
-`FuelId` int(11) NOT NULL,
+  `FuelId` int(11) NOT NULL,
   `FuelStatus` varchar(10) NOT NULL,
   `VehicleId` int(11) NOT NULL,
   `ReceiptNo` varchar(100) NOT NULL,
@@ -1944,7 +2101,7 @@ CREATE TABLE IF NOT EXISTS `vehiclefuel` (
 --
 
 CREATE TABLE IF NOT EXISTS `vehiclereading` (
-`VehicleReadingId` int(11) NOT NULL,
+  `VehicleReadingId` int(11) NOT NULL,
   `VehicleReadingStatus` varchar(10) NOT NULL,
   `VehicleId` int(11) NOT NULL,
   `Reading` int(11) NOT NULL,
@@ -1963,7 +2120,7 @@ CREATE TABLE IF NOT EXISTS `vehiclereading` (
 --
 
 CREATE TABLE IF NOT EXISTS `vehicleroute` (
-`VehicleRouteId` int(11) NOT NULL,
+  `VehicleRouteId` int(11) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `VehicleRouteStatus` varchar(10) NOT NULL,
   `VehicleRouteName` varchar(100) NOT NULL,
@@ -1982,7 +2139,7 @@ CREATE TABLE IF NOT EXISTS `vehicleroute` (
 --
 
 CREATE TABLE IF NOT EXISTS `vehicleroutedetail` (
-`VehicleRouteDetailId` int(11) NOT NULL,
+  `VehicleRouteDetailId` int(11) NOT NULL,
   `VehicleRouteDetailStatus` varchar(10) NOT NULL,
   `VehicleRouteId` int(11) NOT NULL,
   `RouteStoppageId` int(11) NOT NULL,
@@ -1998,7 +2155,7 @@ CREATE TABLE IF NOT EXISTS `vehicleroutedetail` (
 --
 
 CREATE TABLE IF NOT EXISTS `visitorbook` (
-`VisitorBookId` int(11) NOT NULL,
+  `VisitorBookId` int(11) NOT NULL,
   `VisitorBookStatus` varchar(10) NOT NULL,
   `Name` varchar(100) NOT NULL,
   `NoOfPeople` int(11) NOT NULL,
@@ -2025,445 +2182,433 @@ CREATE TABLE IF NOT EXISTS `visitorbook` (
 -- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
- ADD PRIMARY KEY (`AccountId`);
+  ADD PRIMARY KEY (`AccountId`);
 
 --
 -- Indexes for table `admission`
 --
 ALTER TABLE `admission`
- ADD PRIMARY KEY (`AdmissionId`);
+  ADD PRIMARY KEY (`AdmissionId`);
 
 --
 -- Indexes for table `backuprestore`
 --
 ALTER TABLE `backuprestore`
- ADD PRIMARY KEY (`BackUpRestoreId`);
+  ADD PRIMARY KEY (`BackUpRestoreId`);
 
 --
 -- Indexes for table `book`
 --
 ALTER TABLE `book`
- ADD PRIMARY KEY (`BookId`);
+  ADD PRIMARY KEY (`BookId`);
 
 --
 -- Indexes for table `bookissue`
 --
 ALTER TABLE `bookissue`
- ADD PRIMARY KEY (`BookIssueId`);
+  ADD PRIMARY KEY (`BookIssueId`);
 
 --
 -- Indexes for table `calendar`
 --
 ALTER TABLE `calendar`
- ADD PRIMARY KEY (`CalendarId`);
+  ADD PRIMARY KEY (`CalendarId`);
 
 --
 -- Indexes for table `calling`
 --
 ALTER TABLE `calling`
- ADD PRIMARY KEY (`CallId`);
+  ADD PRIMARY KEY (`CallId`);
 
 --
 -- Indexes for table `circular`
 --
 ALTER TABLE `circular`
- ADD PRIMARY KEY (`CircularId`);
+  ADD PRIMARY KEY (`CircularId`);
 
 --
 -- Indexes for table `class`
 --
 ALTER TABLE `class`
- ADD PRIMARY KEY (`ClassId`);
+  ADD PRIMARY KEY (`ClassId`);
 
 --
 -- Indexes for table `complaint`
 --
 ALTER TABLE `complaint`
- ADD PRIMARY KEY (`ComplaintId`);
+  ADD PRIMARY KEY (`ComplaintId`);
 
 --
 -- Indexes for table `drregister`
 --
 ALTER TABLE `drregister`
- ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Indexes for table `enquiry`
 --
 ALTER TABLE `enquiry`
- ADD PRIMARY KEY (`EnquiryId`);
+  ADD PRIMARY KEY (`EnquiryId`);
 
 --
 -- Indexes for table `exam`
 --
 ALTER TABLE `exam`
- ADD PRIMARY KEY (`ExamId`);
+  ADD PRIMARY KEY (`ExamId`);
 
 --
 -- Indexes for table `examdetail`
 --
 ALTER TABLE `examdetail`
- ADD PRIMARY KEY (`ExamDetailId`);
+  ADD PRIMARY KEY (`ExamDetailId`);
 
 --
 -- Indexes for table `examdetails`
 --
 ALTER TABLE `examdetails`
- ADD PRIMARY KEY (`Exam_Detail_Id`);
+  ADD PRIMARY KEY (`Exam_Detail_Id`);
 
 --
 -- Indexes for table `examtype`
 --
 ALTER TABLE `examtype`
- ADD PRIMARY KEY (`Exam_Type`);
+  ADD PRIMARY KEY (`Exam_Type`);
 
 --
 -- Indexes for table `expense`
 --
 ALTER TABLE `expense`
- ADD PRIMARY KEY (`ExpenseId`);
+  ADD PRIMARY KEY (`ExpenseId`);
 
 --
 -- Indexes for table `fee`
 --
 ALTER TABLE `fee`
- ADD PRIMARY KEY (`FeeId`);
+  ADD PRIMARY KEY (`FeeId`);
 
 --
 -- Indexes for table `feepayment`
 --
 ALTER TABLE `feepayment`
- ADD PRIMARY KEY (`FeePaymentId`);
+  ADD PRIMARY KEY (`FeePaymentId`);
 
 --
 -- Indexes for table `followup`
 --
 ALTER TABLE `followup`
- ADD PRIMARY KEY (`FollowUpId`);
+  ADD PRIMARY KEY (`FollowUpId`);
 
 --
 -- Indexes for table `generalsetting`
 --
 ALTER TABLE `generalsetting`
- ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Indexes for table `header`
 --
 ALTER TABLE `header`
- ADD PRIMARY KEY (`HeaderId`);
-
---
--- Indexes for table `homework`
---
-ALTER TABLE `homework`
- ADD PRIMARY KEY (`homeworkid`), ADD KEY `sectionid` (`sectionid`,`subjectid`);
+  ADD PRIMARY KEY (`HeaderId`);
 
 --
 -- Indexes for table `house`
 --
 ALTER TABLE `house`
- ADD PRIMARY KEY (`HouseId`);
+  ADD PRIMARY KEY (`HouseId`);
 
 --
 -- Indexes for table `issue`
 --
 ALTER TABLE `issue`
- ADD PRIMARY KEY (`IssueId`);
+  ADD PRIMARY KEY (`IssueId`);
 
 --
 -- Indexes for table `lang`
 --
 ALTER TABLE `lang`
- ADD PRIMARY KEY (`LanguageId`);
+  ADD PRIMARY KEY (`LanguageId`);
 
 --
 -- Indexes for table `listbook`
 --
 ALTER TABLE `listbook`
- ADD PRIMARY KEY (`ListBookId`);
+  ADD PRIMARY KEY (`ListBookId`);
 
 --
 -- Indexes for table `listbookconfirm`
 --
 ALTER TABLE `listbookconfirm`
- ADD PRIMARY KEY (`ListBookConfirmId`);
+  ADD PRIMARY KEY (`ListBookConfirmId`);
 
 --
 -- Indexes for table `location`
 --
 ALTER TABLE `location`
- ADD PRIMARY KEY (`LocationId`);
+  ADD PRIMARY KEY (`LocationId`);
 
 --
 -- Indexes for table `masterentry`
 --
 ALTER TABLE `masterentry`
- ADD PRIMARY KEY (`MasterEntryId`);
+  ADD PRIMARY KEY (`MasterEntryId`);
 
 --
 -- Indexes for table `masterentrycategory`
 --
 ALTER TABLE `masterentrycategory`
- ADD PRIMARY KEY (`MasterEntryCategoryId`);
+  ADD PRIMARY KEY (`MasterEntryCategoryId`);
 
 --
 -- Indexes for table `note`
 --
 ALTER TABLE `note`
- ADD PRIMARY KEY (`NoteId`);
+  ADD PRIMARY KEY (`NoteId`);
 
 --
 -- Indexes for table `ocalling`
 --
 ALTER TABLE `ocalling`
- ADD PRIMARY KEY (`OCallId`);
+  ADD PRIMARY KEY (`OCallId`);
 
 --
 -- Indexes for table `online_exam_details`
 --
 ALTER TABLE `online_exam_details`
- ADD PRIMARY KEY (`online_exam_id`);
+  ADD PRIMARY KEY (`online_exam_id`);
 
 --
 -- Indexes for table `online_exam_student`
 --
 ALTER TABLE `online_exam_student`
- ADD PRIMARY KEY (`online_exam_st_id`);
+  ADD PRIMARY KEY (`online_exam_st_id`);
 
 --
 -- Indexes for table `pagename`
 --
 ALTER TABLE `pagename`
- ADD PRIMARY KEY (`PageNameId`);
+  ADD PRIMARY KEY (`PageNameId`);
 
 --
 -- Indexes for table `permission`
 --
 ALTER TABLE `permission`
- ADD PRIMARY KEY (`PermissionId`);
+  ADD PRIMARY KEY (`PermissionId`);
 
 --
 -- Indexes for table `photos`
 --
 ALTER TABLE `photos`
- ADD PRIMARY KEY (`PhotoId`);
+  ADD PRIMARY KEY (`PhotoId`);
 
 --
 -- Indexes for table `phrase`
 --
 ALTER TABLE `phrase`
- ADD PRIMARY KEY (`PhraseId`);
+  ADD PRIMARY KEY (`PhraseId`);
 
 --
 -- Indexes for table `printoption`
 --
 ALTER TABLE `printoption`
- ADD PRIMARY KEY (`PrintOptionId`);
+  ADD PRIMARY KEY (`PrintOptionId`);
 
 --
 -- Indexes for table `purchase`
 --
 ALTER TABLE `purchase`
- ADD PRIMARY KEY (`PurchaseId`);
+  ADD PRIMARY KEY (`PurchaseId`);
 
 --
 -- Indexes for table `purchaselist`
 --
 ALTER TABLE `purchaselist`
- ADD PRIMARY KEY (`PurchaseListId`);
+  ADD PRIMARY KEY (`PurchaseListId`);
 
 --
 -- Indexes for table `qualification`
 --
 ALTER TABLE `qualification`
- ADD PRIMARY KEY (`QualificationId`);
+  ADD PRIMARY KEY (`QualificationId`);
 
 --
 -- Indexes for table `qustion_ans_bank`
 --
 ALTER TABLE `qustion_ans_bank`
- ADD PRIMARY KEY (`qust_id`);
+  ADD PRIMARY KEY (`qust_id`);
 
 --
 -- Indexes for table `registration`
 --
 ALTER TABLE `registration`
- ADD PRIMARY KEY (`RegistrationId`);
+  ADD PRIMARY KEY (`RegistrationId`);
 
 --
 -- Indexes for table `salaryhead`
 --
 ALTER TABLE `salaryhead`
- ADD PRIMARY KEY (`SalaryHeadId`);
+  ADD PRIMARY KEY (`SalaryHeadId`);
 
 --
 -- Indexes for table `salarystructure`
 --
 ALTER TABLE `salarystructure`
- ADD PRIMARY KEY (`SalaryStructureId`);
+  ADD PRIMARY KEY (`SalaryStructureId`);
 
 --
 -- Indexes for table `salarystructuredetail`
 --
 ALTER TABLE `salarystructuredetail`
- ADD PRIMARY KEY (`SalaryStructureDetailId`);
+  ADD PRIMARY KEY (`SalaryStructureDetailId`);
 
 --
 -- Indexes for table `scarea`
 --
 ALTER TABLE `scarea`
- ADD PRIMARY KEY (`SCAreaId`);
+  ADD PRIMARY KEY (`SCAreaId`);
 
 --
 -- Indexes for table `scexamdetail`
 --
 ALTER TABLE `scexamdetail`
- ADD PRIMARY KEY (`SCExamDetailId`);
+  ADD PRIMARY KEY (`SCExamDetailId`);
 
 --
 -- Indexes for table `schoolmaterial`
 --
 ALTER TABLE `schoolmaterial`
- ADD PRIMARY KEY (`SchoolMaterialId`);
+  ADD PRIMARY KEY (`SchoolMaterialId`);
 
 --
 -- Indexes for table `scindicator`
 --
 ALTER TABLE `scindicator`
- ADD PRIMARY KEY (`SCIndicatorId`);
+  ADD PRIMARY KEY (`SCIndicatorId`);
 
 --
 -- Indexes for table `section`
 --
 ALTER TABLE `section`
- ADD PRIMARY KEY (`SectionId`);
+  ADD PRIMARY KEY (`SectionId`);
 
 --
 -- Indexes for table `sibling`
 --
 ALTER TABLE `sibling`
- ADD PRIMARY KEY (`SiblingId`);
+  ADD PRIMARY KEY (`SiblingId`);
 
 --
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
- ADD PRIMARY KEY (`StaffId`);
+  ADD PRIMARY KEY (`StaffId`);
 
 --
 -- Indexes for table `staffattendance`
 --
 ALTER TABLE `staffattendance`
- ADD PRIMARY KEY (`StaffAttendanceId`);
+  ADD PRIMARY KEY (`StaffAttendanceId`);
 
 --
 -- Indexes for table `staffsalary`
 --
 ALTER TABLE `staffsalary`
- ADD PRIMARY KEY (`StaffSalaryId`);
+  ADD PRIMARY KEY (`StaffSalaryId`);
 
 --
 -- Indexes for table `stock`
 --
 ALTER TABLE `stock`
- ADD PRIMARY KEY (`StockId`);
+  ADD PRIMARY KEY (`StockId`);
 
 --
 -- Indexes for table `stockassign`
 --
 ALTER TABLE `stockassign`
- ADD PRIMARY KEY (`StockAssignId`);
+  ADD PRIMARY KEY (`StockAssignId`);
 
 --
 -- Indexes for table `studentattendance`
 --
 ALTER TABLE `studentattendance`
- ADD PRIMARY KEY (`StudentAttendanceId`);
+  ADD PRIMARY KEY (`StudentAttendanceId`);
 
 --
 -- Indexes for table `studentfee`
 --
 ALTER TABLE `studentfee`
- ADD PRIMARY KEY (`StudentFeeId`);
+  ADD PRIMARY KEY (`StudentFeeId`);
 
 --
 -- Indexes for table `subject`
 --
 ALTER TABLE `subject`
- ADD PRIMARY KEY (`SubjectId`);
+  ADD PRIMARY KEY (`SubjectId`);
 
 --
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
- ADD PRIMARY KEY (`SupplierId`);
-
---
--- Indexes for table `timetable`
---
-ALTER TABLE `timetable`
- ADD PRIMARY KEY (`timetableid`), ADD KEY `classid` (`sectionid`,`subjectid`,`staffid`);
+  ADD PRIMARY KEY (`SupplierId`);
 
 --
 -- Indexes for table `timezone`
 --
 ALTER TABLE `timezone`
- ADD PRIMARY KEY (`TimezoneId`);
+  ADD PRIMARY KEY (`TimezoneId`);
 
 --
 -- Indexes for table `transaction`
 --
 ALTER TABLE `transaction`
- ADD PRIMARY KEY (`TransactionId`);
+  ADD PRIMARY KEY (`TransactionId`);
 
 --
 -- Indexes for table `translate`
 --
 ALTER TABLE `translate`
- ADD PRIMARY KEY (`TranslateId`);
+  ADD PRIMARY KEY (`TranslateId`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
- ADD PRIMARY KEY (`UserId`);
+  ADD PRIMARY KEY (`UserId`);
 
 --
 -- Indexes for table `vehicle`
 --
 ALTER TABLE `vehicle`
- ADD PRIMARY KEY (`VehicleId`);
+  ADD PRIMARY KEY (`VehicleId`);
 
 --
 -- Indexes for table `vehiclefuel`
 --
 ALTER TABLE `vehiclefuel`
- ADD PRIMARY KEY (`FuelId`);
+  ADD PRIMARY KEY (`FuelId`);
 
 --
 -- Indexes for table `vehiclereading`
 --
 ALTER TABLE `vehiclereading`
- ADD PRIMARY KEY (`VehicleReadingId`);
+  ADD PRIMARY KEY (`VehicleReadingId`);
 
 --
 -- Indexes for table `vehicleroute`
 --
 ALTER TABLE `vehicleroute`
- ADD PRIMARY KEY (`VehicleRouteId`);
+  ADD PRIMARY KEY (`VehicleRouteId`);
 
 --
 -- Indexes for table `vehicleroutedetail`
 --
 ALTER TABLE `vehicleroutedetail`
- ADD PRIMARY KEY (`VehicleRouteDetailId`);
+  ADD PRIMARY KEY (`VehicleRouteDetailId`);
 
 --
 -- Indexes for table `visitorbook`
 --
 ALTER TABLE `visitorbook`
- ADD PRIMARY KEY (`VisitorBookId`);
+  ADD PRIMARY KEY (`VisitorBookId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -2473,367 +2618,357 @@ ALTER TABLE `visitorbook`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-MODIFY `AccountId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `AccountId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `admission`
 --
 ALTER TABLE `admission`
-MODIFY `AdmissionId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `AdmissionId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `backuprestore`
 --
 ALTER TABLE `backuprestore`
-MODIFY `BackUpRestoreId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `BackUpRestoreId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-MODIFY `BookId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `BookId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `bookissue`
 --
 ALTER TABLE `bookissue`
-MODIFY `BookIssueId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `BookIssueId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `calendar`
 --
 ALTER TABLE `calendar`
-MODIFY `CalendarId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CalendarId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `calling`
 --
 ALTER TABLE `calling`
-MODIFY `CallId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CallId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `circular`
 --
 ALTER TABLE `circular`
-MODIFY `CircularId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CircularId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-MODIFY `ClassId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ClassId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-MODIFY `ComplaintId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ComplaintId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `drregister`
 --
 ALTER TABLE `drregister`
-MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `enquiry`
 --
 ALTER TABLE `enquiry`
-MODIFY `EnquiryId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `EnquiryId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `exam`
 --
 ALTER TABLE `exam`
-MODIFY `ExamId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ExamId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `examdetail`
 --
 ALTER TABLE `examdetail`
-MODIFY `ExamDetailId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ExamDetailId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `examdetails`
 --
 ALTER TABLE `examdetails`
-MODIFY `Exam_Detail_Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Exam_Detail_Id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `expense`
 --
 ALTER TABLE `expense`
-MODIFY `ExpenseId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ExpenseId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `fee`
 --
 ALTER TABLE `fee`
-MODIFY `FeeId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `FeeId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `feepayment`
 --
 ALTER TABLE `feepayment`
-MODIFY `FeePaymentId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `FeePaymentId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `followup`
 --
 ALTER TABLE `followup`
-MODIFY `FollowUpId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `FollowUpId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `generalsetting`
 --
 ALTER TABLE `generalsetting`
-MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `header`
 --
 ALTER TABLE `header`
-MODIFY `HeaderId` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `homework`
---
-ALTER TABLE `homework`
-MODIFY `homeworkid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `HeaderId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `house`
 --
 ALTER TABLE `house`
-MODIFY `HouseId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `HouseId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `issue`
 --
 ALTER TABLE `issue`
-MODIFY `IssueId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IssueId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `lang`
 --
 ALTER TABLE `lang`
-MODIFY `LanguageId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `LanguageId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `listbook`
 --
 ALTER TABLE `listbook`
-MODIFY `ListBookId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ListBookId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `listbookconfirm`
 --
 ALTER TABLE `listbookconfirm`
-MODIFY `ListBookConfirmId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ListBookConfirmId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-MODIFY `LocationId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `LocationId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `masterentry`
 --
 ALTER TABLE `masterentry`
-MODIFY `MasterEntryId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MasterEntryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=99;
 --
 -- AUTO_INCREMENT for table `masterentrycategory`
 --
 ALTER TABLE `masterentrycategory`
-MODIFY `MasterEntryCategoryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+  MODIFY `MasterEntryCategoryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `note`
 --
 ALTER TABLE `note`
-MODIFY `NoteId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `NoteId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `ocalling`
 --
 ALTER TABLE `ocalling`
-MODIFY `OCallId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `OCallId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `online_exam_details`
 --
 ALTER TABLE `online_exam_details`
-MODIFY `online_exam_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `online_exam_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `online_exam_student`
 --
 ALTER TABLE `online_exam_student`
-MODIFY `online_exam_st_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `online_exam_st_id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pagename`
 --
 ALTER TABLE `pagename`
-MODIFY `PageNameId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
+  MODIFY `PageNameId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=89;
 --
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-MODIFY `PermissionId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PermissionId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `photos`
 --
 ALTER TABLE `photos`
-MODIFY `PhotoId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PhotoId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `phrase`
 --
 ALTER TABLE `phrase`
-MODIFY `PhraseId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PhraseId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=84;
 --
 -- AUTO_INCREMENT for table `printoption`
 --
 ALTER TABLE `printoption`
-MODIFY `PrintOptionId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PrintOptionId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-MODIFY `PurchaseId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PurchaseId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `purchaselist`
 --
 ALTER TABLE `purchaselist`
-MODIFY `PurchaseListId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PurchaseListId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `qualification`
 --
 ALTER TABLE `qualification`
-MODIFY `QualificationId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `QualificationId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `qustion_ans_bank`
 --
 ALTER TABLE `qustion_ans_bank`
-MODIFY `qust_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `qust_id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-MODIFY `RegistrationId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `RegistrationId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `salaryhead`
 --
 ALTER TABLE `salaryhead`
-MODIFY `SalaryHeadId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SalaryHeadId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `salarystructure`
 --
 ALTER TABLE `salarystructure`
-MODIFY `SalaryStructureId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SalaryStructureId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `salarystructuredetail`
 --
 ALTER TABLE `salarystructuredetail`
-MODIFY `SalaryStructureDetailId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SalaryStructureDetailId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `scarea`
 --
 ALTER TABLE `scarea`
-MODIFY `SCAreaId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SCAreaId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `scexamdetail`
 --
 ALTER TABLE `scexamdetail`
-MODIFY `SCExamDetailId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SCExamDetailId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `schoolmaterial`
 --
 ALTER TABLE `schoolmaterial`
-MODIFY `SchoolMaterialId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SchoolMaterialId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `scindicator`
 --
 ALTER TABLE `scindicator`
-MODIFY `SCIndicatorId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SCIndicatorId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-MODIFY `SectionId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SectionId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `sibling`
 --
 ALTER TABLE `sibling`
-MODIFY `SiblingId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SiblingId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-MODIFY `StaffId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `StaffId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `staffattendance`
 --
 ALTER TABLE `staffattendance`
-MODIFY `StaffAttendanceId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `StaffAttendanceId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `staffsalary`
 --
 ALTER TABLE `staffsalary`
-MODIFY `StaffSalaryId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `StaffSalaryId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-MODIFY `StockId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `StockId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `stockassign`
 --
 ALTER TABLE `stockassign`
-MODIFY `StockAssignId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `StockAssignId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `studentattendance`
 --
 ALTER TABLE `studentattendance`
-MODIFY `StudentAttendanceId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `StudentAttendanceId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `studentfee`
 --
 ALTER TABLE `studentfee`
-MODIFY `StudentFeeId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `StudentFeeId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-MODIFY `SupplierId` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `timetable`
---
-ALTER TABLE `timetable`
-MODIFY `timetableid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SupplierId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `timezone`
 --
 ALTER TABLE `timezone`
-MODIFY `TimezoneId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=420;
+  MODIFY `TimezoneId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=420;
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-MODIFY `TransactionId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `TransactionId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `translate`
 --
 ALTER TABLE `translate`
-MODIFY `TranslateId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `TranslateId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-MODIFY `VehicleId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `VehicleId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `vehiclefuel`
 --
 ALTER TABLE `vehiclefuel`
-MODIFY `FuelId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `FuelId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `vehiclereading`
 --
 ALTER TABLE `vehiclereading`
-MODIFY `VehicleReadingId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `VehicleReadingId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `vehicleroute`
 --
 ALTER TABLE `vehicleroute`
-MODIFY `VehicleRouteId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `VehicleRouteId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `vehicleroutedetail`
 --
 ALTER TABLE `vehicleroutedetail`
-MODIFY `VehicleRouteDetailId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `VehicleRouteDetailId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `visitorbook`
 --
 ALTER TABLE `visitorbook`
-MODIFY `VisitorBookId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `VisitorBookId` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
