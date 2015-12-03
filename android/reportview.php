@@ -13,8 +13,7 @@ if(!$CONNECTION)
 	echo "Database not found or There is an error in connecting to DB!! Please fix this!!!";
 	exit();
 }else{	
-
- 	
+	
  	
 	
 	if (strcmp($data['userType'], "Teacher") == 0){		
