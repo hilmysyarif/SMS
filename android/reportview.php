@@ -57,24 +57,17 @@ if(!$CONNECTION)
 		$resultarray = array();
 				
 		while($data1 = mysqli_fetch_array($countrow)){
+		
 			
-			print_r($data1['createdon']);
-			
-			print_r("......");
-			
-			print_r($month);
-			
-			if (strpos($data1['createdon'], $month) !== false){
-				print_r($data1['createdon']);
+			if (strpos($data1['createdon'], $month) !== false){			
 				
 				$abb = array('date'=>$data1['createdon'], 'subjectID'=>$data1['subjectid'], 'homework'=>$data1['homework']);
 				$resultarray[] = $abb;
-				
-				print_r(json_encode($resultarray));
+							
 			}
 				
 		}
-// 		print_r(json_encode($resultarray));
+		print_r(json_encode($resultarray));
 			
 			
 	}
