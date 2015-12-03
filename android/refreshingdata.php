@@ -1,7 +1,7 @@
 <?php
-$DBDATABASE="rohit_sms";
+$DBDATABASE="db_school";
 $DBUSERNAME="root";
-$DBPASSWORD="bitnami";
+$DBPASSWORD="";
 
 $CONNECTION=mysqli_connect("localhost",$DBUSERNAME,$DBPASSWORD,$DBDATABASE);
 if(!$CONNECTION)
@@ -11,8 +11,8 @@ if(!$CONNECTION)
 }else{
 	
 
-  	$requestedpage = $_POST['requestpage'];
-//  	$requestedpage = "attendance";
+//   	$requestedpage = $_POST['requestpage'];
+  	$requestedpage = "attendance";
 	
 	if (strcmp($requestedpage, "homework") == 0){
 		$countrow=mysqli_query($CONNECTION,"select * from homework");
@@ -36,23 +36,48 @@ if(!$CONNECTION)
 		
 }else if (strcmp($requestedpage, "attendance") == 0){
 	$countrow=mysqli_query($CONNECTION,"select * from studentattendance");
- 	
+	$senddataarray1=array();
 	while($data1 = mysqli_fetch_array($countrow)){	
 
 			
 		$ab=explode(",",  $data1['Attendance']);
 
-		
+		print_r(json_encode($ab));
+		print_r("................");
  			$firstarray =null;
 			for ($v =0; $v < count($ab);$v++){
 				$abcd=explode("-", $ab[$v]);
 				$firstarray[] =array('id'=>$abcd[0],'status'=>$abcd[1]);
 			}
 			
-		$senddataarray1[]=array('date'=>date('Y-m-d',$data1['Date']) ,'data'=>$firstarray);
+// 			$data =array();
+// 			$task =array('a'=>'1',
+// 					'b'=>'2',
+// 					'c'=>'3',
+// 					'd'=>'4'
+					
+// 			);
+			
+// 		$a=array('ritu'=>$task);
+// 			for ($i=0; $i<= count($firstarray);$i++){
+// 				if ($i==count($firstarray))
+// 					array_push($data,$a);
+// 				else 
+// 				$data[] = $firstarray[$i];
+				
+// 			}
+			
+			
+// 			print_r(json_encode($data));die;
+// 		$senddataarray1[]=array('date'=>date('Y-m-d',$data1['Date']) ,'data'=>$firstarray);
 
 		
 	}	
+	
+	
+	
+	
+	
 	
        print_r(json_encode($senddataarray1));
           
