@@ -53,26 +53,28 @@ if(!$CONNECTION)
 		$secID = $data['sectionID'];
 		$month = $data['monthName'];
 		$countrow=mysqli_query($CONNECTION,"select * from homework where classid='$clsID' AND sectionid='$secID'");
-			
-		 		print_r("ritu");
+	
 		$resultarray = array();
-			
-		
-		
+				
 		while($data1 = mysqli_fetch_array($countrow)){
-			print_r($countrow);
-		 			
-		 			print ("varsha");
 			
-			//  			print_r($data1['subjectid']);die;
+			print_r($data1['createdon']);
+			
+			print_r("......");
+			
+			print_r($month);
+			
 			if (strpos($data1['createdon'], $month) !== false){
-					
+				print_r($data1['createdon']);
+				
 				$abb = array('date'=>$data1['createdon'], 'subjectID'=>$data1['subjectid'], 'homework'=>$data1['homework']);
 				$resultarray[] = $abb;
+				
+				print_r(json_encode($resultarray));
 			}
 				
 		}
-		print_r(json_encode($resultarray));
+// 		print_r(json_encode($resultarray));
 			
 			
 	}
