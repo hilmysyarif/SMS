@@ -54,13 +54,16 @@ if(!$CONNECTION)
 		$month = $data['monthName'];
 		$countrow=mysqli_query($CONNECTION,"select * from homework where classid='$clsID' AND sectionid='$secID'");
 			
-		 		print_r("ritu");die;
+		 		print_r("ritu");
 		$resultarray = array();
 			
+		
+		
 		while($data1 = mysqli_fetch_array($countrow)){
-				
-		 			print_r($data1['homework']);
+			print_r($countrow);
+		 			
 		 			print ("varsha");
+			
 			//  			print_r($data1['subjectid']);die;
 			if (strpos($data1['createdon'], $month) !== false){
 					
