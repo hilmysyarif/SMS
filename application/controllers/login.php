@@ -133,6 +133,7 @@ function login_user($info=false)
 									'code'=>'200',
 									'status'=>'success',
 									'userType'=>$row[0]->MasterEntryValue,
+									'staffId'=>$row->StaffId,
 							);
 							echo json_encode($data);die;
 						}
