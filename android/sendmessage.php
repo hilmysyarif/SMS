@@ -65,7 +65,10 @@ if(!$CONNECTION)
 		
 		$senddataarray =array();
 		
+
+		
 		while($data1 = mysqli_fetch_array($countrow)){			
+			print_r($data1);
 			
 			$countrow1=mysqli_query($CONNECTION,"select * from staff where StaffPosition='$data1'");
 			
@@ -74,7 +77,7 @@ if(!$CONNECTION)
 			
 			}
 		
-		print_r(json_encode($senddataarray));	
+// 		print_r(json_encode($senddataarray));	
 	}
 	
 	
