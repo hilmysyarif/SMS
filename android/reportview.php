@@ -13,8 +13,7 @@ if(!$CONNECTION)
 	echo "Database not found or There is an error in connecting to DB!! Please fix this!!!";
 	exit();
 }else{	
-
- 	
+	
  	
 	
 	if (strcmp($data['userType'], "Teacher") == 0){		
@@ -53,18 +52,17 @@ if(!$CONNECTION)
 		$secID = $data['sectionID'];
 		$month = $data['monthName'];
 		$countrow=mysqli_query($CONNECTION,"select * from homework where classid='$clsID' AND sectionid='$secID'");
-			
-		// 		print_r(subjectid);die;
+	
 		$resultarray = array();
-			
-		while($data1 = mysqli_fetch_array($countrow)){
 				
-			// 			print_r($data1['homework']);
-			//  			print_r($data1['subjectid']);die;
-			if (strpos($data1['createdon'], $month) !== false){
-					
+		while($data1 = mysqli_fetch_array($countrow)){
+		
+			
+			if (strpos($data1['createdon'], $month) !== false){			
+				
 				$abb = array('date'=>$data1['createdon'], 'subjectID'=>$data1['subjectid'], 'homework'=>$data1['homework']);
 				$resultarray[] = $abb;
+							
 			}
 				
 		}

@@ -1,5 +1,8 @@
 <?php
-$DBDATABASE="rohit_sms";
+
+$dataarray = json_decode($_POST['Jaydevi'],true);
+
+$DBDATABASE=$dataarray['DB_Name'];
 $DBUSERNAME="root";
 $DBPASSWORD="bitnami";
 
@@ -10,7 +13,7 @@ if(!$CONNECTION)
 	exit();
 }else{
 
-$dataarray = json_decode($_POST['Jaydevi'],true);
+
 
 
 foreach($dataarray['SchoolData']['SchoolHomeWork'] as $clsdataarray){
