@@ -124,7 +124,7 @@ function login_user($info=false)
 				$row=$this->login_model->login_check($data);
 				if($row){   
 					if(isset($json_data->url)&&$json_data->url=='androide')
-					{
+					{	$staffid=$row->StaffId;
 						if(isset($row->UserType)&& $row->UserType!=='0')
 						{
 							$row=$this->login_model->userType($row->UserType);
@@ -133,7 +133,7 @@ function login_user($info=false)
 									'code'=>'200',
 									'status'=>'success',
 									'userType'=>$row[0]->MasterEntryValue,
-									'staffId'=>$row->StaffId,
+									'staffId'=>$staffid,
 							);
 							echo json_encode($data);die;
 						}
