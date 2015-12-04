@@ -74,7 +74,7 @@ if(!$CONNECTION)
 			
 			}
 		
-		print_r($senddataarray);
+		print_r(json_encode($senddataarray));	
 	}
 	
 	
