@@ -48,8 +48,7 @@ if(!$CONNECTION)
 			foreach ($clsdataarray['studentsID'] as $aa){
 					
 				$msg= $clsdataarray['message'];
-				$sendtime = $clsdataarray['sendDateTime'];
-					
+				$sendtime = $clsdataarray['sendDateTime'];					
 					
 				$queryInsert="insert into messages(senderID,receiverID,msg,sendDateTime,deliveredDateTime,readDateTime) values('$usertype','$aa','$msg','$sendtime','$today','') ";
 				mysqli_query($CONNECTION,$queryInsert);
@@ -60,6 +59,22 @@ if(!$CONNECTION)
 		
 		}
 		print ("message delivered");
+	}if ($action=="fetchTeacher"){
+	
+		$countrow=mysqli_query($CONNECTION,"select MasterEntryId from masterentry where MasterEntryStatus='Active' AND MasterEntryName='StaffPosition' AND MasterEntryValue='Teacher' OR MasterEntryValue='Teachers' OR MasterEntryValue='teacher'OR MasterEntryValue='teachers'");
+		
+		$senddataarray =array();
+		
+		while($data1 = mysqli_fetch_array($countrow)){			
+			
+			$countrow1=mysqli_query($CONNECTION,"select * from staff where StaffPosition='$data1'");
+			
+		       while ($data2 = mysqli_fetch_array($countrow1))
+		         	$senddataarray[] = array('TeacherID'=>$data2['StaffId'], 'TeacherName'=>$data2['StaffName']);
+			
+			}
+		
+		print_r($senddataarray);
 	}
 	
 	
