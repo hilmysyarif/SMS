@@ -469,14 +469,14 @@ CREATE TABLE IF NOT EXISTS `homework` (
   `sectionid` int(11) NOT NULL,
   `subjectid` int(11) NOT NULL,
   `homework` text CHARACTER SET utf8 NOT NULL,
-  `dateofhomework` varchar(20) DEFAULT NULL,
+  `dateofhomework` varchar(20) NOT NULL,
   `dosubmission` varchar(10) NOT NULL,
   `studentstatus` text CHARACTER SET utf8 NOT NULL,
   `session` varchar(20) NOT NULL,
-  `createdon` varchar(20) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `createdby` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `createdon` varchar(20) NOT NULL ,
+  `createdby` varchar(20) NOT NULL,
   `updatedon` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updatedby` varchar(20) CHARACTER SET utf8 NOT NULL
+  `updatedby` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
