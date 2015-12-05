@@ -181,6 +181,7 @@ print_r(json_encode($mainarr));
 							$queryInsert="update studentattendance set Attendance='$NewAttendance1' where Date='$AttendanceDate' ";
 						if (mysql_affected_rows()>=0)
 							$resultArray[] = array('result'=>"updated",'onDate'=>date('Y-m-d',$AttendanceDate));
+						else $resultArray[] = array('result'=>"error",'onDate'=>date('Y-m-d',$AttendanceDate));
 							
 // 							$Message="Attendance updated successfully!!";
 //  							$Type=success;	
@@ -205,6 +206,7 @@ print_r(json_encode($mainarr));
 								
 								if (mysql_affected_rows()>=0)
 									$resultArray[] = array('result'=>"inserted",'onDate'=>date('Y-m-d',$AttendanceDate));
+								else $resultArray[] = array('result'=>"error",'onDate'=>date('Y-m-d',$AttendanceDate));
 								
 // 								$Message="Attendance Added successfully!!";
 // 								$Type=success;	
