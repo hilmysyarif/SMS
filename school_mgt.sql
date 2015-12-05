@@ -469,14 +469,14 @@ CREATE TABLE IF NOT EXISTS `homework` (
   `sectionid` int(11) NOT NULL,
   `subjectid` int(11) NOT NULL,
   `homework` text CHARACTER SET utf8 NOT NULL,
-  `dateofhomework` varchar(20) NOT NULL,
+  `dateofhomework` varchar(20) DEFAULT NULL,
   `dosubmission` varchar(10) NOT NULL,
   `studentstatus` text CHARACTER SET utf8 NOT NULL,
   `session` varchar(20) NOT NULL,
-  `createdon` varchar(20) NOT NULL ,
-  `createdby` varchar(20) NOT NULL,
+  `createdon` varchar(20) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createdby` varchar(20) CHARACTER SET utf8 NOT NULL,
   `updatedon` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updatedby` varchar(20) NOT NULL
+  `updatedby` varchar(20) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -623,7 +623,7 @@ CREATE TABLE IF NOT EXISTS `masterentry` (
   `MasterEntryStatus` varchar(10) NOT NULL,
   `MasterEntryName` varchar(100) NOT NULL,
   `MasterEntryValue` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `masterentry`
