@@ -48,11 +48,12 @@ class User_management_model extends CI_Model{
 		   }
 		   else
 		   {
+		   		$CI =& get_instance();
 			   	$CI->load->library('session'); //if it's not autoloaded in your CI setup
 			   	$database_name=$CI->session->userdata('db_name');
 			   	$CI->session->unset_userdata($database_name);
 			   	$CI->session->sess_destroy();
-			   	die;
+			   	echo'database does not exist';
 		   }
     }
    
