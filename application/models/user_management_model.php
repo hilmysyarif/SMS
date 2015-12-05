@@ -39,21 +39,21 @@ class User_management_model extends CI_Model{
     			mysqli_store_result($connect);
     	   }
     	   while(mysqli_more_results($connect) && mysqli_next_result($connect));
-    		  //return true;
+    		  return true;
     	   $query="SELECT count(*) as 'Tables', table_schema as 'Database' FROM information_schema.TABLES WHERE table_schema= '".$database_name."' GROUP BY table_schema";
 		   $result=mysqli_query($connect,$query);
-		   $countTable=mysqli_fetch_assoc($result); echo $countTable['Tables'];die;
-		   if(isset($countTable) && $countTable=='76')
+		   $countTable=mysqli_fetch_assoc($result); //echo $countTable['Tables'];die;
+		   if(isset($countTable['Tables']) && $countTable['Tables']=='76')
 		   {
     	   		return true;
 		   }
 		   else
 		   {
-		   		$CI =& get_instance();
-			   	$CI->load->library('session'); //if it's not autoloaded in your CI setup
-			   	$database_name=$CI->session->userdata('db_name');
-			   	$CI->session->unset_userdata($database_name);
-			   	$CI->session->sess_destroy();
+		   		$CII =& get_instance();
+			   	$CII->load->library('session'); //if it's not autoloaded in your CI setup
+			   	$database_name=$CII->session->userdata('db_name');
+			   	$CII->session->unset_userdata($database_name);
+			   	$CII->session->sess_destroy();
 			   	echo 'database does not exist';die;
 		   }
     }
