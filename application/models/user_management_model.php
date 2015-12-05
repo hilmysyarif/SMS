@@ -42,7 +42,7 @@ class User_management_model extends CI_Model{
     		  //return true;
     	   $query="SELECT count(*) as 'Tables', table_schema as 'Database' FROM information_schema.TABLES WHERE table_schema= '".$database_name."' GROUP BY table_schema";
 		   $result=mysqli_query($connect,$query);
-		   $countTable=mysqli_fetch_assoc($result); echo $count['Tables'];die;
+		   $countTable=mysqli_fetch_assoc($result); echo $countTable['Tables'];die;
 		   if(isset($countTable) && $countTable=='76')
 		   {
     	   		return true;
