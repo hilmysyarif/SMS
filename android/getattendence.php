@@ -104,6 +104,8 @@ print_r(json_encode($mainarr));
 	$date='';
 	$pstudentid='';	
 	$astudentid='';
+	
+	$resultArray = array();
 		foreach($dataarr1['SchoolData']['SchoolAttendance'] as $dataarr2)
 		{
 																		//print_r($dataarr2['Class']); Get class name from there...
@@ -128,7 +130,6 @@ print_r(json_encode($mainarr));
 					$Date=date("Y-m-d");
 					$Att="P";
 					$DateTimeStamp=strtotime($Date);
-
 					
 					$CountStudent=count($Attendance);
 					
@@ -178,8 +179,11 @@ print_r(json_encode($mainarr));
 							
 							if($NewAttendance1!=""){
 							$queryInsert="update studentattendance set Attendance='$NewAttendance1' where Date='$AttendanceDate' ";
-							$Message="Attendance updated successfully!!";
- 							$Type=success;	
+						if (mysql_affected_rows()>=0)
+							$resultArray[] = array('result'=>"updated",'onDate'=>date('Y-m-d',$AttendanceDate));
+							
+// 							$Message="Attendance updated successfully!!";
+//  							$Type=success;	
 							
 							}else{
 							$queryInsert="delete from studentattendance where Date='$AttendanceDate' ";}
@@ -198,8 +202,12 @@ print_r(json_encode($mainarr));
 							{
 								$queryInsert="insert into studentattendance(Date,Attendance,DOL,DOLUsername) values('$AttendanceDate','$AttendanceString','$DateTimeStamp','rohit') ";
 								mysqli_query($CONNECTION,$queryInsert);
-								$Message="Attendance Added successfully!!";
-								$Type=success;	
+								
+								if (mysql_affected_rows()>=0)
+									$resultArray[] = array('result'=>"inserted",'onDate'=>date('Y-m-d',$AttendanceDate));
+								
+// 								$Message="Attendance Added successfully!!";
+// 								$Type=success;	
 							}
 						}
 							
@@ -208,8 +216,8 @@ print_r(json_encode($mainarr));
 				}
 			}
 		}
-	print_r($Message);
-	print_r($Type);
+	print_r(json_encode($resultArray));
+
 }else{
 	echo"Invalid Request!!";
 	exit();
