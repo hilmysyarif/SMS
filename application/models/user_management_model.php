@@ -53,7 +53,7 @@ class User_management_model extends CI_Model{
 			   	$database_name=$CI->session->userdata('db_name');
 			   	$CI->session->unset_userdata($database_name);
 			   	$CI->session->sess_destroy();
-			   	echo'database does not exist';
+			   	echo 'database does not exist';
 		   }
     }
    
