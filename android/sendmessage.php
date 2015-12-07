@@ -22,7 +22,7 @@ if(!$CONNECTION)
 		
  		$studentID = $dataarray['UserID'];
 
-		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='$studentID' AND readDateTime !=''");		
+		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='$studentID' AND readDateTime =''");		
 		
 		$senddataarray =array();
 		while($data1 = mysqli_fetch_array($countrow)){			
@@ -91,7 +91,7 @@ if(!$CONNECTION)
 			mysqli_query($CONNECTION,$queryInsert);
 			if (mysql_affected_rows()>=0){
 				print ("Sent Response");
-			}
+			}else print ("response not sent");
 		}
 		
 		
