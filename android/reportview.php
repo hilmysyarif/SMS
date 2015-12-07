@@ -35,7 +35,8 @@ if(!$CONNECTION)
 				
 				for ($i =0; $i< count($studentIDarray);$i++){
 					if ($cc[0]==$studentIDarray[$i])
-						$studentAttendance[] = $cc[1];
+						
+						$studentAttendance[] = array('StudentID'=>$cc[0], 'presentStatus'=>$cc[1]);
 						
 				    }
 				
