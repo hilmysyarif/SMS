@@ -22,7 +22,7 @@ if(!$CONNECTION)
 		
  		$studentID = $dataarray['UserID'];
 
-		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='$studentID'");		
+		$countrow=mysqli_query($CONNECTION,"select * from messages where receiverID='$studentID' AND readDateTime !=''");		
 		
 		$senddataarray =array();
 		while($data1 = mysqli_fetch_array($countrow)){			
@@ -63,22 +63,41 @@ if(!$CONNECTION)
 	
 		$countrow=mysqli_query($CONNECTION,"select MasterEntryId from masterentry where MasterEntryStatus='Active' AND MasterEntryName='StaffPosition' AND MasterEntryValue='Teacher' OR MasterEntryValue='Teachers' OR MasterEntryValue='teacher'OR MasterEntryValue='teachers'");
 		
-		$senddataarray =array();
-		
+		$senddataarray =array();	
 
 		
 		while($data1 = mysqli_fetch_array($countrow)){	
 		$aa =$data1['MasterEntryId'];
 		
-			$countrow1=mysqli_query($CONNECTION,"select * from staff where StaffPosition='$aa'");
+			$countrow1=mysqli_query($CONNECTION,"select * from staff where StaffStatus='Active' AND StaffPosition='$aa'");
 			
 		       while ($data2 = mysqli_fetch_array($countrow1))
 		       {		
+		       
 		         	$senddataarray[] = array('TeacherID'=>$data2['StaffId'], 'TeacherName'=>$data2['StaffName']);
 		       }
 			}
 		
   		print_r(json_encode($senddataarray));	
+	}else if ($action=="response"){
+		$receiverid = $dataarray['userID'];
+		
+		foreach ($clsdataarray['resposeList'] as $aa){
+			$senderID = $aa['senderID'];
+			$sendDateTime = $aa['sendDateTime'];
+			$readDateTime = $aa['read_DateTime'];			
+			
+			$queryInsert="update messages set readDateTime='$readDateTime' where senderID='$senderID' AND receiverID='$receiverid' AND  deliveredDateTime='$sendDateTime'";
+			mysqli_query($CONNECTION,$queryInsert);
+			if (mysql_affected_rows()>=0){
+				print ("Sent Response");
+			}
+		}
+		
+		
+		
+		
+		
 	}
 	
 	
