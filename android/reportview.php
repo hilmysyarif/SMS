@@ -35,7 +35,7 @@ if(!$CONNECTION)
 				
 				for ($i =0; $i< count($studentIDarray);$i++){
 					if ($cc[0]==$studentIDarray[$i])
-						$studentAttendance[$i] = $cc[1];
+						$studentAttendance[] = $cc[1];
 						
 				    }
 				
