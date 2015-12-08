@@ -41,7 +41,7 @@
 																				});
 																			</script>
 																	<div class="col-sm-8">
-																	<?php $filter=array('MasterEntryName' => 'UserType','MasterEntryId'=> '!1','MasterEntryId'=> '!2'); $user= $this->utilities->get_usertype($filter); ?>
+																	<?php $filter=array('MasterEntryName' => 'UserType'); $user= $this->utilities->get_usertype($filter); ?>
 																		<select class="form-control " required id="s2example-1" name="user_type">
 																			<option></option>
 																			<optgroup label="Select">
