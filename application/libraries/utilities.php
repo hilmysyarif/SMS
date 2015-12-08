@@ -40,7 +40,10 @@ class Utilities extends CI_Controller {
 	{
 		$CI = & get_instance();
 		$CI->db->select('*');
-		$query = $CI->db->get_where('masterentry',$filter);
+		$CI->db->where('MasterEntryValue !=' ,'parents');
+		$CI->db->where('MasterEntryValue !=' ,'student');
+		$CI->db->where('MasterEntryName' ,'UserType');
+		$query = $CI->db->get('masterentry');
 		return $query->Result();
 	}
 	
