@@ -34,7 +34,7 @@
 																						allowClear: true
 																					}).on('select2-open', function()
 																					{
-																						// Adding Custom Scrollbar
+																						// Adding Custom Scrollbar 
 																						$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
 																					});
 																					
