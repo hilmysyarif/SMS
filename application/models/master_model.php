@@ -81,7 +81,7 @@ class Master_model extends CI_Model
    {	
 		$query=$this->db->query("select StaffName,StaffId,StaffMobile,MasterEntryValue  from staff,masterentry where 
 													StaffStatus='Active' and
-													staff.StaffPosition=masterentry.MasterEntryId and MasterEntryId!='1' and MasterEntryId!='2'
+													staff.StaffPosition=masterentry.MasterEntryId
 													order by MasterEntryValue,StaffName");
 		return $query->Result();
    }
