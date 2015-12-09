@@ -105,7 +105,7 @@ class Homework extends CI_Controller {
 			$sectionid=$this->input->post('class');
 			$subject=$this->input->post('subjectid1');
 			$dow=($this->input->post('dow'));
-			$homework=$this->input->post('homework');
+			$homework=strip_tags($this->input->post('homework'));
 			$dos=strtotime($this->input->post('dos'));
 			$username=$this->info['usermailid'];
 			$Session=$this->currentsession[0]->CurrentSession;
