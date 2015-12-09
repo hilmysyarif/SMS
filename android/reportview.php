@@ -59,7 +59,7 @@ if(!$CONNECTION)
 		while($data1 = mysqli_fetch_array($countrow)){
 		
 			
-			if (strpos($data1['dateofhomework'], $month) !== false){			
+			if (strpos(date('Y-m-d',$data1['dateofhomework']), $month) != false){			
 				
 				$abb = array('date'=>date('Y-m-d',$data1['dateofhomework']), 'subjectID'=>$data1['subjectid'], 'homework'=>$data1['homework']);
 				$resultarray[] = $abb;
@@ -131,7 +131,7 @@ if(!$CONNECTION)
  				
  			while($data1 = mysqli_fetch_array($countrow1)){
  			
- 				if (strpos($data1['dateofhomework'], $month) !== false){
+ 				if (strpos(date('Y-m-d',$data1['dateofhomework']), $month) !== false){
  					$subjID = $data1['subjectid'];
 
  					$countrow2=mysqli_query($CONNECTION,"select SubjectName from subject where SubjectId='$subjID'");
