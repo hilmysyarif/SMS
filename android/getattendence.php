@@ -95,7 +95,16 @@ for($i=0;$i<=count($class2)-1;$i++)
 		unset($classarr1);
 }
 
-$mainarr=array('school'=>$classarr,'school_name'=>'DPS School');
+$countrow=mysqli_query($CONNECTION,"select * from examtype where Exam_Status='Active'");
+
+$resultarray_examtype = array();
+
+while($data1 = mysqli_fetch_array($countrow))
+	$resultarray_examtype[] = $data1['Exam_Type'];
+
+
+
+$mainarr=array('school'=>$classarr,'Exam_type'=>$resultarray_examtype,'school_name'=>'DPS School');
 print_r(json_encode($mainarr));
 
 }elseif($action=="insert"){
