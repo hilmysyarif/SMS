@@ -63,9 +63,7 @@ if(!$CONNECTION)
 	
 		$countrow=mysqli_query($CONNECTION,"select MasterEntryId from masterentry where MasterEntryStatus='Active' AND MasterEntryName='StaffPosition' AND MasterEntryValue='Teacher' OR MasterEntryValue='Teachers' OR MasterEntryValue='teacher'OR MasterEntryValue='teachers'");
 		
-		$senddataarray =array();	
-
-		
+				
 		while($data1 = mysqli_fetch_array($countrow)){	
 		$aa =$data1['MasterEntryId'];
 		
@@ -78,7 +76,25 @@ if(!$CONNECTION)
 		       }
 			}
 		
-  		print_r(json_encode($senddataarray));	
+			
+			
+			
+			$countrow_result=mysqli_query($CONNECTION,"select * from masterentry where MasterEntryStatus='Active' AND MasterEntryName='Result'");
+			
+			
+			while($data_result = mysqli_fetch_array($countrow_result)){	
+			
+					$senddataarray_result[] = array('ResultID'=>$data_result['MasterEntryId'], 'ResultName'=>$data_result['MasterEntryValue']);
+				}
+					
+			
+			$mydataarray =array('TeacherList'=>$senddataarray, 'ResultList'=> $senddataarray_result );
+			
+			
+  		print_r(json_encode($mydataarray));	
+	
+	
+	
 	}else if ($action=="response"){
 		$receiverid = $dataarray['userID'];
 		
