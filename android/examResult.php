@@ -48,6 +48,7 @@ if(!$CONNECTION)
 			if (mysql_affected_rows()>=0){
 				print_r("inserted");
 						print_r($examName);
+						
 			}
 		}
 				
