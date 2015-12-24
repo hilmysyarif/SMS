@@ -96,18 +96,17 @@ if(!$CONNECTION)
 	
 	
 	}else if ($action=="response"){
-		$receiverid = $dataarray['userID'];
 		
-		foreach ($clsdataarray['resposeList'] as $aa){
-			$senderID = $aa['senderID'];
-			$sendDateTime = $aa['sendDateTime'];
-			$readDateTime = $aa['read_DateTime'];			
+		foreach ($clsdataarray['SchoolData']['MessageResponse'] as $aa){
+			$senderID = $aa['senderId'];
+			$sendDateTime = $aa['sendDataTime'];						
+			$receiverId = $aa['receiverId'];
 			
-			$queryInsert="update messages set readDateTime='$readDateTime' where senderID='$senderID' AND receiverID='$receiverid' AND  deliveredDateTime='$sendDateTime'";
-			mysqli_query($CONNECTION,$queryInsert);
-			if (mysql_affected_rows()>=0){
-				print ("Sent Response");
-			}else print ("response not sent");
+			$querydelete="DELETE from messages where senderID='$senderID' AND receiverID='$receiverId' AND sendDateTime='$sendDateTime'";
+			
+				if (mysqli_query($CONNECTION,$querydelete)){
+				print ("Delete Message Successfully");
+			}else print ("Not Deleted Message");
 		}
 		
 		
