@@ -61,8 +61,8 @@ if(!$CONNECTION)
 			$sql = "UPDATE examdetails SET Marks_Obtain='$obtained_marks', Max_Marks='$maximum_marks',Result='$resultID',Grade='$grades',Evaluated_By='$evaluated_by' WHERE Exam_Detail_Id='$Exam_Detail_Id'";
 			
 			if (mysqli_query($CONNECTION,$sql))
-				$resultArray[] = array('result'=>"updated",'examName'=>Exam_Type,'subjectid'=>$subjectid,'student_id'=>$student_id);
-			else $resultArray[] = array('result'=>"error",'examName'=>Exam_Type,'subjectid'=>$subjectid,'student_id'=>$student_id);
+				$resultArray[] = array('result'=>"updated",'examName'=>$Exam_Type,'subjectid'=>$subjectid,'student_id'=>$student_id);
+			else $resultArray[] = array('result'=>"error",'examName'=>$Exam_Type,'subjectid'=>$subjectid,'student_id'=>$student_id);
 			
 				
 		}else {
@@ -72,11 +72,9 @@ if(!$CONNECTION)
 					
 					
 			if (mysqli_query($CONNECTION,$queryInsert))
-			$resultArray[] = array('result'=>"inserted",'examName'=>Exam_Type,'subjectid'=>$subjectid,'student_id'=>$student_id);
-			else $resultArray[] = array('result'=>"error",'examName'=>Exam_Type,'subjectid'=>$subjectid,'student_id'=>$student_id);
+			$resultArray[] = array('result'=>"inserted",'examName'=>$Exam_Type,'subjectid'=>$subjectid,'student_id'=>$student_id);
+			else $resultArray[] = array('result'=>"error",'examName'=>$Exam_Type,'subjectid'=>$subjectid,'student_id'=>$student_id);
 			
-			
-		
 			
 				
 		}
