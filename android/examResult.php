@@ -72,8 +72,7 @@ if(!$CONNECTION)
 			$resultArray[] = array('result'=>"inserted",'examName'=>$examName,'subjectid'=>$subjectid,'student_id'=>$student_id);
 			else $resultArray[] = array('result'=>"error",'examName'=>$examName,'subjectid'=>$subjectid,'student_id'=>$student_id);
 			
-			
-				
+							
 		}
 				
 			
