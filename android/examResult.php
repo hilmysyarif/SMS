@@ -6,9 +6,6 @@ $DBDATABASE=$dataarray['DB_Name'];
 $DBUSERNAME="root";
 $DBPASSWORD="bitnami";
 
-$DBDATABASE="db_school";
-$DBUSERNAME="root";
-$DBPASSWORD="";
 
 $CONNECTION=mysqli_connect("localhost",$DBUSERNAME,$DBPASSWORD,$DBDATABASE);
 if(!$CONNECTION)
