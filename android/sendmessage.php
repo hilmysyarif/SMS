@@ -103,7 +103,7 @@ if(!$CONNECTION)
 			$sendDateTime = $aa['sendDataTime'];						
 			$receiverId = $aa['receiverId'];
 			
-			$querydelete="DELETE from messages where senderID='$senderID' AND receiverID='$receiverId' AND deliveredDateTime='$sendDateTime'";
+			$querydelete="DELETE from messages where senderID='$receiverId' AND receiverID='$senderID' AND deliveredDateTime='$sendDateTime'";
 			
 					if (mysqli_query($CONNECTION,$querydelete))
 				print ("Delete Message Successfully");
