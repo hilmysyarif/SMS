@@ -1,5 +1,6 @@
 <?php
 
+
 $dataarray = json_decode($_POST['ritu'],true);
 
 $DBDATABASE=$dataarray['DB_Name'];
@@ -12,9 +13,9 @@ if(!$CONNECTION)
 	echo "Database not found or There is an error in connecting to DB!! Please fix this!!!";
 	exit();
 }else{	
-// 	$action="get";
+ 
 	
- 	$action=isset($_GET['action'])?$_GET['action']:'';
+  	$action=isset($_GET['action'])?$_GET['action']:'';
 	if($action=="get"){
 //  		$dataarray = json_decode($_POST['ritu'],true);
 		
@@ -102,15 +103,12 @@ if(!$CONNECTION)
 			$sendDateTime = $aa['sendDataTime'];						
 			$receiverId = $aa['receiverId'];
 			
-			$querydelete="DELETE from messages where senderID='$senderID' AND receiverID='$receiverId' AND sendDateTime='$sendDateTime'";
+			$querydelete="DELETE from messages where senderID='$senderID' AND receiverID='$receiverId' AND deliveredDateTime='$sendDateTime'";
 			
-				if (mysqli_query($CONNECTION,$querydelete)){
+					if (mysqli_query($CONNECTION,$querydelete))
 				print ("Delete Message Successfully");
-			}else print ("Not Deleted Message");
+			else print ("Not Deleted Message");
 		}
-		
-		
-		
 		
 		
 	}
