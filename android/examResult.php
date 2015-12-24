@@ -32,6 +32,8 @@ if(!$CONNECTION)
 	
 	}else if($action == "insert"){
 	
+		
+		$resultArray = array();
 		foreach ($dataarray['SchoolData']['SchoolResult'] as $resultsarray){
 
 		$obtained_marks =$resultsarray['obtained_marks'];
@@ -57,12 +59,11 @@ if(!$CONNECTION)
 			$Exam_Detail_Id = $data1['Exam_Detail_Id'];
 			
 			$sql = "UPDATE examdetails SET Marks_Obtain='$obtained_marks', Max_Marks='$maximum_marks',Result='$resultID',Grade='$grades',Evaluated_By='$evaluated_by' WHERE Exam_Detail_Id='$Exam_Detail_Id'";
-			$resultupdate =	mysqli_query($CONNECTION,$sql);
-			if ($resultupdate){
-				$Message="Exam Result updated successfully..!!!!";
-				print_r($Message);
-			}
-		
+			
+			if (mysqli_query($CONNECTION,$sql))
+				$resultArray[] = array('result'=>"updated",'examName'=>Exam_Type,'subjectid'=>$subjectid,'student_id'=>$student_id);
+			else $resultArray[] = array('result'=>"error",'examName'=>Exam_Type,'subjectid'=>$subjectid,'student_id'=>$student_id);
+			
 				
 		}else {
 		
@@ -70,10 +71,13 @@ if(!$CONNECTION)
 			                             values('$examName','Active','$section_id','$student_id','$session','$subjectid','$obtained_marks','$maximum_marks','$resultID','$grades','','$exam_date','$evaluated_by')";
 					
 					
-			if (mysqli_query($CONNECTION,$queryInsert)){
-				$Message="Exam Result Added successfully!!";
-			print_r($Message);
-			}
+			if (mysqli_query($CONNECTION,$queryInsert))
+			$resultArray[] = array('result'=>"inserted",'examName'=>Exam_Type,'subjectid'=>$subjectid,'student_id'=>$student_id);
+			else $resultArray[] = array('result'=>"error",'examName'=>Exam_Type,'subjectid'=>$subjectid,'student_id'=>$student_id);
+			
+			
+		
+			
 				
 		}
 				
@@ -81,7 +85,7 @@ if(!$CONNECTION)
 		}
 		
 		
-			
+		print_r(json_encode($resultArray));	
 	
 	
 	}
