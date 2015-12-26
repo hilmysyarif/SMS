@@ -83,7 +83,7 @@ if(!$CONNECTION)
 			
 			$data1 = mysqli_fetch_array($countrow);
 			
-			$abb = array('studentID'=>$studentID,'Marks_Obtain'=>$data1['Marks_Obtain'], 'Max_Marks'=>$data1['Max_Marks'], 'ResultID'=>$data1['Result']);
+			$abb = array('studentID'=>$studentID,'Marks_Obtain'=>$data1['Marks_Obtain'], 'Max_Marks'=>$data1['Max_Marks'], 'Grade'=>$data1['Grade'], 'ResultID'=>$data1['Result']);
 				$resultarray[] = $abb;
 					
 			
