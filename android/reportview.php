@@ -70,6 +70,26 @@ if(!$CONNECTION)
 		print_r(json_encode($resultarray));
 			
 			
+	}elseif (strcmp($data['viewRequest'], "Result") == 0){
+		$Exam_Type = $data['Exam_Type'];
+		$subjectID = $data['subjectID'];
+		$sectionID = $data['sectionID'];
+		$session = $data['session'];
+	
+		$resultarray = array();
+		
+		foreach ($data['studentID'] as $studentID){
+			$countrow=mysqli_query($CONNECTION,"select * from examdetails where Exam_Type='$Exam_Type' AND Exam_Detail_Status='Active' AND Section_Id='$sectionID' AND Subject_Id='$subjectID' AND Student_Id='$studentID' AND Session='$session'");
+			
+			$data1 = mysqli_fetch_array($countrow);
+			
+			$abb = array('studentID'=>$studentID,'Marks_Obtain'=>$data1['Marks_Obtain'], 'Max_Marks'=>$data1['Max_Marks'], 'ResultID'=>$data1['Result']);
+				$resultarray[] = $abb;
+					
+			
+		}
+			
+		print_r(json_encode($resultarray));
 	}
  		          
 	
