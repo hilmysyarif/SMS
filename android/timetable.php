@@ -20,9 +20,9 @@ if(!$CONNECTION)
 $countrow=mysqli_query($CONNECTION,"select * from timetable");
 $senddataarray =array();
 
-$rt = json_decode($dataarray,true);
+// $rt = json_decode($dataarray,true);
 
-$month = $rt['monthName'];
+$month = $dataarray['monthName'];
 
 
 while($data1 = mysqli_fetch_array($countrow)){
