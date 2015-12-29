@@ -7,7 +7,8 @@ $dataarray = json_decode($_POST['Jaydevi'],true);
 $DBUSERNAME="root";
  $DBPASSWORD="bitnami";
 
-
+print_r($dataarray);
+print ("......");
 
 $CONNECTION=mysqli_connect("localhost",$DBUSERNAME,$DBPASSWORD,$DBDATABASE);
 if(!$CONNECTION)
@@ -23,13 +24,18 @@ $senddataarray =array();
 // $rt = json_decode($dataarray,true);
 
 $month = $dataarray['monthName'];
-
+print_r($month);
+print ("......");
 
 while($data1 = mysqli_fetch_array($countrow)){
 
 
-$aaa = explode("-",   $data1['datetime']);
-
+    $aaa = explode("-",   $data1['datetime']);
+    print_r($aaa);
+    print ("......");
+    
+    print_r($aaa[0].'-'.$aaa[1]);
+    print ("......");
 
 	if ($aaa[0].'-'.$aaa[1]== $month){
 		
@@ -37,10 +43,10 @@ $aaa = explode("-",   $data1['datetime']);
 		$senddataarray[] = $dataResult;
 	}
 	
-	
+	print ("....ritu.....");	
 
 }
-print_r(json_encode($senddataarray));
+ print_r(json_encode($senddataarray));
 
 
 }
