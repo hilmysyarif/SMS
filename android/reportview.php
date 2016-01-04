@@ -97,10 +97,10 @@ if(!$CONNECTION)
 	}else if (strcmp($data['userType'], "Parent") == 0 ){
 		
 		$stID =	$data['studentID'];
-		$month = $data['monthName'];
 		
 		if (strcmp($data['viewRequest'], "Attendance") == 0){		
 			
+			$month = $data['monthName'];
 				
 				$countrow=mysqli_query($CONNECTION,"select Date,Attendance from studentattendance");
 
@@ -134,14 +134,14 @@ if(!$CONNECTION)
 			
 		
 		}else if (strcmp($data['viewRequest'], "homework") == 0){
+			$month = $data['monthName'];
 			
 			$countrow=mysqli_query($CONNECTION,"select SectionId from admission,registration where admission.RegistrationId=registration.RegistrationId and admission.AdmissionId='$stID'");
 			$datasectionId = mysqli_fetch_array($countrow);
 			
 //  			print_r($datasectionId['SectionId']);
  			
- 			$SectionId= $datasectionId['SectionId'];
- 			
+ 			$SectionId= $datasectionId['SectionId'];			
  			
  			
  			$countrow1=mysqli_query($CONNECTION,"select * from homework where sectionid='$SectionId'");
@@ -167,7 +167,21 @@ if(!$CONNECTION)
  			print_r(json_encode($resultarray));				
  		
  						
-		}	
+		}else if (strcmp($data['viewRequest'], "result") == 0){	
+			
+			$subject_Id = $data['Subject_Id'];
+			$session = $data['Session'];
+			
+			$countrow1=mysqli_query($CONNECTION,"select * from examdetails where Student_Id='$stID'");
+			
+			$data1 = mysqli_fetch_array($countrow1);
+			
+			
+			
+			$resultdata = array('obtainedMarks'=>$data1[''], 'maximumMarks'=>$data1[''],'grade'=>$data1[''],'result'=>$data1['Result']);
+		
+			print_r(json_encode($resultdata));
+		}
 	
 		
 		
