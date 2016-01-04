@@ -14,7 +14,7 @@ if(!$CONNECTION)
 	exit();
 }else{	
 	
- 	
+ 	print_r($data);
 	
 	if (strcmp($data['userType'], "Teacher") == 0){		
 		
