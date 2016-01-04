@@ -137,10 +137,8 @@ if(!$CONNECTION)
 			$month = $data['monthName'];
 			
 			$countrow=mysqli_query($CONNECTION,"select SectionId from admission,registration where admission.RegistrationId=registration.RegistrationId and admission.AdmissionId='$stID'");
-			$datasectionId = mysqli_fetch_array($countrow);
-			
-//  			print_r($datasectionId['SectionId']);
- 			
+			$datasectionId = mysqli_fetch_array($countrow);		
+
  			$SectionId= $datasectionId['SectionId'];			
  			
  			
@@ -169,7 +167,11 @@ if(!$CONNECTION)
  						
 		}else if (strcmp($data['viewRequest'], "result") == 0){	
 			
-			$sectionID = $data['sectionID'];
+			$countrow=mysqli_query($CONNECTION,"select SectionId from admission,registration where admission.RegistrationId=registration.RegistrationId and admission.AdmissionId='$stID'");
+			$datasectionId = mysqli_fetch_array($countrow);
+			
+			$sectionID= $datasectionId['SectionId'];		
+			
 			$exam_Type = $data['Exam_Type'];
 			$subject_Id = $data['Subject_Id'];
 			$session = $data['Session'];
