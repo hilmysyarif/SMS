@@ -184,13 +184,14 @@ if(!$CONNECTION)
 			$countrow1=mysqli_query($CONNECTION,"select * from examdetails where Student_Id='$stID' AND Exam_Type='$exam_Type' AND Section_Id='$sectionID' AND Session='$session' AND Subject_Id='$subject_Id'");
 			
 			print_r($countrow1);
+			
 			$data1 = mysqli_fetch_array($countrow1);		
 			
 			
-			$resultdata = array('obtainedMarks'=>$data1['Marks_Obtain'], 'maximumMarks'=>$data1['Max_Marks'],'grade'=>$data1['Grade'],'result'=>$data1['Result']);
+			$resultdata[] = array('obtainedMarks'=>$data1['Marks_Obtain'], 'maximumMarks'=>$data1['Max_Marks'],'grade'=>$data1['Grade'],'result'=>$data1['Result']);
 		
-			
-// 			print_r(json_encode($resultdata));
+			print_r("............");
+ 			print_r(json_encode($resultdata));
 		}
 	
 		
