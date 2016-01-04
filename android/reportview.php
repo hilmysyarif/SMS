@@ -14,7 +14,7 @@ if(!$CONNECTION)
 	exit();
 }else{	
 	
- 	print_r($data);
+
 	
 	if (strcmp($data['userType'], "Teacher") == 0){		
 		
@@ -174,23 +174,18 @@ if(!$CONNECTION)
 			$subject_Id = $data['Subject_Id'];
 			$session = $data['Session'];
 			
-			print_r($stID);print_r(".......");
-			print_r($sectionID);print_r(".......");
-			print_r($exam_Type);print_r("......");
-			print_r($subject_Id);print_r("......");
-			print_r($session);print_r("......");
-			print_r("............");
+		
 			
 			$countrow1=mysqli_query($CONNECTION,"select * from examdetails where Student_Id='$stID' AND Exam_Type='$exam_Type' AND Section_Id='$sectionID' AND Session='$session' AND Subject_Id='$subject_Id'");
 			
-			print_r($countrow1);
+			
 			
 			$data1 = mysqli_fetch_array($countrow1);		
 			
 			
 			$resultdata[] = array('obtainedMarks'=>$data1['Marks_Obtain'], 'maximumMarks'=>$data1['Max_Marks'],'grade'=>$data1['Grade'],'result'=>$data1['Result']);
 		
-			print_r("............");
+		
  			print_r(json_encode($resultdata));
 		}
 	
