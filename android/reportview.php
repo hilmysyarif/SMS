@@ -178,7 +178,7 @@ if(!$CONNECTION)
 			
 			
 			
-			$resultdata = array('obtainedMarks'=>$data1[''], 'maximumMarks'=>$data1[''],'grade'=>$data1[''],'result'=>$data1['Result']);
+			$resultdata = array('obtainedMarks'=>$data1['Marks_Obtain'], 'maximumMarks'=>$data1['Max_Marks'],'grade'=>$data1['Grade'],'result'=>$data1['Result']);
 		
 			print_r(json_encode($resultdata));
 		}
