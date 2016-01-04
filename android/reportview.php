@@ -169,13 +169,14 @@ if(!$CONNECTION)
  						
 		}else if (strcmp($data['viewRequest'], "result") == 0){	
 			
+			$sectionID = $data['sectionID'];
+			$exam_Type = $data['Exam_Type'];
 			$subject_Id = $data['Subject_Id'];
 			$session = $data['Session'];
 			
-			$countrow1=mysqli_query($CONNECTION,"select * from examdetails where Student_Id='$stID'");
+			$countrow1=mysqli_query($CONNECTION,"select * from examdetails where Student_Id='$stID' AND Exam_Type='$exam_Type' AND Section_Id='$sectionID' AND Session='$session' AND Subject_Id='$subject_Id'");
 			
-			$data1 = mysqli_fetch_array($countrow1);
-			
+			$data1 = mysqli_fetch_array($countrow1);		
 			
 			
 			$resultdata = array('obtainedMarks'=>$data1['Marks_Obtain'], 'maximumMarks'=>$data1['Max_Marks'],'grade'=>$data1['Grade'],'result'=>$data1['Result']);
