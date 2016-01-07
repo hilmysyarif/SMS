@@ -96,20 +96,18 @@ if(!$CONNECTION)
 	
 	
 	
-	}else if ($action=="response"){	
-		print_r("....ritu....");
+	}else if ($action=="deleteResponse"){		
 		
-		foreach ($clsdataarray['SchoolData']as $aa){
+		foreach ($dataarray['SchoolData']as $aa){		
 			
-			print_r($aa);
 			
 			$senderID = $aa['senderId'];
 			$deliveredDateTime = $aa['deliveredDateTime'];						
 			$receiverId = $aa['receiverId'];
 			
 			$querydelete="DELETE FROM `messages` WHERE senderID='$senderID' AND receiverID='$receiverId' AND deliveredDateTime= '$deliveredDateTime'";
-			print_r("........");
-			print_r(mysqli_query($CONNECTION,$querydelete));
+		
+		
 					if (mysqli_query($CONNECTION,$querydelete)){
 				$res = "Delete Message Successfully";
 				print_r($res);
