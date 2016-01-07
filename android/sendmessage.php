@@ -55,11 +55,11 @@ if(!$CONNECTION)
 				mysqli_query($CONNECTION,$queryInsert);
 		
 			}
-		
-		
-		
+			
+
 		}
 		print ("message delivered");
+		
 	}if ($action=="fetchTeacher"){
 	
 		$countrow=mysqli_query($CONNECTION,"select MasterEntryId from masterentry where MasterEntryStatus='Active' AND MasterEntryName='StaffPosition' AND MasterEntryValue='Teacher' OR MasterEntryValue='Teachers' OR MasterEntryValue='teacher'OR MasterEntryValue='teachers'");
@@ -100,10 +100,10 @@ if(!$CONNECTION)
 		$res="not deleted";
 		foreach ($clsdataarray['SchoolData']['MessageResponse'] as $aa){
 			$senderID = $aa['senderId'];
-			$sendDateTime = $aa['sendDataTime'];						
+			$deliveredDateTime = $aa['deliveredDateTime'];						
 			$receiverId = $aa['receiverId'];
 			
-			$querydelete="DELETE from messages where senderID='$receiverId' AND receiverID='$senderID' AND deliveredDateTime='$sendDateTime'";
+			$querydelete="DELETE from messages where senderID='$senderID' AND receiverID='$receiverId' AND deliveredDateTime='$deliveredDateTime'";
 			
 					if (mysqli_query($CONNECTION,$querydelete))
 				$res = "Delete Message Successfully";
