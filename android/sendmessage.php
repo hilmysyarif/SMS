@@ -96,18 +96,18 @@ if(!$CONNECTION)
 	
 	
 	
-	}else if ($action=="response"){
-		$res="not deleted";
+	}else if ($action=="response"){		
 		foreach ($clsdataarray['SchoolData']['MessageResponse'] as $aa){
 			$senderID = $aa['senderId'];
 			$deliveredDateTime = $aa['deliveredDateTime'];						
 			$receiverId = $aa['receiverId'];
 			
-			$querydelete="DELETE from messages where senderID='$senderID' AND receiverID='$receiverId' AND deliveredDateTime='$deliveredDateTime'";
+			$querydelete="DELETE FROM `messages` WHERE senderID='$senderID' AND receiverID='$receiverId' AND deliveredDateTime= '$deliveredDateTime'";
 			
-					if (mysqli_query($CONNECTION,$querydelete))
+					if (mysqli_query($CONNECTION,$querydelete)){
 				$res = "Delete Message Successfully";
-			else $res ="Not Deleted Message";
+					}else 
+			 $res ="Not Deleted Message";
 		}
 		print_r($res);
 		
