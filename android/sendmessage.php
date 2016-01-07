@@ -97,8 +97,9 @@ if(!$CONNECTION)
 	
 	
 	}else if ($action=="response"){	
-			
-		foreach ($clsdataarray['SchoolData']['MessageResponse'] as $aa){
+		print_r("....ritu....");
+		
+		foreach ($clsdataarray['SchoolData']as $aa){
 			
 			print_r($aa);
 			
