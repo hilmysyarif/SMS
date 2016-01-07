@@ -106,10 +106,13 @@ if(!$CONNECTION)
 			
 					if (mysqli_query($CONNECTION,$querydelete)){
 				$res = "Delete Message Successfully";
-					}else 
+				print_r($res);
+					}else{ 
 			 $res ="Not Deleted Message";
+					print_r($res);}
+					
 		}
-		print_r($res);
+		
 		
 	}
 	
