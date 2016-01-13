@@ -30,7 +30,17 @@ while($data1 = mysqli_fetch_array($countrow)){
  	
 
     $aaa = explode("-",   $data1['datetime']);
-
+    print_r($data1['ClassName']);
+    print_r("......");
+    print_r($data1['SectionName']);
+    print_r("......");
+    print_r($data1['SubjectName']);
+    print_r("......");
+    print_r($data1['StaffName']);
+    print_r("......");
+    print_r($data1['datetime']);
+    print_r("......");
+    
 
 	if ($aaa[0].'-'.$aaa[1]== $month){
 		
