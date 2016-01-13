@@ -20,14 +20,14 @@ if(!$CONNECTION)
 $countrow=mysqli_query($CONNECTION,"select * from timetable,class,section,subject,staff where  timetable.classid =class.classid AND timetable.sectionid =  section.sectionid AND timetable.subjectid= subject.subjectid AND timetable.staffid=staff.staffid");
 $senddataarray =array();
 
-print_r($countrow);
+// print_r($countrow);
 
 $month = $dataarray['monthName'];
 
 
 while($data1 = mysqli_fetch_array($countrow)){
-	print_r("......");
-	print_r($data1);
+ 	print_r("......");
+ 	
 
     $aaa = explode("-",   $data1['datetime']);
 
@@ -36,6 +36,7 @@ while($data1 = mysqli_fetch_array($countrow)){
 		
 		$dataResult = array('classid'=>$data1['ClassName'], 'sectionid'=>$data1['SectionName'],'subjectid'=>$data1['SubjectName'], 'staffid'=>$data1['StaffName'],'datetime'=>$data1['datetime']);
 		$senddataarray[] = $dataResult;
+		print_r($dataResult);
 	}
 	
 
