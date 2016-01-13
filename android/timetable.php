@@ -51,7 +51,11 @@ while($data1 = mysqli_fetch_array($countrow)){
 
 	if ($aaa[0].'-'.$aaa[1]== $month){
 		
-		$dataResult = array('classid'=>$data1['ClassName'], 'sectionid'=>$data1['SectionName'],'subjectid'=>$data1['SubjectName'], 'staffid'=>$data1['StaffName'],'datetime'=>$data1['datetime']);
+		$dataResult = array('classid'=>$data1['classid'],'ClassName'=>$data1['ClassName'],
+				'sectionid'=>$data1['sectionid'],'SectionName'=>$data1['SectionName'],
+				'subjectid'=>$data1['subjectid'],'SubjectName'=>$data1['SubjectName'],
+				 'staffid'=>$data1['staffid'], 'StaffName'=>$data1['StaffName'],
+				'datetime'=>$data1['datetime']);
 		$senddataarray[] = $dataResult;
 // 		print_r($dataResult);
 	}
