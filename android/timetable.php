@@ -17,7 +17,7 @@ if(!$CONNECTION)
 }else{
 
 	
-$countrow=mysqli_query($CONNECTION,"select * from timetable");
+$countrow=mysqli_query($CONNECTION,"select * from timetable,class,section,subject,staff where  timetable.classid =class.classid AND timetable.sectionid =  section.sectionid AND timetable.subjectid= subject.subjectid AND timetable.staffid=staff.staffid");
 $senddataarray =array();
 
 
@@ -32,7 +32,7 @@ while($data1 = mysqli_fetch_array($countrow)){
 
 	if ($aaa[0].'-'.$aaa[1]== $month){
 		
-		$dataResult = array('classid'=>$data1['classid'], 'sectionid'=>$data1['sectionid'],'subjectid'=>$data1['subjectid'], 'staffid'=>$data1['staffid'],'datetime'=>$data1['datetime']);
+		$dataResult = array('classid'=>$data1['ClassName'], 'sectionid'=>$data1['SectionName'],'subjectid'=>$data1['SubjectName'], 'staffid'=>$data1['StaffName'],'datetime'=>$data1['datetime']);
 		$senddataarray[] = $dataResult;
 	}
 	
