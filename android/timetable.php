@@ -41,7 +41,7 @@ while($data1 = mysqli_fetch_array($countrow)){
 				'sectionid'=>$data1['sectionid'],'SectionName'=>$data1['SectionName'],
 				'subjectid'=>$data1['subjectid'],'SubjectName'=>$data1['SubjectName'],
 				 'staffid'=>$data1['staffid'], 'StaffName'=>$data1['StaffName'],
-				'datetime'=>$timeTabledate);
+				'datetime'=>$data1['datetime']);
 		$senddataarray[] = $dataResult;
 // 		print_r($dataResult);
 	}
