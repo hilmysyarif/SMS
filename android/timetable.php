@@ -22,7 +22,7 @@ $senddataarray =array();
 
 // print_r($countrow);
 
-$month = $dataarray['monthName'];
+$timeTabledate = $dataarray['timeTabledate'];
 
 
 while($data1 = mysqli_fetch_array($countrow)){
@@ -30,32 +30,18 @@ while($data1 = mysqli_fetch_array($countrow)){
  	
 //  	2015-12-02 10:00:00-2015-12-02 11:00:00
  	
-    $aaa = explode("-",   $data1['datetime']);
+    $aaa = explode(" ",   $data1['datetime']);
 
-//  	print_r($data1['ClassName']);
-//     print_r("......");
-//     print_r($data1['SectionName']);
-//     print_r("......");
-//     print_r($data1['SubjectName']);
-//     print_r("......");
-//     print_r($data1['StaffName']);
-//     print_r("......");
-//     print_r($data1['datetime']);
-//     print_r("......");
-    
-//     print_r($aaa[0].'-'.$aaa[1]);
-//     print_r("......");
-//     print_r($month);
-//     print_r("......");
+
     
 
-	if ($aaa[0].'-'.$aaa[1]== $month){
+	if ($aaa[0]== $timeTabledate){
 		
 		$dataResult = array('classid'=>$data1['classid'],'ClassName'=>$data1['ClassName'],
 				'sectionid'=>$data1['sectionid'],'SectionName'=>$data1['SectionName'],
 				'subjectid'=>$data1['subjectid'],'SubjectName'=>$data1['SubjectName'],
 				 'staffid'=>$data1['staffid'], 'StaffName'=>$data1['StaffName'],
-				'datetime'=>$data1['datetime']);
+				'datetime'=>$timeTabledate);
 		$senddataarray[] = $dataResult;
 // 		print_r($dataResult);
 	}
