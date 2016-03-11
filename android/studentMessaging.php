@@ -1,7 +1,7 @@
 <?php
 
 
-$dataarray = json_decode($_POST['Jaydevi'],true);
+$dataarray=json_decode($_POST['Jaydevi'],true);
 
 $DBDATABASE=$dataarray['DB_Name'];
 $DBUSERNAME="root";
@@ -15,8 +15,8 @@ if(!$CONNECTION)
 	exit();
 }else{
 	
- 	$action=isset($_GET['action'])?$_GET['action']:'';
-	
+  	$action=isset($_GET['action'])?$_GET['action']:'';	
+		
 	if ($action=="creategroup"){
 		$aaa =  $dataarray['GroupData'];
 		
@@ -35,22 +35,26 @@ if(!$CONNECTION)
 		
 	}else if ($action=="insertmsg"){
 	
-			$aaa =  $dataarray['GroupData'];
+		$senddresult =array();
+		foreach( $dataarray['GroupData'] as $obj){
+		
+			$aaa =  $obj;
 			$serverGroupId = $aaa['serverGroupId'];
 			$sender_id = $aaa['sender_id'];
 			$sender_name = $aaa['sender_name'];
 			$msg = $aaa['msg'];
 			$time = $aaa['time'];
 		    $status =false;
-		    $not_viewed_by = $aaa['not_viewed_by'];
-	
+		    $not_viewed_by = $aaa['not_viewed_by'];	
 		    
 			$queryInsert="insert into groupmsg(serverGroupId,sender_id,sender_name,msg,time,status,not_viewed_by) values('$serverGroupId','$sender_id','$sender_name','$msg','$time','$status','$not_viewed_by') ";
 			if (mysqli_query($CONNECTION,$queryInsert)){
-				print_r("added");
-			}	else print_r("not added");		
+				$senddresult[] = "added";				
+			}	else $senddresult[] = "not added";	
 			
-			
+		}
+		print_r(json_encode($senddresult));
+		
 	}else if ($action=="getmsg"){
 		
 		
@@ -61,6 +65,7 @@ if(!$CONNECTION)
 		while($data1 = mysqli_fetch_array($countrow)){
 		
 			$data2[]=$data1;		
+				print ($dataarray['UserID']);die;
 				
 				if (strpos($data2[$a]['not_viewed_by'], $dataarray['UserID']) !== false){
 					$dataArray = array('s_no'=>$data2[$a]['s_no'],
