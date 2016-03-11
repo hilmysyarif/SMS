@@ -17,6 +17,9 @@ exit();
   $action=isset($_GET['action'])?$_GET['action']:'';
 if($action=="get"){
 	
+	
+	
+	
 $class=mysqli_query($CONNECTION,"select ClassId,ClassName from class where Session='2015-2016'");
 
 $section=mysqli_query($CONNECTION,"select SectionId,SectionName,ClassId from section ");
@@ -83,8 +86,9 @@ for($i=0;$i<=count($class2)-1;$i++)
 						$subjectarr[]=array('subjectid'=>$subject2[$c][0],'subjectname'=>$subject2[$c][2]);
 					}	
 				}
+				
 				$sectionarr[]=array('sectionid'=>$section2[$a][0],'section'=>$section2[$a][1],'subject'=>$subjectarr,'student_name'=>$studentname,'student_id'=>$studentid);
-				$studentname='';$studentid='';$subjectarr='';
+				$studentname=array();$studentid=array();$subjectarr=array();
 			}
 			
 		} 
