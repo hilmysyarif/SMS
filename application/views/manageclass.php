@@ -36,8 +36,20 @@
 																	
 									<input type="submit" class="btn btn-info btn-single " value="Add">
 													</form>
-											
+													
+													
+						<!---------View for uploading excel sheet---------------------------------------start----->
+						
+												<h4 style="color:black ;margin-bottom:-10px;margin-top:50px">Or upload Excel file with .CSV extn</h4>
+													
+													<form class="form-horizontal well" style="margin-top:40px"action="<?php echo base_url(); ?>master/insert_class1/class" method="post" name="upload_excel" enctype="multipart/form-data">
+													<input type="file" name="file" id="file" class="input-large">
+													<button type="submit" id="submit" name="Import" class="btn btn-info btn-single" style="margin-top:20px">Upload</button>
+													</form>
 													<div class="form-group-separator"></div>
+													
+						<!--------View for uploading excel sheet-	end----------------------------------------------------------------->				
+													
 									</div>
 						</div>
 						</div>
@@ -94,7 +106,17 @@
 												
 									<input type="submit" class="btn btn-info btn-single " value="Add">
 													</form>
-											
+													
+													
+				<!---------View for uploading excel sheet---------------------------------------start----->									
+											<h4 style="color:black;margin-bottom:-10px;margin-top:50px">Or upload Excel file with .CSV extn</h4>
+													
+													<form class="form-horizontal well" style="margin-top:40px" action="<?php echo base_url(); ?>master/insert_class2/class" method="post" name="upload_excel" enctype="multipart/form-data">
+													<input type="file" name="file" id="file" class="input-large">
+													<button type="submit" id="submit" name="Import" class="btn btn-info btn-single" style="margin-top:20px">Upload</button>
+													</form>
+				<!--------View for uploading excel sheet-	end----------------------------------------------------------------->
+													
 													<div class="form-group-separator"></div>
 									</div>
 						</div>

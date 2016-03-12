@@ -388,7 +388,177 @@ if(Authority::checkAuthority('ManageUser')==true){
 		$this->parser->parse('include/footer',$this->data);
 	}
 /*school management manageClass End.............................................................................*/
-
+	
+  /*School management class and section upload through excel start*.by Nabeela ANsari....................................*/       
+	
+	function insert_class1($type=false)
+	{	
+		if(Authority::checkAuthority('ManageClass')==true){
+			
+		}else{
+			$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+			redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
+		
+		if($type=='class'){
+		 if(isset($_POST["Import"]))
+            {$i=0;
+                $filename=$_FILES["file"]["tmp_name"];
+                if($_FILES["file"]["size"] > 0)
+                  {
+                    $file = fopen($filename, "r");
+                     while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
+					 
+                     {
+						 if($i>0){
+                            $data = array(
+                                'ClassName' => $emapData[0],
+                                'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',
+								'DOE'=>date("d m Y"),
+								'ClassStatus'=>"Active");
+								
+								$name[]=$emapData[0];
+								$comma = implode(",", $name);
+                        $this->load->model('master_model');
+                        $insertId = $this->master_model->insertCSV($data);
+                     }
+					 $i++;
+					 }
+					 
+                    fclose($file);
+					$this->session->set_flashdata('message_type', 'success');        
+					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Class Added Successfully'.$comma);
+                    redirect('master/manageclass');
+                  }
+            
+			else{
+					$this->session->set_flashdata('message_type', 'error');        
+					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Adding class creat error');
+					fredirect('master/manageclass');
+				}
+			}	
+					
+		
+		}
+	}
+	/*section insert function*.....................................*/
+	
+	function insert_class2($type=false)
+	{	
+	$var;
+		if(Authority::checkAuthority('ManageClass')==true){
+			
+		}else{
+			$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+			redirect('dashboard');
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
+		if(empty($this->currentsession[0]->CurrentSession)){
+			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+            redirect($_SERVER['HTTP_REFERER']);
+		}
+		
+		if($type=='class'){
+			$msg='';
+		 if(isset($_POST["Import"]))
+            { $i=0;
+                $filename=$_FILES["file"]["tmp_name"];
+                if($_FILES["file"]["size"] > 0)
+                  {
+                    $file = fopen($filename, "r");
+                     while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
+					
+                     {	
+					 if($i>0){
+					 $section=$this->data['detail']=$this->master_model->section($emapData[0]);
+                     
+														  
+								$data = array(
+                                'ClassName' => $emapData[0],
+								'SectionName'=>$emapData[1],
+								'DOE'=>date("d m Y"),
+								'SectionStatus'=>"Active");
+								
+								
+								if(empty($emapData[1]))
+									{
+									$var="A";
+									}
+									else
+									{
+									$var=$emapData[1];	
+									}
+									
+								
+									if($emapData[0]==$section[0]->ClassName)
+									{ 
+									
+								  $data1 = array(
+									'ClassId' => $section[0]->ClassId,
+									'SectionName'=>$var,
+									'SectionStatus'=>"Active",
+									'DOE'=>date("d m Y"));
+									
+								
+									
+									$this->load->model('master_model'); 
+									$insertId = $this->master_model->insertCSV1($data1);
+								
+									}
+									else
+									{	$msg='fail';
+									
+									$name[]=$emapData[0];
+									$name1[]=$emapData[1];
+									$comma = implode(",", $name);
+									$comma1 = implode(",", $name1);
+									
+									}	
+									
+								
+								
+								
+								}
+								$i++;
+						}
+					
+					 if($msg=='fail'){
+					
+					$this->session->set_flashdata('message_type', 'success');        
+					$this->session->set_flashdata('message', $this->config->item("manageaccount").' ClassName not added '.$comma.$comma1);
+					redirect('master/manageclass');
+					}			
+					fclose($file);  
+					
+					$this->session->set_flashdata('message_type', 'success');        
+					$this->session->set_flashdata('message', $this->config->item("manageaccount").' ClassName added ');
+					redirect('master/manageclass');
+                     
+				  }
+                  }
+            
+		else{
+				$this->session->set_flashdata('message_type', 'error');        
+                $this->session->set_flashdata('message', $this->config->item("manageaccount").' Error in uploading');
+				redirect('master/manageclass');
+		}
+	}	
+					
+		
+}
+	
+	 /*School management class and section upload through excel end.......................................................*/ 
 /*school management Class and section insert and update start....................................................*/	
 	function insert_class($type=false)
 	{	

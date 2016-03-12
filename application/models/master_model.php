@@ -64,6 +64,57 @@ class Master_model extends CI_Model
    }
   /* function for insert_gen_setting end.........................................................................  */ 
   
+   
+  /*school management data upload through excel sheet model start. by Nabeela Ansari..................................................................................................*/  
+    public function insertCSV($data)
+            {
+                $this->db->insert('class', $data);
+                return $this->db->insert_id();
+            }
+			
+	public function section($class)
+            {
+               $qry=$this->db->query("Select ClassName,ClassId from class where ClassName='$class'");
+				return $qry->Result();
+            }
+			
+	public function section1($section,$class)
+	{
+	   $qry=$this->db->query("Select ClassName,SectionId,SectionName from section,class where section.SectionName='$section' and class.ClassName='$class' and class.ClassId=section.ClassId");
+		return $qry->Result();
+	}
+	
+	public function section2()
+	{
+	   $qry=$this->db->query("Select MasterEntryId,MasterEntryValue from masterentry");
+		return $qry->Result();
+	}
+	
+	public function student($name=false,$fname=false,$mname=false)
+	{	
+	   $qry=$this->db->query("Select RegistrationId,StudentName,FatherName,MotherName from registration where StudentName='$name' and FatherName='$fname' and MotherName='$mname'");
+		return $qry->Result();
+	}
+
+	public function insertCSV1($data1)
+            {
+                $this->db->insert('section', $data1);
+                return $this->db->insert_id();
+            }
+	public function insertCSV2($data1)
+            {
+                $this->db->insert('registration', $data1);
+                return $this->db->insert_id();
+            }
+		
+	public function admit_student($data1)
+            {
+                $this->db->insert('admission', $data1);
+                return $this->db->insert_id();
+			}
+			
+	 /*school management data upload through excel sheet model endby Nabeela Ansari  
+  
 /* function show school userinfo start..........................................................................  */
  function get_userinfo($table=false,$filter=false)
    {	
