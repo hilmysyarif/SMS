@@ -63,7 +63,7 @@ class Admission extends CI_Controller {
 		 		'PermanentAddress'=>$registration_info[0]->PermanentAddress,
 		 		'AlternateMobile'=>$registration_info[0]->AlternateMobile,
 		 		'FatherDateOfBirth'=>$registration_info[0]->FatherDateOfBirth,
-		 		'MotherDateOfBirth'=>$registration_info[0]->MotherDateOfBirth,
+		 		'MotherDateOfBirth'=>$registration_info[0]->MotherDateOfBirth, 
 		 		'FatherDesignation'=>$registration_info[0]->FatherDesignation,
 		 		'FatherEmail'=>$registration_info[0]->FatherEmail,
 		 		'MotherEmail'=>$registration_info[0]->MotherEmail,
