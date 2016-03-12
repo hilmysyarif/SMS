@@ -1231,7 +1231,7 @@
 								
 								</div>	
 						</form>
-						<!--------View for uploading excel sheet-	start----by Nabeela Ansari------------------------------------------------------------->					
+	<!--------View for uploading excel sheet-	start----by Nabeela Ansari------------------------------------------------------------->					
 						<h4 style="color:black;margin-bottom:-10px;margin-top:50px">Or upload Excel file with .CSV extn</h4>
 													
 													
@@ -1246,6 +1246,7 @@
 						</form>
 						
 	<!--------View for uploading excel sheet-	end---by Nabeela Ansari-------------------------------------------------------------->
+						
 						</div>
 					</div>
 				</div>
