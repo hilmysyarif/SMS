@@ -18,10 +18,13 @@ class Admission extends CI_Controller {
 		if (!$this->session->userdata('user_data')){ $this->session->set_flashdata('category_error_login', " Your Session Is Expired!! Please Login Again. "); redirect(base_url());}
 		$timezone = "Asia/Calcutta";
 		if(function_exists('date_default_timezone_set')) date_default_timezone_set($timezone);
-		$this->info= $this->session->userdata('user_data');
+		
+		//$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
 		$this->session->set_userdata('currentsession',$currentsession);
 		$currentsession=$this->currentsession = $this->session->userdata('currentsession');
+		$this->info= $this->session->userdata('user_data');	
+			
 	 }
 
 	 /*school management registration controller start*/	
@@ -301,7 +304,7 @@ class Admission extends CI_Controller {
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-					redirect('dashboard');
+					redirect('index.php/dashboard');
 		}
 		if(empty($this->currentsession[0]->CurrentSession)){
 			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
@@ -327,16 +330,15 @@ class Admission extends CI_Controller {
 				$r_id=$this->admission_model->insert_registration($info);
 			 	$this->session->set_flashdata('message_type', 'success');
 				$this->session->set_flashdata('message', $this->config->item("registration").' Registration Done successfully');
-				redirect('admission/registration');
+				redirect('index.php/registration');
 		}
 	}
-
-	/*...........school management student registration upload through excel sheet controller start   by Nabeela ansari............................................................................*/
-
-
 	
+
+
+/*school management student registration upload through excel sheet controller start...................................................................................................*/	
 	function ins_stu($RegistrationId=false)
-	{	$var;
+	{	$var; $var1='';$var2='';$var3='';
 		if(Authority::checkAuthority('Registration')==true){
 			}
 		else{
@@ -393,11 +395,9 @@ class Admission extends CI_Controller {
 							
 						}
 						
-						if(!empty($emapData[$st]))
-						{
-							$StudentName=$emapData[$st];
 						
 						
+									
 						 if( is_array($ft) && isset($ft) &&!empty($ft))
 						{
 						foreach($ft as $ft);
@@ -429,7 +429,7 @@ class Admission extends CI_Controller {
 						 if(is_array($dt) && isset($dt) && !empty($dt))
 						{
 						foreach($dt as $dt);
-						}
+						} 
 						
 						if(is_array($gt) && isset($gt) && !empty($gt))
 						{
@@ -437,7 +437,11 @@ class Admission extends CI_Controller {
 					
 						} 						
 					
-						
+						 
+						if(!empty($emapData[$st]))
+						{
+							$StudentName=$emapData[$st];
+								
 						$section1=$this->data['detail1']=$this->master_model->section1($emapData[$et],$emapData[$ct]);
 						
 						$section2=$this->data['detail2']=$this->master_model->section2();
@@ -445,26 +449,24 @@ class Admission extends CI_Controller {
 						if(isset($section1[0]->ClassName) && isset($section1[0]->SectionName) && !empty($section1[0]->SectionName) && !empty($section1[0]->ClassName))
 							
 							{ 	 
-								if(isset($mt) && !empty($mt)&& !empty($emapData[$mt]))
+								if(isset($mt) && !empty($mt))
 								{
 									$MotherName=$emapData[$mt];
 								}
-							
 								else
 								{
 									$MotherName='';
 								}
-								if(isset($ft) && !empty($ft)&& !empty($emapData[$ft]))
+								if(isset($ft) && !empty($ft) && !empty($ft))
 								{
 									$FatherName=$emapData[$ft];
-									
 								}
-									
 								else
 								{
 									$FatherName='';
 								}
-								if(isset($nt) && !empty($nt)&& !empty($emapData[$nt]))
+								
+								if(isset($nt) && !empty($nt) && !empty($nt))
 								{
 									$Mobileno=$emapData[$nt];
 								}
@@ -473,22 +475,22 @@ class Admission extends CI_Controller {
 									$Mobileno='';
 								}
 								
-								$student=$this->data['detail2']=$this->master_model->student($StudentName,$FatherName,$MotherName,$MobileNo);
+								$student=$this->data['detail2']=$this->master_model->student($StudentName,$FatherName,$MotherName,$Mobileno);
 								
 								
-								if(empty($student)){
+								if(empty($student))
+								{
 									
 									
 								
 								if(isset($dt) && !empty($dt) && !empty($emapData[$dt]))
 								{
-									$Date=$emapData[$dt]; 
-									
+									$Date=$emapData[$dt];
 								}
 								else
 								{  
 									$Date=date("d-m-Y h:i:s");
-									
+									//print_r($Date);die;
 								}
 								
 								
@@ -520,14 +522,13 @@ class Admission extends CI_Controller {
 									'Username'=>$this->info['usermailid'],
 									'ParentsPassword'=>$ParentsPassword,
 									'StudentsPassword'=>$StudentsPassword);
-							
 									$this->load->model('master_model'); 
 									$insertId = $this->master_model->insertCSV2($data1);
-								
+								//print_r($data1);die;
 							}
 							
 								else 
-								{	$msg="fail1";
+								{	$msg="fail";
 									
 									$name1[]=$emapData[$st];
 							
@@ -539,41 +540,46 @@ class Admission extends CI_Controller {
 							{
 								$msg="fail";
 									
-									$name1[]=$emapData[$st];
+									$name2[]=$emapData[$st];
 							
-									$comma1 = implode(",", $name1);
-								
-							}
-				   }
-				   else {
-									$msg="failed";
+									$comma2 = implode(",", $name2);
 									
-									$name1[]=$emapData[$ft];
-							
-									$comma2 = implode(",", $name1); 
+							}
+								
+				   }
+				    else {
+									$msg="fail";
+									
+									$name3[]=$emapData[$ft];
+								
+									$comma3 = implode(",", $name3); 
+									
 				         }
 				   }
 				   $k++;
 				   
+				  
+				
+				}
+				
+				if(!empty($comma1)){
+				$var1.='These students already exist -';
+				$var1.=$comma1;
+				}
+				if(!empty($comma2)){
+				$var2.='These students not registered Successfully-';
+				$var2.=$comma2;
+				}
+				if(!empty($comma3)){
+				$var3.=' These students name doest not exsist whose father name is -';
+				$var3.=$comma3;
 				}
 				
 				if($msg=="fail"){
 					$this->session->set_flashdata('message_type', 'error');        
-					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Students not registered Successfully -'.$comma1);
+					$this->session->set_flashdata('message', $this->config->item("manageaccount")."$var1 <br> $var2 <br> $var3 <br>");
 					redirect('admission/registration');
 				}
-				
-				if($msg=="fail1"){
-					$this->session->set_flashdata('message_type', 'error');        
-					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Students already exist -'.$comma1);
-					redirect('admission/registration');
-				}
-				if($msg=="failed"){
-					$this->session->set_flashdata('message_type', 'error');        
-					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Students name doest not exsist whose father name is -'.$comma2);
-					redirect('admission/registration');
-				}
-				
 				
 				fclose($file);
 				
@@ -590,9 +596,12 @@ class Admission extends CI_Controller {
 				redirect('admission/registration');
 }
 
-/*school management student registration upload through excel sheet controller end by Nabeela Ansari...................................................................................................*/	
+/*school management student registration upload through excel sheet controller end...................................................................................................*/	
 
-	
+
+
+
+
 	/*school management admission View Load.............................................................................................................*/
 	function admission_student()
 	{ 	
@@ -629,7 +638,7 @@ class Admission extends CI_Controller {
 				
 				$this->session->set_flashdata('message_type', 'error');
 				$this->session->set_flashdata('message', $this->config->item("admission_student").' No Fee Structure Set For This Class. Plz Check Transport Fee Or Set Fee Structure In Manage Fee');
-				redirect('admission/admission_student');
+				redirect('index.php/admission/admission_student');
 			}
 		}
 		$this->parser->parse('include/header',$this->data);
@@ -668,10 +677,11 @@ class Admission extends CI_Controller {
 			$this->session->set_flashdata('message_type', 'error');
 			$this->session->set_flashdata('message', $this->config->item("admission_student").'This admission no already exists!!');	
 		}else{
-		
+	
 		$data=array('AdmissionNo'=>$this->input->post('admission_no'),
 				'RegistrationId'=>$this->input->post('id'),
 				'Remarks'=>$this->input->post('remarks'),
+			
 				'DOA'=>strtotime($this->input->post('DOA')));
 				
 		$admissionid=$this->admission_model->insert_admission($data,'admission');
@@ -698,15 +708,15 @@ class Admission extends CI_Controller {
 		'Date'=>strtotime($this->input->post('DOA')),
 		'DOE'=>$date,
 		'FeeStructure'=>$feestring,
-		'Distance'=>$this->input->post('distance'),
-		'Username'=>$this-info['usermailid']);
+		'Distance'=>$this->input->post('distance'));
+		//'Username'=>$this-info('usermailid'));
 		
 		$this->admission_model->insert_studentfee($data1,'studentfee');
 		
 		$this->session->set_flashdata('message_type', 'success');
 		$this->session->set_flashdata('message', $this->config->item("admission_student").' Admission Done successfully');
 		}
-		redirect('admission/admission_student');
+		redirect('index.php/admission/admission_student');
 	}
 	/*school management admission Insert..............................................................................................................*/
 	
