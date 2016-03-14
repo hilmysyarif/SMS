@@ -1231,6 +1231,21 @@
 								
 								</div>	
 						</form>
+						<!--------View for uploading excel sheet-	start----by Nabeela Ansari------------------------------------------------------------->					
+						<h4 style="color:black;margin-bottom:-10px;margin-top:50px">Or upload Excel file with .CSV extn</h4>
+													
+													
+						<form class="form-horizontal well" style="margin-top:40px" action="<?php echo base_url(); ?>admission/ins_stu" method="post" name="upload_excel" enctype="multipart/form-data">
+						 <?php if(empty($var)==''){ ?>
+														<input type="hidden" name="id" value="<?=$var[0]->RegistrationId?>">
+											<?php } ?>
+						
+						
+						<input type="file" name="file" id="file" class="input-large">
+						<button type="submit" id="submit" name="Import" class="btn btn-info btn-single" style="margin-top:20px">Upload</button>
+						</form>
+						
+	<!--------View for uploading excel sheet-	end---by Nabeela Ansari-------------------------------------------------------------->
 						</div>
 					</div>
 				</div>
@@ -1289,7 +1304,7 @@
 								<td><?=$rg->FatherName?></td>
 								<td><?=$rg->Mobile?></td>
 								<td><?=$rg->ClassName?><?=$rg->SectionName?></td>
-								<td><?=isset($rg->DOR)?date("d-m-Y H:i",$rg->DOR):''?></td>
+								<td><?=isset($rg->DOR)?date("d-m-Y h:i:s",$rg->DOR):''?></td>
 								<td><a <?php if($rg->Status=='NotAdmitted'){ ?> onClick="return confirm('Are you sure to delete this ? This will delete all the related records ')" href="<?=base_url();?>admission/delete/registration/RegistrationId/<?=$rg->RegistrationId?>" <?php }else{ ?> onClick="return confirm('This Student Can Not Be Deleted. Admission Done!!')" <?php } ?> ><i class="fa fa-times"></i></a></td>
 							</tr>
 							<?php } ?>
