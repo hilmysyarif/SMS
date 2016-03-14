@@ -536,13 +536,13 @@ if(Authority::checkAuthority('ManageUser')==true){
 					 if($msg=='fail'){
 					
 					$this->session->set_flashdata('message_type', 'success');        
-					$this->session->set_flashdata('message', $this->config->item("manageaccount").' ClassName not added '.$comma.$comma1);
+					$this->session->set_flashdata('message', $this->config->item("manageaccount").' SectionName not added '.$comma.$comma1);
 					redirect('master/manageclass');
 					}			
 					fclose($file);  
 					
 					$this->session->set_flashdata('message_type', 'success');        
-					$this->session->set_flashdata('message', $this->config->item("manageaccount").' ClassName added ');
+					$this->session->set_flashdata('message', $this->config->item("manageaccount").' SectionName added ');
 					redirect('master/manageclass');
                      
 				  }

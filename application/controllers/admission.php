@@ -16,6 +16,8 @@ class Admission extends CI_Controller {
 		$this->load->library('session');
 		$this->load->library('authority');
 		if (!$this->session->userdata('user_data')){ $this->session->set_flashdata('category_error_login', " Your Session Is Expired!! Please Login Again. "); redirect(base_url());}
+		$timezone = "Asia/Calcutta";
+		if(function_exists('date_default_timezone_set')) date_default_timezone_set($timezone);
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
 		$this->session->set_userdata('currentsession',$currentsession);
@@ -63,7 +65,7 @@ class Admission extends CI_Controller {
 		 		'PermanentAddress'=>$registration_info[0]->PermanentAddress,
 		 		'AlternateMobile'=>$registration_info[0]->AlternateMobile,
 		 		'FatherDateOfBirth'=>$registration_info[0]->FatherDateOfBirth,
-		 		'MotherDateOfBirth'=>$registration_info[0]->MotherDateOfBirth, 
+		 		'MotherDateOfBirth'=>$registration_info[0]->MotherDateOfBirth,
 		 		'FatherDesignation'=>$registration_info[0]->FatherDesignation,
 		 		'FatherEmail'=>$registration_info[0]->FatherEmail,
 		 		'MotherEmail'=>$registration_info[0]->MotherEmail,
@@ -390,6 +392,12 @@ class Admission extends CI_Controller {
 							foreach($st as $st);
 							
 						}
+						
+						if(!empty($emapData[$st]))
+						{
+							$StudentName=$emapData[$st];
+						
+						
 						 if( is_array($ft) && isset($ft) &&!empty($ft))
 						{
 						foreach($ft as $ft);
@@ -421,7 +429,7 @@ class Admission extends CI_Controller {
 						 if(is_array($dt) && isset($dt) && !empty($dt))
 						{
 						foreach($dt as $dt);
-						} 
+						}
 						
 						if(is_array($gt) && isset($gt) && !empty($gt))
 						{
@@ -437,29 +445,26 @@ class Admission extends CI_Controller {
 						if(isset($section1[0]->ClassName) && isset($section1[0]->SectionName) && !empty($section1[0]->SectionName) && !empty($section1[0]->ClassName))
 							
 							{ 	 
-								if(isset($mt) && !empty($mt))
+								if(isset($mt) && !empty($mt)&& !empty($emapData[$mt]))
 								{
 									$MotherName=$emapData[$mt];
 								}
+							
 								else
 								{
 									$MotherName='';
 								}
-								if(isset($ft) && !empty($ft))
+								if(isset($ft) && !empty($ft)&& !empty($emapData[$ft]))
 								{
 									$FatherName=$emapData[$ft];
+									
 								}
+									
 								else
 								{
 									$FatherName='';
 								}
-								
-								$student=$this->data['detail2']=$this->master_model->student($emapData[$st],$FatherName,$MotherName);
-								
-								
-								if(empty($student)){
-									
-									if(isset($nt) && !empty($nt))
+								if(isset($nt) && !empty($nt)&& !empty($emapData[$nt]))
 								{
 									$Mobileno=$emapData[$nt];
 								}
@@ -468,13 +473,22 @@ class Admission extends CI_Controller {
 									$Mobileno='';
 								}
 								
-								if(isset($dt) && !empty($dt))
+								$student=$this->data['detail2']=$this->master_model->student($StudentName,$FatherName,$MotherName,$MobileNo);
+								
+								
+								if(empty($student)){
+									
+									
+								
+								if(isset($dt) && !empty($dt) && !empty($emapData[$dt]))
 								{
-									$Date=$emapData[$dt];
+									$Date=$emapData[$dt]; 
+									
 								}
 								else
-								{
-									$Date=date("Y-m-d");
+								{  
+									$Date=date("d-m-Y h:i:s");
+									
 								}
 								
 								
@@ -494,7 +508,7 @@ class Admission extends CI_Controller {
 									$ParentsPassword=rand(100000,999999);
 									$data1= array(
 									'Session'=>$this->currentsession[0]->CurrentSession,
-									'StudentName'=>$emapData[$st],
+									'StudentName'=>$StudentName,
 									'FatherName'=>$FatherName,
 									'MotherName'=>$MotherName,
 									'Mobile'=>$Mobileno,
@@ -506,6 +520,7 @@ class Admission extends CI_Controller {
 									'Username'=>$this->info['usermailid'],
 									'ParentsPassword'=>$ParentsPassword,
 									'StudentsPassword'=>$StudentsPassword);
+							
 									$this->load->model('master_model'); 
 									$insertId = $this->master_model->insertCSV2($data1);
 								
@@ -530,6 +545,14 @@ class Admission extends CI_Controller {
 								
 							}
 				   }
+				   else {
+									$msg="failed";
+									
+									$name1[]=$emapData[$ft];
+							
+									$comma2 = implode(",", $name1); 
+				         }
+				   }
 				   $k++;
 				   
 				}
@@ -543,6 +566,11 @@ class Admission extends CI_Controller {
 				if($msg=="fail1"){
 					$this->session->set_flashdata('message_type', 'error');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Students already exist -'.$comma1);
+					redirect('admission/registration');
+				}
+				if($msg=="failed"){
+					$this->session->set_flashdata('message_type', 'error');        
+					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Students name doest not exsist whose father name is -'.$comma2);
 					redirect('admission/registration');
 				}
 				
