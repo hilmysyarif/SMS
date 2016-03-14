@@ -61,8 +61,7 @@ if(!$CONNECTION)
 		
 		$senddataarray =array();		
 		$a =0;
-		while($data1 = mysqli_fetch_array($countrow)){
-		
+		while($data1 = mysqli_fetch_array($countrow)){		
 			$data2[]=$data1;					
 				
 				if (strpos($data2[$a]['not_viewed_by'], $dataarray['UserID']) !== false){
