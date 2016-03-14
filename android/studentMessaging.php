@@ -23,8 +23,7 @@ if(!$CONNECTION)
 		$g_name = $aaa['g_name'];
 		$g_admin = $aaa['g_admin'];
 		$g_members = $aaa['g_members'];
-		$time = $aaa['time'];
-		
+		$time = $aaa['time'];		
 		
 		$queryInsert="insert into groupinfo(g_name,g_admin,g_members,created_at) values('$g_name','$g_admin','$g_members','$time') ";
 		mysqli_query($CONNECTION,$queryInsert);
@@ -64,8 +63,7 @@ if(!$CONNECTION)
 		$a =0;
 		while($data1 = mysqli_fetch_array($countrow)){
 		
-			$data2[]=$data1;		
-				print ($dataarray['UserID']);die;
+			$data2[]=$data1;					
 				
 				if (strpos($data2[$a]['not_viewed_by'], $dataarray['UserID']) !== false){
 					$dataArray = array('s_no'=>$data2[$a]['s_no'],
