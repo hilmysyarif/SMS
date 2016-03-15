@@ -1,5 +1,5 @@
 <?php
-
+ 
 $dataarr1=json_decode($_POST['Jaydevi'],true);
 
 $DBDATABASE=$dataarr1['DB_Name'];
@@ -12,9 +12,9 @@ if(!$CONNECTION)
 echo "Database not found or There is an error in connecting to DB!! Please fix this!!!";
 exit();
 }else{
-//  	$action = "insert";
+ // 	$action = "insert";
 
-  $action=isset($_GET['action'])?$_GET['action']:'';
+   $action=isset($_GET['action'])?$_GET['action']:'';
 if($action=="get"){
 	
 	
@@ -155,26 +155,34 @@ print_r(json_encode($mainarr));
 					{
 						//$AttendanceDate=strtotime($AttendanceDate);
 						$query="select Attendance from studentattendance where Date='$AttendanceDate' ";
+						
 						$check=mysqli_query($CONNECTION,$query);
+					
 						$AlreadyMarked=mysqli_num_rows($check);
+						
+						
+						
 						if($AlreadyMarked>0)
 						{  
-							/*$row=mysqli_fetch_array($check);
+						    $row=mysqli_fetch_array($check);
+						    
+ 						 // print_r($row['Attendance']);die;
+						    
 							$LastAttendance=explode(",",$row['Attendance']);
 							foreach($LastAttendance as $LastAttendanceValue)
 							{
-								$LastAttAttendance=explode("-",$LastAttendanceValue);
-								$LastAdmissionIdId=$LastAttAttendance[0];
-								$LastAtt=$LastAttAttendance[1];
-								$LastTime=$LastAttAttendance[2];
+								$aaa=explode("-",$LastAttendanceValue);
+								$LastAdmissionIdId=$aaa[0];
+								$LastAtt=$aaa[1];
+								$LastTime=$aaa[2];
 								//if(!empty($Attendance)){
-								$Search=array_search($LastAdmissionIdId,$Attendance);//}else{$Search=FALSE;}
-								if($Search===FALSE)
+								$SearchInPresent=array_search($LastAdmissionIdId,$Attendance);//}else{$Search=FALSE;}
+								$SearchInAbsent=array_search($LastAdmissionIdId,$Attendance1);
+								
+								if($SearchInPresent===FALSE && $SearchInAbsent===FALSE)
 								$NewAttendance[]="$LastAdmissionIdId-$LastAtt-$LastTime";
-								elseif($Att!="")
-								//$NewAttendance[]="$LastAdmissionIdId-$Att-$DateTimeStamp";
-								$Marked[]=$LastAdmissionIdId;
-							}*/
+								else $Marked[]=$LastAdmissionIdId;
+							} 
 							
 							foreach($Attendance as $AttendanceValue)
 							{ 
@@ -227,6 +235,7 @@ print_r(json_encode($mainarr));
 						}
 							
 							
+						
 					}
 				}
 			}
