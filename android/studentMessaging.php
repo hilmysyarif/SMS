@@ -17,7 +17,7 @@ if(!$CONNECTION)
 	exit();
 }else{
 	
-// 	$action = "responseOfMsg";
+	//$action = "responseOfMsg";
 	
   	$action=isset($_GET['action'])?$_GET['action']:'';	
 		
@@ -105,10 +105,16 @@ if(!$CONNECTION)
 				$not_viewed_by = str_replace($studentID, "", $not_viewed_by1);		
 			
  			$sql = "UPDATE groupmsg SET not_viewed_by='$not_viewed_by' WHERE s_no='$serverId'";
+ 			
  			if (mysqli_query($CONNECTION,$sql))
  			$udationResult[] = array('s_no'=>$serverId,'result'=>"yes");	
  			else $udationResult[] = array('s_no'=>$serverId,'result'=>"no");	
 		
+ 			if ($not_viewed_by1==null || $not_viewed_by1==""){
+ 				
+ 				$querydelete="DELETE FROM `groupmsg` WHERE s_no='$serverId'";
+		        mysqli_query($CONNECTION,$querydelete);
+ 			}
 		}
 		
 		
