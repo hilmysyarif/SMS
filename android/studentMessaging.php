@@ -8,12 +8,16 @@ $DBUSERNAME="root";
 $DBPASSWORD="bitnami";
 
 
+
+
 $CONNECTION=mysqli_connect("localhost",$DBUSERNAME,$DBPASSWORD,$DBDATABASE);
 if(!$CONNECTION)
 {
 	echo "Database not found or There is an error in connecting to DB!! Please fix this!!!";
 	exit();
 }else{
+	
+// 	$action = "responseOfMsg";
 	
   	$action=isset($_GET['action'])?$_GET['action']:'';	
 		
@@ -87,24 +91,28 @@ if(!$CONNECTION)
 		$aaa =  $dataarray['GroupData'];
 		
 		$studentID= $aaa['studentID'];
-		$s_no = $aaa['s_no'];
+		$s_no = $aaa['s_no'];		
 		
 		foreach($s_no as $serverId){
 			$countrow=mysqli_query($CONNECTION,"select not_viewed_by from groupmsg where s_no='$serverId'");
 			$data1 = mysqli_fetch_array($countrow);
-			$not_viewed_by1 = $data1['not_viewed_by'];
+			$not_viewed_by1 = $data1['not_viewed_by'];			
 			
-			$studentID = $aaa['studentID'];
-			$studentID.=",";
-			
-			$not_viewed_by = str_replace($studentID, "", $not_viewed_by1);		
+			$studentID= $aaa['studentID'];
+	if ((strpos("$not_viewed_by1", ","))===FALSE);		
+	else $studentID.=",";			
+
+				$not_viewed_by = str_replace($studentID, "", $not_viewed_by1);		
 			
  			$sql = "UPDATE groupmsg SET not_viewed_by='$not_viewed_by' WHERE s_no='$serverId'";
- 			mysqli_query($CONNECTION,$sql);
+ 			if (mysqli_query($CONNECTION,$sql))
+ 			$udationResult[] = array('s_no'=>$serverId,'result'=>"yes");	
+ 			else $udationResult[] = array('s_no'=>$serverId,'result'=>"no");	
+		
 		}
 		
 		
-		
+		print_r(json_encode($udationResult));
 	}
 	
 
