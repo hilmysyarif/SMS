@@ -330,7 +330,7 @@ class Admission extends CI_Controller {
 				$r_id=$this->admission_model->insert_registration($info);
 			 	$this->session->set_flashdata('message_type', 'success');
 				$this->session->set_flashdata('message', $this->config->item("registration").' Registration Done successfully');
-				redirect('index.php/registration');
+				redirect('admission/registration');
 		}
 	}
 	
