@@ -1245,7 +1245,22 @@
 						<button type="submit" id="submit" name="Import" class="btn btn-info btn-single" style="margin-top:20px">Upload</button>
 						</form>
 						
-	<!--------View for uploading excel sheet-	end---by Nabeela Ansari-------------------------------------------------------------->
+						<!--------View for uploading excel sheet-	end---by Nabeela Ansari-------------------------------------------------------------->
+						
+						<h4 style="color:black;margin-bottom:-10px;margin-top:50px">Or upload  Hindi Excel file with .CSV in extn</h4>
+													
+													
+						<form class="form-horizontal well" style="margin-top:40px" action="<?php echo base_url(); ?>admission/student_info_hindi" method="post" name="upload_excel" enctype="multipart/form-data">
+						 <?php if(empty($var)==''){ ?>
+														<input type="hidden" name="id" value="<?=$var[0]->RegistrationId?>">
+											<?php } ?>
+						
+						
+						<input type="file" name="file" id="file" class="input-large">
+						<button type="submit" id="submit" name="Import" class="btn btn-info btn-single" style="margin-top:20px">Upload</button>
+						</form>
+						
+						<!--------View for uploading excel sheet in hindi end---by Nabeela Ansari-------------------------------------------------------------->
 						</div>
 					</div>
 				</div>
