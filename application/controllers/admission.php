@@ -327,6 +327,7 @@ class Admission extends CI_Controller {
 									'Username'=>$this->info['usermailid'],
 									'ParentsPassword'=>$ParentsPassword,
 									'StudentsPassword'=>$StudentsPassword);
+									mb_convert_variables('utf-8', 'original encode', $info );
 				$r_id=$this->admission_model->insert_registration($info);
 			 	$this->session->set_flashdata('message_type', 'success');
 				$this->session->set_flashdata('message', $this->config->item("registration").' Registration Done successfully');
