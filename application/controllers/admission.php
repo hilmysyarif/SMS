@@ -327,7 +327,7 @@ class Admission extends CI_Controller {
 									'Username'=>$this->info['usermailid'],
 									'ParentsPassword'=>$ParentsPassword,
 									'StudentsPassword'=>$StudentsPassword);
-									mb_convert_variables('utf-8', 'original encode', $info );
+
 				$r_id=$this->admission_model->insert_registration($info);
 			 	$this->session->set_flashdata('message_type', 'success');
 				$this->session->set_flashdata('message', $this->config->item("registration").' Registration Done successfully');
@@ -605,7 +605,7 @@ class Admission extends CI_Controller {
 	function student_info_hindi($RegistrationId=false)
 	{	$var;
 	
-		/*  if(Authority::checkAuthority('Registration')==true){
+		 if(Authority::checkAuthority('Registration')==true){
 			}
 		else{
 				$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
@@ -615,7 +615,7 @@ class Admission extends CI_Controller {
 				$this->session->set_flashdata('category_error', 'Please Select Session!!');        
 				redirect($_SERVER['HTTP_REFERER']);
 			} 
-			 */
+			 
 			
 		 if(isset($_POST["Import"]))
 		 { 
