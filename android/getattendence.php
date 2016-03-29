@@ -112,28 +112,18 @@ $mainarr=array('school'=>$classarr,'Exam_type'=>$resultarray_examtype,'school_na
 print_r(json_encode($mainarr));
 
 }elseif($action=="insert"){
-
-// 	$dataarr1=json_decode($_POST['Jaydevi'],true);
-	$date='';
-	$pstudentid='';	
-	$astudentid='';
 	
 	$resultArray = array();
 		foreach($dataarr1['SchoolData']['SchoolAttendance'] as $dataarr2)
-		{
-																		//print_r($dataarr2['Class']); Get class name from there...
-			
+		{																//print_r($dataarr2['Class']); Get class name from there...
+		
 			foreach($dataarr2['ClassData'] as $dataarr3)
 			{															//$dataarr3['Section_name']  Get Section name from there...
 				foreach($dataarr3['SectionData'] as $dataarr4)
 				{
 					$Attendance=$dataarr4['PresentStudentId'];
 					$Attendance1=$dataarr4['AbsentStudentId'];
-					$AttendanceDate=strtotime($dataarr4['Date']);
-					
-					/*$CurrentSessionArray=explode("-",$CURRENTSESSION);
-					$StartingYear=$CurrentSessionArray[0];
-					$EndingYear=$CurrentSessionArray[1];*/
+					$AttendanceDate=strtotime($dataarr4['Date']);				
 					
 					$SessionStartingDate="01-04-2015";
 					$SessionEndingDate="31-03-2016";
@@ -142,10 +132,8 @@ print_r(json_encode($mainarr));
 					
 					$Date=date("Y-m-d");
 					$Att="P";
-					$DateTimeStamp=strtotime($Date);
-					
-					$CountStudent=count($Attendance);
-					
+					$DateTimeStamp=strtotime($Date);			
+						
 					if($Attendance=="" || $AttendanceDate=="")
 					{
 						$Message="All the fields are mandatory!!";
@@ -153,21 +141,15 @@ print_r(json_encode($mainarr));
 					}
 					else
 					{
-						//$AttendanceDate=strtotime($AttendanceDate);
 						$query="select Attendance from studentattendance where Date='$AttendanceDate' ";
 						
 						$check=mysqli_query($CONNECTION,$query);
 					
 						$AlreadyMarked=mysqli_num_rows($check);
 						
-						
-						
 						if($AlreadyMarked>0)
 						{  
 						    $row=mysqli_fetch_array($check);
-						    
- 						 // print_r($row['Attendance']);die;
-						    
 							$LastAttendance=explode(",",$row['Attendance']);
 							foreach($LastAttendance as $LastAttendanceValue)
 							{
@@ -175,26 +157,36 @@ print_r(json_encode($mainarr));
 								$LastAdmissionIdId=$aaa[0];
 								$LastAtt=$aaa[1];
 								$LastTime=$aaa[2];
-								//if(!empty($Attendance)){
+								
 								$SearchInPresent=array_search($LastAdmissionIdId,$Attendance);//}else{$Search=FALSE;}
 								$SearchInAbsent=array_search($LastAdmissionIdId,$Attendance1);
 								
-								if($SearchInPresent===FALSE && $SearchInAbsent===FALSE)
+								if($SearchInPresent==FALSE && $SearchInAbsent==FALSE)
 								$NewAttendance[]="$LastAdmissionIdId-$LastAtt-$LastTime";
-								else $Marked[]=$LastAdmissionIdId;
+								else {								
+									if ($SearchInPresent!==FALSE){
+										$NewAttendance[] ="$LastAdmissionIdId-$Att-$LastTime";
+									}elseif ($SearchInAbsent!==FALSE) 
+									$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
+
+									//$Marked[]=$LastAdmissionIdId;
+									
+// 									foreach($Attendance as $AttendanceValue)
+// 									{
+// 										$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+// 										//if($SearchForMarkedIndex===FALSE && $Att!="")
+// 										$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
+// 									}
+// 									foreach($Attendance1 as $AttendanceValue)
+// 									{	//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+// 									//if($SearchForMarkedIndex!=FALSE && $Att!="")
+// 									$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
+// 									}
+									
+								}
 							} 
 							
-							foreach($Attendance as $AttendanceValue)
-							{ 
-								//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
-								//if($SearchForMarkedIndex===FALSE && $Att!="")
-								$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
-							}
-							foreach($Attendance1 as $AttendanceValue)
-							{	//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
-								//if($SearchForMarkedIndex!=FALSE && $Att!="")
-								$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
-							}
+							
 							
 							$NewAttendance1=implode(",",$NewAttendance);
 							
@@ -242,7 +234,8 @@ print_r(json_encode($mainarr));
 		}
 	print_r(json_encode($resultArray));
 
-}else{
+}
+else{
 	echo"Invalid Request!!";
 	exit();
 }
