@@ -112,7 +112,6 @@ $mainarr=array('school'=>$classarr,'Exam_type'=>$resultarray_examtype,'school_na
 print_r(json_encode($mainarr));
 
 }elseif($action=="insert"){
-	$date='';	
 	
 	$resultArray = array();
 		foreach($dataarr1['SchoolData']['SchoolAttendance'] as $dataarr2)
@@ -142,6 +141,7 @@ print_r(json_encode($mainarr));
 					}
 					else
 					{
+						
 						$query="select Attendance from studentattendance where Date='$AttendanceDate' ";
 						
 						$check=mysqli_query($CONNECTION,$query);
@@ -151,9 +151,6 @@ print_r(json_encode($mainarr));
 						if($AlreadyMarked>0)
 						{  
 						    $row=mysqli_fetch_array($check);
-						    
- 						 // print_r($row['Attendance']);die;
-						    
 							$LastAttendance=explode(",",$row['Attendance']);
 							foreach($LastAttendance as $LastAttendanceValue)
 							{
@@ -161,26 +158,36 @@ print_r(json_encode($mainarr));
 								$LastAdmissionIdId=$aaa[0];
 								$LastAtt=$aaa[1];
 								$LastTime=$aaa[2];
-								//if(!empty($Attendance)){
+								
 								$SearchInPresent=array_search($LastAdmissionIdId,$Attendance);//}else{$Search=FALSE;}
 								$SearchInAbsent=array_search($LastAdmissionIdId,$Attendance1);
 								
-								if($SearchInPresent===FALSE && $SearchInAbsent===FALSE)
+								if($SearchInPresent==FALSE && $SearchInAbsent==FALSE)
 								$NewAttendance[]="$LastAdmissionIdId-$LastAtt-$LastTime";
-								else $Marked[]=$LastAdmissionIdId;
+								else {								
+									if ($SearchInPresent!==FALSE){
+										$NewAttendance[] ="$LastAdmissionIdId-$Att-$LastTime";
+									}elseif ($SearchInAbsent!==FALSE) 
+									$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
+
+									//$Marked[]=$LastAdmissionIdId;
+									
+// 									foreach($Attendance as $AttendanceValue)
+// 									{
+// 										$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+// 										//if($SearchForMarkedIndex===FALSE && $Att!="")
+// 										$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
+// 									}
+// 									foreach($Attendance1 as $AttendanceValue)
+// 									{	//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+// 									//if($SearchForMarkedIndex!=FALSE && $Att!="")
+// 									$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
+// 									}
+									
+								}
 							} 
 							
-							foreach($Attendance as $AttendanceValue)
-							{ 
-								//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
-								//if($SearchForMarkedIndex===FALSE && $Att!="")
-								$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
-							}
-							foreach($Attendance1 as $AttendanceValue)
-							{	//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
-								//if($SearchForMarkedIndex!=FALSE && $Att!="")
-								$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
-							}
+							
 							
 							$NewAttendance1=implode(",",$NewAttendance);
 							
@@ -215,14 +222,12 @@ print_r(json_encode($mainarr));
 									$resultArray[] = array('result'=>"inserted",'onDate'=>date('Y-m-d',$AttendanceDate));
 								else $resultArray[] = array('result'=>"error",'onDate'=>date('Y-m-d',$AttendanceDate));
 								
-
-								
-								
+// 								$Message="Attendance Added successfully!!";
+// 								$Type=success;	
 							}
 						}
 							
-
-						
+							
 						
 					}
 				}
@@ -230,7 +235,8 @@ print_r(json_encode($mainarr));
 		}
 	print_r(json_encode($resultArray));
 
-}else{
+}
+else{
 	echo"Invalid Request!!";
 	exit();
 }
