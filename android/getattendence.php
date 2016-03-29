@@ -216,6 +216,8 @@ print_r(json_encode($mainarr));
 								else $resultArray[] = array('result'=>"error",'onDate'=>date('Y-m-d',$AttendanceDate));
 								
 
+								
+								
 							}
 						}
 							
