@@ -215,8 +215,7 @@ print_r(json_encode($mainarr));
 									$resultArray[] = array('result'=>"inserted",'onDate'=>date('Y-m-d',$AttendanceDate));
 								else $resultArray[] = array('result'=>"error",'onDate'=>date('Y-m-d',$AttendanceDate));
 								
-// 								$Message="Attendance Added successfully!!";
-// 								$Type=success;	
+
 							}
 						}
 							
