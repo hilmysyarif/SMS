@@ -141,6 +141,7 @@ print_r(json_encode($mainarr));
 					}
 					else
 					{
+						
 						$query="select Attendance from studentattendance where Date='$AttendanceDate' ";
 						
 						$check=mysqli_query($CONNECTION,$query);
