@@ -28,7 +28,7 @@ class Admission extends CI_Controller {
 	 }
 
 	 /*school management registration controller start*/	
-	function registration($id=false)
+	function registration($id=false) 
 	{	
 		if(Authority::checkAuthority('Registration')==true){
 			
