@@ -639,7 +639,7 @@ class Admission extends CI_Controller {
 						$section1=$this->data['detail1']=$this->master_model->section1($emapData[5],$emapData[4]);
 						
 						$section2=$this->data['detail2']=$this->master_model->section2();
-						
+						print_r($section2);die;
 						if(isset($section1[0]->ClassName) && isset($section1[0]->SectionName) && !empty($section1[0]->SectionName) && !empty($section1[0]->ClassName))
 							
 							{ 	 
