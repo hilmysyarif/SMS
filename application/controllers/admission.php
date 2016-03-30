@@ -628,14 +628,15 @@ class Admission extends CI_Controller {
 				
 				$file = fopen($filename, "r");
 				 
+				 
 				while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
 				{	
-						 
+						 if($k>0){ 
 						if(!empty($emapData[0]))
 						{
 							$StudentName=$emapData[0];
 								
-						$section1=$this->data['detail1']=$this->master_model->section1($emapData[4],$emapData[3]);
+						$section1=$this->data['detail1']=$this->master_model->section1($emapData[5],$emapData[4]);
 						
 						$section2=$this->data['detail2']=$this->master_model->section2();
 						
@@ -659,9 +660,9 @@ class Admission extends CI_Controller {
 									$FatherName='';
 								}
 								
-							if(isset($emapData[5]) && !empty($emapData[5]))
+							if(isset($emapData[3]) && !empty($emapData[3]))
 								{
-									$Mobileno=$emapData[5];
+									$Mobileno=$emapData[3];
 								}
 								else
 								{
@@ -785,6 +786,7 @@ class Admission extends CI_Controller {
 				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Error uploading');
 				redirect('admission/registration');
 		}
+	}
 
 /*school management student registration in hindi upload through excel sheet controller end..................................................................................................*/	
 
