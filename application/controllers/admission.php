@@ -696,7 +696,7 @@ class Admission extends CI_Controller {
 										$var=$section2[14]->MasterEntryId;
 									}
 									if($var==''){$var='NULL';}
-									$k=0;
+									
 									
 									$StudentsPassword=rand(100000,999999);
 									$ParentsPassword=rand(100000,999999);
