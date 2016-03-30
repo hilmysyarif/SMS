@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `circular` (
 CREATE TABLE IF NOT EXISTS `class` (
   `ClassId` int(11) NOT NULL,
   `Session` varchar(10) NOT NULL,
-  `ClassName` varchar(100) NOT NULL,
+  `ClassName` varchar(100) CHARACTER SET utf8 NOT NULL,
   `ClassStatus` varchar(10) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
@@ -1237,8 +1237,8 @@ CREATE TABLE IF NOT EXISTS `registration` (
   `RegistrationId` int(11) NOT NULL,
   `Session` varchar(10) NOT NULL,
   `Status` varchar(20) NOT NULL,
-  `StudentName` varchar(100) NOT NULL,
-  `FatherName` varchar(100) NOT NULL,
+  `StudentName` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `FatherName` varchar(100) CHARACTER SET utf8 NOT NULL,
   `FatherMobile` varchar(10) NOT NULL,
   `FatherDateOfBirth` varchar(10) NOT NULL,
   `FatherEmail` varchar(100) NOT NULL,
@@ -1246,7 +1246,7 @@ CREATE TABLE IF NOT EXISTS `registration` (
   `FatherOccupation` varchar(100) NOT NULL,
   `FatherDesignation` varchar(100) NOT NULL,
   `FatherOrganization` varchar(100) NOT NULL,
-  `MotherName` varchar(100) NOT NULL,
+  `MotherName` varchar(100) CHARACTER SET utf8 NOT NULL,
   `MotherMobile` varchar(10) NOT NULL,
   `MotherDateOfBirth` varchar(10) NOT NULL,
   `MotherEmail` varchar(100) NOT NULL,
@@ -1401,7 +1401,7 @@ CREATE TABLE IF NOT EXISTS `section` (
   `SectionId` int(11) NOT NULL,
   `ClassId` int(11) NOT NULL,
   `SectionName` varchar(100) NOT NULL,
-  `SectionStatus` varchar(10) NOT NULL,
+  `SectionStatus` varchar(10) CHARACTER SET utf8 NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
