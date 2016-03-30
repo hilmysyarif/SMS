@@ -446,8 +446,8 @@ class Admission extends CI_Controller {
 						$section1=$this->data['detail1']=$this->master_model->section1($emapData[$et],$emapData[$ct]);
 						
 						$section2=$this->data['detail2']=$this->master_model->section2();
-								
 								print_r($section2);die;
+								
 						if(isset($section1[0]->ClassName) && isset($section1[0]->SectionName) && !empty($section1[0]->SectionName) && !empty($section1[0]->ClassName))
 							
 							{ 	 
@@ -497,13 +497,13 @@ class Admission extends CI_Controller {
 								
 								
 								
+									if($emapData[$gt]==$section2[13]->MasterEntryValue)
+									{
+										$var=$section2[13]->MasterEntryId;	
+									}
 									if($emapData[$gt]==$section2[14]->MasterEntryValue)
 									{
-										$var=$section2[14]->MasterEntryId;	
-									}
-									if($emapData[$gt]==$section2[15]->MasterEntryValue)
-									{
-										$var=$section2[15]->MasterEntryId;
+										$var=$section2[14]->MasterEntryId;
 									}
 									if($var==''){$var='NULL';}
 									$k=0;
@@ -690,13 +690,13 @@ class Admission extends CI_Controller {
 								
 								
 								
+									if($emapData[6]==$section2[13]->MasterEntryValue)
+									{
+										$var=$section2[13]->MasterEntryId;	
+									}
 									if($emapData[6]==$section2[14]->MasterEntryValue)
 									{
-										$var=$section2[14]->MasterEntryId;	
-									}
-									if($emapData[6]==$section2[15]->MasterEntryValue)
-									{
-										$var=$section2[15]->MasterEntryId;
+										$var=$section2[14]->MasterEntryId;
 									}
 									if($var==''){$var='NULL';}
 									$k=0;
