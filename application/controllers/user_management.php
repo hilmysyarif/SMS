@@ -9,7 +9,7 @@ class User_management extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('user_management_model');
-	}
+	} 
 	
 	function clone_db() 
 	{ 
