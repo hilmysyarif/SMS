@@ -11,7 +11,7 @@ class User_management extends CI_Controller {
 		$this->load->model('user_management_model');
 	}
 	
-	function clone_db()
+	function clone_db() 
 	{ 
 		$json_data=$_GET['data'];
 		$var=json_decode($json_data);
