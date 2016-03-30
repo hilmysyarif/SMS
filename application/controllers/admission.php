@@ -689,6 +689,7 @@ class Admission extends CI_Controller {
 									if($emapData[6]==$section2[13]->MasterEntryValue)
 									{
 										$var=$section2[13]->MasterEntryId;	
+										print_r($var);die;
 									}
 									if($emapData[6]==$section2[14]->MasterEntryValue)
 									{
