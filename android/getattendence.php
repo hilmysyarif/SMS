@@ -1,5 +1,5 @@
 <?php
-
+ 
 $dataarr1=json_decode($_POST['Jaydevi'],true);
 
 $DBDATABASE=$dataarr1['DB_Name'];
@@ -12,9 +12,9 @@ if(!$CONNECTION)
 echo "Database not found or There is an error in connecting to DB!! Please fix this!!!";
 exit();
 }else{
-//  	$action = "insert";
+ // 	$action = "insert";
 
-  $action=isset($_GET['action'])?$_GET['action']:'';
+   $action=isset($_GET['action'])?$_GET['action']:'';
 if($action=="get"){
 	
 	
@@ -112,28 +112,18 @@ $mainarr=array('school'=>$classarr,'Exam_type'=>$resultarray_examtype,'school_na
 print_r(json_encode($mainarr));
 
 }elseif($action=="insert"){
-
-// 	$dataarr1=json_decode($_POST['Jaydevi'],true);
-	$date='';
-	$pstudentid='';	
-	$astudentid='';
 	
 	$resultArray = array();
 		foreach($dataarr1['SchoolData']['SchoolAttendance'] as $dataarr2)
-		{
-																		//print_r($dataarr2['Class']); Get class name from there...
-			
+		{																//print_r($dataarr2['Class']); Get class name from there...
+		
 			foreach($dataarr2['ClassData'] as $dataarr3)
 			{															//$dataarr3['Section_name']  Get Section name from there...
 				foreach($dataarr3['SectionData'] as $dataarr4)
 				{
 					$Attendance=$dataarr4['PresentStudentId'];
 					$Attendance1=$dataarr4['AbsentStudentId'];
-					$AttendanceDate=strtotime($dataarr4['Date']);
-					
-					/*$CurrentSessionArray=explode("-",$CURRENTSESSION);
-					$StartingYear=$CurrentSessionArray[0];
-					$EndingYear=$CurrentSessionArray[1];*/
+					$AttendanceDate=strtotime($dataarr4['Date']);				
 					
 					$SessionStartingDate="01-04-2015";
 					$SessionEndingDate="31-03-2016";
@@ -142,10 +132,8 @@ print_r(json_encode($mainarr));
 					
 					$Date=date("Y-m-d");
 					$Att="P";
-					$DateTimeStamp=strtotime($Date);
-					
-					$CountStudent=count($Attendance);
-					
+					$DateTimeStamp=strtotime($Date);			
+						
 					if($Attendance=="" || $AttendanceDate=="")
 					{
 						$Message="All the fields are mandatory!!";
@@ -153,40 +141,52 @@ print_r(json_encode($mainarr));
 					}
 					else
 					{
-						//$AttendanceDate=strtotime($AttendanceDate);
 						$query="select Attendance from studentattendance where Date='$AttendanceDate' ";
+						
 						$check=mysqli_query($CONNECTION,$query);
+					
 						$AlreadyMarked=mysqli_num_rows($check);
+						
 						if($AlreadyMarked>0)
 						{  
-							/*$row=mysqli_fetch_array($check);
+						    $row=mysqli_fetch_array($check);
 							$LastAttendance=explode(",",$row['Attendance']);
 							foreach($LastAttendance as $LastAttendanceValue)
 							{
-								$LastAttAttendance=explode("-",$LastAttendanceValue);
-								$LastAdmissionIdId=$LastAttAttendance[0];
-								$LastAtt=$LastAttAttendance[1];
-								$LastTime=$LastAttAttendance[2];
-								//if(!empty($Attendance)){
-								$Search=array_search($LastAdmissionIdId,$Attendance);//}else{$Search=FALSE;}
-								if($Search===FALSE)
+								$aaa=explode("-",$LastAttendanceValue);
+								$LastAdmissionIdId=$aaa[0];
+								$LastAtt=$aaa[1];
+								$LastTime=$aaa[2];
+								
+								$SearchInPresent=array_search($LastAdmissionIdId,$Attendance);//}else{$Search=FALSE;}
+								$SearchInAbsent=array_search($LastAdmissionIdId,$Attendance1);
+								
+								if($SearchInPresent==FALSE && $SearchInAbsent==FALSE)
 								$NewAttendance[]="$LastAdmissionIdId-$LastAtt-$LastTime";
-								elseif($Att!="")
-								//$NewAttendance[]="$LastAdmissionIdId-$Att-$DateTimeStamp";
-								$Marked[]=$LastAdmissionIdId;
-							}*/
+								else {								
+									if ($SearchInPresent!==FALSE){
+										$NewAttendance[] ="$LastAdmissionIdId-$Att-$LastTime";
+									}elseif ($SearchInAbsent!==FALSE) 
+									$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
+
+									//$Marked[]=$LastAdmissionIdId;
+									
+// 									foreach($Attendance as $AttendanceValue)
+// 									{
+// 										$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+// 										//if($SearchForMarkedIndex===FALSE && $Att!="")
+// 										$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
+// 									}
+// 									foreach($Attendance1 as $AttendanceValue)
+// 									{	//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+// 									//if($SearchForMarkedIndex!=FALSE && $Att!="")
+// 									$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
+// 									}
+									
+								}
+							} 
 							
-							foreach($Attendance as $AttendanceValue)
-							{ 
-								//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
-								//if($SearchForMarkedIndex===FALSE && $Att!="")
-								$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
-							}
-							foreach($Attendance1 as $AttendanceValue)
-							{	//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
-								//if($SearchForMarkedIndex!=FALSE && $Att!="")
-								$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
-							}
+							
 							
 							$NewAttendance1=implode(",",$NewAttendance);
 							
@@ -227,13 +227,106 @@ print_r(json_encode($mainarr));
 						}
 							
 							
+						
 					}
 				}
 			}
 		}
 	print_r(json_encode($resultArray));
 
-}else{
+}elseif($action=="add"){
+	
+	foreach($dataarr1['SchoolData']['SchoolAttendance'] as $schoolAttendanceobj)
+	{	
+		$AttendanceDate = strtotime($schoolAttendanceobj['Date']);
+		$AbsentStudentId_array = $schoolAttendanceobj['AbsentStudentId'];
+		$PresentStudentId_array = $schoolAttendanceobj['PresentStudentId'];
+		
+		$Date=date("Y-m-d");
+		$Att="P";
+		$DateTimeStamp=strtotime($Date);
+		
+		$query="select Attendance from studentattendance where Date='$AttendanceDate' ";
+		
+		$check=mysqli_query($CONNECTION,$query);
+			
+		$AlreadyMarked=mysqli_num_rows($check);
+	
+		if($AlreadyMarked>0)
+		{
+			$row=mysqli_fetch_array($check);
+			$LastAttendance=explode(",",$row['Attendance']);
+			
+			
+			foreach($LastAttendance as $LastAttendanceValue)
+			{
+				$aaa=explode("-",$LastAttendanceValue);
+				$LastAdmissionIdId=$aaa[0];
+				$LastAtt=$aaa[1];
+				$LastTime=$aaa[2];
+				//if(!empty($Attendance)){
+				$SearchInPresent=array_search($LastAdmissionIdId,$Attendance);//}else{$Search=FALSE;}
+				$SearchInAbsent=array_search($LastAdmissionIdId,$Attendance1);
+		
+				if($SearchInPresent===FALSE && $SearchInAbsent===FALSE)
+					$NewAttendance[]="$LastAdmissionIdId-$LastAtt-$LastTime";
+				else $Marked[]=$LastAdmissionIdId;
+			}
+				
+			foreach($Attendance as $AttendanceValue)
+			{
+				//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+				//if($SearchForMarkedIndex===FALSE && $Att!="")
+				$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
+			}
+			foreach($Attendance1 as $AttendanceValue)
+			{	//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+				//if($SearchForMarkedIndex!=FALSE && $Att!="")
+				$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
+			}
+				
+			$NewAttendance1=implode(",",$NewAttendance);
+				
+			if($NewAttendance1!=""){
+				$queryInsert="update studentattendance set Attendance='$NewAttendance1' where Date='$AttendanceDate' ";
+				if (mysql_affected_rows()>=0)
+					$resultArray[] = array('result'=>"updated",'onDate'=>date('Y-m-d',$AttendanceDate));
+				else $resultArray[] = array('result'=>"error",'onDate'=>date('Y-m-d',$AttendanceDate));
+					
+					// 							$Message="Attendance updated successfully!!";
+					//  							$Type=success;
+					
+			}else{
+				$queryInsert="delete from studentattendance where Date='$AttendanceDate' ";}
+				mysqli_query($CONNECTION,$queryInsert);
+		}
+		else
+		{	$AttendanceString='';
+		foreach($Attendance as $AttendanceValue)
+			if($Att!="")
+				$AttendanceString[]="$AttendanceValue-$Att-$DateTimeStamp";
+			foreach($Attendance1 as $AttendanceValue)
+				if($Att!="")
+					$AttendanceString[]="$AttendanceValue-A-$DateTimeStamp";
+				$AttendanceString=implode(",",$AttendanceString);
+				if($AttendanceString!="")
+				{
+					$queryInsert="insert into studentattendance(Date,Attendance,DOL,DOLUsername) values('$AttendanceDate','$AttendanceString','$DateTimeStamp','rohit') ";
+					mysqli_query($CONNECTION,$queryInsert);
+		
+					if (mysql_affected_rows()>=0)
+						$resultArray[] = array('result'=>"inserted",'onDate'=>date('Y-m-d',$AttendanceDate));
+					else $resultArray[] = array('result'=>"error",'onDate'=>date('Y-m-d',$AttendanceDate));
+		
+					// 								$Message="Attendance Added successfully!!";
+					// 								$Type=success;
+				}
+		}
+		
+	}
+	
+}
+else{
 	echo"Invalid Request!!";
 	exit();
 }
