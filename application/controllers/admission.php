@@ -367,14 +367,14 @@ class Admission extends CI_Controller {
 					
 					for($i=0;count($emapData)>$i;$i++)
 					{
-						if($emapData[$i]=='StudentName'){
-							
+						if($emapData[$i]=='StudentName'){	
 						$st=[$i];}
 						if($emapData[$i]=='FatherName'){
 						$ft=[$i];}
 						if($emapData[$i]=='MotherName'){
 						$mt=[$i];}
 						if($emapData[$i]=='MobileNo'){
+							print_r($emapData[$i]);die;
 						$nt=[$i];}
 						if($emapData[$i]=='Class'){
 						$ct=[$i];}
@@ -455,7 +455,7 @@ class Admission extends CI_Controller {
 								{
 									$MotherName='';
 								}
-								if(isset($ft) && !empty($ft) && !empty($ft))
+								if(isset($ft) && !empty($ft) )
 								{
 									$FatherName=$emapData[$ft];
 								}
@@ -464,7 +464,7 @@ class Admission extends CI_Controller {
 									$FatherName='';
 								}
 								
-								if(isset($nt) && !empty($nt) && !empty($nt))
+								if(isset($nt) && !empty($nt) )
 								{
 									$Mobileno=$emapData[$nt];
 								}
