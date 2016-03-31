@@ -373,8 +373,8 @@ class Admission extends CI_Controller {
 						$ft=[$i];}
 						if($emapData[$i]=='MotherName'){
 						$mt=[$i];}
-						if($emapData[$i]=='MobileNo'){
-							print_r($emapData[$i]);die;
+						
+						if($emapData[$i]=='MobileNo'){	
 						$nt=[$i];}
 						if($emapData[$i]=='Class'){
 						$ct=[$i];}
