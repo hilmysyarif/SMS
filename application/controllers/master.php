@@ -389,7 +389,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 	}
 /*school management manageClass End.............................................................................*/
 	
-  /*School management class and section upload through excel start*.by Nabeela ANsari....................................*/       
+ /*School management class and section upload through excel start*.....................................*/       
 	
 	function insert_class1($type=false)
 	{	
@@ -397,7 +397,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 			
 		}else{
 			$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-			redirect('dashboard');
+			redirect('index.php/dashboard');
 		}
 		if(empty($this->currentsession[0]->CurrentSession)){
 			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
@@ -425,63 +425,11 @@ if(Authority::checkAuthority('ManageUser')==true){
 								'DOE'=>date("d m Y"),
 								'ClassStatus'=>"Active");
 								
-								$name[]=$emapData[0];
-								$comma = implode(",", $name);
+								
                         $this->load->model('master_model');
                         $insertId = $this->master_model->insertCSV($data);
-                     }
-					 $i++;
-					 }
-					 
-                    fclose($file);
-					$this->session->set_flashdata('message_type', 'success');        
-					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Class Added Successfully'.$comma);
-                    redirect('master/manageclass');
-                  }
-            
-			else{
-					$this->session->set_flashdata('message_type', 'error');        
-					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Adding class creat error');
-					fredirect('master/manageclass');
-				}
-			}	
-					
-		
-		}
-	}
-	/*section insert function*.....................................*/
-	
-	function insert_class2($type=false)
-	{	
-	$var;
-		if(Authority::checkAuthority('ManageClass')==true){
-			
-		}else{
-			$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-			redirect('dashboard');
-		}
-		if(empty($this->currentsession[0]->CurrentSession)){
-			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
-            redirect($_SERVER['HTTP_REFERER']);
-		}
-		if(empty($this->currentsession[0]->CurrentSession)){
-			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
-            redirect($_SERVER['HTTP_REFERER']);
-		}
-		
-		if($type=='class'){
-			$msg='';
-		 if(isset($_POST["Import"]))
-            { $i=0;
-                $filename=$_FILES["file"]["tmp_name"];
-                if($_FILES["file"]["size"] > 0)
-                  {
-                    $file = fopen($filename, "r");
-                     while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
-					
-                     {	
-					 if($i>0){
-					 $section=$this->data['detail']=$this->master_model->section($emapData[0]);
+						
+						 $section=$this->data['detail']=$this->master_model->section($emapData[0]);
                      
 														  
 								$data = array(
@@ -520,43 +468,38 @@ if(Authority::checkAuthority('ManageUser')==true){
 									{	$msg='fail';
 									
 									$name[]=$emapData[0];
-									$name1[]=$emapData[1];
+									//$name1[]=$emapData[1];
 									$comma = implode(",", $name);
-									$comma1 = implode(",", $name1);
+									//$comma1 = implode(",", $name1);
 									
 									}	
-									
-								
-								
-								
-								}
-								$i++;
-						}
-					
-					 if($msg=='fail'){
-					
+                     }
+					 $i++;
+					 }
+					 
+					if($msg=="fail"){
+					$this->session->set_flashdata('message_type', 'error');        
+					$this->session->set_flashdata('message', $this->config->item("manageaccount")."Class and respective section not added for this class".$comma);
+					redirect('admission/registration');
+				} 
+					 
+					 
+                    fclose($file);
 					$this->session->set_flashdata('message_type', 'success');        
-					$this->session->set_flashdata('message', $this->config->item("manageaccount").' SectionName not added '.$comma.$comma1);
-					redirect('master/manageclass');
-					}			
-					fclose($file);  
-					
-					$this->session->set_flashdata('message_type', 'success');        
-					$this->session->set_flashdata('message', $this->config->item("manageaccount").' SectionName added ');
-					redirect('master/manageclass');
-                     
-				  }
+					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Class Added Successfully'.$comma);
+                    redirect('index.php/master/manageclass');
                   }
             
-		else{
-				$this->session->set_flashdata('message_type', 'error');        
-                $this->session->set_flashdata('message', $this->config->item("manageaccount").' Error in uploading');
-				redirect('master/manageclass');
-		}
-	}	
+			else{
+					$this->session->set_flashdata('message_type', 'error');        
+					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Adding class creat error');
+					fredirect('index.php/master/manageclass');
+				}
+			}	
 					
 		
-}
+		}
+	}
 	
 	 /*School management class and section upload through excel end.......................................................*/ 
 /*school management Class and section insert and update start....................................................*/	
