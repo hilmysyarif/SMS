@@ -418,7 +418,7 @@ if(Authority::checkAuthority('ManageUser')==true){
                      while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
 					 
                      {
-						 $class=$this->data['detail']=$this->master_model->class($emapData[0]);
+						 $class=$this->data['detail']=$this->master_model->class1($emapData[0]);
 						 if(empty ($class))
 						 {
 						 if($i>0){

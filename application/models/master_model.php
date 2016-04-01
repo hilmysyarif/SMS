@@ -97,7 +97,7 @@ class Master_model extends CI_Model
 	}
 	
 	
-	public function class($class=false)
+	public function class1($class=false)
 	{	
 	   $qry=$this->db->query("Select ClassName from class where ClassName='$class'");
 		return $qry->Result();
