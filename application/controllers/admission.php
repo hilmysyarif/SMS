@@ -674,9 +674,9 @@ class Admission extends CI_Controller {
 									
 									
 								
-							if(isset($emapData[7]) && !empty($emapData[7]))
+							if(isset($emapData[6]) && !empty($emapData[6]))
 								{
-									$Date=$emapData[7];
+									$Date=$emapData[6];
 								}
 								else
 								{  
@@ -686,12 +686,12 @@ class Admission extends CI_Controller {
 								
 								
 								
-									if($emapData[6]==$section2[13]->MasterEntryValue)
+									if($emapData[7]==$section2[13]->MasterEntryValue)
 									{
 										$var=$section2[13]->MasterEntryId;	
 									
 									}
-									if($emapData[6]==$section2[14]->MasterEntryValue)
+									if($emapData[7]==$section2[14]->MasterEntryValue)
 									{
 										$var=$section2[14]->MasterEntryId;
 									}
