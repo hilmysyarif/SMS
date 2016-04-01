@@ -431,8 +431,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 								
                         $this->load->model('master_model');
                         $insertId = $this->master_model->insertCSV($data);
-						 }
-						 else{
+						 }}
+						if($i>0){
 						 $section=$this->data['detail']=$this->master_model->section($emapData[0]);
                      
 														  
@@ -478,7 +478,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 									
 									}	
                      }
-					 }
+					
 					 $i++;
 					 }
 					 
