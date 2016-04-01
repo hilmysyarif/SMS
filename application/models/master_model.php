@@ -95,6 +95,13 @@ class Master_model extends CI_Model
 	   $qry=$this->db->query("Select RegistrationId,StudentName,FatherName,MotherName from registration where StudentName='$name' and FatherName='$fname' and MotherName='$mname' and Mobile='$mob' and SectionId='$section'");
 		return $qry->Result();
 	}
+	
+	
+	public function class($class=false)
+	{	
+	   $qry=$this->db->query("Select ClassName from class where ClassName='$class'");
+		return $qry->Result();
+	}
 
 	public function insertCSV1($data1)
             {
