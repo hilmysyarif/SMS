@@ -473,7 +473,7 @@ class Admission extends CI_Controller {
 									$Mobileno='';
 								}
 								
-								$student=$this->data['detail2']=$this->master_model->student($StudentName,$FatherName,$MotherName,$Mobileno);
+								$student=$this->data['detail2']=$this->master_model->student($StudentName,$FatherName,$MotherName,$Mobileno,$section1[0]->SectionId);
 								
 								
 								if(empty($student))
@@ -666,7 +666,7 @@ class Admission extends CI_Controller {
 									$Mobileno='';
 								}
 								
-								$student=$this->data['detail2']=$this->master_model->student($StudentName,$FatherName,$MotherName,$Mobileno);
+								$student=$this->data['detail2']=$this->master_model->student($StudentName,$FatherName,$MotherName,$Mobileno,$section1[0]->SectionId);
 								
 								
 								if(empty($student))

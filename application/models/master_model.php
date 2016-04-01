@@ -90,9 +90,9 @@ class Master_model extends CI_Model
 		return $qry->Result();
 	}
 	
-	public function student($name=false,$fname=false,$mname=false,$mob=false)
+	public function student($name=false,$fname=false,$mname=false,$mob=false,$section=false)
 	{	
-	   $qry=$this->db->query("Select RegistrationId,StudentName,FatherName,MotherName from registration where StudentName='$name' and FatherName='$fname' and MotherName='$mname' and Mobile='$mob'");
+	   $qry=$this->db->query("Select RegistrationId,StudentName,FatherName,MotherName from registration where StudentName='$name' and FatherName='$fname' and MotherName='$mname' and Mobile='$mob' and SectionId='$section'");
 		return $qry->Result();
 	}
 
