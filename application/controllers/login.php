@@ -151,7 +151,7 @@ function login_user($info=false)
 						}
 					}
 					
-					if($row->UserType!==0)
+					if($row->UserType!=='0')
 					{
 					$user_data = array(
 							'usermailid' => $row->Username,
@@ -160,9 +160,10 @@ function login_user($info=false)
 					);
 					$this->session->set_userdata('user_data',$user_data);
 					$user_session_data = $this->session->userdata('user_data');
-					redirect('dashboard/agreement');}
+					redirect('dashboard/agreement');
+					}
+				
 					else{
-					
 					
 					$user_data = array(
 							'usermailid' => $row->Username,
