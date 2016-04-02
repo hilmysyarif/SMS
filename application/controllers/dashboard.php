@@ -579,7 +579,7 @@ public function index1()
 /*school management help End...............................................................................*/
  public function insert()
  {
-	 $data=array('Terms'=>$this->$input->post('terms'));
+	 $data=array('Terms'=>$this->input->post('terms'));
 	 $this->Dashboard_model->insert('generalsetting',$data);
  } 
 	
