@@ -23,14 +23,14 @@ class Dashboard extends CI_Controller {
 	 }
 
 	 /*school management dashboard start...............................................................................*/
-	public function index()
+	public function index2()
 	{
 		$this->parser->parse('include/header',$this->data);
 		 $this->parser->parse('include/header1',$this->data);
 		 $this->load->view('setup',$this->data);
 		 $this->parser->parse('include/footer',$this->data);	
 	}
-	public function index2()
+	public function index()
 	{ 	
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Dashboard', base_url());
