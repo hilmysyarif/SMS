@@ -136,7 +136,7 @@ function login_user($info=false)
 									'userType'=>$row[0]->MasterEntryValue,
 									'staffId'=>$staffid,
 							);
-							echo json_encode($data);die;
+							echo json_encode($data);
 						}	
 							$user_data = array(
 							'usermailid' => $row->Username,
@@ -154,7 +154,7 @@ function login_user($info=false)
 								'status'=>'success',
 								'userType'=>'admin',
 							);
-							echo json_encode($data);die; 
+							echo json_encode($data); 
 						}
 					$user_data = array(
 							'usermailid' => $row->Username,
