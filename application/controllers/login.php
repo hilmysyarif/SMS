@@ -137,7 +137,7 @@ function login_user($info=false)
 									'staffId'=>$staffid,
 							);
 							echo json_encode($data);die;
-							
+						}	
 							$user_data = array(
 							'usermailid' => $row->Username,
 							'user_id' => $row->UserId,
@@ -146,7 +146,7 @@ function login_user($info=false)
 					$this->session->set_userdata('user_data',$user_data);
 					$user_session_data = $this->session->userdata('user_data');
 					redirect('dashboard/agreement');
-						}
+						
 						if(isset($row->UserType)&& $row->UserType=='0')
 						{
 							$data=array(
@@ -155,7 +155,7 @@ function login_user($info=false)
 								'userType'=>'admin',
 							);
 							echo json_encode($data);die; 
-					
+						}
 					$user_data = array(
 							'usermailid' => $row->Username,
 							'user_id' => $row->UserId,
@@ -164,7 +164,7 @@ function login_user($info=false)
 					$this->session->set_userdata('user_data',$user_data);
 					$user_session_data = $this->session->userdata('user_data');
 					redirect('dashboard');
-				}
+				
 			}
 		}
 				else

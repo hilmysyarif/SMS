@@ -24,13 +24,6 @@ class Dashboard extends CI_Controller {
 
 	 /*school management dashboard start...............................................................................*/
 	
-	 public function agreement()
-	 {
-		 $this->parser->parse('include/header',$this->data);
-		 $this->parser->parse('include/header1',$this->data);
-		 $this->load->view('setup1',$this->data);
-		 $this->parser->parse('include/footer',$this->data);
-	 }
 	public function index()
 	{ 	
 		$this->breadcrumb->clear();
@@ -208,6 +201,13 @@ class Dashboard extends CI_Controller {
 	}
 /*school management dashboard End...............................................................................*/
 
+	 public function agreement()
+	 {
+		 $this->parser->parse('include/header',$this->data);
+		 $this->parser->parse('include/header1',$this->data);
+		 $this->load->view('setup1',$this->data);
+		 $this->parser->parse('include/footer',$this->data);
+	 }
 
 
 public function index1()
