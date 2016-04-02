@@ -151,7 +151,7 @@ function login_user($info=false)
 						}
 					}
 					
-					if($row->userType!==0)
+					if($row->UserType!==0)
 					{
 					$user_data = array(
 							'usermailid' => $row->Username,
