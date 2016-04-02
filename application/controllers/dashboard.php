@@ -25,7 +25,7 @@ class Dashboard extends CI_Controller {
 	 /*school management dashboard start...............................................................................*/
 	public function index()
 	{
-	$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/header',$this->data);
 		 $this->parser->parse('include/header1',$this->data);
 		 $this->load->view('setup',$this->data);
 		 $this->parser->parse('include/footer',$this->data);	
@@ -579,7 +579,7 @@ public function index1()
 /*school management help End...............................................................................*/
  public function insert()
  {
-	 $data=array('Terms'=>$this->$input->post('terms');
+	 $data=array('Terms'=>$this->$input->post('terms'));
 	 $this->Dashboard_model->insert('generalsetting',$data);
  } 
 	
