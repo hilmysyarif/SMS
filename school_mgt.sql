@@ -425,6 +425,7 @@ CREATE TABLE IF NOT EXISTS `generalsetting` (
   `SchoolAddress` text NOT NULL,
   `City` varchar(100) NOT NULL,
   `District` varchar(100) NOT NULL,
+ 
   `PIN` varchar(6) NOT NULL,
   `State` varchar(100) NOT NULL,
   `Country` varchar(100) NOT NULL,
@@ -441,6 +442,7 @@ CREATE TABLE IF NOT EXISTS `generalsetting` (
   `DOE` varchar(20) NOT NULL,
   `DOEUsername` varchar(100) NOT NULL,
   `DOL` varchar(20) NOT NULL,
+  `Terms` varchar(100) NOT NULL,
   `DOLUsername` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

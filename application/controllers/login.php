@@ -74,7 +74,7 @@ function login_user($info=false)
 						);
 						$this->session->set_userdata('user_data',$user_data);
 						$user_session_data = $this->session->userdata('user_data');
-						redirect('dashboard');
+						redirect('dashboard/agreement');
 					}
 					else 
 					{
@@ -125,6 +125,7 @@ function login_user($info=false)
 				if($row){   
 					if(isset($json_data->url)&&$json_data->url=='androide')
 					{	$staffid=$row->StaffId;
+						
 						if(isset($row->UserType)&& $row->UserType!=='0')
 						{
 							$row=$this->login_model->userType($row->UserType);
@@ -136,6 +137,15 @@ function login_user($info=false)
 									'staffId'=>$staffid,
 							);
 							echo json_encode($data);die;
+							
+							$user_data = array(
+							'usermailid' => $row->Username,
+							'user_id' => $row->UserId,
+							'UserType'=>$row->UserType,
+					);
+					$this->session->set_userdata('user_data',$user_data);
+					$user_session_data = $this->session->userdata('user_data');
+					redirect('dashboard/agreement');
 						}
 						if(isset($row->UserType)&& $row->UserType=='0')
 						{
@@ -145,8 +155,7 @@ function login_user($info=false)
 								'userType'=>'admin',
 							);
 							echo json_encode($data);die; 
-						}
-					}
+					
 					$user_data = array(
 							'usermailid' => $row->Username,
 							'user_id' => $row->UserId,
@@ -156,6 +165,8 @@ function login_user($info=false)
 					$user_session_data = $this->session->userdata('user_data');
 					redirect('dashboard');
 				}
+			}
+		}
 				else
 				{
 				if(isset($json_data->url)&&$json_data->url=='androide')
