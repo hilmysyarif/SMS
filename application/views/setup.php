@@ -68,10 +68,14 @@
 
 
 <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
-<input tabindex="5" type="checkbox" class="icheck-11" id="minimal-checkbox-1-11">
+<form role="form" class="validate" method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/insert">
+<input tabindex="5" type="checkbox" name="terms" value="Accepted" class="icheck-11" id="minimal-checkbox-1-11">
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
 <br>
-<a href="<?=base_url();?>dashboard" class="btn btn-primary btn-lg" style="margin-top:10px ;background-color:black" role="button">Next</a>
+<div class="col-sm-12" >
+<input type="submit"  class="btn btn-primary btn-lg" value="submit"  style="margin-top:10px ;background-color:black"></input>
+</div>
+</form>
 </div>
 </div> 
 </div> 
