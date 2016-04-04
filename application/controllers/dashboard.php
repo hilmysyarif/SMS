@@ -25,7 +25,9 @@ class Dashboard extends CI_Controller {
 	 /*school management dashboard start...............................................................................*/
 	public function index()
 	{	
+	
 	$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
+		
 		print_r($generalsetting);die;
 		if(empty($generalsetting))
 		{
