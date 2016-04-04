@@ -23,7 +23,7 @@ class Dashboard extends CI_Controller {
 	 }
 
 	 /*school management dashboard start...............................................................................*/
-		public function index()
+		public function index($Studentspassword,$Parentspassword)
 		
 	{/*new code...Nabeela....*/
 	
@@ -194,7 +194,7 @@ class Dashboard extends CI_Controller {
 		//Pei Chart , Line Chart and calender Reports End  there............................................
 		
 		$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
-		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement();
+		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($Studentspassword,$Parentspassword);
 		 
 		 if(empty($generalsetting))
 		{
@@ -425,11 +425,17 @@ public function index1()
 	 redirect('dashboard/index1');
  }
   public function insert()
+ {	$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
+ if (empty($generalsetting))
  {
 	 $data=array('Terms'=>$this->input->post('terms'));
 	 $this->Dashboard_model->insert('generalsetting',$data);
 	 redirect('dashboard/setuppg');
- } 
+ }
+ else {
+ 	 redirect('dashboard/setuppg');
+ }
+ }  
  public function download()
  {
 
