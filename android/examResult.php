@@ -99,10 +99,9 @@ if(!$CONNECTION)
 				//$queryInsert="INSERT INTO `feedback`(`student_id`, `feedbackLog`, `date`, `senderID`) VALUES ($student_id,$feedback,$date,$SenderID)";
 		
 			if (mysqli_query($CONNECTION,$queryInsert))			
-				
-				$sno_array[] = 	 array('result'=>"inserted",'s_no'=>$s_no);
+				$sno_array= 	 array('result'=>"inserted",'s_no'=>$s_no);
 			
-				else  $sno_array[] =  array('result'=>"error",'s_no'=>$s_no);		
+				else  $sno_array =  array('result'=>"error",'s_no'=>$s_no);		
 			
 		
 		}
