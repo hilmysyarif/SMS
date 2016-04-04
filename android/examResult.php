@@ -101,9 +101,9 @@ if(!$CONNECTION)
 			if (mysqli_query($CONNECTION,$queryInsert))
 			{
 				
-				$sno_array = 	 array('result'=>"inserted",'s_no'=>$s_no);
+				$sno_array[] = 	 array('result'=>"inserted",'s_no'=>$s_no);
 			}
-				else{  $sno_array =  array('result'=>"error",'s_no'=>$s_no);		
+				else{  $sno_array[] =  array('result'=>"error",'s_no'=>$s_no);		
 				}
 		
 		}
