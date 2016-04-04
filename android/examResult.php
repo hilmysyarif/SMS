@@ -86,7 +86,7 @@ if(!$CONNECTION)
 	}elseif ($action == "insertfeedback"){
 		
 		$SenderID =$dataarray['SenderID'];
-		$sno_array= array();
+	
 				
 		foreach ($dataarray['ReviewData'] as $data){
 			
