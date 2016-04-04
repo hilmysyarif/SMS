@@ -94,7 +94,7 @@ if(!$CONNECTION)
 			$date =$resultsarray['date'];
 			$s_no =$resultsarray['s_no'];
 			
-			$queryInsert="insert into feedback(student_id,feedback,date,senderID)
+			$queryInsert="insert into feedback(student_id,feedbackLog,date,senderID)
 			values('$student_id','$feedback','$date','$SenderID')";
 				
 				
