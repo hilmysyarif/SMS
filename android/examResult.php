@@ -98,13 +98,12 @@ if(!$CONNECTION)
 			$queryInsert="insert into feedback(student_id,feedbackLog,date,senderID) values('$student_id','$feedback','$date','$SenderID')";			
 				//$queryInsert="INSERT INTO `feedback`(`student_id`, `feedbackLog`, `date`, `senderID`) VALUES ($student_id,$feedback,$date,$SenderID)";
 		
-			if (mysqli_query($CONNECTION,$queryInsert))
-			{
+			if (mysqli_query($CONNECTION,$queryInsert))			
 				
 				$sno_array[] = 	 array('result'=>"inserted",'s_no'=>$s_no);
-			}
-				else{  $sno_array[] =  array('result'=>"error",'s_no'=>$s_no);		
-				}
+			
+				else  $sno_array[] =  array('result'=>"error",'s_no'=>$s_no);		
+			
 		
 		}
 		print_r(json_encode($sno_array));
