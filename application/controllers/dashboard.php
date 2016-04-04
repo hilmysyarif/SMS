@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{	
 	$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
-		
+		print_r($generalsetting);die;
 		if(empty($generalsetting))
 		{
 		 $this->parser->parse('include/header',$this->data);
