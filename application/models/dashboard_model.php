@@ -95,14 +95,14 @@ class Dashboard_model extends CI_Model {
 	}
 	function agreement($studentpassword=false,$parentpassword=false)
 	{
-		$query=$this->db->query("select terms from registration where terms='Accepted' and studentpassword='$studentpassword' or 
-									terms='Accepted' and parentpassword='$parentpassword'");
+		$query=$this->db->query("select terms from registration where Terms='Accepted' and studentpassword='$studentpassword' or 
+									Terms='Accepted' and parentpassword='$parentpassword'");
 		return $query->Result();
 	}
 	
 		function generalsetting()
     {
-    	$query=$this->db->query("select terms from generalsetting where terms='Accepted'");
+    	$query=$this->db->query("select terms from generalsetting where Terms='Accepted'");
 		return $query->Result();
 	
     }
