@@ -23,14 +23,17 @@ class Dashboard extends CI_Controller {
 	 }
 
 	 /*school management dashboard start...............................................................................*/
-	public function index2()
-	{
+	public function index()
+	{	$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
+		
+		if(empty($generalsetting))
+		{
 		$this->parser->parse('include/header',$this->data);
 		 $this->parser->parse('include/header1',$this->data);
-		 $this->load->view('setup',$this->data);
+		 $this->load->view('setuppg',$this->data);
 		 $this->parser->parse('include/footer',$this->data);	
 	}
-	public function index()
+	else
 	{ 	
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Dashboard', base_url());
@@ -207,10 +210,12 @@ class Dashboard extends CI_Controller {
 	}
 /*school management dashboard End...............................................................................*/
 
-	 public function agreement()
+	 public function agreement($StudentsPassword,$Parentspassword)
 	 {
-		 $generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
-		 if(empty($generalsetting)){
+		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement();
+		 
+		 if(empty($agreement_detail))
+		 {
 		 $this->parser->parse('include/header',$this->data);
 		 $this->parser->parse('include/header1',$this->data);
 		 $this->load->view('setup1',$this->data);
@@ -577,11 +582,39 @@ public function index1()
 		$this->load->view('help',$this->data);
 	}
 /*school management help End...............................................................................*/
- public function insert()
+ 
+ public function insert1()
  {
 	 $data=array('Terms'=>$this->input->post('terms'));
 	 $this->Dashboard_model->insert('generalsetting',$data);
+	 redirect('dashboard/index1');
+ }
+  public function insert()
+ {
+	 $data=array('Terms'=>$this->input->post('terms'));
+	 $this->Dashboard_model->insert('generalsetting',$data);
+	 redirect('dashboard/setuppg');
  } 
+ public function download()
+ {
+
+  header('Content-Type: application/download');
+  header('Content-Disposition: attachment; filename="instruction.xlsx"');
+  header("Content-Length: " . filesize("instruction.xlsx"));
+  $fp = fopen("instruction.xlsx", "r");
+  fpassthru($fp);
+  fclose($fp);
+
+ }
+ public function setuppg()
+ {
+		
+		$this->parser->parse('include/header',$this->data);
+		
+		$this->parser->parse('include/header1',$this->data);
+		$this->load->view('setuppg',$this->data);
+		$this->parser->parse('include/footer',$this->data); 
+ }
 	
 }
 
