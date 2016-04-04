@@ -30,7 +30,7 @@ class Dashboard extends CI_Controller {
 		{
 		$this->parser->parse('include/header',$this->data);
 		 $this->parser->parse('include/header1',$this->data);
-		 $this->load->view('setuppg',$this->data);
+		 $this->load->view('setup',$this->data);
 		 $this->parser->parse('include/footer',$this->data);	
 	}
 	else
