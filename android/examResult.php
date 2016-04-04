@@ -83,8 +83,30 @@ if(!$CONNECTION)
 	
 	
 		
+	}elseif ($action == "insertfeedback"){
+		
+		$SenderID =$dataarray['SenderID'];
+		$sno_array= array();
+		
+		foreach ($dataarray['ReviewData'] as $data){
+			$student_id =$resultsarray['student_id'];
+			$feedback =$resultsarray['feedback'];			
+			$date =$resultsarray['date'];
+			$s_no =$resultsarray['s_no'];
+			
+			$queryInsert="insert into feedback(student_id,feedback,date,senderID)
+			values('$student_id','$feedback','$date','$SenderID')";
+				
+				
+			if (mysqli_query($CONNECTION,$queryInsert))
+				$sno_array[] = 	$resultArray[] = array('result'=>"inserted",'s_no'=>$s_no);
+			else $sno_array[] = $resultArray[] = array('result'=>"error",'s_no'=>$s_no);
+				
+		
+		}
+		print_r(json_encode($resultArray));
+		
 	}
-
 
 	
 	
