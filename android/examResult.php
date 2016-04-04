@@ -88,6 +88,7 @@ if(!$CONNECTION)
 		$SenderID =$dataarray['SenderID'];
 		$sno_array= array();
 		
+		print_r($dataarray);die;
 		foreach ($dataarray['ReviewData'] as $data){
 			$student_id =$resultsarray['student_id'];
 			$feedback =$resultsarray['feedback'];			
