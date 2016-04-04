@@ -25,10 +25,10 @@ class Dashboard extends CI_Controller {
 	 /*school management dashboard start...............................................................................*/
 	public function index()
 	{	
-	
+		//print_r($generalsetting);die;
 	$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
 		
-		print_r($generalsetting);die;
+		
 		if(empty($generalsetting))
 		{
 		 $this->parser->parse('include/header',$this->data);
@@ -210,6 +210,7 @@ class Dashboard extends CI_Controller {
 		$this->parser->parse('include/leftmenu',$this->data);
 		$this->load->view('dashboard',$this->data);
 		$this->parser->parse('include/footer',$this->data);
+	}
 	}
 /*school management dashboard End...............................................................................*/
 
