@@ -483,7 +483,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 		
 		if($type=='class'){
 		 if(isset($_POST["Import"]))
-            {$i=0;
+            {
+				$i=0;
                 $filename=$_FILES["file"]["tmp_name"];
                 if($_FILES["file"]["size"] > 0)
                   {
@@ -491,10 +492,10 @@ if(Authority::checkAuthority('ManageUser')==true){
                      while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
 					 
                      {  $class=$this->data['detail']=$this->master_model->class1($emapData[0]);
-					 if($i>0){
-						if(empty ($class))
-						 {
 
+						
+						if($i>0){
+						 if(empty ($class)){
                             $data = array(
                                 'ClassName' => $emapData[0],
                                 'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',
@@ -550,7 +551,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 									//$comma1 = implode(",", $name1);
 									
 									}	
-												 }
+										 }
 												 
 							}
 							 $i++;
