@@ -557,20 +557,20 @@ if(Authority::checkAuthority('ManageUser')==true){
 					if($msg=="fail"){
 					$this->session->set_flashdata('message_type', 'error');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount")."Class and respective section not added for this class".$comma);
-					redirect('admission/registration');
+					redirect('master/manageclass');
 				} 
 					 
 					 
                     fclose($file);
 					$this->session->set_flashdata('message_type', 'success');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Class Added Successfully'.$comma);
-                    redirect('index.php/master/manageclass');
+                    redirect('master/manageclass');
                   }
             
 			else{
 					$this->session->set_flashdata('message_type', 'error');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Adding class creat error');
-					fredirect('index.php/master/manageclass');
+					fredirect('master/manageclass');
 				}
 			}	
 					
