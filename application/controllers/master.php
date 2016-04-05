@@ -462,9 +462,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 /*school management Class and section insert and update End.........................................................*/
 
 	
-  /*School management class and section upload through excel start*.....................................*/       
-	
-	function insert_class1($type=false)
+ function insert_class1($type=false)
 	{	
 		if(Authority::checkAuthority('ManageClass')==true){
 			
@@ -489,21 +487,27 @@ if(Authority::checkAuthority('ManageUser')==true){
                   {
                     $file = fopen($filename, "r");
                      while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
-					 
-                     {  $class=$this->data['detail']=$this->master_model->class1($emapData[0]);
+					  
+                     {  
+					 if($i>0){
+					 $class=$this->data['detail']=$this->master_model->class1($emapData[0]);
+						
+					// print_r( $class);die;
 						 if(empty ($class))
 						 {
-						 if($i>0){
+						
                             $data = array(
                                 'ClassName' => $emapData[0],
                                 'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',
 								'DOE'=>date("d m Y"),
 								'ClassStatus'=>"Active");
-								
+							
 								
                         $this->load->model('master_model');
                         $insertId = $this->master_model->insertCSV($data);
-						}
+					 }		
+					
+						 
 						 else{
 						 $section=$this->data['detail']=$this->master_model->section($emapData[0]);
                      
@@ -534,7 +538,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 									'SectionStatus'=>"Active",
 									'DOE'=>date("d m Y"));
 									
-								
+								print_r($data1);die;
 									
 									$this->load->model('master_model'); 
 									$insertId = $this->master_model->insertCSV1($data1);
@@ -549,11 +553,11 @@ if(Authority::checkAuthority('ManageUser')==true){
 									//$comma1 = implode(",", $name1);
 									
 									}	
-                    }
-					 }
-					 $i++;
-					 }
+                    
+							}
 					 
+				  }	$i++;
+					 }				  
 					if($msg=="fail"){
 					$this->session->set_flashdata('message_type', 'error');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount")."Class and respective section not added for this class".$comma);
