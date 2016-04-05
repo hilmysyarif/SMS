@@ -538,7 +538,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 									'SectionStatus'=>"Active",
 									'DOE'=>date("d m Y"));
 									
-								print_r($data1);die;
+								//print_r($data1);die;
 									
 									$this->load->model('master_model'); 
 									$insertId = $this->master_model->insertCSV1($data1);
