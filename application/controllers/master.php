@@ -491,7 +491,7 @@ if(Authority::checkAuthority('ManageUser')==true){
                      while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
 					 
                      {  $class=$this->data['detail']=$this->master_model->class1($emapData[0]);
-												 if($i>0){
+					 if($i>0){
 						if(empty ($class))
 						 {
 
@@ -550,9 +550,12 @@ if(Authority::checkAuthority('ManageUser')==true){
 									//$comma1 = implode(",", $name1);
 									
 									}	
-												 }}
+												 }
+												 
+							}
+							 $i++;
 					 }
-					 $i++;
+					
 					 }
 					 
 					if($msg=="fail"){
