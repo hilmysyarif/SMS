@@ -581,7 +581,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 					
 		
 		}
-	}
+	
 	 /*section insert function*.....................................*/
 	
 	/* function insert_class2()
