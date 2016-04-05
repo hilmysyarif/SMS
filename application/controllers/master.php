@@ -493,9 +493,10 @@ if(Authority::checkAuthority('ManageUser')==true){
 					 
                      {  $class=$this->data['detail']=$this->master_model->class1($emapData[0]);
 
-						
+						if(empty ($class))
+						 { 
 						if($i>0){
-						 if(empty ($class)){
+
                             $data = array(
                                 'ClassName' => $emapData[0],
                                 'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',
@@ -505,7 +506,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 								
                         $this->load->model('master_model');
                         $insertId = $this->master_model->insertCSV($data);
-						 }
+						 }}
 						 else{
 						 $section=$this->data['detail']=$this->master_model->section($emapData[0]);
                      
@@ -553,7 +554,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 									}	
 										 }
 												 
-							}
+							
 							 $i++;
 					 }
 					
@@ -581,7 +582,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 					
 		
 		}
-	
+	}
 	 /*section insert function*.....................................*/
 	
 	/* function insert_class2()
