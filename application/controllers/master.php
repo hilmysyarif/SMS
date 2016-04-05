@@ -461,10 +461,9 @@ if(Authority::checkAuthority('ManageUser')==true){
 	}
 /*school management Class and section insert and update End.........................................................*/
 
+	 /*School management class and section upload through excel start*.....................................*/       
 	
-  /*School management class and section upload through excel start*.....................................*/       
-	
-	function insert_class1($type=false)
+		function insert_class1($type=false)
 	{	
 		if(Authority::checkAuthority('ManageClass')==true){
 			
@@ -492,10 +491,10 @@ if(Authority::checkAuthority('ManageUser')==true){
                      while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
 					 
                      {  $class=$this->data['detail']=$this->master_model->class1($emapData[0]);
-
+						print_r($class);
 						if(empty ($class))
 						 { 
-						if($i>0){
+							if($i>0){
 
                             $data = array(
                                 'ClassName' => $emapData[0],
@@ -506,8 +505,56 @@ if(Authority::checkAuthority('ManageUser')==true){
 								
                         $this->load->model('master_model');
                         $insertId = $this->master_model->insertCSV($data);
+						
+						$section=$this->data['detail']=$this->master_model->section($emapData[0]);
+                     
+														  
+								$data = array(
+                                'ClassName' => $emapData[0],
+								'SectionName'=>$emapData[1],
+								'DOE'=>date("d m Y"),
+								'SectionStatus'=>"Active");
+								
+								
+								if(empty($emapData[1]))
+									{
+									$var="A";
+									}
+									else
+									{
+									$var=$emapData[1];	
+									}
+									
+									if($emapData[0]==$section[0]->ClassName)
+									{ 
+									
+								  $data1 = array(
+									'ClassId' => $section[0]->ClassId,
+									'SectionName'=>$var,
+									'SectionStatus'=>"Active",
+									'DOE'=>date("d m Y"));
+								
+								 
+									
+									$this->load->model('master_model'); 
+									$insertId = $this->master_model->insertCSV1($data1);
+								
+									}
+									else
+									{	$msg='fail';
+									
+									$name[]=$emapData[0];
+									//$name1[]=$emapData[1];
+									$comma = implode(",", $name);
+									//$comma1 = implode(",", $name1);
+									
+									}
+						
+						
 						 }
-						 else{
+						 $i++;
+						 }
+						 elseif(!empty ($class)&&($i>0)){
 						 $section=$this->data['detail']=$this->master_model->section($emapData[0]);
                      
 														  
@@ -527,7 +574,6 @@ if(Authority::checkAuthority('ManageUser')==true){
 									$var=$emapData[1];	
 									}
 									
-								
 									if($emapData[0]==$section[0]->ClassName)
 									{ 
 									
@@ -536,8 +582,8 @@ if(Authority::checkAuthority('ManageUser')==true){
 									'SectionName'=>$var,
 									'SectionStatus'=>"Active",
 									'DOE'=>date("d m Y"));
-									
 								
+								 
 									
 									$this->load->model('master_model'); 
 									$insertId = $this->master_model->insertCSV1($data1);
@@ -554,9 +600,9 @@ if(Authority::checkAuthority('ManageUser')==true){
 									}	
 										 }
 												 
-						 }
-							 $i++;
-					 }
+				$i++;	} 
+							
+					 
 					
 					 }
 					 
@@ -576,13 +622,12 @@ if(Authority::checkAuthority('ManageUser')==true){
 			else{
 					$this->session->set_flashdata('message_type', 'error');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Adding class creat error');
-					fredirect('master/manageclass');
+					redirect('master/manageclass');
 				}
 			}	
 					
 		
 		}
-	}
 	 /*section insert function*.....................................*/
 	
 	/* function insert_class2()
