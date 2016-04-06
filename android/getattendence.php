@@ -16,22 +16,15 @@ exit();
 
    $action=isset($_GET['action'])?$_GET['action']:'';
 if($action=="get"){
-	
-	
-	
+		
 	
 $class=mysqli_query($CONNECTION,"select ClassId,ClassName from class where Session='2015-2016'");
 
-$section=mysqli_query($CONNECTION,"select SectionId,SectionName,ClassId from section ");
+$section=mysqli_query($CONNECTION,"select SectionId,SectionName,ClassId from section");
 
-$student=mysqli_query($CONNECTION,"select AdmissionId,StudentName,SectionId from admission,registration where admission.RegistrationId=registration.RegistrationId and
-Session='2015-2016' and
-Status='Studying'");
+$student=mysqli_query($CONNECTION,"select AdmissionId,StudentName,SectionId from admission,registration where admission.RegistrationId=registration.RegistrationId and Session='2015-2016' and Status='Studying'");
 
-$subject=mysqli_query($CONNECTION,"Select * from subject where
-						Session='2015-2016' and
-						SubjectStatus='Active'
-						order by SubjectName");
+$subject=mysqli_query($CONNECTION,"Select * from subject where Session='2015-2016' and SubjectStatus='Active' order by SubjectName");
 
 
 $Type="";
