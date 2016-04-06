@@ -219,7 +219,7 @@ function Translate($Phrase)
 			<ul class="navbar-nav">
 				<li>
 							<a href="javascript:;">
-								<span class="title"><?php  if(!empty($this->currentsession)){ $year=$this->currentsession[0]->SchoolStartDate; $schoolstartyear=date("Y",$year); if(!empty($this->currentsession[0]->CurrentSession)){echo $this->currentsession[0]->CurrentSession;}else{ echo "Please Select Session"; } }else{ echo "Please Select Session"; } ?></span><span class="caret"></span>
+								<span class="title"><?php  if(!empty($this->currentsession[0]->SchoolStartDate)){  $year=$this->currentsession[0]->SchoolStartDate; $schoolstartyear=date("Y",$year); if(!empty($this->currentsession[0]->CurrentSession)){echo $this->currentsession[0]->CurrentSession;}else{ echo "Please Select Session"; } }else{ echo "Please Select Session"; } ?></span><span class="caret"></span>
 							</a> 
 					<ul>
 					<?php 

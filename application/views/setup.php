@@ -73,7 +73,7 @@
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
 <br>
 <div class="col-sm-12" >
-<input type="submit"  class="btn btn-primary btn-lg" value="submit"  style="margin-top:10px ;background-color:black"></input>
+<input type="submit"  class="btn btn-primary btn-lg" value="Next"  style="margin-top:10px ;background-color:black;float:right" ></input>
 </div>
 </form>
 </div>

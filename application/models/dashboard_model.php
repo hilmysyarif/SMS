@@ -93,6 +93,19 @@ class Dashboard_model extends CI_Model {
 		$last_id = $this->db->insert_id();
 		return $last_id;
 	}
+	function agreement($studentpassword=false,$parentpassword=false)
+	{
+		$query=$this->db->query("select Terms from registration where Terms='Accepted' and Studentspassword='$studentpassword' or 
+									Terms='Accepted' and Parentspassword='$parentpassword'");
+		return $query->Result();
+	}
+	
+		function generalsetting()
+    {
+    	$query=$this->db->query("select terms from generalsetting where Terms='Accepted'");
+		return $query->Result();
+	
+    }
 }
 
 ?>
