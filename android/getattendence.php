@@ -313,6 +313,7 @@ print_r(json_encode($mainarr));
 		
 					// 								$Message="Attendance Added successfully!!";
 					// 								$Type=success;
+					
 				}
 		}
 		
