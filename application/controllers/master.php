@@ -78,7 +78,7 @@ if(Authority::checkAuthority('GeneralSetting')==true){
 		$this->parser->parse('include/header1',$this->data);
 	}
 
-/*TO upload data through setup page..........................................................*/
+/*TO upload data through setup page............................................................*/
 		
 function upload()
 	{
