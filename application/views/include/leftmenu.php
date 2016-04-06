@@ -175,13 +175,13 @@
 						<?php  if(in_array('StaffAttendenceReport',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li class="active">
 								<a href="<?=base_url();?>attendences/staffattendancereport">
-									<span class="title"><?php echo Translate('Staff Attendance'); ?></span>
+									<span class="title"><?php echo Translate('Student Attendance'); ?></span>
 								</a>
 							</li>
 							<?php } if(in_array('StudentAttendanceReport',$this->session->userdata('pagename')) ==TRUE || $this->session->userdata('user_data')['UserType']==0){?>
 							<li>
 								<a href="<?=base_url();?>attendences/studentattendancereport">
-									<span class="title"><?php echo Translate('Student Attendance'); ?></span>
+									<span class="title"><?php echo Translate('Staff Attendance'); ?></span>
 								</a>
 							</li>
 							<?php } ?>

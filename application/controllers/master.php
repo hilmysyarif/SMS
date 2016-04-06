@@ -59,7 +59,54 @@ class Master extends CI_Controller {
 		}
 	}
 /*school management change Language  End..........................................................*/
+function generalsetting1()
+	{
+if(Authority::checkAuthority('GeneralSetting')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('index.php/dashboard');
+		}
 		
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('General Setting', base_url().'master/generalsetting');
+		$this->data['school_info'] = $this->master_model->get_info('generalsetting');
+		$this->parser->parse('include/header',$this->data);
+		
+		$this->load->view('generalsetting1',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+		$this->parser->parse('include/header1',$this->data);
+	}
+
+/*TO upload data through setup page..........................................................*/
+		
+function upload()
+	{
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('General Setting', base_url().'master/generalsetting');
+		$this->data['school_info'] = $this->master_model->get_info('generalsetting');
+		$this->parser->parse('include/header',$this->data);
+		
+		$this->load->view('upload',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+		$this->parser->parse('include/topheader1',$this->data);
+	}
+/*TO upload data through setup page  End..........................................................*/
+
+/*To accept agreement and perform setup function ..........................................................*/
+	
+		function acceptance()
+	{
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('General Setting', base_url().'master/generalsetting');
+		$this->data['school_info'] = $this->master_model->get_info('generalsetting');
+		$this->parser->parse('include/header',$this->data);
+		
+		$this->load->view('Acceptance',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+		$this->parser->parse('include/topheader1',$this->data);
+	}
+/*To accept agreement and perform setup function   End..........................................................*/
 
 /*school management generalsetting start........................................................................*/	
 	function generalsetting()

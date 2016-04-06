@@ -5,8 +5,8 @@ $LANGUAGE=!empty($this->session->userdata('LANGUAGE')) ? $this->session->userdat
 	$PhraseArray[]="";
 	$PhraseIdArray[]="";
 	foreach($check as $row)
-	{
 		$PhraseIdArray[]=$row->PhraseId;
+	{
 		$PhraseArray[]=$row->Phrase;
 	}	
 	if($PhraseArray!="")

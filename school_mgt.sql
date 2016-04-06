@@ -1280,6 +1280,8 @@ CREATE TABLE IF NOT EXISTS `registration` (
   `DateOfTermination` varchar(10) NOT NULL,
   `TerminationReason` varchar(10) NOT NULL,
   `TerminationRemarks` text NOT NULL,
+  `Terms` varchar(100) NOT NULL,
+
   `DOT` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
