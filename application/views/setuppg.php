@@ -4,7 +4,13 @@
   <div class="row">
     <div class="col-sm-12 col-lg-12 col-md-12">
    
-  <h2 style ="margin-top:100px"> Setup Guide</h2>
+					<div class="panel panel-default" style ="margin-top:100px">
+						<div class="panel-heading" style="font-size:24px">
+							Setup Guide
+							
+						</div>
+ 
+  <div class="panel-body" style="color:black">
   <h4 style ="margin-top:50px;margin-bottom:20px">This setup guide page will be available in help menu in rightmost corner</h4>
   <ul>
   <li> You need to fill basic information of your school in Generalsetting page.</li>
@@ -15,17 +21,18 @@
   <li> We provide facility to upload students detail through Excel sheet.Before uploading look through the instruction file that can be downloade from this setup page.</li>
   </ul>
   <h4 style ="margin-top:50px;margin-bottom:20px"> To know more about our software ,watch this video</h4>
-  <li style ="margin-top:50px;margin-bottom:20px">  Setup guide video</li>
+  
    
+   <div class="col-lg-6 col-md-6 col-sm-6" style="float: none;
+     margin-left: auto;
+     margin-right: auto;">
+	 <li style ="margin-top:50px;margin-bottom:20px">  Setup guide video</li>
    <video width="350" height="260" controls>
-  <source src="<?=base_url();?>sample.mp4" type="video/mp4">
+  <source src="<?=base_url();?>sample.mp4" type="video/mp4"></video>
+ 
+</div>
 
-Your browser does not support the video tag.
-</video>
- 					
-   
-
-   <li style ="margin-top:50px;margin-bottom:20px">To download instruction file for uploading of student detail through Excel sheet</li>
+   <h4 style ="margin-top:50px;margin-bottom:20px">To download instruction file for uploading of student detail through Excel sheet</h4>
     <form role="form" method="post" action="<?=base_url();?>dashboard/download">
 	<div class="col-sm-12">
 		
@@ -35,9 +42,9 @@ Your browser does not support the video tag.
 	   
  <div class="col-sm-12" >
 
-<a href="<?=base_url();?>master/generalsetting" class="btn btn-primary btn-lg" style="margin-top:10px ;background-color:black;float:right">Next</a>
+<a href="<?=base_url();?>master/generalsetting1" class="btn btn-primary btn-lg" style="margin-top:10px ;background-color:black;float:right">Next</a>
 </div>
-      
+  </div>    
  </div>
   </div>	
 </div>								
