@@ -26,7 +26,7 @@
 <?php } ?>
 
 
-							<form role="form" class="form-horizontal" action="<?=base_url();?>master/gs_insrt1" method="post">
+							<form role="form" class="form-horizontal validate" action="<?=base_url();?>master/gs_insrt1" method="post">
 							<?php if($school_info){?><input type="hidden" name="id" value="<?=!empty($school_info[0]->Id)?$school_info[0]->Id:''?>"><?php } ?>
 								<div class="row">	
 								   <div class="col-md-12">
@@ -46,7 +46,7 @@
 												
 												<div class="col-sm-8">
 													<div class="input-group">
-														<input type="text" readonly class="form-control datepicker" data-format="D, dd MM yyyy" name="soft_date" value="<?php if(!empty($school_info[0]->SchoolStartDate)){echo date("d-m-Y H:i",$school_info[0]->SchoolStartDate);}?>">
+														<input type="text" readonly class="form-control datepicker" data-validate="required" data-format="D, dd MM yyyy" name="soft_date" value="<?php if(!empty($school_info[0]->SchoolStartDate)){echo date("d-m-Y H:i",$school_info[0]->SchoolStartDate);}?>">
 														
 														<div class="input-group-addon">
 															<a href="#"><i class="linecons-calendar"></i></a>
