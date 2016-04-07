@@ -740,7 +740,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 		}
 	 /*section insert function*.....................................*/
 	
-
+ 
 
 
 

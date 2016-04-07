@@ -598,15 +598,478 @@ class Admission extends CI_Controller {
 	else 
 				$this->session->set_flashdata('message_type', 'error');        
 				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Upload class and section first');
-				redirect('index.php/master/manageclass');
+				redirect('master/manageclass');
 }
 
 /*school management student registration upload through excel sheet controller end...................................................................................................*/	
 
+/*school management student registration upload through excel sheet controller start...................................................................................................*/	
+	function ins_stu1($RegistrationId=false)
+	{	$var; $var1='';$var2='';$var3='';
+		if(Authority::checkAuthority('Registration')==true){
+			}
+		else{
+				$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+				redirect('dashboard');
+			}
+			if(empty($this->currentsession[0]->CurrentSession)){
+				$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+				redirect($_SERVER['HTTP_REFERER']);
+			}
+			
+			$class=$this->data['detail1']=$this->admission_model->classdata();
+			
+			if(!empty($class)){
+		 if(isset($_POST["Import"]))
+		 { 
+			$k=0;
+			$filename=$_FILES["file"]["tmp_name"];
+			if($_FILES["file"]["size"] > 0)
+			{
+				$file = fopen($filename, "r");
+				
+				while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
+				{	 
+			
+					count($emapData);
+					
+					for($i=0;count($emapData)>$i;$i++)
+					{
+						if($emapData[$i]=='StudentName'){	
+						$st=[$i];}
+						if($emapData[$i]=='FatherName'){
+						$ft=[$i];}
+						if($emapData[$i]=='MotherName'){
+						$mt=[$i];}
+						
+						if($emapData[$i]=='MobileNo'){	
+						$nt=[$i];}
+						if($emapData[$i]=='Class'){
+						$ct=[$i];}
+						if($emapData[$i]=='Sec'){
+						$et=[$i];}
+						if($emapData[$i]=='Gender'){
+						$gt=[$i];}
+						if($emapData[$i]=='Date'){
+						$dt=[$i];}
+						
+					}
+					
+				   if($k>0)
+				   {
+					   if(is_array($st) && isset($st) && !empty($st))
+						{
+							
+							foreach($st as $st);
+							
+						}
+									
+						 if( is_array($ft) && isset($ft) &&!empty($ft))
+						{
+						foreach($ft as $ft);
+						
+						} 
+						
+						if( is_array($mt) && isset($mt) && !empty($mt))
+						{
+							foreach($mt as $mt);
+							
+						}
+						 if( is_array($nt) && isset($nt) && !empty($nt))
+						{
+						foreach($nt as $nt);
+						
+						}
+						
+						if( is_array($ct) && isset($ct) && !empty($ct))
+						{
+						foreach($ct as $ct);
+						
+						} 
+						
+						if(is_array($et) && isset($et) && !empty($et))
+						{
+						foreach($et as $et);
+						}
+					
+						 if(is_array($dt) && isset($dt) && !empty($dt))
+						{
+						foreach($dt as $dt);
+						} 
+						
+						if(is_array($gt) && isset($gt) && !empty($gt))
+						{
+						foreach($gt as $gt);
+					
+						} 						
+					
+						 
+						if(!empty($emapData[$st]))
+						{
+							$StudentName=$emapData[$st];
+								
+						$section1=$this->data['detail1']=$this->master_model->section1($emapData[$et],$emapData[$ct]);
+						
+						$section2=$this->data['detail2']=$this->master_model->section2();
+						//print_r($section2);die;
+						if(isset($section1[0]->ClassName) && isset($section1[0]->SectionName) && !empty($section1[0]->SectionName) && !empty($section1[0]->ClassName))
+							
+							{ 	 
+								if(isset($mt) && !empty($mt))
+								{
+									$MotherName=$emapData[$mt];
+								}
+								else
+								{
+									$MotherName='';
+								}
+								if(isset($ft) && !empty($ft) )
+								{
+									$FatherName=$emapData[$ft];
+								}
+								else
+								{
+									$FatherName='';
+								}
+								
+								if(isset($nt) && !empty($nt) )
+								{
+									$Mobileno=$emapData[$nt];
+								}
+								else
+								{
+									$Mobileno='';
+								}
+								
+								$student=$this->data['detail2']=$this->master_model->student($StudentName,$FatherName,$MotherName,$Mobileno,$section1[0]->SectionId);
+								
+								
+								if(empty($student))
+								{
+									
+									
+								
+								if(isset($dt) && !empty($dt) && !empty($emapData[$dt]))
+								{
+									$Date=$emapData[$dt];
+								}
+								else
+								{  
+									$Date=date("d-m-Y h:i:s");
+									//print_r($Date);die;
+								}
+								
+								
+								
+									if($emapData[$gt]==$section2[13]->MasterEntryValue)
+									{
+										$var=$section2[13]->MasterEntryId;	
+									}
+									if($emapData[$gt]==$section2[14]->MasterEntryValue)
+									{
+										$var=$section2[14]->MasterEntryId;
+									}
+									if($var==''){$var='NULL';}
+									$k=0;
+									
+									$StudentsPassword=rand(100000,999999);
+									$ParentsPassword=rand(100000,999999);
+									$data1= array(
+									'Session'=>$this->currentsession[0]->CurrentSession,
+									'StudentName'=>$StudentName,
+									'FatherName'=>$FatherName,
+									'MotherName'=>$MotherName,
+									'Mobile'=>$Mobileno,
+									'SectionId'=>$section1[0]->SectionId,
+									'Gender'=>$var,
+									'DOR'=>strtotime($Date),
+									'Status'=>'NotAdmitted',
+									'DOE'=>strtotime(date("Y-m-d")),
+									'Username'=>$this->info['usermailid'],
+									'ParentsPassword'=>$ParentsPassword,
+									'StudentsPassword'=>$StudentsPassword);
+									$this->load->model('master_model'); 
+									$insertId = $this->master_model->insertCSV2($data1);
+								//print_r($data1);die;
+							}
+							
+								else 
+								{	$msg="fail";
+									
+									$name1[]=$emapData[$st];
+							
+									$comma1 = implode(",", $name1);
+									
+								}
+							}
+							else
+							{
+								$msg="fail";
+									
+									$name2[]=$emapData[$st];
+							
+									$comma2 = implode(",", $name2);
+									
+							}
+								
+				   }
+				    else {
+									$msg="fail";
+									
+									$name3[]=$emapData[$ft];
+								
+									$comma3 = implode(",", $name3); 
+									
+				         }
+				   }
+				   $k++;
+				   
+				  
+				
+				}
+				
+				if(!empty($comma1)){
+				$var1.='These students already exist -';
+				$var1.=$comma1;
+				}
+				if(!empty($comma2)){
+				$var2.='These students not registered Successfully-';
+				$var2.=$comma2;
+				}
+				if(!empty($comma3)){
+				$var3.=' These students name doest not exsist whose father name is -';
+				$var3.=$comma3;
+				}
+				
+				if($msg=="fail"){
+					$this->session->set_flashdata('message_type', 'error');        
+					$this->session->set_flashdata('message', $this->config->item("manageaccount")."$var1 <br> $var2 <br> $var3 <br>");
+					redirect('master/upload');
+				}
+				
+				fclose($file);
+				
+				$this->session->set_flashdata('message_type', 'error');        
+				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Student registered successfully');
+				redirect('master/upload');
+			}
+				$this->session->set_flashdata('message_type', 'error');        
+				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Error uploading');
+				redirect('master/upload');
+		}
+				$this->session->set_flashdata('message_type', 'error');        
+				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Error uploading');
+				redirect('master/upload');
+				}
+	else 
+				$this->session->set_flashdata('message_type', 'error');        
+				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Upload class and section first');
+				redirect('master/upload');
+}
 
+/*school management student registration upload through excel sheet controller end...................................................................................................*/	
 
 /*school management student registration in hindi upload through excel sheet controller start...................................................................................................*/	
 	function student_info_hindi($RegistrationId=false)
+	{	$var;
+	
+		 if(Authority::checkAuthority('Registration')==true){
+			}
+		else{
+				$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+				redirect('index.php/dashboard');
+			}
+			if(empty($this->currentsession[0]->CurrentSession)){
+				$this->session->set_flashdata('category_error', 'Please Select Session!!');        
+				redirect($_SERVER['HTTP_REFERER']);
+			} 
+			$class=$this->data[detail1]=$this->admission_model->classdata();
+			
+			if(!empty($class)){ 
+			   
+		 if(isset($_POST["Import"]))
+		 { 
+			$k=0;
+			$filename=$_FILES["file"]["tmp_name"];
+
+			
+			if($_FILES["file"]["size"] > 0) 
+			{
+				
+				$file = fopen($filename, "r");
+				 
+				 
+				while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
+				{	
+						 if($k>0){ 
+						if(!empty($emapData[0]))
+						{
+							$StudentName=$emapData[0];
+								
+						$section1=$this->data['detail1']=$this->master_model->section1($emapData[5],$emapData[4]);
+						
+						$section2=$this->data['detail2']=$this->master_model->section2();
+
+						if(isset($section1[0]->ClassName) && isset($section1[0]->SectionName) && !empty($section1[0]->SectionName) && !empty($section1[0]->ClassName))
+							
+							{ 	 
+								if(isset($emapData[2]) && !empty($emapData[2]))
+								{
+									$MotherName=$emapData[2];
+								}
+								else
+								{
+									$MotherName='';
+								}
+							if(isset($emapData[1]) && !empty($emapData[1]))
+								{
+									$FatherName=$emapData[1];
+								}
+								else
+								{
+									$FatherName='';
+								}
+								
+							if(isset($emapData[3]) && !empty($emapData[3]))
+								{
+									$Mobileno=$emapData[3];
+								}
+								else
+								{
+									$Mobileno='';
+								}
+								
+								$student=$this->data['detail2']=$this->master_model->student($StudentName,$FatherName,$MotherName,$Mobileno,$section1[0]->SectionId);
+								
+								
+								if(empty($student))
+								{
+									
+									
+								
+							if(isset($emapData[6]) && !empty($emapData[6]))
+								{
+									$Date=$emapData[6];
+								}
+								else
+								{  
+									$Date=date("d-m-Y h:i:s");
+									
+								}
+								
+								
+								
+									if($emapData[7]==$section2[13]->MasterEntryValue)
+									{
+										$var=$section2[13]->MasterEntryId;	
+									
+									}
+									if($emapData[7]==$section2[14]->MasterEntryValue)
+									{
+										$var=$section2[14]->MasterEntryId;
+									}
+									if($var==''){$var='NULL';}
+									$k=0;
+									
+									$StudentsPassword=rand(100000,999999);
+									$ParentsPassword=rand(100000,999999);
+									$data1= array(
+									'Session'=>$this->currentsession[0]->CurrentSession,
+									'StudentName'=>$StudentName,
+									'FatherName'=>$FatherName,
+									'MotherName'=>$MotherName,
+									'Mobile'=>$Mobileno,
+									'SectionId'=>$section1[0]->SectionId,
+									'Gender'=>$var,
+									'DOR'=>strtotime($Date),
+									'Status'=>'NotAdmitted',
+									'DOE'=>strtotime(date("Y-m-d")),
+									'Username'=>$this->info['usermailid'],
+									'ParentsPassword'=>$ParentsPassword,
+									'StudentsPassword'=>$StudentsPassword);
+									$this->load->model('master_model'); 
+									$insertId = $this->master_model->insertCSV2($data1);
+								
+							}
+							
+								else 
+								{	$msg="fail";
+									
+									$name1[]=$emapData[0];
+							
+									$comma1 = implode(",", $name1);
+									
+								}
+							}
+							else
+							{
+								$msg="fail";
+									
+									$name2[]=$emapData[0];
+							
+									$comma2 = implode(",", $name2);
+									
+							}
+								
+				   }
+				    else {
+									$msg="fail";
+									
+									$name3[]=$emapData[1];
+								
+									$comma3 = implode(",", $name3); 
+									
+				         }
+				   }
+				   $k++;
+				   
+				  
+				
+				}
+				
+				if(!empty($comma1)){
+				$var1.='These students already exist -';
+				$var1.=$comma1;
+				}
+				if(!empty($comma2)){
+				$var2.='These students not registered Successfully-';
+				$var2.=$comma2;
+				}
+				if(!empty($comma3)){
+				$var3.=' These students name doest not exsist whose father name is -';
+				$var3.=$comma3;
+				}
+				
+				if($msg=="fail"){
+					$this->session->set_flashdata('message_type', 'error');        
+					$this->session->set_flashdata('message', $this->config->item("manageaccount")."$var1 <br> $var2 <br> $var3 <br>");
+					redirect('admission/registration');
+				}
+				
+				fclose($file);
+				
+				$this->session->set_flashdata('message_type', 'error');        
+				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Student registered successfully');
+				redirect('admission/registration');
+			}
+		
+				$this->session->set_flashdata('message_type', 'error');        
+				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Error uploading');
+				redirect('registration');
+		}
+		}
+	else 
+				$this->session->set_flashdata('message_type', 'error');        
+				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Upload class and section first');
+				redirect('master/manageclass');
+	}
+
+/*school management student registration in hindi upload through excel sheet controller end..................................................................................................*/	
+
+
+
+/*school management student registration in hindi upload through excel sheet controller start...................................................................................................*/	
+	function student_info_hindi1($RegistrationId=false)
 	{	$var;
 	
 		 if(Authority::checkAuthority('Registration')==true){
@@ -797,10 +1260,11 @@ class Admission extends CI_Controller {
 	else 
 				$this->session->set_flashdata('message_type', 'error');        
 				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Upload class and section first');
-				redirect('index.php/master/manageclass');
+				redirect('master/upload');
 	}
 
 /*school management student registration in hindi upload through excel sheet controller end..................................................................................................*/	
+
 
 
 	/*school management admission View Load.............................................................................................................*/
