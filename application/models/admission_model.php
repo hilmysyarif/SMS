@@ -15,6 +15,11 @@ class Admission_model extends CI_Model
 		$this->load->database();
 	}
 	
+	function classdata()
+	{
+		$qry=$this->db->query("select SectionId from section");
+		return $qry->result();
+	}
 	function get_class_info($CURRENTSESSION=false)
 	{
 			$qry = $this->db->query("select ClassName,SectionName,SectionId from class,section where 

@@ -351,7 +351,9 @@ class Admission extends CI_Controller {
 				redirect($_SERVER['HTTP_REFERER']);
 			}
 			
+			$class=$this->data[detail1]=$this->admission_model->classdata();
 			
+			if(!empty($class)){
 		 if(isset($_POST["Import"]))
 		 { 
 			$k=0;
@@ -592,6 +594,11 @@ class Admission extends CI_Controller {
 				$this->session->set_flashdata('message_type', 'error');        
 				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Error uploading');
 				redirect('admission/registration');
+				}
+	else 
+				$this->session->set_flashdata('message_type', 'error');        
+				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Upload class and section first');
+				redirect('index.php/master/manageclass');
 }
 
 /*school management student registration upload through excel sheet controller end...................................................................................................*/	
@@ -612,7 +619,9 @@ class Admission extends CI_Controller {
 				$this->session->set_flashdata('category_error', 'Please Select Session!!');        
 				redirect($_SERVER['HTTP_REFERER']);
 			} 
-			 
+			$class=$this->data[detail1]=$this->admission_model->classdata();
+			
+			if(!empty($class)){ 
 			   
 		 if(isset($_POST["Import"]))
 		 { 
@@ -784,6 +793,11 @@ class Admission extends CI_Controller {
 				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Error uploading');
 				redirect('admission/registration');
 		}
+		}
+	else 
+				$this->session->set_flashdata('message_type', 'error');        
+				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Upload class and section first');
+				redirect('index.php/master/manageclass');
 	}
 
 /*school management student registration in hindi upload through excel sheet controller end..................................................................................................*/	

@@ -92,7 +92,73 @@ function upload()
 		$this->parser->parse('include/topheader1',$this->data);
 	}
 /*TO upload data through setup page  End..........................................................*/
-
+/*school management generalsetting school details insert and update start........................................*/	
+	function gs_insrt1()
+	{	
+		if(Authority::checkAuthority('GeneralSetting')==true){
+			
+		}else{
+					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
+					redirect('index.php/dashboard');
+		}
+		$generalsettinginfo = $this->master_model->get_info('generalsetting');
+		if(!empty($generalsettinginfo[0]->SchoolStartDate)){
+			$soft_date=$generalsettinginfo[0]->SchoolStartDate;
+		}else{
+			$soft_date=strtotime($this->input->post('soft_date'));
+		}
+		if($this->input->post('id')){
+			$data=array('SchoolName'=>$this->input->post('school_name'),
+						'SchoolStartDate'=>$soft_date,
+						'State'=>$this->input->post('state'),
+						'Board'=>$this->input->post('board'),
+						'SchoolAddress'=>$this->input->post('address'),
+						'Country'=>$this->input->post('country'),
+						'AffiliatedBy'=>$this->input->post('affiliated'),
+						'City'=>$this->input->post('city'),
+						'Mobile'=>$this->input->post('mobile'),
+						'RegistrationNo'=>$this->input->post('registration'),
+						'District'=>$this->input->post('district'),
+						'AlternateMobile'=>$this->input->post('alt_mobile'),
+						'AffiliationNo'=>$this->input->post('affi_no'),
+						'PIN'=>$this->input->post('pin'),
+						'Landline'=>$this->input->post('landline'),
+						'DateOfEstablishment'=>strtotime($this->input->post('doe')),
+						'Email'=>$this->input->post('email'),
+						'Fax'=>$this->input->post('fax')
+						);		
+				$filter=array('Id'=>$this->input->post('id'));
+				$this->master_model->insert_gen_setting('generalsetting',$data,$filter);
+				$this->session->set_flashdata('message_type', 'success');        
+                $this->session->set_flashdata('message', $this->config->item("generelsetting").' Setting Updated Successfully');
+		} 
+		else
+		{
+			$data=array('SchoolName'=>$this->input->post('school_name'),
+						'SchoolStartDate'=>strtotime($this->input->post('soft_date')),
+						'State'=>$this->input->post('state'),
+						'Board'=>$this->input->post('board'),
+						'SchoolAddress'=>$this->input->post('address'),
+						'Country'=>$this->input->post('country'),
+						'AffiliatedBy'=>$this->input->post('affiliated'),
+						'City'=>$this->input->post('city'),
+						'Mobile'=>$this->input->post('mobile'),
+						'RegistrationNo'=>$this->input->post('registration'),
+						'District'=>$this->input->post('district'),
+						'AlternateMobile'=>$this->input->post('alt_mobile'),
+						'AffiliationNo'=>$this->input->post('affi_no'),
+						'PIN'=>$this->input->post('pin'),
+						'Landline'=>$this->input->post('landline'),
+						'DateOfEstablishment'=>strtotime($this->input->post('doe')),
+						'Email'=>$this->input->post('email'),
+						'Fax'=>$this->input->post('fax')
+						);		
+				$this->master_model->insert_gen_setting('generalsetting',$data);
+				$this->session->set_flashdata('message_type', 'success');        
+                $this->session->set_flashdata('message', $this->config->item("generelsetting").' Setting Save Successfully');
+		}
+			redirect('master/upload');
+	}
 /*To accept agreement and perform setup function ..........................................................*/
 	
 		function acceptance()
