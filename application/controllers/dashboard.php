@@ -23,7 +23,7 @@ class Dashboard extends CI_Controller {
 	 }
 
 	 /*school management dashboard start...............................................................................*/
-		public function index()
+		public function index($Studentspassword,$Parentspassword)
 		
 	{/*new code...Nabeela....*/
 	
