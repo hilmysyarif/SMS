@@ -1,10 +1,4 @@
-<?php  if($this->session->flashdata('message_type')) { ?>
-<div class="row">
-<div class="alert alert-success">
-<strong><?=$this->session->flashdata('message')?></strong> 
-</div>
-</div>
-<?php }?>
+
 
 <div class="container">
 
