@@ -206,7 +206,7 @@ class Dashboard extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 		
 	}
-	elseif(!empty($generalsetting && currentsession->UserType=='0'))
+	elseif(!empty($generalsetting && user_data[UserType]=='0'))
 	{
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
