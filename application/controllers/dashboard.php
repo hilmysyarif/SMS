@@ -204,16 +204,16 @@ class Dashboard extends CI_Controller {
 		
 		$this->load->view('setup',$this->data);
 		$this->parser->parse('include/footer',$this->data);
-		echo 'hi5';die;
+		
 	}
-	elseif(!empty($generalsetting))
+	elseif(!empty($generalsetting && currentsession->UserType=='0'))
 	{
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
 		$this->load->view('dashboard',$this->data);
 		$this->parser->parse('include/footer',$this->data);
-	echo 'hi';die;
+	
 	}
 elseif(empty($agreement_detail))
 		 {
@@ -221,7 +221,7 @@ elseif(empty($agreement_detail))
 		 $this->parser->parse('include/header1',$this->data);
 		 $this->load->view('setup1',$this->data);
 		 $this->parser->parse('include/footer',$this->data);
-		 echo 'hi10';die;
+
 	 }
 elseif(!empty($agreement_detail))	
 {
@@ -230,7 +230,7 @@ $this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/leftmenu',$this->data);
 		$this->load->view('dashboard',$this->data);
 		$this->parser->parse('include/footer',$this->data);	
-		echo 'hi20';die;
+		
 	
 }else{
 	echo 'hi';
