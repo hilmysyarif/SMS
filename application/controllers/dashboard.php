@@ -221,7 +221,7 @@ elseif(empty($agreement_detail))
 		 $this->load->view('setup1',$this->data);
 		 $this->parser->parse('include/footer',$this->data);
 	 }
-else (!empty($agreement_detail))	
+elseif(!empty($agreement_detail))	
 {
 $this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -229,6 +229,8 @@ $this->parser->parse('include/header',$this->data);
 		$this->load->view('dashboard',$this->data);
 		$this->parser->parse('include/footer',$this->data);	
 	
+}else{
+	echo 'hi';
 }	
 	
 	}
