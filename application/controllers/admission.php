@@ -351,7 +351,7 @@ class Admission extends CI_Controller {
 				redirect($_SERVER['HTTP_REFERER']);
 			}
 			
-			$class=$this->data[detail1]=$this->admission_model->classdata();
+			$class=$this->data['detail1']=$this->admission_model->classdata();
 			
 			if(!empty($class)){
 		 if(isset($_POST["Import"]))
