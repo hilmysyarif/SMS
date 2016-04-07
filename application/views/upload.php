@@ -8,7 +8,7 @@
 
 <div class="container">
 
-<div class="panel panel-default" >
+<div class="panel panel-default" style="margin-top:90px">
 						<div class="panel-heading">
 							<h3 class="panel-title">Upload details</h3>
 							
@@ -32,7 +32,7 @@
 						<?php }?>
 						
 						<?php if($school_info){?>
-						<div class="alert alert-info" style="margin-top:50px">Select session date for school before uploading data (Mandatory)</div><?php } ?>
+						<div class="alert alert-info" style="margin-top:20px">Select session date for school before uploading data (Mandatory)</div><?php } ?>
 						
 						<div class="col-lg-6 col-sm-6 col-md-6">
 						<h3>Class and Section upload </h4>
