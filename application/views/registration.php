@@ -1247,7 +1247,7 @@
 						
 						<!--------View for uploading excel sheet-	end---by Nabeela Ansari-------------------------------------------------------------->
 						
-						<h4 style="color:black;margin-bottom:-10px;margin-top:50px">Or upload  Hindi Excel file with .CSV in extn</h4>
+						<h4 style="color:black;margin-bottom:-10px;margin-top:50px">Or upload  Hindi Excel file with .CSV extn</h4>
 													
 													
 						<form class="form-horizontal well" style="margin-top:40px" action="<?php echo base_url(); ?>admission/student_info_hindi" method="post" name="upload_excel" enctype="multipart/form-data">

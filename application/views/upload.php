@@ -8,12 +8,29 @@
 
 <div class="container">
 
-<div class="panel panel-default" style="margin-top:130px">
+<div class="panel panel-default" >
 						<div class="panel-heading">
 							<h3 class="panel-title">Upload details</h3>
 							
 						</div>
 						<div class="panel-body">
+						
+						<?php  if($this->session->flashdata('message_type')) { ?>
+						<div class="row">
+						<div class="alert alert-success">
+						<strong><?=$this->session->flashdata('message')?></strong> 
+						</div>
+						</div>
+						<?php }?>
+						
+						<?php  if($this->session->flashdata('category_error')) { ?>
+						<div class="row">
+						<div class="alert alert-danger">
+						<strong><?=$this->session->flashdata('category_error')?></strong> 
+						</div>
+						</div>
+						<?php }?>
+						
 						<?php if($school_info){?>
 						<div class="alert alert-info" style="margin-top:50px">Select session date for school before uploading data (Mandatory)</div><?php } ?>
 						
