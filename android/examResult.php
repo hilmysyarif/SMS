@@ -108,7 +108,7 @@ if(!$CONNECTION)
 	}elseif ($action == "getfeedback"){
 		
 		$ID =$dataarray['ID'];
-		$resultarray = array();
+		//$resultarray = array();
 
 	
 		$countrow=mysqli_query($CONNECTION,"Select * from feedback where student_id='$ID'");
