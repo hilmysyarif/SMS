@@ -129,7 +129,8 @@ if(!$CONNECTION)
 			
 		//	} else {
 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data1['senderID']);
-				
+
+			
 			}
 			
 		
