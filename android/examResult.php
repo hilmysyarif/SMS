@@ -108,34 +108,64 @@ if(!$CONNECTION)
 	}elseif ($action == "getfeedback"){
 		
 		$ID =$dataarray['ID'];
+		//$resultarray = array();
+
+	
+		$countrow=mysqli_query($CONNECTION,"");
+		
+	
+		
+		$countrow=mysqli_query($CONNECTION,"Select * from feedback where student_id='$ID'");
+		
 		$resultarray = array();
+		
+		while($data1 = mysqli_fetch_array($countrow)){
+		if ($data1['senderID']=="Administrator"){
+			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data1['senderID']);
+				
+		}else {
+			$newID = split("_", $data1['senderID']);
+			
+			$countrow2=mysqli_query($CONNECTION,"Select StaffName from staff where StaffId='$newID[1]");
+			$data2= mysqli_fetch_array($countrow2);
+			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data2['StaffName']);
+				
+		}
+		
 
 		
-		$query="Select * from feedback where student_id='$ID'";
+		}
 		
 		
 		
-		while($data1 = mysqli_fetch_array($query)){
-			$str = "Hello world";
-			$pos = strpos($data1['senderID'], "_");
+		
+// 		while($data1 = mysql_fetch_array($countrow)){
+//  			print_r($data1);die;
+// 			$str = "Hello world";
+// 			$pos = strpos($data1['senderID'], "_");
 			
-			if ($pos !== FALSE) {
-		    $newID = explode("_", $data1['senderID']);
-			
-			$query2="Select StaffName from staff where StaffId='$newID[1]'";
-			$data2 = mysqli_fetch_array($query2);
-			
-			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data2['StaffName']);
-			
-			} else {
-							$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data1['senderID']);
+// 			if ($pos !== FALSE) {
+//  				print_r("False");
 				
-			}
+// 		    $newID = explode("_", $data1['senderID']);
 			
-					}
+// 		    $countrow2=mysqli_query($CONNECTION,"Select StaffName from staff where StaffId='$newID[1]'");
+		   
+// 			$data2 = mysql_fetch_row($countrow2);
+			
+// 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data2['StaffName']);
+			
+// 			} else {
+// 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data1['senderID']);
+//  			//print_r("True");
+//  		//	print_r(".........");
+// 			}
+			
+			
+// 		}
 		
+		print_r(json_encode($resultarray));
 			
-			print_r(json_encode($resultarray));
 		
 		
 	}
