@@ -120,15 +120,19 @@ if(!$CONNECTION)
 		$resultarray = array();
 		
 		while($data1 = mysqli_fetch_array($countrow)){
-		
+		if ($data1['senderID']=="Administrator"){
 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data1['senderID']);
 				
-// 			if (strpos(date('Y-m-d',$data1['dateofhomework']), $month) !== false){
+		}else {
+			$newID = split("_", $data1['senderID']);
+			
+			$countrow2=mysqli_query($CONNECTION,"Select StaffName from staff where StaffId='$newID[1]");
+			$data2= mysqli_fetch_array($countrow2);
+			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data2['StaffName']);
+				
+		}
 		
-// 				$abb = array('date'=>date('Y-m-d',$data1['dateofhomework']), 'subjectID'=>$data1['subjectid'], 'homework'=>$data1['homework']);
-// 				$resultarray[] = $abb;
-					
-// 			}
+
 		
 		}
 		
