@@ -409,7 +409,7 @@ public function index1()
  public function insert1()
  {
 	 $data=array('Terms'=>$this->input->post('terms'));
-	 $this->Dashboard_model->insert('generalsetting',$data);
+	 $this->Dashboard_model->insert1('registration',$data);
 	 redirect('dashboard/index1');
  }
   public function insert()

@@ -106,6 +106,13 @@ class Dashboard_model extends CI_Model {
 		return $query->Result();
 	
     }
+	function insert1($table=false,$data=false)
+	{
+		$this->db->insert($table,$data);
+		$last_id = $this->db->insert_id();
+		return $last_id;
+	}
+
 }
 
 ?>
