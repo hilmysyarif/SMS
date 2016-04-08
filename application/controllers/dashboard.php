@@ -20,7 +20,7 @@ class Dashboard extends CI_Controller {
 		$currentsession = $this->mhome->get_session();
 		$this->session->set_userdata('currentsession',$currentsession);
 		$currentsession=$this->currentsession = $this->session->userdata('currentsession');
-		$checkid=$this->info['user_id'];
+		
 		
 	 }
 
@@ -196,7 +196,7 @@ class Dashboard extends CI_Controller {
 		//Pei Chart , Line Chart and calender Reports End  there............................................
 		
 		$generalsetting=$this->data['generalsetting']=$this->Dashboard_model->generalsetting();	
-		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($checkid);
+		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($this->info['user_id']);
 
 		 if(((empty($generalsetting)) && $this->info['UserType']==0 ) || ((empty($agreement_detail)) && $this->info['UserType']!=0  ))
 		{
