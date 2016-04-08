@@ -426,6 +426,7 @@ public function index1()
  	 redirect('dashboard/index1');
  
  }
+ }
   public function insert()
  {	$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
  if (empty($generalsetting))
