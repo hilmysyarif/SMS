@@ -116,28 +116,28 @@ if(!$CONNECTION)
 		
 		
 		while($data1 = mysqli_fetch_array($query)){
-// 			$str = "Hello world";
-// 			$pos = strpos($data1['senderID'], "_");
+			$str = "Hello world";
+			$pos = strpos($data1['senderID'], "_");
 			
-// 			if ($pos !== FALSE) {
-// 		    $newID = explode("_", $data1['senderID']);
+			if ($pos !== FALSE) {
+		    $newID = explode("_", $data1['senderID']);
 			
-// 			$query2="Select StaffName from staff where StaffId='$newID[1]'";
-// 			$data2 = mysqli_fetch_array($query2);
+			$query2="Select StaffName from staff where StaffId='$newID[1]'";
+			$data2 = mysqli_fetch_array($query2);
 			
-// 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data2['StaffName']);
+			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data2['StaffName']);
 			
-		//	} else {
+			} else {
 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data1['senderID']);
 
 			
 			}
 			
-		
+			
 		}
 		
+		print_r(json_encode($resultarray));
 			
-			print_r(json_encode($resultarray));
 		
 		
 	}
