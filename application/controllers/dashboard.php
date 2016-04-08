@@ -195,10 +195,10 @@ class Dashboard extends CI_Controller {
 		
 		$generalsetting=$this->data['generalsetting']=$this->Dashboard_model->generalsetting();	
 		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($Studentspassword,$Parentspassword);
-
+print_r($agreement_detail);die;
 		 if(empty($generalsetting && user_data[UserType]=='0' ) || (empty($agreement_detail && user_data[UserType]!=='0'  )))
 		{
-echo 'hi';die;
+//echo 'hi';die;
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/header1',$this->data);
 		
