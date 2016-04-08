@@ -194,7 +194,7 @@ class Dashboard extends CI_Controller {
 		// Pei chart admission report End...................................
 		
 		//Pei Chart , Line Chart and calender Reports End  there............................................
-		
+		print_r($checkid);die;
 		$generalsetting=$this->data['generalsetting']=$this->Dashboard_model->generalsetting();	
 		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($checkid);
 
