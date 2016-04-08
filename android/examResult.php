@@ -139,34 +139,10 @@ if(!$CONNECTION)
 		
 		
 		
-		
-// 		while($data1 = mysql_fetch_array($countrow)){
-//  			print_r($data1);die;
-// 			$str = "Hello world";
-// 			$pos = strpos($data1['senderID'], "_");
-			
-// 			if ($pos !== FALSE) {
-//  				print_r("False");
-				
-// 		    $newID = explode("_", $data1['senderID']);
-			
-// 		    $countrow2=mysqli_query($CONNECTION,"Select StaffName from staff where StaffId='$newID[1]'");
-		   
-// 			$data2 = mysql_fetch_row($countrow2);
-			
-// 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data2['StaffName']);
-			
-// 			} else {
-// 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data1['senderID']);
-//  			//print_r("True");
-//  		//	print_r(".........");
-// 			}
-			
-			
-// 		}
-		
+	
 		print_r(json_encode($resultarray));
-			
+
+		
 		
 		
 	}
