@@ -110,12 +110,12 @@ if(!$CONNECTION)
 		$ID =$dataarray['ID'];
 		$resultarray = array();
 
+	
+		$countrow=mysqli_query($CONNECTION,"Select * from feedback where student_id='$ID'");
 		
-		$query="Select * from feedback where student_id='$ID'";
+	
 		
-	$query =	mysqli_query($CONNECTION,$query);
-		
-		while($data1 = mysql_fetch_array($query)){
+		while($data1 = mysql_fetch_array($countrow)){
  		//	print_r($data1);
 			$str = "Hello world";
 			$pos = strpos($data1['senderID'], "_");
@@ -125,9 +125,9 @@ if(!$CONNECTION)
 				
 		    $newID = explode("_", $data1['senderID']);
 			
-			$query2="Select StaffName from staff where StaffId='$newID[1]'";
-			$query2 = mysqli_query($CONNECTION,$query2);
-			$data2 = mysqli_fetch_array($query2);
+		    $countrow2=mysqli_query($CONNECTION,"Select StaffName from staff where StaffId='$newID[1]'");
+		   
+			$data2 = mysql_fetch_row($countrow2);
 			
 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data2['StaffName']);
 			
