@@ -198,8 +198,7 @@ class Dashboard extends CI_Controller {
 
 		 if(((empty($generalsetting)) && $this->info['UserType']==0 ) || ((empty($agreement_detail)) && $this->info['UserType']!=0  ))
 		{
-			//print_r($this->info);
-			//print_r($this->info['UserType']);die;
+			
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/header1',$this->data);
 		
@@ -207,7 +206,7 @@ class Dashboard extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 		
 	}
-	else
+	elseif((!empty($generalsetting)) && $this->info['UserType']==0 )
 	{
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -216,8 +215,15 @@ class Dashboard extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 	
 	}
-
+	elseif((empty($agreement_detail)) && $this->info['UserType']!=0  )
+	{
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('dashboard',$this->data);
+		$this->parser->parse('include/footer',$this->data);
 	
+	}
 	
 	}
 /*school management dashboard End...............................................................................*/
@@ -407,10 +413,17 @@ public function index1()
 /*school management help End...............................................................................*/
  
  public function insert1()
- {
+ {	 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($Studentspassword,$Parentspassword);
+	
+	if (empty($generalsetting)){
 	 $data=array('Terms'=>$this->input->post('terms'));
 	 $this->Dashboard_model->insert1('registration',$data);
 	 redirect('dashboard/index1');
+ }
+ else{
+
+ 	 redirect('dashboard/index1');
+ 
  }
   public function insert()
  {	$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
