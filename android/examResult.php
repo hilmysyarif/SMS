@@ -124,10 +124,9 @@ if(!$CONNECTION)
 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data1['senderID']);
 				
 		}else {
-			$newID = split("_", $data1['senderID']);
+			$newID = split("_", $data1['senderID']);			
 			
-			print_r($newID);die;
-			$countrow2=mysqli_query($CONNECTION,"Select StaffName from staff where StaffId='$newID[1]");
+			$countrow2=mysqli_query($CONNECTION,"Select StaffName from staff where StaffId='$newID[0]");
 			$data2= mysqli_fetch_array($countrow2);
 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data2['StaffName']);
 				
