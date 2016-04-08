@@ -21,7 +21,7 @@ class Dashboard extends CI_Controller {
 		$this->session->set_userdata('currentsession',$currentsession);
 		$currentsession=$this->currentsession = $this->session->userdata('currentsession');
 		$checkid=$this->info['user_id'];
-		print_r($checkid);die;
+		
 	 }
 
 	 /*school management dashboard start...............................................................................*/
@@ -196,7 +196,7 @@ class Dashboard extends CI_Controller {
 		//Pei Chart , Line Chart and calender Reports End  there............................................
 		
 		$generalsetting=$this->data['generalsetting']=$this->Dashboard_model->generalsetting();	
-		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($Studentspassword,$Parentspassword);
+		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($checkid);
 
 		 if(((empty($generalsetting)) && $this->info['UserType']==0 ) || ((empty($agreement_detail)) && $this->info['UserType']!=0  ))
 		{
@@ -415,7 +415,7 @@ public function index1()
 /*school management help End...............................................................................*/
  
  public function insert1()
- {	 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($Studentspassword,$Parentspassword);
+ {	 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($checkid);
 	
 	if (empty($agreement_detail))
 {
