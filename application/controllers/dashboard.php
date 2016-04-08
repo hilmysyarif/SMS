@@ -24,7 +24,7 @@ class Dashboard extends CI_Controller {
 
 	 /*school management dashboard start...............................................................................*/
 		public function index($Studentspassword=false,$Parentspassword=false)
-		
+		print_r($Studentspassword);die;
 	{/*new code...Nabeela....*/
 	
 		$this->breadcrumb->clear();
@@ -195,7 +195,7 @@ class Dashboard extends CI_Controller {
 		
 		$generalsetting=$this->data['generalsetting']=$this->Dashboard_model->generalsetting();	
 		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($Studentspassword,$Parentspassword);
-print_r($agreement_detail);die;
+
 		 if(((empty($generalsetting)) && $this->info['UserType']==0 ) || ((empty($agreement_detail)) && $this->info['UserType']!=0  ))
 		{
 			
