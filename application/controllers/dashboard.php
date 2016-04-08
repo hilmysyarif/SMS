@@ -196,7 +196,7 @@ class Dashboard extends CI_Controller {
 		$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
 		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($Studentspassword,$Parentspassword);
 
-		 if(empty($generalsetting  && user_data[UserType]=='0'))
+		 if(empty($generalsetting  || ($agreement_detail)))
 		{
 			
 		$this->parser->parse('include/header',$this->data);
@@ -215,14 +215,14 @@ class Dashboard extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 	
 	}
-elseif(empty($agreement_detail))
+/* elseif(empty($agreement_detail))
 		 {
 		 $this->parser->parse('include/header',$this->data);
 		 $this->parser->parse('include/header1',$this->data);
 		 $this->load->view('setup1',$this->data);
-		 $this->parser->parse('include/footer',$this->data);
+		 $this->parser->parse('include/footer',$this->data); */
 
-	 }
+	// }
 elseif(!empty($agreement_detail))	
 {
 $this->parser->parse('include/header',$this->data);

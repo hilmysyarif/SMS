@@ -65,7 +65,8 @@
 <p style="font-family:Comic Sans MS">The Terms, and Your relationship with Junction Software under the Terms, shall be governed by the laws of the India without regard to its conflict of laws provisions. You and Junction Software agree to submit to the exclusive jurisdiction of the courts located within the city of Bhopal , Madhya Pradesh to resolve any legal matter arising from the Terms. Notwithstanding this, You agree that Junction Software shall still be allowed to apply for injunctive remedies in any jurisdiction.</p>
 <br>
 <p style="font-family:Comic Sans MS">Junction Software reserves all rights not expressly granted under these Terms, and no other rights are granted under these Terms by implication or estoppel or otherwise.</p>
-
+<?php { if(empty($generalsetting))
+	{}?>
 
 <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
 <form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/insert" onsubmit="return checkCheckBoxes(this);">
@@ -77,5 +78,20 @@
 </div>
 </form>
 </div>
+	<?php } else {?>
+
+<div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
+<form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/insert1" onsubmit="return checkCheckBoxes(this);">
+<input tabindex="5" type="checkbox" name="terms" value="Accepted" class="icheck-11" id="minimal-checkbox-1-11" >
+<label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
+<br>
+<div class="col-sm-12" >
+<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:right" ></input>
+</div>
+</form>
+</div>
+
+	<?php }?>
+
 </div> 
 </div> 
