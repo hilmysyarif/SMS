@@ -25,7 +25,7 @@ class Dashboard extends CI_Controller {
 	 /*school management dashboard start...............................................................................*/
 		public function index($Studentspassword=false,$Parentspassword=false)
 		ptint_r($this->info);
-		print_r($currentsession);die
+		print_r($currentsession);die;
 	{/*new code...Nabeela....*/
 	
 		$this->breadcrumb->clear();
