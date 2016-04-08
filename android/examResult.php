@@ -112,7 +112,7 @@ if(!$CONNECTION)
 
 		
 		$query="Select * from feedback where student_id='$ID'";
-		
+		print_r($query);die;
 		
 		
 		while($data1 = mysqli_fetch_array($query)){
