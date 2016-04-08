@@ -112,14 +112,17 @@ if(!$CONNECTION)
 
 		
 		$query="Select * from feedback where student_id='$ID'";
-		print_r($query);die;
+		
 		
 		
 		while($data1 = mysqli_fetch_array($query)){
+			print_r($data1);
 			$str = "Hello world";
 			$pos = strpos($data1['senderID'], "_");
 			
 			if ($pos !== FALSE) {
+				print_r("False");
+				
 		    $newID = explode("_", $data1['senderID']);
 			
 			$query2="Select StaffName from staff where StaffId='$newID[1]'";
@@ -129,8 +132,8 @@ if(!$CONNECTION)
 			
 			} else {
 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data1['senderID']);
-
-			
+			print_r("True");
+			print_r(".........");
 			}
 			
 			
