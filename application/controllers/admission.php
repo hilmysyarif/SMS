@@ -858,7 +858,7 @@ class Admission extends CI_Controller {
 				redirect('master/upload');
 		}
 				$this->session->set_flashdata('message_type', 'error');        
-				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Error uploading');
+				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Error uploading ,file to upload not provided');
 				redirect('master/upload');
 				}
 	else 
@@ -1242,19 +1242,19 @@ class Admission extends CI_Controller {
 				if($msg=="fail"){
 					$this->session->set_flashdata('message_type', 'error');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount")."$var1 <br> $var2 <br> $var3 <br>");
-					redirect('admission/registration');
+					redirect('master/upload');
 				}
 				
 				fclose($file);
 				
 				$this->session->set_flashdata('message_type', 'error');        
 				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Student registered successfully');
-				redirect('admission/registration');
+				redirect('master/upload');
 			}
 		
 				$this->session->set_flashdata('message_type', 'error');        
 				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Error uploading');
-				redirect('admission/registration');
+				redirect('master/upload');
 		}
 		}
 	else 
