@@ -415,7 +415,8 @@ public function index1()
  public function insert1()
  {	 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($Studentspassword,$Parentspassword);
 	
-	if (empty($generalsetting)){
+	if (empty($agreement_detail))
+{
 	 $data=array('Terms'=>$this->input->post('terms'));
 	 $this->Dashboard_model->insert1('registration',$data);
 	 redirect('dashboard/index1');
