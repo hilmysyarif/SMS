@@ -20,8 +20,8 @@ class Dashboard extends CI_Controller {
 		$currentsession = $this->mhome->get_session();
 		$this->session->set_userdata('currentsession',$currentsession);
 		$currentsession=$this->currentsession = $this->session->userdata('currentsession');
-		print_r($this->info);
-		print_r($currentsession);die;
+		$checkid=$this->info['user_id'];
+		print_r($checkid);die;
 	 }
 
 	 /*school management dashboard start...............................................................................*/
