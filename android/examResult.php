@@ -116,7 +116,7 @@ if(!$CONNECTION)
 	
 		
 		while($data1 = mysql_fetch_array($countrow)){
- 		//	print_r($data1);
+ 			print_r($data1);die;
 			$str = "Hello world";
 			$pos = strpos($data1['senderID'], "_");
 			
