@@ -195,8 +195,8 @@ class Dashboard extends CI_Controller {
 		
 		$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
 		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($Studentspassword,$Parentspassword);
-print_r($generalsetting);die;
-		 if(empty($generalsetting) || (empty($agreement_detail)))
+
+		 if(empty($generalsetting && user_data[UserType]=='0' ) || (empty($agreement_detail)))
 		{
 			
 		$this->parser->parse('include/header',$this->data);
@@ -206,7 +206,7 @@ print_r($generalsetting);die;
 		$this->parser->parse('include/footer',$this->data);
 		
 	}
-	elseif(!empty($generalsetting && user_data[UserType]=='0'))
+	else
 	{
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -223,18 +223,7 @@ print_r($generalsetting);die;
 		 $this->parser->parse('include/footer',$this->data); */
 
 	// }
-elseif(!empty($agreement_detail))	
-{
-$this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/topheader',$this->data);
-		$this->parser->parse('include/leftmenu',$this->data);
-		$this->load->view('dashboard',$this->data);
-		$this->parser->parse('include/footer',$this->data);	
-		
 	
-}else{
-	echo 'hi';
-}	
 	
 	}
 /*school management dashboard End...............................................................................*/
