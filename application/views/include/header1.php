@@ -68,7 +68,7 @@ function Translate($Phrase)
 			<div class="navbar-brand">
 				<a href="javascript:;" class="logo">
 				
-				<p class="center  text-blac"><?php  if(!empty($this->currentsession)){ print_r($this->currentsession[0]->SchoolName);}else{ echo "School Management";} ?></p>
+				<p class="center  text-blac"><?php  if(!empty($this->currentsession[0]->SchoolName)){ print_r($this->currentsession[0]->SchoolName);}else{ echo "School Management";} ?></p>
 					<!--<img src="<?=base_url();?>assets/images/logo-white-bg@2x.png" width="80" alt="" class="hidden-xs" />
 					<img src="<?=base_url();?>assets/images/logo@2x.png" width="80" alt="" class="visible-xs" />-->
 				</a>
