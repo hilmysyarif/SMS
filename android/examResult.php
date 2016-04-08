@@ -111,34 +111,54 @@ if(!$CONNECTION)
 		//$resultarray = array();
 
 	
-		$countrow=mysqli_query($CONNECTION,"Select * from feedback where student_id='$ID'");
+		$countrow=mysqli_query($CONNECTION,"");
 		
 	
 		
-		while($data1 = mysql_fetch_array($countrow)){
- 			print_r($data1);die;
-			$str = "Hello world";
-			$pos = strpos($data1['senderID'], "_");
-			
-			if ($pos !== FALSE) {
- 				print_r("False");
-				
-		    $newID = explode("_", $data1['senderID']);
-			
-		    $countrow2=mysqli_query($CONNECTION,"Select StaffName from staff where StaffId='$newID[1]'");
-		   
-			$data2 = mysql_fetch_row($countrow2);
-			
-			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data2['StaffName']);
-			
-			} else {
+		$countrow=mysqli_query($CONNECTION,"Select * from feedback where student_id='$ID'");
+		
+		$resultarray = array();
+		
+		while($data1 = mysqli_fetch_array($countrow)){
+		
 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data1['senderID']);
- 			//print_r("True");
- 		//	print_r(".........");
-			}
-			
-			
+				
+// 			if (strpos(date('Y-m-d',$data1['dateofhomework']), $month) !== false){
+		
+// 				$abb = array('date'=>date('Y-m-d',$data1['dateofhomework']), 'subjectID'=>$data1['subjectid'], 'homework'=>$data1['homework']);
+// 				$resultarray[] = $abb;
+					
+// 			}
+		
 		}
+		
+		
+		
+		
+// 		while($data1 = mysql_fetch_array($countrow)){
+//  			print_r($data1);die;
+// 			$str = "Hello world";
+// 			$pos = strpos($data1['senderID'], "_");
+			
+// 			if ($pos !== FALSE) {
+//  				print_r("False");
+				
+// 		    $newID = explode("_", $data1['senderID']);
+			
+// 		    $countrow2=mysqli_query($CONNECTION,"Select StaffName from staff where StaffId='$newID[1]'");
+		   
+// 			$data2 = mysql_fetch_row($countrow2);
+			
+// 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data2['StaffName']);
+			
+// 			} else {
+// 			$resultarray[]=array('feedbackLog'=>$data1['feedbackLog'],'date'=>$data1['date'],'senderID'=>$data1['senderID'],'senderName'=>$data1['senderID']);
+//  			//print_r("True");
+//  		//	print_r(".........");
+// 			}
+			
+			
+// 		}
 		
 		print_r(json_encode($resultarray));
 			
