@@ -67,7 +67,7 @@
 <p style="font-family:Comic Sans MS">Junction Software reserves all rights not expressly granted under these Terms, and no other rights are granted under these Terms by implication or estoppel or otherwise.</p>
 
 <?php if(empty($generalsetting))
-	print_r($generalsetting);die;
+
 	{?>
 
 <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
