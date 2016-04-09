@@ -339,7 +339,7 @@ class Admission extends CI_Controller {
 
 /*school management student registration upload through excel sheet controller start...................................................................................................*/	
 	function ins_stu($RegistrationId=false)
-	{	$var; $var1='';$var2='';$var3='';
+	{	$var=''; $var1='';$var2='';$var3='';
 		if(Authority::checkAuthority('Registration')==true){
 			}
 		else{

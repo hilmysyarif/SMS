@@ -95,7 +95,15 @@ class Dashboard_model extends CI_Model {
 	}
 	function agreement($checkid=false)
 	{ 
-		$query=$this->db->query("select Terms from registration,admission where Terms='Accepted' and admission.Admissionid='$checkid'
+		$query=$this->db->query("select Pterms from registration,admission where Pterms='Accepted' and admission.Admissionid='$checkid'
+										and registration.Registrationid=admission.Registrationid");
+			
+		return $query->Result();
+	
+	}
+	function agreement1($checkid=false)
+	{ 
+		$query=$this->db->query("select Sterms from registration,admission where Sterms='Accepted' and admission.Admissionid='$checkid'
 										and registration.Registrationid=admission.Registrationid");
 			
 		return $query->Result();
@@ -110,6 +118,13 @@ class Dashboard_model extends CI_Model {
     }
 	
 	function insert1($table=false,$data=false)
+	{ 
+		$this->db->insert($table,$data);
+		$last_id = $this->db->insert_id();
+		return $last_id;
+	}
+	
+	function insert_term($table=false,$data=false)
 	{ 
 		$this->db->insert($table,$data);
 		$last_id = $this->db->insert_id();
