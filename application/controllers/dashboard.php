@@ -201,7 +201,7 @@ class Dashboard extends CI_Controller {
 		
 		$agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($this->info['user_id']);
 		$agreement_data=$this->data['acceptance']=$this->Dashboard_model->agreement1($this->info['user_id']);
-		//$agreement_staffdata=$this->data['acceptance1']=$this->Dashboard_model->staff_agreement($this->info['user_id']);
+		$agreement_staffdata=$this->data['acceptance1']=$this->Dashboard_model->staff_agreement($this->info['user_id']);
 		
 		$this->data['UserType']=$this->info['UserType'];
 		
