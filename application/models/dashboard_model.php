@@ -142,7 +142,7 @@ class Dashboard_model extends CI_Model {
    
       function update_staffterms($checkid=false)
    {
-  	$query=$this->db->query("Update user set Staff_terms='Accepted' where userid='$checkid'");
+  	$query=$this->db->query("Update user set Staff_terms='Accepted' where userId='$checkid'");
    } 
 
 }
