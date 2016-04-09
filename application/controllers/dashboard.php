@@ -416,8 +416,8 @@ public function index1()
 	}
 /*school management help End...............................................................................*/
  
- public function insert1($checkid)
- {	 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($checkid);
+ public function insert1()
+ {	 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($this->info['user_id']);
 	print_r( $agreement_detail);die;
 	if (empty($agreement_detail))
 {
