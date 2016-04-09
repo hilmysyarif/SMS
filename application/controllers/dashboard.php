@@ -441,7 +441,8 @@ public function index1()
 {
 	 $data=array('Sterms'=>$this->input->post('terms'));
 	
-	 $this->Dashboard_model->insert1('registration',$data);
+	
+	 $this->Dashboard_model->insert_term('registration',$data);
 	 redirect('dashboard/index1');
  }
  else{
