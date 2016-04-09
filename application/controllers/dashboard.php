@@ -422,6 +422,7 @@ public function index1()
 	if (empty($agreement_detail))
 {
 	 $data=array('Terms'=>$this->input->post('terms'));
+	 print_r($data);die;
 	 $this->Dashboard_model->insert1('registration',$data);
 	 redirect('dashboard/index1');
  }
