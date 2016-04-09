@@ -25,7 +25,7 @@ class Dashboard extends CI_Controller {
 	 }
 
 	 /*school management dashboard start...............................................................................*/
-		public function index($this->info['user_id'])
+		public function index()
 		
 	{/*new code...Nabeela....*/
 	
