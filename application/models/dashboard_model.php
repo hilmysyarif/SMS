@@ -109,14 +109,14 @@ class Dashboard_model extends CI_Model {
 		return $query->Result();
 	
 	}
-	/* function staff_agreement($checkid=false)
+	 function staff_agreement($checkid=false)
 	{ 
 		$query=$this->db->query("select Sterms from registration,admission where Sterms='Accepted' and admission.AdmissionId='$checkid'
 										and registration.RegistrationId=admission.RegistrationId");
 			
 		return $query->Result();
 	
-	} */
+	} 
 	
 		function generalsetting()
     {
@@ -140,11 +140,10 @@ class Dashboard_model extends CI_Model {
 										and registration.RegistrationId=admission.RegistrationId");
    }
    
-/*       function update_studentterms($checkid=false)
+      function update_staffterms($checkid=false)
    {
-  	$query=$this->db->query("Update registration,admission set Sterms='Accepted' where admission.AdmissionId='$checkid'
-										and registration.RegistrationId=admission.RegistrationId");
-   } */
+  	$query=$this->db->query("Update user set Staff_terms='Accepted' where userid='$checkid'");
+   } 
 
 }
 

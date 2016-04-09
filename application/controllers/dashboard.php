@@ -21,7 +21,7 @@ class Dashboard extends CI_Controller {
 		if(!empty($currentsession)){
 		$this->session->set_userdata('currentsession',$currentsession);
 		$currentsession=$this->currentsession = $this->session->userdata('currentsession');
-		print_r($this->info);die;
+		
 		}
 	 }
 	 
@@ -242,14 +242,14 @@ class Dashboard extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 	
 	}
-	/* elseif((!empty($agreement_staffdata)) && $this->info['UserType']!=0 && $this->info['UserType']!=1 && $this->info['UserType']!=2 )
+	 elseif((!empty($agreement_staffdata)) && $this->info['UserType']!=0 && $this->info['UserType']!=1 && $this->info['UserType']!=2 )
 	{
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/header1',$this->data);
 		
 		$this->load->view('setup',$this->data);
 		$this->parser->parse('include/footer',$this->data);
-	} */
+	} 
 	
 	}
 /*school management dashboard End...............................................................................*/
@@ -454,7 +454,7 @@ public function index1()
  }
  }
  
-  public function update_term()
+  public function update_staffterm()
  {	$agreement_staffdata=$this->data['acceptance1']=$this->Dashboard_model->staff_agreement($this->info['user_id']);
 	
 	if (empty($agreement_staffdata))
@@ -471,7 +471,7 @@ public function index1()
  }
  }
  
-/*   public function update_staffterm()
+  public function update_term()
  {	 $agreement_data=$this->data['acceptance']=$this->Dashboard_model->agreement1($this->info['user_id']);
 	
 	if (empty($agreement_data))
@@ -486,7 +486,7 @@ public function index1()
  	 redirect('dashboard/index1');
  
  }
- } */
+ } 
  
   public function insert()
  {	$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
