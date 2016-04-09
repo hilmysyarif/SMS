@@ -221,7 +221,16 @@ class Dashboard extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 	
 	}
-	elseif((!empty($agreement_detail)) && $this->info['UserType']!=0)
+	elseif((!empty($agreement_detail)) && $this->info['UserType']=1)
+	{
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('dashboard',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	
+	}
+		elseif((!empty($agreement_data)) && $this->info['UserType']=2)
 	{
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
