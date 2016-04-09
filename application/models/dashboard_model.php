@@ -96,7 +96,7 @@ class Dashboard_model extends CI_Model {
 	function agreement($checkid=false)
 	{ 
 		$query=$this->db->query("select Terms from registration,admission where Terms='Accepted' and admission.Admissionid='$checkid'
-										and registration.Registrationid=admission.Registrationid";
+										and registration.Registrationid=admission.Registrationid");
 			
 		return $query->Result();
 	
