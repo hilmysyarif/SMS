@@ -25,7 +25,7 @@ class Dashboard extends CI_Controller {
 	 }
 
 	 /*school management dashboard start...............................................................................*/
-		public function index()
+		public function index($this->info['user_id'])
 		
 	{/*new code...Nabeela....*/
 	
@@ -194,7 +194,7 @@ class Dashboard extends CI_Controller {
 		// Pei chart admission report End...................................
 		
 		//Pei Chart , Line Chart and calender Reports End  there............................................
-		echo 'hi';die;
+		
 		$generalsetting=$this->data['generalsetting']=$this->Dashboard_model->generalsetting();	
 		
 		$agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($this->info['user_id']);
