@@ -126,7 +126,7 @@ class Dashboard_model extends CI_Model {
 	
 	
 	
-   function update_studentterms(($data=false,$checkid=false)
+   function update_studentterms($data=false,$checkid=false)
    {
   	$query=$this->db->query("Update registration set Sterms='$data' where admission.Admissionid='$checkid'
 										and registration.Registrationid=admission.Registrationid");
