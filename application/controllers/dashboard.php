@@ -418,14 +418,15 @@ public function index1()
 	}
 /*school management help End...............................................................................*/
  
- public function insert1()
+ public function update1()
  {	 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($this->info['user_id']);
 	
 	if (empty($agreement_detail))
-{
+		
+{	
 	 $data=array('Pterms'=>$this->input->post('terms'));
-
-	 $this->Dashboard_model->insert1('registration',$data);
+	
+	 $this->Dashboard_model->update_parentterms($data,$this->info['user_id']);
 	 redirect('dashboard/index1');
  }
  else{
@@ -435,16 +436,14 @@ public function index1()
  }
  }
  
-  public function insert_term()
+  public function update_term()
  {	 $agreement_data=$this->data['acceptance']=$this->Dashboard_model->agreement1($this->info['user_id']);
 	
 	if (empty($agreement_data))
 {
 	 $data=array('Sterms'=>$this->input->post('terms'));
-	
-	
-	
-	 $this->Dashboard_model->insert_term('registration',$data);
+
+	 $this->Dashboard_model->update_studentterms($data,$this->info['user_id']);
 	 redirect('dashboard/index1');
  }
  else{
@@ -454,6 +453,7 @@ public function index1()
  
  }
  }
+ 
   public function insert()
  {	$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
  if (empty($generalsetting))

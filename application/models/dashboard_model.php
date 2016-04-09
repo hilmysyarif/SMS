@@ -116,23 +116,21 @@ class Dashboard_model extends CI_Model {
 		return $query->Result();
 	
     }
+
 	
-	function insert1($table=false,$data=false)
-	{ 
+   function update_parentterms($data=false,$checkid=false)
+   {
+  	$query=$this->db->query("Update registration set Pterms='$data' where admission.Admissionid='$checkid'
+										and registration.Registrationid=admission.Registrationid");
+   }
 	
-		$this->db->insert($table,$data);
-		$last_id = $this->db->insert_id();
-		return $last_id;
-	}
 	
-	function insert_term($table=false,$data=false)
-	{
 	
-		$this->db->insert($table,$data);
-		echo $this->db->last_query();die;
-		$last_id = $this->db->insert_id();
-		return $last_id;
-	}
+   function update_studentterms(($data=false,$checkid=false)
+   {
+  	$query=$this->db->query("Update registration set Sterms='$data' where admission.Admissionid='$checkid'
+										and registration.Registrationid=admission.Registrationid");
+   }
 
 }
 
