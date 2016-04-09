@@ -120,7 +120,7 @@ class Dashboard_model extends CI_Model {
 	
    function update_parentterms($checkid=false)
    {
-  	$query=$this->db->query("Update registration set Pterms='Accepted' where admission.AdmissionId='$checkid'
+  	$query=$this->db->query("Update registration,admission set Pterms='Accepted' where admission.AdmissionId='$checkid'
 										and registration.RegistrationId=admission.RegistrationId");
    }
 	
@@ -128,7 +128,7 @@ class Dashboard_model extends CI_Model {
 	
    function update_studentterms($checkid=false)
    {
-  	$query=$this->db->query("Update registration set Sterms='Accepted' where admission.AdmissionId='$checkid'
+  	$query=$this->db->query("Update registration,admission set Sterms='Accepted' where admission.AdmissionId='$checkid'
 										and registration.RegistrationId=admission.RegistrationId");
    }
 
