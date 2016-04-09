@@ -77,11 +77,11 @@
 						 if(empty($this->currentsession[0]->CurrentSession)){
 							$this->session->set_flashdata('category_error', 'Please Select Session!!');        
 							redirect($_SERVER['HTTP_REFERER']);
-						}?>
+						}else{?>
 						
 						<a href="<?=base_url();?>master/acceptance" class="btn btn-primary btn-lg" style="margin-top:10px ;background-color:black;float:right">Next</a>
 						</div>
-												
+						<?php }?>					
 						</div>
 						</div>
 						
