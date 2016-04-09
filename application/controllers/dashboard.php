@@ -28,7 +28,7 @@ class Dashboard extends CI_Controller {
 
 	 /*school management dashboard start...............................................................................*/
 	public function index()
-	{/*new code...Nabeela....*/
+	{ /*new code...Nabeela....*/
 	
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Dashboard', base_url());
@@ -198,7 +198,7 @@ class Dashboard extends CI_Controller {
 		
 		$generalsetting=$this->data['generalsetting']=$this->Dashboard_model->generalsetting();	
 		
-		$agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($this->info['user_id']);
+		$agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement();
 
 		 if(((empty($generalsetting)) && $this->info['UserType']==0 ) || ((empty($agreement_detail)) && $this->info['UserType']!=0  ))
 		{
