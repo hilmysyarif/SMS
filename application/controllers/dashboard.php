@@ -17,18 +17,17 @@ class Dashboard extends CI_Controller {
 		$this->load->library('authority');
 		if (!$this->session->userdata('user_data')){ $this->session->set_flashdata('category_error_login', " Your Session Is Expired!! Please Login Again. "); redirect(base_url());}
 		$this->info= $this->session->userdata('user_data');
-
 		$currentsession = $this->mhome->get_session();
 		if(!empty($currentsession)){
 		$this->session->set_userdata('currentsession',$currentsession);
 		$currentsession=$this->currentsession = $this->session->userdata('currentsession');
+		}
 	 }
-		
-	 }
+	 
+	
 
 	 /*school management dashboard start...............................................................................*/
-		public function index()
-		
+	public function index()
 	{/*new code...Nabeela....*/
 	
 		$this->breadcrumb->clear();
