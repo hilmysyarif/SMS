@@ -198,7 +198,7 @@ class Dashboard extends CI_Controller {
 		
 		$generalsetting=$this->data['generalsetting']=$this->Dashboard_model->generalsetting();	
 		
-		$agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement();
+		$agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($this->info['user_id']);
 
 		 if(((empty($generalsetting)) && $this->info['UserType']==0 ) || ((empty($agreement_detail)) && $this->info['UserType']!=0  ))
 		{
