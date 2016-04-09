@@ -199,7 +199,7 @@ class Dashboard extends CI_Controller {
 		$generalsetting=$this->data['generalsetting']=$this->Dashboard_model->generalsetting();	
 		
 		$agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($this->info['user_id']);
-		$agreement_data=$this->data['terms']=$this->Dashboard_model->agreement1($this->info['user_id']);
+		$agreement_data=$this->data['acceptance']=$this->Dashboard_model->agreement1($this->info['user_id']);
 		
 		 if(((empty($generalsetting)) && $this->info['UserType']==0 ) || ((empty($agreement_detail)) && $this->info['UserType']==1 ) ||((empty($agreement_data)) && $this->info['UserType']==2 ))
 		{
@@ -422,7 +422,7 @@ public function index1()
 	
 	if (empty($agreement_detail))
 {
-	 $data=array('Pterms'=>$this->input->post('terms1'));
+	 $data=array('Pterms'=>$this->input->post('terms'));
 	
 	 $this->Dashboard_model->insert1('registration',$data);
 	 redirect('dashboard/index1');
@@ -435,11 +435,11 @@ public function index1()
  }
  
   public function insert_term()
- {	 $agreement_data=$this->data['terms']=$this->Dashboard_model->agreement1($this->info['user_id']);
+ {	 $agreement_data=$this->data['acceptance']=$this->Dashboard_model->agreement1($this->info['user_id']);
 	
 	if (empty($agreement_data))
 {
-	 $data=array('Sterms'=>$this->input->post('terms2'));
+	 $data=array('Sterms'=>$this->input->post('terms'));
 	
 	 $this->Dashboard_model->insert1('registration',$data);
 	 redirect('dashboard/index1');
