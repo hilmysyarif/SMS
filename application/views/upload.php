@@ -81,7 +81,7 @@
 						
 						<a href="<?=base_url();?>master/acceptance" class="btn btn-primary btn-lg" style="margin-top:10px ;background-color:black;float:right">Next</a>
 						</div>
-						<?php }?>					
+						 <?php }}?>					
 						</div>
 						</div>
 						
