@@ -80,7 +80,7 @@
 </div>
 </form>
 </div>
-<?php } elseif(empty($detail)) {?>
+<?php } elseif((empty($detail)) && $UserType==1) {?>
 
 <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
 <form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/insert1" onsubmit="return checkCheckBoxes(this);">
@@ -93,7 +93,7 @@
 </form>
 </div>
 
-	<?php } else {?>
+	<?php } elseif((empty($acceptance)) && $UserType==2) {?>
 <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
 <form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/insert_term" onsubmit="return checkCheckBoxes(this);">
 <input tabindex="5" type="checkbox" name="terms" value="Accepted" class="icheck-11" id="minimal-checkbox-1-11" >
