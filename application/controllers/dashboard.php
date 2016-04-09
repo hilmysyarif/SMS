@@ -196,6 +196,7 @@ class Dashboard extends CI_Controller {
 		//Pei Chart , Line Chart and calender Reports End  there............................................
 		
 		$generalsetting=$this->data['generalsetting']=$this->Dashboard_model->generalsetting();	
+		print_r($generalsetting);die;
 		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($this->info['user_id']);
 
 		 if(((empty($generalsetting)) && $this->info['UserType']==0 ) || ((empty($agreement_detail)) && $this->info['UserType']!=0  ))
