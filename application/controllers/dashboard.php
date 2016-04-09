@@ -418,7 +418,7 @@ public function index1()
  
  public function insert1()
  {	 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($this->info['user_id']);
-	print_r( $agreement_detail);die;
+	
 	if (empty($agreement_detail))
 {
 	 $data=array('Terms'=>$this->input->post('terms'));
