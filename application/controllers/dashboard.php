@@ -210,7 +210,7 @@ class Dashboard extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 		
 	}
-	elseif((!empty($generalsetting)) && $this->info['UserType']==0 )
+	elseif((!empty($generalsetting)) && $this->info['UserType']==0)
 	{
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -219,7 +219,7 @@ class Dashboard extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 	
 	}
-	elseif((!empty($agreement_detail)) && $this->info['UserType']!=0  )
+	elseif((!empty($agreement_detail)) && $this->info['UserType']!=0)
 	{
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -416,7 +416,7 @@ public function index1()
 	}
 /*school management help End...............................................................................*/
  
- public function insert1()
+ public function insert1($checkid)
  {	 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($checkid);
 	
 	if (empty($agreement_detail))
