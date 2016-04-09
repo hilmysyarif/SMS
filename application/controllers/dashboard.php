@@ -424,9 +424,7 @@ public function index1()
 	if (empty($agreement_detail))
 		
 {	
-	 $data=array('Pterms'=>$this->input->post('terms'));
-	
-	 $this->Dashboard_model->update_parentterms($data,$this->info['user_id']);
+	 $this->Dashboard_model->update_parentterms($this->info['user_id']);
 	 redirect('dashboard/index1');
  }
  else{
@@ -441,9 +439,8 @@ public function index1()
 	
 	if (empty($agreement_data))
 {
-	 $data=array('Sterms'=>$this->input->post('terms'));
-
-	 $this->Dashboard_model->update_studentterms($data,$this->info['user_id']);
+	
+	 $this->Dashboard_model->update_studentterms($this->info['user_id']);
 	 redirect('dashboard/index1');
  }
  else{

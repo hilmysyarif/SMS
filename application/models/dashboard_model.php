@@ -95,16 +95,16 @@ class Dashboard_model extends CI_Model {
 	}
 	function agreement($checkid=false)
 	{ 
-		$query=$this->db->query("select Pterms from registration,admission where Pterms='Accepted' and admission.Admissionid='$checkid'
-										and registration.Registrationid=admission.Registrationid");
+		$query=$this->db->query("select Pterms from registration,admission where Pterms='Accepted' and admission.AdmissionId='$checkid'
+										and registration.RegistrationId=admission.RegistrationId");
 			
 		return $query->Result();
 	
 	}
 	function agreement1($checkid=false)
 	{ 
-		$query=$this->db->query("select Sterms from registration,admission where Sterms='Accepted' and admission.Admissionid='$checkid'
-										and registration.Registrationid=admission.Registrationid");
+		$query=$this->db->query("select Sterms from registration,admission where Sterms='Accepted' and admission.AdmissionId='$checkid'
+										and registration.RegistrationId=admission.RegistrationId");
 			
 		return $query->Result();
 	
@@ -118,18 +118,18 @@ class Dashboard_model extends CI_Model {
     }
 
 	
-   function update_parentterms($data=false,$checkid=false)
+   function update_parentterms($checkid=false)
    {
-  	$query=$this->db->query("Update registration set Pterms='$data' where admission.Admissionid='$checkid'
-										and registration.Registrationid=admission.Registrationid");
+  	$query=$this->db->query("Update registration set Pterms='Accepted' where admission.AdmissionId='$checkid'
+										and registration.RegistrationId=admission.RegistrationId");
    }
 	
 	
 	
-   function update_studentterms($data=false,$checkid=false)
+   function update_studentterms($checkid=false)
    {
-  	$query=$this->db->query("Update registration set Sterms='$data' where admission.Admissionid='$checkid'
-										and registration.Registrationid=admission.Registrationid");
+  	$query=$this->db->query("Update registration set Sterms='Accepted' where admission.AdmissionId='$checkid'
+										and registration.RegistrationId=admission.RegistrationId");
    }
 
 }
