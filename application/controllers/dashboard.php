@@ -424,13 +424,12 @@ public function index1()
 	if (empty($agreement_detail))
 {
 	 $data=array('Pterms'=>$this->input->post('terms'));
-	echo 'hi insert1' ;
-	print_r($data);die;
+
 	 $this->Dashboard_model->insert1('registration',$data);
 	 redirect('dashboard/index1');
  }
  else{
-echo 'hi10';die;
+
  	 redirect('dashboard/index1');
  
  }
@@ -443,13 +442,13 @@ echo 'hi10';die;
 {
 	 $data=array('Sterms'=>$this->input->post('terms'));
 	
-	echo 'hi insert_term' ;
-	print_r($data);die;
+	
+	
 	 $this->Dashboard_model->insert_term('registration',$data);
 	 redirect('dashboard/index1');
  }
  else{
-echo 'hi' ;die;
+
 	
  	 redirect('dashboard/index1');
  
