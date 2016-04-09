@@ -99,7 +99,7 @@ function upload()
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-					redirect('index.php/dashboard');
+					redirect('dashboard');
 		}
 		$generalsettinginfo = $this->master_model->get_info('generalsetting');
 		if(!empty($generalsettinginfo[0]->SchoolStartDate)){
