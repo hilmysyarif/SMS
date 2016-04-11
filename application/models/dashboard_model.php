@@ -113,7 +113,7 @@ class Dashboard_model extends CI_Model {
 	{ 
 		$query=$this->db->query("select Staff_terms from user where Staff_terms='Accepted' and UserId='$checkid'");
 		echo 'hi';
-		print_r($query);die;	
+		print_r($this->db->query);die;	
 		return $query->Result();
 	
 	} 
