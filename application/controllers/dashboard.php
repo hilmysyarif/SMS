@@ -205,9 +205,9 @@ class Dashboard extends CI_Controller {
 
 		$this->data['UserType']=$this->info['UserType'];
 		
-		 if(((empty($generalsetting)) && $this->info['UserType']==0 ) || ((empty($agreement_detail)) && $this->info['UserType']==1 ) ||((empty($agreement_data)) && $this->info['UserType']==2 ))
+		 if(((empty($generalsetting)) && $this->info['UserType']==0 ) || ((empty($agreement_detail)) && $this->info['UserType']==1 ) ||((empty($agreement_data)) && $this->info['UserType']==2 ) || ((empty($agreement_staffdata)) && $this->info['UserType']!=0 && $this->info['UserType']!=1 && $this->info['UserType']!=2 ))
 		{
-			
+	
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/header1',$this->data);
 		$this->load->view('setup',$this->data);
