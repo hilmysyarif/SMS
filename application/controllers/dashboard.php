@@ -456,7 +456,7 @@ public function index1()
  
   public function update_staffterm()
  {	$agreement_staffdata=$this->data['acceptance1']=$this->Dashboard_model->staff_agreement($this->info['user_id']);
-	print_r($agreement_staffdata);die;
+	
 	if (empty($agreement_staffdata))
 {
 	
