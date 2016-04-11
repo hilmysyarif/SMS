@@ -111,8 +111,7 @@ class Dashboard_model extends CI_Model {
 	}
 	 function staff_agreement($checkid=false)
 	{ 
-		$query=$this->db->query("select Sterms from registration,admission where Sterms='Accepted' and admission.AdmissionId='$checkid'
-										and registration.RegistrationId=admission.RegistrationId");
+		$query=$this->db->query("select Staff_terms from user where Staff_terms='Accepted' and UserId='$checkid'");
 			
 		return $query->Result();
 	
@@ -142,7 +141,7 @@ class Dashboard_model extends CI_Model {
    
       function update_staffterms($checkid=false)
    {
-  	$query=$this->db->query("Update user set Staff_terms='Accepted' where userId='$checkid'");
+  	$query=$this->db->query("Update user set Staff_terms='Accepted' where UserId='$checkid'");
    } 
 
 }

@@ -1280,8 +1280,8 @@ CREATE TABLE IF NOT EXISTS `registration` (
   `DateOfTermination` varchar(10) NOT NULL,
   `TerminationReason` varchar(10) NOT NULL,
   `TerminationRemarks` text NOT NULL,
-  `Terms` varchar(100) NOT NULL,
-
+  `Pterms` varchar(100) NOT NULL,
+  `Sterms` varchar(100) NOT NULL,
   `DOT` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2191,6 +2191,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `UserType` int(11) NOT NULL,
   `DOE` varchar(10) NOT NULL,
   `DOL` varchar(10) NOT NULL,
+    `Staff_terms` varchar(100) NOT NULL,
   `DOLUsername` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
