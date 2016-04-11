@@ -210,7 +210,6 @@ class Dashboard extends CI_Controller {
 			
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/header1',$this->data);
-		
 		$this->load->view('setup',$this->data);
 		$this->parser->parse('include/footer',$this->data);
 		
@@ -245,9 +244,9 @@ class Dashboard extends CI_Controller {
 	 elseif((!empty($agreement_staffdata)) && $this->info['UserType']!=0 && $this->info['UserType']!=1 && $this->info['UserType']!=2 )
 	{
 		$this->parser->parse('include/header',$this->data);
-		$this->parser->parse('include/header1',$this->data);
-		
-		$this->load->view('setup',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('dashboard',$this->data);
 		$this->parser->parse('include/footer',$this->data);
 	} 
 	
@@ -454,9 +453,10 @@ public function index1()
  }
  }
  
+ 
   public function update_staffterm()
  {	$agreement_staffdata=$this->data['acceptance1']=$this->Dashboard_model->staff_agreement($this->info['user_id']);
-	
+	print_r($agreement_staffdata);die;
 	if (empty($agreement_staffdata))
 {
 	
