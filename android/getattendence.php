@@ -143,6 +143,8 @@ print_r(json_encode($mainarr));
 						    $row=mysqli_fetch_array($check);
 							$LastAttendance=explode(",",$row['Attendance']);
 							$NewAttendance= array();
+
+							print_r($LastAttendance);
 							foreach($LastAttendance as $LastAttendanceValue)
 							{
 								$aaa=explode("-",$LastAttendanceValue);
