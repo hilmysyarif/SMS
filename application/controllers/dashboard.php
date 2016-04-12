@@ -18,14 +18,18 @@ class Dashboard extends CI_Controller {
 		if (!$this->session->userdata('user_data')){ $this->session->set_flashdata('category_error_login', " Your Session Is Expired!! Please Login Again. "); redirect(base_url());}
 		$this->info= $this->session->userdata('user_data');
 		$currentsession = $this->mhome->get_session();
+		if(!empty($currentsession)){
 		$this->session->set_userdata('currentsession',$currentsession);
 		$currentsession=$this->currentsession = $this->session->userdata('currentsession');
+		
+		}
 	 }
+	 
+	
 
 	 /*school management dashboard start...............................................................................*/
-		public function index($Studentspassword=false,$Parentspassword=false)
-		
-	{/*new code...Nabeela....*/
+	public function index()
+	{ /*new code...Nabeela....*/
 	
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Dashboard', base_url());
@@ -194,20 +198,23 @@ class Dashboard extends CI_Controller {
 		//Pei Chart , Line Chart and calender Reports End  there............................................
 		
 		$generalsetting=$this->data['generalsetting']=$this->Dashboard_model->generalsetting();	
-		 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($Studentspassword,$Parentspassword);
+		
+		$agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($this->info['user_id']);
+		$agreement_data=$this->data['acceptance']=$this->Dashboard_model->agreement1($this->info['user_id']);
+		$agreement_staffdata=$this->data['acceptance1']=$this->Dashboard_model->staff_agreement($this->info['user_id']);
 
-		 if(((empty($generalsetting)) && $this->info['UserType']==0 ) || ((empty($agreement_detail)) && $this->info['UserType']!=0  ))
+		$this->data['UserType']=$this->info['UserType'];
+		
+		 if(((empty($generalsetting)) && $this->info['UserType']==0 ) || ((empty($agreement_detail)) && $this->info['UserType']==1 ) ||((empty($agreement_data)) && $this->info['UserType']==2 ) || ((empty($agreement_staffdata)) && $this->info['UserType']!=0 && $this->info['UserType']!=1 && $this->info['UserType']!=2 ))
 		{
-			//print_r($this->info);
-			//print_r($this->info['UserType']);die;
+	
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/header1',$this->data);
-		
 		$this->load->view('setup',$this->data);
 		$this->parser->parse('include/footer',$this->data);
 		
 	}
-	else
+	elseif((!empty($generalsetting)) && $this->info['UserType']==0)
 	{
 		$this->parser->parse('include/header',$this->data);
 		$this->parser->parse('include/topheader',$this->data);
@@ -216,8 +223,32 @@ class Dashboard extends CI_Controller {
 		$this->parser->parse('include/footer',$this->data);
 	
 	}
-
+	elseif((!empty($agreement_detail)) && $this->info['UserType']=1)
+	{
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('dashboard',$this->data);
+		$this->parser->parse('include/footer',$this->data);
 	
+	}
+		elseif((!empty($agreement_data)) && $this->info['UserType']=2)
+	{
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('dashboard',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	
+	}
+	 elseif((!empty($agreement_staffdata)) && $this->info['UserType']!=0 && $this->info['UserType']!=1 && $this->info['UserType']!=2 )
+	{
+		$this->parser->parse('include/header',$this->data);
+		$this->parser->parse('include/topheader',$this->data);
+		$this->parser->parse('include/leftmenu',$this->data);
+		$this->load->view('dashboard',$this->data);
+		$this->parser->parse('include/footer',$this->data);
+	} 
 	
 	}
 /*school management dashboard End...............................................................................*/
@@ -406,12 +437,57 @@ public function index1()
 	}
 /*school management help End...............................................................................*/
  
- public function insert1()
- {
-	 $data=array('Terms'=>$this->input->post('terms'));
-	 $this->Dashboard_model->insert1('registration',$data);
+ public function update1()
+ {	 $agreement_detail=$this->data['detail']=$this->Dashboard_model->agreement($this->info['user_id']);
+	
+	if (empty($agreement_detail))
+		
+{	
+	 $this->Dashboard_model->update_parentterms($this->info['user_id']);
 	 redirect('dashboard/index1');
  }
+ else{
+
+ 	 redirect('dashboard/index1');
+ 
+ }
+ }
+ 
+ 
+  public function update_staffterm()
+ {	$agreement_staffdata=$this->data['acceptance1']=$this->Dashboard_model->staff_agreement($this->info['user_id']);
+	
+	if (empty($agreement_staffdata))
+{
+	
+	 $this->Dashboard_model->update_staffterms($this->info['user_id']);
+	 redirect('dashboard/index1');
+ }
+ else{
+
+	
+ 	 redirect('dashboard/index1');
+ 
+ }
+ }
+ 
+  public function update_term()
+ {	 $agreement_data=$this->data['acceptance']=$this->Dashboard_model->agreement1($this->info['user_id']);
+	
+	if (empty($agreement_data))
+{
+	
+	 $this->Dashboard_model->update_studentterms($this->info['user_id']);
+	 redirect('dashboard/index1');
+ }
+ else{
+
+	
+ 	 redirect('dashboard/index1');
+ 
+ }
+ } 
+ 
   public function insert()
  {	$generalsetting=$this->data['detail']=$this->Dashboard_model->generalsetting();	
  if (empty($generalsetting))

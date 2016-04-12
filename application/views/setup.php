@@ -80,10 +80,10 @@
 </div>
 </form>
 </div>
-<?php } else {?>
+<?php } elseif((empty($detail)) && $UserType==1) {?>
 
 <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
-<form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/insert1" onsubmit="return checkCheckBoxes(this);">
+<form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/update1" onsubmit="return checkCheckBoxes(this);">
 <input tabindex="5" type="checkbox" name="terms" value="Accepted" class="icheck-11" id="minimal-checkbox-1-11" >
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
 <br>
@@ -93,7 +93,30 @@
 </form>
 </div>
 
-	<?php }?>
+	<?php } elseif((empty($acceptance)) && $UserType==2) {?>
+<div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
+<form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/update_term" onsubmit="return checkCheckBoxes(this);">
+<input tabindex="5" type="checkbox" name="terms" value="Accepted" class="icheck-11" id="minimal-checkbox-1-11" >
+<label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
+<br>
+<div class="col-sm-12" >
+<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:right" ></input>
+</div>
+</form>
+</div>
 
+	<?php } elseif((!empty($agreement_staffdata)) && $this->info['UserType']!=0 && $this->info['UserType']!=1 && $this->info['UserType']!=2 )?>
+	
+<div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
+<form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/update_staffterm" onsubmit="return checkCheckBoxes(this);">
+<input tabindex="5" type="checkbox" name="terms" value="Accepted" class="icheck-11" id="minimal-checkbox-1-11" >
+<label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
+<br>
+<div class="col-sm-12" >
+<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:right" ></input>
+</div>
+</form>
+</div>	
+	<?php ?>
 </div> 
 </div> 
