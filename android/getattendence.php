@@ -162,8 +162,7 @@ print_r(json_encode($mainarr));
 
 								}
 									
-								
-							}	
+							}
 									//$Marked[]=$LastAdmissionIdId;
 									
 // 									foreach($Attendance as $AttendanceValue)
