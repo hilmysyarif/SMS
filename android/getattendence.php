@@ -144,7 +144,7 @@ print_r(json_encode($mainarr));
 							$LastAttendance=explode(",",$row['Attendance']);
 							$NewAttendance= array();
 
-							print_r($LastAttendance);
+						
 							foreach($LastAttendance as $LastAttendanceValue)
 							{
 								$aaa=explode("-",$LastAttendanceValue);
@@ -182,7 +182,7 @@ print_r(json_encode($mainarr));
 								
 							 
 							
-							
+                             print_r($NewAttendance);
 							
 							$NewAttendance1=implode(",",$NewAttendance);
 							
