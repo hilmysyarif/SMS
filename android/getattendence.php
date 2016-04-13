@@ -152,25 +152,31 @@ print_r(json_encode($mainarr));
 								$LastAtt=$aaa[1];
 								$LastTime=$aaa[2];
 								
-								$SearchInPresent=array_search($LastAdmissionIdId,$Attendance);//}else{$Search=FALSE;}
-								$SearchInAbsent=array_search($LastAdmissionIdId,$Attendance1);
+// 								$SearchInPresent=array_search($LastAdmissionIdId,$Attendance);//}else{$Search=FALSE;}
+// 								$SearchInAbsent=array_search($LastAdmissionIdId,$Attendance1);
 
-								print_r("$SearchInPresent    ");
-								print_r($SearchInPresent);
-								print_r("$SearchInAbsent    ");
-								print_r($SearchInAbsent);
-								print_r("       ");
+						
 								
-								if($SearchInPresent==FALSE && $SearchInAbsent==FALSE){
-								$NewAttendance[] = $LastAttendanceValue;
-								}elseif ($SearchInPresent==FALSE){
-										$NewAttendance[] ="$LastAdmissionIdId-A-$LastTime";
-								}elseif ($SearchInAbsent==FALSE) {
-									$NewAttendance[]="$LastAdmissionIdId-$Att-$DateTimeStamp";
-
-								}else{
+								
+								if (in_array($LastAdmissionIdId, $Attendance)){
+									$NewAttendance[] ="$LastAdmissionIdId-$Att";
 									
+								}elseif (in_array($LastAdmissionIdId, $Attendance1)){
+									$NewAttendance[] ="$LastAdmissionIdId-A";
+								}else {
+									$NewAttendance[] ="$LastAdmissionIdId-$LastAtt";
 								}
+								
+// 								if($SearchInPresent==FALSE && $SearchInAbsent==FALSE){
+// 								$NewAttendance[] = $LastAttendanceValue;
+// 								}elseif ($SearchInPresent==FALSE){
+// 										$NewAttendance[] ="$LastAdmissionIdId-A-$LastTime";
+// 								}elseif ($SearchInAbsent==FALSE) {
+// 									$NewAttendance[]="$LastAdmissionIdId-$Att-$DateTimeStamp";
+
+// 								}else{
+									
+// 								}
 									
 							}
 									//$Marked[]=$LastAdmissionIdId;
