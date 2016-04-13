@@ -154,7 +154,13 @@ print_r(json_encode($mainarr));
 								
 								$SearchInPresent=array_search($LastAdmissionIdId,$Attendance);//}else{$Search=FALSE;}
 								$SearchInAbsent=array_search($LastAdmissionIdId,$Attendance1);
-																								
+
+								print_r("$SearchInPresent    ");
+								print_r($SearchInPresent);
+								print_r("$SearchInAbsent    ");
+								print_r($SearchInAbsent);
+								print_r("       ");
+								
 								if($SearchInPresent==FALSE && $SearchInAbsent==FALSE){
 								$NewAttendance[] = $LastAttendanceValue;
 								}elseif ($SearchInPresent==FALSE){
@@ -162,6 +168,8 @@ print_r(json_encode($mainarr));
 								}elseif ($SearchInAbsent==FALSE) {
 									$NewAttendance[]="$LastAdmissionIdId-$Att-$DateTimeStamp";
 
+								}else{
+									
 								}
 									
 							}
