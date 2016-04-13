@@ -183,7 +183,7 @@ print_r(json_encode($mainarr));
 										//$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
 										
 										if (in_array($AttendanceValue, $Marked));else {
-											$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
+											$NewAttendance[]="$AttendanceValue-$Att";
 										}
 										
 										
@@ -203,7 +203,7 @@ print_r(json_encode($mainarr));
 								
 							 
 							
-                             print_r($NewAttendance);
+                           
 							
 							$NewAttendance1=implode(",",$NewAttendance);
 							
