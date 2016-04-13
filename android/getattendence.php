@@ -160,7 +160,7 @@ print_r(json_encode($mainarr));
 								}elseif ($SearchInPresent==FALSE){
 										$NewAttendance[] ="$LastAdmissionIdId-A-$LastTime";
 								}elseif ($SearchInAbsent==FALSE) {
-									$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
+									$NewAttendance[]="$LastAdmissionIdId-$Att-$DateTimeStamp";
 
 								}
 									
