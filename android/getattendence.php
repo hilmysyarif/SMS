@@ -143,7 +143,7 @@ print_r(json_encode($mainarr));
 						    $row=mysqli_fetch_array($check);
 							$LastAttendance=explode(",",$row['Attendance']);
 							$NewAttendance= array();
-
+							$Marked =array();
 						
 							foreach($LastAttendance as $LastAttendanceValue)
 							{
@@ -151,18 +151,13 @@ print_r(json_encode($mainarr));
 								$LastAdmissionIdId=$aaa[0];
 								$LastAtt=$aaa[1];
 								$LastTime=$aaa[2];
-								
-// 								$SearchInPresent=array_search($LastAdmissionIdId,$Attendance);//}else{$Search=FALSE;}
-// 								$SearchInAbsent=array_search($LastAdmissionIdId,$Attendance1);
-
-						
-								
-								
+				
 								if (in_array($LastAdmissionIdId, $Attendance)){
 									$NewAttendance[] ="$LastAdmissionIdId-$Att";
-									
+									$Marked[]=$LastAdmissionIdId;
 								}elseif (in_array($LastAdmissionIdId, $Attendance1)){
 									$NewAttendance[] ="$LastAdmissionIdId-A";
+									$Marked[]=$LastAdmissionIdId;
 								}else {
 									$NewAttendance[] ="$LastAdmissionIdId-$LastAtt";
 								}
@@ -179,19 +174,31 @@ print_r(json_encode($mainarr));
 // 								}
 									
 							}
-									//$Marked[]=$LastAdmissionIdId;
 									
-// 									foreach($Attendance as $AttendanceValue)
-// 									{
-// 										$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
-// 										//if($SearchForMarkedIndex===FALSE && $Att!="")
-// 										$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
-// 									}
-// 									foreach($Attendance1 as $AttendanceValue)
-// 									{	//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
-// 									//if($SearchForMarkedIndex!=FALSE && $Att!="")
-// 									$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
-// 									}
+									
+									foreach($Attendance as $AttendanceValue)
+									{
+										//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+										//if($SearchForMarkedIndex===FALSE && $Att!="")
+										//$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
+										
+										if (in_array($AttendanceValue, $Marked));else {
+											$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
+										}
+										
+										
+									
+									}
+									foreach($Attendance1 as $AttendanceValue)
+									{	//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+									//if($SearchForMarkedIndex!=FALSE && $Att!="")
+// 									$NewAttendance[]="$AttendanceValue-A";
+									
+									if (in_array($AttendanceValue, $Marked));else {
+										$NewAttendance[]="$AttendanceValue-A";
+									}
+									
+									}
 									
 								
 							 
