@@ -122,11 +122,8 @@ print_r(json_encode($mainarr));
 					$SessionEndingDate="31-03-2016";
 					$SessionStartinDateTS=strtotime($SessionStartingDate);
 					$SessionEndingDateTS=strtotime($SessionEndingDate);
-					
-					$Date=date("Y-m-d");
-					$Att="P";
-					$DateTimeStamp=strtotime($Date);			
-						
+										
+					$Att="P";													
 					if($Attendance=="" || $AttendanceDate=="")
 					{
 						$Message="All the fields are mandatory!!";
@@ -134,52 +131,79 @@ print_r(json_encode($mainarr));
 					}
 					else
 					{
+						
 						$query="select Attendance from studentattendance where Date='$AttendanceDate' ";
 						
 						$check=mysqli_query($CONNECTION,$query);
 					
 						$AlreadyMarked=mysqli_num_rows($check);
 						
-						if($AlreadyMarked>0)
+						if($AlreadyMarked!==0)
 						{  
 						    $row=mysqli_fetch_array($check);
 							$LastAttendance=explode(",",$row['Attendance']);
+							$NewAttendance= array();
+							$Marked =array();
+						
 							foreach($LastAttendance as $LastAttendanceValue)
 							{
 								$aaa=explode("-",$LastAttendanceValue);
 								$LastAdmissionIdId=$aaa[0];
 								$LastAtt=$aaa[1];
 								$LastTime=$aaa[2];
-								
-								$SearchInPresent=array_search($LastAdmissionIdId,$Attendance);//}else{$Search=FALSE;}
-								$SearchInAbsent=array_search($LastAdmissionIdId,$Attendance1);
-								
-								if($SearchInPresent==FALSE && $SearchInAbsent==FALSE)
-								$NewAttendance[]="$LastAdmissionIdId-$LastAtt-$LastTime";
-								else {								
-									if ($SearchInPresent!==FALSE){
-										$NewAttendance[] ="$LastAdmissionIdId-$Att-$LastTime";
-									}elseif ($SearchInAbsent!==FALSE) 
-									$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
-
-									//$Marked[]=$LastAdmissionIdId;
-									
-// 									foreach($Attendance as $AttendanceValue)
-// 									{
-// 										$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
-// 										//if($SearchForMarkedIndex===FALSE && $Att!="")
-// 										$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
-// 									}
-// 									foreach($Attendance1 as $AttendanceValue)
-// 									{	//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
-// 									//if($SearchForMarkedIndex!=FALSE && $Att!="")
-// 									$NewAttendance[]="$AttendanceValue-A-$DateTimeStamp";
-// 									}
-									
+				
+								if (in_array($LastAdmissionIdId, $Attendance)){
+									$NewAttendance[] ="$LastAdmissionIdId-$Att";
+									$Marked[]=$LastAdmissionIdId;
+								}elseif (in_array($LastAdmissionIdId, $Attendance1)){
+									$NewAttendance[] ="$LastAdmissionIdId-A";
+									$Marked[]=$LastAdmissionIdId;
+								}else {
+									$NewAttendance[] ="$LastAdmissionIdId-$LastAtt";
 								}
-							} 
+								
+// 								if($SearchInPresent==FALSE && $SearchInAbsent==FALSE){
+// 								$NewAttendance[] = $LastAttendanceValue;
+// 								}elseif ($SearchInPresent==FALSE){
+// 										$NewAttendance[] ="$LastAdmissionIdId-A-$LastTime";
+// 								}elseif ($SearchInAbsent==FALSE) {
+// 									$NewAttendance[]="$LastAdmissionIdId-$Att-$DateTimeStamp";
+
+// 								}else{
+									
+// 								}
+									
+							}
+									
+									
+									foreach($Attendance as $AttendanceValue)
+									{
+										//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+										//if($SearchForMarkedIndex===FALSE && $Att!="")
+										//$NewAttendance[]="$AttendanceValue-$Att-$DateTimeStamp";
+										
+										if (in_array($AttendanceValue, $Marked));else {
+											$NewAttendance[]="$AttendanceValue-$Att";
+										}
+										
+										
+									
+									}
+									foreach($Attendance1 as $AttendanceValue)
+									{	//$SearchForMarkedIndex=array_search($AttendanceValue,$Marked);
+									//if($SearchForMarkedIndex!=FALSE && $Att!="")
+// 									$NewAttendance[]="$AttendanceValue-A";
+									
+									if (in_array($AttendanceValue, $Marked));else {
+										$NewAttendance[]="$AttendanceValue-A";
+									}
+									
+									}
+									
+								
+							 
 							
-							
+                           
 							
 							$NewAttendance1=implode(",",$NewAttendance);
 							
