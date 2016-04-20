@@ -139,6 +139,7 @@ function upload()
 								}
 					}
 				}
+				print_r($image);die;
 		if($this->input->post('id')){
 			$data=array('SchoolName'=>$this->input->post('school_name'),
 						'SchoolMoto'=>$this->input->post('school_moto'),
