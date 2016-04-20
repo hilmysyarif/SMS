@@ -35,7 +35,7 @@
 											<label class="col-sm-2 control-label" for="field-1">School Moto</label>
 											
 											<div class="col-sm-10">
-												<input type="text" class="form-control" id="field-1" name="school_name" value="<?=!empty($school_info[0]->SchoolMoto)?$school_info[0]->SchoolMoto:''?>">
+												<input type="text" class="form-control" id="field-1" name="school_moto" value="<?=!empty($school_info[0]->SchoolMoto)?$school_info[0]->SchoolMoto:''?>">
 											</div>
 										</div>
 									</div>
