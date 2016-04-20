@@ -268,7 +268,7 @@ function upload()
 						'allowed_types'   => "gif|jpg|png|jpeg|JPG|jpe|JPEG|PNG|JPG",
 						
 						'overwrite'       => true);
-						
+						print_r($config);die;
 							$this->upload->initialize($config);
 							
 				 
@@ -284,7 +284,7 @@ function upload()
 								}
 					}
 				}
-				print_r($image);die;
+				
 		if($this->input->post('id')){
 			
 
