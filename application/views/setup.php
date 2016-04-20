@@ -105,7 +105,7 @@
 </form>
 </div>
 
-	<?php } elseif((!empty($agreement_staffdata)) && $this->info['UserType']!=0 && $this->info['UserType']!=1 && $this->info['UserType']!=2 )?>
+	<?php } elseif((!empty($agreement_staffdata)) && $this->info['UserType']!=0 && $this->info['UserType']!=1 && $this->info['UserType']!=2 ){?>
 	
 <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
 <form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/update_staffterm" onsubmit="return checkCheckBoxes(this);">
@@ -117,6 +117,6 @@
 </div>
 </form>
 </div>	
-	<?php ?>
+	<?php } ?>
 </div> 
 </div> 
