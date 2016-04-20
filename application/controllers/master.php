@@ -252,7 +252,7 @@ function upload()
 		}
 		
 					$image ="";
-		print_r($_FILES[0]->file);die;
+		print_r($_FILES);die;
 		if($_FILES['file']['name']!='')
 				{
 					$data['image_z1']= $_FILES['file']['name'];
