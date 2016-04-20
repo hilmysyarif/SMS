@@ -26,7 +26,7 @@
 <?php } ?>
 
 
-							<form role="form" class="form-horizontal validate" action="<?=base_url();?>master/gs_insrt1" method="post">
+							<form role="form" class="form-horizontal validate" enctype="multipart/form-data" action="<?=base_url();?>master/gs_insrt1" method="post">
 							<?php if($school_info){?><input type="hidden" name="id" value="<?=!empty($school_info[0]->Id)?$school_info[0]->Id:''?>"><?php } ?>
 								<div class="row">	
 								   <div class="col-md-12">
