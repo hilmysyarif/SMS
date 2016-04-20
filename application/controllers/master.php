@@ -107,8 +107,42 @@ function upload()
 		}else{
 			$soft_date=strtotime($this->input->post('soft_date'));
 		}
+					$image ="";
+		
+		if($_FILES['file']['name']!='')
+				{
+					$data['image_z1']= $_FILES['file']['name'];
+					$image=sha1($_FILES['file']['name']).time().rand(0, 9);
+				
+					if(!empty($_FILES['file']['name']))
+					{
+				
+						$config =  array(
+						'upload_path'	  => './uploaded_images/',
+						'file_name'       => $image,
+						'allowed_types'   => "gif|jpg|png|jpeg|JPG|jpe|JPEG|PNG|JPG",
+						'max_size'        => '50',
+						'overwrite'       => true);
+						
+							$this->upload->initialize($config);
+							
+				 
+								if($this->upload->do_upload("file"))
+								{
+					
+									$upload_data = $this->upload->data();
+									$image=$upload_data['file_name'];
+								}else
+								{
+										$this->upload->display_errors()."file upload failed";
+										$image    ="";
+								}
+					}
+				}
 		if($this->input->post('id')){
 			$data=array('SchoolName'=>$this->input->post('school_name'),
+						'SchoolMoto'=>$this->input->post('school_moto'),
+						'Logo'=>$image,
 						'SchoolStartDate'=>$soft_date,
 						'State'=>$this->input->post('state'),
 						'Board'=>$this->input->post('board'),
@@ -135,6 +169,8 @@ function upload()
 		else
 		{
 			$data=array('SchoolName'=>$this->input->post('school_name'),
+						'SchoolMoto'=>$this->input->post('school_moto'),
+						'Logo'=>$image,
 						'SchoolStartDate'=>strtotime($this->input->post('soft_date')),
 						'State'=>$this->input->post('state'),
 						'Board'=>$this->input->post('board'),
@@ -183,7 +219,7 @@ function upload()
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-					redirect('index.php/dashboard');
+					redirect('dashboard');
 		}
 		
 		$this->breadcrumb->clear();
@@ -205,7 +241,7 @@ function upload()
 			
 		}else{
 					$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-					redirect('index.php/dashboard');
+					redirect('dashboard');
 		}
 		$generalsettinginfo = $this->master_model->get_info('generalsetting');
 		if(!empty($generalsettinginfo[0]->SchoolStartDate)){
@@ -213,8 +249,45 @@ function upload()
 		}else{
 			$soft_date=strtotime($this->input->post('soft_date'));
 		}
+		
+					$image ="";
+		
+		if($_FILES['file']['name']!='')
+				{
+					$data['image_z1']= $_FILES['file']['name'];
+					$image=sha1($_FILES['file']['name']).time().rand(0, 9);
+				
+					if(!empty($_FILES['file']['name']))
+					{
+				
+						$config =  array(
+						'upload_path'	  => './uploaded_images/',
+						'file_name'       => $image,
+						'allowed_types'   => "gif|jpg|png|jpeg|JPG|jpe|JPEG|PNG|JPG",
+						'max_size'        => '50',
+						'overwrite'       => true);
+						
+							$this->upload->initialize($config);
+							
+				 
+								if($this->upload->do_upload("file"))
+								{
+					
+									$upload_data = $this->upload->data();
+									$image=$upload_data['file_name'];
+								}else
+								{
+										$this->upload->display_errors()."file upload failed";
+										$image    ="";
+								}
+					}
+				}
 		if($this->input->post('id')){
+			
+
 			$data=array('SchoolName'=>$this->input->post('school_name'),
+						'SchoolMoto'=>$this->input->post('school_moto'),
+						'Logo'=>$image,
 						'SchoolStartDate'=>$soft_date,
 						'State'=>$this->input->post('state'),
 						'Board'=>$this->input->post('board'),
@@ -241,6 +314,8 @@ function upload()
 		else
 		{
 			$data=array('SchoolName'=>$this->input->post('school_name'),
+						'SchoolMoto'=>$this->input->post('school_moto'),
+						'Logo'=>$image,
 						'SchoolStartDate'=>strtotime($this->input->post('soft_date')),
 						'State'=>$this->input->post('state'),
 						'Board'=>$this->input->post('board'),
@@ -263,7 +338,7 @@ function upload()
 				$this->session->set_flashdata('message_type', 'success');        
                 $this->session->set_flashdata('message', $this->config->item("generelsetting").' Setting Save Successfully');
 		}
-			redirect('index.php/master/generalsetting');
+			redirect('master/generalsetting');
 	}
 /*school management school details insert and update End..........................................................*/
 	

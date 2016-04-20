@@ -422,6 +422,8 @@ CREATE TABLE IF NOT EXISTS `generalsetting` (
   `BackUpPath` varchar(100) NOT NULL,
   `SchoolStartDate` varchar(20) NOT NULL,
   `SchoolName` varchar(500) NOT NULL,
+  `SchoolMoto` varchar(500) NOT NULL,
+  `Image` varchar(500) NOT NULL,
   `SchoolAddress` text NOT NULL,
   `City` varchar(100) NOT NULL,
   `District` varchar(100) NOT NULL,

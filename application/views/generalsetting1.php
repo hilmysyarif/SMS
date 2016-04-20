@@ -38,6 +38,26 @@
 											</div>
 										</div>
 									</div>	
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="field-1">School Moto</label>
+											
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="field-1" name="school_moto" value="<?=!empty($school_info[0]->SchoolMoto)?$school_info[0]->SchoolMoto:''?>">
+											</div>
+										</div>
+									</div>
+									
+									<div class="col-md-12">
+											<div class="form-group">
+												<label class="col-sm-2 control-label"  for="field-1">Logo</label>
+										
+												<div class="col-sm-10">
+												<input type="file" class="form-control" id="field-1" name="file" value="<?=!empty($school_info[0]->Logo)?$school_info[0]->Logo:''?>">
+
+												</div>
+											</div>
+									</div>
 								</div>
 								<div class="form-group-separator"></div>
 									<div class="row">	
