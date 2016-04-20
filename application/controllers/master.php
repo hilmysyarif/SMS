@@ -270,7 +270,6 @@ function upload()
 						'overwrite'       => true);
 						
 							$this->upload->initialize($config);
-							print_r($this->upload->do_upload("file"));die;
 				 
 								if($this->upload->do_upload("file"))
 								{
@@ -280,7 +279,7 @@ function upload()
 								}else
 								{
 										$this->upload->display_errors()."file upload failed";
-										$image    ="";
+										$image    ="";die;
 								}
 					}
 				}
