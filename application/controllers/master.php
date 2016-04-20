@@ -282,7 +282,7 @@ function upload()
 										$image    ="";
 								}
 					}
-				}print_r($image );
+				}
 		if($this->input->post('id')){
 			
 
@@ -306,7 +306,7 @@ function upload()
 						'DateOfEstablishment'=>strtotime($this->input->post('doe')),
 						'Email'=>$this->input->post('email'),
 						'Fax'=>$this->input->post('fax')
-						);	print_r($data);die;	
+						);	
 						
 				$filter=array('Id'=>$this->input->post('id'));
 				$this->master_model->insert_gen_setting('generalsetting',$data,$filter);
@@ -336,7 +336,7 @@ function upload()
 						'Email'=>$this->input->post('email'),
 						'Fax'=>$this->input->post('fax')
 						);	
-						print_r($data);die;	
+	
 				$this->master_model->insert_gen_setting('generalsetting',$data);
 				$this->session->set_flashdata('message_type', 'success');        
                 $this->session->set_flashdata('message', $this->config->item("generelsetting").' Setting Save Successfully');

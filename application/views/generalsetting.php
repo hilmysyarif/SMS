@@ -19,7 +19,7 @@
 						</div>
 						<div class="panel-body">
 							
-							<form role="form" class="form-horizontal" action="<?=base_url();?>master/gs_insrt" method="post">
+							<form role="form" class="form-horizontal"  enctype="multipart/form-data" action="<?=base_url();?>master/gs_insrt" method="post">
 							<?php if($school_info){?><input type="hidden" name="id" value="<?=!empty($school_info[0]->Id)?$school_info[0]->Id:''?>"><?php } ?>
 								<div class="row">	
 								   <div class="col-md-12">
