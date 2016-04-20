@@ -121,7 +121,7 @@ function upload()
 						'upload_path'	  => './upload/',
 						'file_name'       => $image,
 						'allowed_types'   => "gif|jpg|png|jpeg|JPG|jpe|JPEG|PNG|JPG",
-						'max_size'        => '50',
+						
 						'overwrite'       => true);
 						
 							$this->upload->initialize($config);
@@ -138,7 +138,7 @@ function upload()
 										$image    ="";
 								}
 					}
-				}
+				}print_r($image );
 		if($this->input->post('id')){
 			$data=array('SchoolName'=>$this->input->post('school_name'),
 						'SchoolMoto'=>$this->input->post('school_moto'),
@@ -160,7 +160,8 @@ function upload()
 						'DateOfEstablishment'=>strtotime($this->input->post('doe')),
 						'Email'=>$this->input->post('email'),
 						'Fax'=>$this->input->post('fax')
-						);		
+						);
+print_r($data);die;						
 				$filter=array('Id'=>$this->input->post('id'));
 				$this->master_model->insert_gen_setting('generalsetting',$data,$filter);
 				$this->session->set_flashdata('message_type', 'success');        
@@ -188,7 +189,7 @@ function upload()
 						'DateOfEstablishment'=>strtotime($this->input->post('doe')),
 						'Email'=>$this->input->post('email'),
 						'Fax'=>$this->input->post('fax')
-						);		
+						);	print_r($data);die;		
 				$this->master_model->insert_gen_setting('generalsetting',$data);
 				$this->session->set_flashdata('message_type', 'success');        
                 $this->session->set_flashdata('message', $this->config->item("generelsetting").' Setting Save Successfully');
@@ -264,7 +265,7 @@ function upload()
 						'upload_path'	  => './upload/',
 						'file_name'       => $image,
 						'allowed_types'   => "gif|jpg|png|jpeg|JPG|jpe|JPEG|PNG|JPG",
-						'max_size'        => '50',
+						
 						'overwrite'       => true);
 						
 							$this->upload->initialize($config);
