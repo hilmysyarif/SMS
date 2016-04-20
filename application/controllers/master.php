@@ -118,7 +118,7 @@ function upload()
 					{
 				
 						$config =  array(
-						'upload_path'	  => './uploaded_images/',
+						'upload_path'	  => './upload/',
 						'file_name'       => $image,
 						'allowed_types'   => "gif|jpg|png|jpeg|JPG|jpe|JPEG|PNG|JPG",
 						'max_size'        => '50',
@@ -261,7 +261,7 @@ function upload()
 					{
 				
 						$config =  array(
-						'upload_path'	  => './uploaded_images/',
+						'upload_path'	  => './upload/',
 						'file_name'       => $image,
 						'allowed_types'   => "gif|jpg|png|jpeg|JPG|jpe|JPEG|PNG|JPG",
 						'max_size'        => '50',
