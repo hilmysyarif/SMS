@@ -6,6 +6,7 @@
 </div>
 <?php }?>
 <?php if($school_info){?>
+
 <div class="alert alert-info">Software start date once set cannot be updated any more!! </div> <?php } ?>
 <div class="row">
 
