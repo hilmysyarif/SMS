@@ -46,7 +46,7 @@
 												<label class="col-sm-2 control-label"  for="field-1">Logo</label>
 										
 												<div class="col-sm-10">
-												<input type="file" class="form-control" id="field-1" name="file" value="<?=!empty($school_info[0]->Logo)?$school_info[0]->Logo:''?>">
+												<input type="file" class="form-control" id="field-1" name="file"><?=isset($school_info[0]->Logo)?$school_info[0]->Logo:''?>
 
 												</div>
 											</div>
