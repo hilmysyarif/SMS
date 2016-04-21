@@ -1006,7 +1006,8 @@ INSERT INTO `pagename` (`PageNameId`, `PageName`) VALUES
 (85, 'PurchaseReport'),
 (86, 'SMS'),
 (87, 'Settings'),
-(88, 'Balance');
+(88, 'Balance'),
+(89, 'Notification');
 
 -- --------------------------------------------------------
 
