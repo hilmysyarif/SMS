@@ -28,9 +28,10 @@ if(!$CONNECTION)
 		$senddataarray =array();
 		while($data1 = mysqli_fetch_array($countrow)){			
 		
-			$dataArray = array('senderID'=>$data1['senderID'], 'msg'=>$data1['msg'],'sendDataTime'=>$data1['deliveredDateTime']);
+			$dataArray = array('senderID'=>$data1['senderID'], 'msg'=>$data1['msg'],'sendDataTime'=>$data1['sendDateTime']);
 			$senddataarray[] = $dataArray;		
 		
+			
 				}
  		print_r(json_encode($senddataarray));	
 		
