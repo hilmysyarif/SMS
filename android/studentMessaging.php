@@ -78,6 +78,7 @@ if(!$CONNECTION)
 							'g_members'=>$data2[$a]['g_members'],
 							'g_admin'=>$data2[$a]['g_admin'],
 							'created_at'=>$data2[$a]['created_at'],
+							'serverGroupId'=>$data2[$a]['serverGroupId'],
 					);
 	               	$senddataarray[] = $dataArray;					
 				}			
