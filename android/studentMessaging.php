@@ -115,6 +115,15 @@ if(!$CONNECTION)
  				
  				$querydelete="DELETE FROM `groupmsg` WHERE s_no='$serverId'";
 		        mysqli_query($CONNECTION,$querydelete);
+		        
+		        		       
+ 			}
+ 			if ($not_viewed_by==null || $not_viewed_by==""){
+ 					
+ 				$querydelete="DELETE FROM `groupmsg` WHERE s_no='$serverId'";
+ 				mysqli_query($CONNECTION,$querydelete);
+ 			
+ 				 
  			}
 		}
 		
