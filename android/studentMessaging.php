@@ -111,20 +111,14 @@ if(!$CONNECTION)
  			$udationResult[] = array('s_no'=>$serverId,'result'=>"yes");	
  			else $udationResult[] = array('s_no'=>$serverId,'result'=>"no");	
 		
- 			if ($not_viewed_by1==null || $not_viewed_by1==""){
+ 			if ($not_viewed_by1==null || $not_viewed_by1=="" || $not_viewed_by==null || $not_viewed_by==""){
  				
  				$querydelete="DELETE FROM `groupmsg` WHERE s_no='$serverId'";
 		        mysqli_query($CONNECTION,$querydelete);
 		        
 		        		       
  			}
- 			if ($not_viewed_by==null || $not_viewed_by==""){
- 					
- 				$querydelete="DELETE FROM `groupmsg` WHERE s_no='$serverId'";
- 				mysqli_query($CONNECTION,$querydelete);
  			
- 				 
- 			}
 		}
 		
 		
