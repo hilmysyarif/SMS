@@ -30,8 +30,9 @@ $todayDate= date('Y-m-d');
 
 //$interval = date_diff($todayDate, $newformat);
 $datetime1 = new DateTime(newformat);
+print_r($datetime1 );
 $datetime2 = new DateTime($todayDate);
-
+print_r($datetime2 );die;
 $interval = $datetime1->diff($datetime2);
 echo $interval->format('%R%a days');
 
