@@ -22,8 +22,10 @@ $exm = "April 25 2016 12:13 PM";
 $aa = strtotime('April 25 2016');
 $newformat = date('Y-m-d',$aa);
 
-
+print_r($aa);
+print_r("           ");
 print_r($newformat);
+
 
 
 
