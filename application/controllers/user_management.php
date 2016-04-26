@@ -25,7 +25,7 @@ class User_management extends CI_Controller {
 	
 	function set_user($json_data=false)
 	{	
-		$json_data=$_GET['data'];echo $json_data;return;die;
+		$json_data=$_GET['data']; echo $json_data;return;die; 
 		$var=json_decode($json_data); 
 		$data=array( 
 					'Username'=>$var->application_admin_username,
