@@ -45,6 +45,8 @@
 		
 	$query ="select * from junctiondev.cloudapp.net";
 $result = 	mysqli_query($CONNECTION,$query);
-	print_r($result);
+
+
+	print_r(mysqli_fetch_array($result));
 	}
 	?>
