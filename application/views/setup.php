@@ -120,7 +120,7 @@
 	<?php } ?>
 	
 <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:40px">	
-<a href="#" class="btn btn-primary btn-lg" style="margin-top:20px ;background-color:black;float:right"  role="button"> Cancel</a>
+<a href="#" class="btn btn-primary btn-lg" style="margin-top:40px ;background-color:black;float:right"  role="button"> Cancel</a>
 </div>	
 </div> 
 </div> 
