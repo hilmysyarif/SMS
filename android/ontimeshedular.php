@@ -24,10 +24,12 @@ while($data1 = mysqli_fetch_array($countrow)){
 
 	$last = $interval->format('%a');
 	echo $datetime1;
-	if ($last>='1'){
-	echo 'hi';
-	}
-	else echo 'no';
+echo "   ";
+	echo $last;
+// 	if ($last>='1'){
+// 	echo 'hi';
+// 	}
+// 	else echo 'no';
 	
 	//echo $interval->format('%R%a days');
 }
