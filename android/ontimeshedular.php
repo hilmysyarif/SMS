@@ -22,22 +22,10 @@ $exm = "April 25 2016 12:13 PM";
 $aa = strtotime('April 20 2016');
 $newformat = date('Y-m-d',$aa);
 
-
-$todayDate= date('Y-m-d');
-//print_r($todayDate);
-
-//$differ = $todayDate->diff($newformat);
-
-//$interval = date_diff($todayDate, $newformat);
-$datetime1 = new DateTime(newformat);
-print_r($datetime1 );
-$datetime2 = new DateTime($todayDate);
-print_r($datetime2 );die;
+$datetime1 = new DateTime('2009-10-11');
+$datetime2 = new DateTime('2009-10-13');
 $interval = $datetime1->diff($datetime2);
 echo $interval->format('%R%a days');
-
-//$elapsed = $interval->format('%y years %m months %a days %h hours %i minutes %S seconds');
-//print_r($elapsed);
 
 
 }
