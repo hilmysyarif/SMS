@@ -26,7 +26,9 @@ while($data1 = mysqli_fetch_array($countrow)){
 	echo $interval->format('%R%a days');
 	$last = $interval->format('%R%a');
 
-	echo $last;
+	echo $datetime1;
+	echo "   ";
+	echo $datetime1;
 // 	if ($last>='1'){
 // 	echo 'hi';
 // 	}
