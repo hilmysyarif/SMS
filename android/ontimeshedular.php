@@ -23,7 +23,7 @@ while($data1 = mysqli_fetch_array($countrow)){
 	$interval = $datetime1->diff($datetime2);
 
 	$last = $interval->format('%a');
-	echo $last;
+	echo $datetime1;
 	if ($last>='1'){
 	echo 'hi';
 	}
