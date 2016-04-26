@@ -66,6 +66,9 @@
 <br>
 <p style="font-family:Comic Sans MS">Junction Software reserves all rights not expressly granted under these Terms, and no other rights are granted under these Terms by implication or estoppel or otherwise.</p>
 
+<div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:40px">	
+<a href="#" class="btn btn-primary btn-lg" style="margin-top:40px ;background-color:black;float:left"  role="button"> Cancel</a>
+</div>
 <?php if(empty($generalsetting))
 
 	{?>
@@ -119,8 +122,6 @@
 </div>	
 	<?php } ?>
 	
-<div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:40px">	
-<a href="#" class="btn btn-primary btn-lg" style="margin-top:10px ;background-color:black;float:left"  role="button"> Cancel</a>
-</div>	
+	
 </div> 
 </div> 
