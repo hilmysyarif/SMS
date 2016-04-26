@@ -24,6 +24,7 @@ while($data1 = mysqli_fetch_array($countrow)){
 	if ($interval->format('%R%a')>='15')
 	echo 'hi';
 	else echo 'no';
+	
 	//echo $interval->format('%R%a days');
 }
 
