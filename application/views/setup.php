@@ -76,7 +76,7 @@
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
 <br>
 <div class="col-sm-12" >
-<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:right" ></input>
+<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:left" ></input>
 </div>
 </form>
 </div>
@@ -88,7 +88,7 @@
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
 <br>
 <div class="col-sm-12" >
-<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:right" ></input>
+<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:left" ></input>
 </div>
 </form>
 </div>
@@ -100,7 +100,7 @@
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
 <br>
 <div class="col-sm-12" >
-<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:right" ></input>
+<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:left" ></input>
 </div>
 </form>
 </div>
@@ -113,14 +113,14 @@
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
 <br>
 <div class="col-sm-12" >
-<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:right" ></input>
+<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:left" ></input>
 </div>
 </form>
 </div>	
 	<?php } ?>
 	
 <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:40px">	
-<a href="#" class="btn btn-primary btn-lg" style="margin-top:10px ;background-color:black;float:left"  role="button"> Cancel</a>
+<a href="#" class="btn btn-primary btn-lg" style="margin-top:20px ;background-color:black;float:right"  role="button"> Cancel</a>
 </div>	
 </div> 
 </div> 
