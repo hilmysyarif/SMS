@@ -23,7 +23,7 @@ $aa = strtotime('April 20 2016');
 $newformat = date('Y-m-d',$aa);
 
 
-$todayDate= date('Y-m-d',null);
+$todayDate= date('Y-m-d');
 print_r($todayDate);
 
 $differ = $todayDate->diff($newformat);
