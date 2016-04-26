@@ -39,9 +39,7 @@
            <input type="submit" class="btn btn-info btn-lg" name="submit" value="Download File" />
 	</div>
        </form>
-<div class="col-sm-6 col-md-6 col-lg-6" >
-<a href="<?=base_url();?>dashboard" class="btn btn-primary btn-lg" style="margin-top:10px ;background-color:black;float:left">Previous</a>
-</div>	   
+   
  <div class="col-sm-6 col-md-6 col-lg-6" >
 
 <a href="<?=base_url();?>master/generalsetting1" class="btn btn-primary btn-lg" style="margin-top:10px ;background-color:black;float:right">Next</a>
