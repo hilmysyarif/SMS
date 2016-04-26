@@ -43,7 +43,7 @@
 	} */
 			
 		
-	$query ="select * from junctiondev.cloudapp.net";
+	$query ="select * from Sys.Databases";
 $result = 	mysqli_query($CONNECTION,$query);
 
 
