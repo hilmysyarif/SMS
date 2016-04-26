@@ -78,6 +78,7 @@ if(!$CONNECTION)
 							'g_members'=>$data2[$a]['g_members'],
 							'g_admin'=>$data2[$a]['g_admin'],
 							'created_at'=>$data2[$a]['created_at'],
+							'serverGroupId'=>$data2[$a]['serverGroupId'],
 					);
 	               	$senddataarray[] = $dataArray;					
 				}			
@@ -110,11 +111,14 @@ if(!$CONNECTION)
  			$udationResult[] = array('s_no'=>$serverId,'result'=>"yes");	
  			else $udationResult[] = array('s_no'=>$serverId,'result'=>"no");	
 		
- 			if ($not_viewed_by1==null || $not_viewed_by1==""){
+ 			if ($not_viewed_by1==null || $not_viewed_by1=="" || $not_viewed_by==null || $not_viewed_by==""){
  				
  				$querydelete="DELETE FROM `groupmsg` WHERE s_no='$serverId'";
 		        mysqli_query($CONNECTION,$querydelete);
+		        
+		        		       
  			}
+ 			
 		}
 		
 		
