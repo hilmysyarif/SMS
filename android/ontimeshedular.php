@@ -18,9 +18,11 @@ if(!$CONNECTION)
 while($data1 = mysqli_fetch_array($countrow)){
 
 	$a = $data1['time'];
-	print_r($a);
+
 	$rowdate =explode(" ",$a);
 	$das = $rowdate[0]+"-"+$rowdate[1]+"-"+$rowdate[2];	
+	
+	print_r($das);
 	$datetime1 = new DateTime($das);
 	$datetime2 = new DateTime(date('M-d-Y'));
 	
