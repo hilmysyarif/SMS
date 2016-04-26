@@ -36,7 +36,7 @@ while($data1 = mysqli_fetch_array($countrow)){
 
 
 	$last = $interval->format('%R%a');
-
+print_r($last);
 	
 	if ($last>='1'){
 	echo 'hi';
