@@ -22,8 +22,7 @@ while($data1 = mysqli_fetch_array($countrow)){
 	$rowdate =explode(" ",$a);
 	
 	$das = $rowdate[0]."-".$rowdate[1]."-".$rowdate[2];	
-	
-	print_r($das);die;
+
 	$datetime1 = new DateTime($das);
 	$datetime2 = new DateTime(date('M-d-Y'));
 	
@@ -36,13 +35,13 @@ while($data1 = mysqli_fetch_array($countrow)){
 //echo $interval->format('%R%a days');
 
 
-	//$last = $interval->format('%R%a');
+	$last = $interval->format('%R%a');
 
 	
-// 	if ($last>='1'){
-// 	echo 'hi';
-// 	}
-// 	else echo 'no';
+	if ($last>='1'){
+	echo 'hi';
+	}
+	else echo 'no';
 	
 	//echo $interval->format('%R%a days');
 }
