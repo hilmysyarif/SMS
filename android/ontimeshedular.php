@@ -21,8 +21,12 @@ while($data1 = mysqli_fetch_array($countrow)){
 	$datetime1 = new DateTime($rowdate[0]+"-"+$rowdate[1]+"-"+$rowdate[2]);
 	$datetime2 = new DateTime(date('M-d-Y'));
 	$interval = $datetime1->diff($datetime2);
-	if ($interval->format('%R%a')>='1')
+
+	$last = $interval->format('%a');
+	echo $last;
+	if ($last>='1'){
 	echo 'hi';
+	}
 	else echo 'no';
 	
 	//echo $interval->format('%R%a days');
