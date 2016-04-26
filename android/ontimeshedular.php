@@ -43,9 +43,8 @@
 	} */
 			
 		
-	$query ="select * from Sys.Databases";
+	$query ="SELECT DISTINCT TABLE_SCHEMA from INFORMATION_SCHEMA.COLUMNS";
 $result = 	mysqli_query($CONNECTION,$query);
-
 
 	print_r(mysqli_fetch_array($result));
 	}
