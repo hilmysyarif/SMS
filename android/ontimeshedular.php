@@ -29,7 +29,10 @@ $todayDate= date('Y-m-d');
 //$differ = $todayDate->diff($newformat);
 
 //$interval = date_diff($todayDate, $newformat);
-$interval = $newformat->diff($todayDate);
+$datetime1 = new DateTime(newformat);
+$datetime2 = new DateTime($todayDate);
+
+$interval = $datetime1->diff($datetime2);
 echo $interval->format('%R%a days');
 
 //$elapsed = $interval->format('%y years %m months %a days %h hours %i minutes %S seconds');
