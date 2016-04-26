@@ -103,6 +103,7 @@ if(!$CONNECTION)
 			
 		
 		}
+		
 		$dataRes = array('create_grp'=>$dataArra,
 				'msg_data'=>$senddataarray
 		);
