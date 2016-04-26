@@ -18,8 +18,9 @@ if(!$CONNECTION)
 while($data1 = mysqli_fetch_array($countrow)){
 
 	$a = $data1['time'];
-	$rowdate =explode(" ",$a);	
-	$datetime1 = new DateTime($rowdate[0]+"-"+$rowdate[1]+"-"+$rowdate[2]);
+	$rowdate =explode(" ",$a);
+	$das = $rowdate[0]+"-"+$rowdate[1]+"-"+$rowdate[2];	
+	$datetime1 = new DateTime($das);
 	$datetime2 = new DateTime(date('M-d-Y'));
 	
 	print_r($datetime1);
@@ -29,6 +30,7 @@ while($data1 = mysqli_fetch_array($countrow)){
 	$interval = $datetime1->diff($datetime2);
 	
 echo $interval->format('%R%a days');
+
 
 	//$last = $interval->format('%R%a');
 
