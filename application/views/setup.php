@@ -70,7 +70,7 @@
 
 	{?>
 
-<div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
+<div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:40px">
 <form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/insert" onsubmit="return checkCheckBoxes(this);">
 <input tabindex="5" type="checkbox" name="terms" value="Accepted" class="icheck-11" id="minimal-checkbox-1-11" >
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
@@ -82,7 +82,7 @@
 </div>
 <?php } elseif((empty($detail)) && $UserType==1) {?>
 
-<div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
+<div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:40px">
 <form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/update1" onsubmit="return checkCheckBoxes(this);">
 <input tabindex="5" type="checkbox" name="terms" value="Accepted" class="icheck-11" id="minimal-checkbox-1-11" >
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
@@ -94,7 +94,7 @@
 </div>
 
 	<?php } elseif((empty($acceptance)) && $UserType==2) {?>
-<div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
+<div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:40px">
 <form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/update_term" onsubmit="return checkCheckBoxes(this);">
 <input tabindex="5" type="checkbox" name="terms" value="Accepted" class="icheck-11" id="minimal-checkbox-1-11" >
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
@@ -107,7 +107,7 @@
 
 	<?php } elseif((!empty($agreement_staffdata)) && $this->info['UserType']!=0 && $this->info['UserType']!=1 && $this->info['UserType']!=2 ){?>
 	
-<div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px">
+<div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:40px">
 <form role="form"  method="post" style="margin-bottom:60px" action="<?=base_url();?>dashboard/update_staffterm" onsubmit="return checkCheckBoxes(this);">
 <input tabindex="5" type="checkbox" name="terms" value="Accepted" class="icheck-11" id="minimal-checkbox-1-11" >
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
@@ -118,5 +118,9 @@
 </form>
 </div>	
 	<?php } ?>
+	
+<div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:40px">	
+<a href="#" class="btn btn-primary btn-lg" value="Cancel" style="margin-top:10px ;background-color:black;float:left"  role="button"> 
+</div>	
 </div> 
 </div> 
