@@ -61,9 +61,10 @@ if(!$CONNECTION)
 	}else if ($action=="getmsg"){
 		
 		
-	$countrow=mysqli_query($CONNECTION,"select * from groupmsg,groupinfo where groupmsg.serverGroupId=groupinfo.serverGroupId");
+	$countrow=mysqli_query($CONNECTION,"select * from groupmsg,groupinfo where groupmsg.serverGroupId=groupinfo.serverGroupId");	
 		
-		$senddataarray =array();		
+		$senddataarray =array();
+		$dataArra = array();
 		$a =0;
 		while($data1 = mysqli_fetch_array($countrow)){		
 			$data2[]=$data1;					
@@ -80,12 +81,32 @@ if(!$CONNECTION)
 							'created_at'=>$data2[$a]['created_at'],
 							'serverGroupId'=>$data2[$a]['serverGroupId'],
 					);
-	               	$senddataarray[] = $dataArray;					
+	               	$senddataarray[] = $dataArray;	
+
+	               	$addedServerID[] = $data2[$a]['serverGroupId'];
 				}			
 			$a++;
 						
 		}
-			print_r(json_encode($senddataarray));	
+		foreach ($addedServerID as $sID){
+			$countGroup=mysqli_query($CONNECTION,"select * from groupinfo where serverGroupId!='$sID'");
+			while($data1 = mysqli_fetch_array($countGroup)){
+				$dataArra [] = array(
+						'g_name'=>$data2[$a]['g_name'],
+						'g_members'=>$data2[$a]['g_members'],
+						'g_admin'=>$data2[$a]['g_admin'],
+						'created_at'=>$data2[$a]['created_at'],
+						'serverGroupId'=>$data2[$a]['serverGroupId'],
+				);
+				 
+			}
+			
+		
+		}
+		$dataRes = array('create_grp'=>$dataArra,
+				'msg_data'=>$senddataarray
+		);
+			print_r(json_encode($dataRes));	
 			
 	}else if ($action=="responseOfMsg"){
 
@@ -119,7 +140,7 @@ if(!$CONNECTION)
 		        		       
  			}
  			
-		}
+		}		
 		
 		
 		print_r(json_encode($udationResult));
