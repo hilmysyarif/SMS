@@ -23,8 +23,8 @@ class User_management extends CI_Controller {
 		redirect('http://junctiondev.cloudapp.net/sms/user_management/set_user?data='.$json_data);
 	}
 	
-	function set_user($json_data=false)
-	{	
+	function set_user()
+	{	echo'get';
 		$json_data=$_GET['data'];// echo $json_data;return;die; 
 		$var=json_decode($json_data); 
 		$data=array( 
