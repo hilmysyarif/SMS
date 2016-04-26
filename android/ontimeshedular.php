@@ -22,13 +22,14 @@ while($data1 = mysqli_fetch_array($countrow)){
 	$datetime1 = new DateTime($rowdate[0]+"-"+$rowdate[1]+"-"+$rowdate[2]);
 	$datetime2 = new DateTime(date('M-d-Y'));
 	
-	echo $datetime1;
-	echo "   ";
-	echo $datetime1;
+	print_r($datetime1);
+	print_r("        ");
+	print_r($datetime1);
 	
 	$interval = $datetime1->diff($datetime2);
 	
 echo $interval->format('%R%a days');
+
 	//$last = $interval->format('%R%a');
 
 	
