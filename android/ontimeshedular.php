@@ -20,7 +20,8 @@ while($data1 = mysqli_fetch_array($countrow)){
 	$a = $data1['time'];
 
 	$rowdate =explode(" ",$a);
-	$das = $rowdate[0]+"-"+$rowdate[1]+"-"+$rowdate[2];	
+	
+	$das = $rowdate[0]."-".$rowdate[1]."-".$rowdate[2];	
 	
 	print_r($das);die;
 	$datetime1 = new DateTime($das);
