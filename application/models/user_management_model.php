@@ -39,6 +39,7 @@ class User_management_model extends CI_Model{
     			mysqli_store_result($connect);
     	   }
     	   while(mysqli_more_results($connect) && mysqli_next_result($connect));
+    	   return true;
     	   $query="SELECT count(*) as 'Tables', table_schema as 'Database' FROM information_schema.TABLES WHERE table_schema= '".$database_name."' GROUP BY table_schema";
 		   $result=mysqli_query($connect,$query);
 		   $countTable=mysqli_fetch_assoc($result); //echo $countTable['Tables'];die;
