@@ -62,7 +62,7 @@ class User_management_model extends CI_Model{
     {
     	$this->load->database('default',TRUE);
     	$qry=	$this->db->insert('user',$data);
-   	   	return true;
+   	   //	return true;
     }
     
     function update_pwd_admin_user($data=false,$filter=false)
