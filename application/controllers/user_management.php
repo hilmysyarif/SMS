@@ -30,7 +30,8 @@ class User_management extends CI_Controller {
 		$data=array( 
 					'Username'=>$var->application_admin_username,
 					'Password'=>md5($var->application_admin_password),
-					'UserType'=>$var->UserType
+					'UserType'=>'0',
+					'Staff_terms'=>'Accepted'
 				   ); 
 		$status=$this->user_management_model->set_user($data,$var->db_name);
 		if($status)
