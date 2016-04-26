@@ -13,10 +13,10 @@ if(!$CONNECTION)
 	exit();
 }else{
 	
-	$countrow=mysqli_query($CONNECTION,"Select time from groupmsg");
+	$countrow=mysqli_query($CONNECTION,"Select s_no,time from groupmsg");
 
 while($data1 = mysqli_fetch_array($countrow)){
-
+$s_no = $data1['s_no'];
 	$a = $data1['time'];
 
 	$rowdate =explode(" ",$a);
@@ -24,33 +24,28 @@ while($data1 = mysqli_fetch_array($countrow)){
 	$das = $rowdate[0]."-".$rowdate[1]."-".$rowdate[2];	
 
 	$datetime1 = new DateTime($das);
-	$datetime2 = new DateTime(date('M-d-Y'));
-	
-// 	print_r($datetime1);
-// 	print_r("        ");
-// 	print_r($datetime1);
-	
+	$datetime2 = new DateTime(date('M-d-Y'));	
 	$interval = $datetime1->diff($datetime2);
-	
-//echo $interval->format('%R%a days');
-
-
-	$last = $interval->format('%R%a');
-print_r($last);
+    $last = $interval->format('%R%a');
 	
 	if ($last>='1'){
-	echo 'hi';
+		$querydelete="DELETE FROM `groupmsg` WHERE s_no='$s_no'";
+		
+
+		if (mysqli_query($CONNECTION,$querydelete)){
+			$res = "Delete Message Successfully";			
+		}else{
+			$res ="Not Deleted Message";			
+		}
+		
+		
 	}
-	else echo 'no';
+	else $res= 'no';
 	
-	//echo $interval->format('%R%a days');
+	print_r($res);
 }
 
 
-//$prev_date =  $queryData['time'];
-
-
-//$aa = ('April-20-2016');
 
 
 
