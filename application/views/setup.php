@@ -66,6 +66,9 @@
 <br>
 <p style="font-family:Comic Sans MS">Junction Software reserves all rights not expressly granted under these Terms, and no other rights are granted under these Terms by implication or estoppel or otherwise.</p>
 
+<div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:40px">	
+<a href="#" class="btn btn-primary btn-lg" style="margin-top:40px ;background-color:black;float:left"  role="button"> Cancel</a>
+</div>
 <?php if(empty($generalsetting))
 
 	{?>
@@ -76,7 +79,7 @@
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
 <br>
 <div class="col-sm-12" >
-<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:left" ></input>
+<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:right" ></input>
 </div>
 </form>
 </div>
@@ -88,7 +91,7 @@
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
 <br>
 <div class="col-sm-12" >
-<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:left" ></input>
+<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:right" ></input>
 </div>
 </form>
 </div>
@@ -100,7 +103,7 @@
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
 <br>
 <div class="col-sm-12" >
-<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:left" ></input>
+<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:right" ></input>
 </div>
 </form>
 </div>
@@ -113,14 +116,12 @@
 <label for="minimal-checkbox-1-11" style="font-size:18px;font-family:Comic Sans MS">I agree to the Junction Software terms and privacy policy</label>
 <br>
 <div class="col-sm-12" >
-<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:left" ></input>
+<input type="submit"  class="btn btn-primary btn-lg" value="Next"   style="margin-top:10px ;background-color:black;float:right" ></input>
 </div>
 </form>
 </div>	
 	<?php } ?>
 	
-<div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:40px">	
-<a href="#" class="btn btn-primary btn-lg" style="margin-top:40px ;background-color:black;float:right"  role="button"> Cancel</a>
-</div>	
+	
 </div> 
 </div> 
