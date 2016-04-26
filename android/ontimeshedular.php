@@ -29,6 +29,7 @@ while($data1 = mysqli_fetch_array($countrow)){
 	$interval = $datetime1->diff($datetime2);
 	
 echo $interval->format('%R%a days');
+
 	//$last = $interval->format('%R%a');
 
 	
