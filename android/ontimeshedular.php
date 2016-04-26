@@ -18,7 +18,7 @@ if(!$CONNECTION)
 while($data1 = mysqli_fetch_array($countrow)){
 	
 	$rowdate =explode(" ",$data1['time']);
-	echo $rowdate;die;
+	print_r($rowdate);die;
 	$datetime1 = new DateTime($rowdate[0]+"-"+$rowdate[1]+"-"+$rowdate[2]);
 	$datetime2 = new DateTime(date('M-d-Y'));
 	$interval = $datetime1->diff($datetime2);
