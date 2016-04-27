@@ -102,6 +102,7 @@ if(!$CONNECTION)
 			}
 			
 		
+			
 		}
 		
 		$dataRes = array('create_grp'=>$dataArra,
