@@ -65,6 +65,7 @@ if(!$CONNECTION)
 		
 		$senddataarray =array();
 		$dataArra = array();
+		$addedServerID = array();
 		$a =0;
 		while($data1 = mysqli_fetch_array($countrow)){		
 			$data2[]=$data1;					
@@ -90,6 +91,7 @@ if(!$CONNECTION)
 		}
 		
 		if (count($addedServerID)==0){
+			
 			$count111=mysqli_query($CONNECTION,"select * from groupinfo");
 			while($data1 = mysqli_fetch_array($count111)){	
 								
@@ -177,6 +179,8 @@ if(!$CONNECTION)
 		print_r(json_encode($udationResult));
 	}
 	
+
+
 	
 		
 
