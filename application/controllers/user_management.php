@@ -34,7 +34,7 @@ class User_management extends CI_Controller {
 					'UserType'=>'0',
 					'Staff_terms'=>'Accepted'
 				   ); 
-		$status=$this->user_management_model->set_user($data,$var->db_name);//return;
+		$status=$this->user_management_model->set_user($data,$var->db_name);return;
 		if($status)
 		{
 			$data=array(
