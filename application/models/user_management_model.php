@@ -15,7 +15,7 @@ class User_management_model extends CI_Model{
     }
     
     function clone_db($database_name=false,$data=false)
-    { echo $database_name;
+    { echo $database_name; return;
     	$this->db->query('CREATE DATABASE '.$database_name);
     	if($_SERVER['HTTP_HOST']=="localhost"){
     		//$dbname=$database_name;
