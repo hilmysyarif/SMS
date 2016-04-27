@@ -13,7 +13,7 @@ class User_management extends CI_Controller {
 	
 	function clone_db() 
 	{ 
-		$json_data=$_GET['data'];echo $json_data;
+	 	$json_data=$_GET['data'];echo $json_data;
 		$var=json_decode($json_data);
 		$database_name=$var->db_name;
 		$this->session->set_userdata('db_name',$database_name);
@@ -56,7 +56,8 @@ class User_management extends CI_Controller {
 			$this->session->unset_userdata($database_name);
 			$this->session->sess_destroy();
 			$datas=json_encode($data);
-			redirect('http://junctiondev.cloudapp.net/appmanager/login/result_application?json='.$datas);
+			//redirect('http://junctiondev.cloudapp.net/appmanager/login/result_application?json='.$datas);
+			redirect('http://junctiondev.cloudapp.net/appmanager/login/result_application');
 		}		
 		else
 		{
