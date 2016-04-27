@@ -20,11 +20,12 @@ class User_management extends CI_Controller {
 		$this->session->userdata('db_name');
 		$json_data=$_GET['data'];	
 		$set_user=$this->data['set_user']=$this->user_management_model->clone_db($database_name);//echo $json_data;return;
-		redirect('http://junctiondev.cloudapp.net/sms/user_management/set_user?data='.$json_data);
+		$this->set_user($json_data);
+		//redirect('http://junctiondev.cloudapp.net/sms/user_management/set_user?data='.$json_data);
 	}
 	
-	function set_user()
-	{	echo'get';return;
+	function set_user($json_data)
+	{	echo$json_data;return;
 		$json_data=$_GET['data'];// echo $json_data;return;die; 
 		$var=json_decode($json_data); 
 		$data=array( 
