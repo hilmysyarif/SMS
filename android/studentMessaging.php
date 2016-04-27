@@ -99,7 +99,11 @@ if(!$CONNECTION)
 			while($data1 = mysqli_fetch_array($count111)){	
 								
 			if (strpos($data1['g_members'], ",") !== false)	{
+				
 				if($data1['g_admin']==$dataarray['UserID']){
+					
+					print_r("ritu");
+					print_r($data1);
 					$dataArra [] = array(
 							'g_name'=>$data1['g_name'],
 							'g_members'=>$data1['g_members'],
@@ -108,6 +112,9 @@ if(!$CONNECTION)
 							'serverGroupId'=>$data1['serverGroupId'],
 					);
 				}elseif (strpos($data1['g_members'], $dataarray['UserID']) !== false){
+					print_r("varsha");
+					print_r($data1);
+					
 					$dataArra [] = array(
 							'g_name'=> $data1['g_name'],
 							'g_members'=> $data1['g_members'],
@@ -123,7 +130,10 @@ if(!$CONNECTION)
 			}
 			
 		}else {
+			
+			
 			foreach ($addedServerID as $sID){
+				print_r($sID);
 				$countGroup=mysqli_query($CONNECTION,"select * from groupinfo where serverGroupId!='$sID' and g_admin='$userID'");
 				$data1 = mysqli_fetch_array($countGroup);
 				$dataArra [] = array(
@@ -176,8 +186,7 @@ if(!$CONNECTION)
 		        
 		        		      
  			}
- 			
-		}		
+ 				}		
 		
 		
 		print_r(json_encode($udationResult));
