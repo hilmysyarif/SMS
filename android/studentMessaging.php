@@ -88,18 +88,19 @@ if(!$CONNECTION)
 			$a++;
 						
 		}
+		$userID = $dataarray['UserID'];
 		foreach ($addedServerID as $sID){
-			$countGroup=mysqli_query($CONNECTION,"select * from groupinfo where serverGroupId!='$sID'");
-			while($data1 = mysqli_fetch_array($countGroup)){
+			$countGroup=mysqli_query($CONNECTION,"select * from groupinfo where serverGroupId!='$sID' and g_admin='$userID'");
+			$data1 = mysqli_fetch_array($countGroup);
 				$dataArra [] = array(
-						'g_name'=>$data2[$a]['g_name'],
-						'g_members'=>$data2[$a]['g_members'],
-						'g_admin'=>$data2[$a]['g_admin'],
-						'created_at'=>$data2[$a]['created_at'],
-						'serverGroupId'=>$data2[$a]['serverGroupId'],
+						'g_name'=>$data1['g_name'],
+						'g_members'=>$data1['g_members'],
+						'g_admin'=>$data1['g_admin'],
+						'created_at'=>$data1['created_at'],
+						'serverGroupId'=>$data1['serverGroupId'],
 				);
 				 
-			}
+			
 					
 			
 		}
