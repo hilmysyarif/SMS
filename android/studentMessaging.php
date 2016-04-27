@@ -100,8 +100,7 @@ if(!$CONNECTION)
 						'serverGroupId'=>$data1['serverGroupId'],
 				);
 				 
-			
-					
+				
 			
 		}
 		
