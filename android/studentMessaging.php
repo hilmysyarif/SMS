@@ -95,7 +95,7 @@ if(!$CONNECTION)
 			$count111=mysqli_query($CONNECTION,"select * from groupinfo");
 			while($data1 = mysqli_fetch_array($count111)){	
 								
-				if($count111['g_admin']==$dataarray['UserID']){
+				if($data1['g_admin']==$dataarray['UserID']){
 					$dataArra [] = array(
 							'g_name'=>$data1['g_name'],
 							'g_members'=>$data1['g_members'],
@@ -103,7 +103,7 @@ if(!$CONNECTION)
 							'created_at'=>$data1['created_at'],
 							'serverGroupId'=>$data1['serverGroupId'],
 					);
-				}else if (strpos($data1['not_viewed_by'], $dataarray['UserID']) !== false){
+				}else if (strpos($data1['g_members'], $dataarray['UserID']) !== false){
 					$dataArra [] = array(
 							'g_name'=> $data1['g_name'],
 							'g_members'=> $data1['g_members'],
