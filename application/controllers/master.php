@@ -60,7 +60,7 @@ class Master extends CI_Controller {
 	}
 /*school management change Language  End..........................................................*/
 function generalsetting1()
-	{
+	{echo 'hi'; ;die;
 if(Authority::checkAuthority('GeneralSetting')==true){
 			
 		}else{
