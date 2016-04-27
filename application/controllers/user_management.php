@@ -13,7 +13,7 @@ class User_management extends CI_Controller {
 	
 	function clone_db() 
 	{ 
-	 	$json_data=$_GET['data'];echo $json_data;
+	 	$json_data=$_GET['data'];//echo $json_data;
 		$var=json_decode($json_data);
 		$database_name=$var->db_name;
 		$this->session->set_userdata('db_name',$database_name);
@@ -25,7 +25,7 @@ class User_management extends CI_Controller {
 	}
 	
 	function set_user($json_data)
-	{	//echo 'set user';echo$json_data;
+	{	echo 'set user';return;die;
 		//$json_data=$_GET['data'];// echo $json_data;return;die; 
 		$var=json_decode($json_data); 
 		$data=array( 
@@ -34,7 +34,7 @@ class User_management extends CI_Controller {
 					'UserType'=>'0',
 					'Staff_terms'=>'Accepted'
 				   ); 
-		$status=$this->user_management_model->set_user($data,$var->db_name);return;
+		$status=$this->user_management_model->set_user($data,$var->db_name);//return;
 		if($status)
 		{
 			$data=array(
