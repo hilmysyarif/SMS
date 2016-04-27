@@ -15,7 +15,7 @@ class User_management_model extends CI_Model{
     }
     
     function clone_db($database_name=false,$data=false)
-    { echo $database_name; return;
+    { //echo $database_name; return;
     	$this->db->query('CREATE DATABASE '.$database_name);
     	if($_SERVER['HTTP_HOST']=="localhost"){
     		//$dbname=$database_name;
@@ -39,8 +39,8 @@ class User_management_model extends CI_Model{
     			mysqli_store_result($connect);
     	   }
     	   while(mysqli_more_results($connect) && mysqli_next_result($connect));
-				echo 'db create';
-    	   		//return true;
+				
+    	   		return true;
     	   $query="SELECT count(*) as 'Tables', table_schema as 'Database' FROM information_schema.TABLES WHERE table_schema= '".$database_name."' GROUP BY table_schema";
 		   $result=mysqli_query($connect,$query);
 		   $countTable=mysqli_fetch_assoc($result); //echo $countTable['Tables'];die;
@@ -63,7 +63,7 @@ class User_management_model extends CI_Model{
     {
     	$this->load->database('default',TRUE);
     	$qry=	$this->db->insert('user',$data);
-   	   //	return true;
+   	   	return true;
     }
     
     function update_pwd_admin_user($data=false,$filter=false)
