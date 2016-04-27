@@ -84,6 +84,7 @@ if(!$CONNECTION)
 					);
 	               	$senddataarray[] = $dataArray;	
 
+	               if (!in_array($data2[$a]['serverGroupId'], $addedServerID))
 	               	$addedServerID[] = $data2[$a]['serverGroupId'];
 				}			
 			$a++;
@@ -106,7 +107,7 @@ if(!$CONNECTION)
 							'created_at'=>$data1['created_at'],
 							'serverGroupId'=>$data1['serverGroupId'],
 					);
-				}else if (strpos($data1['g_members'], $dataarray['UserID']) !== false){
+				}elseif (strpos($data1['g_members'], $dataarray['UserID']) !== false){
 					$dataArra [] = array(
 							'g_name'=> $data1['g_name'],
 							'g_members'=> $data1['g_members'],
@@ -115,6 +116,7 @@ if(!$CONNECTION)
 							'serverGroupId'=>$data1['serverGroupId'],
 					);
 				}
+				
 				
 			}
 				
