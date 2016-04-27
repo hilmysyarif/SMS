@@ -32,7 +32,7 @@
 						<h3>Class and Section upload </h4>
 						<h5 style="color:black ;margin-bottom:-10px;margin-top:50px">To Upload Excel file with .CSV extn</h5>
 					
-						<form class="form-horizontal well" style="margin-top:40px"action="<?php echo base_url(); ?>index.php/master/insert_class2/class" method="post" name="upload_excel" enctype="multipart/form-data">
+						<form class="form-horizontal well" style="margin-top:40px"action="<?php echo base_url(); ?>index.php/master/insert_class1/class" method="post" name="upload_excel" enctype="multipart/form-data">
 						<input type="file" name="file" id="file" class="input-large">
 						<button type="submit" id="submit" name="Import" class="btn btn-info btn-single" style="margin-top:20px">Upload</button>
 						</form>
@@ -45,7 +45,7 @@
 						<h5 style="color:black;margin-bottom:-10px;margin-top:50px">To upload Excel file with .CSV extn</h5>
 													
 													
-						<form class="form-horizontal well" style="margin-top:40px" action="<?php echo base_url(); ?>index.php/admission/ins_stu1" method="post" name="upload_excel" enctype="multipart/form-data">
+						<form class="form-horizontal well" style="margin-top:40px" action="<?php echo base_url(); ?>index.php/admission/ins_stu" method="post" name="upload_excel" enctype="multipart/form-data">
 						 <?php if(empty($var)==''){ ?>
 														<input type="hidden" name="id" value="<?=$var[0]->RegistrationId?>">
 											<?php } ?>
@@ -61,7 +61,7 @@
 						<h5 style="color:black;margin-bottom:-10px;margin-top:50px">To upload Excel file with .CSV in extn</h5>
 													
 													
-						<form class="form-horizontal well" style="margin-top:40px" action="<?php echo base_url(); ?>index.php/admission/student_info_hindi1" method="post" name="upload_excel" enctype="multipart/form-data">
+						<form class="form-horizontal well" style="margin-top:40px" action="<?php echo base_url(); ?>index.php/admission/student_info_hindi" method="post" name="upload_excel" enctype="multipart/form-data">
 						 <?php if(empty($var)==''){ ?>
 														<input type="hidden" name="id" value="<?=$var[0]->RegistrationId?>">
 											<?php } ?>
