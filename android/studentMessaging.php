@@ -69,6 +69,7 @@ if(!$CONNECTION)
 		$a =0;
 		while($data1 = mysqli_fetch_array($countrow)){		
 			$data2[]=$data1;					
+				print_r(strpos($data2[$a]['not_viewed_by'], $dataarray['UserID']));die;
 				
 				if (strpos($data2[$a]['not_viewed_by'], $dataarray['UserID']) !== false){
 					$dataArray = array('s_no'=>$data2[$a]['s_no'],
@@ -93,13 +94,17 @@ if(!$CONNECTION)
 		
 	//	print_r(count($addedServerID));die;		
 		
-		if (count($addedServerID)==0){
+		/* if (count($addedServerID)==0){
 						
 			$count111=mysqli_query($CONNECTION,"select * from groupinfo");
 			while($data1 = mysqli_fetch_array($count111)){	
 								
 			if (strpos($data1['g_members'], ",") !== false)	{
+				
 				if($data1['g_admin']==$dataarray['UserID']){
+					
+					print_r("ritu");
+					print_r($data1);
 					$dataArra [] = array(
 							'g_name'=>$data1['g_name'],
 							'g_members'=>$data1['g_members'],
@@ -108,6 +113,9 @@ if(!$CONNECTION)
 							'serverGroupId'=>$data1['serverGroupId'],
 					);
 				}elseif (strpos($data1['g_members'], $dataarray['UserID']) !== false){
+					print_r("varsha");
+					print_r($data1);
+					
 					$dataArra [] = array(
 							'g_name'=> $data1['g_name'],
 							'g_members'=> $data1['g_members'],
@@ -123,7 +131,10 @@ if(!$CONNECTION)
 			}
 			
 		}else {
+			
+			
 			foreach ($addedServerID as $sID){
+				print_r($sID);
 				$countGroup=mysqli_query($CONNECTION,"select * from groupinfo where serverGroupId!='$sID' and g_admin='$userID'");
 				$data1 = mysqli_fetch_array($countGroup);
 				$dataArra [] = array(
@@ -137,7 +148,7 @@ if(!$CONNECTION)
 			
 					
 			}
-		}
+		} */
 	
 		
 		$dataRes = array('create_grp'=>$dataArra,
@@ -176,8 +187,7 @@ if(!$CONNECTION)
 		        
 		        		      
  			}
- 			
-		}		
+ 				}		
 		
 		
 		print_r(json_encode($udationResult));
