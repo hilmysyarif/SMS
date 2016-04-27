@@ -68,11 +68,11 @@ if(!$CONNECTION)
 		$addedServerID = array();
 		$a =0;
 		while($data1 = mysqli_fetch_array($countrow)){		
-			$data2[]=$data1;					
+			//$data2[]=$data1;					
 					
-					print_r($data1);die;			
+					print_r(strpos($data1['g_members'], ",") );die;			
 				
-				if (strpos($data2[$a]['not_viewed_by'], $dataarray['UserID']) !== false){					
+			//	if (strpos($data1['not_viewed_by'], $dataarray['UserID']) !== false){					
 					
 					if (strpos($data1['g_members'], ",") !== false)	{
 					
@@ -80,16 +80,16 @@ if(!$CONNECTION)
 							
 						if (in_array($dataarray['UserID'], $abc))
 						{
-							$dataArray = array('s_no'=>$data2[$a]['s_no'],
-									'sender_id'=>$data2[$a]['sender_id'],
-									'sender_name'=>$data2[$a]['sender_name'],
-									'msg'=>$data2[$a]['msg'],
-									'time'=>$data2[$a]['time'],
-									'g_name'=>$data2[$a]['g_name'],
-									'g_members'=>$data2[$a]['g_members'],
-									'g_admin'=>$data2[$a]['g_admin'],
-									'created_at'=>$data2[$a]['created_at'],
-									'serverGroupId'=>$data2[$a]['serverGroupId'],
+							$dataArray = array('s_no'=>$data1['s_no'],
+									'sender_id'=>$data1['sender_id'],
+									'sender_name'=>$data1['sender_name'],
+									'msg'=>$data1['msg'],
+									'time'=>$data1['time'],
+									'g_name'=>$data1['g_name'],
+									'g_members'=>$data1['g_members'],
+									'g_admin'=>$data1['g_admin'],
+									'created_at'=>$data1['created_at'],
+									'serverGroupId'=>$data1['serverGroupId'],
 							);
 							$senddataarray[] = $dataArray;
 						}
@@ -112,8 +112,9 @@ if(!$CONNECTION)
 
 	               if (!in_array($data2[$a]['serverGroupId'], $addedServerID))
 	               	$addedServerID[] = $data2[$a]['serverGroupId'];
-				}			
+				//}			
 			$a++;
+						
 						
 		}
 		
