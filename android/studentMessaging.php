@@ -69,7 +69,8 @@ if(!$CONNECTION)
 		$a =0;
 		while($data1 = mysqli_fetch_array($countrow)){		
 			$data2[]=$data1;					
-				print_r(strpos($data2[$a]['not_viewed_by'], $dataarray['UserID']));
+				print_r(strpos($data2[$a]['not_viewed_by'], $dataarray['UserID']));die;
+				
 				if (strpos($data2[$a]['not_viewed_by'], $dataarray['UserID']) !== false){
 					$dataArray = array('s_no'=>$data2[$a]['s_no'],
 							 'sender_id'=>$data2[$a]['sender_id'],
