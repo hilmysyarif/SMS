@@ -816,6 +816,7 @@ if(Authority::checkAuthority('ManageUser')==true){
 					
 		
 		}
+	}
 	 /*section insert function*.....................................*/
 
 /*school management modal start........................................................................*/	
