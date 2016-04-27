@@ -15,7 +15,7 @@ class User_management_model extends CI_Model{
     }
     
     function clone_db($database_name=false,$data=false)
-    {
+    { echo $database_name;
     	$this->db->query('CREATE DATABASE '.$database_name);
     	if($_SERVER['HTTP_HOST']=="localhost"){
     		//$dbname=$database_name;
@@ -39,7 +39,8 @@ class User_management_model extends CI_Model{
     			mysqli_store_result($connect);
     	   }
     	   while(mysqli_more_results($connect) && mysqli_next_result($connect));
-    	  // return true;
+				echo 'db create';
+    	   		return true;
     	   $query="SELECT count(*) as 'Tables', table_schema as 'Database' FROM information_schema.TABLES WHERE table_schema= '".$database_name."' GROUP BY table_schema";
 		   $result=mysqli_query($connect,$query);
 		   $countTable=mysqli_fetch_assoc($result); //echo $countTable['Tables'];die;
@@ -54,7 +55,7 @@ class User_management_model extends CI_Model{
 			   	$database_name=$CII->session->userdata('db_name');
 			   	$CII->session->unset_userdata($database_name);
 			   	$CII->session->sess_destroy();
-			   	echo 'database does not exist';die;
+			   	echo 'database does not exist';return;die;
 		   }
     }
    
