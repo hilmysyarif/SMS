@@ -95,6 +95,7 @@ if(!$CONNECTION)
 			$count111=mysqli_query($CONNECTION,"select * from groupinfo");
 			while($data1 = mysqli_fetch_array($count111)){	
 								
+			if (strpos($data1['g_members'], ",") !== false)	{
 				if($data1['g_admin']==$dataarray['UserID']){
 					$dataArra [] = array(
 							'g_name'=>$data1['g_name'],
@@ -113,7 +114,7 @@ if(!$CONNECTION)
 					);
 				}
 				
-				
+			}
 				
 			}
 			
@@ -178,7 +179,6 @@ if(!$CONNECTION)
 		print_r(json_encode($udationResult));
 	}
 	
-
 
 	
 		
