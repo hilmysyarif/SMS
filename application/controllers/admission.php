@@ -499,9 +499,15 @@ class Admission extends CI_Controller {
 									{
 										$var=$section2[13]->MasterEntryId;	
 									}
+									else{
+										$var=='';
+									}
 									if($emapData[$gt]==$section2[14]->MasterEntryValue)
 									{
 										$var=$section2[14]->MasterEntryId;
+									}
+									else{
+										$var=='';
 									}
 									if($var==''){$var='NULL';}
 									$k=0;
