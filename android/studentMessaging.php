@@ -90,7 +90,7 @@ if(!$CONNECTION)
 						
 		}
 		
-		print_r(count($addedServerID));die;
+	//	print_r(count($addedServerID));die;
 		
 		if (count($addedServerID)==0){
 						
