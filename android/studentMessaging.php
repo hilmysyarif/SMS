@@ -69,7 +69,7 @@ if(!$CONNECTION)
 		$a =0;
 		while($data1 = mysqli_fetch_array($countrow)){		
 			$data2[]=$data1;					
-				
+				print_r(strpos($data2[$a]['not_viewed_by'], $dataarray['UserID']));
 				if (strpos($data2[$a]['not_viewed_by'], $dataarray['UserID']) !== false){
 					$dataArray = array('s_no'=>$data2[$a]['s_no'],
 							 'sender_id'=>$data2[$a]['sender_id'],
@@ -93,7 +93,7 @@ if(!$CONNECTION)
 		
 	//	print_r(count($addedServerID));die;		
 		
-		if (count($addedServerID)==0){
+		/* if (count($addedServerID)==0){
 						
 			$count111=mysqli_query($CONNECTION,"select * from groupinfo");
 			while($data1 = mysqli_fetch_array($count111)){	
@@ -147,7 +147,7 @@ if(!$CONNECTION)
 			
 					
 			}
-		}
+		} */
 	
 		
 		$dataRes = array('create_grp'=>$dataArra,
