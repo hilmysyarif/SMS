@@ -578,27 +578,27 @@ class Admission extends CI_Controller {
 				if($msg=="fail"){
 					$this->session->set_flashdata('message_type', 'error');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount")."$var1 <br> $var2 <br> $var3 <br>");
-					redirect('admission/registration');
+					redirect($_SERVER['HTTP_REFERER']);
 				}
 				
 				fclose($file);
 				
 				$this->session->set_flashdata('message_type', 'error');        
 				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Student registered successfully');
-				redirect('admission/registration');
+				redirect($_SERVER['HTTP_REFERER']);
 			}
 				$this->session->set_flashdata('message_type', 'error');        
 				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Error uploading');
-				redirect('admission/registration');
+				redirect($_SERVER['HTTP_REFERER']);
 		}
 				$this->session->set_flashdata('message_type', 'error');        
 				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Error uploading');
-				redirect('admission/registration');
+				redirect($_SERVER['HTTP_REFERER']);
 				}
 	else 
 				$this->session->set_flashdata('message_type', 'error');        
 				$this->session->set_flashdata('message', $this->config->item("manageaccount").'Upload class and section first');
-				redirect('master/manageclass');
+				redirect($_SERVER['HTTP_REFERER']);
 }
 
 /*school management student registration upload through excel sheet controller end...................................................................................................*/	
