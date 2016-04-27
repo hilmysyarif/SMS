@@ -13,7 +13,7 @@ class User_management extends CI_Controller {
 	
 	function clone_db() 
 	{ 
-	 	$json_data=$_GET['data'];//echo $json_data;
+	 	$json_data=$_GET['data'];echo $json_data;return;die;
 		$var=json_decode($json_data);
 		$database_name=$var->db_name;
 		$this->session->set_userdata('db_name',$database_name);
