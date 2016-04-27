@@ -115,8 +115,7 @@ if(!$CONNECTION)
 				//}			
 			$a++;
 						
-			
-			
+						
 		}
 		
 	//	print_r(count($addedServerID));die;		
