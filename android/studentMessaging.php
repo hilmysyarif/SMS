@@ -90,6 +90,7 @@ if(!$CONNECTION)
 						
 		}
 		
+		print_r(count($addedServerID));die;
 		if (count($addedServerID)==0){
 						
 			$count111=mysqli_query($CONNECTION,"select * from groupinfo");
@@ -170,7 +171,7 @@ if(!$CONNECTION)
  				$querydelete="DELETE FROM `groupmsg` WHERE s_no='$serverId'";
 		        mysqli_query($CONNECTION,$querydelete);
 		        
-		        		       
+		        		      
  			}
  			
 		}		
