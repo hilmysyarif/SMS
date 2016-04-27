@@ -70,7 +70,7 @@ if(!$CONNECTION)
 		while($data1 = mysqli_fetch_array($countrow)){		
 			$data2[]=$data1;					
 					
-								
+					print_r($data1);die;			
 				
 				if (strpos($data2[$a]['not_viewed_by'], $dataarray['UserID']) !== false){					
 					
