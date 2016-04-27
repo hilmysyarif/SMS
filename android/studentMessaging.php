@@ -92,6 +92,7 @@ if(!$CONNECTION)
 		
 		if (count($addedServerID)==0){
 			
+			print_r(count($addedServerID));die;
 			$count111=mysqli_query($CONNECTION,"select * from groupinfo");
 			while($data1 = mysqli_fetch_array($count111)){	
 								
