@@ -798,198 +798,26 @@ if(Authority::checkAuthority('ManageUser')==true){
 					if($msg=="fail"){
 					$this->session->set_flashdata('message_type', 'error');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount")."Class and respective section not added for this class".$comma);
-					redirect('master/manageclass');
+					redirect($_SERVER['HTTP_REFERER']);
 				} 
 					 
 					 
                     fclose($file);
 					$this->session->set_flashdata('message_type', 'success');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Class Added Successfully'.$comma);
-                    redirect('master/manageclass');
+					redirect($_SERVER['HTTP_REFERER']);
                   }
             
 			else{
 					$this->session->set_flashdata('message_type', 'error');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Adding class creat error');
-					redirect('master/manageclass');
+					redirect($_SERVER['HTTP_REFERER']);
 				}
 			}	
 					
 		
 		}
 	 /*section insert function*.....................................*/
-	
- 
- 
- /*School management class and section upload through excel start*.....................................*/       
-	
-		function insert_class2($type=false)
-	{	
-		if(Authority::checkAuthority('ManageClass')==true){
-			
-		}else{
-			$this->session->set_flashdata('category_error', " You Are Not Authorised To Access ");        
-			redirect('index.php/dashboard');
-		}
-		if(empty($this->currentsession[0]->CurrentSession)){
-			$this->session->set_flashdata('category_error', 'Please Select Session!!');        
-            redirect($_SERVER['HTTP_REFERER']);
-		}
-		
-		
-		if($type=='class'){
-		 if(isset($_POST["Import"]))
-            {
-				$i=0;
-                $filename=$_FILES["file"]["tmp_name"];
-                if($_FILES["file"]["size"] > 0)
-                  {
-                    $file = fopen($filename, "r");
-                     while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
-					 
-                     {  $class=$this->data['detail']=$this->master_model->class1($emapData[0]);
-						print_r($class);
-						if(empty ($class))
-						 { 
-							if($i>0){
-
-                            $data = array(
-                                'ClassName' => $emapData[0],
-                                'Session'=>!empty($this->currentsession[0]->CurrentSession)?$this->currentsession[0]->CurrentSession:'',
-								'DOE'=>date("d m Y"),
-								'ClassStatus'=>"Active");
-								
-								
-                        $this->load->model('master_model');
-                        $insertId = $this->master_model->insertCSV($data);
-						
-						$section=$this->data['detail']=$this->master_model->section($emapData[0]);
-                     
-														  
-								$data = array(
-                                'ClassName' => $emapData[0],
-								'SectionName'=>$emapData[1],
-								'DOE'=>date("d m Y"),
-								'SectionStatus'=>"Active");
-								
-								
-								if(empty($emapData[1]))
-									{
-									$var="A";
-									}
-									else
-									{
-									$var=$emapData[1];	
-									}
-									
-									if($emapData[0]==$section[0]->ClassName)
-									{ 
-									
-								  $data1 = array(
-									'ClassId' => $section[0]->ClassId,
-									'SectionName'=>$var,
-									'SectionStatus'=>"Active",
-									'DOE'=>date("d m Y"));
-								
-								 
-									
-									$this->load->model('master_model'); 
-									$insertId = $this->master_model->insertCSV1($data1);
-								
-									}
-									else
-									{	$msg='fail';
-									
-									$name[]=$emapData[0];
-									//$name1[]=$emapData[1];
-									$comma = implode(",", $name);
-									//$comma1 = implode(",", $name1);
-									
-									}
-						
-						
-						 }
-						 $i++;
-						 }
-						 elseif(!empty ($class)&&($i>0)){
-						 $section=$this->data['detail']=$this->master_model->section($emapData[0]);
-                     
-														  
-								$data = array(
-                                'ClassName' => $emapData[0],
-								'SectionName'=>$emapData[1],
-								'DOE'=>date("d m Y"),
-								'SectionStatus'=>"Active");
-								
-								
-								if(empty($emapData[1]))
-									{
-									$var="A";
-									}
-									else
-									{
-									$var=$emapData[1];	
-									}
-									
-									if($emapData[0]==$section[0]->ClassName)
-									{ 
-									
-								  $data1 = array(
-									'ClassId' => $section[0]->ClassId,
-									'SectionName'=>$var,
-									'SectionStatus'=>"Active",
-									'DOE'=>date("d m Y"));
-								
-								 
-									
-									$this->load->model('master_model'); 
-									$insertId = $this->master_model->insertCSV1($data1);
-								
-									}
-									else
-									{	$msg='fail';
-									
-									$name[]=$emapData[0];
-									//$name1[]=$emapData[1];
-									$comma = implode(",", $name);
-									//$comma1 = implode(",", $name1);
-									
-									}	
-										 }
-												 
-				$i++;	} 
-							
-					 
-					
-					 }
-					 
-					if($msg=="fail"){
-					$this->session->set_flashdata('message_type', 'error');        
-					$this->session->set_flashdata('message', $this->config->item("manageaccount")."Class and respective section not added for this class".$comma);
-					redirect('master/upload');
-				} 
-					 
-					 
-                    fclose($file);
-					$this->session->set_flashdata('message_type', 'success');        
-					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Class Added Successfully'.$comma);
-                    redirect('master/upload');
-                  }
-            
-			else{
-					$this->session->set_flashdata('message_type', 'error');        
-					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Adding class creat error');
-					redirect('master/upload');
-				}
-			}	
-					
-		
-		}
-	 /*section insert function*.....................................*/
-	
- 
-
-
 
 /*school management modal start........................................................................*/	
 	function modal($userid=false)
