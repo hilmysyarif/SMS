@@ -43,8 +43,9 @@
 						
 						$logDetailID = $data1['sender_id'];
 						$logDetailName = $data1['sender_name'];
-						$date_time = date('d-m-Y H:i:s');
+						$date_time = date('Y-m-d H:i:s');
 						
+						//echo $date_time;
 						$queryInsert="insert into cron_log(logDetailID,logDetailName,createdOn) values('$logDetailID','$logDetailName','$date_time') ";
 						mysqli_query($CONNECTION,$queryInsert);
 						
