@@ -48,6 +48,7 @@
 						$queryInsert="insert into cron_log(logDetailID,logDetailName,createdOn) values('$logDetailID','$logDetailName','$date_time') ";
 						mysqli_query($CONNECTION,$queryInsert);
 						
+						
 						}else{
 						$res ="Not Deleted Message";
 			         }
