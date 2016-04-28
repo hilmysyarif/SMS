@@ -60,7 +60,7 @@ class Master extends CI_Controller {
 	}
 /*school management change Language  End..........................................................*/
 function generalsetting1()
-	{echo 'hi'; ;die;
+	{
 if(Authority::checkAuthority('GeneralSetting')==true){
 			
 		}else{
@@ -798,27 +798,26 @@ if(Authority::checkAuthority('ManageUser')==true){
 					if($msg=="fail"){
 					$this->session->set_flashdata('message_type', 'error');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount")."Class and respective section not added for this class".$comma);
-					        redirect($_SERVER['HTTP_REFERER']);
+					redirect($_SERVER['HTTP_REFERER']);
+				} 
 					 
 					 
                     fclose($file);
 					$this->session->set_flashdata('message_type', 'success');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Class Added Successfully'.$comma);
-                           redirect($_SERVER['HTTP_REFERER']);
+					redirect($_SERVER['HTTP_REFERER']);
                   }
             
 			else{
 					$this->session->set_flashdata('message_type', 'error');        
 					$this->session->set_flashdata('message', $this->config->item("manageaccount").' Adding class creat error');
-					        redirect($_SERVER['HTTP_REFERER']);
+					redirect($_SERVER['HTTP_REFERER']);
 				}
 			}	
 					
 		
 		}
 	 /*section insert function*.....................................*/
-	
- 
 
 /*school management modal start........................................................................*/	
 	function modal($userid=false)
